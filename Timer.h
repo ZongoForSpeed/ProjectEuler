@@ -4,10 +4,8 @@
 
 class Timer
 {
-private:
     boost::timer::cpu_timer _timer;
-	std::string titre;
-
+	std::string             _titre;
 public:
 	Timer(const std::string &t);
     ~Timer();
