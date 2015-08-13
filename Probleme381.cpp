@@ -1,10 +1,10 @@
-#include <iostream>
-#include <set>
+#include "Problemes.h"
 
 #include "Timer.h"
-#include "Premiers.h"
-#include "Puissance.h"
+#include "Arithmetiques.h"
 
+#include <iostream>
+#include <set>
 #include <boost/multiprecision/cpp_int.hpp>
 
 typedef boost::multiprecision::cpp_int nombre;

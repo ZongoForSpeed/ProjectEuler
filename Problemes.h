@@ -1,0 +1,19 @@
+#pragma once
+
+void probleme001();
+void probleme002();
+void probleme003();
+void probleme004();
+void probleme005();
+void probleme006();
+void probleme007();
+void probleme008();
+void probleme009();
+void probleme010();
+void probleme156();
+void probleme303();
+void probleme346();
+void probleme357();
+void probleme381();
+void probleme500();
+void probleme501();

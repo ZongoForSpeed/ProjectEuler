@@ -1,6 +1,5 @@
-#include "Probleme500.h"
-#include "Premiers.h"
-#include "Puissance.h"
+#include "Problemes.h"
+#include "Arithmetiques.h"
 #include "Timer.h"
 
 #include <set>

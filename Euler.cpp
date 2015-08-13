@@ -1,13 +1,16 @@
-#include "Probleme156.h"
-#include "Probleme303.h"
-#include "Probleme346.h"
-#include "Probleme357.h"
-#include "Probleme381.h"
-#include "Probleme500.h"
-#include "Probleme501.h"
+#include "Problemes.h"
 
 int main()
 {
-	probleme357();
+	probleme001();
+	probleme002();
+	probleme003();
+	probleme004();
+	probleme005();
+	probleme006();
+	probleme007();
+	probleme008();
+	probleme009();
+	probleme010();
 	return 0;
 }

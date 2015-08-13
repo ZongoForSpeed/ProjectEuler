@@ -2,8 +2,7 @@
 #include <vector>
 
 #include "Timer.h"
-#include "Premiers.h"
-#include "Puissance.h"
+#include "Arithmetiques.h"
 
 #include <cmath>
 #include <limits>
