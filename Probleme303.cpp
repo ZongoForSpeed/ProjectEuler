@@ -1,32 +1,21 @@
+#include "Probleme303.h"
+#include "Timer.h"
+
 #include <iostream>
-#include <cstdlib>
 #include <vector>
 #include <algorithm>
 #include <map>
-#include <boost/foreach.hpp>
-#include <gmpxx.h>
+#include <boost/multiprecision/cpp_int.hpp>
 
-#include "Timer.h"
-
-//typedef long long nombre;
-typedef mpz_class nombre;
+typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::map<nombre, vecteur> dictionnaire;
-
-// operator<<(std::ostream& os, const nombre & n)
-// {
-// 	mpz_out_str(&os, 10, n);
-// 	// return os;
-// }
-
-#define foreach BOOST_FOREACH
 
 class Probleme303
 {
 	nombre limite;
-	
 public:
-	Probleme303(nombre _limite) : limite(_limite) {}
+	Probleme303(nombre _limite = 10000) : limite(_limite) {}
 	virtual ~Probleme303() {}
 
 	static bool trinary(nombre n)
@@ -49,7 +38,7 @@ public:
 			vecteur tmp;
 			for (nombre i = 1; i < 11; ++i)
 			{
-				foreach (const nombre & f, v)
+				for (const nombre & f : v)
 				{
 					nombre m = i * base + f;
 					nombre mn = m*n;
@@ -59,12 +48,6 @@ public:
 						tmp.push_back(m);
 				}		
 			}
-			// std::cout << "(" << base << ") ";
-			// foreach (const nombre & f, tmp)
-			// {
-			// 	std::cout << f*n << " ";
-			// }
-			// std::cout << std::endl;
 			base *= 10;
 			std::sort(tmp.begin(), tmp.end());
 			std::swap(tmp, v);
@@ -76,13 +59,9 @@ public:
     	nombre resultat = 0;
 		{
 			Timer t("Algorithme");
-			// nombre fn = f(limite);
-			// std::cout << "f(" << limite << ") = " << fn * limite << std::endl;
 			for (nombre n = 1; n < limite + 1; ++n)
 			{
-				nombre fn = f(n);
-				std::cout << "f(" << n << ") = " << fn * n << std::endl;
-				resultat += fn;
+				resultat += f(n);
 			}
 		}
 
@@ -90,16 +69,8 @@ public:
     }
 };
 
-int main(int argc, char** argv)
+void probleme303()
 {
-	if (argc != 2)
-	{
-		std::cout << argv[0] << " limite" << std::endl;
-		return 1;
-	}
-	
-	Probleme303 p(atoi(argv[1]));
+	Probleme303 p;
 	p.algorithme();
-	
-	return 0;
 }
