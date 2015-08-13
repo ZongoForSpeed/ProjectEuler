@@ -3,11 +3,13 @@
 
 #include "Timer.h"
 #include "Premiers.h"
+#include "Puissance.h"
 
 #include <cmath>
 #include <limits>
 
-typedef std::vector<size_t> vecteur;
+typedef unsigned long long nombre;
+typedef std::vector<nombre> vecteur;
 
 class Probleme501
 {
@@ -16,48 +18,33 @@ class Probleme501
     // Let f(n) be the count of numbers not exceeding n with exactly eight divisors.
     // You are given f(100) = 10, f(1000) = 180 and f(10^6) = 224427.
     // Find f(10^12).
-    size_t limite;
+    nombre limite;
     
     vecteur _premiers;
     vecteur _pi;
 public:
-    Probleme501(size_t _limite) : limite(_limite) {}
+    Probleme501(nombre _limite = 1000000000000LL) : limite(_limite) {}
     
-    static size_t racine_carre(size_t n)
+    static nombre racine_carre(nombre n)
     {
         return sqrt(n);
     }
     
-    static size_t racine_cubique(size_t n)
+    static nombre racine_cubique(nombre n)
     {
         return cbrt(n);
     }
-    
-    static size_t puissance(size_t a, size_t n)
+    static nombre racine_septieme(nombre n)
     {
-        size_t resultat = 1;
-        while (n > 0)
-        {
-            if (n%2)
-                resultat *= a;
-            n /= 2;
-            a *= a;
-        }
-        
-        return resultat;
-    }
-    
-    static size_t racine_septieme(size_t n)
-    {
-        size_t resultat = (size_t)pow(n, 1.0/7.0);
-        auto p7 = puissance(resultat, 7);
+        nombre resultat = (nombre)pow(n, 1.0/7.0);
+        auto p7 = puissance::puissance(resultat, 7);
         if (p7 < n)
         {
             do
             {
                 ++resultat;
             }
-            while (puissance(resultat, 7) < n);
+            while (puissance::puissance(resultat, 7) < n);
             return resultat - 1;
         }
         else if (p7 > n)
@@ -66,7 +53,7 @@ public:
             {
                 --resultat;
             }
-            while (puissance(resultat, 7) > n);
+            while (puissance::puissance(resultat, 7) > n);
             return resultat + 1;
         }
         
@@ -75,7 +62,7 @@ public:
     
     void crible()
     {
-        size_t limite_crible = racine_cubique(limite) + 1;
+        nombre limite_crible = racine_cubique(limite) + 1;
         limite_crible *= limite_crible;
         std::vector<bool> test_premiers;
         premiers::internal_crible(limite_crible, test_premiers);
@@ -150,7 +137,7 @@ public:
         
         {
             Timer t("algorithme");
-            size_t resultat = 0;
+            nombre resultat = 0;
             {
                 // Forme p^7
                 resultat += pi2(racine_septieme(limite));
@@ -160,7 +147,7 @@ public:
                 // Forme p1^3*p2 ou p1 != p2
                 for (const size_t & p : _premiers)
                 {
-                    size_t p3 = puissance(p, 3);
+                    size_t p3 = puissance::puissance(p, 3);
                     if (2*p3 > limite)
                         break;
                     
@@ -200,23 +187,8 @@ public:
     }
 };
 
-int main(int argc, char** argv)
+void probleme501()
 {
-    size_t limite = 0;
-    if (argc > 1)
-    {
-        limite = atol(argv[1]);
-    }
-    else
-    {
-        std::cout << "Limite : " << std::endl;
-        std::cin >> limite;
-    }
-    
-    std::cout << std::numeric_limits<size_t>::max()	<< std::endl;
-    
-    Probleme501 p(limite);
+    Probleme501 p;
     p.algorithme();
-    
-    return 0;
 }

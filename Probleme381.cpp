@@ -3,6 +3,7 @@
 
 #include "Timer.h"
 #include "Premiers.h"
+#include "Puissance.h"
 
 #include <boost/multiprecision/cpp_int.hpp>
 
@@ -18,21 +19,12 @@ class Probleme381
     //
     // It can be verified that Sum S(p) = 480 for 5 ≤ p < 100.
     //
-    // Find SumS(p) for 5 ≤ p < 108.
+    // Find SumS(p) for 5 ≤ p < 10^8.
     
     size_t limite;
 public:
-    Probleme381(size_t _limite) : limite(_limite) { }
-    
-    static nombre factoriel(size_t n, size_t p)
-    {
-        nombre resultat = 1;
-        for (size_t i = 1; i < n + 1; ++i)
-            resultat *= i;
-            
-        return resultat % p;
-    }
-    
+    Probleme381(size_t _limite = 100000000L) : limite(_limite) { }
+
     static nombre S(size_t p)
     {
         if (p < 5)
@@ -43,28 +35,13 @@ public:
         nombre resultat = f;
         for (size_t n = 2; n < 6; ++n)
         {
-            f *= puissance(p - n + 1, p - 2, p);
+            f *= puissance::puissance_modulaire(p - n + 1, p - 2, p);
             f %= p;
             // std::cout << p - n << "! mod " << p << " = " << f << std::endl;
             resultat += f;
         }
         
         return resultat % p;
-    }
-    
-    static size_t puissance(size_t a, size_t n, size_t p)
-    {
-        size_t resultat = 1;
-        while (n > 0)
-        {
-            if (n%2)
-                resultat = (resultat * a)%p;
-            
-            a = (a * a)%p;
-            n /= 2;
-        }
-        
-        return resultat;
     }
     
     void algorithme()
@@ -79,11 +56,8 @@ public:
             Timer t("algorithme");
             nombre resultat = 0;
             for (const size_t & p : premiers)
-            // for (size_t i = 5; i < limite; ++i)
             {
-                nombre s = S(p);
-                resultat += s;
-                // std::cout << p << " = " << s << std::endl;
+                resultat += S(p);                
             }
             
             std::cout << "Resultat = " << resultat << std::endl;
@@ -91,22 +65,8 @@ public:
     }
 };
 
-int main(int argc, char** argv)
+void probleme381()
 {
-    size_t limite = 0;
-    if (argc > 1)
-    {
-        limite = atol(argv[1]);
-    }
-    else
-    {
-        std::cout << "Limite : " << std::endl;
-        std::cin >> limite;
-    }
-    
-    std::cout << "2^5 % 5 = " << Probleme381::puissance(2, 5, 5) << std::endl;
-    
-    Probleme381 p(limite);
+    Probleme381 p;
     p.algorithme();
-    return 0;
 }

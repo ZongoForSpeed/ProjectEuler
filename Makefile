@@ -4,7 +4,7 @@ CFLAGS=-std=gnu++11 -c -Wall -O3 -lboost_timer -lboost_system -lm
 
 LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm
 
-SOURCES=Timer.cpp Bezout.cpp Premiers.cpp Probleme500.cpp
+SOURCES=Timer.cpp Bezout.cpp Premiers.cpp Probleme156.cpp Probleme346.cpp Probleme381.cpp Probleme500.cpp Probleme501.cpp Euler.cpp
 
 OBJECTS=$(SOURCES:.cpp=.o)
 

@@ -1,3 +1,4 @@
+#include "Probleme500.h"
 #include "Premiers.h"
 #include "Puissance.h"
 #include "Timer.h"
@@ -85,14 +86,10 @@ public:
             std::cout << "Resultat = " << r << std::endl;
         }
     }
-    
-private:
-
 };
 
-int main()
+void probleme500()
 {
 	Probleme500 p;
 	p.algorithme();
-	return 0;
 }
