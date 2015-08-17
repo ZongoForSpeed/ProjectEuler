@@ -7,10 +7,10 @@
 
 namespace arithmetiques
 {
-    template<typename N>
-    N PGCD(N a, N b)
+    template<typename Nombre>
+    Nombre PGCD(Nombre a, Nombre b)
 	{
-		N pgcd = 0;
+		Nombre pgcd = 0;
 		while (true)
 		{
 			pgcd = a % b;
@@ -25,19 +25,43 @@ namespace arithmetiques
 		return pgcd;
 	}
 	
-	template<typename N>
-    N PPCM(N a, N b)
+	template<typename Nombre>
+    Nombre PPCM(Nombre a, Nombre b)
 	{
 	    return (a*b) / PGCD(a,b);
 	}
+	
+	template<typename Nombre, typename Iterator>
+    Nombre nombre_diviseur(Nombre n, Iterator debut, Iterator fin)
+    {
+        Nombre d = 1;
+        for (auto it = debut; it != fin; ++it)
+        {
+            const auto & p = *it;
+            if (n == 1)
+                break;
+            if (n%p == 0)
+            {
+                Nombre compteur = 0;
+                while (n%p == 0)
+                {
+                    n /= p;
+                    ++compteur;
+                }
+                d *= compteur + 1;
+            }
+        }
+        
+        return d;
+    }
 }
 
 namespace puissance
 {
-	template<typename N1, typename N2, typename N3>
-	N1 puissance_modulaire(N1 base, N2 exposant, N3 modulo)
+	template<typename Nombre1, typename Nombre2, typename Nombre3>
+	Nombre1 puissance_modulaire(Nombre1 base, Nombre2 exposant, Nombre3 modulo)
 	{
-		N1 resultat = 1;
+		Nombre1 resultat = 1;
 		while (exposant > 0)
 		{
 			if (exposant%2)
@@ -49,10 +73,10 @@ namespace puissance
 		return resultat;
 	}
 
-	template<typename N1, typename N2>
-	N1 puissance(N1 base, N2 modulo)
+	template<typename Nombre1, typename Nombre2>
+	Nombre1 puissance(Nombre1 base, Nombre2 modulo)
 	{
-		N1 resultat = 1;
+		Nombre1 resultat = 1;
 		while (modulo > 0)
 		{
 			if (modulo%2)
@@ -69,7 +93,7 @@ namespace premiers
 {
     void internal_crible(std::size_t taille, std::vector<bool> & test);
     
-    template<typename N, class OutputIterator>
+    template<typename Nombre, class OutputIterator>
     OutputIterator crible(std::size_t taille, OutputIterator sortie)
     {
         std::size_t taille_crible = taille / 2;
@@ -82,7 +106,7 @@ namespace premiers
         {
             if (test.at(p))
             {
-                *sortie = N(2*p + 1);
+                *sortie = Nombre(2*p + 1);
                 ++sortie;    
             }
         }
@@ -90,22 +114,22 @@ namespace premiers
         return sortie;
     }
     
-    template<typename N>
-    void crible(std::size_t taille, std::vector<N> & premiers)
+    template<typename Nombre>
+    void crible(std::size_t taille, std::vector<Nombre> & premiers)
     {
-        crible<N>(taille, std::back_inserter(premiers));
+        crible<Nombre>(taille, std::back_inserter(premiers));
     }
     
-    template<typename N>
-    void crible(std::size_t taille, std::list<N> & premiers)
+    template<typename Nombre>
+    void crible(std::size_t taille, std::list<Nombre> & premiers)
     {
-    	crible<N>(taille, std::back_inserter(premiers));
+    	crible<Nombre>(taille, std::back_inserter(premiers));
     }
 
-    template<typename N>
-    void crible(std::size_t taille, std::set<N> & premiers)
+    template<typename Nombre>
+    void crible(std::size_t taille, std::set<Nombre> & premiers)
     {
-    	crible<N>(taille, std::inserter(premiers, premiers.begin()));
+    	crible<Nombre>(taille, std::inserter(premiers, premiers.begin()));
     }
     
     void testCrible(std::size_t taille);
