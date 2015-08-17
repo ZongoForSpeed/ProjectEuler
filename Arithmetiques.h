@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iterator>
 #include <vector>
 #include <set>
 #include <list>
@@ -68,41 +69,46 @@ namespace premiers
 {
     void internal_crible(std::size_t taille, std::vector<bool> & test);
     
+    template<typename N, class OutputIterator>
+    OutputIterator crible(std::size_t taille, OutputIterator sortie)
+    {
+        std::size_t taille_crible = taille / 2;
+        std::vector<bool> test;
+        internal_crible(taille_crible, test);
+        
+        *sortie = 2;
+        ++sortie;
+        for (std::size_t p = 1; p < taille_crible; ++p)
+        {
+            if (test.at(p))
+            {
+                *sortie = N(2*p + 1);
+                ++sortie;    
+            }
+        }
+        
+        return sortie;
+    }
+    
     template<typename N>
     void crible(std::size_t taille, std::vector<N> & premiers)
     {
-    	std::vector<bool> test;
-    	internal_crible(taille, test);
-    	
-    	for (std::size_t p = 0; p < taille + 1; ++p)
-    	{
-    		if (test.at(p)) premiers.push_back(p);
-    	}
+        crible<N>(taille, std::back_inserter(premiers));
     }
     
     template<typename N>
     void crible(std::size_t taille, std::list<N> & premiers)
     {
-    	std::vector<bool> test;
-    	internal_crible(taille, test);
-    	
-    	for (std::size_t p = 0; p < taille + 1; ++p)
-    	{
-    		if (test.at(p)) premiers.push_back(p);
-    	}
+    	crible<N>(taille, std::back_inserter(premiers));
     }
 
     template<typename N>
     void crible(std::size_t taille, std::set<N> & premiers)
     {
-    	std::vector<bool> test;
-    	internal_crible(taille, test);
-    	
-    	for (std::size_t p = 0; p < taille + 1; ++p)
-    	{
-    		if (test.at(p)) premiers.insert(p);
-    	}
-    }    
+    	crible<N>(taille, std::inserter(premiers, premiers.begin()));
+    }
+    
+    void testCrible(std::size_t taille);
 }
 
 namespace bezout

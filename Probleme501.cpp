@@ -63,21 +63,16 @@ public:
     {
         nombre limite_crible = racine_cubique(limite) + 1;
         limite_crible *= limite_crible;
-        std::vector<bool> test_premiers;
-        premiers::internal_crible(limite_crible, test_premiers);
-        _premiers.reserve(limite_crible + 1);
-        _pi.reserve(limite_crible + 1);
+        premiers::crible(limite_crible, _premiers);
         
-        size_t compteur = 0;
-    	for (std::size_t p = 0; p < limite_crible + 1; ++p)
-    	{
-    		if (test_premiers.at(p)) 
-    		{
-    		    ++compteur;
-    		    _premiers.push_back(p);
-    		}
-    		_pi.push_back(compteur);
-    	}
+        std::size_t dernier = 0;
+        std::size_t compteur = 0;
+        for (const auto & p : _premiers)
+        {
+            std::fill_n(std::back_inserter(_pi), p - dernier, compteur);
+            ++compteur;
+            dernier = p;
+        }
     }
     
     size_t Phi(size_t m, size_t n)

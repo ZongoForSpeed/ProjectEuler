@@ -1,16 +1,10 @@
 #include "Problemes.h"
+#include "Arithmetiques.h"
 
-int main()
+#include <string>
+
+int main(int argc, char ** argv)
 {
-	probleme001();
-	probleme002();
-	probleme003();
-	probleme004();
-	probleme005();
-	probleme006();
-	probleme007();
-	probleme008();
-	probleme009();
-	probleme010();
+    premiers::testCrible(std::stoull(argv[1]));
 	return 0;
 }
