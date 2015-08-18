@@ -5,6 +5,38 @@
 #include <set>
 #include <list>
 
+namespace puissance
+{
+	template<typename Nombre1, typename Nombre2, typename Nombre3>
+	Nombre1 puissance_modulaire(Nombre1 base, Nombre2 exposant, Nombre3 modulo)
+	{
+		Nombre1 resultat = 1;
+		while (exposant > 0)
+		{
+			if (exposant%2)
+				resultat = (base * resultat)%modulo;
+			exposant /= 2;
+			base = (base * base)%modulo;
+		}
+		return resultat;
+	}
+
+	template<typename Nombre1, typename Nombre2>
+	Nombre1 puissance(Nombre1 base, Nombre2 modulo)
+	{
+		Nombre1 resultat = 1;
+		while (modulo > 0)
+		{
+			if (modulo%2)
+				resultat *= base;
+			modulo /= 2;
+			base *= base;
+		}
+
+		return resultat;
+	}
+}
+
 namespace arithmetiques
 {
     template<typename Nombre>
@@ -32,14 +64,14 @@ namespace arithmetiques
 	}
 	
 	template<typename Nombre, typename Iterator>
-    Nombre nombre_diviseur(Nombre n, Iterator debut, Iterator fin)
+    Nombre nombre_diviseurs(Nombre n, Iterator debut, Iterator fin)
     {
         Nombre d = 1;
         for (auto it = debut; it != fin; ++it)
         {
-            const auto & p = *it;
             if (n == 1)
                 break;
+            const auto & p = *it;
             if (n%p == 0)
             {
                 Nombre compteur = 0;
@@ -54,39 +86,30 @@ namespace arithmetiques
         
         return d;
     }
-}
-
-namespace puissance
-{
-	template<typename Nombre1, typename Nombre2, typename Nombre3>
-	Nombre1 puissance_modulaire(Nombre1 base, Nombre2 exposant, Nombre3 modulo)
-	{
-		Nombre1 resultat = 1;
-		while (exposant > 0)
-		{
-			if (exposant%2)
-				resultat = (base * resultat)%modulo;
-			exposant /= 2;
-			base = (base * base)%modulo;
-		}
-
-		return resultat;
-	}
-
-	template<typename Nombre1, typename Nombre2>
-	Nombre1 puissance(Nombre1 base, Nombre2 modulo)
-	{
-		Nombre1 resultat = 1;
-		while (modulo > 0)
-		{
-			if (modulo%2)
-				resultat *= base;
-			modulo /= 2;
-			base *= base;
-		}
-
-		return resultat;
-	}
+    
+    template<typename Nombre, typename Iterator>
+    Nombre somme_diviseurs(Nombre n, Iterator debut, Iterator fin)
+    {
+        Nombre s = 1;
+        for (auto it = debut; it != fin; ++it)
+        {
+            if (n == 1)
+                break;
+            const auto & p = *it;
+            if (n%p == 0)
+            {
+                Nombre compteur = 0;
+                while (n%p == 0)
+                {
+                    n /= p;
+                    ++compteur;
+                }
+                s *= (puissance::puissance(p, compteur + 1) - 1)/(p - 1);
+            }
+        }
+        
+        return s;
+    }
 }
 
 namespace premiers
@@ -170,5 +193,13 @@ namespace combinatoire
         }
         
         return numerateur / denominateur;
+    }
+    
+    template<typename Nombre>
+    Nombre factoriel(Nombre n)
+    {
+        Nombre resultat = 1;
+        for (Nombre k = 2; k <= n; ++k) resultat *= k;
+        return resultat;
     }
 }

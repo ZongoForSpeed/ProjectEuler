@@ -5,13 +5,17 @@
 #include <algorithm>
 #include <numeric>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <map>
 
+#include <boost/algorithm/string.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/tuple/tuple.hpp>
 #include <boost/range/adaptor/reversed.hpp>
+#include <boost/date_time/date_defs.hpp>
+#include <boost/date_time/gregorian/gregorian.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -319,7 +323,7 @@ void probleme012()
 
     nombre triangle = 1;
     nombre n = 1;
-    while (arithmetiques::nombre_diviseur(triangle, premiers.begin(), premiers.end()) < 500) triangle += ++n;
+    while (arithmetiques::nombre_diviseurs(triangle, premiers.begin(), premiers.end()) < 500) triangle += ++n;
     std::cout << "Solution: " << triangle << std::endl;
 }
 
@@ -552,6 +556,172 @@ void probleme017()
             resultat += unite[n/100] + centaine;
 		    if (n%100 != 0) resultat += et;
         }
+    }
+    std::cout << "Solution: " << resultat << std::endl;
+}
+
+void probleme018()
+{
+    Timer t("probleme 18");
+    typedef std::vector<vecteur> matrice;
+    // By starting at the top of the triangle below and moving to adjacent numbers on the row below, 
+    // the maximum total from top to bottom is 23.
+    //                                             3
+    //                                            7 4
+    //                                           2 4 6
+    //                                          8 5 9 3
+    // That is, 3 + 7 + 4 + 9 = 23.
+    //
+    // Find the maximum total from top to bottom of the triangle below:
+    // 
+    matrice triangle = boost::assign::list_of<vecteur>
+        (boost::assign::list_of(75))
+        (boost::assign::list_of(95)(64))
+        (boost::assign::list_of(17)(47)(82))
+        (boost::assign::list_of(18)(35)(87)(10))
+        (boost::assign::list_of(20)( 4)(82)(47)(65))
+        (boost::assign::list_of(19)( 1)(23)(75)( 3)(34))
+        (boost::assign::list_of(88)( 2)(77)(73)( 7)(63)(67))
+        (boost::assign::list_of(99)(65)( 4)(28)( 6)(16)(70)(92))
+        (boost::assign::list_of(41)(41)(26)(56)(83)(40)(80)(70)(33))
+        (boost::assign::list_of(41)(48)(72)(33)(47)(32)(37)(16)(94)(29))
+        (boost::assign::list_of(53)(71)(44)(65)(25)(43)(91)(52)(97)(51)(14))
+        (boost::assign::list_of(70)(11)(33)(28)(77)(73)(17)(78)(39)(68)(17)(57))
+        (boost::assign::list_of(91)(71)(52)(38)(17)(14)(91)(43)(58)(50)(27)(29)(48))
+        (boost::assign::list_of(63)(66)( 4)(68)(89)(53)(67)(30)(73)(16)(69)(87)(40)(31))
+        (boost::assign::list_of( 4)(62)(98)(27)(23)( 9)(70)(98)(73)(93)(38)(53)(60)( 4)(23));
+    // NOTE: As there are only 16384 routes, it is possible to solve this problem by 
+    // trying every route. However, Problem 67, is the same challenge with a triangle containing 
+    // one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
+    const size_t taille = triangle.size();
+    matrice resultat;
+    for (size_t i = 0; i < taille; ++i)
+    {
+        vecteur ligne;
+        if (i == 0)
+            ligne.push_back(triangle[i][i]);
+        else for (size_t j = 0; j <= i; ++j)
+        {
+            if (j == 0)
+                ligne.push_back(resultat[i-1][j] + triangle[i][j]);
+            else if (i == j)
+                ligne.push_back(resultat[i-1][j-1] + triangle[i][j]);
+            else
+                ligne.push_back(std::max(resultat[i-1][j-1],resultat[i-1][j]) + triangle[i][j]);
+        }
+        resultat.push_back(ligne);
+    }
+    const auto it = std::max_element(resultat.back().begin(), resultat.back().end());
+    std::cout << "Solution: " << *it << std::endl;
+}
+
+void probleme019()
+{
+    Timer t("probleme 19");
+    // You are given the following information, but you may prefer to do some research for yourself.
+    // 
+    // 1 Jan 1900 was a Monday.
+    // Thirty days has September,
+    // April, June and November.
+    // All the rest have thirty-one,
+    // Saving February alone,
+    // Which has twenty-eight, rain or shine.
+    // And on leap years, twenty-nine.
+    // A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+    //
+    // How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+    boost::gregorian::month_iterator start(boost::gregorian::date(1901,1,1),1);
+    boost::gregorian::date end(2000,12,31);
+    nombre resultat = 0;
+    while (start <= end)
+    {
+        if (start->day_of_week() == boost::date_time::Sunday)
+        {
+            // std::cout << *start << std::endl;
+            ++resultat;
+        }
+        ++start;
+    }
+    std::cout << "Solution: " << resultat << std::endl;
+}
+
+void probleme020()
+{
+    Timer t("probleme 20");
+    typedef boost::multiprecision::cpp_int nombre;
+    // n! means n × (n − 1) × ... × 3 × 2 × 1
+    // 
+    // For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
+    // and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
+    // 
+    // Find the sum of the digits in the number 100!
+    nombre factoriel = combinatoire::factoriel<nombre>(100);
+    nombre resultat = 0;
+    while(factoriel != 0)
+    {
+        resultat += factoriel%10;
+        factoriel /= 10;   
+    }
+    std::cout << "Solution: " << resultat << std::endl;
+}
+
+void probleme021()
+{
+    Timer t("probleme 21");
+    // Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
+    // If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
+    // 
+    // For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+    // 
+    // Evaluate the sum of all the amicable numbers under 10000.
+    std::list<nombre> premiers;
+    premiers::crible(10000, premiers);
+    vecteur diviseurs;
+    diviseurs.reserve(10000);
+    diviseurs.push_back(0);
+    nombre resultat = 0;
+    for (nombre n = 1; n < 10000; ++n)
+    {
+        nombre d = arithmetiques::somme_diviseurs(n, premiers.begin(), premiers.end()) - n;
+        diviseurs.push_back(d);
+        if (d < n && diviseurs[d] == n)
+        {
+            resultat += d + n;
+        }
+    }
+    std::cout << "Solution: " << resultat << std::endl;
+}
+
+void probleme022()
+{
+    Timer t("probleme 22");
+    // Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing 
+    // over five-thousand first names, begin by sorting it into alphabetical order. 
+    // Then working out the alphabetical value for each name, multiply this value by its alphabetical 
+    // position in the list to obtain a name score.
+    // 
+    // For example, when the list is sorted into alphabetical order, COLIN, which is worth 
+    // 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a 
+    // score of 938 × 53 = 49714.
+    // 
+    // What is the total of all the name scores in the file?    
+    std::ifstream ifs("data/p022_names.txt");
+    std::string entree;
+    ifs >> entree;
+    std::vector<std::string> names;
+    boost::split(names, entree, boost::is_any_of(","));
+    std::sort(names.begin(), names.end());
+    nombre compteur = 0;
+    nombre resultat = 0;
+    for (const auto & name: names)
+    {
+        nombre score = std::accumulate(name.begin(), name.end(), 0, [](const nombre & n, char t)
+        {
+            if (t != '"')
+                return n + (t - 'A' + 1);
+            return n;
+        });
+        resultat += (++compteur * score);
     }
     std::cout << "Solution: " << resultat << std::endl;
 }
