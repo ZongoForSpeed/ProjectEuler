@@ -6,8 +6,12 @@
 #include <numeric>
 #include <iostream>
 #include <vector>
+#include <map>
+
+#include <boost/assign/list_of.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/tuple/tuple.hpp>
+#include <boost/range/adaptor/reversed.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -321,6 +325,7 @@ void probleme012()
 
 void probleme013()
 {
+    Timer t("probleme 13");
     typedef boost::multiprecision::cpp_int nombre;
     // Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
     std::string entree = 
@@ -430,5 +435,123 @@ void probleme013()
     while( is >> n ) somme += n;
     std::ostringstream os;
     os << somme;
-    std::cout << os.str().substr(0, 10) << std::endl;
+    std::cout << "Solution: " << os.str().substr(0, 10) << std::endl;
+}
+
+void probleme014()
+{
+    Timer t("probleme 14");
+    // The following iterative sequence is defined for the set of positive integers:
+    // 
+    // n -> n/2 (n is even)
+    // n -> 3n + 1 (n is odd)
+    // 
+    // Using the rule above and starting with 13, we generate the following sequence:
+    // 
+    // 13 -> 40 -> 20 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
+    // It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. 
+    // Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+    // 
+    // Which starting number, under one million, produces the longest chain?
+    // 
+    // NOTE: Once the chain starts the terms are allowed to go above one million.
+    std::map<nombre, nombre> cache;
+    cache[1] = 1;
+    
+    nombre max_longueur = 1;
+    nombre max_nombre = 1;
+    for (nombre n = 2; n < 1000000; ++n)
+    {
+        std::list<nombre> chaine;
+        chaine.push_back(n);
+        nombre p = n;
+        while (cache.find(p) == cache.end())
+        {
+            if (p%2 == 0)
+                p /= 2;
+            else
+                p = 3*p + 1;
+            chaine.push_back(p);    
+        }
+        
+        nombre longueur = cache[p];
+        for (const nombre & c : boost::adaptors::reverse(chaine))
+        {
+            cache[c] = ++longueur;
+        }
+        
+        if (cache[n] > max_longueur)
+        {
+            max_longueur = cache[n];
+            max_nombre = n;
+        }
+    }
+    
+    std::cout << "Solution: " << max_nombre << std::endl;
+}
+
+void probleme015()
+{
+    Timer t("probleme 15");
+    typedef boost::multiprecision::cpp_int nombre;
+    // Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, 
+    // there are exactly 6 routes to the bottom right corner.
+    //
+    // How many such routes are there through a 20×20 grid?
+    std::cout << "Solution: " << combinatoire::coefficient_binomial<nombre>(40, 20) << std::endl;
+}
+
+void probleme016()
+{
+    Timer t("probleme 16");
+    typedef boost::multiprecision::cpp_int nombre;
+    // 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+    //
+    // What is the sum of the digits of the number 2^1000?
+    nombre n = puissance::puissance<nombre>(2, 1000);
+    nombre resultat = 0;
+    while (n != 0)
+    {
+        resultat += n%10;
+        n /= 10;
+    }
+    std::cout << "Solution: " << resultat << std::endl;
+}
+
+void probleme017()
+{
+    Timer t("probleme 17");
+    // If the numbers 1 to 5 are written out in words: one, two, three, four, five, 
+    // then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
+    // 
+    // If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, 
+    // how many letters would be used?
+    // 
+    // NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) 
+    // contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. 
+    // The use of "and" when writing out numbers is in compliance with British usage.
+    const vecteur unite = boost::assign::list_of(0)(3)(3)(5)(4)(4)(3)(5)(5)(4)
+                                                (3)(6)(6)(8)(8)(7)(7)(9)(8)(8);
+    const vecteur dizaine = boost::assign::list_of(0)(3)(6)(6)(5)(5)(5)(7)(6)(6);
+    const nombre centaine = 7; // hundred
+    const nombre et = 3; // and
+    
+    nombre resultat = 11; // onethousand
+    for (nombre n = 1; n < 1000; ++n)
+    {
+        if (n%100 != 0)
+        {
+            const nombre c = n%100;
+            if (c < 20)
+                resultat += unite[c];
+            else
+                resultat += dizaine[c/10] + unite[c%10];
+        }
+        if (n >= 100)
+        {
+            resultat += unite[n/100] + centaine;
+		    if (n%100 != 0) resultat += et;
+        }
+    }
+    std::cout << "Solution: " << resultat << std::endl;
 }

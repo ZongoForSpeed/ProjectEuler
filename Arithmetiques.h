@@ -151,3 +151,24 @@ namespace bezout
     unsigned int inverse_mod(unsigned int a, unsigned int n);
     int chinois(unsigned int a, unsigned int n, unsigned int b, unsigned int m);
 }
+
+namespace combinatoire
+{
+    template<typename Nombre>
+    Nombre coefficient_binomial(Nombre n, Nombre p)
+    {
+        if (p < 1 || n < p)
+            return Nombre(1);
+        if (p > n/2)
+            p = n-p;
+        Nombre numerateur = 1;
+        Nombre denominateur = 1;
+        for (Nombre k = 0; k < p; ++k)
+        {
+            numerateur *= (n - k);
+            denominateur *= (k + 1);
+        }
+        
+        return numerateur / denominateur;
+    }
+}
