@@ -1,8 +1,8 @@
 CC=g++
 
-CFLAGS=-std=gnu++11 -c -Wall -O3 -lboost_timer -lboost_system -lm
+CFLAGS=-std=gnu++11 -c -Wall -O3 -lboost_timer -lboost_system -lm -lgmpxx -lgmp
 
-LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm
+LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp
 
 SOURCES=Timer.cpp Arithmetiques.cpp Problemes.cpp Probleme156.cpp Probleme303.cpp Probleme346.cpp Probleme357.cpp Probleme381.cpp Probleme500.cpp Probleme501.cpp Euler.cpp
 

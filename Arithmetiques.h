@@ -110,6 +110,18 @@ namespace arithmetiques
         
         return s;
     }
+    
+    template<typename Nombre>
+    Nombre nombre_chiffres(Nombre n)
+    {
+    	Nombre d = 0;
+		while (n != 0)
+		{
+			n /= 10;
+			++d;
+		}
+		return d;
+    }
 }
 
 namespace premiers
