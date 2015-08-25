@@ -7,63 +7,63 @@
 
 namespace puissance
 {
-	template<typename Nombre1, typename Nombre2, typename Nombre3>
-	Nombre1 puissance_modulaire(Nombre1 base, Nombre2 exposant, Nombre3 modulo)
-	{
-		Nombre1 resultat = 1;
-		while (exposant > 0)
-		{
-			if (exposant%2)
-				resultat = (base * resultat)%modulo;
-			exposant /= 2;
-			base = (base * base)%modulo;
-		}
-		return resultat;
-	}
+    template<typename Nombre1, typename Nombre2, typename Nombre3>
+    Nombre1 puissance_modulaire(Nombre1 base, Nombre2 exposant, Nombre3 modulo)
+    {
+        Nombre1 resultat = 1;
+        while (exposant > 0)
+        {
+            if (exposant%2)
+                resultat = (base * resultat)%modulo;
+            exposant /= 2;
+            base = (base * base)%modulo;
+        }
+        return resultat;
+    }
 
-	template<typename Nombre1, typename Nombre2>
-	Nombre1 puissance(Nombre1 base, Nombre2 modulo)
-	{
-		Nombre1 resultat = 1;
-		while (modulo > 0)
-		{
-			if (modulo%2)
-				resultat *= base;
-			modulo /= 2;
-			base *= base;
-		}
+    template<typename Nombre1, typename Nombre2>
+    Nombre1 puissance(Nombre1 base, Nombre2 modulo)
+    {
+        Nombre1 resultat = 1;
+        while (modulo > 0)
+        {
+            if (modulo%2)
+                resultat *= base;
+            modulo /= 2;
+            base *= base;
+        }
 
-		return resultat;
-	}
+        return resultat;
+    }
 }
 
 namespace arithmetiques
 {
     template<typename Nombre>
     Nombre PGCD(Nombre a, Nombre b)
-	{
-		Nombre pgcd = 0;
-		while (true)
-		{
-			pgcd = a % b;
-			if(pgcd == 0)
-			{
-				pgcd = b;
-				break;
-			}
-			a = b;
-			b = pgcd;
-		}
-		return pgcd;
-	}
-	
-	template<typename Nombre>
+    {
+        Nombre pgcd = 0;
+        while (true)
+        {
+            pgcd = a % b;
+            if(pgcd == 0)
+            {
+                pgcd = b;
+                break;
+            }
+            a = b;
+            b = pgcd;
+        }
+        return pgcd;
+    }
+    
+    template<typename Nombre>
     Nombre PPCM(Nombre a, Nombre b)
-	{
-	    return (a*b) / PGCD(a,b);
-	}
-	
-	template<typename Nombre, typename Iterator>
+    {
+        return (a*b) / PGCD(a,b);
+    }
+    
+    template<typename Nombre, typename Iterator>
     Nombre nombre_diviseurs(Nombre n, Iterator debut, Iterator fin)
     {
         Nombre d = 1;
@@ -114,13 +114,13 @@ namespace arithmetiques
     template<typename Nombre>
     Nombre nombre_chiffres(Nombre n)
     {
-    	Nombre d = 0;
-		while (n != 0)
-		{
-			n /= 10;
-			++d;
-		}
-		return d;
+        Nombre d = 0;
+        while (n != 0)
+        {
+            n /= 10;
+            ++d;
+        }
+        return d;
     }
 }
 
@@ -158,13 +158,13 @@ namespace premiers
     template<typename Nombre>
     void crible(std::size_t taille, std::list<Nombre> & premiers)
     {
-    	crible<Nombre>(taille, std::back_inserter(premiers));
+        crible<Nombre>(taille, std::back_inserter(premiers));
     }
 
     template<typename Nombre>
     void crible(std::size_t taille, std::set<Nombre> & premiers)
     {
-    	crible<Nombre>(taille, std::inserter(premiers, premiers.begin()));
+        crible<Nombre>(taille, std::inserter(premiers, premiers.begin()));
     }
     
     void testCrible(std::size_t taille);
