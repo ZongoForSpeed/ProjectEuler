@@ -22,15 +22,9 @@ void probleme030()
     nombre resultat = 0;
     for (nombre n = 2; n < 200000; ++n)
     {
-        nombre m = n;
         nombre s = 0;
-        while (m != 0)
-        {
-            s += puissance::puissance(m%10, 5);
-            m /= 10;
-        }
-        if (s == n)
-            resultat += n;
+        arithmetiques::boucle_chiffre(n, [&s](nombre d) { s += puissance::puissance(d, 5); });
+        if (s == n) resultat += n;
     }
     
     std::cout << "Solution: " << resultat << std::endl;

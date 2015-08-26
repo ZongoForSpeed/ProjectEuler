@@ -19,10 +19,6 @@ void probleme020()
     // Find the sum of the digits in the number 100!
     nombre factoriel = combinatoire::factoriel<nombre>(100);
     nombre resultat = 0;
-    while(factoriel != 0)
-    {
-        resultat += factoriel%10;
-        factoriel /= 10;   
-    }
+    arithmetiques::boucle_chiffre(factoriel, [&resultat](nombre d) { resultat += d; });
     std::cout << "Solution: " << resultat << std::endl;
 }

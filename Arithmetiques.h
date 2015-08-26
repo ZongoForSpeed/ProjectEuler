@@ -111,16 +111,30 @@ namespace arithmetiques
         return s;
     }
     
+    template<typename Nombre, class Operation>
+    void boucle_chiffre(Nombre n, Operation op)
+    {
+        while (n != 0)
+        {
+            op(n%10);
+            n /= 10;
+        }
+    }
+    
     template<typename Nombre>
     Nombre nombre_chiffres(Nombre n)
     {
         Nombre d = 0;
-        while (n != 0)
-        {
-            n /= 10;
-            ++d;
-        }
+        boucle_chiffre(n, [&d](Nombre) { ++d; });
         return d;
+    }
+    
+    template<typename Nombre>
+    std::list<Nombre> extraire_chiffres(Nombre n)
+    {
+        std::list<Nombre> resultat;
+        boucle_chiffre(n, [&resultat](Nombre d){ resultat.push_front(d); });
+        return resultat;
     }
 }
 
