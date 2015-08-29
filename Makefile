@@ -2,7 +2,6 @@ CPPFLAGS=-std=gnu++11 -c -Wall -O3 -lboost_timer -lboost_system -lm -lgmpxx -lgm
 
 LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp
 
-##SOURCES=Timer.cpp Arithmetiques.cpp Probleme001.cpp Probleme002.cpp Probleme003.cpp Probleme004.cpp Probleme005.cpp Probleme006.cpp Probleme007.cpp Probleme008.cpp Probleme009.cpp Probleme010.cpp Probleme011.cpp Probleme012.cpp Probleme013.cpp Probleme014.cpp Probleme015.cpp Probleme016.cpp Probleme017.cpp Probleme018.cpp Probleme019.cpp Probleme020.cpp Probleme021.cpp Probleme022.cpp Probleme023.cpp Probleme024.cpp Probleme025.cpp Probleme026.cpp Probleme027.cpp Probleme028.cpp Probleme029.cpp Probleme030.cpp Probleme156.cpp Probleme303.cpp Probleme346.cpp Probleme357.cpp Probleme381.cpp Probleme500.cpp Probleme501.cpp Euler.cpp
 SOURCES=Timer.cpp Arithmetiques.cpp $(wildcard Probleme*.cpp) Euler.cpp
 
 OBJECTS=$(SOURCES:.cpp=.o)
@@ -12,7 +11,7 @@ all: $(SOURCES) Euler
 Euler: $(OBJECTS) 
 	g++ $(OBJECTS) -o $@ $(LDFLAGS)
 
-.cpp.o:
+.cpp.o: Arithmetiques.h Timer.h
 	g++ $< -o $@ $(CPPFLAGS) 
 	
 clean:

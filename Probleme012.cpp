@@ -3,6 +3,7 @@
 #include "Timer.h"
 
 #include <iostream>
+#include <deque>
 
 typedef unsigned long long nombre;
 
@@ -26,8 +27,8 @@ void probleme012()
     // We can see that 28 is the first triangle number to have over five divisors.
     // 
     // What is the value of the first triangle number to have over five hundred divisors?
-    std::list<nombre> premiers;
-    premiers::crible(100000000, premiers);
+    std::deque<nombre> premiers;
+    premiers::crible<nombre>(100000000, std::back_inserter(premiers));
 
     nombre triangle = 1;
     nombre n = 1;

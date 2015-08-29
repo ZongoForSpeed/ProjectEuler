@@ -5,6 +5,6 @@
 
 int main(int argc, char ** argv)
 {
-    probleme022();
+	premiers::testCrible();
 	return 0;
 }

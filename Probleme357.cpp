@@ -41,7 +41,7 @@ public:
 	{
 		{
 			Timer t("crible");
-			premiers::crible(taille, premiers);
+			premiers::crible<nombre>(taille, std::inserter(premiers, premiers.begin()));
 		}
 		
 		nombre solution = 0;

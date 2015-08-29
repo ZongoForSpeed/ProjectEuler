@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <set>
+#include <deque>
 #include <boost/multiprecision/cpp_int.hpp>
 
 typedef boost::multiprecision::cpp_int nombre;
@@ -46,10 +47,10 @@ public:
     
     void algorithme()
     {
-        std::vector<size_t> premiers;
+        std::deque<size_t> premiers;
         {
             Timer t("crible");
-            premiers::crible(limite, premiers);
+            premiers::crible<size_t>(limite, std::back_inserter(premiers));
         }
         
         {

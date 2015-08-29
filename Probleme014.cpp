@@ -33,7 +33,7 @@ void probleme014()
     nombre max_nombre = 1;
     for (nombre n = 2; n < 1000000; ++n)
     {
-        std::list<nombre> chaine;
+        std::vector<nombre> chaine;
         chaine.push_back(n);
         nombre p = n;
         while (cache.find(p) == cache.end())

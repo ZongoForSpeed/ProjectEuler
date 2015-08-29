@@ -25,10 +25,10 @@ void probleme023()
     // 
     // Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
     nombre limite = 28123;
-    std::list<nombre> premiers;
-    premiers::crible(limite, premiers);
+    std::vector<nombre> premiers;
+    premiers::crible<nombre>(limite, std::back_inserter(premiers));
     
-    std::list<nombre> abundant;
+    std::vector<nombre> abundant;
     for (nombre n=12; n < limite; ++n)
     {
         if (arithmetiques::somme_diviseurs(n, premiers.begin(), premiers.end()) > 2*n)

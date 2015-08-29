@@ -22,14 +22,14 @@ namespace puissance
     }
 
     template<typename Nombre1, typename Nombre2>
-    Nombre1 puissance(Nombre1 base, Nombre2 modulo)
+    Nombre1 puissance(Nombre1 base, Nombre2 exposant)
     {
         Nombre1 resultat = 1;
-        while (modulo > 0)
+        while (exposant > 0)
         {
-            if (modulo%2)
+            if (exposant%2)
                 resultat *= base;
-            modulo /= 2;
+            exposant /= 2;
             base *= base;
         }
 
@@ -140,14 +140,16 @@ namespace arithmetiques
 
 namespace premiers
 {
-    void internal_crible(std::size_t taille, std::vector<bool> & test);
+    void internal_crible2(std::size_t taille, std::vector<bool> & test);
     
+    void internal_crible23(std::size_t taille, std::vector<bool> & test1, std::vector<bool> & test5);
+
     template<typename Nombre, class OutputIterator>
     OutputIterator crible(std::size_t taille, OutputIterator sortie)
     {
         std::size_t taille_crible = taille / 2;
         std::vector<bool> test;
-        internal_crible(taille_crible, test);
+        internal_crible2(taille_crible, test);
         
         *sortie = 2;
         ++sortie;
@@ -163,25 +165,37 @@ namespace premiers
         return sortie;
     }
     
-    template<typename Nombre>
-    void crible(std::size_t taille, std::vector<Nombre> & premiers)
-    {
-        crible<Nombre>(taille, std::back_inserter(premiers));
-    }
-    
-    template<typename Nombre>
-    void crible(std::size_t taille, std::list<Nombre> & premiers)
-    {
-        crible<Nombre>(taille, std::back_inserter(premiers));
-    }
+    template<typename Nombre, class OutputIterator>
+	OutputIterator crible23(std::size_t taille, OutputIterator sortie)
+	{
+		std::size_t taille_crible = taille / 6;
+		std::vector<bool> test1;
+		std::vector<bool> test5;
+		internal_crible23(taille_crible, test1, test5);
 
-    template<typename Nombre>
-    void crible(std::size_t taille, std::set<Nombre> & premiers)
-    {
-        crible<Nombre>(taille, std::inserter(premiers, premiers.begin()));
-    }
-    
-    void testCrible(std::size_t taille);
+		*sortie = 2;
+		++sortie;
+		*sortie = 3;
+		++sortie;
+		for (std::size_t p = 0; p < taille_crible; ++p)
+		{
+			if (test1.at(p))
+			{
+				*sortie = Nombre(6*p + 1);
+				++sortie;
+			}
+
+			if (test5.at(p))
+			{
+				*sortie = Nombre(6*p + 5);
+				++sortie;
+			}
+		}
+
+		return sortie;
+	}
+
+    void testCrible();
 }
 
 namespace bezout

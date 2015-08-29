@@ -14,7 +14,7 @@ void probleme007()
     // What is the 10 001st prime number?
     Timer t("probleme 7");
     vecteur premiers;
-    premiers::crible(200000, premiers);
+    premiers::crible<nombre>(200000, std::back_inserter(premiers));
     nombre solution = premiers.at(10000);
     std::cout << "Solution: " << solution << std::endl;
 }

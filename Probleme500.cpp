@@ -3,11 +3,12 @@
 #include "Timer.h"
 
 #include <set>
+#include <deque>
 
 class Probleme500
 {
 	typedef unsigned long long nombre;
-	typedef std::vector<nombre> vecteur;
+	typedef std::deque<nombre> vecteur;
 
 	struct Facteur
 	{
@@ -46,7 +47,7 @@ public:
         vecteur premiers;
         {
             Timer t("crible");
-            premiers::crible(100000000, premiers);
+            premiers::crible<nombre>(100000000, std::back_inserter(premiers));
         }
 
         Facteurs facteurs;

@@ -17,7 +17,7 @@ void probleme035()
     // 
     // How many circular primes are there below one million?
     std::set<nombre> premiers;
-    premiers::crible(1000000, premiers);
+    premiers::crible<nombre>(1000000, std::inserter(premiers, premiers.begin()));
     
     auto valide = [&premiers] (nombre n) -> bool
     {
