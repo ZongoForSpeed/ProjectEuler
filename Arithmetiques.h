@@ -166,34 +166,34 @@ namespace premiers
     }
     
     template<typename Nombre, class OutputIterator>
-	OutputIterator crible23(std::size_t taille, OutputIterator sortie)
-	{
-		std::size_t taille_crible = taille / 6;
-		std::vector<bool> test1;
-		std::vector<bool> test5;
-		internal_crible23(taille_crible, test1, test5);
+    OutputIterator crible23(std::size_t taille, OutputIterator sortie)
+    {
+        std::size_t taille_crible = taille / 6;
+        std::vector<bool> test1;
+        std::vector<bool> test5;
+        internal_crible23(taille_crible, test1, test5);
 
-		*sortie = 2;
-		++sortie;
-		*sortie = 3;
-		++sortie;
-		for (std::size_t p = 0; p < taille_crible; ++p)
-		{
-			if (test1.at(p))
-			{
-				*sortie = Nombre(6*p + 1);
-				++sortie;
-			}
+        *sortie = 2;
+        ++sortie;
+        *sortie = 3;
+        ++sortie;
+        for (std::size_t p = 0; p < taille_crible; ++p)
+        {
+            if (test1.at(p))
+            {
+                *sortie = Nombre(6*p + 1);
+                ++sortie;
+            }
 
-			if (test5.at(p))
-			{
-				*sortie = Nombre(6*p + 5);
-				++sortie;
-			}
-		}
+            if (test5.at(p))
+            {
+                *sortie = Nombre(6*p + 5);
+                ++sortie;
+            }
+        }
 
-		return sortie;
-	}
+        return sortie;
+    }
 
     void testCrible();
 }
