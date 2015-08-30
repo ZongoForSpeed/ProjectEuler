@@ -3,7 +3,7 @@
 #include <iterator>
 #include <vector>
 #include <set>
-#include <list>
+#include <deque>
 
 namespace puissance
 {
@@ -112,30 +112,51 @@ namespace arithmetiques
     }
     
     template<typename Nombre, class Operation>
-    void boucle_chiffre(Nombre n, Operation op)
+    void boucle_chiffre(Nombre n, Operation op, std::size_t base = 10)
     {
         while (n != 0)
         {
-            op(n%10);
-            n /= 10;
+            op(n%base);
+            n /= base;
         }
     }
     
     template<typename Nombre>
-    Nombre nombre_chiffres(Nombre n)
+    Nombre nombre_chiffres(Nombre n, std::size_t base = 10)
     {
         Nombre d = 0;
-        boucle_chiffre(n, [&d](Nombre) { ++d; });
+        boucle_chiffre(n, [&d](Nombre) { ++d; }, base);
         return d;
     }
     
     template<typename Nombre>
-    std::list<Nombre> extraire_chiffres(Nombre n)
+    std::deque<Nombre> extraire_chiffres(Nombre n, std::size_t base = 10)
     {
-        std::list<Nombre> resultat;
-        boucle_chiffre(n, [&resultat](Nombre d){ resultat.push_front(d); });
+        std::deque<Nombre> resultat;
+        boucle_chiffre(n, [&resultat](Nombre d){ resultat.push_front(d); }, base);
         return resultat;
     }
+
+    template<typename Nombre>
+    bool palindrome(Nombre n, std::size_t base = 10)
+    {
+        const auto chiffres = extraire_chiffres(n, base);
+        return std::equal(chiffres.begin(), chiffres.begin() + chiffres.size()/2, chiffres.rbegin());
+    }
+
+    template<typename Nombre>
+    bool pandigital(const Nombre & n, std::size_t base = 10)
+    {
+        std::vector<std::size_t> chiffres(base + 1, 0);
+        boucle_chiffre(n, [&chiffres](Nombre d){ chiffres[d]++; }, base);
+
+        if (chiffres[0] != 0)
+            return false;
+
+        for (auto c: chiffres)
+            if (c > 1) return false;
+        return true;
+    };
 }
 
 namespace premiers
