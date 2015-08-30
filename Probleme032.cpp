@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <vector>
-#include <numeric>
 #include <algorithm>
 
 typedef unsigned long long nombre;
@@ -22,22 +21,17 @@ void probleme032()
     // as a 1 through 9 pandigital.
     //
     // HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.
-    auto lambda = [](const nombre & r, unsigned short d)
-    {
-        return r*10 + d;
-    };
-    
     std::vector<unsigned short> v {1, 2, 3, 4, 5, 6, 7, 8, 9};
     std::set<nombre> resultat;
     do 
     {
         for (size_t i = 1; i < 8; ++i)
         {
-            nombre a = std::accumulate(v.begin(), v.begin() + i, 0, lambda);
+            nombre a = arithmetiques::conversion_nombre<nombre>(v.begin(), v.begin() + i);
             for (size_t j = i + 1; j < 9; ++j)
             {
-                nombre b = std::accumulate(v.begin() + i, v.begin() + j, 0, lambda);
-                nombre c = std::accumulate(v.begin() + j, v.end(), 0, lambda);
+                nombre b = arithmetiques::conversion_nombre<nombre>(v.begin() + i, v.begin() + j);
+                nombre c = arithmetiques::conversion_nombre<nombre>(v.begin() + j, v.end());
                 if (a * b == c)
                 {
                     std::cout << a << " * " << b << " = " << c << std::endl;  

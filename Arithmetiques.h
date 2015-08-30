@@ -4,6 +4,8 @@
 #include <vector>
 #include <set>
 #include <deque>
+#include <numeric>
+#include <cmath>
 
 namespace puissance
 {
@@ -157,6 +159,13 @@ namespace arithmetiques
             if (c > 1) return false;
         return true;
     };
+
+    template<typename Nombre, class InputIterator1, class InputIterator2>
+    Nombre conversion_nombre(InputIterator1 debut, InputIterator2 fin, std::size_t base = 10)
+    {
+        return std::accumulate(debut, fin, Nombre(0), [&base](const Nombre resultat, const Nombre chiffre) { return resultat*base + chiffre;});
+    }
+
 }
 
 namespace premiers
@@ -262,5 +271,46 @@ namespace combinatoire
         Nombre resultat = 1;
         for (Nombre k = 2; k <= n; ++k) resultat *= k;
         return resultat;
+    }
+}
+
+namespace polygonal
+{
+    template<typename Nombre>
+    Nombre triangulaire(Nombre n)
+    {
+        return n*(n+1)/2;
+    }
+
+    template<typename Nombre>
+    Nombre pentagonal(Nombre n)
+    {
+        return n*(3*n-1)/2;
+    }
+
+    template<typename Nombre>
+    bool est_pentagonal(Nombre n)
+    {
+        Nombre delta = 1 + 24*n;
+        Nombre racine_delta = std::sqrt(delta);
+        if (racine_delta*racine_delta != delta)
+            return false;
+        return (1+racine_delta)%6 == 0;
+    }
+
+    template<typename Nombre>
+    Nombre hexagonal(Nombre n)
+    {
+        return n*(2*n-1);
+    }
+
+    template<typename Nombre>
+    bool est_hexagonal(Nombre n)
+    {
+        Nombre delta = 1 + 8*n;
+        Nombre racine_delta = std::sqrt(delta);
+        if (racine_delta*racine_delta != delta)
+            return false;
+        return (1+racine_delta)%4 == 0;
     }
 }
