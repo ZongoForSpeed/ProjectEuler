@@ -26,7 +26,7 @@ void probleme021()
     nombre resultat = 0;
     for (nombre n = 1; n < 10000; ++n)
     {
-        nombre d = arithmetiques::somme_diviseurs(n, premiers.begin(), premiers.end()) - n;
+        nombre d = arithmetiques::somme_diviseurs(n, premiers) - n;
         diviseurs.push_back(d);
         if (d < n && diviseurs[d] == n)
         {

@@ -31,7 +31,7 @@ void probleme023()
     std::vector<nombre> abundant;
     for (nombre n=12; n < limite; ++n)
     {
-        if (arithmetiques::somme_diviseurs(n, premiers.begin(), premiers.end()) > 2*n)
+        if (arithmetiques::somme_diviseurs(n, premiers) > 2*n)
             abundant.push_back(n);
     }
     std::vector<bool> test(limite, true);

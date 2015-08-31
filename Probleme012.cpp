@@ -32,6 +32,6 @@ void probleme012()
 
     nombre triangle = 1;
     nombre n = 1;
-    while (arithmetiques::nombre_diviseurs(triangle, premiers.begin(), premiers.end()) < 500) triangle += ++n;
+    while (arithmetiques::nombre_diviseurs(triangle, premiers) < 500) triangle += ++n;
     std::cout << "Solution: " << triangle << std::endl;
 }

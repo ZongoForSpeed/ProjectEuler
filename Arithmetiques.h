@@ -65,15 +65,14 @@ namespace arithmetiques
         return (a*b) / PGCD(a,b);
     }
     
-    template<typename Nombre, typename Iterator>
-    Nombre nombre_diviseurs(Nombre n, Iterator debut, Iterator fin)
+    template<typename Nombre, typename Conteneur>
+    Nombre nombre_diviseurs(Nombre n, const Conteneur & premiers)
     {
         Nombre d = 1;
-        for (auto it = debut; it != fin; ++it)
+        for (auto p: premiers)
         {
             if (n == 1)
                 break;
-            const auto & p = *it;
             if (n%p == 0)
             {
                 Nombre compteur = 0;
@@ -89,15 +88,14 @@ namespace arithmetiques
         return d;
     }
     
-    template<typename Nombre, typename Iterator>
-    Nombre somme_diviseurs(Nombre n, Iterator debut, Iterator fin)
+    template<typename Nombre, typename Conteneur>
+    Nombre somme_diviseurs(Nombre n, const Conteneur & premiers)
     {
         Nombre s = 1;
-        for (auto it = debut; it != fin; ++it)
+        for (auto p: premiers)
         {
             if (n == 1)
                 break;
-            const auto & p = *it;
             if (n%p == 0)
             {
                 Nombre compteur = 0;
@@ -111,6 +109,26 @@ namespace arithmetiques
         }
         
         return s;
+    }
+    
+    template<typename Nombre, typename Conteneur, typename Dictionnaire>
+    void decomposition(Nombre n, const Conteneur & premiers, Dictionnaire & sortie)
+    {
+        for (auto p: premiers)
+        {
+            if (n == 1)
+                break;
+            if (n%p == 0)
+            {
+                Nombre compteur = 0;
+                while (n%p == 0)
+                {
+                    n /= p;
+                    ++compteur;
+                }
+                sortie[p] = compteur;
+            }
+        }
     }
     
     template<typename Nombre, class Operation>
@@ -312,5 +330,12 @@ namespace polygonal
         if (racine_delta*racine_delta != delta)
             return false;
         return (1+racine_delta)%4 == 0;
+    }
+    
+    template<typename Nombre>
+    bool est_carre(Nombre n)
+    {
+        Nombre racine = std::sqrt(n);
+        return racine*racine == n;
     }
 }
