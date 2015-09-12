@@ -6,6 +6,7 @@
 #include <deque>
 #include <numeric>
 #include <cmath>
+#include <algorithm>
 
 namespace puissance
 {
@@ -183,7 +184,15 @@ namespace arithmetiques
     {
         return std::accumulate(debut, fin, Nombre(0), [&base](const Nombre resultat, const Nombre chiffre) { return resultat*base + chiffre;});
     }
-
+    
+    template<typename Nombre>
+    bool permutation_chiffres(Nombre n, Nombre m, std::size_t base = 10)
+    {
+        auto chiffres_n = extraire_chiffres(n, base);
+        auto chiffres_m = extraire_chiffres(m, base);
+        
+        return std::is_permutation(chiffres_n.begin(), chiffres_n.end(), chiffres_m.begin());
+    }
 }
 
 namespace premiers
