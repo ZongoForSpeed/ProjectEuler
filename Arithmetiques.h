@@ -190,8 +190,14 @@ namespace arithmetiques
     {
         auto chiffres_n = extraire_chiffres(n, base);
         auto chiffres_m = extraire_chiffres(m, base);
-        
         return std::is_permutation(chiffres_n.begin(), chiffres_n.end(), chiffres_m.begin());
+    }
+    
+    template<typename Nombre>
+    Nombre inverser_nombre(Nombre n, std::size_t base = 10)
+    {
+        auto chiffres = extraire_chiffres(n, base);
+        return conversion_nombre<Nombre>(chiffres.rbegin(), chiffres.rend(), base);
     }
 }
 
