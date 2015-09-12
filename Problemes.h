@@ -56,6 +56,8 @@ void probleme053();
 void probleme054();
 void probleme055();
 void probleme056();
+void probleme057();
+void probleme058();
 void probleme156();
 void probleme303();
 void probleme346();
