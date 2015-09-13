@@ -328,6 +328,13 @@ namespace polygonal
     }
     
     template<typename Nombre>
+    bool est_cubique(Nombre n)
+    {
+        Nombre racine = std::cbrt(n);
+        return racine*racine*racine == n;
+    }
+    
+    template<typename Nombre>
     Nombre triangulaire(Nombre n)
     {
         return n*(n+1)/2;

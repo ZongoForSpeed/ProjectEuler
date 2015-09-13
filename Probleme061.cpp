@@ -11,8 +11,6 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-typedef std::map<unsigned short, vecteur> dictionnaire;
-
 void probleme061()
 {
     Timer t("probleme 61");
