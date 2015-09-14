@@ -116,7 +116,7 @@ namespace arithmetiques
     template<typename Nombre, typename Conteneur, typename Dictionnaire>
     void decomposition(Nombre n, const Conteneur & premiers, Dictionnaire & sortie)
     {
-        for (auto p: premiers)
+        for (const auto & p: premiers)
         {
             if (n == 1)
                 break;
@@ -131,6 +131,28 @@ namespace arithmetiques
                 sortie[p] = compteur;
             }
         }
+    }
+    
+    template<typename Nombre, typename Conteneur>
+    Nombre phi(Nombre n, const Conteneur & premiers)
+    {
+        Nombre resultat = n;
+        for (const auto p: premiers)
+        {
+            if (p*p > n)
+                break;
+            if (n%p == 0)
+            {
+                resultat = resultat - resultat / p;
+                while (n%p == 0) 
+                    n /= p;
+            }
+        }
+        if (n > 1)
+        {
+            resultat = resultat - resultat / n;
+        }
+        return resultat;
     }
     
     template<typename Nombre, class Operation>
