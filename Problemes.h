@@ -72,6 +72,7 @@ void probleme069();
 void probleme070();
 void probleme071();
 void probleme072();
+void probleme073();
 void probleme156();
 void probleme303();
 void probleme346();
