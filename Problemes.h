@@ -80,6 +80,8 @@ void probleme077();
 void probleme078();
 void probleme079();
 void probleme080();
+void probleme081();
+void probleme082();
 void probleme156();
 void probleme303();
 void probleme346();
