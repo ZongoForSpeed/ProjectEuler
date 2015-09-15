@@ -172,6 +172,14 @@ namespace arithmetiques
         boucle_chiffre(n, [&d](Nombre) { ++d; }, base);
         return d;
     }
+     
+    template<typename Nombre>
+    Nombre somme_chiffres(Nombre n, std::size_t base = 10)
+    {
+        Nombre resultat = 0;
+        boucle_chiffre(n, [&resultat] (Nombre d){ resultat = resultat + d; }, base);
+        return resultat;
+    }
     
     template<typename Nombre>
     std::deque<Nombre> extraire_chiffres(Nombre n, std::size_t base = 10)
@@ -332,7 +340,7 @@ namespace combinatoire
     }
     
     template<typename Nombre>
-    Nombre factoriel(Nombre n)
+    Nombre factorielle(Nombre n)
     {
         Nombre resultat = 1;
         for (Nombre k = 2; k <= n; ++k) resultat *= k;
