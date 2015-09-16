@@ -7,7 +7,6 @@
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
-typedef std::map<nombre, vecteur> graphe;
 
 class Tarjan
 {
@@ -20,6 +19,9 @@ class Tarjan
         
         Sommet(nombre _n) : n(_n), lowlink(std::numeric_limits<nombre>::max()), onStack(false) {}
     };
+    
+    
+    typedef std::map<nombre, vecteur> graphe;
     
     nombre index;
     
@@ -35,4 +37,20 @@ public:
     Tarjan(const graphe & g);
     
     void algorithme();
+};
+
+class Dijkstra
+{
+public:
+    typedef std::pair<nombre, nombre> paire;
+    typedef std::map<nombre, std::vector<paire>> graphe;
+    
+    vecteur resultat;
+
+    Dijkstra(const graphe & _G, const nombre _debut, const nombre _fin);
+    nombre algorithme();
+private:
+    graphe G;
+    nombre debut;
+    nombre fin;
 };

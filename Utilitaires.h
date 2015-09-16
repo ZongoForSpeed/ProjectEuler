@@ -5,6 +5,14 @@
 #include <set>
 #include <map>
 
+
+template<typename T, typename V>
+std::ostream& operator<<(std::ostream& os, const std::pair<T, V> & p)
+{
+    os << "(" << p.first << ", " << p.second << ")";
+    return os;
+}
+
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T> & v)
 {

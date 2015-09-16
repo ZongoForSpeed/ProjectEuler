@@ -24,7 +24,7 @@ void probleme082()
     // Find the minimal path sum, in matrix.txt (right click and "Save Link/Target As..."), a 31K 
     // text file containing a 80 by 80 matrix, from the left column to the right column.
     matrice graphe;
-    std::ifstream ifs("data/p081_matrix.txt");
+    std::ifstream ifs("data/p082_matrix.txt");
     std::string ligne;
     while (ifs >> ligne)
     {

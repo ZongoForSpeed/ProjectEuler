@@ -60,3 +60,53 @@ void Tarjan::strongconnect(Sommet & v)
         resultat.push_back(composante_connexe);
     }
 }
+
+Dijkstra::Dijkstra(const graphe & _G, const nombre _debut, const nombre _fin) : G(_G), debut(_debut), fin(_fin) {}
+
+nombre Dijkstra::algorithme()
+{
+    const nombre taille = G.size();
+    vecteur distance(taille, std::numeric_limits<nombre>::max());
+    vecteur precedent(taille, debut);
+    
+    distance[debut] = 0;
+    std::set<nombre> noeuds;
+    for (const auto & arete: G)
+        noeuds.insert(arete.first);
+        
+    while (!noeuds.empty())
+    {
+        nombre suivant;
+        nombre minimum = std::numeric_limits<nombre>::max();
+        for (nombre n: noeuds)
+        {
+            if (distance[n] < minimum)
+            {
+                suivant = n;
+                minimum = distance[n];
+            }
+        }
+        
+        noeuds.erase(suivant);
+        for (const auto & arete: G[suivant])
+        {
+            if (distance[arete.first] > distance[suivant] + arete.second)
+            {
+                distance[arete.first] = distance[suivant] + arete.second;
+                precedent[arete.first] = suivant;
+            }
+        }
+    }
+    
+    nombre n = fin;
+    while (n != debut)
+    {
+        resultat.push_back(n);
+        n = precedent[n];
+    }
+    
+    resultat.push_back(debut);
+    
+    resultat = vecteur(resultat.rbegin(), resultat.rend());
+    return distance[fin];
+}
