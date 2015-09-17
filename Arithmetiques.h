@@ -73,7 +73,7 @@ namespace arithmetiques
         Nombre d = 1;
         for (auto p: premiers)
         {
-            if (n == 1)
+            if (p*p > n)
                 break;
             if (n%p == 0)
             {
@@ -86,6 +86,8 @@ namespace arithmetiques
                 d *= compteur + 1;
             }
         }
+        if (n > 1)
+            d *= 2;
         
         return d;
     }
@@ -96,7 +98,7 @@ namespace arithmetiques
         Nombre s = 1;
         for (auto p: premiers)
         {
-            if (n == 1)
+            if (p*p > n)
                 break;
             if (n%p == 0)
             {
@@ -109,6 +111,8 @@ namespace arithmetiques
                 s *= (puissance::puissance(p, compteur + 1) - 1)/(p - 1);
             }
         }
+        if (n > 1)
+            s *= (n + 1);
         
         return s;
     }
@@ -118,7 +122,7 @@ namespace arithmetiques
     {
         for (const auto & p: premiers)
         {
-            if (n == 1)
+            if (p*p > n)
                 break;
             if (n%p == 0)
             {
@@ -131,6 +135,8 @@ namespace arithmetiques
                 sortie[p] = compteur;
             }
         }
+        if (n > 1)
+            sortie[n] = 1;
     }
     
     template<typename Nombre, typename Conteneur>
