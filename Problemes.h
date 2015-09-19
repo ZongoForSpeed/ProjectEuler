@@ -100,6 +100,7 @@ void probleme097();
 void probleme098();
 void probleme099();
 void probleme100();
+void probleme101();
 void probleme156();
 void probleme303();
 void probleme346();
