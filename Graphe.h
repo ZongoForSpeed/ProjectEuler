@@ -54,3 +54,16 @@ private:
     nombre debut;
     nombre fin;
 };
+
+class Kruskal
+{
+public:
+    typedef std::tuple<nombre, nombre, nombre> arete;
+    typedef std::vector<arete> aretes;
+    
+    Kruskal(const aretes & _A);
+    
+    aretes algorithme();
+private:
+    aretes A;
+};

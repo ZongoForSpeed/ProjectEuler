@@ -110,3 +110,39 @@ nombre Dijkstra::algorithme()
     resultat = vecteur(resultat.rbegin(), resultat.rend());
     return distance[fin];
 }
+
+Kruskal::Kruskal(const aretes & _A) : A(_A) 
+{
+    std::sort(A.begin(), A.end(), 
+        [] (const arete & a, const arete & b) { return std::get<2>(a) < std::get<2>(b); });
+}
+
+Kruskal::aretes Kruskal::algorithme()
+{
+    aretes resultat;
+    std::set<nombre> sommets;
+    for (const arete & a: A)
+    {
+        sommets.insert(std::get<0>(a));
+        sommets.insert(std::get<1>(a));
+    }
+    
+    vecteur groupe;
+    for (const nombre sommet: sommets)
+        groupe.push_back(sommet);
+        
+    for (const arete & a: A)
+    {
+        nombre i, j;
+        std::tie(i, j, std::ignore) = a;
+        if (groupe[i] != groupe[j])
+        {
+            nombre groupe_j = groupe[j];
+            nombre groupe_i = groupe[i];
+            std::replace(groupe.begin(), groupe.end(), groupe_j, groupe_i);
+            resultat.push_back(a);
+        }
+    }
+    
+    return resultat;
+}
