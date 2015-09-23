@@ -9,4 +9,6 @@ class Timer
 public:
 	Timer(const std::string &t);
     ~Timer();
+    
+    void etape(const std::string &t);
 };

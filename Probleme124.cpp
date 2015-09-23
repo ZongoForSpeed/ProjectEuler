@@ -44,12 +44,7 @@ void probleme124()
     std::vector<paire> rad { paire(0, 0), paire(1, 1) };
     for (nombre n = 2; n < limite + 1; ++n)
     {
-        std::map<nombre, nombre> decomposition;
-        arithmetiques::decomposition(n, premiers, decomposition);
-        nombre r = 1;
-        for (auto d: decomposition)
-            r *= d.first;
-        rad.push_back(paire(r, n));
+        rad.push_back(paire(arithmetiques::radical(n, premiers), n));
     }
     
     std::sort(rad.begin(), rad.end());

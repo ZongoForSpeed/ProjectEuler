@@ -1,0 +1,53 @@
+#include "Problemes.h"
+#include "Arithmetiques.h"
+#include "Timer.h"
+#include "Utilitaires.h"
+
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <limits>
+
+typedef unsigned long long nombre;
+typedef std::vector<nombre> vecteur;
+typedef std::set<nombre> ensemble;
+
+void probleme129()
+{
+    Timer t("probleme 129");
+	// A number consisting entirely of ones is called a repunit. We shall define R(k)
+	// to be a repunit of length k; for example, R(6) = 111111.
+	//
+	// Given that n is a positive integer and GCD(n, 10) = 1, it can be shown that
+	// there always exists a value, k, for which R(k) is divisible by n, and let A(n)
+	// be the least such value of k; for example, A(7) = 6 and A(41) = 5.
+	//
+	// The least value of n for which A(n) first exceeds ten is 17.
+	//
+	// Find the least value of n for which A(n) first exceeds one-million.
+	nombre limite = 1000000;
+	nombre resultat = 0;
+	for (nombre n = 999999;; n += 2)
+	{
+	    if (n%5 != 0)
+		{
+			nombre k = 1;
+			nombre p = 10%(9*n);
+			while (p != 1)
+			{
+			    p = (10*p)%(9*n);
+			    ++k;
+			}
+
+			if (k > limite)
+			{
+				std::cout << "A(" << n << ") = " << k << std::endl;
+				resultat = n;
+				break;
+			}
+		}
+	}
+	
+	std::cout << "Solution: " << resultat << std::endl;
+}
+
