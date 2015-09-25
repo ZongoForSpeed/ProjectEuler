@@ -41,14 +41,8 @@ void probleme130()
 	{
 	    if (n%5 != 0)
 		{
-			nombre k = 1;
-			nombre p = 10%(9*n);
-			while (p != 1)
-			{
-			    p = (10*p)%(9*n);
-			    ++k;
-			}
-
+			nombre k = repunit::A(n);
+			
 			if (n%k == 1 && premiers.find(n) == premiers.end())
 			{
 				resultat += n;

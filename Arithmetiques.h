@@ -540,3 +540,19 @@ namespace polygonal
         }
     }
 }
+
+namespace repunit
+{
+    template<typename Nombre>
+    Nombre A(Nombre n, size_t base = 10)
+	{
+		Nombre k = 1;
+		Nombre q = (base - 1)*n;
+        for (Nombre p = base%q; p%q != 1; p = (base*p)%q)
+        {
+            ++k;
+        }
+        
+        return k;
+	}
+}

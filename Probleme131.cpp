@@ -37,14 +37,7 @@ void probleme131()
         if (p < limite && premiers.find(p) != premiers.end())
             ++resultat;
     }
-    
-    // 1) n^3 + n^2*p = n^2*(n + p), which, since p is prime can only be a perfect cube if both n and 
-    // (n + p) are themselves perfect cubes; therefore p must be a difference of cubes.
-    
-    // 2) Since a^3 - b^3 = (a-b)(a^2 + ab + b^2), only the difference of consecutive cubes can be 
-    // prime -- i.e. a - b = 1.
-    
-    // 3) So just check the (monotonically increasing) sequence of differences of consecutive cubes for primes.
+
   	std::cout << "Solution: " << resultat << std::endl;
 }
 
