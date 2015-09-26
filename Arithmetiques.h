@@ -236,7 +236,7 @@ namespace arithmetiques
         for (auto c: chiffres)
             if (c > 1) return false;
         return true;
-    };
+    }
 
     template<typename Nombre, class InputIterator1, class InputIterator2>
     Nombre conversion_nombre(InputIterator1 debut, InputIterator2 fin, std::size_t base = 10)
@@ -252,11 +252,19 @@ namespace arithmetiques
         return std::is_permutation(chiffres_n.begin(), chiffres_n.end(), chiffres_m.begin());
     }
     
+    // template<typename Nombre>
+    // Nombre inverser_nombre(Nombre n, std::size_t base = 10)
+    // {
+    //     auto chiffres = extraire_chiffres(n, base);
+    //     return conversion_nombre<Nombre>(chiffres.rbegin(), chiffres.rend(), base);
+    // }
+    
     template<typename Nombre>
     Nombre inverser_nombre(Nombre n, std::size_t base = 10)
     {
-        auto chiffres = extraire_chiffres(n, base);
-        return conversion_nombre<Nombre>(chiffres.rbegin(), chiffres.rend(), base);
+        Nombre resultat = 0;
+        boucle_chiffre(n, [&resultat, &base] (Nombre d){ resultat = base*resultat + d; }, base);
+        return resultat;
     }
     
     template<typename Nombre>
