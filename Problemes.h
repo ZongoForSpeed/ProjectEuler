@@ -151,6 +151,8 @@ void probleme148();
 void probleme149();
 void probleme150();
 void probleme151();
+void probleme152();
+void probleme153();
 void probleme156();
 void probleme303();
 void probleme346();
