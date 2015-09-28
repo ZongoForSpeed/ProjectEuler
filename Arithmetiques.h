@@ -161,6 +161,19 @@ namespace arithmetiques
         return resultat;
     }
     
+    template<typename Nombre1, typename Nombre2>
+    Nombre1 nombre_facteur(Nombre1 n, Nombre2 d)
+    {
+        Nombre1 i = 0;
+        while (n%d == 0)
+        {
+            n /= d;
+            ++i;
+        }
+        
+        return i;
+    }
+    
     template<typename Nombre, typename Conteneur>
     Nombre phi(Nombre n, const Conteneur & premiers)
     {
