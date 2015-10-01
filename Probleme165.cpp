@@ -152,5 +152,6 @@ void probleme165()
         if (auto p = it1->intersection(*it2))
             intersections.insert(*p);
     }
+    
     std::cout << "Solution: " << intersections.size() << std::endl;
 }

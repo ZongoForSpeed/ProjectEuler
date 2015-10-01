@@ -281,10 +281,30 @@ namespace arithmetiques
     }
     
     template<typename Nombre>
-    Nombre concatener(Nombre n, Nombre m)
+    Nombre concatener(Nombre a, Nombre b)
     {
         std::stringstream ss;
-        ss << n << m;
+        ss << a << b;
+        Nombre r;
+        ss >> r;
+        return r;
+    }
+    
+    template<typename Nombre>
+    Nombre concatener(Nombre a, Nombre b, Nombre c)
+    {
+        std::stringstream ss;
+        ss << a << b << c;
+        Nombre r;
+        ss >> r;
+        return r;
+    }
+        
+    template<typename Nombre>
+    Nombre concatener(Nombre a, Nombre b, Nombre c, Nombre d)
+    {
+        std::stringstream ss;
+        ss << a << b << c << d;
         Nombre r;
         ss >> r;
         return r;
