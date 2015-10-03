@@ -96,3 +96,36 @@ std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3, const T4 & t
     oss << t1 << t2 << t3 << t4;
     return oss.str();
 }
+
+template <typename T, std::size_t N>
+class multidimension: public std::vector<multidimension<T, N-1>>
+{
+public:
+    typedef typename std::vector<multidimension<T, N-1>> super_type;
+    typedef typename super_type::size_type size_type;
+    typedef typename super_type::value_type value_type;
+    
+    explicit multidimension() {}
+    explicit multidimension( size_type count, const value_type& value ) : super_type(count, value) {}
+    explicit multidimension( size_type count ) : super_type(count) {}
+    
+    template<typename... Args>
+    multidimension( size_type count, Args... args) : super_type(count, value_type(args...)) {}
+    
+    multidimension( std::initializer_list<value_type> init ) : super_type(init) {}
+};
+
+template <typename T>
+class multidimension<T, 1>: public std::vector<T>
+{
+public:
+    typedef typename std::vector<T> super_type;
+    typedef typename super_type::size_type size_type;
+    typedef typename super_type::value_type value_type;
+    
+    explicit multidimension() {}
+    explicit multidimension( size_type count, const value_type& value ) : super_type(count, value) {}
+    explicit multidimension( size_type count ) : super_type(count) {}
+    
+    multidimension( std::initializer_list<value_type> init ) : super_type(init) {}
+};
