@@ -1,6 +1,6 @@
-CPPFLAGS=-std=gnu++11 -c -Wall -O3 -lboost_timer -lboost_system -lm -lgmpxx -lgmp
+CPPFLAGS=-std=gnu++11 -c -Wall -O3 -lboost_timer -lboost_system -lm -lgmpxx -lgmp -lglpk
 
-LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp
+LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp -lglpk
 
 SOURCES=Timer.cpp Arithmetiques.cpp Graphe.cpp $(wildcard Probleme*.cpp) Euler.cpp
 
