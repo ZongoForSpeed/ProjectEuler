@@ -188,6 +188,8 @@ void probleme185();
 void probleme186();
 void probleme187();
 void probleme188();
+void probleme189();
+void probleme190();
 void probleme303();
 void probleme346();
 void probleme357();
