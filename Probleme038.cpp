@@ -27,7 +27,7 @@ void probleme038()
     // product of an integer with (1,2, ... , n) where n > 1?
     auto algorithme = [&](const nombre & n) -> nombre
     {
-        if (!arithmetiques::pandigital(n))
+        if (!chiffres::pandigital(n))
             return 0;
         std::stringstream ss;
         nombre resultat = n;
@@ -38,7 +38,7 @@ void probleme038()
         {
             ss << m*n;
             ss >> f;
-            if (!arithmetiques::pandigital(f))
+            if (!chiffres::pandigital(f))
                 return resultat;
             resultat = f;
             ++m;

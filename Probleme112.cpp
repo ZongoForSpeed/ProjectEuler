@@ -42,7 +42,7 @@ void probleme112()
     nombre resultat = 0;
     for (nombre n = 1;; ++n)
     {
-        const auto chiffres = arithmetiques::extraire_chiffres(n);
+        const auto chiffres = chiffres::extraire_chiffres(n);
         ++ratio_denominateur;
         if (!std::is_sorted(chiffres.begin(), chiffres.end())
             && !std::is_sorted(chiffres.rbegin(), chiffres.rend()))

@@ -32,13 +32,13 @@ void probleme049()
     {
         nombre p = premiers.at(i);
         vecteur suite { p };
-        auto chiffres = arithmetiques::extraire_chiffres<nombre>(p);
+        auto chiffres = chiffres::extraire_chiffres<nombre>(p);
         if (p > 1000)
         {
             for (size_t j = i + 1; j < premiers.size(); ++j)
             {
                 nombre q = premiers.at(j);
-                if (std::is_permutation(chiffres.begin(), chiffres.end(), arithmetiques::extraire_chiffres<nombre>(q).begin()))
+                if (std::is_permutation(chiffres.begin(), chiffres.end(), chiffres::extraire_chiffres<nombre>(q).begin()))
                 {
                     suite.push_back(q);   
                 }

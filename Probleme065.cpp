@@ -49,7 +49,7 @@ void probleme065()
     fraction f(1);
     for (auto p: boost::adaptors::reverse(fraction_continue)) f = p + 1 / f;
     
-    auto chiffres = arithmetiques::extraire_chiffres(f.numerator());
+    auto chiffres = chiffres::extraire_chiffres(f.numerator());
     nombre resultat = std::accumulate(chiffres.begin(), chiffres.end(), nombre(0));
     std::cout << "Solution: " << resultat << std::endl;
 }

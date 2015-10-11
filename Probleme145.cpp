@@ -42,7 +42,7 @@ void probleme145()
 	
     for (nombre n = 1; n < limite; ++n)
     {
-        if (n%10 != 0 && impaire(n + arithmetiques::inverser_nombre(n)))
+        if (n%10 != 0 && impaire(n + chiffres::inverser_nombre(n)))
             ++resultat;
     }
     std::cout << "Solution: " << resultat << std::endl;

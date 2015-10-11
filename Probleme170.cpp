@@ -20,7 +20,7 @@ namespace
     bool pandigital(const nombre n, std::size_t base = 10)
     {
         std::vector<std::size_t> chiffres(base, 0);
-        arithmetiques::boucle_chiffre(n, [&chiffres](nombre d){ chiffres[d]++; }, base);
+        chiffres::boucle_chiffre(n, [&chiffres](nombre d){ chiffres[d]++; }, base);
 
         for (auto c: chiffres)
             if (c > 1) return false;
@@ -30,7 +30,7 @@ namespace
     bool pandigital_complet(const nombre n, std::size_t base = 10)
     {
         std::vector<std::size_t> chiffres(base, 0);
-        arithmetiques::boucle_chiffre(n, [&chiffres](nombre d){ chiffres[d]++; }, base);
+        chiffres::boucle_chiffre(n, [&chiffres](nombre d){ chiffres[d]++; }, base);
 
         for (auto c: chiffres)
             if (c != 1) return false;
@@ -67,20 +67,20 @@ void probleme170()
         {
             if (chiffres[n0] == 0)
                 continue;
-            nombre facteur = arithmetiques::conversion_nombre<nombre>(chiffres.begin(), chiffres.begin() + n0);
+            nombre facteur = chiffres::conversion_nombre<nombre>(chiffres.begin(), chiffres.begin() + n0);
             for (size_t n1 = n0 + 1; n1 < taille - 1; ++n1)
             {
                 if (chiffres[n1] == 0)
                     continue;
-                nombre a = arithmetiques::conversion_nombre<nombre>(chiffres.begin() + n0, chiffres.begin() + n1);
+                nombre a = chiffres::conversion_nombre<nombre>(chiffres.begin() + n0, chiffres.begin() + n1);
                 if (a == 0 || !pandigital(facteur * a))
                     continue;
                 
-                nombre b = arithmetiques::conversion_nombre<nombre>(chiffres.begin() + n1, chiffres.end());
+                nombre b = chiffres::conversion_nombre<nombre>(chiffres.begin() + n1, chiffres.end());
                 if (b == 0 || !pandigital(facteur * b))
                     continue;
                 
-                nombre n = arithmetiques::concatener(facteur*a, facteur*b);
+                nombre n = chiffres::concatener(facteur*a, facteur*b);
                 if (pandigital_complet(n) && resultat < n)
                     resultat = std::max(resultat, n);
             }

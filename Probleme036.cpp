@@ -17,7 +17,7 @@ void probleme036()
     nombre resultat = 0;
     for (nombre n = 1; n < 1000000; ++n)
     {
-        if (arithmetiques::palindrome(n, 10) && arithmetiques::palindrome(n, 2))
+        if (chiffres::palindrome(n, 10) && chiffres::palindrome(n, 2))
             resultat += n;
     }
     std::cout << "Solution: " << resultat << std::endl;

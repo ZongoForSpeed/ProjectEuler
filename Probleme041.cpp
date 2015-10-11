@@ -20,7 +20,7 @@ void probleme041()
     std::vector<nombre> pandigital {1,2,3,4,5,6,7,8,9};
     for (nombre p: premiers)
     {
-        auto chiffres = arithmetiques::extraire_chiffres(p);
+        auto chiffres = chiffres::extraire_chiffres(p);
         if (std::is_permutation(pandigital.begin(), pandigital.begin() + chiffres.size(), chiffres.begin()))
             resultat = p;
     }

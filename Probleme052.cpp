@@ -24,7 +24,7 @@ void probleme052()
         bool trouve = true;
         for (nombre k = 2; trouve && k < 7; ++k)
         {
-            trouve &= arithmetiques::permutation_chiffres(n, k*n);
+            trouve &= chiffres::permutation_chiffres(n, k*n);
         }
         if (trouve)
         {

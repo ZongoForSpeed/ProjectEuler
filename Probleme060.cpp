@@ -39,8 +39,8 @@ void probleme060()
             if (q >= p)
                 break;
                 
-            if (premiers.find(arithmetiques::concatener(p, q)) != premiers.end()
-                && premiers.find(arithmetiques::concatener(q, p)) != premiers.end())
+            if (premiers.find(chiffres::concatener(p, q)) != premiers.end()
+                && premiers.find(chiffres::concatener(q, p)) != premiers.end())
             {
                 vecteur v = {q};
                 groupe[v].push_back(p);

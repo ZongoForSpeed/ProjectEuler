@@ -32,7 +32,7 @@ void probleme119()
     {
         for (nombre n = d; n < borne; n *= d)
         {
-            if (n > 10 && arithmetiques::somme_chiffres(n) == d)
+            if (n > 10 && chiffres::somme_chiffres(n) == d)
                 resultat.push_back(n);
         }
     }

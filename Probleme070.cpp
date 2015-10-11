@@ -42,7 +42,7 @@ void probleme070()
                 break;
             const nombre phi = (p-1)*(q-1);
             fraction ratio(n, phi);
-            if (ratio < min_ratio && arithmetiques::permutation_chiffres(n, phi))
+            if (ratio < min_ratio && chiffres::permutation_chiffres(n, phi))
             {
                 min_ratio = ratio;
                 min_n = n;

@@ -44,8 +44,8 @@ void probleme055()
         nombre m = n;
         for (nombre i = 0; i < 50; ++i)
         {
-            m = arithmetiques::inverser_nombre(m) + m;
-            if (arithmetiques::palindrome(m))
+            m = chiffres::inverser_nombre(m) + m;
+            if (chiffres::palindrome(m))
             {
                 lychrel = true;
                 break;

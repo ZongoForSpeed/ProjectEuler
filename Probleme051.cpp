@@ -33,7 +33,7 @@ void probleme051()
     for (auto it1 = premiers.begin(), en = premiers.end(); it1 != en; ++it1)
     {
         nombre p = *it1;
-        auto chiffres = arithmetiques::extraire_chiffres(p);
+        auto chiffres = chiffres::extraire_chiffres(p);
         std::set<nombre> chiffres_uniques(chiffres.begin(), chiffres.end());
         for (const auto c: chiffres_uniques)
         {
@@ -41,7 +41,7 @@ void probleme051()
             {
                 auto chiffres2 = chiffres;
                 std::replace(chiffres2.begin(), chiffres2.end(), c, nombre(0));
-                nombre q = arithmetiques::conversion_nombre<nombre>(chiffres2.begin(), chiffres2.end());
+                nombre q = chiffres::conversion_nombre<nombre>(chiffres2.begin(), chiffres2.end());
                 nombre difference = (p - q)/c;
                 nombre compteur = 0;
                 for (nombre n = c; n < 10; ++n)

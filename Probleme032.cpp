@@ -27,11 +27,11 @@ void probleme032()
     {
         for (size_t i = 1; i < 8; ++i)
         {
-            nombre a = arithmetiques::conversion_nombre<nombre>(v.begin(), v.begin() + i);
+            nombre a = chiffres::conversion_nombre<nombre>(v.begin(), v.begin() + i);
             for (size_t j = i + 1; j < 9; ++j)
             {
-                nombre b = arithmetiques::conversion_nombre<nombre>(v.begin() + i, v.begin() + j);
-                nombre c = arithmetiques::conversion_nombre<nombre>(v.begin() + j, v.end());
+                nombre b = chiffres::conversion_nombre<nombre>(v.begin() + i, v.begin() + j);
+                nombre c = chiffres::conversion_nombre<nombre>(v.begin() + j, v.end());
                 if (a * b == c)
                 {
                     std::cout << a << " * " << b << " = " << c << std::endl;  

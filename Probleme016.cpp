@@ -16,6 +16,6 @@ void probleme016()
     // What is the sum of the digits of the number 2^1000?
     nombre n = puissance::puissance<nombre>(2, 1000);
     nombre resultat = 0;
-    arithmetiques::boucle_chiffre(n, [&resultat](nombre d) { resultat += d; });
+    chiffres::boucle_chiffre(n, [&resultat](nombre d) { resultat += d; });
     std::cout << "Solution: " << resultat << std::endl;
 }

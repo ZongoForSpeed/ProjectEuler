@@ -36,7 +36,7 @@ void probleme057()
     for (nombre n = 1; n < 1000; ++n)
     {
         f = 1 + 1 / (1 + f);
-        if (arithmetiques::nombre_chiffres(f.numerator()) > arithmetiques::nombre_chiffres(f.denominator()))
+        if (chiffres::nombre_chiffres(f.numerator()) > chiffres::nombre_chiffres(f.denominator()))
         {
             ++compteur;
         }

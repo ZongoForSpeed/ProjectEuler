@@ -23,7 +23,7 @@ void probleme035()
     {
         auto rotation = [](nombre n)
         {
-            auto liste = arithmetiques::extraire_chiffres(n);
+            auto liste = chiffres::extraire_chiffres(n);
             liste.push_back(liste.front());
             liste.pop_front();
             nombre r = 0;
@@ -32,7 +32,7 @@ void probleme035()
             return r;
         };
         
-        auto chiffres = arithmetiques::extraire_chiffres(n);
+        auto chiffres = chiffres::extraire_chiffres(n);
         if (std::count(chiffres.begin(), chiffres.end(), 0) != 0)
             return false;
         

@@ -34,7 +34,7 @@ void probleme025()
     nombre n = 1;
     nombre a = 0;
     nombre b = 1;
-    while (arithmetiques::nombre_chiffres(b) < 1000)
+    while (chiffres::nombre_chiffres(b) < 1000)
     {
         nombre tmp = a;
         a = b;

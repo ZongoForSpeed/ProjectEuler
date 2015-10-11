@@ -23,7 +23,7 @@ void probleme056()
     for (nombre b = 1; b < 100; ++b)
     {
         nombre somme = 0;
-        arithmetiques::boucle_chiffre(puissance::puissance(a,b), [&somme] (const nombre & d) { somme += d; });
+        chiffres::boucle_chiffre(puissance::puissance(a,b), [&somme] (const nombre & d) { somme += d; });
         maximum = std::max(maximum, somme);
     }
     std::cout << "Solution: " << maximum << std::endl;

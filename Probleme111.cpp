@@ -63,7 +63,7 @@ void probleme111()
         if (p > limite / 10)
         {
             vecteur chiffres(10, 0);
-            arithmetiques::boucle_chiffre(p, [&chiffres] (nombre d){ chiffres.at(d)++; });
+            chiffres::boucle_chiffre(p, [&chiffres] (nombre d){ chiffres.at(d)++; });
             
             for (size_t n = 0; n < 10; ++n)
             {

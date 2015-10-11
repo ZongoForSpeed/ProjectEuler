@@ -106,5 +106,5 @@ void probleme093()
     }
 
     
-    std::cout << "Solution: " << arithmetiques::conversion_nombre<nombre>(resultat.begin(), resultat.end()) << std::endl;
+    std::cout << "Solution: " << chiffres::conversion_nombre<nombre>(resultat.begin(), resultat.end()) << std::endl;
 }

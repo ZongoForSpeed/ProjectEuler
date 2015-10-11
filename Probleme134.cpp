@@ -36,7 +36,7 @@ void probleme134()
         nombre p2 = premiers.at(n + 1);
         if (p1 > 4 && p1 < limite)
         {
-            nombre chiffres = arithmetiques::nombre_chiffres(p1);
+            nombre chiffres = chiffres::nombre_chiffres(p1);
             nombre b = puissance::puissance_modulaire(dix, chiffres * (p2 - 2), p2);
             b *= p2 - p1;
             b %= p2;

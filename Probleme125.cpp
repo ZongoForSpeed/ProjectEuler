@@ -37,7 +37,7 @@ void probleme125()
             somme += *it2;
             if (somme >= limite)
                 break;
-            else if (arithmetiques::palindrome(somme))
+            else if (chiffres::palindrome(somme))
                 resultat.insert(somme);
         }
     }

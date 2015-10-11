@@ -32,7 +32,7 @@ void probleme092()
         while (m != 89 && m != 1)
         {
             nombre s = 0;
-            arithmetiques::boucle_chiffre(m, [&s](nombre d) { s += d*d; });
+            chiffres::boucle_chiffre(m, [&s](nombre d) { s += d*d; });
             m = s;
         }
         if (m == 89)

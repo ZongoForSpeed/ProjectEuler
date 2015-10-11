@@ -47,7 +47,7 @@ void probleme074()
         {
             chaine.insert(m);
             nombre s = 0;
-            arithmetiques::boucle_chiffre(m, [&s, &factorielle](nombre d) { s += factorielle[d]; });
+            chiffres::boucle_chiffre(m, [&s, &factorielle](nombre d) { s += factorielle[d]; });
             m = s;
         }
         while (chaine.find(m) == chaine.end());

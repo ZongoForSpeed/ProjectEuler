@@ -20,7 +20,7 @@ void probleme034()
     for (nombre n = 10; n < borne; ++n)
     {
         nombre s = 0;
-        arithmetiques::boucle_chiffre(n, [&s](nombre d) { s += combinatoire::factorielle(d); });
+        chiffres::boucle_chiffre(n, [&s](nombre d) { s += combinatoire::factorielle(d); });
         if (s == n) solution += n;
     }
     std::cout << "Solution: " << solution << std::endl;

@@ -22,12 +22,12 @@ namespace
             return false;
             
         nombre debut = (nombre)(f / puissance::puissance(10.0L, chiffres - 8));
-        return arithmetiques::pandigital(debut);
+        return chiffres::pandigital(debut);
     }
     
     bool test_dernier_chiffres(nombre n)
     {
-        return arithmetiques::pandigital(n);
+        return chiffres::pandigital(n);
     }
 }
 

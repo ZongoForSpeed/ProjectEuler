@@ -196,6 +196,38 @@ namespace arithmetiques
         return resultat;
     }
     
+    template<typename Nombre, typename Conteneur>
+    short moebius(Nombre n, const Conteneur & premiers)
+    {
+        Nombre facteurs = 0;
+        for (const auto & p: premiers)
+        {
+            if (p*p > n)
+                break;
+            if (n%p == 0)
+            {
+                Nombre compteur = 0;
+                while (n%p == 0)
+                {
+                    n /= p;
+                    ++compteur;
+                }
+                if (compteur > 1)
+                    return 0;
+                    
+                ++facteurs;
+            }
+        }
+        if (n > 1)
+            ++facteurs;
+            
+        return (facteurs%2 == 0)?1:-1;
+    }
+
+}
+
+namespace chiffres
+{
     template<typename Nombre, class Operation>
     void boucle_chiffre(Nombre n, Operation op, std::size_t base = 10)
     {

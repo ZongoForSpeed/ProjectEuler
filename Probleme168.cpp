@@ -35,10 +35,10 @@ void probleme168()
             if (numerateur%denominateur == 0)
             {
                 nombre valeur = numerateur/denominateur;
-                if (arithmetiques::nombre_chiffres(valeur) == puissance)
+                if (chiffres::nombre_chiffres(valeur) == puissance)
                 {
                     valeur = 10*valeur + a;
-                    if (arithmetiques::nombre_chiffres(valeur) <= 100)
+                    if (chiffres::nombre_chiffres(valeur) <= 100)
                         resultat += valeur;
                 }
             }

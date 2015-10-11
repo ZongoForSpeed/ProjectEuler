@@ -23,7 +23,7 @@ void probleme030()
     for (nombre n = 2; n < 200000; ++n)
     {
         nombre s = 0;
-        arithmetiques::boucle_chiffre(n, [&s](nombre d) { s += puissance::puissance(d, 5); });
+        chiffres::boucle_chiffre(n, [&s](nombre d) { s += puissance::puissance(d, 5); });
         if (s == n) resultat += n;
     }
     
