@@ -7,12 +7,9 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
+#include <iomanip>
 
-// #include <gmpxx.h>
-#include <boost/multiprecision/gmp.hpp>
-
-// typedef unsigned long long nombre;
-typedef boost::multiprecision::mpz_int nombre;
+typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 

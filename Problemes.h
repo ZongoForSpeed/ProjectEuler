@@ -197,6 +197,7 @@ void probleme194();
 void probleme195();
 void probleme196();
 void probleme197();
+void probleme198();
 void probleme303();
 void probleme346();
 void probleme357();
