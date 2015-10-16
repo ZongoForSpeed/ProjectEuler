@@ -10,7 +10,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 
-ENREGISTRER_PROBLEME(55)
+ENREGISTRER_PROBLEME(55, "Lychrel numbers")
 {
     Timer t("probleme 55");
     // If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.

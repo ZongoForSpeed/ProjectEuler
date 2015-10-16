@@ -11,7 +11,7 @@ typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
-ENREGISTRER_PROBLEME(91)
+ENREGISTRER_PROBLEME(91, "Right triangles with integer coordinates")
 {
     Timer t("probleme 91");
     // The points P (x1, y1) and Q (x2, y2) are plotted at integer co-ordinates and are joined to 

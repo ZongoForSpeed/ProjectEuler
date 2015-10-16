@@ -8,7 +8,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-ENREGISTRER_PROBLEME(25)
+ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
 {
     Timer t("probleme 25");
     // The Fibonacci sequence is defined by the recurrence relation:

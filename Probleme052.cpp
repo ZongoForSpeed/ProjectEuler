@@ -10,7 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(52)
+ENREGISTRER_PROBLEME(52, "Permuted multiples")
 {
     Timer t("probleme 52");
     // It can be seen that the number, 125874, and its double, 251748, contain exactly the same digits, 

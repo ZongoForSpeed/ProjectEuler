@@ -12,7 +12,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble;
 
-ENREGISTRER_PROBLEME(130)
+ENREGISTRER_PROBLEME(130, "Composites with prime repunit property")
 {
     Timer t("probleme 130");
 	// A number consisting entirely of ones is called a repunit. We shall define R(k) to be a repunit 

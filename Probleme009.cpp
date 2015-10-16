@@ -7,7 +7,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(9)
+ENREGISTRER_PROBLEME(9, "Special Pythagorean triplet")
 {
     // A Pythagorean triplet is a set of three natural numbers, a < b < c, for which, a² + b² = c²
     // For example, 3² + 4² = 9 + 16 = 25 = 5².

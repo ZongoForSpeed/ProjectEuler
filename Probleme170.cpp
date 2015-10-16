@@ -38,7 +38,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(170)
+ENREGISTRER_PROBLEME(170, "Find the largest 0 to 9 pandigital that can be formed by concatenating products")
 {
     Timer timer("probleme 170");
     // Take the number 6 and multiply it by each of 1273 and 9854:

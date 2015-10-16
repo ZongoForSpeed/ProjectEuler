@@ -12,7 +12,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(106)
+ENREGISTRER_PROBLEME(106, "Special subset sums: meta-testing")
 {
     Timer t("probleme 106");
     // Let S(A) represent the sum of elements in set A of size n. We shall call it a special sum set

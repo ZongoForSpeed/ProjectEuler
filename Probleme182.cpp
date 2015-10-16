@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(182)
+ENREGISTRER_PROBLEME(182, "RSA encryption")
 {
     Timer timer("probleme 182");
     // The RSA encryption is based on the following procedure:

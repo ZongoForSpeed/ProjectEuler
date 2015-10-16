@@ -1,13 +1,10 @@
 #include "Problemes.h"
-
 #include "Timer.h"
 #include "Arithmetiques.h"
-
 #include <iostream>
 #include <set>
 #include <deque>
 #include <boost/multiprecision/cpp_int.hpp>
-
 typedef boost::multiprecision::cpp_int nombre;
 
 class Probleme381
@@ -25,7 +22,6 @@ class Probleme381
     size_t limite;
 public:
     Probleme381(size_t _limite = 100000000L) : limite(_limite) { }
-
     static nombre S(size_t p)
     {
         if (p < 5)
@@ -66,7 +62,7 @@ public:
     }
 };
 
-ENREGISTRER_PROBLEME(381)
+ENREGISTRER_PROBLEME(381, "(prime-k) factorial")
 {
     Probleme381 p;
     p.algorithme();

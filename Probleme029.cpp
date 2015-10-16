@@ -9,7 +9,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
     
-ENREGISTRER_PROBLEME(29)
+ENREGISTRER_PROBLEME(29, "Distinct powers")
 {
     Timer t("probleme 29");
     // Consider all integer combinations of ab for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:

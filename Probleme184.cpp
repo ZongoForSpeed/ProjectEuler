@@ -29,21 +29,9 @@ namespace
             return y < p.y;
         }
     };
-    
-    nombre aire(const Point & A, const Point & B, const Point & C)
-    {
-        return abs(A.x*C.y - A.x*B.y + B.x*A.y - B.x*C.y + C.x*B.y - C.x*A.y);
-    }
-    
-    std::ostream& operator<<(std::ostream& os, const Point & p)
-    {
-        os << "(" << p.x << ", " << p.y << ")";
-        return os;
-    }
-
 }
 
-ENREGISTRER_PROBLEME(184)
+ENREGISTRER_PROBLEME(184, "Triangles containing the origin")
 {
     Timer timer("probleme 184");
     // Consider the set Ir of points (x,y) with integer co-ordinates in the interior of the circle 

@@ -31,7 +31,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(88)
+ENREGISTRER_PROBLEME(88, "Product-sum numbers")
 {
     Timer t("probleme 88");
     // A natural number, N, that can be written as the sum and product of a given set of at least 

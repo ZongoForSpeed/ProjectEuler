@@ -29,7 +29,7 @@ namespace
     };
 }
 
-ENREGISTRER_PROBLEME(177)
+ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals")
 {
     Timer timer("probleme 177");
     // Let ABCD be a convex quadrilateral, with diagonals AC and BD. At each vertex the diagonal 

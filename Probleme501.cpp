@@ -1,16 +1,12 @@
 #include <iostream>
 #include <vector>
-
 #include "Timer.h"
 #include "Arithmetiques.h"
 #include "Problemes.h"
-
 #include <cmath>
 #include <limits>
-
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
-
 class Probleme501
 {
     // The eight divisors of 24 are 1, 2, 3, 4, 6, 8, 12 and 24.
@@ -87,7 +83,6 @@ public:
             
         if (m < _pi.size() && pn <= racine_carre(m) && pn >= racine_cubique(m))
             return _pi.at(m) - n + 1 + P2(m, n);
-
         return Phi(m, n - 1) - Phi(m / pn, n - 1);
     }
     
@@ -182,7 +177,7 @@ public:
     }
 };
 
-ENREGISTRER_PROBLEME(501)
+ENREGISTRER_PROBLEME(501, "Eight Divisors")
 {
     Probleme501 p;
     p.algorithme();

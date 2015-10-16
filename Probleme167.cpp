@@ -12,7 +12,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(167)
+ENREGISTRER_PROBLEME(167, "Investigating Ulam sequences")
 {
     Timer timer("probleme 167");
     // For two positive integers a and b, the Ulam sequence U(a,b) is defined by U(a,b)1 = a, 

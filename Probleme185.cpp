@@ -10,8 +10,6 @@
 
 #include <boost/rational.hpp>
 
-#include <glpk.h>
-
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -117,7 +115,7 @@ namespace
 
 }
 
-ENREGISTRER_PROBLEME(185)
+ENREGISTRER_PROBLEME(185, "Number Mind")
 {
     Timer timer("probleme 185");
     // The game Number Mind is a variant of the well known game Master Mind.

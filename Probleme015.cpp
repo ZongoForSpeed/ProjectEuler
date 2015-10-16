@@ -8,7 +8,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-ENREGISTRER_PROBLEME(15)
+ENREGISTRER_PROBLEME(15, "Lattice paths")
 {
     Timer t("probleme 15");
     // Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, 

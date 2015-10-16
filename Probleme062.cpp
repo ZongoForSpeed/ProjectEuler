@@ -13,7 +13,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(62)
+ENREGISTRER_PROBLEME(62, "Cubic permutations")
 {
     Timer t("probleme 62");
     // The cube, 41063625 (345^3), can be permuted to produce two other cubes: 56623104 (384^3) and 

@@ -15,7 +15,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(110)
+ENREGISTRER_PROBLEME(110, "Diophantine reciprocals II")
 {
     Timer t("probleme 110");
     // In the following equation x, y, and n are positive integers.

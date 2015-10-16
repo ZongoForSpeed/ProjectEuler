@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(190)
+ENREGISTRER_PROBLEME(190, "Maximising a weighted product")
 {
     Timer timer("probleme 190");
     // Let Sm = (x1, x2, ... , xm) be the m-tuple of positive real numbers with x1 + x2 + ... + xm = m 

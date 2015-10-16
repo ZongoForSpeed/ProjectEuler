@@ -11,7 +11,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-ENREGISTRER_PROBLEME(67)
+ENREGISTRER_PROBLEME(67, "Maximum path sum II")
 {
     Timer t("probleme 67");
     // By starting at the top of the triangle below and moving to adjacent numbers on the row below, 

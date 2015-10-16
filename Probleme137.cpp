@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(137)
+ENREGISTRER_PROBLEME(137, "Fibonacci golden nuggets")
 {
     Timer t("probleme 137");
     // Consider the infinite polynomial series AF(x) = xF1 + x2F2 + x3F3 + ..., where Fk is the kth 

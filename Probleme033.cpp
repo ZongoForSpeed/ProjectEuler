@@ -9,7 +9,7 @@
 typedef unsigned short nombre;
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(33)
+ENREGISTRER_PROBLEME(33, "Digit cancelling fractions")
 {
     Timer t("probleme 33");
     // The fraction 49/98 is a curious fraction, as an inexperienced mathematician in attempting 

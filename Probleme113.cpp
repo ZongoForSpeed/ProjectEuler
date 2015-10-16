@@ -11,7 +11,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 
-ENREGISTRER_PROBLEME(113)
+ENREGISTRER_PROBLEME(113, "Non-bouncy numbers")
 {
     Timer t("probleme 113");
     // Working from left-to-right if no digit is exceeded by the digit to its left it is called an 

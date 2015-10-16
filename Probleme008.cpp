@@ -9,7 +9,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-ENREGISTRER_PROBLEME(8)
+ENREGISTRER_PROBLEME(8, "Largest product in a series")
 {
     // The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
     std::string big_number = 

@@ -10,7 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(51)
+ENREGISTRER_PROBLEME(51, "Prime digit replacements")
 {
     Timer t("probleme 51");
     // By replacing the 1st digit of the 2-digit number *3, it turns out that six of the nine 

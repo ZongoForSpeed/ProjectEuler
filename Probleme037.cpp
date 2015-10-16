@@ -8,7 +8,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(37)
+ENREGISTRER_PROBLEME(37, "Truncatable primes")
 {
     Timer t("probleme 37");
     // The number 3797 has an interesting property. Being prime itself, it is possible to continuously

@@ -10,7 +10,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(148)
+ENREGISTRER_PROBLEME(148, "Exploring Pascal's triangle")
 {
     Timer t("probleme 148");
 	// We can easily verify that none of the entries in the first seven rows of Pascal's triangle are 

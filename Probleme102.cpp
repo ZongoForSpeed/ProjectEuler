@@ -42,7 +42,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(102)
+ENREGISTRER_PROBLEME(102, "Triangle containment")
 {
     Timer t("probleme 102");
     // Three distinct points are plotted at random on a Cartesian plane, for which -1000 ≤ x, y ≤ 1000, 

@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <boost/timer/timer.hpp>
-
 class Timer
 {
     boost::timer::cpu_timer _timer;

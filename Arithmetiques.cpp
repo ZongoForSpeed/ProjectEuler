@@ -6,7 +6,6 @@
 #include <cassert>
 #include <numeric>
 #include <algorithm>
-
 namespace premiers
 {
     template<typename Nombre, class OutputIterator>
@@ -23,7 +22,6 @@ namespace premiers
                     test.at(k) = false;
             }
         }
-
         for (std::size_t p = 2; p < taille; ++p)
         {
             if (test.at(p))
@@ -33,7 +31,6 @@ namespace premiers
             }
         }
     }
-
     void internal_crible2(std::size_t taille, std::vector<bool> & test)
     {
         test.assign(taille, true);
@@ -47,13 +44,11 @@ namespace premiers
             }
         }
     }
-
     void internal_crible23(std::size_t taille, std::vector<bool> & test1, std::vector<bool> & test5)
     {
         test1.assign(taille, true);
         test1.at(0) = false;
         test5.assign(taille, true);
-
         for (std::size_t k = 0; 6*k*k < taille; ++k)
         {
             // Cas p = 6*k + 1
@@ -62,24 +57,20 @@ namespace premiers
                 const std::size_t p = 6*k + 1;
                 for (std::size_t l = 6*k*k + 2*k; l < taille; l+=p)
                     test1.at(l) = false;
-
                 for (std::size_t l = 6*k*k + 6*k; l < taille; l+=p)
                     test5.at(l) = false;
             }
-
             // Cas p = 6*k + 5
             if (test5.at(k))
             {
                 const std::size_t p = 6*k + 5;
                 for (std::size_t l = 6*k*k + 10*k + 4; l < taille; l+=p)
                     test1.at(l) = false;
-
                 for (std::size_t l = 6*k*k + 12*k + 5; l < taille; l+=p)
                     test5.at(l) = false;
             }
         }
     }
-
     void internal_crible235(std::size_t taille, std::vector<bool> & test1, std::vector<bool> & test7, std::vector<bool> & test11, std::vector<bool> & test13, std::vector<bool> & test17, std::vector<bool> & test19, std::vector<bool> & test23, std::vector<bool> & test29)
     {
         const std::size_t limite = taille;
@@ -92,7 +83,6 @@ namespace premiers
         test19.assign(taille, true);
         test23.assign(taille, true);
         test29.assign(taille, true);
-
         for (std::size_t k = 0; 30*k*k < taille; ++k)
         {
             if (test1.at(k))
@@ -107,7 +97,6 @@ namespace premiers
                 for (std::size_t l = 30*k*k + 24*k + 0; l < limite; l += p) test23.at(l) = false;
                 for (std::size_t l = 30*k*k + 30*k + 0; l < limite; l += p) test29.at(l) = false;
             }
-
             if (test7.at(k))
             {
                 const std::size_t p = 30*k+7;
@@ -195,7 +184,6 @@ namespace premiers
             }
         }
     }
-
     template<typename Nombre, class OutputIterator>
     OutputIterator super_crible(const std::size_t taille, const std::vector<std::size_t> & roue, OutputIterator sortie)
     {
@@ -204,33 +192,25 @@ namespace premiers
         typedef std::vector<Paire>                  VecteurPaire;
         typedef std::vector<VecteurPaire>           MatricePaire;
         typedef std::vector<std::size_t>            Vecteur;
-
         const std::size_t produit = std::accumulate(roue.begin(), roue.end(), 1, [] (const std::size_t resultat, const std::size_t p){ return resultat*p; });
         const std::size_t taille_crible = taille / produit + 1;
-
         Crible masque(produit, true);
         masque.at(0) = false;
         for (const std::size_t p: roue)
         for (std::size_t q = p; q < produit; q += p)
             masque.at(q) = false;
-
         Vecteur restes;
         for (std::size_t p = 0; p < produit; ++p)
             if (masque.at(p)) restes.push_back(p);
-
         const std::size_t profondeur = restes.size();
-
         std::deque<Crible> test;
-
         const VecteurPaire ligne(profondeur, std::make_pair(0,0));
         MatricePaire matrice(profondeur, ligne);
-
         for (std::size_t i = 0; i < profondeur; ++i)
         {
             const std::size_t reste = restes.at(i);
             test.push_back(std::vector<bool>());
             test.back().assign(taille_crible, true);
-
             // std::cout << "p = " << produit << ".k + " << reste << std::endl;
             for (std::size_t n = 0; n < produit; n += 2)
             {
@@ -244,7 +224,6 @@ namespace premiers
                 }
             }
         }
-
         test[0][0] = false;
         for (std::size_t k = 0; produit*k*k < taille_crible; ++k)
         {
@@ -261,13 +240,11 @@ namespace premiers
                 }
             }
         }
-
         for (const auto p: roue)
         {
             *sortie = Nombre(p);
             ++sortie;
         }
-
         for (std::size_t k = 0; k < taille_crible; ++k)
         {
             for (std::size_t i = 0; i < profondeur; ++i)
@@ -279,40 +256,33 @@ namespace premiers
                 }
             }
         }
-
         return sortie;
     }
-
 
     void testCrible()
     {
         std::size_t taille = 1000000000;
         std::deque<unsigned long long> premiers, premiers2, premiers23, premiers235, super_crible_premiers;
-
         {
             Timer t("test crible simple");
             crible_simple<unsigned long long>(taille, std::back_inserter(premiers));
             std::cout << "premiers.size() = " << premiers.size() << std::endl;
         }
-
         {
             Timer t("test crible2");
             crible<unsigned long long>(taille, std::back_inserter(premiers2));
             std::cout << "premiers2.size() = " << premiers2.size() << std::endl;
         }
-
         {
             Timer t("test crible23");
             crible23<unsigned long long>(taille, std::back_inserter(premiers23));
             std::cout << "premiers23.size() = " << premiers23.size() << std::endl;
         }
-
         {
             Timer t("test crible235");
             crible23<unsigned long long>(taille, std::back_inserter(premiers235));
             std::cout << "premiers235.size() = " << premiers235.size() << std::endl;
         }
-
         {
             Timer t("test super_crible");
             std::vector<std::size_t> roue {2, 3, 5};
@@ -321,7 +291,6 @@ namespace premiers
         }
     }
 }
-
 namespace bezout
 {
     Bezout::Bezout(unsigned int a, unsigned int b) 

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iterator>
 #include <vector>
 #include <set>
@@ -8,7 +7,6 @@
 #include <cmath>
 #include <algorithm>
 #include <sstream>
-
 namespace puissance
 {
     template<typename Nombre1, typename Nombre2, typename Nombre3>
@@ -24,7 +22,6 @@ namespace puissance
         }
         return resultat;
     }
-
     template<typename Nombre1, typename Nombre2>
     Nombre1 puissance(Nombre1 base, Nombre2 exposant)
     {
@@ -36,11 +33,9 @@ namespace puissance
             exposant /= 2;
             base *= base;
         }
-
         return resultat;
     }
 }
-
 namespace arithmetiques
 {
     template<typename Nombre>
@@ -223,9 +218,7 @@ namespace arithmetiques
             
         return (facteurs%2 == 0)?1:-1;
     }
-
 }
-
 namespace chiffres
 {
     template<typename Nombre, class Operation>
@@ -261,28 +254,23 @@ namespace chiffres
         boucle_chiffre(n, [&resultat](Nombre d){ resultat.push_front(d); }, base);
         return resultat;
     }
-
     template<typename Nombre>
     bool palindrome(Nombre n, std::size_t base = 10)
     {
         const auto chiffres = extraire_chiffres(n, base);
         return std::equal(chiffres.begin(), chiffres.begin() + chiffres.size()/2, chiffres.rbegin());
     }
-
     template<typename Nombre>
     bool pandigital(const Nombre & n, std::size_t base = 10)
     {
         std::vector<std::size_t> chiffres(base + 1, 0);
         boucle_chiffre(n, [&chiffres](Nombre d){ chiffres[d]++; }, base);
-
         if (chiffres[0] != 0)
             return false;
-
         for (auto c: chiffres)
             if (c > 1) return false;
         return true;
     }
-
     template<typename Nombre, class InputIterator1, class InputIterator2>
     Nombre conversion_nombre(InputIterator1 debut, InputIterator2 fin, std::size_t base = 10)
     {
@@ -342,7 +330,6 @@ namespace chiffres
         return r;
     }
 }
-
 namespace premiers
 {
     void internal_crible2(std::size_t taille, std::vector<bool> & test);
@@ -357,7 +344,6 @@ namespace premiers
                                                 std::vector<bool> & test19, 
                                                 std::vector<bool> & test23, 
                                                 std::vector<bool> & test29);
-
     template<typename Nombre, class OutputIterator>
     OutputIterator crible(std::size_t taille, OutputIterator sortie)
     {
@@ -386,7 +372,6 @@ namespace premiers
         std::vector<bool> test1;
         std::vector<bool> test5;
         internal_crible23(taille_crible, test1, test5);
-
         *sortie = 2;
         ++sortie;
         *sortie = 3;
@@ -398,14 +383,12 @@ namespace premiers
                 *sortie = Nombre(6*p + 1);
                 ++sortie;
             }
-
             if (test5.at(p))
             {
                 *sortie = Nombre(6*p + 5);
                 ++sortie;
             }
         }
-
         return sortie;
     }
     
@@ -414,9 +397,7 @@ namespace premiers
     {
         std::size_t taille_crible = taille / 30 + 1;
         std::vector<bool> test1, test7, test11, test13, test17, test19, test23, test29;
-
         internal_crible235(taille_crible, test1, test7, test11, test13, test17, test19, test23, test29);
-
         *sortie = 2;
         ++sortie;
         *sortie = 3;
@@ -434,13 +415,10 @@ namespace premiers
             if (test23.at(p)) { *sortie = Nombre(30*p + 23); ++sortie; }
             if (test29.at(p)) { *sortie = Nombre(30*p + 29); ++sortie; }
         }
-
         return sortie;
     }
-
     void testCrible();
 }
-
 namespace bezout
 {
     class Bezout
@@ -457,7 +435,6 @@ namespace bezout
     unsigned int inverse_mod(unsigned int a, unsigned int n);
     int chinois(unsigned int a, unsigned int n, unsigned int b, unsigned int m);
 }
-
 namespace combinatoire
 {
     template<typename Nombre>
@@ -486,7 +463,6 @@ namespace combinatoire
         return resultat;
     }
 }
-
 namespace polygonal
 {
     template<typename Nombre>
@@ -518,13 +494,11 @@ namespace polygonal
             return false;
         return (racine_delta-1)%2 == 0;
     }
-
     template<typename Nombre>
     Nombre pentagonal(Nombre n)
     {
         return n*(3*n-1)/2;
     }
-
     template<typename Nombre>
     bool est_pentagonal(Nombre n)
     {
@@ -534,13 +508,11 @@ namespace polygonal
             return false;
         return (1+racine_delta)%6 == 0;
     }
-
     template<typename Nombre>
     Nombre hexagonal(Nombre n)
     {
         return n*(2*n-1);
     }
-
     template<typename Nombre>
     bool est_hexagonal(Nombre n)
     {
@@ -572,7 +544,6 @@ namespace polygonal
     {
         return n*(3*n - 2);
     }
-
     template<typename Nombre>
     bool est_octagonal(Nombre n)
     {
@@ -613,7 +584,6 @@ namespace polygonal
         }
     }
 }
-
 namespace repunit
 {
     template<typename Nombre>

@@ -10,7 +10,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 
-ENREGISTRER_PROBLEME(53)
+ENREGISTRER_PROBLEME(53, "Combinatoric selections")
 {
     Timer t("probleme 53");
     // There are exactly ten ways of selecting three from five, 12345:

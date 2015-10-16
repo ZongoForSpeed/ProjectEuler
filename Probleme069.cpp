@@ -13,7 +13,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(69)
+ENREGISTRER_PROBLEME(69, "Totient maximum")
 {
     Timer t("probleme 69");
     // Euler's Totient function, φ(n) [sometimes called the phi function], is used to determine the 

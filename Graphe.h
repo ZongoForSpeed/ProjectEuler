@@ -2,12 +2,9 @@
 #include <map>
 #include <limits>
 #include <set>
-
 #include <boost/optional.hpp>
-
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
-
 class Tarjan
 {
     struct Sommet
@@ -33,12 +30,10 @@ class Tarjan
     void strongconnect(Sommet & v);
 public:
     std::vector<std::set<nombre>> resultat;
-
     Tarjan(const graphe & g);
     
     void algorithme();
 };
-
 class Dijkstra
 {
 public:
@@ -46,7 +41,6 @@ public:
     typedef std::map<nombre, std::vector<paire>> graphe;
     
     vecteur resultat;
-
     Dijkstra(const graphe & _G, const nombre _debut, const nombre _fin);
     nombre algorithme();
 private:
@@ -54,7 +48,6 @@ private:
     nombre debut;
     nombre fin;
 };
-
 class Kruskal
 {
 public:

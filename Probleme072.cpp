@@ -13,7 +13,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(72)
+ENREGISTRER_PROBLEME(72, "Counting fractions")
 {
     Timer t("probleme 72");
     // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is called a reduced proper fraction.

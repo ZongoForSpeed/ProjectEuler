@@ -15,7 +15,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(111)
+ENREGISTRER_PROBLEME(111, "Primes with runs")
 {
     Timer t("probleme 111");
     // Considering 4-digit primes containing repeated digits it is clear that they cannot all be the 

@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(119)
+ENREGISTRER_PROBLEME(119, "Digit power sum")
 {
     Timer t("probleme 119");
     // The number 512 is interesting because it is equal to the sum of its digits raised to some 

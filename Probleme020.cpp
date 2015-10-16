@@ -8,7 +8,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-ENREGISTRER_PROBLEME(20)
+ENREGISTRER_PROBLEME(20, "Factorial digit sum")
 {
     Timer t("probleme 20");
     // n! means n × (n − 1) × ... × 3 × 2 × 1

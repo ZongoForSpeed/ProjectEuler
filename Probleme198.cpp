@@ -14,7 +14,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
-ENREGISTRER_PROBLEME(198)
+ENREGISTRER_PROBLEME(198, "Ambiguous Numbers")
 {
     Timer timer("probleme 198");
     // A best approximation to a real number x for the denominator bound d is a rational number r/s 
@@ -53,8 +53,6 @@ ENREGISTRER_PROBLEME(198)
             s.push(a+b);
         }
     }
-    
-    std::cout << __func__ << std::endl;
-    
+        
     std::cout << "Solution: " << resultat << std::endl;
 }

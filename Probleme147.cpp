@@ -10,7 +10,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(147)
+ENREGISTRER_PROBLEME(147, "Rectangles in cross-hatched grids")
 {
     Timer t("probleme 147");
 	// In a 3x2 cross-hatched grid, a total of 37 different rectangles could be situated within that

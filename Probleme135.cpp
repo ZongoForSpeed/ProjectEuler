@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(135)
+ENREGISTRER_PROBLEME(135, "Same differences")
 {
     Timer t("probleme 135");
     // Given the positive integers, x, y, and z, are consecutive terms of an arithmetic progression, 

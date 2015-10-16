@@ -47,7 +47,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(192)
+ENREGISTRER_PROBLEME(192, "Best Approximations")
 {
     Timer timer("probleme 192");
     // Let x be a real number.

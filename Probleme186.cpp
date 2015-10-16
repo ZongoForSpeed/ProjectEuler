@@ -63,7 +63,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(186)
+ENREGISTRER_PROBLEME(186, "Connectedness of a network")
 {
     Timer timer("probleme 186");
     // Here are the records from a busy telephone system with one million users:

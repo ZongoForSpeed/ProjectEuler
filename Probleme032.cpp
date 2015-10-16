@@ -8,7 +8,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(32)
+ENREGISTRER_PROBLEME(32, "Pandigital products")
 {
     Timer t("probleme 32");
     // We shall say that an n-digit number is pandigital if it makes use of all the digits 1 

@@ -12,7 +12,7 @@ typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-ENREGISTRER_PROBLEME(150)
+ENREGISTRER_PROBLEME(150, "Searching a triangular array for a sub-triangle having minimum-sum")
 {
     Timer timer("probleme 150");
 	// In a triangular array of positive and negative integers, we wish to find a sub-triangle such that

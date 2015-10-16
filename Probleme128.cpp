@@ -12,7 +12,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble;
 
-ENREGISTRER_PROBLEME(128)
+ENREGISTRER_PROBLEME(128, "Hexagonal tile differences")
 {
     Timer t("probleme 128");
     // A hexagonal tile with number 1 is surrounded by a ring of six hexagonal tiles, starting at 

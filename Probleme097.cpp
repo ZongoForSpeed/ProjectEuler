@@ -11,7 +11,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-ENREGISTRER_PROBLEME(97)
+ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime")
 {
     Timer t("probleme 97");
     // The first known prime found to exceed one million digits was discovered in 1999, and is a 

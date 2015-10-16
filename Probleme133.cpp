@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(133)
+ENREGISTRER_PROBLEME(133, "Repunit nonfactors")
 {
     Timer t("probleme 133");
 	// A number consisting entirely of ones is called a repunit. We shall define R(k) to be a repunit of 

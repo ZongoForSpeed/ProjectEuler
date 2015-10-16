@@ -16,7 +16,7 @@ typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 typedef std::map<nombre, std::vector<paire>> graphe;
 
-ENREGISTRER_PROBLEME(107)
+ENREGISTRER_PROBLEME(107, "Minimal network")
 {
     Timer t("probleme 107");
     // The following undirected network consists of seven vertices and twelve edges with a total 

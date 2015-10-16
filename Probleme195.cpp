@@ -26,7 +26,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(195)
+ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 degrees")
 {
     Timer timer("probleme 195");
     // Let's call an integer sided triangle with exactly one angle of 60 degrees a 60-degree triangle.

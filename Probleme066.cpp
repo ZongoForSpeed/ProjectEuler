@@ -14,7 +14,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::multiprecision::cpp_int grand_nombre;
 
-ENREGISTRER_PROBLEME(66)
+ENREGISTRER_PROBLEME(66, "Diophantine equation")
 {
     Timer t("probleme 66");
     // Consider quadratic Diophantine equations of the form:

@@ -7,7 +7,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(120)
+ENREGISTRER_PROBLEME(120, "Square remainders")
 {
     Timer t("probleme 120");
     // Let r be the remainder when (a−1)^n + (a+1)^n is divided by a².

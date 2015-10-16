@@ -39,7 +39,7 @@ namespace
 	}
 }
 
-ENREGISTRER_PROBLEME(181)
+ENREGISTRER_PROBLEME(181, "Investigating in how many ways objects of two different colours can be grouped")
 {
     Timer timer("probleme 181");
     // Having three black objects B and one white object W they can be grouped in 7 ways like this:

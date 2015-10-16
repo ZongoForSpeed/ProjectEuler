@@ -1,23 +1,19 @@
 #include "Problemes.h"
 #include "Timer.h"
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <map>
 #include <boost/multiprecision/cpp_int.hpp>
-
 typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::map<nombre, vecteur> dictionnaire;
-
 class Probleme303
 {
 	nombre limite;
 public:
 	Probleme303(nombre _limite = 10000) : limite(_limite) {}
 	virtual ~Probleme303() {}
-
 	static bool trinary(nombre n)
 	{
 		while (n%10 < 3 && n > 10)
@@ -26,7 +22,6 @@ public:
 		}
 		return n%10 < 3;
 	}
-
 	nombre f(nombre n) const
 	{
 		nombre base = 1;
@@ -53,7 +48,6 @@ public:
 			std::swap(tmp, v);
 		}
 	}
-
     void algorithme()
     {
     	nombre resultat = 0;
@@ -64,12 +58,10 @@ public:
 				resultat += f(n);
 			}
 		}
-
 		std::cout << "Resultat : " << resultat << std::endl;
     }
 };
-
-ENREGISTRER_PROBLEME(303)
+ENREGISTRER_PROBLEME(303, "Multiples with small digits")
 {
     // For a positive integer n, define f(n) as the least positive multiple of n that, written in base 10, uses only digits ≤ 2.
     //

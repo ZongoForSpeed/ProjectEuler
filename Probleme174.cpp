@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(174)
+ENREGISTRER_PROBLEME(174, "Counting the number of \"hollow\" square laminae that can form one, two, three, ... distinct arrangements")
 {
     Timer timer("probleme 174");
     // We shall define a square lamina to be a square outline with a square "hole" so that the shape 

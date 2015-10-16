@@ -9,7 +9,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(94)
+ENREGISTRER_PROBLEME(94, "Almost equilateral triangles")
 {
     Timer t("probleme 94");
     // It is easily proved that no equilateral triangle exists with integral length sides and 

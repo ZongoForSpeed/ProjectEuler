@@ -11,7 +11,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-ENREGISTRER_PROBLEME(117)
+ENREGISTRER_PROBLEME(117, "Red, green, and blue tiles")
 {
     Timer t("probleme 117");
     // Using a combination of black square tiles and oblong tiles chosen from: red tiles measuring 

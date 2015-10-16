@@ -8,7 +8,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(40)
+ENREGISTRER_PROBLEME(40, "Champernowne's constant")
 {
     Timer t("probleme 40");
     // An irrational decimal fraction is created by concatenating the positive integers:

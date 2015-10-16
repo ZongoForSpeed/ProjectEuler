@@ -6,7 +6,7 @@
 
 typedef long long nombre;
 
-ENREGISTRER_PROBLEME(27)
+ENREGISTRER_PROBLEME(27, "Quadratic primes")
 {
     Timer t("probleme 27");
     // Euler discovered the remarkable quadratic formula:

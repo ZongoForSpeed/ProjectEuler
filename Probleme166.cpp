@@ -11,7 +11,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(166)
+ENREGISTRER_PROBLEME(166, "Criss Cross")
 {
     Timer timer("probleme 166");
     // A 4x4 grid is filled with digits d, 0 ≤ d ≤ 9.

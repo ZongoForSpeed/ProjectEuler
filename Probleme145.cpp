@@ -26,7 +26,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(145)
+ENREGISTRER_PROBLEME(145, "How many reversible numbers are there below one-billion?")
 {
     Timer t("probleme 145");
 	// Some positive integers n have the property that the sum [ n + reverse(n) ] consists entirely of 

@@ -13,7 +13,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(160)
+ENREGISTRER_PROBLEME(160, "Factorial trailing digits")
 {
     Timer timer("probleme 160");
 	// For any N, let f(N) be the last five digits before the trailing zeroes in N!.

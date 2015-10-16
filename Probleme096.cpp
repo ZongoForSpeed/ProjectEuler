@@ -84,7 +84,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(96)
+ENREGISTRER_PROBLEME(96, "Su Doku")
 {
     Timer t("probleme 96");
     // Su Doku (Japanese meaning number place) is the name given to a popular puzzle concept. Its 

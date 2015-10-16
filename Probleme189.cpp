@@ -1,4 +1,5 @@
 #include "Problemes.h"
+#include "Problemes.h"
 #include "Arithmetiques.h"
 #include "Timer.h"
 #include "Utilitaires.h"
@@ -28,7 +29,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(189)
+ENREGISTRER_PROBLEME(189, "Tri-colouring a triangular grid")
 {
     Timer timer("probleme 189");
     // Consider the following configuration of 64 triangles:

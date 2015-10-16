@@ -17,7 +17,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble; 
 
-ENREGISTRER_PROBLEME(159)
+ENREGISTRER_PROBLEME(159, "Digital root sums of factorisations")
 {
     Timer timer("probleme 159");
     // A composite number can be factored many different ways. For instance, not including 

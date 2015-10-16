@@ -12,7 +12,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble;
 
-ENREGISTRER_PROBLEME(129)
+ENREGISTRER_PROBLEME(129, "Repunit divisibility")
 {
     Timer t("probleme 129");
 	// A number consisting entirely of ones is called a repunit. We shall define R(k)

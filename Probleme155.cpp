@@ -18,7 +18,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(155)
+ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits")
 {
     Timer timer("probleme 155");
 	// An electric circuit uses exclusively identical capacitors of the same value C. 

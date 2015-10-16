@@ -15,7 +15,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(141)
+ENREGISTRER_PROBLEME(141, "Investigating progressive numbers, n, which are also square")
 {
     Timer t("probleme 141");
     // A positive integer, n, is divided by d and the quotient and remainder are q and r respectively. 

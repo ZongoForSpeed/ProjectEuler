@@ -15,7 +15,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-ENREGISTRER_PROBLEME(100)
+ENREGISTRER_PROBLEME(100, "Arranged probability")
 {
     Timer t("probleme 100");
     // If a box contains twenty-one coloured discs, composed of fifteen blue discs and six red discs,

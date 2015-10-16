@@ -7,7 +7,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(23)
+ENREGISTRER_PROBLEME(23, "Non-abundant sums")
 {
     Timer t("probleme 23");
     // A perfect number is a number for which the sum of its proper divisors is exactly equal to the number. 

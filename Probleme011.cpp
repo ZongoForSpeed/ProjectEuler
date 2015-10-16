@@ -6,7 +6,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(11)
+ENREGISTRER_PROBLEME(11, "Largest product in a grid")
 {
     Timer t("probleme 11");
     // In the 20×20 grid below, four numbers along a diagonal line have been marked in red.

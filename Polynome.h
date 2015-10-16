@@ -1,12 +1,8 @@
 #pragma once
-
 #include "Arithmetiques.h"
-
 #include <vector>
 #include <initializer_list>
-
 #include <boost/range/adaptor/reversed.hpp>
-
 template<typename Nombre>
 class Polynome
 {
@@ -18,7 +14,6 @@ public:
 	Polynome(std::initializer_list<Nombre> polynome) : _polynome(polynome) {}
 	
 	size_t taille() const { return _polynome.size(); }
-
 	Nombre valeur(Nombre x) const 
 	{
 		Nombre resultat = 0;
@@ -54,7 +49,6 @@ public:
 	{
 		if (p._polynome.size() > _polynome.size() )
 			_polynome.resize(p._polynome.size());
-
 		for (size_t i = 0; i < p._polynome.size(); ++i)
 			_polynome[i] += p._polynome[i];
 			
@@ -66,7 +60,6 @@ public:
 	{
 		if (p._polynome.size() > _polynome.size() )
 			_polynome.resize(p._polynome.size());
-
 		for (size_t i = 0; i < p._polynome.size(); ++i)
 			_polynome[i] -= p._polynome[i];
 			
@@ -160,25 +153,21 @@ public:
         }
     }
 };
-
 template<typename Nombre>
 Polynome<Nombre> operator*(Polynome<Nombre> lhs, const Polynome<Nombre>& rhs)
 {
     return lhs *= rhs;
 }
-
 template<typename Nombre>
 Polynome<Nombre> operator+(Polynome<Nombre> lhs, const Polynome<Nombre>& rhs)
 {
     return lhs += rhs;
 }
-
 template<typename Nombre>
 Polynome<Nombre> operator-(Polynome<Nombre> lhs, const Polynome<Nombre>& rhs)
 {
     return lhs -= rhs;
 }
-
 template<typename Nombre>
 std::ostream& operator<<(std::ostream& os, const Polynome<Nombre>& p)
 {

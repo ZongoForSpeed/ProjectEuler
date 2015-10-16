@@ -1,6 +1,5 @@
 #include "Problemes.h"
 #include "Timer.h"
-
 #include <iostream>
 #include <map>
 #include <set>
@@ -20,7 +19,7 @@ nombre compte(nombre n, nombre d)
     return resultat;
 }
  
-ENREGISTRER_PROBLEME(156)
+ENREGISTRER_PROBLEME(156, "Counting Digits")
 {
     // Starting from zero the natural numbers are written down in base 10 like this: 
     // 
@@ -104,6 +103,5 @@ ENREGISTRER_PROBLEME(156)
             resultat += s;
         }
     }
-
     std::cout << "Resultat = " << resultat << std::endl;
 }

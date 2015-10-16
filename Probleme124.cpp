@@ -12,7 +12,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
-ENREGISTRER_PROBLEME(124)
+ENREGISTRER_PROBLEME(124, "Ordered radicals")
 {
     Timer t("probleme 124");
     // The radical of n, rad(n), is the product of the distinct prime factors of n. For example, 

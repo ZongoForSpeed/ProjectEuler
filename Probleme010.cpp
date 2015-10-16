@@ -10,7 +10,7 @@
 typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(10)
+ENREGISTRER_PROBLEME(10, "Summation of primes")
 {
     
     // The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.

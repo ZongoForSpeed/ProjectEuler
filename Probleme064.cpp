@@ -13,7 +13,7 @@
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(64)
+ENREGISTRER_PROBLEME(64, "Odd period square roots")
 {
     Timer t("probleme 64");
     // It can be seen that the sequence is repeating. For conciseness, we use the notation √23 = [4;(1,3,1,8)], to indicate that the block (1,3,1,8) repeats indefinitely.

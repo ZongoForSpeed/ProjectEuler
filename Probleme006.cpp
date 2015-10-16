@@ -6,7 +6,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(6)
+ENREGISTRER_PROBLEME(6, "Sum square difference")
 {
     // The sum of the squares of the first ten natural numbers is, 
     //                                              1² + 2² + ... + 10² = 385

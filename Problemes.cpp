@@ -1,6 +1,5 @@
 #include "Problemes.h"
 #include "Utilitaires.h"
-
 #include <vector>
 
 RegistreProbleme::RegistreProbleme() 
@@ -14,9 +13,9 @@ RegistreProbleme & RegistreProbleme::instance()
     return _instance_;
 }
 
-void RegistreProbleme::ajout(const size_t numero, const std::function<void()> & fonction)
+void RegistreProbleme::ajout(const size_t numero, const std::string & nom, const std::function<void()> & fonction)
 {
-    _registre.insert(std::make_pair(numero, fonction));
+    _registre.insert(std::make_pair(numero, std::make_pair(nom, fonction)));
 }
 
 int RegistreProbleme::execute(int argc, char** argv)
@@ -28,14 +27,17 @@ int RegistreProbleme::execute(int argc, char** argv)
         size_t n = stoull(p);
         auto it = _registre.find(n);
         if (it != _registre.end())
-            it->second();
+        {
+            std::cout << it->second.first << std::endl;
+            it->second.second();            
+        }
         else
             std::cout << "Le probleme " << n << " n'existe pas !" << std::endl;
     }
     return 0;
 }
 
-Probleme::Probleme(const size_t numero, const std::function<void()> & fonction)
+Probleme::Probleme(const size_t numero, const std::string & nom, const std::function<void()> & fonction)
 {
-    RegistreProbleme::instance().ajout(numero, fonction);
+    RegistreProbleme::instance().ajout(numero, nom, fonction);
 }

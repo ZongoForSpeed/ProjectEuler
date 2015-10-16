@@ -13,7 +13,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(175)
+ENREGISTRER_PROBLEME(175, "Fractions involving the number of different ways a number can be expressed as a sum of powers of 2")
 {
     Timer timer("probleme 175");
     // Define f(0)=1 and f(n) to be the number of ways to write n as a sum of powers of 2 where no power occurs more than twice. 

@@ -14,7 +14,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-ENREGISTRER_PROBLEME(162)
+ENREGISTRER_PROBLEME(162, "Hexadecimal numbers")
 {
     Timer timer("probleme 162");
     // In the hexadecimal number system numbers are represented using 16 different digits:

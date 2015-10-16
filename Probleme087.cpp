@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(87)
+ENREGISTRER_PROBLEME(87, "Prime power triples")
 {
     Timer t("probleme 87");
     // The smallest number expressible as the sum of a prime square, prime cube, and prime fourth 

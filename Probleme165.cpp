@@ -72,7 +72,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(165)
+ENREGISTRER_PROBLEME(165, "Intersections")
 {
     Timer timer("probleme 165");
     // A segment is uniquely defined by its two endpoints.

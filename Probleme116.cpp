@@ -10,7 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(116)
+ENREGISTRER_PROBLEME(116, "Red, green or blue tiles")
 {
     Timer t("probleme 116");
     // A row of five black square tiles is to have a number of its tiles replaced with coloured oblong

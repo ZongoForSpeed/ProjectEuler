@@ -28,7 +28,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(149)
+ENREGISTRER_PROBLEME(149, "Searching for a maximum-sum subsequence")
 {
     Timer t("probleme 149");
 	// Looking at the table below, it is easy to verify that the maximum possible sum of adjacent numbers

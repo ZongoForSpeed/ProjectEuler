@@ -13,7 +13,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef std::map<vecteur, vecteur> graphe;
 
-ENREGISTRER_PROBLEME(60)
+ENREGISTRER_PROBLEME(60, "Prime pair sets")
 {
     Timer t("probleme 60");
     // The primes 3, 7, 109, and 673, are quite remarkable. By taking any two primes and concatenating them in 

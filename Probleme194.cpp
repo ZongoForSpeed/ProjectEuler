@@ -66,7 +66,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(194)
+ENREGISTRER_PROBLEME(194, "Coloured Configurations")
 {
     Timer timer("probleme 194");
     // Consider graphs built with the units A:  and B: , where the units are glued along the vertical 

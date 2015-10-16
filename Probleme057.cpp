@@ -12,7 +12,7 @@
 typedef boost::multiprecision::cpp_int nombre;
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(57)
+ENREGISTRER_PROBLEME(57, "Square root convergents")
 {
     Timer t("probleme 57");
     // It is possible to show that the square root of two can be expressed as an infinite continued fraction.

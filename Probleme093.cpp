@@ -60,7 +60,7 @@ namespace
 
 }
 
-ENREGISTRER_PROBLEME(93)
+ENREGISTRER_PROBLEME(93, "Arithmetic expressions")
 {
     Timer t("probleme 93");
     // By using each of the digits from the set, {1, 2, 3, 4}, exactly once, and making use of the 

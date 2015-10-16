@@ -9,7 +9,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(14)
+ENREGISTRER_PROBLEME(14, "Longest Collatz sequence")
 {
     Timer t("probleme 14");
     // The following iterative sequence is defined for the set of positive integers:

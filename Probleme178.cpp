@@ -15,7 +15,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-ENREGISTRER_PROBLEME(178)
+ENREGISTRER_PROBLEME(178, "Step Numbers")
 {
     Timer timer("probleme 178");
     // Consider the number 45656. 

@@ -85,7 +85,7 @@ namespace
     
 }
 
-ENREGISTRER_PROBLEME(196)
+ENREGISTRER_PROBLEME(196, "Prime triplets")
 {
     Timer timer("probleme 196");
     // Build a triangle from all positive integers in the following way:

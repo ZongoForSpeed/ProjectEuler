@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(153)
+ENREGISTRER_PROBLEME(153, "Investigating Gaussian Integers")
 {
     Timer timer("probleme 153");
 	// As we all know the equation x2=-1 has no solutions for real x. 

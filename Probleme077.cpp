@@ -11,7 +11,7 @@
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(77)
+ENREGISTRER_PROBLEME(77, "Prime summations")
 {
     Timer t("probleme 77");
     // It is possible to write ten as the sum of primes in exactly five different ways:

@@ -18,7 +18,7 @@ typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(180)
+ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
 {
     Timer timer("probleme 180");
     // For any integer n, consider the three functions

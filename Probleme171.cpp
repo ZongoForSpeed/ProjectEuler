@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(171)
+ENREGISTRER_PROBLEME(171, "Finding numbers for which the sum of the squares of the digits is a square")
 {
     Timer timer("probleme 171");
     // For a positive integer n, let f(n) be the sum of the squares of the digits (in base 10) of n, e.g.

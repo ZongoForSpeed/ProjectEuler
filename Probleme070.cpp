@@ -13,7 +13,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(70)
+ENREGISTRER_PROBLEME(70, "Totient permutation")
 {
     Timer t("probleme 70");
     // Euler's Totient function, φ(n) [sometimes called the phi function], is used to determine the 

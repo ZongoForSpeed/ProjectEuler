@@ -11,7 +11,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(86)
+ENREGISTRER_PROBLEME(86, "Cuboid route")
 {
     Timer t("probleme 86");
     // A spider, S, sits in one corner of a cuboid room, measuring 6 by 5 by 3, and a fly, F, sits 

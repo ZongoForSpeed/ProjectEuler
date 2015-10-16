@@ -6,7 +6,7 @@
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(36)
+ENREGISTRER_PROBLEME(36, "Double-base palindromes")
 {
     Timer t("probleme 36");
     // The decimal number, 585 = 1001001001_2 (binary), is palindromic in both bases.

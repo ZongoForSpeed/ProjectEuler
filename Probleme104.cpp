@@ -31,7 +31,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(104)
+ENREGISTRER_PROBLEME(104, "Pandigital Fibonacci ends")
 {
     Timer t("probleme 104");
     // The Fibonacci sequence is defined by the recurrence relation:
