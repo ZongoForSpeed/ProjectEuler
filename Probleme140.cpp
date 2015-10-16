@@ -15,7 +15,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-void probleme140()
+ENREGISTRER_PROBLEME(140)
 {
     Timer t("probleme 140");
     // Consider the infinite polynomial series AG(x) = xG1 + x2G2 + x3G3 + ..., where Gk is the kth 

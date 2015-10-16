@@ -13,7 +13,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme176()
+ENREGISTRER_PROBLEME(176)
 {
     Timer timer("probleme 176");
     // The four right-angled triangles with sides (9,12,15), (12,16,20), (5,12,13) and (12,35,37) 

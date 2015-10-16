@@ -28,7 +28,7 @@ namespace
     }
 }
 
-void probleme189()
+ENREGISTRER_PROBLEME(189)
 {
     Timer timer("probleme 189");
     // Consider the following configuration of 64 triangles:

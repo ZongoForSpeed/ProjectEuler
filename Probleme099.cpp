@@ -15,7 +15,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-void probleme099()
+ENREGISTRER_PROBLEME(99)
 {
     Timer t("probleme 99");
     // Comparing two numbers written in index form like 211 and 37 is not difficult, as any calculator

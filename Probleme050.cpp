@@ -10,7 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme050()
+ENREGISTRER_PROBLEME(50)
 {
     Timer t("probleme 50");
     // The prime 41, can be written as the sum of six consecutive primes:

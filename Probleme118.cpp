@@ -44,7 +44,7 @@ namespace
     }
 }
 
-void probleme118()
+ENREGISTRER_PROBLEME(118)
 {
     Timer t("probleme 118");
     // Using all of the digits 1 through 9 and concatenating them freely to form decimal integers, 

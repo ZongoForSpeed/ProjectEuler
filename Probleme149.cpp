@@ -28,8 +28,7 @@ namespace
     }
 }
 
-
-void probleme149()
+ENREGISTRER_PROBLEME(149)
 {
     Timer t("probleme 149");
 	// Looking at the table below, it is easy to verify that the maximum possible sum of adjacent numbers

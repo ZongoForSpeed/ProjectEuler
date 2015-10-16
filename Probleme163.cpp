@@ -11,7 +11,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme163()
+ENREGISTRER_PROBLEME(163)
 {
     Timer timer("probleme 163");
     // Consider an equilateral triangle in which straight lines are drawn from each vertex to the 

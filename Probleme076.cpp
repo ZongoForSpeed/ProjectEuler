@@ -11,7 +11,7 @@
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme076()
+ENREGISTRER_PROBLEME(76)
 {
     Timer t("probleme 76");
     // It is possible to write five as a sum in exactly six different ways:

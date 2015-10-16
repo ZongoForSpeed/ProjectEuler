@@ -10,7 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme092()
+ENREGISTRER_PROBLEME(92)
 {
     Timer t("probleme 92");
     // A number chain is created by continuously adding the square of the digits in a number to form

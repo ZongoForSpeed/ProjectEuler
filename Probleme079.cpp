@@ -15,7 +15,7 @@
 typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme079()
+ENREGISTRER_PROBLEME(79)
 {
     Timer t("probleme 79");
     // A common security method used for online banking is to ask the user for three random characters 

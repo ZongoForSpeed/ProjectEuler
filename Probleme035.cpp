@@ -7,7 +7,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme035()
+ENREGISTRER_PROBLEME(35)
 {
     Timer t ("probleme 35");
     // The number, 197, is called a circular prime because all rotations of the digits: 

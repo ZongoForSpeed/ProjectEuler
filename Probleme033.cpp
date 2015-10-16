@@ -8,7 +8,8 @@
 
 typedef unsigned short nombre;
 typedef boost::rational<nombre> fraction;
-void probleme033()
+
+ENREGISTRER_PROBLEME(33)
 {
     Timer t("probleme 33");
     // The fraction 49/98 is a curious fraction, as an inexperienced mathematician in attempting 

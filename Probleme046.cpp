@@ -7,7 +7,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme046()
+ENREGISTRER_PROBLEME(46)
 {
     Timer t("probleme 46");
     // It was proposed by Christian Goldbach that every odd composite number can be written as the 

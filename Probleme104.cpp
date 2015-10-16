@@ -31,7 +31,7 @@ namespace
     }
 }
 
-void probleme104()
+ENREGISTRER_PROBLEME(104)
 {
     Timer t("probleme 104");
     // The Fibonacci sequence is defined by the recurrence relation:

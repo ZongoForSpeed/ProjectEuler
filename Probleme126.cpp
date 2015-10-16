@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme126()
+ENREGISTRER_PROBLEME(126)
 {
     Timer t("probleme 126");
     // The minimum number of cubes to cover every visible face on a cuboid measuring 3 x 2 x 1 is 

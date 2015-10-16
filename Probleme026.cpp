@@ -8,7 +8,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme026()
+ENREGISTRER_PROBLEME(26)
 {
     Timer t("probleme 26");
     // A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions 

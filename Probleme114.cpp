@@ -10,7 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme114()
+ENREGISTRER_PROBLEME(114)
 {
     Timer t("probleme 114");
     // A row measuring seven units in length has red blocks with a minimum length of three units 

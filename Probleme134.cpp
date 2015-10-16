@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme134()
+ENREGISTRER_PROBLEME(134)
 {
     Timer t("probleme 134");
     // Consider the consecutive primes p1 = 19 and p2 = 23. It can be verified that 1219 is the smallest 

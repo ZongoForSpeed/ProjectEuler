@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme172()
+ENREGISTRER_PROBLEME(172)
 {
     Timer timer("probleme 172");
     // How many 18-digit numbers n (without leading zeros) are there such that no digit occurs more 

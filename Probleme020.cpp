@@ -8,7 +8,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-void probleme020()
+ENREGISTRER_PROBLEME(20)
 {
     Timer t("probleme 20");
     // n! means n × (n − 1) × ... × 3 × 2 × 1

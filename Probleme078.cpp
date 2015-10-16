@@ -11,7 +11,7 @@
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme078()
+ENREGISTRER_PROBLEME(78)
 {
     Timer t("probleme 78");
     // Let p(n) represent the number of different ways in which n coins can be separated into piles.

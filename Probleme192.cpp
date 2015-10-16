@@ -47,7 +47,7 @@ namespace
     }
 }
 
-void probleme192()
+ENREGISTRER_PROBLEME(192)
 {
     Timer timer("probleme 192");
     // Let x be a real number.

@@ -10,7 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme090()
+ENREGISTRER_PROBLEME(90)
 {
     Timer t("probleme 90");
     // Each of the six faces on a cube has a different digit (0 to 9) written on it; the same is 

@@ -53,7 +53,7 @@ namespace
     }
 }
 
-void probleme152()
+ENREGISTRER_PROBLEME(152)
 {
     Timer timer("probleme 152");
 	// There are several ways to write the number 1/2 as a sum of inverse squares using distinct integers.

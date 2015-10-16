@@ -13,7 +13,7 @@ typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 typedef std::vector<paire> vecteur_paire;
 
-void probleme084()
+ENREGISTRER_PROBLEME(84)
 {
     Timer t("probleme 84");
     // In the game, Monopoly, the standard compteur is set up in the following way:

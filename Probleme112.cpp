@@ -15,7 +15,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-void probleme112()
+ENREGISTRER_PROBLEME(112)
 {
     Timer t("probleme 112");
     // Working from left-to-right if no digit is exceeded by the digit to its left it is called an 

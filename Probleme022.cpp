@@ -11,7 +11,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme022()
+ENREGISTRER_PROBLEME(22)
 {
     Timer t("probleme 22");
     // Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing 

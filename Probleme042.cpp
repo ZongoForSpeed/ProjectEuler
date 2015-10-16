@@ -12,7 +12,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme042()
+ENREGISTRER_PROBLEME(42)
 {
     Timer t("probleme 42");
     // The nth term of the sequence of triangle numbers is given by, tn = ½n(n+1); so the first ten triangle numbers are:

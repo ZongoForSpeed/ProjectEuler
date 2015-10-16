@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme061()
+ENREGISTRER_PROBLEME(61)
 {
     Timer t("probleme 61");
     // Triangle, square, pentagonal, hexagonal, heptagonal, and octagonal numbers are all figurate 

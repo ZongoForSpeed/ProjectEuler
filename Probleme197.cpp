@@ -21,7 +21,7 @@ namespace
     }
 }
 
-void probleme197()
+ENREGISTRER_PROBLEME(197)
 {
     Timer timer("probleme 197");
     // Given is the function f(x) = ⌊2^(30.403243784-x²)⌋ × 10-9 ( ⌊ ⌋ is the floor-function),

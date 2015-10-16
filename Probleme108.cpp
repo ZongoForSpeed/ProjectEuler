@@ -13,7 +13,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme108()
+ENREGISTRER_PROBLEME(108)
 {
     Timer t("probleme 108");
     // In the following equation x, y, and n are positive integers.

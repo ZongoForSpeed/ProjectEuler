@@ -38,7 +38,7 @@ namespace
     }
 }
 
-void probleme170()
+ENREGISTRER_PROBLEME(170)
 {
     Timer timer("probleme 170");
     // Take the number 6 and multiply it by each of 1273 and 9854:

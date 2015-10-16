@@ -8,7 +8,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 
-void probleme346()
+ENREGISTRER_PROBLEME(346)
 {
 	nombre limite = 1000000000000LL;
 	nombre somme = 0;

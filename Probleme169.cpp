@@ -38,7 +38,7 @@ namespace
     }
 }
 
-void probleme169()
+ENREGISTRER_PROBLEME(169)
 {
     Timer timer("probleme 169");
     // Define f(0)=1 and f(n) to be the number of different ways n can be expressed as a sum of integer powers of 2 using each power no more than twice.

@@ -12,7 +12,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-void probleme121()
+ENREGISTRER_PROBLEME(121)
 {
     Timer t("probleme 121");
     // A bag contains one red disc and one blue disc. In a game of chance a player takes a disc at 

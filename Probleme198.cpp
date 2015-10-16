@@ -14,7 +14,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
-void probleme198()
+ENREGISTRER_PROBLEME(198)
 {
     Timer timer("probleme 198");
     // A best approximation to a real number x for the denominator bound d is a rational number r/s 
@@ -54,18 +54,7 @@ void probleme198()
         }
     }
     
-//     def p198(M=10**8, z=100, cnt=0):
-//  M2=M/2
-//  a=m=int(M2**0.5)
-//  stack=range(z,m)
-//  while stack:
-//      b=stack[-1]
-//      if a*b>M2:
-//          a=stack.pop()
-//      else:
-//          cnt+=1
-//          stack.append(a+b)
-//  return cnt+M2-z/2
+    std::cout << __func__ << std::endl;
     
     std::cout << "Solution: " << resultat << std::endl;
 }

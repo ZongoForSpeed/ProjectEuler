@@ -43,7 +43,7 @@ namespace
 
 }
 
-void probleme184()
+ENREGISTRER_PROBLEME(184)
 {
     Timer timer("probleme 184");
     // Consider the set Ir of points (x,y) with integer co-ordinates in the interior of the circle 

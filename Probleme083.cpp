@@ -18,7 +18,7 @@ typedef std::vector<vecteur> matrice;
 typedef std::pair<nombre, nombre> paire;
 typedef std::vector<paire> vecteur_paire;
 
-void probleme083()
+ENREGISTRER_PROBLEME(83)
 {
     Timer t("probleme 83");
     // In the 5 by 5 matrix below, the minimal path sum from the top left to the bottom right, 

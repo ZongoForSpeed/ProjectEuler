@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
 #include <vector>
+#include <deque>
 #include <set>
 #include <map>
 #include <utility>
@@ -37,8 +39,25 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T> & v)
         if (first)
             first = false;
         else
-            std::cout << " ";
-        std::cout << n;
+            os << " ";
+        os << n;
+    }
+    os << "]";
+    return os;
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::deque<T> & v)
+{
+    os << "[";
+    bool first = true;
+    for (const T & n: v)
+    {
+        if (first)
+            first = false;
+        else
+            os << " ";
+        os << n;
     }
     os << "]";
     return os;
@@ -54,8 +73,8 @@ std::ostream& operator<<(std::ostream& os, const std::set<T> & s)
         if (first)
             first = false;
         else
-            std::cout << " ";
-        std::cout << n;
+            os << " ";
+        os << n;
     }
     os << "}";
     return os;

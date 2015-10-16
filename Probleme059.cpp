@@ -12,7 +12,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme059()
+ENREGISTRER_PROBLEME(59)
 {
     Timer t("probleme 59");
     // Each character on a computer is assigned a unique code and the preferred standard is ASCII 

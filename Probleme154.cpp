@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme154()
+ENREGISTRER_PROBLEME(154)
 {
     Timer timer("probleme 154");
 	// A triangular pyramid is constructed using spherical balls so that each ball rests on exactly 

@@ -9,7 +9,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme074()
+ENREGISTRER_PROBLEME(74)
 {
     Timer t("probleme 74");
     // The number 145 is well known for the property that the sum of the factorial of its digits is 

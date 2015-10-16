@@ -15,7 +15,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-void probleme098()
+ENREGISTRER_PROBLEME(98)
 {
     Timer t("probleme 98");
     // By replacing each of the letters in the word CARE with 1, 2, 9, and 6 respectively, we form 

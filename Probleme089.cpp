@@ -11,7 +11,7 @@
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme089()
+ENREGISTRER_PROBLEME(89)
 {
     Timer t("probleme 89");
     // For a number written in Roman numerals to be considered valid there are basic rules which 

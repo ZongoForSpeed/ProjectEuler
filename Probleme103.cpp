@@ -113,7 +113,7 @@ namespace
 	}
 }
 
-void probleme103()
+ENREGISTRER_PROBLEME(103)
 {
     Timer t("probleme 103");
     // Let S(A) represent the sum of elements in set A of size n. We shall call it a special sum set 

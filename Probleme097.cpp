@@ -11,7 +11,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-void probleme097()
+ENREGISTRER_PROBLEME(97)
 {
     Timer t("probleme 97");
     // The first known prime found to exceed one million digits was discovered in 1999, and is a 
@@ -22,8 +22,8 @@ void probleme097()
     // digits: 28433×2^7830457+1.
     // 
     // Find the last ten digits of this prime number.
-    nombre masque = puissance::puissance(nombre(10), 10);
-    nombre mersenne = puissance::puissance_modulaire(nombre(2), 7830457, masque);
+    nombre masque = puissance::puissance<nombre>(10, 10);
+    nombre mersenne = puissance::puissance_modulaire<nombre>(2, 7830457, masque);
     mersenne = (mersenne * 28433 + 1)%masque;
     std::cout << "Solution: " << mersenne << std::endl;
 }

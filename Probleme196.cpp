@@ -85,7 +85,7 @@ namespace
     
 }
 
-void probleme196()
+ENREGISTRER_PROBLEME(196)
 {
     Timer timer("probleme 196");
     // Build a triangle from all positive integers in the following way:

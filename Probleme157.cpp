@@ -17,8 +17,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble; 
 
-
-void probleme157()
+ENREGISTRER_PROBLEME(157)
 {
     Timer timer("probleme 157");
 	// Consider the diophantine equation 1/a+1/b= p/10^n with a, b, p, n positive integers and a ≤ b.

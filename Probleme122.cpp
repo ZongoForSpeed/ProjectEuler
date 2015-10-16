@@ -56,7 +56,7 @@ namespace
     }
 }
 
-void probleme122()
+ENREGISTRER_PROBLEME(122)
 {
     Timer t("probleme 122");
     // The most naive way of computing n^15 requires fourteen multiplications:

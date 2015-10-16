@@ -10,7 +10,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 
-void probleme048()
+ENREGISTRER_PROBLEME(48)
 {
     Timer t("probleme 48");
     // The series, 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317.

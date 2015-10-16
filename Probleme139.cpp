@@ -11,7 +11,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme139()
+ENREGISTRER_PROBLEME(139)
 {
     Timer t("probleme 139");
     // Let (a, b, c) represent the three sides of a right angle triangle with integral length sides. 

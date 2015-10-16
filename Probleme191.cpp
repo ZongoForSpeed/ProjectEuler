@@ -35,7 +35,7 @@ namespace
     }
 }
 
-void probleme191()
+ENREGISTRER_PROBLEME(191)
 {
     Timer timer("probleme 191");
     // A particular school offers cash rewards to children with good attendance and punctuality. 

@@ -26,7 +26,7 @@ namespace
     }
 }
 
-void probleme145()
+ENREGISTRER_PROBLEME(145)
 {
     Timer t("probleme 145");
 	// Some positive integers n have the property that the sum [ n + reverse(n) ] consists entirely of 

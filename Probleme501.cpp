@@ -3,6 +3,7 @@
 
 #include "Timer.h"
 #include "Arithmetiques.h"
+#include "Problemes.h"
 
 #include <cmath>
 #include <limits>
@@ -181,7 +182,7 @@ public:
     }
 };
 
-void probleme501()
+ENREGISTRER_PROBLEME(501)
 {
     Probleme501 p;
     p.algorithme();

@@ -8,7 +8,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme040()
+ENREGISTRER_PROBLEME(40)
 {
     Timer t("probleme 40");
     // An irrational decimal fraction is created by concatenating the positive integers:

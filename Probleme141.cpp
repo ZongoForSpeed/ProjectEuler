@@ -15,7 +15,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-void probleme141()
+ENREGISTRER_PROBLEME(141)
 {
     Timer t("probleme 141");
     // A positive integer, n, is divided by d and the quotient and remainder are q and r respectively. 

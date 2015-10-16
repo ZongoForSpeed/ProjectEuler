@@ -6,7 +6,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme006()
+ENREGISTRER_PROBLEME(6)
 {
     // The sum of the squares of the first ten natural numbers is, 
     //                                              1² + 2² + ... + 10² = 385

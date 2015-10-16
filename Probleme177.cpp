@@ -29,7 +29,7 @@ namespace
     };
 }
 
-void probleme177()
+ENREGISTRER_PROBLEME(177)
 {
     Timer timer("probleme 177");
     // Let ABCD be a convex quadrilateral, with diagonals AC and BD. At each vertex the diagonal 

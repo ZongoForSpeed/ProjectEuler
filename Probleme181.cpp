@@ -39,7 +39,7 @@ namespace
 	}
 }
 
-void probleme181()
+ENREGISTRER_PROBLEME(181)
 {
     Timer timer("probleme 181");
     // Having three black objects B and one white object W they can be grouped in 7 ways like this:

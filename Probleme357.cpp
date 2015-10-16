@@ -62,7 +62,7 @@ public:
 	}
 };
 
-void probleme357()
+ENREGISTRER_PROBLEME(357)
 {
 	Probleme357 p;
 	p.algorithme();

@@ -10,7 +10,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 
-void probleme056()
+ENREGISTRER_PROBLEME(56)
 {
     Timer t("probleme 56");
     // A googol (10^100) is a massive number: one followed by one-hundred zeros; 100^100 is almost 

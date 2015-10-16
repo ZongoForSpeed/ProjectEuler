@@ -20,16 +20,46 @@ nombre compte(nombre n, nombre d)
     return resultat;
 }
  
-void probleme156 ()
+ENREGISTRER_PROBLEME(156)
 {
-    // I used this formula:
-    // Let M = 10^5, then for b < M
-    //      f[Ma+b] = M*f[a-1] + a*f[M-1] + (b+1)*(f[a]-f[a-1]) + f[b]
-    // So if Ma+b = f[Ma+b], we would have: Ma - M*f[a-1] - a*f[M-1] = (b+1)*(f[a]-f[a-1]) + f[b] - b (*)
-    // I stored all the values of g = (b+1)*x + f[b] - b for 0 <= x <= 7, 0 <= b < M, where M=10^5 in hashmaps for easy lookup,
-    // that is given g and x, I can look up the values of b that satisfy this equation.
-    // Then I just iterated through 1 <= a < 10^7, and check for each value of a,
-    // how many values of b satisfy equation (*) using the map lookup.
+    // Starting from zero the natural numbers are written down in base 10 like this: 
+    // 
+    //                              0 1 2 3 4 5 6 7 8 9 10 11 12....
+    //
+    // Consider the digit d=1. After we write down each number n, we will update the number of ones 
+    // that have occurred and call this number f(n,1). The first values for f(n,1), then, are as 
+    // follows:
+    //
+    //                                      n	f(n,1)
+    //                                      0	0
+    //                                      1	1
+    //                                      2	1
+    //                                      3	1
+    //                                      4	1
+    //                                      5	1
+    //                                      6	1
+    //                                      7	1
+    //                                      8	1
+    //                                      9	1
+    //                                      10	2
+    //                                      11	4
+    //                                      12	5
+    //
+    // Note that f(n,1) never equals 3. 
+    // So the first two solutions of the equation f(n,1)=n are n=0 and n=1. The next solution is 
+    // n=199981.
+    //
+    // In the same manner the function f(n,d) gives the total number of digits d that have been written 
+    // down after the number n has been written. 
+    // In fact, for every digit d ≠ 0, 0 is the first solution of the equation f(n,d)=n.
+    //
+    // Let s(d) be the sum of all the solutions for which f(n,d)=n. 
+    // You are given that s(1)=22786974071.
+    //
+    // Find ∑ s(d) for 1 ≤ d ≤ 9.
+    //
+    // Note: if, for some n, f(n,d)=n for more than one value of d this value of n is counted again for
+    // every value of d for which f(n,d)=n.
     nombre limite = 1000000000000;
     nombre m = 100000;
  
@@ -40,7 +70,7 @@ void probleme156 ()
         {
             std::map< std::pair<nombre, nombre>, std::set<nombre> > gn;
             nombre f = 0;
-
+            
             nombre s = 0;
             for (nombre b = 0; b < m; ++b)
             {
@@ -50,11 +80,11 @@ void probleme156 ()
                     nombre g = (b+1)*x + f - b;
                     gn[std::make_pair(g, x)].insert(b);
                 }
-
+                
                 if (f == b)
                     s += b;
             }
-
+            
             nombre fa = 0;
             for (nombre a = 1; a < limite / m; ++a)
             {

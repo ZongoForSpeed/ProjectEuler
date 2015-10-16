@@ -12,7 +12,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble;
 
-void probleme131()
+ENREGISTRER_PROBLEME(131)
 {
     Timer t("probleme 131");
 	// There are some prime values, p, for which there exists a positive integer, n, such that the 

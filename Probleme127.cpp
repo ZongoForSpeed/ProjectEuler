@@ -12,7 +12,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble;
 
-void probleme127()
+ENREGISTRER_PROBLEME(127)
 {
     Timer t("probleme 127");
     // The radical of n, rad(n), is the product of distinct prime factors of n. For example, 

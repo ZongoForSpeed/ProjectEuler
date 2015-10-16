@@ -17,7 +17,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble; 
 
-void probleme158()
+ENREGISTRER_PROBLEME(158)
 {
     Timer timer("probleme 158");
     // Taking three different letters from the 26 letters of the alphabet, character strings of 

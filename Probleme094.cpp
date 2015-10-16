@@ -8,7 +8,8 @@
 #include <limits>
 
 typedef unsigned long long nombre;
-void probleme094()
+
+ENREGISTRER_PROBLEME(94)
 {
     Timer t("probleme 94");
     // It is easily proved that no equilateral triangle exists with integral length sides and 

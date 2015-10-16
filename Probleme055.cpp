@@ -10,7 +10,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 
-void probleme055()
+ENREGISTRER_PROBLEME(55)
 {
     Timer t("probleme 55");
     // If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.

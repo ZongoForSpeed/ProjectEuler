@@ -11,12 +11,9 @@
 #include <map>
 #include <set>
 
-#include <boost/multiprecision/gmp.hpp>
-
-// typedef boost::multiprecision::mpz_int nombre;
 typedef unsigned long long nombre;
 
-void probleme160()
+ENREGISTRER_PROBLEME(160)
 {
     Timer timer("probleme 160");
 	// For any N, let f(N) be the last five digits before the trailing zeroes in N!.

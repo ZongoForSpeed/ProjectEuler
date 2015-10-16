@@ -199,7 +199,7 @@ namespace
     };
 }
 
-void probleme054()
+ENREGISTRER_PROBLEME(54)
 {
     Timer t("probleme 54");
     // In the card game poker, a hand consists of five cards and are ranked, from lowest to highest, 

@@ -1,10 +1,10 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Utilitaires.h"
 
-#include <string>
+#include <iostream>
 
 int main(int argc, char ** argv)
 {
-	premiers::testCrible();
+    RegistreProbleme::instance().execute(argc, argv);
 	return 0;
 }

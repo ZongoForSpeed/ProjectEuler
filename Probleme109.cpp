@@ -13,7 +13,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme109()
+ENREGISTRER_PROBLEME(109)
 {
     Timer t("probleme 109");
     // In the game of darts a player throws three darts at a target board which is split into twenty 

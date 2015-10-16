@@ -12,7 +12,7 @@
 typedef unsigned long long nombre;
 typedef boost::rational<nombre> fraction;
 
-void probleme071()
+ENREGISTRER_PROBLEME(71)
 {
     Timer t("probleme 71");
     // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is 

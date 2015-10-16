@@ -1,206 +1,34 @@
 #pragma once
 
-void probleme001();
-void probleme002();
-void probleme003();
-void probleme004();
-void probleme005();
-void probleme006();
-void probleme007();
-void probleme008();
-void probleme009();
-void probleme010();
-void probleme011();
-void probleme012();
-void probleme013();
-void probleme014();
-void probleme015();
-void probleme016();
-void probleme017();
-void probleme018();
-void probleme019();
-void probleme020();
-void probleme021();
-void probleme022();
-void probleme023();
-void probleme024();
-void probleme025();
-void probleme026();
-void probleme027();
-void probleme028();
-void probleme029();
-void probleme030();
-void probleme031();
-void probleme032();
-void probleme033();
-void probleme034();
-void probleme035();
-void probleme036();
-void probleme037();
-void probleme038();
-void probleme039();
-void probleme040();
-void probleme041();
-void probleme042();
-void probleme043();
-void probleme044();
-void probleme045();
-void probleme046();
-void probleme047();
-void probleme048();
-void probleme049();
-void probleme050();
-void probleme051();
-void probleme052();
-void probleme053();
-void probleme054();
-void probleme055();
-void probleme056();
-void probleme057();
-void probleme058();
-void probleme059();
-void probleme060();
-void probleme061();
-void probleme062();
-void probleme063();
-void probleme064();
-void probleme065();
-void probleme066();
-void probleme067();
-void probleme068();
-void probleme069();
-void probleme070();
-void probleme071();
-void probleme072();
-void probleme073();
-void probleme074();
-void probleme075();
-void probleme076();
-void probleme077();
-void probleme078();
-void probleme079();
-void probleme080();
-void probleme081();
-void probleme082();
-void probleme083();
-void probleme084();
-void probleme085();
-void probleme086();
-void probleme087();
-void probleme088();
-void probleme089();
-void probleme090();
-void probleme091();
-void probleme092();
-void probleme093();
-void probleme094();
-void probleme095();
-void probleme096();
-void probleme097();
-void probleme098();
-void probleme099();
-void probleme100();
-void probleme101();
-void probleme102();
-void probleme103();
-void probleme104();
-void probleme105();
-void probleme106();
-void probleme107();
-void probleme108();
-void probleme109();
-void probleme110();
-void probleme111();
-void probleme112();
-void probleme113();
-void probleme114();
-void probleme115();
-void probleme116();
-void probleme117();
-void probleme118();
-void probleme119();
-void probleme120();
-void probleme121();
-void probleme122();
-void probleme123();
-void probleme124();
-void probleme125();
-void probleme126();
-void probleme127();
-void probleme128();
-void probleme129();
-void probleme130();
-void probleme131();
-void probleme132();
-void probleme133();
-void probleme134();
-void probleme135();
-void probleme136();
-void probleme137();
-void probleme138();
-void probleme139();
-void probleme140();
-void probleme141();
-void probleme142();
-void probleme143();
-void probleme144();
-void probleme145();
-void probleme146();
-void probleme147();
-void probleme148();
-void probleme149();
-void probleme150();
-void probleme151();
-void probleme152();
-void probleme153();
-void probleme154();
-void probleme155();
-void probleme156();
-void probleme157();
-void probleme158();
-void probleme159();
-void probleme160();
-void probleme161();
-void probleme162();
-void probleme163();
-void probleme164();
-void probleme165();
-void probleme166();
-void probleme167();
-void probleme168();
-void probleme169();
-void probleme170();
-void probleme171();
-void probleme172();
-void probleme173();
-void probleme174();
-void probleme175();
-void probleme176();
-void probleme177();
-void probleme178();
-void probleme179();
-void probleme180();
-void probleme181();
-void probleme182();
-void probleme183();
-void probleme184();
-void probleme185();
-void probleme186();
-void probleme187();
-void probleme188();
-void probleme189();
-void probleme190();
-void probleme191();
-void probleme192();
-void probleme193();
-void probleme194();
-void probleme195();
-void probleme196();
-void probleme197();
-void probleme198();
-void probleme303();
-void probleme346();
-void probleme357();
-void probleme381();
-void probleme500();
-void probleme501();
+#include <iostream>
+#include <string>
+#include <map>
+#include <functional>
+
+#include <boost/noncopyable.hpp>
+
+class RegistreProbleme: private boost::noncopyable
+{
+private:
+    RegistreProbleme();
+    
+public:
+    static RegistreProbleme & instance();
+    
+    void ajout(const size_t numero, const std::function<void()> & fonction);
+    
+    int execute(int argc, char** argv);
+    
+private:
+    std::map<size_t, std::function<void()>> _registre;
+};
+
+struct Probleme
+{
+    Probleme(const size_t numero, const std::function<void()> & fonction);
+};
+
+#define ENREGISTRER_PROBLEME(numero) \
+void probleme##numero(); \
+static Probleme p(numero, probleme##numero); \
+void probleme##numero()

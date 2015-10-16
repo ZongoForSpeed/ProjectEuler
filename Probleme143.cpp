@@ -14,7 +14,7 @@ typedef std::pair<nombre, nombre> paire;
 typedef std::set<nombre> ensemble;
 typedef std::map<nombre, vecteur> matrice;
 
-void probleme143()
+ENREGISTRER_PROBLEME(143)
 {
     Timer t("probleme 143");
 	// Let ABC be a triangle with all interior angles being less than 120 degrees. 

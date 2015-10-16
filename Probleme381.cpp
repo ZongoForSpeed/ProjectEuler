@@ -66,7 +66,7 @@ public:
     }
 };
 
-void probleme381()
+ENREGISTRER_PROBLEME(381)
 {
     Probleme381 p;
     p.algorithme();

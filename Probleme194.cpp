@@ -66,7 +66,7 @@ namespace
     }
 }
 
-void probleme194()
+ENREGISTRER_PROBLEME(194)
 {
     Timer timer("probleme 194");
     // Consider graphs built with the units A:  and B: , where the units are glued along the vertical 

@@ -52,7 +52,7 @@ namespace
 	}
 }
 
-void probleme151()
+ENREGISTRER_PROBLEME(151)
 {
     Timer timer("probleme 151");
 	// A printing shop runs 16 batches (jobs) every week and each batch requires a sheet of special 

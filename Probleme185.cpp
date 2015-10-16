@@ -117,7 +117,7 @@ namespace
 
 }
 
-void probleme185()
+ENREGISTRER_PROBLEME(185)
 {
     Timer timer("probleme 185");
     // The game Number Mind is a variant of the well known game Master Mind.

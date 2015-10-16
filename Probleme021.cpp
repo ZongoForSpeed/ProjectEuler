@@ -9,7 +9,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme021()
+ENREGISTRER_PROBLEME(21)
 {
     Timer t("probleme 21");
     // Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).

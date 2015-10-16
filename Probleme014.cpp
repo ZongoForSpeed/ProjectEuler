@@ -9,7 +9,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme014()
+ENREGISTRER_PROBLEME(14)
 {
     Timer t("probleme 14");
     // The following iterative sequence is defined for the set of positive integers:

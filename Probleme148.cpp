@@ -10,7 +10,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme148()
+ENREGISTRER_PROBLEME(148)
 {
     Timer t("probleme 148");
 	// We can easily verify that none of the entries in the first seven rows of Pascal's triangle are 

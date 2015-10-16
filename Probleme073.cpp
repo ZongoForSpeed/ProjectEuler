@@ -8,7 +8,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme073()
+ENREGISTRER_PROBLEME(73)
 {
     Timer t("probleme 73");
     // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is

@@ -11,7 +11,7 @@
 
 typedef long long nombre;
 
-void probleme085()
+ENREGISTRER_PROBLEME(85)
 {
     Timer t("probleme 85");
     // By counting carefully it can be seen that a rectangular grid measuring 3 by 2 contains 

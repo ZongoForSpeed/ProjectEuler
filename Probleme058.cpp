@@ -9,7 +9,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme058()
+ENREGISTRER_PROBLEME(58)
 {
     Timer t("probleme 58");
     // Starting with 1 and spiralling anticlockwise in the following way, a square spiral 

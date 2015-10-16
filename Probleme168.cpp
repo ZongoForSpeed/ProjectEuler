@@ -14,7 +14,7 @@ typedef boost::multiprecision::mpz_int nombre;
 #include <boost/rational.hpp>
 #include <boost/optional.hpp>
 
-void probleme168()
+ENREGISTRER_PROBLEME(168)
 {
     Timer timer("probleme 168");
     // Consider the number 142857. We can right-rotate this number by moving the last digit (7) to 

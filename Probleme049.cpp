@@ -10,8 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-
-void probleme049()
+ENREGISTRER_PROBLEME(49)
 {
     Timer t("probleme 49");
     // The arithmetic sequence, 1487, 4817, 8147, in which each of the terms increases by 3330, 

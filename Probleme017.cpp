@@ -7,7 +7,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme017()
+ENREGISTRER_PROBLEME(17)
 {
     Timer t("probleme 17");
     // If the numbers 1 to 5 are written out in words: one, two, three, four, five, 

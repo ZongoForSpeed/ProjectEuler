@@ -13,7 +13,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef std::pair<nombre, nombre> paire;
 
-void probleme193()
+ENREGISTRER_PROBLEME(193)
 {
     Timer timer("probleme 193");
     // A positive integer n is called squarefree, if no square of a prime divides n, thus 1, 2, 3, 5, 

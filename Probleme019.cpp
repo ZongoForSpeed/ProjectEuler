@@ -9,7 +9,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme019()
+ENREGISTRER_PROBLEME(19)
 {
     Timer t("probleme 19");
     // You are given the following information, but you may prefer to do some research for yourself.

@@ -15,7 +15,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-void probleme142()
+ENREGISTRER_PROBLEME(142)
 {
     Timer t("probleme 142");
     // Find the smallest x + y + z with integers x > y > z > 0 such that x + y, x − y, x + z, x − z,

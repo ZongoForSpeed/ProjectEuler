@@ -88,7 +88,7 @@ public:
     }
 };
 
-void probleme500()
+ENREGISTRER_PROBLEME(500)
 {
 	Probleme500 p;
 	p.algorithme();

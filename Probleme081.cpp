@@ -15,7 +15,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-void probleme081()
+ENREGISTRER_PROBLEME(81)
 {
     Timer t("probleme 81");
     // In the 5 by 5 matrix below, the minimal path sum from the top left to the bottom right, by 

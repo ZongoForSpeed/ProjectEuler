@@ -16,7 +16,7 @@ typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
 
-void probleme065()
+ENREGISTRER_PROBLEME(65)
 {
     Timer t("probleme 65");
     // The square root of 2 can be written as an infinite continued fraction.

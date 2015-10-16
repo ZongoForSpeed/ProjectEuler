@@ -15,7 +15,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-void probleme179()
+ENREGISTRER_PROBLEME(179)
 {
     Timer timer("probleme 179");
     // Find the number of integers 1 < n < 107, for which n and n + 1 have the same number of positive 

@@ -12,7 +12,7 @@
 typedef mpz_class nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme080()
+ENREGISTRER_PROBLEME(80)
 {
     Timer t("probleme 80");
     // It is well known that if the square root of a natural number is not an integer, then it is 

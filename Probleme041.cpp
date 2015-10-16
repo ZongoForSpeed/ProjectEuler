@@ -7,7 +7,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme041()
+ENREGISTRER_PROBLEME(41)
 {
     Timer t("probleme 41");
     // We shall say that an n-digit number is pandigital if it makes use of all the digits 1 to n exactly once.

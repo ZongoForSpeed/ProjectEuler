@@ -8,9 +8,6 @@
 #include <algorithm>
 #include <limits>
 
-// #include <boost/multiprecision/gmp.hpp>
-// typedef boost::multiprecision::mpz_int nombre;
-
 #include <boost/rational.hpp>
 #include <boost/optional.hpp>
 
@@ -75,7 +72,7 @@ namespace
     }
 }
 
-void probleme165()
+ENREGISTRER_PROBLEME(165)
 {
     Timer timer("probleme 165");
     // A segment is uniquely defined by its two endpoints.

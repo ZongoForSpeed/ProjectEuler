@@ -8,7 +8,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-void probleme016()
+ENREGISTRER_PROBLEME(16)
 {
     Timer t("probleme 16");
     // 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.

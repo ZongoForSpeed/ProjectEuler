@@ -11,7 +11,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 
-void probleme113()
+ENREGISTRER_PROBLEME(113)
 {
     Timer t("probleme 113");
     // Working from left-to-right if no digit is exceeded by the digit to its left it is called an 

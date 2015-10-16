@@ -7,7 +7,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-void probleme013()
+ENREGISTRER_PROBLEME(13)
 {
     Timer t("probleme 13");
     // Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.

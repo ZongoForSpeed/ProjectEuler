@@ -6,7 +6,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme031()
+ENREGISTRER_PROBLEME(31)
 {
     Timer t ("probleme 31");
     // In England the currency is made up of pound, £, and pence, p, and there are eight 

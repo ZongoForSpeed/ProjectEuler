@@ -34,7 +34,7 @@ namespace
 	}
 }
 
-void probleme138()
+ENREGISTRER_PROBLEME(138)
 {
     Timer t("probleme 138");
     // Consider the isosceles triangle with base length, b = 16, and legs, L = 17.

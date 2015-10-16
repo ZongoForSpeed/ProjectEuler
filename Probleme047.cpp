@@ -9,7 +9,7 @@
 
 typedef unsigned long long nombre;
 
-void probleme047()
+ENREGISTRER_PROBLEME(47)
 {
     Timer t("probleme 47");
     // The first two consecutive numbers to have two distinct prime factors are:

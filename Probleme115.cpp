@@ -10,7 +10,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme115()
+ENREGISTRER_PROBLEME(115)
 {
     Timer t("probleme 115");
     // NOTE: This is a more difficult version of Problem 114.

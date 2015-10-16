@@ -14,9 +14,7 @@
 
 typedef boost::multiprecision::mpz_int nombre;
 
-// typedef unsigned long long nombre;
-
-void probleme162()
+ENREGISTRER_PROBLEME(162)
 {
     Timer timer("probleme 162");
     // In the hexadecimal number system numbers are represented using 16 different digits:

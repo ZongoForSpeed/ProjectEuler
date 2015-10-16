@@ -13,7 +13,7 @@
 typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme123()
+ENREGISTRER_PROBLEME(123)
 {
     Timer t("probleme 123");
     // Let pn be the nth prime: 2, 3, 5, 7, 11, ..., and let r be the remainder when 

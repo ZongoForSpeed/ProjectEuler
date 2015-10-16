@@ -70,7 +70,7 @@ namespace
     }
 }
 
-void probleme101()
+ENREGISTRER_PROBLEME(101)
 {
     Timer t("probleme 101");
     // If we are presented with the first k terms of a sequence it is impossible to say with certainty 
