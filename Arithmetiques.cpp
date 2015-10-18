@@ -1,11 +1,13 @@
 #include "Arithmetiques.h"
 #include "Timer.h"
+
 #include <vector>
 #include <deque>
 #include <cstdlib>
 #include <cassert>
 #include <numeric>
 #include <algorithm>
+
 namespace premiers
 {
     template<typename Nombre, class OutputIterator>
@@ -31,6 +33,7 @@ namespace premiers
             }
         }
     }
+    
     void internal_crible2(std::size_t taille, std::vector<bool> & test)
     {
         test.assign(taille, true);
@@ -44,6 +47,7 @@ namespace premiers
             }
         }
     }
+    
     void internal_crible23(std::size_t taille, std::vector<bool> & test1, std::vector<bool> & test5)
     {
         test1.assign(taille, true);
@@ -71,6 +75,7 @@ namespace premiers
             }
         }
     }
+    
     void internal_crible235(std::size_t taille, std::vector<bool> & test1, std::vector<bool> & test7, std::vector<bool> & test11, std::vector<bool> & test13, std::vector<bool> & test17, std::vector<bool> & test19, std::vector<bool> & test23, std::vector<bool> & test29)
     {
         const std::size_t limite = taille;
@@ -184,6 +189,7 @@ namespace premiers
             }
         }
     }
+    
     template<typename Nombre, class OutputIterator>
     OutputIterator super_crible(const std::size_t taille, const std::vector<std::size_t> & roue, OutputIterator sortie)
     {
@@ -192,26 +198,33 @@ namespace premiers
         typedef std::vector<Paire>                  VecteurPaire;
         typedef std::vector<VecteurPaire>           MatricePaire;
         typedef std::vector<std::size_t>            Vecteur;
+        
         const std::size_t produit = std::accumulate(roue.begin(), roue.end(), 1, [] (const std::size_t resultat, const std::size_t p){ return resultat*p; });
         const std::size_t taille_crible = taille / produit + 1;
+        
         Crible masque(produit, true);
         masque.at(0) = false;
+        
         for (const std::size_t p: roue)
         for (std::size_t q = p; q < produit; q += p)
             masque.at(q) = false;
+            
         Vecteur restes;
         for (std::size_t p = 0; p < produit; ++p)
             if (masque.at(p)) restes.push_back(p);
+            
         const std::size_t profondeur = restes.size();
         std::deque<Crible> test;
         const VecteurPaire ligne(profondeur, std::make_pair(0,0));
         MatricePaire matrice(profondeur, ligne);
+        
         for (std::size_t i = 0; i < profondeur; ++i)
         {
             const std::size_t reste = restes.at(i);
             test.push_back(std::vector<bool>());
             test.back().assign(taille_crible, true);
             // std::cout << "p = " << produit << ".k + " << reste << std::endl;
+            
             for (std::size_t n = 0; n < produit; n += 2)
             {
                 const std::size_t rrnr = reste*reste + n*reste;
@@ -224,6 +237,7 @@ namespace premiers
                 }
             }
         }
+        
         test[0][0] = false;
         for (std::size_t k = 0; produit*k*k < taille_crible; ++k)
         {
@@ -240,11 +254,13 @@ namespace premiers
                 }
             }
         }
+        
         for (const auto p: roue)
         {
             *sortie = Nombre(p);
             ++sortie;
         }
+        
         for (std::size_t k = 0; k < taille_crible; ++k)
         {
             for (std::size_t i = 0; i < profondeur; ++i)

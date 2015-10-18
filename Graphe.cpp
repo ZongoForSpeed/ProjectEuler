@@ -1,4 +1,5 @@
 #include "Graphe.h"
+
 Tarjan::Tarjan(const graphe & g) : index(0), G(g)
 {
     for (auto & p: g)
@@ -6,6 +7,7 @@ Tarjan::Tarjan(const graphe & g) : index(0), G(g)
         sommets.insert(std::make_pair(p.first, Sommet(p.first)));
     }
 }
+
 void Tarjan::algorithme()
 {
     for (const auto & p: G)
@@ -15,6 +17,7 @@ void Tarjan::algorithme()
             strongconnect(v);
     }
 }
+
 void Tarjan::strongconnect(Sommet & v)
 {
     // Set the depth index for v to the smallest unused index
@@ -56,7 +59,9 @@ void Tarjan::strongconnect(Sommet & v)
         resultat.push_back(composante_connexe);
     }
 }
+
 Dijkstra::Dijkstra(const graphe & _G, const nombre _debut, const nombre _fin) : G(_G), debut(_debut), fin(_fin) {}
+
 nombre Dijkstra::algorithme()
 {
     const nombre taille = G.size();
@@ -104,11 +109,13 @@ nombre Dijkstra::algorithme()
     resultat = vecteur(resultat.rbegin(), resultat.rend());
     return distance[fin];
 }
+
 Kruskal::Kruskal(const aretes & _A) : A(_A) 
 {
     std::sort(A.begin(), A.end(), 
         [] (const arete & a, const arete & b) { return std::get<2>(a) < std::get<2>(b); });
 }
+
 Kruskal::aretes Kruskal::algorithme()
 {
     aretes resultat;

@@ -3,8 +3,10 @@
 #include <limits>
 #include <set>
 #include <boost/optional.hpp>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
+
 class Tarjan
 {
     struct Sommet
@@ -34,6 +36,7 @@ public:
     
     void algorithme();
 };
+
 class Dijkstra
 {
 public:
@@ -48,6 +51,7 @@ private:
     nombre debut;
     nombre fin;
 };
+
 class Kruskal
 {
 public:

@@ -21,14 +21,14 @@ void RegistreProbleme::ajout(const size_t numero, const std::string & nom, const
 int RegistreProbleme::execute(int argc, char** argv)
 {
     std::vector<std::string> arguments(argv + 1, argv+argc);
-    std::cout << arguments << std::endl;
+    // std::cout << arguments << std::endl;
     for (auto p: arguments)
     {
         size_t n = stoull(p);
         auto it = _registre.find(n);
         if (it != _registre.end())
         {
-            std::cout << it->second.first << std::endl;
+            std::cout << it->first << ": " << it->second.first << std::endl;
             it->second.second();            
         }
         else

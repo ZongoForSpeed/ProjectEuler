@@ -3,6 +3,7 @@
 #include <vector>
 #include <initializer_list>
 #include <boost/range/adaptor/reversed.hpp>
+
 template<typename Nombre>
 class Polynome
 {
@@ -153,21 +154,25 @@ public:
         }
     }
 };
+
 template<typename Nombre>
 Polynome<Nombre> operator*(Polynome<Nombre> lhs, const Polynome<Nombre>& rhs)
 {
     return lhs *= rhs;
 }
+
 template<typename Nombre>
 Polynome<Nombre> operator+(Polynome<Nombre> lhs, const Polynome<Nombre>& rhs)
 {
     return lhs += rhs;
 }
+
 template<typename Nombre>
 Polynome<Nombre> operator-(Polynome<Nombre> lhs, const Polynome<Nombre>& rhs)
 {
     return lhs -= rhs;
 }
+
 template<typename Nombre>
 std::ostream& operator<<(std::ostream& os, const Polynome<Nombre>& p)
 {
