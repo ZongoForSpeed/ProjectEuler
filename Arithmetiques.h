@@ -271,6 +271,7 @@ namespace chiffres
             if (c > 1) return false;
         return true;
     }
+    
     template<typename Nombre, class InputIterator1, class InputIterator2>
     Nombre conversion_nombre(InputIterator1 debut, InputIterator2 fin, std::size_t base = 10)
     {
