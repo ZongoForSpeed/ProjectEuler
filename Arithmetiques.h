@@ -218,6 +218,28 @@ namespace arithmetiques
             
         return (facteurs%2 == 0)?1:-1;
     }
+    
+    template<typename Nombre, typename Conteneur>
+    bool facteur_carre(Nombre n, const Conteneur & premiers)
+    {
+        for (const auto & p: premiers)
+        {
+            if (p*p > n)
+                break;
+            if (n%p == 0)
+            {
+                Nombre compteur = 0;
+                while (n%p == 0)
+                {
+                    n /= p;
+                    ++compteur;
+                }
+                if (compteur > 1)
+                    return true;
+            }
+        }
+        return false;
+    }
 }
 namespace chiffres
 {
