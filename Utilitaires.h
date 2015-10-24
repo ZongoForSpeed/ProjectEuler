@@ -6,24 +6,43 @@
 #include <set>
 #include <map>
 #include <utility>
+
 template<typename T1, typename T2>
 std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
 {
     os << "(" << p.first << ", " << p.second << ")";
     return os;
 }
+
 template<typename T1, typename T2, typename T3>
 std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3> & t)
 {
     os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ")";
     return os;
 }
+
 template<typename T1, typename T2, typename T3, typename T4>
 std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4> & t)
 {
     os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ", " << std::get<3>(t) << ")";
     return os;
 }
+
+template<typename T1, typename T2, typename T3, typename T4, typename T5>
+std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5> & t)
+{
+    os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ", " << std::get<3>(t) << ", " << std::get<4>(t) << ")";
+    return os;
+}
+
+template<typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
+std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5, T6> & t)
+{
+    os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) 
+       << ", " << std::get<3>(t) << ", " << std::get<4>(t) << ", " << std::get<5>(t) << ")";
+    return os;
+}
+
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T> & v)
 {
@@ -40,6 +59,7 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T> & v)
     os << "]";
     return os;
 }
+
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const std::deque<T> & v)
 {
@@ -56,6 +76,7 @@ std::ostream& operator<<(std::ostream& os, const std::deque<T> & v)
     os << "]";
     return os;
 }
+
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const std::set<T> & s)
 {
@@ -72,6 +93,7 @@ std::ostream& operator<<(std::ostream& os, const std::set<T> & s)
     os << "}";
     return os;
 }
+
 template<typename K, typename V>
 std::ostream& operator<<(std::ostream& os, const std::map<K, V> & s)
 {
@@ -83,6 +105,7 @@ std::ostream& operator<<(std::ostream& os, const std::map<K, V> & s)
     os << "}" << std::endl;
     return os;
 }
+
 template<typename T1, typename T2>
 std::string concatener(const T1 & t1, const T2 & t2)
 {
@@ -90,6 +113,7 @@ std::string concatener(const T1 & t1, const T2 & t2)
     oss << t1 << t2;
     return oss.str();
 }
+
 template<typename T1, typename T2, typename T3>
 std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3)
 {
@@ -97,6 +121,7 @@ std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3)
     oss << t1 << t2 << t3;
     return oss.str();
 }
+
 template<typename T1, typename T2, typename T3, typename T4>
 std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3, const T4 & t4)
 {
@@ -104,6 +129,7 @@ std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3, const T4 & t
     oss << t1 << t2 << t3 << t4;
     return oss.str();
 }
+
 template <typename T, std::size_t N>
 class multidimension: public std::vector<multidimension<T, N-1>>
 {
