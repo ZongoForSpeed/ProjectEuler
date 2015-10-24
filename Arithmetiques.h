@@ -7,6 +7,7 @@
 #include <cmath>
 #include <algorithm>
 #include <sstream>
+
 namespace puissance
 {
     template<typename Nombre1, typename Nombre2, typename Nombre3>
@@ -108,6 +109,32 @@ namespace arithmetiques
         }
         if (n > 1)
             s *= (n + 1);
+        
+        return s;
+    }
+    
+    template<typename Nombre, typename Exposant, typename Conteneur>
+    Nombre fonction_diviseur(Nombre n, Exposant a, const Conteneur & premiers)
+    {
+        // https://fr.wikipedia.org/wiki/Fonction_diviseur
+        Nombre s = 1;
+        for (auto p: premiers)
+        {
+            if (p*p > n)
+                break;
+            if (n%p == 0)
+            {
+                Nombre compteur = 0;
+                while (n%p == 0)
+                {
+                    n /= p;
+                    ++compteur;
+                }
+                s *= (puissance::puissance(p, (compteur + 1)*a) - 1)/(puissance::puissance(p, a) - 1);
+            }
+        }
+        if (n > 1)
+            s *= (puissance::puissance(n, a) + 1);
         
         return s;
     }

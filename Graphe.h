@@ -19,22 +19,19 @@ class Tarjan
         Sommet(nombre _n) : n(_n), lowlink(std::numeric_limits<nombre>::max()), onStack(false) {}
     };
     
-    
-    typedef std::map<nombre, vecteur> graphe;
-    
-    nombre index;
-    
-    std::vector<nombre> S;
-    graphe G;
-    
-    std::map<nombre, Sommet> sommets;
-    
     void strongconnect(Sommet & v);
 public:
+    typedef std::map<nombre, vecteur> graphe;
     std::vector<std::set<nombre>> resultat;
     Tarjan(const graphe & g);
     
     void algorithme();
+    
+private:
+    nombre index;
+    graphe G;
+    std::vector<nombre> S;
+    std::map<nombre, Sommet> sommets;
 };
 
 class Dijkstra
