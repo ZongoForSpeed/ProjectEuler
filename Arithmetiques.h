@@ -267,7 +267,32 @@ namespace arithmetiques
         }
         return false;
     }
+    
+    template<typename Nombre, typename Conteneur>
+    std::deque<Nombre> diviseurs(Nombre n, const Conteneur & premiers)
+    {
+        std::map<Nombre, Nombre> d;
+        decomposition<Nombre>(n, premiers, d);
+        std::deque<Nombre> resultat { 1 };
+        for (auto facteur: d)
+        {
+            std::deque<Nombre> r = resultat;
+            Nombre p = facteur.first;
+            for (Nombre n = 0; n < facteur.second; ++n)
+            {
+                for (auto i: resultat)
+                    r.push_back(i*p);
+                p *= facteur.first;
+            }
+            
+            resultat.swap(r);
+        }
+        
+        std::sort(resultat.begin(), resultat.end());
+        return resultat;
+    }
 }
+
 namespace chiffres
 {
     template<typename Nombre, class Operation>
@@ -380,6 +405,7 @@ namespace chiffres
         return r;
     }
 }
+
 namespace premiers
 {
     void internal_crible2(std::size_t taille, std::vector<bool> & test);
