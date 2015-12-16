@@ -84,6 +84,7 @@ ENREGISTRER_PROBLEME(228, "Minkowski Sums")
 			
 		return v1 < v2;
 	});
+	
 	for (size_t n = 1864; n <= 1909; ++n)
 	{
 		auto Sn = convertion(S(n));
