@@ -42,7 +42,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(226, "Tribonacci non-divisors")
+ENREGISTRER_PROBLEME(226, "A Scoop of Blancmange")
 {
     Timer timer("probleme 226");
     // The blancmange curve is the set of points (x,y) such that 0 ≤ x ≤ 1 and y = Sum(s(2^n.x)/2^n, n = 0..Inf),
@@ -64,7 +64,6 @@ ENREGISTRER_PROBLEME(226, "Tribonacci non-divisors")
         long double y = blanc(x) - cercle(x);
         if (y > 0)
             resultat += y * dx;
-            
     }
     
     std::cout << std::setprecision(8);
