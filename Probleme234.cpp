@@ -12,7 +12,7 @@
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(234, "Lattice points on a circle")
+ENREGISTRER_PROBLEME(234, "Semidivisible numbers")
 {
     Timer timer("probleme 234");
     // For an integer n ≥ 4, we define 
