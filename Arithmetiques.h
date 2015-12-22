@@ -2,6 +2,7 @@
 #include <iterator>
 #include <vector>
 #include <set>
+#include <map>
 #include <deque>
 #include <numeric>
 #include <cmath>
@@ -148,7 +149,7 @@ namespace arithmetiques
                 break;
             if (n%p == 0)
             {
-                Nombre compteur = 0;
+                size_t compteur = 0;
                 while (n%p == 0)
                 {
                     n /= p;
