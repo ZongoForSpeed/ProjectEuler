@@ -38,6 +38,7 @@ namespace puissance
         return resultat;
     }
 }
+
 namespace arithmetiques
 {
     template<typename Nombre>
@@ -496,6 +497,7 @@ namespace premiers
     }
     void testCrible();
 }
+
 namespace bezout
 {
     class Bezout
@@ -512,6 +514,7 @@ namespace bezout
     unsigned int inverse_mod(unsigned int a, unsigned int n);
     int chinois(unsigned int a, unsigned int n, unsigned int b, unsigned int m);
 }
+
 namespace combinatoire
 {
     template<typename Nombre>
@@ -540,6 +543,7 @@ namespace combinatoire
         return resultat;
     }
 }
+
 namespace polygonal
 {
     template<typename Nombre>
