@@ -94,12 +94,6 @@ namespace
 		}
 	};
 	
-	std::ostream& operator<<(std::ostream& os, const Sliders & s)
-	{
-	    os << s.to_string();
-	    return os;
-	}
-	
 	typedef std::string chemin;
 	
 	nombre checksum(const chemin & c)

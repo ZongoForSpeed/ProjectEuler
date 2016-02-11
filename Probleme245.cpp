@@ -9,35 +9,11 @@
 #include <algorithm>
 #include <limits>
 
-#include <bitset>
-
-// #include <boost/range/adaptor/reversed.hpp>
-#include <boost/rational.hpp>
-// #include <boost/multiprecision/gmp.hpp>
-//
-// typedef boost::multiprecision::mpz_int nombre;
-
 typedef unsigned long long nombre;
-typedef boost::rational<nombre> fraction;
 typedef std::vector<nombre> vecteur;
 
 namespace
 {
-/* void compute_primes(void) {
-  primes.clear();
-  primes.push_back(2);
-  for (long long x = 3; x <= P; x+=2) {
-    bool isprime = true;
-    for (int i=0,n=primes.size();i<n;++i) {
-      long long p = primes[i];
-      if (p*p>x) break;
-      if (x%p==0) {isprime=false; break;}
-    }
-    if (isprime) primes.push_back(x);
-  }
-}
-*/
-
 	bool est_premier(nombre n, const vecteur & premiers) 
 	{
 		for (const nombre p: premiers)

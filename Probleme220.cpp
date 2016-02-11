@@ -54,12 +54,6 @@ namespace
         }
     };
     
-    std::ostream& operator<<(std::ostream& os, const Point & p)
-    {
-        os << "<" << p.z << ", " << p.d << ">";
-        return os;
-    }
-    
     Point operator+(Point lhs, const Point & rhs)
     {
         return lhs += rhs;

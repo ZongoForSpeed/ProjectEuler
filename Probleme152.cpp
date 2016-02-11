@@ -18,17 +18,17 @@ typedef boost::rational<nombre> fraction;
 
 namespace
 {
-    size_t generer(const vecteur & premiers, size_t p, fraction f = fraction(0), size_t a = 0)
+    size_t generer(const vecteur & premiers, const size_t premier, fraction f = fraction(0), size_t a = 0)
     {
         fraction objectif(1, 2);
         size_t resultat = 0;
-        for (size_t m = a + 1; m*p < 80 + 1; ++m)
+        for (size_t m = a + 1; m*premier < 80 + 1; ++m)
         {
             size_t q = m;
             // remove factors f<=p
             for (size_t pp: premiers)
             {
-                if (pp > p)
+                if (pp > premier)
                     break;
                 while (q%pp == 0) 
                     q = q / pp;    		    
@@ -37,15 +37,15 @@ namespace
             // m has factors f<=p only
             if (q==1)
             {
-                fraction f1 = f + fraction(1, m*m*p*p);
+                fraction f1 = f + fraction(1, m*m*premier*premier);
                 if (f1 == objectif)
                     ++resultat;
                 else 
                 {
-                    if (f1.denominator()%p != 0)
+                    if (f1.denominator()%premier != 0)
                         for (size_t pp: premiers)
-                            if (pp < p) resultat += generer(premiers, pp, f1);
-                    resultat += generer(premiers, p, f1, m);
+                            if (pp < premier) resultat += generer(premiers, pp, f1);
+                    resultat += generer(premiers, premier, f1, m);
                 }
             }
         }

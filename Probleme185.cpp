@@ -18,13 +18,6 @@ typedef std::vector<paire> ensemble;
 
 namespace
 {
-    bool comparer(const paire & p1, const paire & p2)
-    {
-        if (p1.second != p2.second)
-            return p1.second < p2.second;
-        return p1.first < p2.first;
-    }
-    
     template<typename Iterator>
     bool cherche_solution(Iterator debut, Iterator fin, std::vector<std::set<char>> & solutions)
     {

@@ -73,15 +73,6 @@ namespace
         
         return false;
     }
-    
-    void affiche(const matrice & S)
-    {
-        std::cout << "[" << std::endl;
-        for (const auto & ligne: S)
-            std::cout << "    " << ligne << std::endl;
-        
-        std::cout << "]" << std::endl;
-    }
 }
 
 ENREGISTRER_PROBLEME(96, "Su Doku")
