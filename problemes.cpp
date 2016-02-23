@@ -23,8 +23,6 @@ void RegistreProbleme::ajout(const size_t numero, const std::string & nom, const
 int RegistreProbleme::execute(int argc, char** argv)
 {
     std::vector<std::string> arguments(argv + 1, argv+argc);
-    std::cout << arguments << std::endl;
-    
     std::vector<size_t> problemes;
     for (auto p: arguments)
     {
@@ -45,8 +43,6 @@ int RegistreProbleme::execute(int argc, char** argv)
         }
         
     }
-    
-    std::cout << problemes << std::endl;
     
     for (auto n: problemes)
     {
