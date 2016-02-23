@@ -1,5 +1,6 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -58,8 +59,8 @@ ENREGISTRER_PROBLEME(182, "RSA encryption")
     crible[1] = false;
     for (auto d: decomposition)
     {
-        for (nombre q = d.first; q < phi_n; q += d.first)
-            crible[q] = false;
+        for (nombre m = d.first; m < phi_n; m += d.first)
+            crible[m] = false;
     }
     
     vecteur exposants;

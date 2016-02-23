@@ -84,9 +84,8 @@ namespace
         return m[i][j] && m[i+1][j] && m[i+1][j-1];
     }
     
-    nombre combinaison(const matrice & m)
+    nombre combinaison(std::map<matrice, nombre> & cache, const matrice & m)
     {
-        static std::map<matrice, nombre> cache;
         auto it = cache.find(m);
         if (it != cache.end())
             return it->second;
@@ -104,7 +103,7 @@ namespace
                 mm[i][j] = false;
                 mm[i][j+1] = false;
                 mm[i][j+2] = false;
-                resultat += combinaison(mm);
+                resultat += combinaison(cache, mm);
             }
             
             if (testForme2(m, i, j))
@@ -113,7 +112,7 @@ namespace
                 mm[i][j] = false;
                 mm[i+1][j] = false;
                 mm[i+2][j] = false;
-                resultat += combinaison(mm);
+                resultat += combinaison(cache, mm);
             }
             
             if (testForme3(m, i, j))
@@ -122,7 +121,7 @@ namespace
                 mm[i][j] = false;
                 mm[i+1][j] = false;
                 mm[i][j+1] = false;
-                resultat += combinaison(mm);
+                resultat += combinaison(cache, mm);
             }
             
             if (testForme4(m, i, j))
@@ -131,7 +130,7 @@ namespace
                 mm[i][j] = false;
                 mm[i+1][j] = false;
                 mm[i+1][j+1] = false;
-                resultat += combinaison(mm);
+                resultat += combinaison(cache, mm);
             }
             
             if (testForme5(m, i, j))
@@ -140,7 +139,7 @@ namespace
                 mm[i][j] = false;
                 mm[i][j+1] = false;
                 mm[i+1][j+1] = false;
-                resultat += combinaison(mm);
+                resultat += combinaison(cache, mm);
             }
             
             if (testForme6(m, i, j))
@@ -149,7 +148,7 @@ namespace
                 mm[i][j] = false;
                 mm[i+1][j] = false;
                 mm[i+1][j-1] = false;
-                resultat += combinaison(mm);
+                resultat += combinaison(cache, mm);
             }
         }
         else
@@ -181,6 +180,7 @@ ENREGISTRER_PROBLEME(161, "Triominoes")
     //
     // In how many ways can a 9 by 12 grid be tiled in this way by triominoes?
     matrice m (9, std::vector<bool>(12, true));
-    nombre resultat = combinaison(m);
+    std::map<matrice, nombre> cache;
+    nombre resultat = combinaison(cache, m);
     std::cout << "Solution: " << resultat << std::endl;
 }

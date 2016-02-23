@@ -1,5 +1,6 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -18,10 +19,11 @@ namespace
                            vecteur::const_iterator fin)
     {
         std::set<vecteur> resultat;
-        nombre p = chiffres::conversion_nombre<nombre>(debut, fin);
-        if (premiers.find(p) != premiers.end())
-            resultat.insert(vecteur(1,p));
-        
+        {
+	        nombre p = chiffres::conversion_nombre<nombre>(debut, fin);
+	        if (premiers.find(p) != premiers.end())
+	            resultat.insert(vecteur(1,p));
+        }
         for (auto it = std::next(debut); it != fin; ++it)
         {
             nombre p = chiffres::conversion_nombre<nombre>(debut, it);
@@ -55,7 +57,7 @@ ENREGISTRER_PROBLEME(118, "Pandigital prime sets")
     // only prime elements?
     std::set<nombre> premiers;
     {
-        Timer t("crible");
+        Timer t_crible("crible");
         premiers::crible23<nombre>(1000000000, std::inserter(premiers, premiers.begin()));
     }
     

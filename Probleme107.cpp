@@ -69,7 +69,7 @@ ENREGISTRER_PROBLEME(107, "Minimal network")
     
     auto somme_poids = [] (const nombre r, const Kruskal::arete & a) { return r + std::get<2>(a); };
     
-    nombre resultat = std::accumulate(A.begin(), A.end(), 0, somme_poids) - std::accumulate(arbre_mini.begin(), arbre_mini.end(), 0, somme_poids);;
+    nombre resultat = std::accumulate(A.begin(), A.end(), 0UL, somme_poids) - std::accumulate(arbre_mini.begin(), arbre_mini.end(), 0UL, somme_poids);;
     // std::cout << A << std::endl;
 	std::cout << "Solution: " << resultat << std::endl;
 }

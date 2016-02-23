@@ -6,17 +6,20 @@
  
 typedef long long nombre;
  
-nombre compte(nombre n, nombre d)
+namespace
 {
-    nombre resultat = 0;
-    while (n > 0)
+    nombre compte(nombre n, nombre d)
     {
-        if (n%10 == d)
-            ++resultat;
-        n = n/10;
+        nombre resultat = 0;
+        while (n > 0)
+        {
+            if (n%10 == d)
+                ++resultat;
+            n = n/10;
+        }
+     
+        return resultat;
     }
- 
-    return resultat;
 }
  
 ENREGISTRER_PROBLEME(156, "Counting Digits")

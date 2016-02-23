@@ -16,7 +16,7 @@ namespace
 {
 	char lettre(nombre n)
 	{
-		static const std::string fibo = "ABBAB";
+		static const char * fibo = "ABBAB";
 		if (n < 6)
 			return fibo[n - 1];
 		std::pair<nombre, nombre> ab(1,1);
@@ -68,7 +68,7 @@ ENREGISTRER_PROBLEME(230, "Fibonacci Words")
 	for (nombre n = 0; n < 18; ++n)
     {
     	const nombre f = (127 + 19 * n) * puissance::puissance<nombre>(7, n) - 1;
-    	resultat += (F[lettre(f/100 + 1)][f%100] - '0') * puissance::puissance<nombre>(10,n);
+    	resultat += (size_t)(F[lettre(f/100 + 1)][f%100] - '0') * puissance::puissance<nombre>(10,n);
     }
     
     std::cout << "Solution: " << resultat << std::endl;

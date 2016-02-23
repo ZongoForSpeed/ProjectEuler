@@ -1,5 +1,6 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Puissance.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -24,9 +25,9 @@ ENREGISTRER_PROBLEME(233, "Lattice points on a circle")
 	const nombre limite = puissance::puissance<nombre>(10, 11);
 
 	vecteur premiers;
-	premiers::crible235<nombre>(limite / ( puissance::puissance(5, 3) * puissance::puissance(13, 2) ), std::back_inserter(premiers));
+	premiers::crible235<nombre>(limite / ( puissance::puissance<nombre>(5, 3) * puissance::puissance<nombre>(13, 2) ), std::back_inserter(premiers));
 	
-	vecteur multi( limite / ( puissance::puissance(5, 3) * puissance::puissance(13, 2) * 17) + 1 );
+	vecteur multi( limite / ( puissance::puissance<nombre>(5, 3) * puissance::puissance<nombre>(13, 2) * 17) + 1 );
 	for (size_t c = 0; c < multi.size(); ++c)
 		multi[c] = c;
 

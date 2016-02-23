@@ -1,5 +1,7 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Chiffres.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 #include "Graphe.h"
@@ -44,7 +46,7 @@ ENREGISTRER_PROBLEME(110, "Diophantine reciprocals II")
         for (const auto & d: decomposition)
             facteur_premiers.push_back(d.first);
 
-        if (std::equal(premiers.begin() + 1, premiers.begin() + facteur_premiers.size() + 1, facteur_premiers.begin()))
+        if (std::equal(facteur_premiers.begin(), facteur_premiers.end(), premiers.begin()))
             break;
     }
 

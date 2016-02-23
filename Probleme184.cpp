@@ -24,7 +24,7 @@ namespace
         
         bool operator<(const Point & p) const
         {
-            if (x != p.x)
+            if (std::abs(x - p.x) < std::numeric_limits<long double>::epsilon())
                 return x < p.x;
             return y < p.y;
         }

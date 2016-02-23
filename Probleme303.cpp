@@ -8,12 +8,12 @@
 typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::map<nombre, vecteur> dictionnaire;
+
 class Probleme303
 {
 	nombre limite;
 public:
 	Probleme303(nombre _limite = 10000) : limite(_limite) {}
-	virtual ~Probleme303() {}
 	static bool trinary(nombre n)
 	{
 		while (n%10 < 3 && n > 10)

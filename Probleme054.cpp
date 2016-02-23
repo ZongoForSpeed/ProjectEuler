@@ -42,8 +42,6 @@ namespace
             couleur = carte.at(1);
         }
         
-        ~Carte() {}
-        
         bool operator<(const Carte & c) const
         {
             if (valeur != c.valeur)

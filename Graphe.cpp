@@ -75,7 +75,7 @@ nombre Dijkstra::algorithme()
         
     while (!noeuds.empty())
     {
-        nombre suivant;
+        nombre suivant = 0;
         nombre minimum = std::numeric_limits<nombre>::max();
         for (nombre n: noeuds)
         {

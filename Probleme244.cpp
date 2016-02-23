@@ -29,11 +29,9 @@ namespace
 		size_t			position_vide;
 		std::string		etat;
 		
-		Sliders() : position_vide(0), etat("0000000000000000") {}
-		
 		Sliders(size_t _position, const std::string & _etat) : position_vide(_position), etat(_etat) {}
 
-		static std::deque<char> directions(unsigned short position)
+		static std::deque<char> directions(size_t position)
 		{
 			std::deque<char> d;
 			if (position > 3)		d.push_back('D');
@@ -87,11 +85,6 @@ namespace
 			m[position_vide] = 'X';
 			return m;
 		}
-		
-		size_t count() const
-		{
-			return std::count(etat.begin(), etat.end(), '1');
-		}
 	};
 	
 	typedef std::string chemin;
@@ -100,7 +93,7 @@ namespace
 	{
 		nombre resultat = 0;
 		for (auto d : c)
-			resultat = (resultat * 243 + d)%100000007;
+			resultat = (resultat * 243 + (size_t)d)%100000007;
 
 		return resultat;
 	}

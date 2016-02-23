@@ -1,8 +1,9 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 
 #include <iostream>
+#include <set>
 
 typedef long long nombre;
 
@@ -31,9 +32,9 @@ ENREGISTRER_PROBLEME(27, "Quadratic primes")
     std::set<nombre> premiers;
     premiers::crible<nombre>(1000000, std::inserter(premiers, premiers.begin()));
     
-    auto suite_premier = [&premiers](nombre a, nombre b) -> size_t
+    auto suite_premier = [&premiers](nombre a, nombre b) -> nombre
     {
-        size_t compteur = 0;    
+        nombre compteur = 0;
         nombre n = b;
         
         while (premiers.find(n) != premiers.end())
@@ -54,7 +55,7 @@ ENREGISTRER_PROBLEME(27, "Quadratic primes")
         {
             for (nombre a = -999; a < 1000; ++a)
             {
-                if (abs(a) > 1)
+                if (std::llabs(a) > 1)
                 {
                     nombre compteur = suite_premier(a,b);
                     if (compteur > c_max)

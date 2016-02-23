@@ -1,5 +1,5 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 

@@ -16,9 +16,8 @@ typedef boost::multiprecision::mpz_int nombre;
 
 namespace
 {
-    nombre f(nombre n)
+    nombre f(std::map<nombre, nombre> & cache, nombre n)
     {
-        static std::map<nombre, nombre> cache;
         auto it = cache.find(n);
         if (it != cache.end())
             return it->second;
@@ -29,9 +28,9 @@ namespace
         if (n == 0)
             resultat = 1;
         else if (n%2 == 0)
-            resultat = f(n/2) + f(n/2 - 1);
+            resultat = f(cache, n/2) + f(cache, n/2 - 1);
         else
-            resultat = f(n/2);
+            resultat = f(cache, n/2);
             
         cache[n] = resultat;
         return  resultat;
@@ -53,6 +52,7 @@ ENREGISTRER_PROBLEME(169, "Exploring the number of different ways a number can b
     // 
     // What is f(10^25)?
     nombre n = puissance::puissance<nombre>(10, 25);
-    nombre resultat = f(n);
+    std::map<nombre, nombre> cache;
+    nombre resultat = f(cache, n);
     std::cout << "Solution: " << resultat << std::endl;
 }

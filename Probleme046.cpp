@@ -1,9 +1,11 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Premiers.h"
+#include "Polygonal.h"
 #include "Timer.h"
 
 #include <iostream>
 #include <algorithm>
+#include <set>
 
 typedef unsigned long long nombre;
 

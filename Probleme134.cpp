@@ -1,5 +1,7 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
+#include "Premiers.h"
+#include "Puissance.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 

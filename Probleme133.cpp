@@ -1,5 +1,6 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -37,7 +38,7 @@ ENREGISTRER_PROBLEME(133, "Repunit nonfactors")
 			resultat += p;
 			continue;
 		}
-		nombre k = repunit::A(p);
+		nombre k = arithmetiques::repunit::A(p);
 		
 		while (k%2 == 0) k /= 2;
 		while (k%5 == 0) k /= 5;

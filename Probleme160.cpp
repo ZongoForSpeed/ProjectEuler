@@ -30,7 +30,7 @@ ENREGISTRER_PROBLEME(160, "Factorial trailing digits")
     // f(1,000,000,000,000) = f(2560000)
     while (limite % 5 == 0)
         limite /= 5;
-    limite *= puissance::puissance(5, 4);
+    limite *= puissance::puissance(5UL, 4UL);
 
     nombre resultat = 1;
     nombre facteur2 = 0;

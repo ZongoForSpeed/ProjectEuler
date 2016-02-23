@@ -40,10 +40,10 @@ ENREGISTRER_PROBLEME(89, "Roman numerals")
     // identical units.
     // map<int, char> m = {{1, 'a'}, {3, 'b'}, {5, 'c'}, {7, 'd'}};
     std::map<char, nombre> valeur = { {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000} };
-    std::vector<std::string> unite = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-    std::vector<std::string> dizaine = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-    std::vector<std::string> centaine = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
-    std::vector<std::string> millier = {"", "M", "MM", "MMM", "MMMM", "MMMMM", "MMMMMM", "MMMMMMM", "MMMMMMMM", "MMMMMMMMM"};
+    const std::vector<std::string> unite = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+    const std::vector<std::string> dizaine = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+    const std::vector<std::string> centaine = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+    const std::vector<std::string> millier = {"", "M", "MM", "MMM", "MMMM", "MMMMM", "MMMMMM", "MMMMMMM", "MMMMMMMM", "MMMMMMMMM"};
     
     std::ifstream ifs("data/p089_roman.txt");
     nombre resultat = 0;
@@ -51,7 +51,7 @@ ENREGISTRER_PROBLEME(89, "Roman numerals")
     while (ifs >> ligne)
     {
         nombre n = 0;
-    	for (auto it = ligne.begin(), en = ligne.end(); it != en; ++it)
+    	for (auto it = ligne.cbegin(), en = ligne.cend(); it != en; ++it)
     	{
     	    nombre r = valeur[*it];
     	    if (std::find_if(it + 1, en, [&r, &valeur] (char c) { return valeur[c] > r; }) == en)
@@ -61,13 +61,13 @@ ENREGISTRER_PROBLEME(89, "Roman numerals")
     	}
     	
     	std::ostringstream oss;
-    	oss << millier[n/1000];
+    	oss << millier[(size_t)n/1000];
 	    n = n%1000;
-	    oss << centaine[n/100];
+	    oss << centaine[(size_t)n/100];
 	    n = n%100;
-    	oss << dizaine[n/10];
+    	oss << dizaine[(size_t)n/10];
 	    n = n%10;
-    	oss << unite[n];
+    	oss << unite[(size_t)n];
     	
         // std::cout << ligne << "->" << oss.str() << std::endl;
         resultat += ligne.size() - oss.str().size();

@@ -1,5 +1,5 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -28,10 +28,10 @@ ENREGISTRER_PROBLEME(234, "Semidivisible numbers")
 	//
 	// What is the sum of all semidivisible numbers not exceeding 999966663333 ?
 	const nombre limite = 999966663333LL;
-	const nombre borne = std::sqrt(limite) + 1;
+	const nombre borne = (nombre)std::sqrt(limite) + 1;
 	
 	vecteur premiers;
-	premiers::crible235<nombre>(borne, std::back_inserter(premiers));
+	premiers::crible235<nombre>((size_t)borne, std::back_inserter(premiers));
 	
 	nombre resultat = 0;
 	nombre p1 = premiers.front();
@@ -47,7 +47,6 @@ ENREGISTRER_PROBLEME(234, "Semidivisible numbers")
 			if (n < limite && n%p1 != 0)
 				resultat += n;
 		}
-
 		p1 = p2;
 	}
     std::cout << "Solution: " << resultat << std::endl;

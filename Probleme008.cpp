@@ -1,5 +1,6 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Utilitaires.h"
 #include "Timer.h"
 
 #include <iostream>
@@ -39,10 +40,11 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series")
     auto produit = [&big_number](const size_t & debut, const size_t & fin) -> nombre
     {
         if (debut < fin && fin < big_number.size())
-            return std::accumulate(big_number.begin() + debut, 
-                                   big_number.begin() + fin, nombre(1), 
-                                   [](const nombre & produit, char c) -> nombre { return produit * (c - '0'); }
-                                  );
+            return std::accumulate(std::next(big_number.begin(), debut),
+                                   std::next(big_number.begin(), fin),
+                                   nombre(1),
+                                   [](const nombre & p, char c) -> nombre { return p * (c - '0'); }
+                                   );
         else
             return 0;
     };

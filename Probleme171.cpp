@@ -47,7 +47,7 @@ ENREGISTRER_PROBLEME(171, "Finding numbers for which the sum of the squares of t
                     for (nombre j = 0; j < 10; ++j) 
                     {
                     	n_combinaison[i + j*j] += combinaison[i];
-                    	n_somme[i + j*j] += somme[i] + combinaison[i] * j * puissance::puissance(10, n);
+                    	n_somme[i + j*j] += somme[i] + combinaison[i] * j * puissance::puissance(10UL, n);
                     }
                 }
             }

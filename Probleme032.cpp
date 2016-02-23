@@ -1,8 +1,9 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
 #include "Timer.h"
 
 #include <iostream>
+#include <set>
 #include <vector>
 #include <algorithm>
 
@@ -25,10 +26,10 @@ ENREGISTRER_PROBLEME(32, "Pandigital products")
     std::set<nombre> resultat;
     do 
     {
-        for (size_t i = 1; i < 8; ++i)
+        for (int i = 1; i < 8; ++i)
         {
             nombre a = chiffres::conversion_nombre<nombre>(v.begin(), v.begin() + i);
-            for (size_t j = i + 1; j < 9; ++j)
+            for (int j = i + 1; j < 9; ++j)
             {
                 nombre b = chiffres::conversion_nombre<nombre>(v.begin() + i, v.begin() + j);
                 nombre c = chiffres::conversion_nombre<nombre>(v.begin() + j, v.end());
@@ -41,6 +42,6 @@ ENREGISTRER_PROBLEME(32, "Pandigital products")
         }
     } 
     while (std::next_permutation(v.begin(), v.end()));
-    nombre solution = std::accumulate(resultat.begin(), resultat.end(), 0);
+    nombre solution = std::accumulate(resultat.begin(), resultat.end(), 0UL);
     std::cout << "Solution: " << solution << std::endl;
 }

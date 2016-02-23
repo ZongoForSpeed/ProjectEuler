@@ -1,11 +1,13 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 
 #include <iostream>
 #include <algorithm>
 #include <list>
 #include <map>
+#include <set>
 
 typedef unsigned long long nombre;
 

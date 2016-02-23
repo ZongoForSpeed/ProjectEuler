@@ -1,5 +1,6 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
+#include "Premiers.h"
 #include "Timer.h"
 
 #include <iostream>

@@ -1,5 +1,5 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Polygonal.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -29,9 +29,9 @@ ENREGISTRER_PROBLEME(85, "Counting rectangles")
         for (nombre j = 1; j <= i; ++j)
         {
             const nombre triangle_ij = polygonal::triangulaire(j) * polygonal::triangulaire(i);
-            if (fabs(borne - triangle_ij) < minimum)
+            if (std::llabs(borne - triangle_ij) < minimum)
             {
-                minimum = fabs(borne - triangle_ij);
+                minimum = std::llabs(borne - triangle_ij);
                 resultat = i*j;
             }
             if (triangle_ij > borne)

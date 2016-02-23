@@ -1,10 +1,12 @@
 COMPILER=clang
 
-CPPFLAGS=-std=gnu++11 -c -Wall -O3 -DNDEBUG -DBOOST_UBLAS_NDEBUG
+WARNINGS=-Werror -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-global-constructors -Wno-exit-time-destructors
+
+CPPFLAGS=-std=gnu++11 -c -O3 -DNDEBUG -DBOOST_UBLAS_NDEBUG $(WARNINGS)	
 
 LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp -lstdc++
 
-SOURCES=Timer.cpp Arithmetiques.cpp Graphe.cpp $(wildcard Probleme*.cpp) Euler.cpp
+SOURCES=Timer.cpp Premiers.cpp Graphe.cpp $(wildcard Probleme*.cpp) Euler.cpp
 
 OBJECTS=$(SOURCES:.cpp=.o)
 

@@ -1,5 +1,6 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -41,7 +42,7 @@ ENREGISTRER_PROBLEME(130, "Composites with prime repunit property")
 	{
 	    if (n%5 != 0)
 		{
-			nombre k = repunit::A(n);
+			nombre k = arithmetiques::repunit::A(n);
 			
 			if (n%k == 1 && premiers.find(n) == premiers.end())
 			{

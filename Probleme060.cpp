@@ -1,5 +1,6 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -25,7 +26,7 @@ ENREGISTRER_PROBLEME(60, "Prime pair sets")
     
     std::set<nombre> premiers;
     {
-        Timer t("crible");
+        Timer t_crible("crible");
         premiers::crible23<nombre>(limite * limite, std::inserter(premiers, premiers.begin()));
     }
     

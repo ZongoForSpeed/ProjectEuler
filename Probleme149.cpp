@@ -54,14 +54,14 @@ ENREGISTRER_PROBLEME(149, "Searching for a maximum-sum subsequence")
 	// 
 	// Finally, find the greatest sum of (any number of) adjacent entries in any direction (horizontal,
 	// vertical, diagonal or anti-diagonal).
-	nombre taille = 2000;
+	size_t taille = 2000;
 	vecteur s(taille * taille + 1, 0);
-	for (nombre k = 1; k < 56; ++k)
+	for (size_t k = 1; k < 56; ++k)
 	{
 		s.at(k) = (100003 - 200003*k + 300007*k*k*k)%1000000 - 500000;
 	}
 	
-	for (nombre k = 56; k < taille * taille + 1; ++k)
+	for (size_t k = 56; k < taille * taille + 1; ++k)
 	{
 		s.at(k) = (s.at(k-24) + s.at(k-55) + 1000000)%1000000 - 500000;
 	}

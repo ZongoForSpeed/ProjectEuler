@@ -52,6 +52,6 @@ ENREGISTRER_PROBLEME(126, "Cuboid layers")
     
     auto it = std::find(couche.begin(), couche.end(), 1000);
     
-    nombre resultat = std::distance(couche.begin(), it);
+    nombre resultat = (size_t)std::distance(couche.begin(), it);
     std::cout << "Solution: " << resultat << std::endl;
 }

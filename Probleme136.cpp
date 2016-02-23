@@ -39,7 +39,7 @@ ENREGISTRER_PROBLEME(136, "Singleton difference")
         }
     }
     
-    nombre resultat = std::count (compteur.begin(), compteur.end(), 1);
+    nombre resultat = (size_t)std::count (compteur.begin(), compteur.end(), 1);
     std::cout << "Solution: " << resultat << std::endl;
 }
 

@@ -17,11 +17,11 @@ namespace
     nombre points_cercle(nombre r)
     {
         nombre rayon2 = r*r/32;
-        nombre rayon = sqrt(rayon2);
+        nombre rayon = (nombre)std::sqrt(rayon2);
         nombre resultat = 0;
         for (nombre x = 1; x <= rayon; ++x)
         {
-            nombre y = sqrt(rayon2 - x*x);
+            nombre y = (nombre)std::sqrt(rayon2 - x*x);
             resultat += y + 1;
         }
         

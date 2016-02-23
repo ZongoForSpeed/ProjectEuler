@@ -58,7 +58,7 @@ ENREGISTRER_PROBLEME(201, "Subsets with a unique sum")
     nombre minimum = std::accumulate(carres.begin(), carres.begin() + K, 0ULL);
     nombre maximum = std::accumulate(carres.begin() + K, carres.end(), 0ULL);
     
-    multidimension<nombre, 2> somme(K + 1, maximum + 1, 0);
+    multidimension<nombre, 2> somme(K + 1, maximum + 1, 0UL);
     somme[0][0] = 1;
     
     for (nombre c: carres)

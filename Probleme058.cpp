@@ -1,11 +1,12 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 
 #include <iostream>
 #include <algorithm>
 #include <list>
 #include <map>
+#include <set>
 
 typedef unsigned long long nombre;
 
@@ -32,7 +33,7 @@ ENREGISTRER_PROBLEME(58, "Spiral primes")
     // for which the ratio of primes along both diagonals first falls below 10%?
     std::set<nombre> premiers;
     {
-        Timer t("crible");
+        Timer t_crible("crible");
         premiers::crible<nombre>(1000000000, std::inserter(premiers, premiers.begin()));
     }
     nombre nbPremiers = 0;

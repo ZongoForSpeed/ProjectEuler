@@ -32,7 +32,7 @@ ENREGISTRER_PROBLEME(198, "Ambiguous Numbers")
     nombre limite = 100000000ULL;
     nombre borne = 100;
     
-    nombre m = std::sqrt(limite / 2);
+    nombre m = (nombre)std::sqrt(limite / 2);
     std::stack<nombre> s;
     for (nombre i = borne; i < m; ++i)
         s.push(i);

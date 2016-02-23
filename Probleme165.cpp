@@ -39,11 +39,6 @@ namespace
         
         Segment(const Point & _p1, const Point & _p2) : p1(_p1), p2(_p2) { }
         
-        static fraction determinant(const Point & p1, const Point & p2)
-        {
-            return p1.x*p2.y - p1.y*p2.x;
-        }
-                   
         boost::optional<Point> intersection(const Segment & s) const
         {
             fraction d = (s.p2.y - s.p1.y) * (p2.x - p1.x) - (s.p2.x - s.p1.x) * (p2.y - p1.y);

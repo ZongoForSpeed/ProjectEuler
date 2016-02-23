@@ -1,5 +1,6 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
+#include "Polygonal.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -37,24 +38,11 @@ ENREGISTRER_PROBLEME(98, "Anagramic squares")
     {
         if (chiffres.front() != 0)
         {
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 1))))
-                anagrammes[1].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 1)));
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 2))))
-                anagrammes[2].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 2)));
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 3))))
-                anagrammes[3].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 3)));
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 4))))
-                anagrammes[4].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 4)));
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 5))))
-                anagrammes[5].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 5)));
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 6))))
-                anagrammes[6].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 6)));
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 7))))
-                anagrammes[7].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 7)));
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 8))))
-                anagrammes[8].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 8)));
-            if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), 9))))
-                anagrammes[9].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), 9)));
+            for (unsigned short i = 1; i < 10; ++i)
+            {
+                if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), i))))
+                    anagrammes[i].insert(vecteur(chiffres.begin(), std::next(chiffres.begin(), i)));
+            }
             if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(chiffres.begin(), chiffres.end())))
                 anagrammes[10].insert(chiffres);
         }

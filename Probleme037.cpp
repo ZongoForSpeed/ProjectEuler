@@ -1,7 +1,8 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 
+#include <set>
 #include <iostream>
 #include <algorithm>
 #include <sstream>

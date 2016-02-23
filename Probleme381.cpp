@@ -1,6 +1,7 @@
 #include "Problemes.h"
+#include "Premiers.h"
+#include "Puissance.h"
 #include "Timer.h"
-#include "Arithmetiques.h"
 #include <iostream>
 #include <set>
 #include <deque>

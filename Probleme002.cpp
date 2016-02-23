@@ -26,7 +26,7 @@ ENREGISTRER_PROBLEME(2, "Even Fibonacci numbers")
     }
     fibonacci.pop_back();
     
-    nombre solution = std::accumulate(fibonacci.begin(), fibonacci.end(), 0, [](const nombre & somme, const nombre & f)
+    nombre solution = std::accumulate(fibonacci.begin(), fibonacci.end(), 0UL, [](const nombre & somme, const nombre & f)
     {
         return (f%2 == 0) ? somme + f : somme;
     });

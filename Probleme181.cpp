@@ -49,7 +49,7 @@ ENREGISTRER_PROBLEME(181, "Investigating in how many ways objects of two differe
     // In how many ways can sixty black objects B and forty white objects W be thus grouped?
     paire objets(60, 40);
     
-    matrice combinaison(objets.first + 1, objets.second + 1, 0);
+    matrice combinaison(objets.first + 1, objets.second + 1, 0UL);
     combinaison[0][0] = 1;
     
     paire zero(0, 0);

@@ -38,7 +38,7 @@ ENREGISTRER_PROBLEME(140, "Modified Fibonacci golden nuggets")
     //
     // Find the sum of the first thirty golden nuggets.
     vecteur fibonacci { 0, 1, 1 };
-    for (nombre n = 3; n < 80; ++n)
+    for (size_t n = 3; n < 80; ++n)
         fibonacci.push_back(fibonacci.back() + fibonacci.at(n-2));
 
     auto nugget = [] (fraction x) -> nombre 
@@ -47,9 +47,9 @@ ENREGISTRER_PROBLEME(140, "Modified Fibonacci golden nuggets")
         return x.numerator() / x.denominator();
     };
     
-    nombre objectif = 30;
+    size_t objectif = 30;
     nombre resultat = 0;
-    for (nombre n = 3, i = 4; n < objectif + 2; n += 2, i += 4)
+    for (size_t n = 3, i = 4; n < objectif + 2; n += 2, i += 4)
     {
         nombre v = nugget(fraction(fibonacci[n-1], fibonacci[n]));
         resultat += 2*v - fibonacci[i];

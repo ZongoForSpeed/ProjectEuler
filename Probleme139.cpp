@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(139, "Pythagorean tiles")
     // Given that the perimeter of the right triangle is less than one-hundred million, how many 
     // Pythagorean triangles would allow such a tiling to take place?
     nombre limite = 100000000;
-	nombre borne = std::sqrt(limite / 2 + 1) + 1;
+	nombre borne = (nombre)std::sqrt(limite / 2 + 1) + 1;
 
     nombre resultat = 0;
 	for (nombre m = 2; m < borne; ++m)

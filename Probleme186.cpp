@@ -17,37 +17,36 @@ typedef std::vector<foret> forets;
 
 namespace
 {
-    nombre LaggedFibonacciGenerator(nombre n)
+    nombre LaggedFibonacciGenerator(vecteur & cache, nombre n)
     {
-        static vecteur S;
-        if (S.empty())
+        if (cache.empty())
         {
-            S.push_back(0);
+            cache.push_back(0);
             for (nombre k = 1; k < 56; ++k)
             {
-                S.push_back((100003 + 300007*k*k*k - 200003*k)%1000000);
+                cache.push_back((100003 + 300007*k*k*k - 200003*k)%1000000);
             }
         }
         
-        if (S.size() <= n)
+        if (cache.size() <= n)
         {
-            for (nombre k = S.size(); k < n + 1000; ++k)
+            for (nombre k = cache.size(); k < n + 1000; ++k)
             {
-                S.push_back((S[k - 24] + S[k - 55])%1000000);
+                cache.push_back((cache[k - 24] + cache[k - 55])%1000000);
             }
         }
         
-        return S[n];
+        return cache[n];
     }
     
-    nombre Caller(nombre n)
+    nombre Caller(vecteur & cache, nombre n)
     {
-        return LaggedFibonacciGenerator(2*n - 1);
+        return LaggedFibonacciGenerator(cache, 2*n - 1);
     }
     
-    nombre Called(nombre n)
+    nombre Called(vecteur & cache, nombre n)
     {
-        return LaggedFibonacciGenerator(2*n);
+        return LaggedFibonacciGenerator(cache, 2*n);
     }
     
     void merge(forets & f, foret & a, foret & b)
@@ -99,10 +98,12 @@ ENREGISTRER_PROBLEME(186, "Connectedness of a network")
     	groupe.push_back(f);
     }
     nombre resultat = 0;
+    vecteur cache;
+
     for (nombre n = 1, compteur = 0; compteur < 990000; ++n)
     {
-        nombre i = Caller(n);
-        nombre j = Called(n);
+        nombre i = Caller(cache, n);
+        nombre j = Called(cache, n);
         if (i == j)
             continue;
             

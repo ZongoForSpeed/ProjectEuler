@@ -20,10 +20,8 @@ typedef boost::rational<nombre> fraction;
 
 namespace
 {
-    fraction calculEsperance(const envelope & e)
+    fraction calculEsperance(std::map<envelope, fraction> & cache, const envelope & e)
 	{
-        static std::map<envelope, fraction> cache;
-    
 		auto it = cache.find(e);
 		if (it != cache.end())
 			return it->second;
@@ -35,11 +33,11 @@ namespace
 			{
 				envelope nouvelleEnvelope(e);
 				unsigned short sheet = e[i];
-				nouvelleEnvelope.erase(nouvelleEnvelope.begin() + i);
+				nouvelleEnvelope.erase(std::next(nouvelleEnvelope.begin(), i));
 				for (unsigned short j = sheet + 1; j <= 5; j++)
 					nouvelleEnvelope.push_back(j);
 				std::sort(nouvelleEnvelope.begin(), nouvelleEnvelope.end());
-				resultat += calculEsperance(nouvelleEnvelope);
+				resultat += calculEsperance(cache, nouvelleEnvelope);
 			}
 		
 			resultat /= e.size();
@@ -75,8 +73,9 @@ ENREGISTRER_PROBLEME(151, "Paper sheets of standard sizes: an expected-value pro
     // that the foreman finds a single sheet of paper in the envelope.
     //
     // Give your answer rounded to six decimal places using the format x.xxxxxx .
+    std::map<envelope, fraction> cache;
 	envelope e {1};
-	fraction f = calculEsperance(e) - 2;
+	fraction f = calculEsperance(cache, e) - 2;
 	double resultat = 1;
 	resultat *= f.numerator();
 	resultat /= f.denominator();

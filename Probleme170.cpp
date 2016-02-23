@@ -1,5 +1,5 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -67,16 +67,16 @@ ENREGISTRER_PROBLEME(170, "Find the largest 0 to 9 pandigital that can be formed
         {
             if (chiffres[n0] == 0)
                 continue;
-            nombre facteur = chiffres::conversion_nombre<nombre>(chiffres.begin(), chiffres.begin() + n0);
+            nombre facteur = chiffres::conversion_nombre<nombre>(chiffres.begin(), std::next(chiffres.begin(), n0));
             for (size_t n1 = n0 + 1; n1 < taille - 1; ++n1)
             {
                 if (chiffres[n1] == 0)
                     continue;
-                nombre a = chiffres::conversion_nombre<nombre>(chiffres.begin() + n0, chiffres.begin() + n1);
+                nombre a = chiffres::conversion_nombre<nombre>(std::next(chiffres.begin(), n0), std::next(chiffres.begin(), n1));
                 if (a == 0 || !pandigital(facteur * a))
                     continue;
                 
-                nombre b = chiffres::conversion_nombre<nombre>(chiffres.begin() + n1, chiffres.end());
+                nombre b = chiffres::conversion_nombre<nombre>(std::next(chiffres.begin(), n1), chiffres.end());
                 if (b == 0 || !pandigital(facteur * b))
                     continue;
                 

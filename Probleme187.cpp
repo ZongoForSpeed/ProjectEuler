@@ -1,5 +1,6 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -11,7 +12,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-void probleme187()
+ENREGISTRER_PROBLEME(187, "Semiprimes")
 {
     Timer timer("probleme 187");
     // A composite is a number containing at least two prime factors. For example, 15 = 3 × 5; 

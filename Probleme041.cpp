@@ -1,9 +1,11 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
+#include "Premiers.h"
 #include "Timer.h"
 
 #include <iostream>
 #include <algorithm>
+#include <deque>
 
 typedef unsigned long long nombre;
 
@@ -21,7 +23,7 @@ ENREGISTRER_PROBLEME(41, "Pandigital prime")
     for (nombre p: premiers)
     {
         auto chiffres = chiffres::extraire_chiffres(p);
-        if (std::is_permutation(pandigital.begin(), pandigital.begin() + chiffres.size(), chiffres.begin()))
+        if (std::is_permutation(chiffres.begin(), chiffres.end(), pandigital.begin()))
             resultat = p;
     }
     std::cout << "Solution: " << resultat << std::endl;

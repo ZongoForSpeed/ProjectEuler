@@ -31,7 +31,7 @@ ENREGISTRER_PROBLEME(129, "Repunit divisibility")
 	{
 	    if (n%5 != 0)
 		{
-			nombre k = repunit::A(n);
+			nombre k = arithmetiques::repunit::A(n);
 
 			if (k > limite)
 			{

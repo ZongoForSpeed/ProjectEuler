@@ -15,27 +15,9 @@
 typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(79, "Passcode derivation")
+namespace
 {
-    Timer t("probleme 79");
-    // A common security method used for online banking is to ask the user for three random characters 
-    // from a passcode. For example, if the passcode was 531278, they may ask for the 2nd, 3rd, and 
-    // 5th characters; the expected reply would be: 317.
-    //
-    // The text file, keylog.txt, contains fifty successful login attempts.
-    // 
-    // Given that the three characters are always asked for in order, analyse the file so as to 
-    // determine the shortest possible secret passcode of unknown length.
-    std::ifstream ifs("data/p079_keylog.txt");
-    
-    std::vector<std::string> keys;
-    std::string key;
-    while (ifs >> key)
-    {
-        keys.push_back(key);
-    }
-    
-    auto est_vide = [] (const std::vector<std::string> & keys)
+	bool est_vide (const std::vector<std::string> & keys)
     {
         for (const auto & key: keys)
         {
@@ -43,9 +25,9 @@ ENREGISTRER_PROBLEME(79, "Passcode derivation")
         }
         
         return true;
-    };
+    }
     
-    auto minimum = [] (const std::vector<std::string> & keys)
+    char minimum (const std::vector<std::string> & keys)
     {
         std::map<char, size_t> maximum;
         for (auto & key: keys)
@@ -68,17 +50,38 @@ ENREGISTRER_PROBLEME(79, "Passcode derivation")
         }
         
         return ' ';
-    };
+    }
+}
+
+ENREGISTRER_PROBLEME(79, "Passcode derivation")
+{
+    Timer t("probleme 79");
+    // A common security method used for online banking is to ask the user for three random characters 
+    // from a passcode. For example, if the passcode was 531278, they may ask for the 2nd, 3rd, and 
+    // 5th characters; the expected reply would be: 317.
+    //
+    // The text file, keylog.txt, contains fifty successful login attempts.
+    // 
+    // Given that the three characters are always asked for in order, analyse the file so as to 
+    // determine the shortest possible secret passcode of unknown length.
+    std::ifstream ifs("data/p079_keylog.txt");
+    
+    std::vector<std::string> keys;
+    std::string key;
+    while (ifs >> key)
+    {
+        keys.push_back(key);
+    }
     
     std::string mot_de_passe;
     while (!est_vide(keys))
     {
         const char c = minimum(keys);
         mot_de_passe.push_back(c);
-        for (auto & key: keys)
+        for (auto & k: keys)
         {
-            if (!key.empty() && key[0] == c)
-                key = key.substr(1);
+            if (!k.empty() && k[0] == c)
+                k = k.substr(1);
         }
     }
     

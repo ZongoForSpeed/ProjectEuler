@@ -1,5 +1,5 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Polygonal.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -13,6 +13,47 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 typedef boost::multiprecision::cpp_int grand_nombre;
+
+namespace
+{
+	vecteur fraction_continue(nombre d)
+    {
+        vecteur resultat;
+        nombre d2 = (nombre)std::sqrt(d);
+        unsigned long a = (unsigned long)std::sqrt(d), p = 0, q = 1;
+        do 
+        {
+            resultat.push_back(a);
+            p = a * q - p;
+            q = ( d - p * p ) / q;
+            a = ( p + d2 ) /q;
+        } 
+        while ( q != 1 );
+        resultat.push_back( a );
+        return resultat;
+    }
+    
+    grand_nombre equation_pell(nombre d)
+    {
+        const auto c = fraction_continue(d);
+        size_t l = c.size() - 1;
+        size_t per = l % 2 == 0 ? l - 1 :  2 * l - 1;
+        grand_nombre a = c[ 0 ];
+        grand_nombre a1 = 1;
+        grand_nombre b = a;
+        grand_nombre b1 = 0;
+        for ( size_t i = 1; i <= per; i++ )
+        {
+            grand_nombre t = a;
+            a = c[ ( i - 1 ) % l + 1 ] * a + a1;
+            a1 = t;
+            t = b;
+            b = c[ ( i - 1 ) % l + 1 ] * b + b1;
+            b1 = t;
+        }
+        return a;
+    }
+}
 
 ENREGISTRER_PROBLEME(66, "Diophantine equation")
 {
@@ -36,43 +77,7 @@ ENREGISTRER_PROBLEME(66, "Diophantine equation")
     // Hence, by considering minimal solutions in x for D ≤ 7, the largest x is obtained when D=5.
     //
     // Find the value of D ≤ 1000 in minimal solutions of x for which the largest value of x is obtained.
-    auto fraction_continue = [] (nombre d)
-    {
-        vecteur resultat;
-        nombre d2 = std::sqrt(d);
-        unsigned long a = std::sqrt(d), p = 0, q = 1;
-        do 
-        {
-            resultat.push_back(a);
-            p = a * q - p;
-            q = ( d - p * p ) / q;
-            a = ( p + d2 ) /q;
-        } 
-        while ( q != 1 );
-        resultat.push_back( a );
-        return resultat;
-    };
     
-    auto equation_pell = [&fraction_continue] (nombre d) -> grand_nombre
-    {
-        const auto c = fraction_continue(d);
-        size_t l = c.size() - 1;
-        size_t per = l % 2 == 0 ? l - 1 :  2 * l - 1;
-        grand_nombre a = c[ 0 ];
-        grand_nombre a1 = 1;
-        grand_nombre b = a;
-        grand_nombre b1 = 0;
-        for ( size_t i = 1; i <= per; i++ )
-        {
-            grand_nombre t = a;
-            a = c[ ( i - 1 ) % l + 1 ] * a + a1;
-            a1 = t;
-            t = b;
-            b = c[ ( i - 1 ) % l + 1 ] * b + b1;
-            b1 = t;
-        }
-        return a;
-    };
     
     grand_nombre maximum = 0;
     nombre resultat = 0;

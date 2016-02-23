@@ -7,6 +7,7 @@
 #include <map>
 #include <utility>
 #include <queue>
+#include <iterator>
 
 template<typename T1, typename T2>
 std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
@@ -162,3 +163,14 @@ public:
     
     multidimension( std::initializer_list<value_type> init ) : super_type(init) {}
 };
+
+namespace std
+{
+    template< class Iterator >
+    Iterator next( Iterator it, size_t n) 
+    {
+        advance(it, (typename std::iterator_traits<Iterator>::difference_type)(n));
+        return it;    
+    }
+}
+

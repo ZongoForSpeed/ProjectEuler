@@ -1,5 +1,5 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -83,7 +83,7 @@ ENREGISTRER_PROBLEME(220, "Heighway Dragon")
     //
     // What is the position of the cursor after 10^12 steps in D50 ?
     // Give your answer in the form x,y with no spaces.
-    nombre longueur = 1000000000000LL;
+    size_t longueur = 1000000000000LL;
     size_t dragon = 50;
     
     Point pl;
@@ -106,7 +106,7 @@ ENREGISTRER_PROBLEME(220, "Heighway Dragon")
         Point pl1 = DragonGauche.back();
         Point pl2 = DragonGauche.back();
         
-        Point pr = DragonDroite.back();
+        pr = DragonDroite.back();
         DragonGauche.push_back(pl1 + pr);
         
         pl2.gauche();
@@ -115,7 +115,7 @@ ENREGISTRER_PROBLEME(220, "Heighway Dragon")
         DragonDroite.push_back(pl2 + pr);
     }
     
-    auto c = chiffres::extraire_chiffres<nombre>(longueur, 2);
+    auto c = chiffres::extraire_chiffres<size_t>(longueur, 2);
     Point resultat = DragonGauche[c.size() - 2];
     for (size_t i = 1; i < c.size() - 1; ++i)
     {

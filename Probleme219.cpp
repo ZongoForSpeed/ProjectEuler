@@ -47,7 +47,7 @@ ENREGISTRER_PROBLEME(219, "Skew-cost coding")
     nombre resultat = 0;
     for (size_t n = 0; n < S.size(); ++n)
     {
-        resultat += (a + n)*S[n];
+        resultat += (a + (nombre)n)*S[n];
     }
 
     std::cout << "Solution: " << resultat << std::endl;

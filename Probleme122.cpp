@@ -14,9 +14,8 @@ typedef std::vector<std::set<nombre>> ensemble;
 
 namespace
 {
-    const ensemble & min_puissance(nombre n)
+    const ensemble & min_puissance(std::map<nombre, ensemble> & cache, nombre n)
     {
-        static std::map<nombre, ensemble> cache;
         if (cache.empty())
             cache[1].push_back(std::set<nombre>());
 
@@ -28,8 +27,8 @@ namespace
         ensemble e_min;
         for (nombre i = 1; i < n/2 + 1; ++i)
         {
-            const ensemble & e1 = min_puissance(i);
-            const ensemble & e2 = min_puissance(n - i);
+            const ensemble & e1 = min_puissance(cache, i);
+            const ensemble & e2 = min_puissance(cache, n - i);
             
             for (const auto & s1: e1)
             for (const auto & s2: e2)
@@ -84,10 +83,11 @@ ENREGISTRER_PROBLEME(122, "Efficient exponentiation")
     // for example m(15) = 5.
     // 
     // For 1 ≤ k ≤ 200, find ∑ m(k).
+    std::map<nombre, ensemble> cache;
     nombre resultat = 0;
     for (nombre n = 1; n < 201; ++n)
     {
-        auto p = min_puissance(n);
+        auto p = min_puissance(cache, n);
         resultat += p.front().size();
     }
     std::cout << "Solution: " << resultat << std::endl;

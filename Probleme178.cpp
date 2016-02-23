@@ -24,7 +24,7 @@ ENREGISTRER_PROBLEME(178, "Step Numbers")
     // number.
     // A pandigital number contains every decimal digit from 0 to 9 at least once.
     // How many pandigital step numbers less than 1040 are there?
-    multidimension<nombre, 4> f(41, 10, 10, 10, 0);
+    multidimension<nombre, 4> f(41UL, 10UL, 10UL, 10UL, 0UL);
 
     for (nombre i = 0; i < 10; ++i)
         f[1][i][i][i] = 1;

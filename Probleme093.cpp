@@ -1,5 +1,5 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -30,7 +30,7 @@ namespace
 			fraction a = n[i];
 			fraction b = n[j];
 			auto m = n;
-			m.erase(m.begin() + j);
+			m.erase(std::next(m.begin(),j));
 			m[i] = a + b;
 			test(m, p);
 			m[i] = a * b;

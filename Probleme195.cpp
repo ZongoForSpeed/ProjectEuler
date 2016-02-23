@@ -38,7 +38,7 @@ ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 d
     //
     // Find T(1053779).
     nombre limite = 1053779;
-    nombre borne = 2*std::sqrt(limite);
+    nombre borne = 2*(nombre)std::sqrt(limite);
 
     // a = m² - mn + n² 
     // b = 2mn - n² 

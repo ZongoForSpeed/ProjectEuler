@@ -115,7 +115,7 @@ ENREGISTRER_PROBLEME(101, "Optimum polynomial")
     polynome p {1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
     for (size_t k = 1; k < p.taille(); ++k)
     {
-        const auto bop = BOP(k, p);
+        const auto bop = BOP((nombre)k, p);
         resultat += bop;
     }
     

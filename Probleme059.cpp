@@ -84,6 +84,6 @@ ENREGISTRER_PROBLEME(59, "XOR decryption")
         }
     }
     
-    nombre resultat = std::accumulate(message.begin(), message.end(), 0, [](const nombre r, const char c){ return r + c;});
+    nombre resultat = std::accumulate(message.begin(), message.end(), 0UL, [](const nombre r, const char c){ return r + (nombre)c;});
     std::cout << "Solution: " << resultat << std::endl;
 }

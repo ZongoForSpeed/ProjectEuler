@@ -11,12 +11,13 @@ class Tarjan
 {
     struct Sommet
     {
-        nombre n;
-        boost::optional<nombre> index;
-        nombre lowlink;
-        bool onStack;
-        
-        Sommet(nombre _n) : n(_n), lowlink(std::numeric_limits<nombre>::max()), onStack(false) {}
+        public:
+            nombre n;
+            nombre lowlink;
+            bool onStack;
+            boost::optional<nombre> index;
+            
+            Sommet(nombre _n) : n(_n), lowlink(std::numeric_limits<nombre>::max()), onStack(false) {}
     };
     
     void strongconnect(Sommet & v);

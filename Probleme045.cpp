@@ -1,5 +1,5 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Polygonal.h"
 #include "Timer.h"
 
 #include <iostream>
@@ -22,10 +22,10 @@ ENREGISTRER_PROBLEME(45, "Triangular, pentagonal, and hexagonal")
     nombre n = 286;
     while (true)
     {
-        nombre t = polygonal::triangulaire(n);
-        if (polygonal::est_hexagonal(t) && polygonal::est_pentagonal(t))
+        nombre tn = polygonal::triangulaire(n);
+        if (polygonal::est_hexagonal(tn) && polygonal::est_pentagonal(tn))
         {
-            resultat = t;
+            resultat = tn;
             break;
         }
         ++n;

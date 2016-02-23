@@ -1,5 +1,6 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Premiers.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -31,7 +32,7 @@ ENREGISTRER_PROBLEME(221, "Alexandrian Integers")
     size_t limite = 150000;
     vecteur premiers;
     {
-        Timer timer("crible");
+        Timer timer_crible("crible");
         premiers::crible235<nombre>(1000000000ULL, std::back_inserter(premiers));
     }
     

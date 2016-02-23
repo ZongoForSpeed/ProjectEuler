@@ -1,5 +1,7 @@
 #include "Problemes.h"
-#include "Arithmetiques.h"
+#include "Chiffres.h"
+#include "Premiers.h"
+#include "Puissance.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 #include "Graphe.h"
@@ -53,7 +55,7 @@ ENREGISTRER_PROBLEME(111, "Primes with runs")
     
     vecteur premiers;
     {
-        Timer t("crible");
+        Timer t_crible("crible");
         premiers::crible23<nombre>(limite, std::back_inserter(premiers));
     }
     
@@ -65,7 +67,7 @@ ENREGISTRER_PROBLEME(111, "Primes with runs")
             vecteur chiffres(10, 0);
             chiffres::boucle_chiffre(p, [&chiffres] (nombre d){ chiffres.at(d)++; });
             
-            for (size_t n = 0; n < 10; ++n)
+            for (unsigned short n = 0; n < 10; ++n)
             {
                 if (chiffres[n] > 5) ensemble[n][chiffres[n]].push_back(p);                
             }
@@ -76,7 +78,7 @@ ENREGISTRER_PROBLEME(111, "Primes with runs")
     nombre resultat = 0;
     for (const auto & e: ensemble)
     {
-        const std::pair<nombre, vecteur> & p = *std::next(e.second.begin(), e.second.size() - 1);
+        const std::pair<nombre, vecteur> & p = *e.second.rbegin();
         nombre somme = std::accumulate(p.second.begin(), p.second.end(), 0ULL);
         resultat += somme;
         std::cout << e.first << "\t" << p.first << "\t" << p.second.size() << "\t" << somme << std::endl;

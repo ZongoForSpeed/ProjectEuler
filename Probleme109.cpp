@@ -13,6 +13,31 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
+namespace
+{
+	typedef std::vector<std::pair<std::string, nombre>> S;
+    typedef std::map<nombre, std::set<S>> C;
+    
+    C construire(const S & score, const C & combinaisons)
+    {
+        auto suivant = combinaisons;
+        for (const auto & s: score)
+        {
+            for (const auto & r: combinaisons)
+            {
+                auto c = r.second;
+                for (auto f: c)
+                {
+                    f.push_back(s);
+                    std::sort(f.begin(), f.end());
+                    suivant[s.second + r.first].insert(f);
+                }
+            }
+        }
+        return suivant;
+    };
+}
+
 ENREGISTRER_PROBLEME(109, "Darts")
 {
     Timer t("probleme 109");
@@ -60,8 +85,6 @@ ENREGISTRER_PROBLEME(109, "Darts")
     // Incredibly there are 42336 distinct ways of checking out in total.
     // 
     // How many distinct ways can a player checkout with a score less than 100?
-    typedef std::vector<std::pair<std::string, nombre>> S;
-    typedef std::map<nombre, std::set<S>> C;
     S score;
     S score_double;
 
@@ -80,24 +103,6 @@ ENREGISTRER_PROBLEME(109, "Darts")
     const S zero { std::make_pair("0", 0)};
     C combinaisons;
     combinaisons[0].insert(zero);
-    auto construire = [] (const S & score, const C & combinaisons)
-    {
-        auto suivant = combinaisons;
-        for (const auto & s: score)
-        {
-            for (const auto & r: combinaisons)
-            {
-                auto c = r.second;
-                for (auto f: c)
-                {
-                    f.push_back(s);
-                    std::sort(f.begin(), f.end());
-                    suivant[s.second + r.first].insert(f);
-                }
-            }
-        }
-        return suivant;
-    };
     
     combinaisons = construire(score, combinaisons);
     combinaisons = construire(score, combinaisons);

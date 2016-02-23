@@ -44,22 +44,21 @@ namespace
         return resultat;
     }
     
-    nombre N(nombre a, nombre b, nombre c)
+    nombre N(std::map<std::tuple<nombre, nombre, nombre>, nombre> & cache, nombre a, nombre b, nombre c)
     {
         if (a == 0 && b == 0)
             return c*(c - 1);
         
-        static std::map<std::tuple<nombre, nombre, nombre>, nombre> cache;
         auto it = cache.find(std::make_tuple(a, b, c));
         if (it != cache.end())
             return it->second;
             
         nombre resultat = 0;
         if (b > 0)
-            resultat += combinaison_b(c)*N(a, b - 1, c);
+            resultat += combinaison_b(c)*N(cache, a, b - 1, c);
             
         if (a > 0)
-            resultat += combinaison_a(c)*N(a - 1, b, c);
+            resultat += combinaison_a(c)*N(cache, a - 1, b, c);
             
         cache[std::make_tuple(a, b, c)] = resultat;
         return resultat;
@@ -82,11 +81,13 @@ ENREGISTRER_PROBLEME(194, "Coloured Configurations")
     // For example, N(1,0,3) = 24, N(0,2,4) = 92928 and N(2,2,3) = 20736.
     //
     // Find the last 8 digits of N(25,75,1984).
-    std::cout << "N(1,0,3) = " << N(1, 0, 3) << std::endl;
-    std::cout << "N(0,2,4) = " << N(0, 2, 4) << std::endl;
-    std::cout << "N(2,2,3) = " << N(2, 2, 3) << std::endl;
+    std::map<std::tuple<nombre, nombre, nombre>, nombre> cache;
 
-    nombre resultat = N(25,75,1984) % 100000000;
+    std::cout << "N(1,0,3) = " << N(cache, 1, 0, 3) << std::endl;
+    std::cout << "N(0,2,4) = " << N(cache, 0, 2, 4) << std::endl;
+    std::cout << "N(2,2,3) = " << N(cache, 2, 2, 3) << std::endl;
+
+    nombre resultat = N(cache, 25, 75, 1984) % 100000000;
     std::cout << "N(25,75,1984) = " << resultat << std::endl;
     
     std::cout << "Solution: " << resultat << std::endl;

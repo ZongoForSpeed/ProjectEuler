@@ -14,14 +14,13 @@ typedef std::vector<nombre> vecteur;
 
 namespace
 {
-	long double TheGame(nombre n, nombre k)
+	long double TheGame(std::map<std::pair<nombre, nombre>, long double> & cache, nombre n, nombre k)
 	{
 		if (k <= 0)
 			return 1.0;
 		if (k > 0 && n <= 0)
 			return 0.0;
 			
-		static std::map<std::pair<nombre, nombre>, long double> cache;
 		const auto it = cache.find(std::make_pair(n, k));
 		if (it != cache.end())
 			return it->second;
@@ -42,9 +41,9 @@ namespace
 			
 			nombre gain = t / 2;
 			
-			probabilite = std::max(probabilite, (p1_reussi * p2_reussi * TheGame(n - 1, k - gain) 
-													+ p1_reussi * p2_rate * TheGame(n - 1, k)
-													+ p1_rate * p2_reussi * TheGame(n, k - gain)) / (1 - p1_rate*p2_rate));
+			probabilite = std::max(probabilite, (p1_reussi * p2_reussi * TheGame(cache, n - 1, k - gain) 
+													+ p1_reussi * p2_rate * TheGame(cache, n - 1, k)
+													+ p1_rate * p2_reussi * TheGame(cache, n, k - gain)) / (1 - p1_rate*p2_rate));
 		}
 		
 		cache[std::make_pair(n, k)] = probabilite;
@@ -66,7 +65,8 @@ ENREGISTRER_PROBLEME(232, "The Race")
 	// What is the probability that Player 2 wins?
 	// 
 	// Give your answer rounded to eight decimal places in the form 0.abcdefgh .
-	long double resultat = 0.5 * TheGame(100,100) + 0.5 * TheGame(99,100);
+	std::map<std::pair<nombre, nombre>, long double> cache;
+	long double resultat = 0.5 * TheGame(cache, 100, 100) + 0.5 * TheGame(cache, 99, 100);
 
 	std::cout << std::setprecision(8);
     std::cout << "Solution: " << resultat << std::endl;

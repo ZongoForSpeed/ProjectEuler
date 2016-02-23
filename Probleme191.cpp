@@ -13,22 +13,21 @@ typedef std::vector<nombre> vecteur;
 
 namespace
 {
-    nombre sequence(nombre n, nombre absence, bool retard)
+    nombre sequence(std::map<std::tuple<nombre, nombre, bool>, nombre> & cache, nombre n, nombre absence, bool retard)
     {
         if (n == 0)
             return 1;
             
-        static std::map<std::tuple<nombre, nombre, bool>, nombre> cache;
         auto it = cache.find(std::make_tuple(n, absence, retard));
         if (it != cache.end())
             return it->second;
             
-        nombre resultat = sequence(n - 1, 0, retard);
+        nombre resultat = sequence(cache, n - 1, 0, retard);
         if (!retard)
-            resultat += sequence(n - 1, 0, true);
+            resultat += sequence(cache, n - 1, 0, true);
             
         if (absence < 2)
-            resultat += sequence(n - 1, absence + 1, retard);
+            resultat += sequence(cache, n - 1, absence + 1, retard);
             
         cache[std::make_tuple(n, absence, retard)] = resultat;
         return resultat;
@@ -55,7 +54,8 @@ ENREGISTRER_PROBLEME(191, "Prize Strings")
     //       LAOO LAOA LAAO
     //
     // How many "prize" strings exist over a 30-day period?
-    nombre resultat = sequence(30, 0, false);
+    std::map<std::tuple<nombre, nombre, bool>, nombre> cache;
+    nombre resultat = sequence(cache, 30, 0, false);
     
     std::cout << "Solution: " << resultat << std::endl;
 }

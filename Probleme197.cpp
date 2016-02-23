@@ -34,7 +34,7 @@ ENREGISTRER_PROBLEME(197, "Investigating the behaviour of a recursively defined 
     while (true)
     {
         long double u_n2 = f(u_n1);
-        if (u_n2 == u_n)
+        if (std::abs(u_n2 - u_n) < std::numeric_limits<long double>::epsilon())
         {
             resultat = u_n + u_n1;
             break;

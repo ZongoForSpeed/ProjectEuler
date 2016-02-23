@@ -4,14 +4,14 @@
 #include <iostream>
 #include <cstdlib>
 
-typedef unsigned long nombre;
+typedef unsigned long long nombre;
 
 template<nombre p>
 class Number
 {
 public:
-    Number(int n) : _value(n >= 0 ? n % p : p + n % p) {}
-    unsigned long int value() const { return _value; }
+    Number(nombre n) : _value(n >= 0 ? n % p : p + n % p) {}
+    nombre value() const { return _value; }
 
     Number<p> &operator+=(const Number<p> &b) { _value += b._value; if (_value >= p) _value -= p; return *this; }
     Number<p> &operator-=(const Number<p> &b) { _value = _value < b._value ? p + _value - b._value : _value - b._value; return *this; }

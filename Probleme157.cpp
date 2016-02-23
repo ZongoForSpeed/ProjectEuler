@@ -1,5 +1,7 @@
 #include "Problemes.h"
 #include "Arithmetiques.h"
+#include "Premiers.h"
+#include "Puissance.h"
 #include "Timer.h"
 #include "Utilitaires.h"
 
@@ -31,20 +33,20 @@ ENREGISTRER_PROBLEME(157, "Solving the diophantine equation 1/a+1/b= p/10n")
     // How many solutions has this equation for 1 ≤ n ≤ 9?
     vecteur premiers;
     {
-        Timer timer("crible");
+        Timer timer_crible("crible");
         premiers::crible235<nombre>(1000000000ULL, std::back_inserter(premiers));
     }
     nombre limite = 9;
     nombre resultat = 0;
     for (nombre n = 1; n < limite + 1; ++n)
     {
-        nombre m = puissance::puissance(10, n);
+        nombre m = puissance::puissance(10UL, n);
         vecteur d2;
         vecteur d5;
         for (nombre p = 0; p < n + 1; ++p)
         {
-        d2.push_back(puissance::puissance(2, p));
-            d5.push_back(puissance::puissance(5, p));
+        d2.push_back(puissance::puissance(2UL, p));
+            d5.push_back(puissance::puissance(5UL, p));
         }
         
         ensemble diviseurs;

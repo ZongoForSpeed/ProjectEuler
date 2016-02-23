@@ -1,12 +1,17 @@
+#include "Problemes.h"
+#include "Premiers.h"
+#include "Puissance.h"
+#include "Timer.h"
+
 #include <iostream>
 #include <vector>
-#include "Timer.h"
-#include "Arithmetiques.h"
-#include "Problemes.h"
+
 #include <cmath>
 #include <limits>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
+
 class Probleme501
 {
     // The eight divisors of 24 are 1, 2, 3, 4, 6, 8, 12 and 24.
@@ -23,12 +28,12 @@ public:
     
     static nombre racine_carre(nombre n)
     {
-        return sqrt(n);
+        return (nombre)sqrt(n);
     }
     
     static nombre racine_cubique(nombre n)
     {
-        return cbrt(n);
+        return (nombre)cbrt(n);
     }
     static nombre racine_septieme(nombre n)
     {

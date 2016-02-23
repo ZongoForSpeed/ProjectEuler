@@ -36,8 +36,8 @@ ENREGISTRER_PROBLEME(154, "Exploring Pascal's pyramid")
     
     for (nombre i = 1; i <= n; ++i)
     {
-        deux[i] = deux[i - 1] + arithmetiques::nombre_facteur(i, 2);
-        cinq[i] = cinq[i - 1] + arithmetiques::nombre_facteur(i, 5);
+        deux[i] = deux[i - 1] + arithmetiques::nombre_facteur(i, 2UL);
+        cinq[i] = cinq[i - 1] + arithmetiques::nombre_facteur(i, 5UL);
     }
     
     // C(n,i,j) = n! / i!j!(n-i-j)!

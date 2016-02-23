@@ -23,7 +23,7 @@ ENREGISTRER_PROBLEME(208, "Robot Walks")
     // that return it, after the final arc, to its starting position?
     // (Any arc may be traversed multiple times.)
 	nombre maximum = 14;
-    multidimension<nombre, 2> choix(maximum, maximum, 0);
+    multidimension<nombre, 2> choix(maximum, maximum, 0UL);
     
     choix[0][0] = 1;
     for (nombre i = 1; i < maximum; ++i)
