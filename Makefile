@@ -6,7 +6,9 @@ CPPFLAGS=-std=gnu++11 -c -O3 -DNDEBUG -DBOOST_UBLAS_NDEBUG $(WARNINGS)
 
 LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp -lstdc++
 
-SOURCES=Timer.cpp Premiers.cpp Graphe.cpp $(wildcard Probleme*.cpp) Euler.cpp
+SOURCES=timer.cpp premiers.cpp graphe.cpp $(wildcard probleme*.cpp) euler.cpp
+
+INCLUDES=$(wildcard *.h)
 
 OBJECTS=$(SOURCES:.cpp=.o)
 
@@ -15,7 +17,7 @@ all: $(SOURCES) Euler
 Euler: $(OBJECTS) 
 	$(COMPILER) $(OBJECTS) -o $@ $(LDFLAGS)
 
-.cpp.o: Arithmetiques.h Timer.h
+.cpp.o: $(INCLUDES)
 	$(COMPILER) $< -o $@ $(CPPFLAGS) 
 	
 clean:

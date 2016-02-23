@@ -1,0 +1,58 @@
+#include "problemes.h"
+#include "arithmetiques.h"
+#include "premiers.h"
+#include "timer.h"
+
+#include <iostream>
+#include <list>
+
+typedef unsigned long long nombre;
+
+ENREGISTRER_PROBLEME(23, "Non-abundant sums")
+{
+    Timer t("probleme 23");
+    // A perfect number is a number for which the sum of its proper divisors is exactly equal to the number. 
+    // For example, the sum of the proper divisors of 28 would be 1 + 2 + 4 + 7 + 14 = 28, which means that 
+    // 28 is a perfect number.
+    // 
+    // A number n is called deficient if the sum of its proper divisors is less than n and it is called 
+    // abundant if this sum exceeds n.
+    // 
+    // As 12 is the smallest abundant number, 1 + 2 + 3 + 4 + 6 = 16, the smallest number that can be written 
+    // as the sum of two abundant numbers is 24. By mathematical analysis, it can be shown that all integers 
+    // greater than 28123 can be written as the sum of two abundant numbers. However, this upper limit cannot 
+    // be reduced any further by analysis even though it is known that the greatest number that cannot be expressed 
+    // as the sum of two abundant numbers is less than this limit.
+    // 
+    // Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+    nombre limite = 28123;
+    std::vector<nombre> premiers;
+    premiers::crible<nombre>(limite, std::back_inserter(premiers));
+    
+    std::vector<nombre> abundant;
+    for (nombre n=12; n < limite; ++n)
+    {
+        if (arithmetiques::somme_diviseurs(n, premiers) > 2*n)
+            abundant.push_back(n);
+    }
+    std::vector<bool> test(limite, true);
+    for (const auto & n : abundant)
+    {
+        for (const auto & m : abundant)
+        {
+            if (m > n)
+                break;
+            else if (n+m < limite)
+                test.at(n+m) = false;
+            else
+                break;
+        }
+    }
+    
+    nombre resultat = 0;
+    for (nombre n=0; n < limite; ++n)
+    {
+        if (test.at(n)) resultat += n;
+    }
+    std::cout << "Solution: " << resultat << std::endl;
+}

@@ -1,2 +1,6 @@
 *.o
 Euler
+CMakeFiles/
+cmakefiles/
+cmakecache.txt
+cmake_install.cmake
