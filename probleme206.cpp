@@ -2,6 +2,7 @@
 #include "chiffres.h"
 #include "timer.h"
 #include "utilitaires.h"
+#include "polygonal.h"
 
 #include <iostream>
 #include <iomanip>
@@ -32,8 +33,8 @@ ENREGISTRER_PROBLEME(206, "Concealed Square")
     Timer timer("probleme 206");
     // Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
     // where each “_” is a single digit.
-    nombre minimum = (size_t)std::sqrt(102030405060708LL); // 0900
-    nombre maximum = (size_t)std::sqrt(192939495969798LL); // 9900
+    nombre minimum = racine_carre(102030405060708LL); // 0900
+    nombre maximum = racine_carre(192939495969798LL); // 9900
     
     nombre resultat = 0;
     for (nombre n = minimum; n < maximum; ++n)

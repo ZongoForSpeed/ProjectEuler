@@ -2,6 +2,7 @@
 #include "premiers.h"
 #include "timer.h"
 #include "utilitaires.h"
+#include "polygonal.h"
 
 #include <iostream>
 #include <fstream>
@@ -27,7 +28,7 @@ ENREGISTRER_PROBLEME(87, "Prime power triples")
     // and prime fourth power?
     const nombre limite = 50000000;
     vecteur premiers;
-    premiers::crible23<nombre>((nombre)std::sqrt(limite) + 6, std::back_inserter(premiers));
+    premiers::crible23<nombre>(racine_carre(limite) + 6, std::back_inserter(premiers));
     
     std::set<nombre> resultat;
     for (nombre p: premiers)

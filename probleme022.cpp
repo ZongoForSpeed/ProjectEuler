@@ -37,7 +37,7 @@ ENREGISTRER_PROBLEME(22, "Names scores")
         nombre score = std::accumulate(name.begin(), name.end(), 0UL, [](const nombre & n, char c)
         {
             if (c != '"')
-                return n + 1 + (size_t)(c - 'A');
+                return n + 1 + static_cast<nombre>(c - 'A');
             return n;
         });
         resultat += (++compteur * score);

@@ -2,6 +2,7 @@
 #include "arithmetiques.h"
 #include "timer.h"
 #include "utilitaires.h"
+#include "polygonal.h"
 
 #include <iostream>
 #include <fstream>
@@ -56,7 +57,7 @@ ENREGISTRER_PROBLEME(184, "Triangles containing the origin")
     {
         nombre r2 = x*x + y*y;
         if (r2 > 0 && r2 < limite*limite && arithmetiques::PGCD(x, y) == 1)
-            points.push_back(std::make_pair(Point(x,y), std::sqrt((limite*limite - 1) / r2)));
+            points.push_back(std::make_pair(Point(x,y), racine_carre((limite*limite - 1) / r2)));
     }
     
     std::sort(points.begin(), points.end());

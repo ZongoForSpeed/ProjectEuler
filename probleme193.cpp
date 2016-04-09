@@ -24,7 +24,7 @@ ENREGISTRER_PROBLEME(193, "Squarefree Numbers")
     // How many squarefree numbers are there below 2^50?
     nombre limite = puissance::puissance<nombre>(2, 25);
     vecteur premiers;
-    premiers::crible235<nombre>((size_t)limite, std::back_inserter(premiers));
+    premiers::crible235<nombre>(static_cast<size_t>(limite), std::back_inserter(premiers));
     
     // N=2^50-1;
     // sum(k=1,sqrt(N),floor(N/k^2)*moebius(k))

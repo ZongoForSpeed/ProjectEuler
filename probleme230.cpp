@@ -68,7 +68,7 @@ ENREGISTRER_PROBLEME(230, "Fibonacci Words")
 	for (nombre n = 0; n < 18; ++n)
     {
     	const nombre f = (127 + 19 * n) * puissance::puissance<nombre>(7, n) - 1;
-    	resultat += (size_t)(F[lettre(f/100 + 1)][f%100] - '0') * puissance::puissance<nombre>(10,n);
+    	resultat += static_cast<nombre>(F[lettre(f/100 + 1)][f%100] - '0') * puissance::puissance<nombre>(10,n);
     }
     
     std::cout << "Solution: " << resultat << std::endl;

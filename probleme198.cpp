@@ -2,6 +2,7 @@
 #include "arithmetiques.h"
 #include "timer.h"
 #include "utilitaires.h"
+#include "polygonal.h"
 
 #include <iostream>
 #include <fstream>
@@ -32,7 +33,7 @@ ENREGISTRER_PROBLEME(198, "Ambiguous Numbers")
     nombre limite = 100000000ULL;
     nombre borne = 100;
     
-    nombre m = (nombre)std::sqrt(limite / 2);
+    nombre m = racine_carre(limite / 2);
     std::stack<nombre> s;
     for (nombre i = borne; i < m; ++i)
         s.push(i);

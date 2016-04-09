@@ -40,7 +40,7 @@ ENREGISTRER_PROBLEME(42, "Coded triangle numbers")
         nombre score = std::accumulate(name.begin(), name.end(), 0UL, [](const nombre & n, char c)
         {
             if (c != '"')
-                return n + 1 + (nombre)(c - 'A');
+                return n + 1 + static_cast<nombre>(c - 'A');
             return n;
         });
         if (triangle.find(score) != triangle.end())

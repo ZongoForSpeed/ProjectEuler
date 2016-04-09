@@ -60,7 +60,7 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
     
     std::function<long double(long double)> lambda_f = [n, N] (long double x) -> long double { return f(x, n, N); };
     
-    const nombre alpha = (nombre)std::ceil( f(recherche(lambda_f, 0.01, 0.99, 0.000001), n, N));
+    const nombre alpha = static_cast<nombre>(std::ceil( f(recherche(lambda_f, 0.01, 0.99, 0.000001), n, N)));
     
     std::vector<boost::multiprecision::cpp_int> C { 1 };
     for (nombre k = 1; k < n + 1; ++k)
@@ -79,5 +79,5 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
     // std::cout << resultat << " / " << puissance << std::endl;
     std::cout << std::setprecision(12);
 
-    std::cout << "Solution: " << ((long double)resultat / (long double)puissance) << std::endl;
+    std::cout << "Solution: " << static_cast<long double>(resultat) / static_cast<long double>(puissance) << std::endl;
 }

@@ -134,7 +134,7 @@ ENREGISTRER_PROBLEME(96, "Su Doku")
             vecteur v;
             while (iss >> c)
             {
-                v.push_back((nombre)(c - '0'));
+                v.push_back(static_cast<nombre>(c - '0'));
             }
             m.push_back(v);
         }

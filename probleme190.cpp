@@ -26,7 +26,7 @@ ENREGISTRER_PROBLEME(190, "Maximising a weighted product")
         long double produit = 1;
         for (nombre i = 1; i <= m; ++i)
         {
-            produit *= puissance::puissance(((long double)2*i)/(m+1), i);
+            produit *= puissance::puissance(static_cast<long double>(2*i)/(m+1), i);
         }
         resultat += std::floor(produit);
     }

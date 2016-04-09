@@ -39,7 +39,7 @@ ENREGISTRER_PROBLEME(64, "Odd period square roots")
         if (polygonal::est_carre(r))
             return 0;
             
-        nombre p = (nombre)std::sqrt(r);
+        nombre p = racine_carre(r);
         nombre q = 1;
         
         std::map<std::pair<nombre, nombre>, nombre> restes;
@@ -47,7 +47,7 @@ ENREGISTRER_PROBLEME(64, "Odd period square roots")
         while (true)
         {
             q=(r-(p*p))/q;
-            nombre f = (nombre)floor((std::sqrt(r) + p ) / (double)q);
+            nombre f = static_cast<nombre>(floor((racine_carre(r) + p ) / (1.0 * q)));
             p = - (p - (f*q));
             auto it = restes.find(std::make_pair(p, q));
             if (it != restes.end())

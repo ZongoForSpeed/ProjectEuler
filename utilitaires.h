@@ -8,6 +8,7 @@
 #include <utility>
 #include <queue>
 #include <iterator>
+#include <tuple>
 
 template<typename T1, typename T2>
 std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
@@ -164,12 +165,43 @@ public:
     multidimension( std::initializer_list<value_type> init ) : super_type(init) {}
 };
 
+namespace utilitaires
+{
+    template<typename InputIterator>
+    inline size_t distance(InputIterator first, InputIterator last, std::input_iterator_tag)
+    {
+        __glibcxx_function_requires(_InputIteratorConcept<InputIterator>)
+        
+        size_t result = 0;
+        while (first != last)
+        {
+            ++first;
+            ++result;
+        }
+        
+        return result;
+    }
+
+    template<typename RandomAccessIterator>
+    inline size_t distance(RandomAccessIterator first, RandomAccessIterator last, std::random_access_iterator_tag)
+    {
+        __glibcxx_function_requires(_RandomAccessIteratorConcept<RandomAccessIterator>)
+        return static_cast<size_t>(std::abs(last - first));     
+    }
+
+    template<typename InputIterator>
+    inline size_t distance(InputIterator first, InputIterator last)
+    {
+        return distance(first, last, std::__iterator_category(first));
+    }
+}
+
 namespace std
 {
     template< class Iterator >
     Iterator next( Iterator it, size_t n) 
     {
-        advance(it, (typename std::iterator_traits<Iterator>::difference_type)(n));
+        advance(it, static_cast<typename std::iterator_traits<Iterator>::difference_type>(n));
         return it;    
     }
 }

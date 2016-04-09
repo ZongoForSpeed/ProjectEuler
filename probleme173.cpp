@@ -2,6 +2,7 @@
 #include "arithmetiques.h"
 #include "timer.h"
 #include "utilitaires.h"
+#include "polygonal.h"
 
 #include <iostream>
 #include <fstream>
@@ -35,7 +36,7 @@ ENREGISTRER_PROBLEME(173, "Using up to one million tiles how many different \"ho
     nombre limite = 1000000;
     nombre resultat = 0;
     for (nombre n = 1; 2*n - 1 < limite; ++n)
-        resultat += (std::sqrt(n*n + limite) - n) / 2;
+        resultat += (racine_carre(n*n + limite) - n) / 2;
 
     std::cout << "Solution: " << resultat << std::endl;
 }

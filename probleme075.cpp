@@ -2,6 +2,7 @@
 #include "arithmetiques.h"
 #include "timer.h"
 #include "utilitaires.h"
+#include "polygonal.h"
 
 #include <iostream>
 #include <algorithm>
@@ -36,7 +37,7 @@ ENREGISTRER_PROBLEME(75, "Singular integer right triangles")
     
     // const nombre limite = 150;
     const nombre limite = 1500000;
-    const nombre max_p = (nombre)std::sqrt(limite / 2) + 1;
+    const nombre max_p = racine_carre(limite / 2) + 1;
     for (nombre p = 1; p < max_p; ++p)
     {
         for (nombre q = 1; q < p; ++q)

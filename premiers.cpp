@@ -1,5 +1,6 @@
 #include "premiers.h"
 #include "timer.h"
+#include "utilitaires.h"
 
 #include <vector>
 #include <deque>
@@ -77,7 +78,7 @@ namespace
                 {
                     // std::cout << "n = " << n << "\t";
                     // std::cout << produit << ".[ " << produit << ".k² + " << 2*reste + n << ".k + " << rrnr/produit << " ] + " << rrnr%produit << std::endl;
-                    matrice[i][(size_t)std::distance(restes.begin(),it)] = std::make_pair(2*reste + n, rrnr/produit);
+                    matrice[i][utilitaires::distance(restes.begin(),it)] = std::make_pair(2*reste + n, rrnr/produit);
                 }
             }
         }

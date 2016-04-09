@@ -93,7 +93,7 @@ namespace
 	{
 		nombre resultat = 0;
 		for (auto d : c)
-			resultat = (resultat * 243 + (size_t)d)%100000007;
+			resultat = (resultat * 243 + static_cast<size_t>(d))%100000007;
 
 		return resultat;
 	}

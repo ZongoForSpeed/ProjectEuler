@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <sstream>
 
-typedef unsigned long long nombre;
+typedef long long nombre;
 
 ENREGISTRER_PROBLEME(40, "Champernowne's constant")
 {
@@ -27,6 +27,6 @@ ENREGISTRER_PROBLEME(40, "Champernowne's constant")
     const std::string s = ss.str();
     nombre resultat = 1;
     for (nombre p = 0; p < 7; ++p)
-        resultat *= (nombre)(s[puissance::puissance(10UL, p)] - '0');
+        resultat *= s[puissance::puissance(10UL, p)] - '0';
     std::cout << "Solution: " << resultat << std::endl;
 }

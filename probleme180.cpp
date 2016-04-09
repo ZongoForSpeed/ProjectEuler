@@ -70,7 +70,7 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
             fraction zz = x*x+y*y;
             if (polygonal::est_carre(zz.numerator()) && polygonal::est_carre(zz.denominator()))
             {
-                fraction z ((nombre)std::sqrt(zz.numerator()), (nombre)std::sqrt(zz.denominator()));
+                fraction z (racine_carre(zz.numerator()), racine_carre(zz.denominator()));
                 {
                     // n = 2: z = sqrt(x^2+y^2)
                     if (fractions.find(z) != fractions.end())

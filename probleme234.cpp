@@ -2,6 +2,7 @@
 #include "premiers.h"
 #include "timer.h"
 #include "utilitaires.h"
+#include "polygonal.h"
 
 #include <iostream>
 #include <iomanip>
@@ -28,10 +29,10 @@ ENREGISTRER_PROBLEME(234, "Semidivisible numbers")
 	//
 	// What is the sum of all semidivisible numbers not exceeding 999966663333 ?
 	const nombre limite = 999966663333LL;
-	const nombre borne = (nombre)std::sqrt(limite) + 1;
+	const nombre borne = racine_carre(limite) + 1;
 	
 	vecteur premiers;
-	premiers::crible235<nombre>((size_t)borne, std::back_inserter(premiers));
+	premiers::crible235<nombre>(static_cast<size_t>(borne), std::back_inserter(premiers));
 	
 	nombre resultat = 0;
 	nombre p1 = premiers.front();

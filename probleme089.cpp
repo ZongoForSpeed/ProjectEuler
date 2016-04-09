@@ -61,13 +61,13 @@ ENREGISTRER_PROBLEME(89, "Roman numerals")
     	}
     	
     	std::ostringstream oss;
-    	oss << millier[(size_t)n/1000];
+    	oss << millier[static_cast<size_t>(n/1000)];
 	    n = n%1000;
-	    oss << centaine[(size_t)n/100];
+	    oss << centaine[static_cast<size_t>(n/100)];
 	    n = n%100;
-    	oss << dizaine[(size_t)n/10];
+    	oss << dizaine[static_cast<size_t>(n/10)];
 	    n = n%10;
-    	oss << unite[(size_t)n];
+    	oss << unite[static_cast<size_t>(n)];
     	
         // std::cout << ligne << "->" << oss.str() << std::endl;
         resultat += ligne.size() - oss.str().size();

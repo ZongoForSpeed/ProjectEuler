@@ -19,8 +19,8 @@ namespace
 	vecteur fraction_continue(nombre d)
     {
         vecteur resultat;
-        nombre d2 = (nombre)std::sqrt(d);
-        unsigned long a = (unsigned long)std::sqrt(d), p = 0, q = 1;
+        nombre d2 = racine_carre(d);
+        unsigned long a = racine_carre(d), p = 0, q = 1;
         do 
         {
             resultat.push_back(a);

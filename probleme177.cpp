@@ -56,10 +56,10 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals")
     std::set<long double, comparedouble> fs;
     for (nombre i = 1; i < 180; i++)
     {
-        rad[i] = (long double)i*M_PI/180;
+        rad[i] = static_cast<long double>(i)*M_PI/180.0;
         sinus[i] = std::sin(rad[i]);
         cosinus[i] = std::cos(rad[i]);
-        nombre j = (nombre)(sinus[i]*10000);
+        nombre j = static_cast<nombre>(sinus[i]*10000);
         prevalue[j] = true;
         fs.insert(sinus[i]);
     }
@@ -79,16 +79,16 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals")
             long double m = (sinus[b]*sinus[c]*sinus[f])/(sinus[a]*sinus[e]*sinus[d]);
             long double n = cosinus[a+c];
             long double siny = std::sqrt((1-n*n)/(m*m+2*m*n+1));
-            nombre j = (nombre)(siny*10000);
+            nombre j = static_cast<nombre>(siny*10000);
             if(!prevalue[j]) continue;
             if (fs.find(siny) != fs.end())
             {
                 if (siny > 1) siny=1;
                 
-                nombre y = (nombre)(std::asin(siny)*180/M_PI+0.01);
+                nombre y = static_cast<nombre>(std::asin(siny)*180/M_PI+0.01);
                 long double sinx = m*siny;
                 long double xangle = (std::abs(sinx-1) < epsilon) ? 90 : std::asin(sinx)*180/M_PI;
-                nombre x = (nombre)(xangle+0.01);
+                nombre x = static_cast<nombre>(xangle+0.01);
                 if (xangle < x + epsilon && xangle > x - epsilon)
                 {
                     x = (180-x+y==a+c) ? 180 - x : x;

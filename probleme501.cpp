@@ -28,16 +28,16 @@ public:
     
     static nombre racine_carre(nombre n)
     {
-        return (nombre)sqrt(n);
+        return static_cast<nombre>(sqrt(n));
     }
     
     static nombre racine_cubique(nombre n)
     {
-        return (nombre)cbrt(n);
+        return static_cast<nombre>(cbrt(n));
     }
     static nombre racine_septieme(nombre n)
     {
-        nombre resultat = (nombre)pow(n, 1.0/7.0);
+        nombre resultat = static_cast<nombre>(pow(n, 1.0/7.0));
         auto p7 = puissance::puissance(resultat, 7);
         if (p7 < n)
         {

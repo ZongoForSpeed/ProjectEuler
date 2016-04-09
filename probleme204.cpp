@@ -37,6 +37,6 @@ ENREGISTRER_PROBLEME(204, "Generalised Hamming Numbers")
         if (p > h) for (nombre k = p; k < limite; k += p) Hamming[k] = false;
     }
 
-    nombre resultat = (nombre)std::count(Hamming.begin(), Hamming.end(), true);
+    auto resultat = std::count(Hamming.begin(), Hamming.end(), true);
     std::cout << "Solution: " << resultat << std::endl;
 }

@@ -18,11 +18,11 @@ namespace
 {
     bool test_premier_chiffres(long double f)
     {
-        const nombre chiffres = (nombre)std::log10(f);
+        const nombre chiffres = static_cast<nombre>(std::log10(f));
         if (chiffres < 9)
             return false;
             
-        nombre debut = (nombre)(f / puissance::puissance(10.0L, chiffres - 8));
+        nombre debut = static_cast<nombre>(f / puissance::puissance(10.0L, chiffres - 8));
         return chiffres::pandigital(debut);
     }
     
@@ -45,7 +45,7 @@ ENREGISTRER_PROBLEME(104, "Pandigital Fibonacci ends")
     //
     // Given that Fk is the first Fibonacci number for which the first nine digits AND the last nine digits
     // are 1-9 pandigital, find k.
-    const long double sqrt5 = std::sqrt((long double)5.0L);
+    const long double sqrt5 = std::sqrt(5.0L);
     const long double phi = (1.0L + sqrt5) / 2.0L;
     
     const nombre masque = puissance::puissance(10ULL, 9);

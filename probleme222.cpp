@@ -98,6 +98,6 @@ ENREGISTRER_PROBLEME(222, "Sphere Packing")
             break;
     }
 
-    nombre resultat = (nombre)(optimum * R * 1000);
+    nombre resultat = static_cast<nombre>(optimum * R * 1000);
     std::cout << "Solution: " << resultat << std::endl;
 }

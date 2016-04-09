@@ -3,6 +3,7 @@
 #include "premiers.h"
 #include "timer.h"
 #include "utilitaires.h"
+#include "polygonal.h"
 
 #include <iostream>
 #include <iomanip>
@@ -91,7 +92,7 @@ ENREGISTRER_PROBLEME(245, "Coresilience")
 	//
 	// Find the sum of all composite integers 1 < n ≤ 2×1011, for which C(n) is a unit fraction.
 	const nombre limite = 200000000000LL;
-	const nombre P = (nombre)std::sqrt(limite);
+	const nombre P = racine_carre(limite);
 	
 	vecteur premiers;
 	premiers::crible235<nombre>(P, std::back_inserter(premiers));
