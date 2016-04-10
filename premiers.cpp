@@ -278,36 +278,4 @@ namespace premiers
             }
         }
     }
-
-    void testCrible()
-    {
-        std::size_t taille = 1000000000;
-        std::deque<unsigned long long> premiers, premiers2, premiers23, premiers235, super_crible_premiers;
-        {
-            Timer t("test crible simple");
-            crible_simple<unsigned long long>(taille, std::back_inserter(premiers));
-            std::cout << "premiers.size() = " << premiers.size() << std::endl;
-        }
-        {
-            Timer t("test crible2");
-            crible<unsigned long long>(taille, std::back_inserter(premiers2));
-            std::cout << "premiers2.size() = " << premiers2.size() << std::endl;
-        }
-        {
-            Timer t("test crible23");
-            crible23<unsigned long long>(taille, std::back_inserter(premiers23));
-            std::cout << "premiers23.size() = " << premiers23.size() << std::endl;
-        }
-        {
-            Timer t("test crible235");
-            crible23<unsigned long long>(taille, std::back_inserter(premiers235));
-            std::cout << "premiers235.size() = " << premiers235.size() << std::endl;
-        }
-        {
-            Timer t("test super_crible");
-            std::vector<std::size_t> roue {2, 3, 5};
-            super_crible<unsigned long long>(taille, roue, std::back_inserter(super_crible_premiers));
-            std::cout << "super_crible_premiers.size() = " << super_crible_premiers.size() << std::endl;
-        }
-    }
 }

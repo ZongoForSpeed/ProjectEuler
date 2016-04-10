@@ -26,7 +26,7 @@ namespace polygonal
     template<typename Nombre>
     bool est_cubique(Nombre n)
     {
-        Nombre racine = static_cast<Nombre>(std::cbrt(n));
+        Nombre racine = racine_cubique(n);
         return racine*racine*racine == n;
     }
     
