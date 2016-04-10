@@ -10,103 +10,106 @@
 #include <iterator>
 #include <tuple>
 
-template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
+namespace std
 {
-    os << "(" << p.first << ", " << p.second << ")";
-    return os;
-}
-
-template<typename T1, typename T2, typename T3>
-std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3> & t)
-{
-    os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ")";
-    return os;
-}
-
-template<typename T1, typename T2, typename T3, typename T4>
-std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4> & t)
-{
-    os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ", " << std::get<3>(t) << ")";
-    return os;
-}
-
-template<typename T1, typename T2, typename T3, typename T4, typename T5>
-std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5> & t)
-{
-    os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ", " << std::get<3>(t) << ", " << std::get<4>(t) << ")";
-    return os;
-}
-
-template<typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
-std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5, T6> & t)
-{
-    os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) 
-       << ", " << std::get<3>(t) << ", " << std::get<4>(t) << ", " << std::get<5>(t) << ")";
-    return os;
-}
-
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const std::vector<T> & v)
-{
-    os << "[";
-    bool first = true;
-    for (const T & n: v)
+    template<typename T1, typename T2>
+    std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
     {
-        if (first)
-            first = false;
-        else
-            os << " ";
-        os << n;
+        os << "(" << p.first << ", " << p.second << ")";
+        return os;
     }
-    os << "]";
-    return os;
-}
-
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const std::deque<T> & v)
-{
-    os << "[";
-    bool first = true;
-    for (const T & n: v)
+    
+    template<typename T1, typename T2, typename T3>
+    std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3> & t)
     {
-        if (first)
-            first = false;
-        else
-            os << " ";
-        os << n;
+        os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ")";
+        return os;
     }
-    os << "]";
-    return os;
-}
-
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const std::set<T> & s)
-{
-    os << "{";
-    bool first = true;
-    for (const T & n: s)
+    
+    template<typename T1, typename T2, typename T3, typename T4>
+    std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4> & t)
     {
-        if (first)
-            first = false;
-        else
-            os << " ";
-        os << n;
+        os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ", " << std::get<3>(t) << ")";
+        return os;
     }
-    os << "}";
-    return os;
-}
-
-template<typename K, typename V>
-std::ostream& operator<<(std::ostream& os, const std::map<K, V> & s)
-{
-    os << "{" << std::endl;
-    for (const auto & p: s)
+    
+    template<typename T1, typename T2, typename T3, typename T4, typename T5>
+    std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5> & t)
     {
-        os << "    " << p.first << " => " << p.second << std::endl;
+        os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ", " << std::get<3>(t) << ", " << std::get<4>(t) << ")";
+        return os;
     }
-    os << "}" << std::endl;
-    return os;
+    
+    template<typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
+    std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5, T6> & t)
+    {
+        os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) 
+           << ", " << std::get<3>(t) << ", " << std::get<4>(t) << ", " << std::get<5>(t) << ")";
+        return os;
+    }
+    
+    template<typename T>
+    std::ostream& operator<<(std::ostream& os, const std::vector<T> & v)
+    {
+        os << "[";
+        bool first = true;
+        for (const T & n: v)
+        {
+            if (first)
+                first = false;
+            else
+                os << " ";
+            os << n;
+        }
+        os << "]";
+        return os;
+    }
+    
+    template<typename T>
+    std::ostream& operator<<(std::ostream& os, const std::deque<T> & v)
+    {
+        os << "[";
+        bool first = true;
+        for (const T & n: v)
+        {
+            if (first)
+                first = false;
+            else
+                os << " ";
+            os << n;
+        }
+        os << "]";
+        return os;
+    }
+    
+    template<typename T>
+    std::ostream& operator<<(std::ostream& os, const std::set<T> & s)
+    {
+        os << "{";
+        bool first = true;
+        for (const T & n: s)
+        {
+            if (first)
+                first = false;
+            else
+                os << " ";
+            os << n;
+        }
+        os << "}";
+        return os;
+    }
+    
+    template<typename K, typename V>
+    std::ostream& operator<<(std::ostream& os, const std::map<K, V> & s)
+    {
+        os << "{" << std::endl;
+        for (const auto & p: s)
+        {
+            os << "    " << p.first << " => " << p.second << std::endl;
+        }
+        os << "}" << std::endl;
+        return os;
+    }
 }
 
 template<typename T1, typename T2>

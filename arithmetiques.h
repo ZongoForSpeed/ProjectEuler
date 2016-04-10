@@ -84,6 +84,7 @@ namespace arithmetiques
         return s;
     }
     
+    /*
     template<typename Nombre, typename Exposant, typename Conteneur>
     Nombre fonction_diviseur(Nombre n, Exposant a, const Conteneur & premiers)
     {
@@ -109,6 +110,7 @@ namespace arithmetiques
         
         return s;
     }
+    */
     
     template<typename Nombre, typename Conteneur, typename Dictionnaire>
     void decomposition(Nombre n, const Conteneur & premiers, Dictionnaire & sortie)
