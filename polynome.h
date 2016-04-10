@@ -5,6 +5,10 @@
 
 #include <boost/range/adaptor/reversed.hpp>
 
+#include <iostream>
+
+#include "utilitaires.h"
+
 template<typename Nombre>
 class Polynome
 {
@@ -87,7 +91,7 @@ public:
     void reduire()
     {
     	size_t taille = _polynome.size();
-    	while (_polynome[taille -1] == 0)
+    	while (taille > 0 && _polynome[taille -1] == 0)
     		--taille;
     		
     	if (taille < _polynome.size())
