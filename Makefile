@@ -8,7 +8,7 @@ LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp -l
 
 SOURCES=timer.cpp premiers.cpp graphe.cpp $(wildcard probleme*.cpp) $(wildcard probleme0xx/*.cpp) $(wildcard probleme1xx/*.cpp)
 
-TEST_SOURCES=test.cpp arithmetiques.cpp chiffres.cpp combinatoire.cpp polygonal.cpp polynome.cpp puissance.cpp
+TEST_SOURCES=test.cpp $(wildcard test/*.cpp)
 
 INCLUDES=$(wildcard *.h)
 
