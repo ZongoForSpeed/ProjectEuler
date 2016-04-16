@@ -158,7 +158,7 @@ namespace
                     if (first)
                     {
                         u = binomial<p>(n, j) * binomial<p>(j, d);
-                        std::cout << "u_" << j << " = " << u << std::endl;
+                        // std::cout << "u_" << j << " = " << u << std::endl;
                         if (j%2 == 0)
                             u = - u;
                         first = false;
@@ -180,8 +180,8 @@ namespace
             }
             
             std::cout << "Resultat = " << resultat << std::endl;
-            if (resultat.value() != 0)
-                std::cout << " ou " << -resultat << std::endl;
+            // if (resultat.value() != 0)
+            //  std::cout << " ou " << -resultat << std::endl;
         }
     };
     
@@ -189,27 +189,6 @@ namespace
 
 ENREGISTRER_PROBLEME(498, "Remainder of polynomial division")
 {
-    Probleme498<3> p3(100, 10, 4);
-    std::cout << "227197811615775LL % 3 = " << 227197811615775LL % 3 << std::endl;
-    p3.algorithme();
-
-    Probleme498<5> p5(100, 10, 4);
-    std::cout << "227197811615775LL % 5 = " << 227197811615775LL % 5 << std::endl;
-    p5.algorithme();
-
-    Probleme498<7> p7(100, 10, 4);
-    std::cout << "227197811615775LL % 7 = " << 227197811615775LL % 7 << std::endl;
-    p7.algorithme();
-    
-    Probleme498<101> p101(100, 10, 4);
-    std::cout << "227197811615775LL % 101 = " << 227197811615775LL % 101 << std::endl;
-    p101.algorithme();
-    
-    // std::cout << "u_10000 = " << binomial<999999937>(10000000000000LL, 10000) << std::endl;
     Probleme498<999999937> p(10000000000000LL, 1000000000000LL, 10000);
     p.algorithme();
-    
-    // Probleme498<999999937> p(100, 10, 4);
-    // std::cout << "227197811615775LL % 999999937 = " << 227197811615775LL % 999999937 << std::endl;
-    // p.algorithme();
 }
