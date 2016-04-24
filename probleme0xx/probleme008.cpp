@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "utilitaires.h"
-#include "timer.h"
 
 #include <iostream>
 #include <numeric>
@@ -36,7 +35,6 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series")
         "71636269561882670428252483600823257530420752963450";
     // Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. 
     // What is the value of this product?
-    Timer t("probleme 8");
     auto produit = [&big_number](const size_t & debut, const size_t & fin) -> nombre
     {
         if (debut < fin && fin < big_number.size())

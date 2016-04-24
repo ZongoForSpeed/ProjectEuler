@@ -9,7 +9,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(17, "Number letter counts")
 {
-    Timer t("probleme 17");
     // If the numbers 1 to 5 are written out in words: one, two, three, four, five, 
     // then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
     // 

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "combinatoire.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -11,7 +10,6 @@ typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(20, "Factorial digit sum")
 {
-    Timer t("probleme 20");
     // n! means n × (n − 1) × ... × 3 × 2 × 1
     // 
     // For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,

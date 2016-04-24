@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -11,7 +10,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(19, "Counting Sundays")
 {
-    Timer t("probleme 19");
     // You are given the following information, but you may prefer to do some research for yourself.
     // 
     // 1 Jan 1900 was a Monday.

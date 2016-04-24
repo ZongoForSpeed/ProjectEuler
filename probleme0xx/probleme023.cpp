@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 
 #include <iostream>
 #include <list>
@@ -10,7 +9,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(23, "Non-abundant sums")
 {
-    Timer t("probleme 23");
     // A perfect number is a number for which the sum of its proper divisors is exactly equal to the number. 
     // For example, the sum of the proper divisors of 28 would be 1 + 2 + 4 + 7 + 14 = 28, which means that 
     // 28 is a perfect number.

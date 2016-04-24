@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -17,7 +16,6 @@ ENREGISTRER_PROBLEME(6, "Sum square difference")
     //
     // Find the difference between the sum of the squares of the first one hundred natural numbers 
     // and the square of the sum.
-    Timer t ("probleme 6");
     nombre somme = 0;
     nombre somme_carre = 0;
     for (nombre n = 1; n < 101; ++n)

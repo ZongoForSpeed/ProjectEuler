@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 
 #include <iostream>
 #include <vector>
@@ -12,7 +11,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(21, "Amicable numbers")
 {
-    Timer t("probleme 21");
     // Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
     // If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
     // 

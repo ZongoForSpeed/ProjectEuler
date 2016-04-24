@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <boost/tuple/tuple.hpp>
@@ -14,7 +13,6 @@ ENREGISTRER_PROBLEME(9, "Special Pythagorean triplet")
     //
     // There exists exactly one Pythagorean triplet for which a + b + c = 1000.
     // Find the product abc.
-    Timer t("probleme 9");
     auto pythagorean = [](const nombre & limite) -> boost::tuple<nombre, nombre, nombre>
     {
         for (nombre a = 1; a < limite / 3; ++a)

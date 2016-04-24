@@ -110,6 +110,13 @@ namespace std
         os << "}" << std::endl;
         return os;
     }
+    
+    template< class Iterator >
+    Iterator next( Iterator it, size_t n) 
+    {
+        advance(it, static_cast<typename std::iterator_traits<Iterator>::difference_type>(n));
+        return it;    
+    }
 }
 
 template<typename T1, typename T2>
@@ -198,14 +205,3 @@ namespace utilitaires
         return distance(first, last, std::__iterator_category(first));
     }
 }
-
-namespace std
-{
-    template< class Iterator >
-    Iterator next( Iterator it, size_t n) 
-    {
-        advance(it, static_cast<typename std::iterator_traits<Iterator>::difference_type>(n));
-        return it;    
-    }
-}
-

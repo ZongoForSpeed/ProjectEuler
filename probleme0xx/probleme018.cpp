@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -11,7 +10,6 @@ typedef std::vector<vecteur> matrice;
 
 ENREGISTRER_PROBLEME(18, "Maximum path sum I")
 {
-    Timer t("probleme 18");
     // By starting at the top of the triangle below and moving to adjacent numbers on the row below, 
     // the maximum total from top to bottom is 23.
     //                                             3

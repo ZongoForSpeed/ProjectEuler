@@ -34,6 +34,28 @@ namespace arithmetiques
         return (a*b) / PGCD(a,b);
     }
     
+    template<typename Nombre>
+    void Bezout(Nombre a, Nombre b, Nombre& x, Nombre& y)
+    {
+        // https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
+        Nombre s = 0, old_s = 1;
+        Nombre t = 1, old_t = 0;
+        Nombre r = b, old_r = a;
+        while (r != 0)
+        {
+            Nombre quotient = old_r / r;
+            std::tie(old_r, r) = std::make_pair(r, old_r - quotient * r);
+            std::tie(old_s, s) = std::make_pair(s, old_s - quotient * s);
+            std::tie(old_t, t) = std::make_pair(t, old_t - quotient * t);
+        }
+        
+        // std::cout << "Bézout coefficients:" << std::make_pair(old_s, old_t) << std::endl;
+        // std::cout << "greatest common divisor:" << old_r << std::endl;
+        // std::cout << "quotients by the gcd:" << std::make_pair(t, s) << std::endl;
+        x = old_s;
+        y = old_t;
+    }
+    
     template<typename Nombre, typename Conteneur>
     Nombre nombre_diviseurs(Nombre n, const Conteneur & premiers)
     {
@@ -262,6 +284,27 @@ namespace arithmetiques
         }
         
         std::sort(resultat.begin(), resultat.end());
+        return resultat;
+    }
+    
+    template<typename Nombre, typename Conteneur>
+    std::deque<Nombre> facteurs_premiers(Nombre n, const Conteneur & premiers)
+    {
+        std::deque<Nombre> resultat;
+        for (const auto & p: premiers)
+        {
+            if (p*p > n)
+                break;
+            if (n%p == 0)
+            {
+                while (n%p == 0)
+                    n /= p;
+                resultat.push_back(p);
+            }
+        }
+        if (n > 1)
+            resultat.push_back(n);
+            
         return resultat;
     }
     

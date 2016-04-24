@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -8,7 +7,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(11, "Largest product in a grid")
 {
-    Timer t("probleme 11");
     // In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
     std::vector<std::vector<nombre>> matrice {
         { 8, 2,22,97,38,15, 0,40, 0,75, 4, 5, 7,78,52,12,50,77,91, 8},

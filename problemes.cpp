@@ -1,4 +1,5 @@
 #include "problemes.h"
+#include "timer.h"
 #include "utilitaires.h"
 
 #include <vector>
@@ -49,7 +50,9 @@ int RegistreProbleme::execute(int argc, char** argv)
         auto it = _registre.find(n);
         if (it != _registre.end())
         {
-            std::cout << it->first << ": " << it->second.first << std::endl;
+            std::ostringstream oss;
+            oss << "probleme " << it->first << ": " << it->second.first;
+            Timer t(oss.str());
             it->second.second();            
         }
         else
