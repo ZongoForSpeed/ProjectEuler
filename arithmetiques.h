@@ -312,16 +312,25 @@ namespace arithmetiques
     {
         template<typename Nombre>
         Nombre A(Nombre n, size_t base = 10)
-    	{
-    		Nombre k = 1;
-    		Nombre q = (base - 1)*n;
+        {
+            Nombre k = 1;
+            Nombre q = (base - 1)*n;
             for (Nombre p = base%q; p%q != 1; p = (base*p)%q)
             {
                 ++k;
             }
             
             return k;
-    	}
+        }
     }
-
+    
+    template<typename Nombre>
+    short signe(Nombre n)
+    {
+        if (n > 0)
+            return 1;
+        else if (n < 0)
+            return -1;
+        return 0;
+    }
 }
