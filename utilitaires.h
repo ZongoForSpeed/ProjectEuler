@@ -10,6 +10,8 @@
 #include <iterator>
 #include <tuple>
 
+#include <boost/optional.hpp>
+
 namespace std
 {
     template<typename T1, typename T2>
@@ -116,6 +118,16 @@ namespace std
     {
         advance(it, static_cast<typename std::iterator_traits<Iterator>::difference_type>(n));
         return it;    
+    }
+    
+    template<typename T>
+    ostream & operator<<(ostream & os, boost::optional<T> s)
+    {
+        if (s)
+            os << *s;
+        else
+            os << "<none>";
+        return os;
     }
 }
 
