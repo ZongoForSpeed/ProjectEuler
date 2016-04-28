@@ -9,12 +9,6 @@
 #include <algorithm>
 #include <limits>
 
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/io.hpp>
-
-// #include <boost/multiprecision/gmp.hpp>
-// typedef boost::multiprecision::mpz_int nombre;
-
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
