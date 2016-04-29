@@ -19,13 +19,17 @@ TEST_OBJECTS=$(TEST_SOURCES:.cpp=.o)
 all: $(SOURCES) Euler Test
 
 Euler: $(OBJECTS) euler.o
-	$(COMPILER) $(OBJECTS) euler.o -o $@ $(LDFLAGS)
+	@$(COMPILER) $(OBJECTS) euler.o -o $@ $(LDFLAGS)
+	@echo linking $@
 	
 Test: $(OBJECTS) $(TEST_OBJECTS)
-	$(COMPILER) $(OBJECTS) $(TEST_OBJECTS) -o $@ $(LDFLAGS)
+	@$(COMPILER) $(OBJECTS) $(TEST_OBJECTS) -o $@ $(LDFLAGS)
+	@echo linking $@
 
 %.o: %.cpp $(INCLUDES)
-	$(COMPILER) $< -o $@ $(CPPFLAGS)
+	@$(COMPILER) $< -o $@ $(CPPFLAGS)
+	@echo compiling $< ...
 		
 clean:
-	rm $(OBJECTS) $(TEST_OBJECTS) Euler Test
+	@rm $(OBJECTS) $(TEST_OBJECTS) Euler Test
+	@echo cleaning project
