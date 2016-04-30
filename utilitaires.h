@@ -147,24 +147,6 @@ namespace std
     }
 }
 
-/*
-template<typename Nombre>
-Nombre racine_carre(Nombre n)
-{
-    size_t d = chiffres::nombre_chiffres(n);
-    Nombre x0 = puissance::puissance<Nombre>(10, d/2);
-    while (true)
-    {
-        Nombre xn = (x0 + n / x0) / 2;
-        if (xn == x0)
-            break;
-        x0 = xn;
-    }
-    
-    // std::cout << "racine(" << n << ") = " << x0 << std::endl;
-    return x0;
-}*/
-
 template<typename Nombre>
 Nombre racine_carre(Nombre n)
 {
