@@ -15,6 +15,30 @@ BOOST_AUTO_TEST_SUITE(test_arithmetiques)
         BOOST_CHECK_EQUAL(arithmetiques::PPCM(456753ULL, 97643ULL), 44598733179ULL);
         BOOST_CHECK_EQUAL(arithmetiques::PPCM(456755ULL, 158665ULL), 1114938955);
     }
+    
+    BOOST_AUTO_TEST_CASE(Bezout1)
+    {
+        long long u, v;
+        long long a = 456753LL;
+        long long b = 97643LL;
+        arithmetiques::Bezout(a, b, u, v);
+        
+        BOOST_CHECK_EQUAL(u, 18947LL);
+        BOOST_CHECK_EQUAL(v, -88630LL);
+        BOOST_CHECK_EQUAL(a*u + b*v, 1); // PGCD(a, b) = 1
+    }
+
+    BOOST_AUTO_TEST_CASE(Bezout2)
+    {
+        long long u, v;
+        long long a = 456755ULL;
+        long long b = 158665ULL;
+        arithmetiques::Bezout(a, b, u, v);
+        
+        BOOST_CHECK_EQUAL(u, 602LL);
+        BOOST_CHECK_EQUAL(v, -1733LL);
+        BOOST_CHECK_EQUAL(a*u + b*v, 65); // PGCD(a, b) = 65
+    }
 
     struct fixure_arithmetiques
     {

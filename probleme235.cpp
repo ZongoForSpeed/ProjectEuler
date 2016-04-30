@@ -17,9 +17,9 @@ namespace
 	long double S(long double r)
 	{
 		long double s = 0.0;
-		for (nombre k = 1; k <= 5000; ++k)
+		for (size_t k = 1; k <= 5000; ++k)
 		{
-			s += (900 - 3 * k) * puissance::puissance(r, k - 1);
+			s += (900.0 - 3.0 * k) * puissance::puissance(r, k - 1);
 		}
 		
 		return s;

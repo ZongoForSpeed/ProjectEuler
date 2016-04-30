@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -10,7 +9,6 @@ typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
 {
-    Timer t("probleme 25");
     // The Fibonacci sequence is defined by the recurrence relation:
     //
     // Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.

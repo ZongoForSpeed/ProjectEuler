@@ -41,7 +41,6 @@ namespace
 
 ENREGISTRER_PROBLEME(277, "A Modified Collatz sequence")
 {
-    Timer t("probleme 277");
     // A modified Collatz sequence of integers is obtained from a starting value a1 in the following way:
     //
     // an+1 = an/3 if an is divisible by 3. We shall denote this as a large downward step, "D".

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <map>
@@ -11,7 +10,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(14, "Longest Collatz sequence")
 {
-    Timer t("probleme 14");
     // The following iterative sequence is defined for the set of positive integers:
     // 
     // n -> n/2 (n is even)

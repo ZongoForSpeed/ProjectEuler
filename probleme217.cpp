@@ -41,7 +41,7 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers")
 
     nombre resultat = T_somme[1][0];
 
-    for (short n = 2; n <= limite; ++n)
+    for (unsigned short n = 2; n <= limite; ++n)
     {
         auto & somme = T_somme[n];
         auto & compteur = T_compteur[n];

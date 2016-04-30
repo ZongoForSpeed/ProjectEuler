@@ -17,7 +17,7 @@ typedef std::vector<nombre> vecteur;
 
 namespace
 {
-    bool pandigital(const nombre n, std::size_t base = 10)
+    bool pandigital(const nombre n, unsigned short base = 10)
     {
         std::vector<std::size_t> chiffres(base, 0);
         chiffres::boucle_chiffre(n, [&chiffres](nombre d){ chiffres[d]++; }, base);
@@ -27,7 +27,7 @@ namespace
         return true;
     }
     
-    bool pandigital_complet(const nombre n, std::size_t base = 10)
+    bool pandigital_complet(const nombre n, unsigned short base = 10)
     {
         std::vector<std::size_t> chiffres(base, 0);
         chiffres::boucle_chiffre(n, [&chiffres](nombre d){ chiffres[d]++; }, base);

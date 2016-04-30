@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <numeric>
@@ -15,7 +14,6 @@ ENREGISTRER_PROBLEME(2, "Even Fibonacci numbers")
     // 
     // By considering the terms in the Fibonacci sequence whose values do not exceed four million, 
     // find the sum of the even-valued terms.    
-    Timer t ("probleme 2");
     vecteur fibonacci;
     fibonacci.push_back(1);
     fibonacci.push_back(2);

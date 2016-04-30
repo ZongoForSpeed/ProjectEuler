@@ -20,11 +20,11 @@ ENREGISTRER_PROBLEME(56, "Powerful digit sum")
     //
     // Considering natural numbers of the form, a^b, where a, b < 100, what is the maximum digital sum?
     nombre maximum = 0;
-    for (nombre a = 1; a < 100; ++a)
-    for (nombre b = 1; b < 100; ++b)
+    for (size_t a = 1; a < 100; ++a)
+    for (size_t b = 1; b < 100; ++b)
     {
         nombre somme = 0;
-        chiffres::boucle_chiffre(puissance::puissance(a,b), [&somme] (const nombre & d) { somme += d; });
+        chiffres::boucle_chiffre(puissance::puissance<nombre>(a,b), [&somme] (const nombre & d) { somme += d; });
         maximum = std::max(maximum, somme);
     }
     std::cout << "Solution: " << maximum << std::endl;

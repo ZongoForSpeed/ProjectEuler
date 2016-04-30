@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <fstream>
@@ -13,7 +12,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(22, "Names scores")
 {
-    Timer t("probleme 22");
     // Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing 
     // over five-thousand first names, begin by sorting it into alphabetical order. 
     // Then working out the alphabetical value for each name, multiply this value by its alphabetical 

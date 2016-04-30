@@ -9,9 +9,27 @@
 #include <queue>
 #include <iterator>
 #include <tuple>
+#include <cmath>
+
+#include "puissance.h"
+#include "chiffres.h"
+
+#include <boost/optional.hpp>
+#include <boost/multiprecision/gmp.hpp>
 
 namespace std
 {
+    template<typename Nombre>
+    Nombre abs(Nombre n)
+    {
+        if (n > 0)
+            return n;
+        else
+            return -n;
+    }
+    
+    long double sqrt(boost::multiprecision::mpz_int n);
+    
     template<typename T1, typename T2>
     std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
     {
@@ -110,7 +128,80 @@ namespace std
         os << "}" << std::endl;
         return os;
     }
+    
+    template< class Iterator >
+    Iterator next( Iterator it, size_t n) 
+    {
+        advance(it, static_cast<typename std::iterator_traits<Iterator>::difference_type>(n));
+        return it;    
+    }
+    
+    template<typename T>
+    ostream & operator<<(ostream & os, boost::optional<T> s)
+    {
+        if (s)
+            os << *s;
+        else
+            os << "<none>";
+        return os;
+    }
 }
+
+/*
+template<typename Nombre>
+Nombre racine_carre(Nombre n)
+{
+    size_t d = chiffres::nombre_chiffres(n);
+    Nombre x0 = puissance::puissance<Nombre>(10, d/2);
+    while (true)
+    {
+        Nombre xn = (x0 + n / x0) / 2;
+        if (xn == x0)
+            break;
+        x0 = xn;
+    }
+    
+    // std::cout << "racine(" << n << ") = " << x0 << std::endl;
+    return x0;
+}*/
+
+template<typename Nombre>
+Nombre racine_carre(Nombre n)
+{
+    Nombre x = static_cast<Nombre>(std::sqrt(n));
+    return x;
+}
+
+template<>
+boost::multiprecision::mpz_int racine_carre<boost::multiprecision::mpz_int>(boost::multiprecision::mpz_int n);
+
+template<typename Nombre, typename = typename std::enable_if<std::is_integral<Nombre>::value, Nombre>::type>
+Nombre racine_cubique(Nombre n)
+{
+	return static_cast<Nombre>(std::cbrt(n));
+}
+
+template<typename Nombre>
+boost::optional<Nombre> carre_parfait(Nombre x)
+{
+    Nombre s = racine_carre<Nombre>(x);
+    if (s * s == x)
+        return s;
+    else
+        return boost::none;
+}
+
+long double operator+(const boost::multiprecision::mpz_int & n, const long double d);
+long double operator+(const long double d, const boost::multiprecision::mpz_int & n);
+
+long double operator-(const boost::multiprecision::mpz_int & n, const long double d);
+long double operator-(const long double d, const boost::multiprecision::mpz_int & n);
+
+long double operator/(const boost::multiprecision::mpz_int & n, const long double d);
+long double operator/(const long double d, const boost::multiprecision::mpz_int & n);
+
+long double operator*(const boost::multiprecision::mpz_int & n, const long double d);
+long double operator*(const long double d, const boost::multiprecision::mpz_int & n);
 
 template<typename T1, typename T2>
 std::string concatener(const T1 & t1, const T2 & t2)
@@ -198,14 +289,3 @@ namespace utilitaires
         return distance(first, last, std::__iterator_category(first));
     }
 }
-
-namespace std
-{
-    template< class Iterator >
-    Iterator next( Iterator it, size_t n) 
-    {
-        advance(it, static_cast<typename std::iterator_traits<Iterator>::difference_type>(n));
-        return it;    
-    }
-}
-

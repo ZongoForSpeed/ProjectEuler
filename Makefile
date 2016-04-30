@@ -6,9 +6,9 @@ CPPFLAGS=-std=gnu++11 -c -O3 -DNDEBUG -DBOOST_UBLAS_NDEBUG $(WARNINGS) -I.
 
 LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp -lstdc++
 
-SOURCES=timer.cpp premiers.cpp graphe.cpp $(wildcard probleme*.cpp) $(wildcard probleme0xx/*.cpp) $(wildcard probleme1xx/*.cpp)
+SOURCES=timer.cpp premiers.cpp graphe.cpp utilitaires.cpp $(wildcard probleme*.cpp) $(wildcard probleme0xx/*.cpp) $(wildcard probleme1xx/*.cpp)
 
-TEST_SOURCES=test.cpp arithmetiques.cpp chiffres.cpp combinatoire.cpp polygonal.cpp polynome.cpp puissance.cpp
+TEST_SOURCES=test.cpp $(wildcard test/*.cpp)
 
 INCLUDES=$(wildcard *.h)
 
@@ -19,13 +19,17 @@ TEST_OBJECTS=$(TEST_SOURCES:.cpp=.o)
 all: $(SOURCES) Euler Test
 
 Euler: $(OBJECTS) euler.o
-	$(COMPILER) $(OBJECTS) euler.o -o $@ $(LDFLAGS)
+	@$(COMPILER) $(OBJECTS) euler.o -o $@ $(LDFLAGS)
+	@echo linking $@
 	
 Test: $(OBJECTS) $(TEST_OBJECTS)
-	$(COMPILER) $(OBJECTS) $(TEST_OBJECTS) -o $@ $(LDFLAGS)
+	@$(COMPILER) $(OBJECTS) $(TEST_OBJECTS) -o $@ $(LDFLAGS)
+	@echo linking $@
 
 %.o: %.cpp $(INCLUDES)
-	$(COMPILER) $< -o $@ $(CPPFLAGS)
+	@$(COMPILER) $< -o $@ $(CPPFLAGS)
+	@echo compiling $< ...
 		
 clean:
-	rm $(OBJECTS) $(TEST_OBJECTS) Euler Test
+	@rm $(OBJECTS) $(TEST_OBJECTS) Euler Test
+	@echo cleaning project

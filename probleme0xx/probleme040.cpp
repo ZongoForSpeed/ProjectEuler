@@ -26,7 +26,7 @@ ENREGISTRER_PROBLEME(40, "Champernowne's constant")
 
     const std::string s = ss.str();
     nombre resultat = 1;
-    for (nombre p = 0; p < 7; ++p)
+    for (size_t p = 0; p < 7; ++p)
         resultat *= s[puissance::puissance(10UL, p)] - '0';
     std::cout << "Solution: " << resultat << std::endl;
 }

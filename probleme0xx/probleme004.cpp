@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -12,7 +11,6 @@ ENREGISTRER_PROBLEME(4, "Largest palindrome product")
     // of two 2-digit numbers is 9009 = 91 × 99.
     // 
     // Find the largest palindrome made from the product of two 3-digit numbers.
-    Timer t ("probleme 4");
     auto palindrome = [](const nombre & n) -> bool
     {
         std::string s = std::to_string(n);
