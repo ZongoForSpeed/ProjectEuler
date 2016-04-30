@@ -48,11 +48,11 @@ ENREGISTRER_PROBLEME(47, "Distinct primes factors")
             decomposition.pop_front();
         
         std::set<nombre> facteur;
-        for (const auto i: decomposition)
+        for (const auto & i: decomposition)
         {
             if (i.size() != 4)
                 break;
-            for (const auto f: i)
+            for (const auto & f: i)
                 facteur.insert(f);
         }
         

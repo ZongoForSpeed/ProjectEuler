@@ -140,7 +140,7 @@ public:
             
             {
                 // Forme p1^3*p2 ou p1 != p2
-                for (const size_t & p : _premiers)
+                for (const nombre & p : _premiers)
                 {
                     size_t p3 = puissance::puissance(p, 3);
                     if (2*p3 > limite)
