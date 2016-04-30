@@ -1,18 +1,7 @@
 #pragma once 
+#include "utilitaires.h"
 
 #include <cmath>
-
-template<typename Nombre, typename = typename std::enable_if<std::is_integral<Nombre>::value, Nombre>::type>
-Nombre racine_carre(Nombre n)
-{
-	return static_cast<Nombre>(std::sqrt(n));
-}
-
-template<typename Nombre, typename = typename std::enable_if<std::is_integral<Nombre>::value, Nombre>::type>
-Nombre racine_cubique(Nombre n)
-{
-	return static_cast<Nombre>(std::cbrt(n));
-}
 
 namespace polygonal
 {

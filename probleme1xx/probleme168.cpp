@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(168, "Number Rotations")
     //
     // Find the last 5 digits of the sum of all integers n, 10 < n < 10^100, that have this property.
     nombre resultat = 0;
-    for (nombre puissance = 1; puissance < 101; ++puissance)
+    for (size_t puissance = 1; puissance < 101; ++puissance)
     {
         for (nombre a = 1; a < 10; ++a)
         for (nombre n = 1; n < 10; ++n)

@@ -17,9 +17,9 @@ ENREGISTRER_PROBLEME(48, "Self powers")
     //
     // Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000.
     nombre resultat = 0;
-    for (nombre n = 1; n <= 1000; ++n)
+    for (size_t n = 1; n <= 1000; ++n)
     {
-        resultat += puissance::puissance_modulaire(n, n, 10000000000LL);
+        resultat += puissance::puissance_modulaire<nombre>(n, n, 10000000000LL);
         resultat = resultat%10000000000LL; 
     }
     

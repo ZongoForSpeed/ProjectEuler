@@ -24,7 +24,7 @@ namespace
 	nombre c(nombre n)
 	{
 		// https://oeis.org/A159916
-		nombre somme = chiffres::somme_chiffres((n - 1)/4, 2);
+		nombre somme = chiffres::somme_chiffres<nombre>((n - 1)/4, 2);
 		return puissance::puissance<nombre>(2, somme);
 	}
 	

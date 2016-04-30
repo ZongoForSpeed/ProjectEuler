@@ -3,6 +3,7 @@
 #include "diophantienne.h"
 #include "utilitaires.h"
 
+
 BOOST_AUTO_TEST_SUITE(test_diophantienne)
 
     BOOST_AUTO_TEST_CASE(pqa1)

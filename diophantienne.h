@@ -7,16 +7,6 @@
 
 namespace diophantienne
 {
-    template<typename Nombre>
-    boost::optional<Nombre> carre_parfait(Nombre x)
-    {
-        Nombre s = racine_carre(x);
-        if (s * s == x)
-            return s;
-        else
-            return boost::none;
-    }
-    
     // PQa algorithm as described in: http://www.jpr2718.org/pell.pdf
     // This performs the continued fraction expansion for (p0+sqrt(d))/q0
     template<typename Nombre>
@@ -221,18 +211,18 @@ namespace diophantienne
         if (n > 0)
         {
             l1 = 0;
-            l2 = racine_carre(n*(t-1)/(2*d));
+            l2 = racine_carre<Nombre>(n*(t-1)/(2*d));
         }
         else
         {
-            l1 = racine_carre(-n / (1*d));
-            l2 = racine_carre((-n*(t+1)) / (2*d));
+            l1 = racine_carre<Nombre>(-n / (1*d));
+            l2 = racine_carre<Nombre>((-n*(t+1)) / (2*d));
         }
         
         std::vector<std::pair<Nombre, Nombre>> funds;
         for (Nombre y = l1; y < l2 + 1; ++y)
         {
-            if (auto s = carre_parfait(n + d*y*y))
+            if (auto s = carre_parfait<Nombre>(n + d*y*y))
             {
                 Nombre x = *s;
                 funds.push_back(std::make_pair(x, y));
@@ -248,7 +238,7 @@ namespace diophantienne
     template<typename Nombre>
     std::vector<std::pair<Nombre, Nombre>> pell_bf(Nombre d, Nombre n, Nombre max_x)
     {
-        auto funds = pell_funds_bf(d, n);
+        auto funds = pell_funds_bf<Nombre>(d, n);
         std::set<std::pair<Nombre, Nombre>> solution;
         for (auto p: funds)
             solution.insert(std::make_pair(std::abs(p.first), std::abs(p.second)));
@@ -280,7 +270,7 @@ namespace diophantienne
     std::vector<std::pair<Nombre, Nombre>> quad_s(Nombre a, Nombre b, Nombre c, Nombre max_x)
     {
         std::vector<std::pair<Nombre, Nombre>> resultat;
-        auto pell = pell_bf(a*b, a*c, a*max_x);
+        auto pell = pell_bf<Nombre>(a*b, a*c, a*max_x);
         for (auto p : pell)
         {
             if (p.first % a == 0)
