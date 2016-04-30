@@ -1,8 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
-#include "premiers.h"
 #include "utilitaires.h"
-#include "diophantienne.h"
 
 #include <iostream>
 
