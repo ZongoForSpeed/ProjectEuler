@@ -2,7 +2,6 @@
 #include "arithmetiques.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "graphe.h"
 
@@ -19,7 +18,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(110, "Diophantine reciprocals II")
 {
-    Timer t("probleme 110");
     // In the following equation x, y, and n are positive integers.
     // 
     //                                          1/x + 1/y = 1/n

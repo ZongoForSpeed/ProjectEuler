@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -36,7 +35,6 @@ namespace
 
 ENREGISTRER_PROBLEME(191, "Prize Strings")
 {
-    Timer timer("probleme 191");
     // A particular school offers cash rewards to children with good attendance and punctuality. 
     // If they are absent for three consecutive days or late on more than one occasion then they 
     // forfeit their prize.

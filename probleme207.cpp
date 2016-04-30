@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(207, "Integer partition equations")
 {
-    Timer timer("probleme 207");
     // For some positive integers k, there exists an integer partition of the form 4^t = 2^t + k,
     // where 4t, 2t, and k are all positive integers and t is a real number.
     //

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -27,7 +26,6 @@ namespace
 
 ENREGISTRER_PROBLEME(215, "Crack-free Walls")
 {
-    Timer timer("probleme 215");
     // Consider the problem of building a wall out of 2×1 and 3×1 bricks (horizontal×vertical dimensions)
     // such that, for extra strength, the gaps between horizontally-adjacent bricks never line up in 
     // consecutive layers, i.e. never form a "running crack".

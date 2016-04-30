@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -48,7 +47,6 @@ namespace
 
 ENREGISTRER_PROBLEME(199, "Iterative Circle Packing")
 {
-    Timer timer("probleme 199");
     // Three circles of equal radius are placed inside a larger circle such that each pair of circles
     // is tangent to one another and the inner circles do not overlap. There are four uncovered "gaps"
     // which are to be filled iteratively with more tangent circles.

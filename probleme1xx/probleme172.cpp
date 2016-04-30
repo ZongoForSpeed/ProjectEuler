@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(172, "Investigating numbers with few repeated digits")
 {
-    Timer timer("probleme 172");
     // How many 18-digit numbers n (without leading zeros) are there such that no digit occurs more 
     // than three times in n?
     nombre taille = 18;

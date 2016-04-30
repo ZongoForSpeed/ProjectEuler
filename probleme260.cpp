@@ -1,11 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
-#include "premiers.h"
-#include "timer.h"
-#include "utilitaires.h"
-#include "combinatoire.h"
-#include "chiffres.h"
-#include "polygonal.h"
+#include "multidimension.h"
 
 #include <ostream>
 #include <iostream>

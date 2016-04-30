@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(95, "Amicable chains")
 {
-    Timer t("probleme 95");
     // The proper divisors of a number are all the divisors excluding the number itself. For example, 
     // the proper divisors of 28 are 1, 2, 4, 7, and 14. As the sum of these divisors is equal to 28,
     // we call it a perfect number.

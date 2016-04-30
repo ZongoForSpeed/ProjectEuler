@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -16,7 +15,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(72, "Counting fractions")
 {
-    Timer t("probleme 72");
     // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is called a reduced proper fraction.
     //
     // If we list the set of reduced proper fractions for d ≤ 8 in ascending order of size, we get:

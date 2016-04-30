@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,9 +13,8 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(132, "Large repunit factors")
 {
-    Timer t("probleme 132");
-	// A number consisting entirely of ones is called a repunit. We shall define R(k) to be a repunit 
-	// of length k.
+    // A number consisting entirely of ones is called a repunit. We shall define R(k) to be a repunit 
+    // of length k.
     //
     // For example, R(10) = 1111111111 = 11×41×271×9091, and the sum of these prime factors is 9414.
     //
@@ -24,7 +22,6 @@ ENREGISTRER_PROBLEME(132, "Large repunit factors")
     nombre limite = 1000000;
     vecteur premiers;
     premiers::crible235<nombre>(limite, std::inserter(premiers, premiers.begin()));
-    t.etape("fin crible");
     
     nombre compteur = 0;
 	nombre resultat = 0;

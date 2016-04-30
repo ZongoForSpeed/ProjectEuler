@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -19,7 +18,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(229, "Four Representations using Squares")
 {
-    Timer timer("probleme 229");
     // Consider the number 3600. It is very special, because
 	//
 	// 				3600 = 48² +   36²

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(89, "Roman numerals")
 {
-    Timer t("probleme 89");
     // For a number written in Roman numerals to be considered valid there are basic rules which 
     // must be followed. Even though the rules allow some numbers to be expressed in more than one
     // way there is always a "best" way of writing a particular number.

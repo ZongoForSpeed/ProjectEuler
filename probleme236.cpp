@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -18,7 +17,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(236, "Luxury Hampers")
 {
-    Timer timer("probleme 236");
     // Suppliers 'A' and 'B' provided the following numbers of products for the luxury hamper market:
 	//
 	//									Product		'A'		'B'

@@ -2,7 +2,6 @@
 #include "chiffres.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(134, "Prime pair connection")
 {
-    Timer t("probleme 134");
     // Consider the consecutive primes p1 = 19 and p2 = 23. It can be verified that 1219 is the smallest 
     // number such that the last digits are formed by p1 whilst also being divisible by p2.
     //
@@ -27,7 +25,6 @@ ENREGISTRER_PROBLEME(134, "Prime pair connection")
     nombre limite = 1000000;
     vecteur premiers;
     premiers::crible235<nombre>(limite, std::inserter(premiers, premiers.begin()));
-    t.etape("fin crible");
     
     nombre dix = 10;
     

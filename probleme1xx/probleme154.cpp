@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(154, "Exploring Pascal's pyramid")
 {
-    Timer timer("probleme 154");
 	// A triangular pyramid is constructed using spherical balls so that each ball rests on exactly 
 	// three balls of the next lower level.
     //

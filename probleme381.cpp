@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "timer.h"
+
 #include <iostream>
 #include <set>
 #include <deque>
@@ -45,21 +45,15 @@ public:
     void algorithme()
     {
         std::deque<size_t> premiers;
+        premiers::crible<size_t>(limite, std::back_inserter(premiers));
+        
+        nombre resultat = 0;
+        for (const size_t & p : premiers)
         {
-            Timer t("crible");
-            premiers::crible<size_t>(limite, std::back_inserter(premiers));
+            resultat += S(p);                
         }
         
-        {
-            Timer t("algorithme");
-            nombre resultat = 0;
-            for (const size_t & p : premiers)
-            {
-                resultat += S(p);                
-            }
-            
-            std::cout << "Resultat = " << resultat << std::endl;
-        }   
+        std::cout << "Resultat = " << resultat << std::endl;
     }
 };
 

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -10,7 +9,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(26, "Reciprocal cycles")
 {
-    Timer t("probleme 26");
     // A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions 
     // with denominators 2 to 10 are given:
     //

@@ -3,8 +3,6 @@
 #include <iostream>
 #include <vector>
 
-#include "timer.h"
-
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 

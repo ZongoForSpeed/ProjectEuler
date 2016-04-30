@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -10,7 +9,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(38, "Pandigital multiples")
 {
-    Timer t("probleme 38");
     // Take the number 192 and multiply it by each of 1, 2, and 3:
     //
     //    192 × 1 = 192

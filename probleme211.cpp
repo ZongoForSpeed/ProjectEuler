@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(211, "Divisor Square Sum")
 {
-    Timer timer("probleme 211");
     // For a positive integer n, let σ2(n) be the sum of the squares of its divisors. For example,
     //
     // σ2(10) = 1 + 4 + 25 + 100 = 130.

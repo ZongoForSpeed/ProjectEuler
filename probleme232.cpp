@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -53,7 +52,6 @@ namespace
 
 ENREGISTRER_PROBLEME(232, "The Race")
 {
-    Timer timer("probleme 232");
     // Two players share an unbiased coin and take it in turns to play "The Race". On Player 1's turn, 
     // he tosses the coin once: if it comes up Heads, he scores one point; if it comes up Tails, he 
     // scores nothing. On Player 2's turn, she chooses a positive integer T and tosses the coin T times:

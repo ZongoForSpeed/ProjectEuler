@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -30,7 +29,6 @@ namespace
 
 ENREGISTRER_PROBLEME(189, "Tri-colouring a triangular grid")
 {
-    Timer timer("probleme 189");
     // Consider the following configuration of 64 triangles:
     //
     // We wish to colour the interior of each triangle with one of three colours: red, green or blue,

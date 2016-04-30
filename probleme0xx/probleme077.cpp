@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(77, "Prime summations")
 {
-    Timer t("probleme 77");
     // It is possible to write ten as the sum of primes in exactly five different ways:
     //
     //      7 + 3

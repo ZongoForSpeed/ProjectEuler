@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -17,7 +16,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(142, "Perfect Square Collection")
 {
-    Timer t("probleme 142");
     // Find the smallest x + y + z with integers x > y > z > 0 such that x + y, x − y, x + z, x − z,
     // y + z, y − z are all perfect squares.
 	nombre limite = 7000;

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -17,7 +16,6 @@ typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(168, "Number Rotations")
 {
-    Timer timer("probleme 168");
     // Consider the number 142857. We can right-rotate this number by moving the last digit (7) to 
     // the front of it, giving us 714285.
     // It can be verified that 714285=5×142857.

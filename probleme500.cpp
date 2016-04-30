@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "timer.h"
+
 #include <set>
 #include <deque>
 
@@ -39,39 +39,34 @@ public:
     void algorithme()
     {
         vecteur premiers;
-        {
-            Timer t("crible");
-            premiers::crible<nombre>(100000000, std::back_inserter(premiers));
-        }
+        premiers::crible<nombre>(100000000, std::back_inserter(premiers));
+
         Facteurs facteurs;
         vecteur resultat;
+        for (size_t i = 0; i < premiers.size(); ++i)
         {
-        	Timer t("algorithme");
-        	for (size_t i = 0; i < premiers.size(); ++i)
-        	{
-        		facteurs.insert(Facteur(premiers[i], i, 1));
-        	}
-        	for (nombre i = 0; i < limite; ++i)
-        	{
-        		Facteur facteur = *(facteurs.begin());
-        		facteurs.erase(facteurs.begin());
-        		if (facteur.premier == resultat.size())
-        			resultat.push_back(facteur.exposant);
-        		else
-        			resultat[facteur.premier] += facteur.exposant;
-        		facteur.valeur *= facteur.valeur;
-        		facteur.exposant *= 2;
-        		facteurs.insert(facteur);
-        	}
-            nombre p = 500500507;
-            nombre r = 1;
-            for (size_t n = 0; n < resultat.size(); ++n)
-            {
-            	r *= puissance::puissance_modulaire(premiers[n], resultat[n], p);
-            	r %= p;
-            }
-            std::cout << "Resultat = " << r << std::endl;
+            facteurs.insert(Facteur(premiers[i], i, 1));
         }
+        for (nombre i = 0; i < limite; ++i)
+        {
+            Facteur facteur = *(facteurs.begin());
+            facteurs.erase(facteurs.begin());
+            if (facteur.premier == resultat.size())
+                resultat.push_back(facteur.exposant);
+            else
+                resultat[facteur.premier] += facteur.exposant;
+            facteur.valeur *= facteur.valeur;
+            facteur.exposant *= 2;
+            facteurs.insert(facteur);
+        }
+        nombre p = 500500507;
+        nombre r = 1;
+        for (size_t n = 0; n < resultat.size(); ++n)
+        {
+            r *= puissance::puissance_modulaire(premiers[n], resultat[n], p);
+            r %= p;
+        }
+        std::cout << "Resultat = " << r << std::endl;
     }
 };
 

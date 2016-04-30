@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::pair<nombre, nombre> paire;
 
 ENREGISTRER_PROBLEME(124, "Ordered radicals")
 {
-    Timer t("probleme 124");
     // The radical of n, rad(n), is the product of the distinct prime factors of n. For example, 
     // 504 = 2^3 × 3^2 × 7, so rad(504) = 2 × 3 × 7 = 42.
     //

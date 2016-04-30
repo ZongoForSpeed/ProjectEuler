@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(139, "Pythagorean tiles")
 {
-    Timer t("probleme 139");
     // Let (a, b, c) represent the three sides of a right angle triangle with integral length sides. 
     // It is possible to place four such triangles together to form a square with length c.
     //

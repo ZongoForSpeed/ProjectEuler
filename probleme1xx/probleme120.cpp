@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -9,7 +8,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(120, "Square remainders")
 {
-    Timer t("probleme 120");
     // Let r be the remainder when (a−1)^n + (a+1)^n is divided by a².
     //
     // For example, if a = 7 and n = 3, then r = 42: 63 + 83 = 728 ≡ 42 mod 49. And as n varies, 

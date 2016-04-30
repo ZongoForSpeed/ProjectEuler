@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(175, "Fractions involving the number of different ways a number can be expressed as a sum of powers of 2")
 {
-    Timer timer("probleme 175");
     // Define f(0)=1 and f(n) to be the number of ways to write n as a sum of powers of 2 where no power occurs more than twice. 
     //
     // For example, f(10)=5 since there are five different ways to express 10:

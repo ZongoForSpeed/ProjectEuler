@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -48,7 +47,6 @@ namespace
 
 ENREGISTRER_PROBLEME(118, "Pandigital prime sets")
 {
-    Timer t("probleme 118");
     // Using all of the digits 1 through 9 and concatenating them freely to form decimal integers, 
     // different sets can be formed. Interestingly with the set {2,5,47,89,631}, all of the elements 
     // belonging to it are prime.
@@ -56,10 +54,7 @@ ENREGISTRER_PROBLEME(118, "Pandigital prime sets")
     // How many distinct sets containing each of the digits one through nine exactly once contain 
     // only prime elements?
     std::set<nombre> premiers;
-    {
-        Timer t_crible("crible");
-        premiers::crible23<nombre>(1000000000, std::inserter(premiers, premiers.begin()));
-    }
+    premiers::crible23<nombre>(1000000000, std::inserter(premiers, premiers.begin()));
     
     std::set<vecteur> resultat;
     

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -57,7 +56,6 @@ namespace
 
 ENREGISTRER_PROBLEME(66, "Diophantine equation")
 {
-    Timer t("probleme 66");
     // Consider quadratic Diophantine equations of the form:
     //
     //                                      x² – Dy² = 1

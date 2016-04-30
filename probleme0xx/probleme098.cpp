@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -18,7 +17,6 @@ typedef std::vector<vecteur> matrice;
 
 ENREGISTRER_PROBLEME(98, "Anagramic squares")
 {
-    Timer t("probleme 98");
     // By replacing each of the letters in the word CARE with 1, 2, 9, and 6 respectively, we form 
     // a square number: 1296 = 36². What is remarkable is that, by using the same digital 
     // substitutions, the anagram, RACE, also forms a square number: 9216 = 96². We shall call CARE 

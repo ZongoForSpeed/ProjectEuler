@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -33,7 +32,6 @@ namespace
 
 ENREGISTRER_PROBLEME(88, "Product-sum numbers")
 {
-    Timer t("probleme 88");
     // A natural number, N, that can be written as the sum and product of a given set of at least 
     // two natural numbers, {a1, a2, ... , ak} is called a product-sum number: 
     // N = a1 + a2 + ... + ak = a1 × a2 × ... × ak.

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "polygonal.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -11,7 +10,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(46, "Goldbach's other conjecture")
 {
-    Timer t("probleme 46");
     // It was proposed by Christian Goldbach that every odd composite number can be written as the 
     // sum of a prime and twice a square.
     //

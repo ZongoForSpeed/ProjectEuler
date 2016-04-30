@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -36,7 +35,6 @@ namespace
 
 ENREGISTRER_PROBLEME(138, "Special isosceles triangles")
 {
-    Timer t("probleme 138");
     // Consider the isosceles triangle with base length, b = 16, and legs, L = 17.
     //
     // By using the Pythagorean theorem it can be seen that the height of the triangle, 

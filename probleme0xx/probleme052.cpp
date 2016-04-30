@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -12,7 +11,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(52, "Permuted multiples")
 {
-    Timer t("probleme 52");
     // It can be seen that the number, 125874, and its double, 251748, contain exactly the same digits, 
     // but in a different order.
     // 

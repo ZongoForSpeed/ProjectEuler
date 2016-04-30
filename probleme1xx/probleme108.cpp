@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "graphe.h"
 
@@ -16,7 +15,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(108, "Diophantine reciprocals I")
 {
-    Timer t("probleme 108");
     // In the following equation x, y, and n are positive integers.
     //
     //                                          1/x + 1/y = 1/n

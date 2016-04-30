@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(135, "Same differences")
 {
-    Timer t("probleme 135");
     // Given the positive integers, x, y, and z, are consecutive terms of an arithmetic progression, 
     // the least value of the positive integer, n, for which the equation, x² − y² − z² = n, has 
     // exactly two solutions is n = 27:

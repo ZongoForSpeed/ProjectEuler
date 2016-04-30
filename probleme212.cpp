@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -57,7 +56,6 @@ namespace
 
 ENREGISTRER_PROBLEME(212, "Combined Volume of Cuboids")
 {
-    Timer timer("probleme 212");
     // An axis-aligned cuboid, specified by parameters { (x0,y0,z0), (dx,dy,dz) }, consists of all 
     // points (X,Y,Z) such that x0 ≤ X ≤ x0+dx, y0 ≤ Y ≤ y0+dy and z0 ≤ Z ≤ z0+dz. The volume of 
     // the cuboid is the product, dx × dy × dz. The combined volume of a collection of cuboids is 

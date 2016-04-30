@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(63, "Powerful digit counts")
 {
-    Timer t("probleme 63");
     // The 5-digit number, 16807=7^5, is also a fifth power. Similarly, the 9-digit number, 134217728=8^9, 
     // is a ninth power.
     // 

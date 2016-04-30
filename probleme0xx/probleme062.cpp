@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(62, "Cubic permutations")
 {
-    Timer t("probleme 62");
     // The cube, 41063625 (345^3), can be permuted to produce two other cubes: 56623104 (384^3) and 
     // 66430125 (405^3). In fact, 41063625 is the smallest cube which has exactly three permutations 
     // of its digits which are also cube.

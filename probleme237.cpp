@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -45,7 +44,6 @@ namespace
 
 ENREGISTRER_PROBLEME(237, "Tours on a 4 x n playing board")
 {
-    Timer timer("probleme 237");
     // Let T(n) be the number of tours over a 4 × n playing board such that:
 	// 
 	// The tour starts in the top left corner.

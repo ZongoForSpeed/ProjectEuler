@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "combinatoire.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -10,7 +9,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(34, "Digit factorials")
 {
-    Timer t ("probleme 34");
     // 145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145.
     //
     // Find the sum of all numbers which are equal to the sum of the factorial of their digits.

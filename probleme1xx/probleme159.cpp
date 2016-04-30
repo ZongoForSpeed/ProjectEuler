@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -19,7 +18,6 @@ typedef std::set<nombre> ensemble;
 
 ENREGISTRER_PROBLEME(159, "Digital root sums of factorisations")
 {
-    Timer timer("probleme 159");
     // A composite number can be factored many different ways. For instance, not including 
     // multiplication by one, 24 can be factored in 7 distinct ways:
     //

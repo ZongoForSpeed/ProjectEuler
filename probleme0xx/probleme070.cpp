@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -16,7 +15,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(70, "Totient permutation")
 {
-    Timer t("probleme 70");
     // Euler's Totient function, φ(n) [sometimes called the phi function], is used to determine the 
     // number of positive numbers less than or equal to n which are relatively prime to n. For 
     // example, as 1, 2, 4, 5, 7, and 8, are all less than nine and relatively prime to nine, φ(9)=6.

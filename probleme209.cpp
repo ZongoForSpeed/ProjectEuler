@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "combinatoire.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "graphe.h"
 
@@ -33,7 +32,6 @@ namespace
 
 ENREGISTRER_PROBLEME(209, "Circular Logic")
 {
-    Timer timer("probleme 209");
     // A k-input binary truth table is a map from k input bits (binary digits, 0 [false] or 1 [true]) 
     // to 1 output bit. For example, the 2-input binary truth tables for the logical AND and XOR 
     // functions are:

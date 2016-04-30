@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
+#include "multidimension.h"
 
 #include <iostream>
 #include <iomanip>
@@ -33,7 +33,6 @@ namespace
 
 ENREGISTRER_PROBLEME(223, "Almost right-angled triangles I")
 {
-    Timer timer("probleme 223");
     // Let us call an integer sided triangle with sides a ≤ b ≤ c barely acute if the sides satisfy 
     // a² + b² = c² + 1.
     //

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -199,7 +198,6 @@ namespace
 
 ENREGISTRER_PROBLEME(54, "Poker hands")
 {
-    Timer t("probleme 54");
     // In the card game poker, a hand consists of five cards and are ranked, from lowest to highest, 
     // in the following way:
     // 

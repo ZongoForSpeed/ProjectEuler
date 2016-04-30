@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <set>
@@ -11,7 +10,6 @@ typedef boost::multiprecision::mpz_int nombre;
     
 ENREGISTRER_PROBLEME(29, "Distinct powers")
 {
-    Timer t("probleme 29");
     // Consider all integer combinations of ab for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:
     //
     // 2^2=4, 2^3=8, 2^4=16, 2^5=32

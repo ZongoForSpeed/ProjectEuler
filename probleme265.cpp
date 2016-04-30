@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "puissance.h"
-#include "timer.h"
 
 #include <iostream>
 #include <vector>
@@ -44,7 +43,6 @@ namespace
 
 ENREGISTRER_PROBLEME(265, "Binary Circles")
 {
-    Timer t("probleme 265");
     // 2N binary digits can be placed in a circle so that all the N-digit clockwise subsequences are distinct.
     //
     // For N=3, two such circular arrangements are possible, ignoring rotations:

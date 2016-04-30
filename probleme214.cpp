@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -18,7 +17,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(214, "Totient Chains")
 {
-    Timer timer("probleme 214");
     // Let φ be Euler's totient function, i.e. for a natural number n, φ(n) is the number of k, 
     // 1 ≤ k ≤ n, for which gcd(k,n) = 1.
     // 

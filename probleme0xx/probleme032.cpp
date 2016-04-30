@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 
 #include <iostream>
 #include <set>
@@ -11,7 +10,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(32, "Pandigital products")
 {
-    Timer t("probleme 32");
     // We shall say that an n-digit number is pandigital if it makes use of all the digits 1 
     // to n exactly once; for example, the 5-digit number, 15234, is 1 through 5 pandigital.
     //

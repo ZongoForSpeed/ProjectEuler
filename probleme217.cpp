@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -16,7 +15,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(217, "Balanced Numbers")
 {
-    Timer timer("probleme 217");
     // A positive integer with k (decimal) digits is called balanced if its first [k/2] digits sum
     // to the same value as its last [k/2] digits, where ⌈x⌉, pronounced ceiling of x, is the smallest
     // integer ≥ x, thus [π] = 4 and [5] = 5.

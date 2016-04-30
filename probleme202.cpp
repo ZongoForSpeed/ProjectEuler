@@ -1,13 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
-#include "utilitaires.h"
 
 #include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <algorithm>
-#include <limits>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -15,7 +10,6 @@ typedef std::pair<nombre, nombre> paire;
 
 ENREGISTRER_PROBLEME(202, "\"Laserbeam\"")
 {
-    Timer timer("probleme 202");
     // Three mirrors are arranged in the shape of an equilateral triangle, with their reflective surfaces 
     // pointing inwards. There is an infinitesimal gap at each vertex of the triangle through which 
     // a laser beam may pass.

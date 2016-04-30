@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -30,7 +29,6 @@ namespace
 
 ENREGISTRER_PROBLEME(206, "Concealed Square")
 {
-    Timer timer("probleme 206");
     // Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
     // where each “_” is a single digit.
     nombre minimum = racine_carre(102030405060708LL); // 0900

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "timer.h"
 
 #include <iostream>
 #include <set>
@@ -9,7 +8,6 @@ typedef long long nombre;
 
 ENREGISTRER_PROBLEME(27, "Quadratic primes")
 {
-    Timer t("probleme 27");
     // Euler discovered the remarkable quadratic formula:
     //
     //                                                n² + n + 41

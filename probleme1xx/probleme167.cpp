@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(167, "Investigating Ulam sequences")
 {
-    Timer timer("probleme 167");
     // For two positive integers a and b, the Ulam sequence U(a,b) is defined by U(a,b)1 = a, 
     // U(a,b)2 = b and for k > 2, U(a,b)k is the smallest integer greater than U(a,b)(k-1) which
     // can be written in exactly one way as the sum of two distinct previous members of U(a,b).

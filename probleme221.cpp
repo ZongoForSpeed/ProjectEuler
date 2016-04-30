@@ -1,8 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
+#include "timer.h"
 
 #include <iostream>
 #include <iomanip>
@@ -19,7 +19,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(221, "Alexandrian Integers")
 {
-    Timer timer("probleme 221");
     // We shall call a positive integer A an "Alexandrian integer", if there exist integers p, q, r 
     // such that:
     //

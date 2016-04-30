@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(171, "Finding numbers for which the sum of the squares of the digits is a square")
 {
-    Timer timer("probleme 171");
     // For a positive integer n, let f(n) be the sum of the squares of the digits (in base 10) of n, e.g.
     //
     //      f(3) = 3² = 9,

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -13,7 +12,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(47, "Distinct primes factors")
 {
-    Timer t("probleme 47");
     // The first two consecutive numbers to have two distinct prime factors are:
     //
     //              14 = 2 × 7

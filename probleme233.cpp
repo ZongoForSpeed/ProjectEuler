@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "puissance.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(233, "Lattice points on a circle")
 {
-    Timer timer("probleme 233");
     // Let f(N) be the number of points with integer coordinates that are on a circle passing through
     // (0,0), (N,0),(0,N), and (N,N).
 	//

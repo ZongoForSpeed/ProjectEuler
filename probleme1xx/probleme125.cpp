@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(125, "Palindromic sums")
 {
-    Timer t("probleme 125");
     // The palindromic number 595 is interesting because it can be written as the sum of 
     // consecutive squares: 6² + 7² + 8² + 9² + 10² + 11² + 12².
     //

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::set<nombre> ensemble;
 
 ENREGISTRER_PROBLEME(127, "abc-hits")
 {
-    Timer t("probleme 127");
     // The radical of n, rad(n), is the product of distinct prime factors of n. For example, 
     // 504 = 23 × 32 × 7, so rad(504) = 2 × 3 × 7 = 42.
     //

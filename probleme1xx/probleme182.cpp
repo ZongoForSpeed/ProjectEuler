@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(182, "RSA encryption")
 {
-    Timer timer("probleme 182");
     // The RSA encryption is based on the following procedure:
     //
     // Generate two distinct primes p and q.

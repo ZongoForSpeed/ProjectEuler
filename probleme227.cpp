@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -18,7 +17,6 @@ typedef std::vector<long double> vecteur;
 
 ENREGISTRER_PROBLEME(227, "The Chase")
 {
-    Timer timer("probleme 227");
     // "The Chase" is a game played with two dice and an even number of players.
     //
     // The players sit around a table; the game begins with two opposite players having one die each. 

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -55,7 +54,6 @@ namespace
 
 ENREGISTRER_PROBLEME(152, "Writing 1/2 as a sum of inverse squares")
 {
-    Timer timer("probleme 152");
 	// There are several ways to write the number 1/2 as a sum of inverse squares using distinct integers.
     //
     // For instance, the numbers {2,3,4,5,7,12,15,20,28,35} can be used:

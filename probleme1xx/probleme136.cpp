@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(136, "Singleton difference")
 {
-    Timer t("probleme 136");
     // The positive integers, x, y, and z, are consecutive terms of an arithmetic progression. 
     // Given that n is a positive integer, the equation, x² − y² − z² = n, has exactly one solution
     // when n = 20:

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -63,7 +62,6 @@ namespace
 
 ENREGISTRER_PROBLEME(220, "Heighway Dragon")
 {
-    Timer timer("probleme 220");
     // Let D0 be the two-letter string "Fa". For n≥1, derive Dn from Dn-1 by the string-rewriting
     // rules:
     //

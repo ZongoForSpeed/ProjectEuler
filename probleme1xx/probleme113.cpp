@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "combinatoire.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(113, "Non-bouncy numbers")
 {
-    Timer t("probleme 113");
     // Working from left-to-right if no digit is exceeded by the digit to its left it is called an 
     // increasing number; for example, 134468.
     //

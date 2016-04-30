@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(133, "Repunit nonfactors")
 {
-    Timer t("probleme 133");
 	// A number consisting entirely of ones is called a repunit. We shall define R(k) to be a repunit of 
 	// length k; for example, R(6) = 111111.
     //
@@ -28,7 +26,6 @@ ENREGISTRER_PROBLEME(133, "Repunit nonfactors")
     nombre limite = 100000;
     vecteur premiers;
     premiers::crible<nombre>(limite, std::inserter(premiers, premiers.begin()));
-    t.etape("fin crible");
     
 	nombre resultat = 0;
 	for (nombre p: premiers)

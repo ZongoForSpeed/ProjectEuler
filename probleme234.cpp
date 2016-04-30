@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -15,7 +14,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(234, "Semidivisible numbers")
 {
-    Timer timer("probleme 234");
     // For an integer n ≥ 4, we define 
 	// the lower prime square root of n, denoted by lps(n), as the largest prime ≤ √n 
 	// and the upper prime square root of n, ups(n), as the smallest prime ≥ √n.

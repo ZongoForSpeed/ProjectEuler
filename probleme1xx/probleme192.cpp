@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -49,7 +48,6 @@ namespace
 
 ENREGISTRER_PROBLEME(192, "Best Approximations")
 {
-    Timer timer("probleme 192");
     // Let x be a real number.
     // A best approximation to x for the denominator bound d is a rational number r/s in reduced form,
     // with s ≤ d, such that any rational number which is closer to x than r/s has a denominator larger

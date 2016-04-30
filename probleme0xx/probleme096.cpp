@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -77,7 +76,6 @@ namespace
 
 ENREGISTRER_PROBLEME(96, "Su Doku")
 {
-    Timer t("probleme 96");
     // Su Doku (Japanese meaning number place) is the name given to a popular puzzle concept. Its 
     // origin is unclear, but credit must be attributed to Leonhard Euler who invented a similar, 
     // and much more difficult, puzzle idea called Latin Squares. The objective of Su Doku puzzles, 

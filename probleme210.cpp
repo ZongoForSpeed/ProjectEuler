@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -32,7 +31,6 @@ namespace
 
 ENREGISTRER_PROBLEME(210, "Obtuse Angled Triangles")
 {
-    Timer timer("probleme 210");
     // Consider the set S(r) of points (x,y) with integer coordinates satisfying |x| + |y| ≤ r. 
     // Let O be the point (0,0) and C the point (r/4,r/4). 
     // Let N(r) be the number of points B in S(r), so that the triangle OBC has an obtuse angle, i.e. 

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(238, "Infinite string tour")
 {
-    Timer timer("probleme 238");
     // Create a sequence of numbers using the "Blum Blum Shub" pseudo-random number generator:
     //
     //              s0      =	14025256

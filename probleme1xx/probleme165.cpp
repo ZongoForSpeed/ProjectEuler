@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -69,7 +68,6 @@ namespace
 
 ENREGISTRER_PROBLEME(165, "Intersections")
 {
-    Timer timer("probleme 165");
     // A segment is uniquely defined by its two endpoints.
     // By considering two line segments in plane geometry there are three possibilities:
     // the segments have zero points, one point, or infinitely many points in common.

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -19,7 +18,6 @@ typedef std::set<nombre> ensemble;
 
 ENREGISTRER_PROBLEME(158, "Exploring strings for which only one character comes lexicographically after its neighbour to the left")
 {
-    Timer timer("probleme 158");
     // Taking three different letters from the 26 letters of the alphabet, character strings of 
     // length three can be formed.
     // Examples are 'abc', 'hat' and 'zyx'.

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -21,7 +20,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
 {
-    Timer timer("probleme 180");
     // For any integer n, consider the three functions
     //
     // f1,n(x,y,z) = x^n+1 + y^n+1 − z^n+1

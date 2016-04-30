@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -34,7 +33,6 @@ namespace
 
 ENREGISTRER_PROBLEME(184, "Triangles containing the origin")
 {
-    Timer timer("probleme 184");
     // Consider the set Ir of points (x,y) with integer co-ordinates in the interior of the circle 
     // with radius r, centered at the origin, i.e. x2 + y2 < r2.
     //

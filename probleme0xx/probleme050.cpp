@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(50, "Consecutive prime sum")
 {
-    Timer t("probleme 50");
     // The prime 41, can be written as the sum of six consecutive primes:
     //                                      41 = 2 + 3 + 5 + 7 + 11 + 13
     //

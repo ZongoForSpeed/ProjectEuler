@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -61,7 +60,6 @@ namespace
 
 ENREGISTRER_PROBLEME(228, "Minkowski Sums")
 {
-    Timer timer("probleme 228");
     // Let Sn be the regular n-sided polygon – or shape – whose vertices vk (k = 1,2,…,n) have coordinates:
 	//
 	// 			x_k = cos( 2*(k-1)/n × 180° )

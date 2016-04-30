@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -16,7 +15,6 @@ typedef std::map<vecteur, vecteur> graphe;
 
 ENREGISTRER_PROBLEME(60, "Prime pair sets")
 {
-    Timer t("probleme 60");
     // The primes 3, 7, 109, and 673, are quite remarkable. By taking any two primes and concatenating them in 
     // any order the result will always be prime. For example, taking 7 and 109, both 7109 and 1097 are prime.
     // The sum of these four primes, 792, represents the lowest sum for a set of four primes with this property.
@@ -25,10 +23,7 @@ ENREGISTRER_PROBLEME(60, "Prime pair sets")
     nombre limite = 10000;
     
     std::set<nombre> premiers;
-    {
-        Timer t_crible("crible");
-        premiers::crible23<nombre>(limite * limite, std::inserter(premiers, premiers.begin()));
-    }
+    premiers::crible23<nombre>(limite * limite, std::inserter(premiers, premiers.begin()));
     
     graphe groupe;
     for (auto p: premiers)

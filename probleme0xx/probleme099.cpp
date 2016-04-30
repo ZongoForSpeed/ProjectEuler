@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -17,7 +16,6 @@ typedef std::vector<vecteur> matrice;
 
 ENREGISTRER_PROBLEME(99, "Largest exponential")
 {
-    Timer t("probleme 99");
     // Comparing two numbers written in index form like 211 and 37 is not difficult, as any calculator
     // would confirm that 2^11 = 2048 < 3^7 = 2187.
     //

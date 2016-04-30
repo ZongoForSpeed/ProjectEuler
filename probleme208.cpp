@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
+#include "multidimension.h"
 
 #include <iostream>
 #include <iomanip>
@@ -13,7 +13,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(208, "Robot Walks")
 {
-    Timer timer("probleme 208");
     // A robot moves in a series of one-fifth circular arcs (72°), with a free choice of a clockwise
     // or an anticlockwise arc for each step, but no turning on the spot.
     //    

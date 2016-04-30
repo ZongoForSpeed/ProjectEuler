@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -87,7 +86,6 @@ namespace
 
 ENREGISTRER_PROBLEME(196, "Prime triplets")
 {
-    Timer timer("probleme 196");
     // Build a triangle from all positive integers in the following way:
     //
     //        1

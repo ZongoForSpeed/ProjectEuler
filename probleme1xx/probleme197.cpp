@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include <iostream>
 #include <fstream>
@@ -22,7 +21,6 @@ namespace
 
 ENREGISTRER_PROBLEME(197, "Investigating the behaviour of a recursively defined sequence")
 {
-    Timer timer("probleme 197");
     // Given is the function f(x) = ⌊2^(30.403243784-x²)⌋ × 10-9 ( ⌊ ⌋ is the floor-function),
     // the sequence un is defined by u_0 = -1 and u_n+1 = f(u_n).
     // 

@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
+#include "multidimension.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -17,7 +17,6 @@ typedef std::vector<vecteur> matrice;
 
 ENREGISTRER_PROBLEME(178, "Step Numbers")
 {
-    Timer timer("probleme 178");
     // Consider the number 45656. 
     // It can be seen that each pair of consecutive digits of 45656 has a difference of one.
     // A number for which every pair of consecutive digits has a difference of one is called a step 

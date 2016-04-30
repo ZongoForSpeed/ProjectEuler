@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(76, "Counting summations")
 {
-    Timer t("probleme 76");
     // It is possible to write five as a sum in exactly six different ways:
     //
     //      4 + 1

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -38,7 +37,6 @@ namespace
 
 ENREGISTRER_PROBLEME(222, "Sphere Packing")
 {
-    Timer timer("probleme 222");
     // What is the length of the shortest pipe, of internal radius 50mm, that can fully contain 21 
     // balls of radii 30mm, 31mm, ..., 50mm?
     //

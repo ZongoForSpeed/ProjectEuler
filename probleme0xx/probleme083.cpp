@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "graphe.h"
 
@@ -20,7 +19,6 @@ typedef std::vector<paire> vecteur_paire;
 
 ENREGISTRER_PROBLEME(83, "Path sum: four ways")
 {
-    Timer t("probleme 83");
     // In the 5 by 5 matrix below, the minimal path sum from the top left to the bottom right, 
     // by moving left, right, up, and down, is indicated in bold red and is equal to 2297.
     //

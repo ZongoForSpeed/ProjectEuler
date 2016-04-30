@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(121, "Disc game prize fund")
 {
-    Timer t("probleme 121");
     // A bag contains one red disc and one blue disc. In a game of chance a player takes a disc at 
     // random and its colour is noted. After each turn the disc is returned to the bag, an extra red
     // disc is added, and another disc is taken at random.

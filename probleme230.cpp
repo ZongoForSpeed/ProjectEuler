@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -30,7 +29,6 @@ namespace
 
 ENREGISTRER_PROBLEME(230, "Fibonacci Words")
 {
-    Timer timer("probleme 230");
     // For any two strings of digits, A and B, we define FA,B to be the sequence (A,B,AB,BAB,ABBAB,...) 
     // in which each term is the concatenation of the previous two.
     // 

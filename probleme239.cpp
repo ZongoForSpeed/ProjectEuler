@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "combinatoire.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -18,7 +17,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(239, "Infinite string tour")
 {
-    Timer timer("probleme 239");
     // A set of disks numbered 1 through 100 are placed in a line in random order.
     //
     // What is the probability that we have a partial derangement such that exactly 22 prime number 

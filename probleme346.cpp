@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "timer.h"
 
 #include <set>
 #include <numeric>
@@ -12,7 +11,6 @@ ENREGISTRER_PROBLEME(346, "Strong Repunits")
 	nombre limite = 1000000000000LL;
 	nombre somme = 0;
 	{
-		Timer t("algorithme");
 		std::set<nombre> ensemble;
 		ensemble.insert(1);
 		for (nombre base = 2; base * base + base + 1 <= limite; ++base)

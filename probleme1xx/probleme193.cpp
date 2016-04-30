@@ -2,7 +2,6 @@
 #include "arithmetiques.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -17,7 +16,6 @@ typedef std::pair<nombre, nombre> paire;
 
 ENREGISTRER_PROBLEME(193, "Squarefree Numbers")
 {
-    Timer timer("probleme 193");
     // A positive integer n is called squarefree, if no square of a prime divides n, thus 1, 2, 3, 5, 
     // 6, 7, 10, 11 are squarefree, but not 4, 8, 9, 12.
     //

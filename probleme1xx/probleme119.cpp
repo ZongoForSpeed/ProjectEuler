@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(119, "Digit power sum")
 {
-    Timer t("probleme 119");
     // The number 512 is interesting because it is equal to the sum of its digits raised to some 
     // power: 5 + 1 + 2 = 8, and 8^3 = 512. Another example of a number with this property is 
     // 614656 = 28^4.

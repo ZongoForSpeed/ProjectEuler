@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -17,7 +16,6 @@ typedef std::pair<nombre, nombre> paire;
 
 ENREGISTRER_PROBLEME(198, "Ambiguous Numbers")
 {
-    Timer timer("probleme 198");
     // A best approximation to a real number x for the denominator bound d is a rational number r/s 
     // (in reduced form) with s ≤ d, so that any rational number p/q which is closer to x than r/s 
     // has q > d.

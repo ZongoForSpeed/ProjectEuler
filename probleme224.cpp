@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -19,7 +18,6 @@ typedef std::tuple<nombre, nombre, nombre> triplet;
 
 ENREGISTRER_PROBLEME(224, "Almost right-angled triangles II")
 {
-    Timer timer("probleme 224");
     // Let us call an integer sided triangle with sides a ≤ b ≤ c barely obtuse if the sides satisfy 
     // a² + b² = c² - 1.
     //

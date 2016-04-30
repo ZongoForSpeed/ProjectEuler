@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -12,7 +11,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(90, "Cube digit pairs")
 {
-    Timer t("probleme 90");
     // Each of the six faces on a cube has a different digit (0 to 9) written on it; the same is 
     // done to a second cube. By placing the two cubes side-by-side in different positions we can
     // form a variety of 2-digit numbers.

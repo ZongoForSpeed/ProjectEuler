@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::vector<paire> vecteur_paire;
 
 ENREGISTRER_PROBLEME(84, "Monopoly odds")
 {
-    Timer t("probleme 84");
     // In the game, Monopoly, the standard compteur is set up in the following way:
     //
     //      GO  A1  CC1 A2  T1  R1  B1  CH1 B2  B3  JAIL

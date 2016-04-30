@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -21,7 +20,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(243, "Odd Triplets")
 {
-    Timer timer("probleme 243");
     // A positive fraction whose numerator is less than its denominator is called a proper fraction.
 	// For any denominator, d, there will be d−1 proper fractions; for example, with d = 12:
 	// 1/12 , 2/12 , 3/12 , 4/12 , 5/12 , 6/12 , 7/12 , 8/12 , 9/12 , 10/12 , 11/12 .

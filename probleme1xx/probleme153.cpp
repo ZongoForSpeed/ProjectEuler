@@ -13,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(153, "Investigating Gaussian Integers")
 {
-    Timer timer("probleme 153");
 	// As we all know the equation x2=-1 has no solutions for real x. 
     // If we however introduce the imaginary number i this equation has two solutions: x=i and x=-i. 
     // If we go a step further the equation (x-3)2=-4 has two complex solutions: x=3+2i and x=3-2i. 

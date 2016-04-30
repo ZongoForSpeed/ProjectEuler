@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "chiffres.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(51, "Prime digit replacements")
 {
-    Timer t("probleme 51");
     // By replacing the 1st digit of the 2-digit number *3, it turns out that six of the nine 
     // possible values: 13, 23, 43, 53, 73, and 83, are all prime.
     // 

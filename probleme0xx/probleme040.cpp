@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -10,7 +9,6 @@ typedef long long nombre;
 
 ENREGISTRER_PROBLEME(40, "Champernowne's constant")
 {
-    Timer t("probleme 40");
     // An irrational decimal fraction is created by concatenating the positive integers:
     //
     //                  0.123456789101112131415161718192021...

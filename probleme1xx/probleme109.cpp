@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "graphe.h"
 
@@ -40,7 +39,6 @@ namespace
 
 ENREGISTRER_PROBLEME(109, "Darts")
 {
-    Timer t("probleme 109");
     // In the game of darts a player throws three darts at a target board which is split into twenty 
     // equal sized sections numbered one to twenty.
     //

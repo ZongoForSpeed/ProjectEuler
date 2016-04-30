@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
+#include "multidimension.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -41,7 +41,6 @@ namespace
 
 ENREGISTRER_PROBLEME(181, "Investigating in how many ways objects of two different colours can be grouped")
 {
-    Timer timer("probleme 181");
     // Having three black objects B and one white object W they can be grouped in 7 ways like this:
     //
     //      (BBBW)   (B,BBW)   (B,B,BW)   (B,B,B,W)   (B,BB,W)   (BBB,W)   (BB,BW)

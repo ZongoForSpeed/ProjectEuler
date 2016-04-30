@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -18,7 +17,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(65, "Convergents of e")
 {
-    Timer t("probleme 65");
     // The square root of 2 can be written as an infinite continued fraction.
     // 
     // The infinite continued fraction can be written, √2 = [1;(2)], (2) indicates that 2 repeats ad infinitum. In a similar way, √23 = [4;(1,3,1,8)].

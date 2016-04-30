@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "combinatoire.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -12,7 +11,6 @@ typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(53, "Combinatoric selections")
 {
-    Timer t("probleme 53");
     // There are exactly ten ways of selecting three from five, 12345:
     // 
     // 123, 124, 125, 134, 135, 145, 234, 235, 245, and 345

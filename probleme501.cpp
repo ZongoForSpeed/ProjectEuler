@@ -127,58 +127,58 @@ public:
     {
         {
             Timer t("crible");
-            crible();
+            crible();    
+        }
+        
+        nombre resultat = 0;
+        {
+            Timer t("forme p^7");
+            // Forme p^7
+            resultat += pi2(racine_septieme(limite));
         }
         
         {
-            Timer t("algorithme");
-            nombre resultat = 0;
+            Timer t("forme p1^3*p2 où p1 != p2");
+            // Forme p1^3*p2 où p1 != p2
+            for (const nombre & p : _premiers)
             {
-                // Forme p^7
-                resultat += pi2(racine_septieme(limite));
-            }
-            
-            {
-                // Forme p1^3*p2 ou p1 != p2
-                for (const nombre & p : _premiers)
-                {
-                    size_t p3 = puissance::puissance(p, 3);
-                    if (2*p3 > limite)
-                        break;
-                    
-                    auto r = pi2(limite / p3);
-                    if (limite > p3 * p) --r;
-                    resultat += r;
-                }
-            }
-            
-            {
-                // Forme p1*p2*p3 ou p1 < p2 < p3
-                auto l1 = racine_cubique(limite);
-                for (size_t n1 = 0; n1 < _premiers.size(); ++n1)
-                {
-                    auto p1 = _premiers.at(n1);
-                    if (p1 > l1)
-                        break;
+                size_t p3 = puissance::puissance(p, 3);
+                if (2*p3 > limite)
+                    break;
                 
-                    auto l2 = racine_carre(limite / p1);
+                auto r = pi2(limite / p3);
+                if (limite > p3 * p) --r;
+                resultat += r;
+            }
+        }
+        
+        {
+            Timer t("forme p1*p2*p3 où p1 < p2 < p3");
+            // Forme p1*p2*p3 où p1 < p2 < p3
+            auto l1 = racine_cubique(limite);
+            for (size_t n1 = 0; n1 < _premiers.size(); ++n1)
+            {
+                auto p1 = _premiers.at(n1);
+                if (p1 > l1)
+                    break;
+            
+                auto l2 = racine_carre(limite / p1);
+                    
+                for (size_t n2 = n1 + 1; n2 < _premiers.size(); ++n2)
+                {
+                    auto p2 = _premiers.at(n2);
+                    if (p2 > l2)
+                        break;
                         
-                    for (size_t n2 = n1 + 1; n2 < _premiers.size(); ++n2)
-                    {
-                        auto p2 = _premiers.at(n2);
-                        if (p2 > l2)
-                            break;
-                            
-                        auto l = limite / (p1 * p2);
-                        
-                        if (l <= p2)
-                            break;
-                        resultat += pi2(l) - n2 - 1;
-                    }
+                    auto l = limite / (p1 * p2);
+                    
+                    if (l <= p2)
+                        break;
+                    resultat += pi2(l) - n2 - 1;
                 }
             }
-            std::cout << "Resultat = " << resultat << std::endl;
         }
+        std::cout << "Resultat = " << resultat << std::endl;
     }
 };
 

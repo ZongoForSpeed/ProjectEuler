@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -18,7 +17,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(219, "Skew-cost coding")
 {
-    Timer timer("probleme 219");
     // Let A and B be bit strings (sequences of 0's and 1's).
     // If A is equal to the leftmost length(A) bits of B, then A is said to be a prefix of B.
     // For example, 00110 is a prefix of 001101001, but not of 00111 or 100110.

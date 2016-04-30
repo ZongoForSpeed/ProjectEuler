@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -45,7 +44,6 @@ namespace
 
 ENREGISTRER_PROBLEME(242, "Odd Triplets")
 {
-    Timer timer("probleme 242");
     // Given the set {1,2,...,n}, we define f(n,k) as the number of its k-element subsets with an odd 
     // sum of elements. For example, f(5,3) = 4, since the set {1,2,3,4,5} has four 3-element subsets
     // having an odd sum of elements, i.e.: {1,2,4}, {1,3,5}, {2,3,4} and {2,4,5}.

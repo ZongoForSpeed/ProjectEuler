@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polynome.h"
 
@@ -72,7 +71,6 @@ namespace
 
 ENREGISTRER_PROBLEME(101, "Optimum polynomial")
 {
-    Timer t("probleme 101");
     // If we are presented with the first k terms of a sequence it is impossible to say with certainty 
     // the value of the next term, as there are infinitely many polynomial functions that can model 
     // the sequence.

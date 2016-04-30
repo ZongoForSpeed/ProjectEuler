@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(68, "Magic 5-gon ring")
 {
-    Timer t("probleme 68");
     // Consider the following "magic" 3-gon ring, filled with the numbers 1 to 6, and each line 
     // adding to nine.
     //

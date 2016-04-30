@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -31,7 +30,6 @@ namespace
 
 ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals")
 {
-    Timer timer("probleme 177");
     // Let ABCD be a convex quadrilateral, with diagonals AC and BD. At each vertex the diagonal 
     // makes an angle with each of the two sides, creating eight corner angles.
     //

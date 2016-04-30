@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -28,7 +27,6 @@ namespace
 
 ENREGISTRER_PROBLEME(235, "An Arithmetic Geometric sequence")
 {
-    Timer timer("probleme 235");
     // Given is the arithmetic-geometric sequence u(k) = (900-3k)rk-1.
 	// Let s(n) = Σk=1...nu(k).
 	// 

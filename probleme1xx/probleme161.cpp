@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -161,7 +160,6 @@ namespace
 
 ENREGISTRER_PROBLEME(161, "Triominoes")
 {
-    Timer timer("probleme 161");
 	// A triomino is a shape consisting of three squares joined via the edges. There are two basic 
 	// forms:
     //

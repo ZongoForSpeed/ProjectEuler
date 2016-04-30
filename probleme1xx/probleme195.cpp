@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -29,7 +28,6 @@ namespace
 
 ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 degrees")
 {
-    Timer timer("probleme 195");
     // Let's call an integer sided triangle with exactly one angle of 60 degrees a 60-degree triangle.
     // Let r be the radius of the inscribed circle of such a 60-degree triangle.
     //

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -30,7 +29,6 @@ namespace
 
 ENREGISTRER_PROBLEME(149, "Searching for a maximum-sum subsequence")
 {
-    Timer t("probleme 149");
 	// Looking at the table below, it is easy to verify that the maximum possible sum of adjacent numbers
 	// in any direction (horizontal, vertical, diagonal or anti-diagonal) is 16 (= 8 + 7 + 1).
 	//

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(126, "Cuboid layers")
 {
-    Timer t("probleme 126");
     // The minimum number of cubes to cover every visible face on a cuboid measuring 3 x 2 x 1 is 
     // twenty-two.
     //

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::set<nombre> ensemble;
 
 ENREGISTRER_PROBLEME(128, "Hexagonal tile differences")
 {
-    Timer t("probleme 128");
     // A hexagonal tile with number 1 is surrounded by a ring of six hexagonal tiles, starting at 
     // "12 o'clock" and numbering the tiles 2 to 7 in an anti-clockwise direction.
     //
@@ -39,7 +37,6 @@ ENREGISTRER_PROBLEME(128, "Hexagonal tile differences")
     nombre limite = 20000000ULL;
     std::set<nombre> premiers;
     premiers::crible235<nombre>(limite, std::inserter(premiers, premiers.begin()));
-    t.etape("fin crible");
 
     nombre objectif = 2000;
     

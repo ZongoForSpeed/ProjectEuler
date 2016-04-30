@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::pair<nombre, nombre> paire;
 
 ENREGISTRER_PROBLEME(91, "Right triangles with integer coordinates")
 {
-    Timer t("probleme 91");
     // The points P (x1, y1) and Q (x2, y2) are plotted at integer co-ordinates and are joined to 
     // the origin, O(0,0), to form ΔOPQ.
     //

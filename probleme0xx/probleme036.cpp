@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -8,7 +7,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(36, "Double-base palindromes")
 {
-    Timer t("probleme 36");
     // The decimal number, 585 = 1001001001_2 (binary), is palindromic in both bases.
     //
     // Find the sum of all numbers, less than one million, which are palindromic in base 10 and base 2.

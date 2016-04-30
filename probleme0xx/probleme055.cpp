@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -12,7 +11,6 @@ typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(55, "Lychrel numbers")
 {
-    Timer t("probleme 55");
     // If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.
     //
     // Not all numbers produce palindromes so quickly. For example,

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -11,7 +10,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(74, "Digit factorial chains")
 {
-    Timer t("probleme 74");
     // The number 145 is well known for the property that the sum of the factorial of its digits is 
     // equal to 145:
     //

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -9,7 +8,6 @@ typedef unsigned long long nombre;
     
 ENREGISTRER_PROBLEME(30, "Digit fifth powers")
 {
-    Timer t("probleme 30");
     // Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits:
     // 
     // 1634 = 1^4 + 6^4 + 3^4 + 4^4

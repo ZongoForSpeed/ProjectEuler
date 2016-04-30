@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -14,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(75, "Singular integer right triangles")
 {
-    Timer t("probleme 75");
     // It turns out that 12 cm is the smallest length of wire that can be bent to form an integer 
     // sided right angle triangle in exactly one way, but there are many more examples.
     //

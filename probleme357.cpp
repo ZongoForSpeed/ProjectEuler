@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "timer.h"
+
 #include <iostream>
 #include <vector>
 #include <set>
@@ -35,23 +35,17 @@ public:
 	
 	void algorithme()
 	{
-		{
-			Timer t("crible");
-			premiers::crible<nombre>(taille, std::inserter(premiers, premiers.begin()));
-		}
+        premiers::crible<nombre>(taille, std::inserter(premiers, premiers.begin()));
 		
 		nombre solution = 0;
-		{
-			Timer t("algorithme");
-			for (const nombre & p : premiers)
-			{
-				nombre n = p - 1;
-				if (valide(n))
-				{
-					solution += n;
-				}
-			}
-		}
+        for (const nombre & p : premiers)
+        {
+            nombre n = p - 1;
+            if (valide(n))
+            {
+                solution += n;
+            }
+        }
 		
 		std::cout << "******************** SOLUTION ********************" << std::endl;
 		std::cout << solution << std::endl;

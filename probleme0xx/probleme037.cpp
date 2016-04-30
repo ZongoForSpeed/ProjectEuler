@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "timer.h"
 
 #include <set>
 #include <iostream>
@@ -11,7 +10,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(37, "Truncatable primes")
 {
-    Timer t("probleme 37");
     // The number 3797 has an interesting property. Being prime itself, it is possible to continuously
     // remove digits from left to right, and remain prime at each stage: 3797, 797, 97, and 7.
     // Similarly we can work from right to left: 3797, 379, 37, and 3.

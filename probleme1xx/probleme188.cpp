@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -29,7 +28,6 @@ namespace
 
 ENREGISTRER_PROBLEME(188, "The hyperexponentiation of a number")
 {
-    Timer timer("probleme 188");
     // The hyperexponentiation or tetration of a number a by a positive integer b, denoted by a↑↑b or ba, 
     // is recursively defined by:
     //

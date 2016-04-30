@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -44,7 +43,6 @@ namespace
 
 ENREGISTRER_PROBLEME(35, "Circular primes")
 {
-    Timer t ("probleme 35");
     // The number, 197, is called a circular prime because all rotations of the digits: 
     // 197, 971, and 719, are themselves prime.
     // 

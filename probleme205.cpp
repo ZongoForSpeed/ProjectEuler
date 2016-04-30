@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
+
 #include "utilitaires.h"
 
 #include <iostream>
@@ -43,7 +43,6 @@ namespace
 
 ENREGISTRER_PROBLEME(205, "Dice Game")
 {
-    Timer timer("probleme 205");
     // Peter has nine four-sided (pyramidal) dice, each with faces numbered 1, 2, 3, 4.
     // Colin has six six-sided (cubic) dice, each with faces numbered 1, 2, 3, 4, 5, 6.
     //

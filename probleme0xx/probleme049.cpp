@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(49, "Prime permutations")
 {
-    Timer t("probleme 49");
     // The arithmetic sequence, 1487, 4817, 8147, in which each of the terms increases by 3330, 
     // is unusual in two ways: (i) each of the three terms are prime, and, (ii) each of the 4-digit 
     // numbers are permutations of one another.

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -40,7 +39,6 @@ namespace
 
 ENREGISTRER_PROBLEME(225, "Tribonacci non-divisors")
 {
-    Timer timer("probleme 225");
     // The sequence 1, 1, 1, 3, 5, 9, 17, 31, 57, 105, 193, 355, 653, 1201 ...
 	// is defined by T1 = T2 = T3 = 1 and Tn = Tn-1 + Tn-2 + Tn-3.
 	// 

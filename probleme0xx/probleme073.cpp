@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -10,7 +9,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(73, "Counting fractions in a range")
 {
-    Timer t("probleme 73");
     // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is
     // called a reduced proper fraction.
     //

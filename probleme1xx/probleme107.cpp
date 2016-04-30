@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "graphe.h"
 
@@ -18,7 +17,6 @@ typedef std::map<nombre, std::vector<paire>> graphe;
 
 ENREGISTRER_PROBLEME(107, "Minimal network")
 {
-    Timer t("probleme 107");
     // The following undirected network consists of seven vertices and twelve edges with a total 
     // weight of 243.
     //

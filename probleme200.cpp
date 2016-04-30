@@ -1,18 +1,12 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "timer.h"
-#include "utilitaires.h"
 
 #include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <algorithm>
-#include <limits>
+#include <set>
 
 #include <boost/multiprecision/gmp.hpp>
 
-// typedef boost::multiprecision::mpz_int nombre;
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
@@ -65,7 +59,6 @@ namespace
 
 ENREGISTRER_PROBLEME(200, "Find the 200th prime-proof sqube containing the contiguous sub-string \"200\"")
 {
-    Timer timer("probleme 200");
     // We shall define a sqube to be a number of the form, p2q3, where p and q are distinct primes.
     // For example, 200 = 5²2^3 or 120072949 = 23²61^3.
     //

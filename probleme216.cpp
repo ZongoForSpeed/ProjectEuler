@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -25,7 +24,6 @@ namespace
 
 ENREGISTRER_PROBLEME(216, "Investigating the primality of numbers of the form 2n²-1")
 {
-    Timer timer("probleme 216");
     // Consider numbers t(n) of the form t(n) = 2n²-1 with n > 1.
     // The first such numbers are 7, 17, 31, 49, 71, 97, 127 and 161.
     // It turns out that only 49 = 7*7 and 161 = 7*23 are not prime.

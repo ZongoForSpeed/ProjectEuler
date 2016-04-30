@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -12,7 +11,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(114, "Counting block combinations I")
 {
-    Timer t("probleme 114");
     // A row measuring seven units in length has red blocks with a minimum length of three units 
     // placed on it, such that any two red blocks (which are allowed to be different lengths) are
     // separated by at least one black square. There are exactly seventeen ways of doing this.

@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -13,7 +12,6 @@ typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(56, "Powerful digit sum")
 {
-    Timer t("probleme 56");
     // A googol (10^100) is a massive number: one followed by one-hundred zeros; 100^100 is almost 
     // unimaginably large: one followed by two-hundred zeros. Despite their size, the sum of the 
     // digits in each number is only 1.

@@ -2,7 +2,6 @@
 #include "chiffres.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "graphe.h"
 
@@ -19,7 +18,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(111, "Primes with runs")
 {
-    Timer t("probleme 111");
     // Considering 4-digit primes containing repeated digits it is clear that they cannot all be the 
     // same: 1111 is divisible by 11, 2222 is divisible by 22, and so on. But there are nine 4-digit 
     // primes containing three ones:
@@ -54,10 +52,7 @@ ENREGISTRER_PROBLEME(111, "Primes with runs")
     nombre limite = puissance::puissance(10ULL, 10);
     
     vecteur premiers;
-    {
-        Timer t_crible("crible");
-        premiers::crible23<nombre>(limite, std::back_inserter(premiers));
-    }
+    premiers::crible23<nombre>(limite, std::back_inserter(premiers));
     
     std::map<unsigned short, std::map<nombre, vecteur>> ensemble;
     for (nombre p: premiers)

@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -38,7 +37,6 @@ namespace
 
 ENREGISTRER_PROBLEME(213, "Flea Circus")
 {
-    Timer timer("probleme 213");
     // A 30×30 grid of squares contains 900 fleas, initially one flea per square.
     // When a bell is rung, each flea jumps to an adjacent square at random (usually 4 possibilities, 
     // except for fleas on the edge of the grid or at the corners).

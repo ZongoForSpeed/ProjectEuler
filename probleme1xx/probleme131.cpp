@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -14,7 +13,6 @@ typedef std::set<nombre> ensemble;
 
 ENREGISTRER_PROBLEME(131, "Prime cube partnership")
 {
-    Timer t("probleme 131");
 	// There are some prime values, p, for which there exists a positive integer, n, such that the 
 	// expression n^3 + n^2p is a perfect cube.
     //
@@ -27,9 +25,8 @@ ENREGISTRER_PROBLEME(131, "Prime cube partnership")
     nombre limite = 1000000;
     std::set<nombre> premiers;
     premiers::crible235<nombre>(limite, std::inserter(premiers, premiers.begin()));
-    t.etape("fin crible");
     
-	nombre resultat = 0;
+    nombre resultat = 0;
     for (nombre a = 1; 3*a*a < limite; ++a)
     {
         nombre b = a + 1;

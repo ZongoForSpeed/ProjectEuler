@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "combinatoire.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -81,7 +80,6 @@ namespace
 
 ENREGISTRER_PROBLEME(240, "Top Dice")
 {
-    Timer timer("probleme 240");
     // There are 1111 ways in which five 6-sided dice (sides numbered 1 to 6) can be rolled so that 
     // the top three sum to 15. Some examples are: 
     //

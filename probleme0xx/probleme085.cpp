@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef long long nombre;
 
 ENREGISTRER_PROBLEME(85, "Counting rectangles")
 {
-    Timer t("probleme 85");
     // By counting carefully it can be seen that a rectangular grid measuring 3 by 2 contains 
     // eighteen rectangles:
     //

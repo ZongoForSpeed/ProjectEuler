@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -12,7 +11,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(92, "Square digit chains")
 {
-    Timer t("probleme 92");
     // A number chain is created by continuously adding the square of the digits in a number to form
     // a new number until it has been seen before.
     //

@@ -1,13 +1,8 @@
 #include "problemes.h"
-#include "arithmetiques.h"
-#include "timer.h"
-#include "utilitaires.h"
+#include "multidimension.h"
 
 #include <iostream>
-#include <iomanip>
-#include <fstream>
 #include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -15,7 +10,6 @@ typedef std::pair<nombre, nombre> paire;
 
 ENREGISTRER_PROBLEME(201, "Subsets with a unique sum")
 {
-    Timer timer("probleme 201");
     // For any set A of numbers, let sum(A) be the sum of the elements of A.
     // Consider the set B = {1,3,6,8,10,11}.
     // There are 20 subsets of B containing three elements, and their sums are:

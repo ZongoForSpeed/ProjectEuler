@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "puissance.h"
 #include "polygonal.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(80, "Square root digital expansion")
 {
-    Timer t("probleme 80");
     // It is well known that if the square root of a natural number is not an integer, then it is 
     // irrational. The decimal expansion of such square roots is infinite without any repeating 
     // pattern at all.

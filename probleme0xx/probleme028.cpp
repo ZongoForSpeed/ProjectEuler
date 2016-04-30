@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -8,7 +7,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(28, "Number spiral diagonals")
 {
-    Timer t("probleme 28");
     // Starting with the number 1 and moving to the right in a clockwise direction a 5 by 5 spiral is 
     // formed as follows:
     // 

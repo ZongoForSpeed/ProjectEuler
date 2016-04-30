@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -12,7 +11,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(115, "Counting block combinations II")
 {
-    Timer t("probleme 115");
     // NOTE: This is a more difficult version of Problem 114.
     //
     // A row measuring n units in length has red blocks with a minimum length of m units placed on it,

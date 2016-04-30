@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "timer.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -52,7 +51,6 @@ public:
     {
     	nombre resultat = 0;
 		{
-			Timer t("Algorithme");
 			for (nombre n = 1; n < limite + 1; ++n)
 			{
 				resultat += f(n);

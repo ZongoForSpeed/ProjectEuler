@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "timer.h"
 #include <iostream>
 #include <map>
 #include <set>
@@ -67,8 +66,7 @@ ENREGISTRER_PROBLEME(156, "Counting Digits")
  
     nombre resultat = 0;
     {
-    	Timer t("algorithme");
-        for (nombre d = 1; d < 10; ++d)
+    	for (nombre d = 1; d < 10; ++d)
         {
             std::map< std::pair<nombre, nombre>, std::set<nombre> > gn;
             nombre f = 0;

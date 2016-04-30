@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -117,7 +116,6 @@ namespace
 
 ENREGISTRER_PROBLEME(105, "Special subset sums: testing")
 {
-    Timer t("probleme 105");
     // Let S(A) represent the sum of elements in set A of size n. We shall call it a special sum set
     // if for any two non-empty disjoint subsets, B and C, the following properties are true:
     //

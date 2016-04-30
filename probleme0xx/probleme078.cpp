@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -13,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(78, "Coin partitions")
 {
-    Timer t("probleme 78");
     // Let p(n) represent the number of different ways in which n coins can be separated into piles.
     // For example, five coins can be separated into piles in exactly seven different ways, 
     // so p(5)=7.

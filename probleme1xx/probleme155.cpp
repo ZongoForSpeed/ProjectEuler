@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -20,7 +19,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits")
 {
-    Timer timer("probleme 155");
 	// An electric circuit uses exclusively identical capacitors of the same value C. 
 	// 
     // The capacitors can be connected in series or in parallel to form sub-units, which can then be

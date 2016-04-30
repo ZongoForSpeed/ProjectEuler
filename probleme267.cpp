@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "puissance.h"
-#include "timer.h"
 
 #include <iostream>
 #include <vector>
@@ -39,7 +38,6 @@ namespace
 
 ENREGISTRER_PROBLEME(267, "Binary Circles")
 {
-    Timer t("probleme 267");
     // You are given a unique investment opportunity.
     //
     // Starting with £1 of capital, you can choose a fixed proportion, f, of your capital to bet on 

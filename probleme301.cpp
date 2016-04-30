@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "timer.h"
 
 #include <iostream>
 
@@ -7,7 +6,6 @@ typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(301, "Nim")
 {
-    Timer timer("probleme 301");
     // Nim is a game played with heaps of stones, where two players take it in 
     // turn to remove any number of stones from any heap until no stones remain.
     //

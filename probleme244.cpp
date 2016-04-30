@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -101,7 +100,6 @@ namespace
 
 ENREGISTRER_PROBLEME(244, "Sliders")
 {
-    Timer timer("probleme 244");
     // You probably know the game Fifteen Puzzle. Here, instead of numbered tiles, we have seven red 
     // tiles and eight blue tiles.
 	//

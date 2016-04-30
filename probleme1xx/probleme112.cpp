@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "graphe.h"
 
@@ -17,7 +16,6 @@ typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(112, "Bouncy numbers")
 {
-    Timer t("probleme 112");
     // Working from left-to-right if no digit is exceeded by the digit to its left it is called an 
     // increasing number; for example, 134468.
     //

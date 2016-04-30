@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -67,7 +66,6 @@ namespace
 
 ENREGISTRER_PROBLEME(194, "Coloured Configurations")
 {
-    Timer timer("probleme 194");
     // Consider graphs built with the units A:  and B: , where the units are glued along the vertical 
     // edges as in the graph .
     //

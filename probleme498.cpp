@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "timer.h"
 
 #include <iostream>
 #include <cstdlib>
@@ -143,8 +142,6 @@ namespace
     
         void algorithme()
         {
-            Timer t("algorithme");
-           
             nombre i = d;
             Number<p> resultat(0);
             while (i < m)

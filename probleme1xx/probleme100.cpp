@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -17,7 +16,6 @@ typedef std::vector<vecteur> matrice;
 
 ENREGISTRER_PROBLEME(100, "Arranged probability")
 {
-    Timer t("probleme 100");
     // If a box contains twenty-one coloured discs, composed of fifteen blue discs and six red discs,
     // and two discs were taken at random, it can be seen that the probability of taking two blue 
     // discs, P(BB) = (15/21)×(14/20) = 1/2.

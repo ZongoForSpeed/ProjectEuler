@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -15,7 +14,6 @@ typedef std::set<nombre> ensemble;
 
 ENREGISTRER_PROBLEME(130, "Composites with prime repunit property")
 {
-    Timer t("probleme 130");
 	// A number consisting entirely of ones is called a repunit. We shall define R(k) to be a repunit 
 	// of length k; for example, R(6) = 111111.
     //
@@ -33,7 +31,6 @@ ENREGISTRER_PROBLEME(130, "Composites with prime repunit property")
     // GCD(n, 10) = 1 and n − 1 is divisible by A(n).
     std::set<nombre> premiers;
     premiers::crible235<nombre>(1000000ULL, std::inserter(premiers, premiers.begin()));
-    t.etape("fin crible");
     
 	nombre limite = 25;
 	nombre resultat = 0;

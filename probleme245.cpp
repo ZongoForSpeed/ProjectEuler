@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "timer.h"
 #include "utilitaires.h"
 #include "polygonal.h"
 
@@ -80,7 +79,6 @@ namespace
 
 ENREGISTRER_PROBLEME(245, "Coresilience")
 {
-    Timer timer("probleme 245");
     // We shall call a fraction that cannot be cancelled down a resilient fraction.
 	// Furthermore we shall define the resilience of a denominator, R(d), to be the ratio of its proper
 	// fractions that are resilient; for example, R(12) = 4/11.

@@ -2,7 +2,6 @@
 #include "arithmetiques.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -21,8 +20,7 @@ typedef std::set<nombre> ensemble;
 
 ENREGISTRER_PROBLEME(157, "Solving the diophantine equation 1/a+1/b= p/10n")
 {
-    Timer timer("probleme 157");
-	// Consider the diophantine equation 1/a+1/b= p/10^n with a, b, p, n positive integers and a ≤ b.
+    // Consider the diophantine equation 1/a+1/b= p/10^n with a, b, p, n positive integers and a ≤ b.
     // For n=1 this equation has 20 solutions that are listed below:
     // 
     // 1/1+1/1=20/10	1/1+1/2=15/10	1/1+1/5=12/10	1/1+1/10=11/10	1/2+1/2=10/10
@@ -32,10 +30,7 @@ ENREGISTRER_PROBLEME(157, "Solving the diophantine equation 1/a+1/b= p/10n")
     //
     // How many solutions has this equation for 1 ≤ n ≤ 9?
     vecteur premiers;
-    {
-        Timer timer_crible("crible");
-        premiers::crible235<nombre>(1000000000ULL, std::back_inserter(premiers));
-    }
+    premiers::crible235<nombre>(1000000000ULL, std::back_inserter(premiers));
     nombre limite = 9;
     nombre resultat = 0;
     for (nombre n = 1; n < limite + 1; ++n)

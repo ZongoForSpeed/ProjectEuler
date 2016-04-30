@@ -2,7 +2,6 @@
 #include "arithmetiques.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -55,7 +54,6 @@ namespace
 
 ENREGISTRER_PROBLEME(241, "Perfection Quotients")
 {
-    Timer timer("probleme 241");
     // For a positive integer n, let σ(n) be the sum of all divisors of n, so e.g. 
     // σ(6) = 1 + 2 + 3 + 6 = 12.
 	//

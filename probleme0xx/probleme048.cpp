@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 
 #include <iostream>
 #include <algorithm>
@@ -12,7 +11,6 @@ typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(48, "Self powers")
 {
-    Timer t("probleme 48");
     // The series, 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317.
     //
     // Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000.

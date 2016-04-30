@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -52,7 +51,6 @@ namespace
 
 ENREGISTRER_PROBLEME(151, "Paper sheets of standard sizes: an expected-value problem")
 {
-    Timer timer("probleme 151");
 	// A printing shop runs 16 batches (jobs) every week and each batch requires a sheet of special 
 	// colour-proofing paper of size A5.
     //

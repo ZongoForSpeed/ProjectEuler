@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -44,7 +43,6 @@ namespace
 
 ENREGISTRER_PROBLEME(226, "A Scoop of Blancmange")
 {
-    Timer timer("probleme 226");
     // The blancmange curve is the set of points (x,y) such that 0 ≤ x ≤ 1 and y = Sum(s(2^n.x)/2^n, n = 0..Inf),
     // where s(x) = the distance from x to the nearest integer.
     // 

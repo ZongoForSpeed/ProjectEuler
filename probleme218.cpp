@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "timer.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -16,7 +15,6 @@ typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
 {
-    Timer timer("probleme 218");
     // Consider the right angled triangle with sides a=7, b=24 and c=25. The area of this triangle 
     // is 84, which is divisible by the perfect numbers 6 and 28.
     // Moreover it is a primitive right angled triangle as gcd(a,b)=1 and gcd(b,c)=1.
