@@ -74,7 +74,6 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
     
     boost::multiprecision::cpp_int puissance = puissance::puissance<boost::multiprecision::cpp_int>(2, n);
     
-    // std::cout << resultat << " / " << puissance << std::endl;
     std::cout << std::setprecision(12);
 
     std::cout << "Solution: " << static_cast<long double>(resultat) / static_cast<long double>(puissance) << std::endl;
