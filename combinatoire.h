@@ -21,6 +21,12 @@ namespace combinatoire
     }
     
     template<typename Nombre>
+    Nombre catalan(Nombre n)
+    {
+        return coefficient_binomial<Nombre>(2*n, n) / (n + 1);
+    }
+    
+    template<typename Nombre>
     Nombre factorielle(Nombre n)
     {
         Nombre resultat = 1;

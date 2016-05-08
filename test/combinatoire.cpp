@@ -9,6 +9,13 @@ BOOST_AUTO_TEST_SUITE(test_combinatoire)
         BOOST_CHECK_EQUAL(combinatoire::coefficient_binomial(8, 4), 70);
         BOOST_CHECK_EQUAL(combinatoire::coefficient_binomial(40, 0), 1);
     }
+    
+    BOOST_AUTO_TEST_CASE(catalan)
+    {
+        BOOST_CHECK_EQUAL(combinatoire::catalan(0), 1);
+        BOOST_CHECK_EQUAL(combinatoire::catalan(1), 1);
+        BOOST_CHECK_EQUAL(combinatoire::catalan<unsigned long long>(10), 16796);
+    }
 
     BOOST_AUTO_TEST_CASE(factorielle)
     {
