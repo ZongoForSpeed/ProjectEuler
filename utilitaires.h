@@ -19,15 +19,6 @@
 
 namespace std
 {
-    template<typename Nombre>
-    Nombre abs(Nombre n)
-    {
-        if (n > 0)
-            return n;
-        else
-            return -n;
-    }
-    
     long double sqrt(boost::multiprecision::mpz_int n);
     
     template<typename T1, typename T2>
@@ -66,8 +57,11 @@ namespace std
         return os;
     }
     
-    template<typename T>
-    std::ostream& operator<<(std::ostream& os, const std::vector<T> & v)
+    template<
+        class T,
+        class Allocator = std::allocator<T>
+    >
+    std::ostream& operator<<(std::ostream& os, const std::vector<T, Allocator> & v)
     {
         os << "[";
         bool first = true;
@@ -83,8 +77,11 @@ namespace std
         return os;
     }
     
-    template<typename T>
-    std::ostream& operator<<(std::ostream& os, const std::deque<T> & v)
+    template<
+        class T,
+        class Allocator = std::allocator<T>
+    >
+    std::ostream& operator<<(std::ostream& os, const std::deque<T, Allocator> & v)
     {
         os << "[";
         bool first = true;
@@ -100,12 +97,16 @@ namespace std
         return os;
     }
     
-    template<typename T>
-    std::ostream& operator<<(std::ostream& os, const std::set<T> & s)
+    template<
+        class Key,
+        class Compare = std::less<Key>,
+        class Allocator = std::allocator<Key>
+    >
+    std::ostream& operator<<(std::ostream& os, const std::set<Key, Compare, Allocator> & s)
     {
         os << "{";
         bool first = true;
-        for (const T & n: s)
+        for (const Key & n: s)
         {
             if (first)
                 first = false;
@@ -117,8 +118,13 @@ namespace std
         return os;
     }
     
-    template<typename K, typename V>
-    std::ostream& operator<<(std::ostream& os, const std::map<K, V> & s)
+    template <
+        class Key,
+        class T,
+        class Compare = std::less<Key>,
+        class Allocator = std::allocator<std::pair<const Key, T> >
+    >
+    std::ostream& operator<<(std::ostream& os, const std::map<Key, T, Compare, Allocator> & s)
     {
         os << "{" << std::endl;
         for (const auto & p: s)
