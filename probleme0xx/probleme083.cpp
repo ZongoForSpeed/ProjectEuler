@@ -41,7 +41,7 @@ ENREGISTRER_PROBLEME(83, "Path sum: four ways")
     }
     
     const nombre taille = m.size();
-    Dijkstra::graphe graphe;
+    graphe::Dijkstra::graphe graphe;
     for (nombre i = 0; i < taille; ++i)
     for (nombre j = 0; j < taille; ++j)
     {
@@ -59,7 +59,7 @@ ENREGISTRER_PROBLEME(83, "Path sum: four ways")
         graphe[i*taille + j] = v;
     }
     
-    Dijkstra dijkstra(graphe, 0, (taille - 1) * (taille + 1));
+    graphe::Dijkstra dijkstra(graphe, 0, (taille - 1) * (taille + 1));
     nombre resultat = dijkstra.algorithme() + m[taille - 1][taille - 1];
     std::cout << "Solution: " << resultat << std::endl;
 }

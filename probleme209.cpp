@@ -10,6 +10,7 @@
 #include <limits>
 
 typedef unsigned long long nombre;
+typedef std::vector<nombre> vecteur;
 
 namespace
 {
@@ -48,7 +49,7 @@ ENREGISTRER_PROBLEME(209, "Circular Logic")
     //
     // for all 6-bit inputs (a, b, c, d, e, f) ?
     nombre limite = 1 << 6;
-    Tarjan::graphe G;
+    std::map<nombre, vecteur> graphe;
     for (nombre i = 0; i < limite; ++i)
     {
         nombre a = i >> 5 & 1;
@@ -56,11 +57,11 @@ ENREGISTRER_PROBLEME(209, "Circular Logic")
         nombre c = i >> 3 & 1;
         nombre j = (i << 1 & 63) + (a ^ (b & c));
         
-        G[i].push_back(j);
-        G[j].push_back(i);
+        graphe[i].push_back(j);
+        graphe[j].push_back(i);
     }
     
-    Tarjan tarjan(G);
+    graphe::Tarjan tarjan(graphe);
     tarjan.algorithme();
     
     nombre resultat = 1;

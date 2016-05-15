@@ -13,7 +13,6 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 typedef std::pair<nombre, nombre> paire;
-typedef std::map<nombre, std::vector<paire>> graphe;
 
 ENREGISTRER_PROBLEME(107, "Minimal network")
 {
@@ -44,7 +43,7 @@ ENREGISTRER_PROBLEME(107, "Minimal network")
 	std::ifstream ifs("data/p107_network.txt");
     // std::ifstream ifs("data/p107_example.txt");
 
-    Kruskal::aretes A;
+    graphe::Kruskal::aretes A;
     nombre i = 0;
     std::string ligne;
     while (ifs >> ligne)
@@ -62,10 +61,10 @@ ENREGISTRER_PROBLEME(107, "Minimal network")
         ++i;
     }
     
-    Kruskal kruskal(A);
-    Kruskal::aretes arbre_mini = kruskal.algorithme();
+    graphe::Kruskal kruskal(A);
+    auto arbre_mini = kruskal.algorithme();
     
-    auto somme_poids = [] (const nombre r, const Kruskal::arete & a) { return r + std::get<2>(a); };
+    auto somme_poids = [] (const nombre r, const graphe::Kruskal::arete & a) { return r + std::get<2>(a); };
     
     nombre resultat = std::accumulate(A.begin(), A.end(), 0UL, somme_poids) - std::accumulate(arbre_mini.begin(), arbre_mini.end(), 0UL, somme_poids);;
     // std::cout << A << std::endl;

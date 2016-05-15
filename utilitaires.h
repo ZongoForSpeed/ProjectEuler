@@ -57,10 +57,7 @@ namespace std
         return os;
     }
     
-    template<
-        class T,
-        class Allocator = std::allocator<T>
-    >
+    template< class T, class Allocator = std::allocator<T> >
     std::ostream& operator<<(std::ostream& os, const std::vector<T, Allocator> & v)
     {
         os << "[";
@@ -77,10 +74,7 @@ namespace std
         return os;
     }
     
-    template<
-        class T,
-        class Allocator = std::allocator<T>
-    >
+    template< class T, class Allocator = std::allocator<T> >
     std::ostream& operator<<(std::ostream& os, const std::deque<T, Allocator> & v)
     {
         os << "[";
@@ -118,7 +112,7 @@ namespace std
         return os;
     }
     
-    template <
+    template<
         class Key,
         class T,
         class Compare = std::less<Key>,
