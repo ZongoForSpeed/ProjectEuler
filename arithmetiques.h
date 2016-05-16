@@ -29,6 +29,13 @@ namespace arithmetiques
     }
     
     template<typename Nombre>
+    Nombre PGCD(Nombre a, Nombre b, Nombre c)
+    {
+        const Nombre d = PGCD(b, c);
+        return PGCD(a, d);
+    }
+    
+    template<typename Nombre>
     Nombre PPCM(Nombre a, Nombre b)
     {
         return (a*b) / PGCD(a,b);
@@ -54,6 +61,12 @@ namespace arithmetiques
         // std::cout << "quotients by the gcd:" << std::make_pair(t, s) << std::endl;
         x = old_s;
         y = old_t;
+    }
+    
+    template<typename Nombre>
+    Nombre arrondi(Nombre n, Nombre d)
+    {
+        return (n + d / 2) / d;    
     }
     
     template<typename Nombre, typename Conteneur>

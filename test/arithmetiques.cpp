@@ -16,6 +16,12 @@ BOOST_AUTO_TEST_SUITE(test_arithmetiques)
         BOOST_CHECK_EQUAL(arithmetiques::PPCM(456755ULL, 158665ULL), 1114938955);
     }
     
+    BOOST_AUTO_TEST_CASE(arrondi)
+    {
+        BOOST_CHECK_EQUAL(arithmetiques::arrondi(1000, 101), 10);
+        BOOST_CHECK_EQUAL(arithmetiques::arrondi(12345678, 48), 257202);
+    }
+    
     BOOST_AUTO_TEST_CASE(Bezout1)
     {
         long long u, v;
