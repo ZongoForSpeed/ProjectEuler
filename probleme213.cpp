@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "utilitaires.h"
+#include "matrice.h"
 
 #include <iostream>
 #include <iomanip>
@@ -14,27 +15,6 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-typedef boost::numeric::ublas::matrix<long double> matrice;
-
-namespace
-{
-    matrice puissance_matrice(matrice base, nombre exposant)
-    {
-        matrice resultat(base.size1(), base.size2());
-        for (size_t n = 0; n < base.size1(); ++n)
-            resultat(n,n) = 1.0;
-            
-        while (exposant > 0)
-        {
-            if (exposant%2)
-                resultat = boost::numeric::ublas::prod(resultat, base);
-            exposant /= 2;
-            base = boost::numeric::ublas::prod(base, base);
-        }
-        return resultat;
-    }
-}
-
 ENREGISTRER_PROBLEME(213, "Flea Circus")
 {
     // A 30×30 grid of squares contains 900 fleas, initially one flea per square.
@@ -45,11 +25,11 @@ ENREGISTRER_PROBLEME(213, "Flea Circus")
     // rounded to six decimal places.
     nombre taille = 30;
     
-    matrice I(taille*taille, taille*taille);
+    matrice::matrice<long double> I(taille*taille, taille*taille, 0.0);
     for (size_t n = 0; n < taille*taille; ++n)
         I(n,n) = 1.0;
     
-    matrice A(taille*taille, taille*taille);
+    matrice::matrice<long double> A(taille*taille, taille*taille);
     for (size_t i = 0; i < taille; ++i)
     for (size_t j = 0; j < taille; ++j)
     {
@@ -68,7 +48,7 @@ ENREGISTRER_PROBLEME(213, "Flea Circus")
             A(ij, a) = 1.0 / adjacents.size();
     }
     
-    matrice An = puissance_matrice(A, 50);
+    auto An = matrice::puissance_matrice(A, 50);
 
     long double resultat = 0.0;
     for (size_t j = 0; j < An.size2(); ++j)
