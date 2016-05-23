@@ -131,4 +131,28 @@ BOOST_AUTO_TEST_SUITE(test_arithmetiques)
         BOOST_CHECK_EQUAL(arithmetiques::repunit::A(7ULL), 6);
     }
 
+    BOOST_FIXTURE_TEST_CASE(inverse, fixure_arithmetiques)
+    {
+        BOOST_CHECK_EQUAL(arithmetiques::inverse_modulaire<unsigned long>(3, 11, premiers), 4);
+        BOOST_CHECK_EQUAL(arithmetiques::inverse_modulaire<unsigned long>(97643, 456753, premiers), 368123);
+        BOOST_CHECK_EQUAL(arithmetiques::inverse_modulaire<unsigned long long>(107113, 3246999210ULL, premiers), 180730717ULL);
+    }
+    
+    BOOST_FIXTURE_TEST_CASE(chinois1, fixure_arithmetiques)
+    {
+        std::vector<unsigned long> modulos { 3, 5, 7 };
+        std::vector<unsigned long> restes { 2, 3, 2 };
+        
+        auto reste = arithmetiques::restes_chinois<unsigned long>(modulos, restes, premiers);
+        BOOST_CHECK_EQUAL(reste, 23);
+    }
+    
+    BOOST_FIXTURE_TEST_CASE(chinois2, fixure_arithmetiques)
+    {
+        std::vector<unsigned long> modulos { 3, 4, 5 };
+        std::vector<unsigned long> restes { 2, 3, 1 };
+        
+        auto reste = arithmetiques::restes_chinois<unsigned long>(modulos, restes, premiers);
+        BOOST_CHECK_EQUAL(reste, 11);
+    }
 BOOST_AUTO_TEST_SUITE_END()

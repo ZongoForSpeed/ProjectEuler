@@ -145,6 +145,14 @@ namespace std
             os << "<none>";
         return os;
     }
+    
+    template<class InputIt1, class InputIt2, class BinaryOperation>
+    void for_each2(InputIt1 first1, InputIt1 last1, InputIt2 first2, BinaryOperation binary_op)
+    {
+        while (first1 != last1) {
+            binary_op(*first1++, *first2++);
+        }
+    }
 }
 
 template<typename Nombre>

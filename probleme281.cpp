@@ -1,3 +1,4 @@
+
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "combinatoire.h"
@@ -10,7 +11,6 @@
 #include <boost/multiprecision/gmp.hpp>
 
 typedef boost::multiprecision::mpz_int nombre;
-// unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
