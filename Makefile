@@ -6,7 +6,7 @@ CPPFLAGS=-std=gnu++11 -c -O3 -DNDEBUG -DBOOST_UBLAS_NDEBUG $(WARNINGS) -I.
 
 LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp -lstdc++
 
-SOURCES=timer.cpp premiers.cpp graphe.cpp utilitaires.cpp $(wildcard probleme*.cpp) $(wildcard probleme0xx/*.cpp) $(wildcard probleme1xx/*.cpp)
+SOURCES=timer.cpp arithmetiques.cpp premiers.cpp graphe.cpp utilitaires.cpp $(wildcard probleme*.cpp) $(wildcard probleme0xx/*.cpp) $(wildcard probleme1xx/*.cpp)
 
 TEST_SOURCES=test.cpp $(wildcard test/*.cpp)
 

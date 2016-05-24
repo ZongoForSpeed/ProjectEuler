@@ -29,6 +29,9 @@ namespace arithmetiques
         return pgcd;
     }
     
+    template<>
+    boost::multiprecision::mpz_int PGCD<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int b);
+    
     template<typename Nombre>
     Nombre PGCD(Nombre a, Nombre b, Nombre c)
     {
@@ -41,6 +44,9 @@ namespace arithmetiques
     {
         return (a*b) / PGCD(a,b);
     }
+    
+    template<>
+    boost::multiprecision::mpz_int PPCM<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int b);
     
     template<typename Nombre>
     void Bezout(Nombre a, Nombre b, Nombre& x, Nombre& y)
@@ -63,6 +69,9 @@ namespace arithmetiques
         x = old_s;
         y = old_t;
     }
+    
+    template<>
+    void Bezout<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int b, boost::multiprecision::mpz_int& x, boost::multiprecision::mpz_int& y);
     
     template<typename Nombre>
     Nombre arrondi(Nombre n, Nombre d)
@@ -119,34 +128,6 @@ namespace arithmetiques
         
         return s;
     }
-    
-    /*
-    template<typename Nombre, typename Exposant, typename Conteneur>
-    Nombre fonction_diviseur(Nombre n, Exposant a, const Conteneur & premiers)
-    {
-        // https://fr.wikipedia.org/wiki/Fonction_diviseur
-        Nombre s = 1;
-        for (auto p: premiers)
-        {
-            if (p*p > n)
-                break;
-            if (n%p == 0)
-            {
-                Nombre compteur = 0;
-                while (n%p == 0)
-                {
-                    n /= p;
-                    ++compteur;
-                }
-                s *= (puissance::puissance(p, (compteur + 1)*a) - 1)/(puissance::puissance(p, a) - 1);
-            }
-        }
-        if (n > 1)
-            s *= (puissance::puissance(n, a) + 1);
-        
-        return s;
-    }
-    */
     
     template<typename Nombre, typename Conteneur, typename Dictionnaire>
     void decomposition(Nombre n, const Conteneur & premiers, Dictionnaire & sortie)
@@ -359,6 +340,21 @@ namespace arithmetiques
         return puissance::puissance_modulaire<Nombre>(a, _phi - 1, n);
     }
     
+    template<typename Nombre>
+    Nombre inverse_modulaire(Nombre a, Nombre n)
+    {
+        Nombre inverse, ignore;
+        Bezout(a, n, inverse, ignore);
+        
+        if (inverse < 0)
+            return inverse + n;
+        else
+            return inverse;
+    }
+    
+    template<>
+    boost::multiprecision::mpz_int inverse_modulaire<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int n);
+    
     template<typename Nombre, typename Conteneur>
     Nombre restes_chinois(const Conteneur & modulos, const Conteneur & restes, const Conteneur & premiers)
     {
@@ -376,6 +372,29 @@ namespace arithmetiques
             {
                 Nombre r = n / modulo;
                 resultat += r*inverse_modulaire(r, modulo, premiers)*reste;
+                resultat %= n;
+            }
+        );
+        return resultat;
+    }
+    
+    template<typename Nombre, typename Conteneur>
+    Nombre restes_chinois(const Conteneur & modulos, const Conteneur & restes)
+    {
+        // https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois
+        if (modulos.size() != restes.size())
+            return 0;
+
+        Nombre n = 1;
+        for (auto p: modulos) n *= p;
+        
+        Nombre resultat = 0;
+        
+        std::for_each2(modulos.begin(), modulos.end(), restes.begin(), 
+            [&resultat, &n] (const Nombre & modulo, const Nombre & reste)
+            {
+                Nombre r = n / modulo;
+                resultat += r*inverse_modulaire(r, modulo)*reste;
                 resultat %= n;
             }
         );
