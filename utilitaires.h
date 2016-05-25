@@ -181,6 +181,24 @@ boost::optional<Nombre> carre_parfait(Nombre x)
         return boost::none;
 }
 
+template<typename Nombre> 
+typename std::enable_if<std::is_integral<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
+{ 
+    return a == b;
+}
+
+template<typename Nombre> 
+typename std::enable_if<std::is_class<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
+{ 
+    return a == b;
+}
+
+template<typename Nombre>
+typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
+{ 
+    return std::abs(b - a) < std::numeric_limits<Nombre>::epsilon();
+}
+
 long double operator+(const boost::multiprecision::mpz_int & n, const long double d);
 long double operator+(const long double d, const boost::multiprecision::mpz_int & n);
 

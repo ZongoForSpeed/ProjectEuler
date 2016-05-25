@@ -20,6 +20,7 @@ public:
 	Polynome(std::initializer_list<Nombre> polynome) : _polynome(polynome) {}
 	
 	size_t taille() const { return _polynome.size(); }
+	
 	Nombre valeur(Nombre x) const 
 	{
 		Nombre resultat = 0;
@@ -91,7 +92,7 @@ public:
     void reduire()
     {
     	size_t taille = _polynome.size();
-    	while (taille > 0 && _polynome[taille -1] == 0)
+    	while (taille > 0 && egal<Nombre>(_polynome[taille -1], 0))
     		--taille;
     		
     	if (taille < _polynome.size())
@@ -105,14 +106,14 @@ public:
         for (const Nombre & c: boost::adaptors::reverse(_polynome))
         {
             --degre;
-            if (c != 0)
+            if (!egal<Nombre>(c, 0))
             {
                 bool signe = (c > 0);
                 if (!first)
                     os << (signe ? " + " : " - ");
                 else if (!signe)
                     os << "-";
-                if ((c != 1 && c != -1) || degre == 0)
+                if ((!egal<Nombre>(c, 1) && !egal<Nombre>(c, -1)) || degre == 0)
                     os << (signe ? c : -c);
                 switch(degre)
                 {
