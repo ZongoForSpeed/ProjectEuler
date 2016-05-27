@@ -72,9 +72,10 @@ ENREGISTRER_PROBLEME(287, "Quadtree encoding (a simple compression algorithm)")
     // For a positive integer N, define DN as the 2N×2N image with the following
     // coloring scheme:
     //
-    //  the pixel with coordinates x = 0, y = 0 corresponds to the bottom left
+    // the pixel with coordinates x = 0, y = 0 corresponds to the bottom left
     // pixel, if (x - 2**(N-1))² + (y - 2**(N-1))² ≤ 2**(2N-2) then the pixel is black,
     // otherwise the pixel is white.
+    // 
     // What is the length of the minimal sequence describing D24 ?
     nombre N = 24;
     nombre p2N = puissance::puissance<nombre>(2, 24);
