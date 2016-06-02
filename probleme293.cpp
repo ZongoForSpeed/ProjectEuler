@@ -75,7 +75,8 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
             
         for (const nombre & n: suivant)
         {
-            pseudoFortunate.insert(premier_suivant(n + 1) - n);
+            nombre m = premier_suivant(n + 1) - n;
+            pseudoFortunate.insert(m);
         }
             
         std::swap(fortunate, suivant);
