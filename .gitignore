@@ -1,7 +1,9 @@
 *.o
 Euler
+Euler.log
 Test
 .cproject
 .project
 .settings/
 .vscode/
+prof.euler

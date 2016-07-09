@@ -14,6 +14,11 @@ namespace arithmetiques
     template<typename Nombre>
     Nombre PGCD(Nombre a, Nombre b)
     {
+        if (a == 0)
+            return b;
+        if (b == 0)
+            return a;
+        
         Nombre pgcd = 0;
         while (true)
         {

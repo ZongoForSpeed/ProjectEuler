@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <boost/algorithm/string.hpp>
+#include <gperftools/profiler.h>
 
 RegistreProbleme::RegistreProbleme() 
 {
@@ -23,6 +24,9 @@ void RegistreProbleme::ajout(const size_t numero, const std::string & nom, const
 
 int RegistreProbleme::execute(int argc, char** argv)
 {
+    const std::string profile = std::getenv("CPUPROFILE");
+    if (!profile.empty())
+        ProfilerStart("Euler.log");
     std::vector<std::string> arguments(argv + 1, argv+argc);
     std::vector<size_t> problemes;
     for (auto p: arguments)
@@ -58,6 +62,8 @@ int RegistreProbleme::execute(int argc, char** argv)
         else
             std::cout << "Le probleme " << n << " n'existe pas !" << std::endl;
     }
+    if (!profile.empty())
+        ProfilerStop();
     return 0;
 }
 

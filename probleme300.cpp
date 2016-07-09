@@ -98,20 +98,7 @@ ENREGISTRER_PROBLEME(300, "Protein folding")
     // Give your answer using as many decimal places as necessary for an exact 
     // result.
     nombre longueur = 15;
-    std::vector<size_t> proteines { 0 };
-    for (nombre n = 0; n < longueur; ++n)
-    {
-        std::vector<size_t> suivant;
-        suivant.reserve(2 * proteines.size());
-        for (const auto & p: proteines)
-        {
-            suivant.push_back(2 * p + 1);
-            suivant.push_back(2 * p);
-        }
-        
-        std::swap(suivant, proteines);
-    }
-    // std::cout << "proteines.size() = " << proteines.size() << std::endl;
+    nombre nombre_proteines = 1 << longueur;
 
     std::set<Chemin> chemins;
     {
@@ -119,7 +106,6 @@ ENREGISTRER_PROBLEME(300, "Protein folding")
         const Chemin c { debut };
         
         generer(debut, c, chemins, longueur);
-        // std::cout << "chemins.size() = " << chemins.size() << std::endl;
     }    
     
     std::set<std::vector<size_t>> voisinages;
@@ -138,10 +124,9 @@ ENREGISTRER_PROBLEME(300, "Protein folding")
         
         voisinages.insert(voisins);
     }
-    // std::cout << "voisinages.size() = " << voisinages.size() << std::endl;
     
     nombre somme = 0;
-    for (auto proteine : proteines)
+    for (size_t proteine = 0; proteine < nombre_proteines; ++proteine)
     {
         nombre max_compteur = 0;
         for (auto voisins: voisinages)
@@ -158,7 +143,7 @@ ENREGISTRER_PROBLEME(300, "Protein folding")
         somme += max_compteur;
     }
     
-    long double resultat = ((long double)somme) / proteines.size();
+    long double resultat = ((long double)somme) / nombre_proteines;
     std::cout << std::setprecision(20);
-    std::cout << "Solution: " << somme << " / " << proteines.size() << " = " << resultat << std::endl;
+    std::cout << "Solution: " << somme << " / " << nombre_proteines << " = " << resultat << std::endl;
 }
