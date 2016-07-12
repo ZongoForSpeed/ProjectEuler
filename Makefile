@@ -1,14 +1,43 @@
 COMPILER=clang
 
-WARNINGS=-Werror -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-global-constructors -Wno-exit-time-destructors
+WARNINGS= \
+    -Werror \
+    -Weverything \
+    -Wno-c++98-compat \
+    -Wno-c++98-compat-pedantic \
+    -Wno-padded \
+    -Wno-global-constructors \
+    -Wno-exit-time-destructors
 
-CPPFLAGS=-std=gnu++11 -c -O3 -DNDEBUG -DBOOST_UBLAS_NDEBUG $(WARNINGS) -DWITHGPERFTOOLS -I.
+CPPFLAGS= \
+    -std=gnu++11 -c -O3 $(WARNINGS) -I. \
+    -DNDEBUG \
+    -DBOOST_UBLAS_NDEBUG \
+    -DWITHGPERFTOOLS
 
-LDFLAGS=-L/usr/local/boost/lib -lboost_timer -lboost_system -lm -lgmpxx -lgmp -lstdc++ -lprofiler
+LDFLAGS= \
+    -L/usr/local/boost/lib \
+    -lboost_timer \
+    -lboost_system \
+    -lm \
+    -lgmpxx \
+    -lgmp \
+    -lstdc++ \
+    -lprofiler
 
-SOURCES=timer.cpp arithmetiques.cpp premiers.cpp graphe.cpp utilitaires.cpp $(wildcard probleme*.cpp) $(wildcard probleme0xx/*.cpp) $(wildcard probleme1xx/*.cpp)
+SOURCES= \
+    timer.cpp \
+    arithmetiques.cpp \
+    premiers.cpp \
+    graphe.cpp \
+    utilitaires.cpp \
+    $(wildcard probleme*.cpp) \
+    $(wildcard probleme0xx/*.cpp) \
+    $(wildcard probleme1xx/*.cpp) \
+    $(wildcard probleme2xx/*.cpp)
 
-TEST_SOURCES=test.cpp $(wildcard test/*.cpp)
+TEST_SOURCES=test.cpp \
+    $(wildcard test/*.cpp)
 
 INCLUDES=$(wildcard *.h)
 
