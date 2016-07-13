@@ -68,46 +68,5 @@ ENREGISTRER_PROBLEME(88, "Product-sum numbers")
         }    
     }
     
-    std::cout << "Solution: " << std::accumulate(resultat.begin(), resultat.end(), 0) << std::endl;
-    /*
-    for (nombre k = 2; k <= 10; ++k)
-    {
-        vecteur solution(k, 1);
-        nombre d = 2;
-        nombre position = 0;
-        nombre produit = 1;
-        nombre somme = k;
-        while (true)
-        {
-            somme = somme + 1;
-            produit = produit * d / solution[position]; 
-            solution[position] = d;
-            // std::cout << solution << " = " << somme << "," << produit << std::endl;
-            if (produit == somme)
-                break;
-            if (produit < somme)
-            {
-                ++position;
-                d = 2;
-            }
-            else
-            {
-                ++d;
-                if (position > 0)
-                {
-                    while (position > 0 && solution[position - 1] < d)
-                    {
-                        somme = somme - solution[position] + 1;
-                        produit = produit / solution[position]; 
-                        solution[position] = 1;
-                        --position;
-                    }
-                }
-                
-            }
-        }
-        std::cout << "k = " << k << "\t" << solution << " = " << produit << std::endl;
-        resultat.insert(produit);
-    }
-    */
+    return std::to_string(std::accumulate(resultat.begin(), resultat.end(), 0));
 }

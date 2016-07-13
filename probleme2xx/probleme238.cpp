@@ -79,5 +79,5 @@ ENREGISTRER_PROBLEME(238, "Infinite string tour")
     for (nombre x = 1; x < somme; ++x)
         resultat += p[x] * (1 + ( (limite - x) / somme ));
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

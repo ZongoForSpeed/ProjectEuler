@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "puissance.h"
+#include "utilitaires.h"
 
 #include <iostream>
 #include <vector>
@@ -74,7 +75,5 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
     
     boost::multiprecision::cpp_int puissance = puissance::puissance<boost::multiprecision::cpp_int>(2, n);
     
-    std::cout << std::setprecision(12);
-
-    std::cout << "Solution: " << static_cast<long double>(resultat) / static_cast<long double>(puissance) << std::endl;
+    return std::to_string(static_cast<long double>(resultat) / static_cast<long double>(puissance), 12);
 }

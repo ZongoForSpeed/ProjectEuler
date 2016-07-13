@@ -43,6 +43,6 @@ ENREGISTRER_PROBLEME(133, "Repunit nonfactors")
 		if (k != 1)
 			resultat += p;
 	}
- 	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

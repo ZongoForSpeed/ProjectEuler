@@ -79,5 +79,5 @@ ENREGISTRER_PROBLEME(90, "Cube digit pairs")
         ++resultat;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

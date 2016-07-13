@@ -60,5 +60,5 @@ ENREGISTRER_PROBLEME(281, "Pizza Toppings")
         resultat += f(m, n, premiers);
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -40,5 +40,5 @@ ENREGISTRER_PROBLEME(278, "Linear Combinations of Semiprimes")
         resultat += p * q * r * 2 - p * q - q * r - p * r;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -35,5 +35,5 @@ ENREGISTRER_PROBLEME(44, "Pentagon numbers")
         if (trouve)
             break;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

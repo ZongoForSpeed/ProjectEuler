@@ -50,5 +50,5 @@ ENREGISTRER_PROBLEME(38, "Pandigital multiples")
         if (i%5 != 0)
             resultat = std::max(resultat, algorithme(i));
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

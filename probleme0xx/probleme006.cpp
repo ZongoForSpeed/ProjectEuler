@@ -24,5 +24,5 @@ ENREGISTRER_PROBLEME(6, "Sum square difference")
         somme_carre += n*n;
     }
     nombre solution = somme*somme - somme_carre;
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

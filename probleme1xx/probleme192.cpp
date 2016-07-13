@@ -72,5 +72,5 @@ ENREGISTRER_PROBLEME(192, "Best Approximations")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

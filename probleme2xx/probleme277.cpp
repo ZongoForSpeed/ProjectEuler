@@ -72,5 +72,5 @@ ENREGISTRER_PROBLEME(277, "A Modified Collatz sequence")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -99,18 +99,15 @@ ENREGISTRER_PROBLEME(262, "Mountain Range")
     // in a form suitable for most programming languages:
     // h = ( 5000-0.005*(x*x+y*y+x*y)+12.5*(x+y) ) 
     //   * exp( -abs(0.000001*(x*x+y*y)-0.0015*(x+y)+0.7) )
-    // auto dh = ;
-    std::cout << std::fixed << std::setprecision(3);
-    // std::cout << "h(A) = " << h(200, 200) << std::endl;
-    // std::cout << "h(B) = " << h(1400, 1400) << std::endl;
-
-    long double xmin = dichotomie([](long double x) /*-> long double*/ { return dh_dx(x, 0); }, 0.0, 1600.0);
+    long double xmin = dichotomie(
+        [](long double x) /*-> long double*/
+        {
+            return dh_dx(x, 0); 
+        }, 0.0, 1600.0);
     long double fmin = h(xmin, 0.0);
-    
-    // std::cout << xmin << ", " << fmin << std::endl;
     
     long double resultat = marche(xmin, fmin, 200, 200, -1.0)
         + marche(xmin, fmin, 1400, 1400, 1.0);
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 3);
 }

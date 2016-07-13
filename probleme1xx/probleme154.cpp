@@ -48,5 +48,5 @@ ENREGISTRER_PROBLEME(154, "Exploring Pascal's pyramid")
             ++resultat;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

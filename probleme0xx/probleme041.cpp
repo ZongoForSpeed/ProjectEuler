@@ -24,5 +24,5 @@ ENREGISTRER_PROBLEME(41, "Pandigital prime")
         if (std::is_permutation(chiffres.begin(), chiffres.end(), pandigital.begin()))
             resultat = p;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -62,5 +62,5 @@ ENREGISTRER_PROBLEME(171, "Finding numbers for which the sum of the squares of t
 		resultat += somme[i * i] % masque;
 
 	resultat %= masque;
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -75,5 +75,5 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients")
 	std::cout << resultats << std::endl;
 
     nombre resultat = std::accumulate(resultats.begin(), resultats.end(), nombre(0));
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

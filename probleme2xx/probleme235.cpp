@@ -48,6 +48,6 @@ ENREGISTRER_PROBLEME(235, "An Arithmetic Geometric sequence")
 			
 		dr /= 2;
 	}
-	std::cout << std::setprecision(13);
-    std::cout << "Solution: " << r << std::endl;
+	
+    return std::to_string(r, 12);
 }

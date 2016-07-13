@@ -86,6 +86,5 @@ ENREGISTRER_PROBLEME(280, "Ant and seeds")
     // Give your answer rounded to 6 decimal places.
     long double resultat = algorithme(2, 2, 31, 31);
 
-    std::cout << std::fixed << std::setprecision(6);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 6);
 }

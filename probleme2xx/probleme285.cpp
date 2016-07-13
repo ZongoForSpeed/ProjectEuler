@@ -67,7 +67,6 @@ ENREGISTRER_PROBLEME(285, "Pythagorean odds")
             p -= aire_section_disque(1.0 - 1.0/(2.0*k), 1.0/k, 1.0/k);
         resultat += k * p;
     }
-    
-    std::cout << std::fixed << std::setprecision(5);
-    std::cout << "Solution: " << resultat << std::endl;
+
+    return std::to_string(resultat, 5);
 }

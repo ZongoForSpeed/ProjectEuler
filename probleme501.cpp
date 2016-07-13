@@ -123,7 +123,7 @@ public:
         return resultat;
     }
     
-    void algorithme()
+    nombre algorithme()
     {
         {
             Timer t("crible");
@@ -178,12 +178,12 @@ public:
                 }
             }
         }
-        std::cout << "Resultat = " << resultat << std::endl;
+        return resultat;
     }
 };
 
 ENREGISTRER_PROBLEME(501, "Eight Divisors")
 {
     Probleme501 p;
-    p.algorithme();
+    return std::to_string(p.algorithme());
 }

@@ -59,5 +59,5 @@ ENREGISTRER_PROBLEME(121, "Disc game prize fund")
     }
 
     nombre resultat = probabilite.denominator() / probabilite.numerator();
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

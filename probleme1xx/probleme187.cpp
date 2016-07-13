@@ -44,5 +44,5 @@ ENREGISTRER_PROBLEME(187, "Semiprimes")
         resultat += pi[limite / p] - pi[p] + 1;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

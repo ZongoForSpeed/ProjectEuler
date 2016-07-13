@@ -30,5 +30,5 @@ ENREGISTRER_PROBLEME(73, "Counting fractions in a range")
                 ++resultat;
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

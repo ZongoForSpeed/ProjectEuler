@@ -145,6 +145,5 @@ ENREGISTRER_PROBLEME(253, "Tidying up")
 
     boost::multiprecision::mpf_float resultat = numerateur;
     resultat /= denominateur;
-    std::cout << std::fixed << std::setprecision(6);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 6);
 }

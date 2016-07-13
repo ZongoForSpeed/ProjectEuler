@@ -59,5 +59,5 @@ ENREGISTRER_PROBLEME(35, "Circular primes")
         if (valide(p, premiers)) ++resultat;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

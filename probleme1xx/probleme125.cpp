@@ -41,5 +41,5 @@ ENREGISTRER_PROBLEME(125, "Palindromic sums")
         }
     }
     
-    std::cout << "Solution: " << std::accumulate(resultat.begin(), resultat.end(), 0ULL) << std::endl;
+    return std::to_string(std::accumulate(resultat.begin(), resultat.end(), 0ULL));
 }

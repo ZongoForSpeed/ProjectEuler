@@ -17,5 +17,5 @@ ENREGISTRER_PROBLEME(1, "Multiples of 3 and 5")
         if (n%3 == 0 || n%5 == 0)
             solution += n;
     }
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

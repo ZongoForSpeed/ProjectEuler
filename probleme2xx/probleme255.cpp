@@ -104,6 +104,5 @@ ENREGISTRER_PROBLEME(255, "Rounded Square Roots")
     // function respectively.
     long double resultat = algorithme(10000000000000LL, 99999999999999LL, 7000000);
 
-    std::cout << std::fixed << std::setprecision(10);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 10);
 }

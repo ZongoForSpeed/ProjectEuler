@@ -139,5 +139,5 @@ ENREGISTRER_PROBLEME(96, "Su Doku")
     }
     sudoku(m);
     resultat += 100*m[0][0] + 10*m[0][1] + m[0][2];
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

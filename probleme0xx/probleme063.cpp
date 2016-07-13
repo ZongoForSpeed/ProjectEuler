@@ -22,5 +22,5 @@ ENREGISTRER_PROBLEME(63, "Powerful digit counts")
     {
         resultat += floor(log(10)/(log(10)-log(n))); 
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

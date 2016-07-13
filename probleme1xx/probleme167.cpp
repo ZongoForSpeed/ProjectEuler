@@ -77,5 +77,5 @@ ENREGISTRER_PROBLEME(167, "Investigating Ulam sequences")
         resultat += u;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

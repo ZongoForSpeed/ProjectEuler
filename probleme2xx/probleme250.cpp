@@ -41,5 +41,5 @@ ENREGISTRER_PROBLEME(250, "250250")
     }
 
     nombre resultat = t.front() - 1;
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

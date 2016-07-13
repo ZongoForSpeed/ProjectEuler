@@ -71,5 +71,5 @@ ENREGISTRER_PROBLEME(128, "Hexagonal tile differences")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

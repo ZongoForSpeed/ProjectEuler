@@ -57,5 +57,5 @@ ENREGISTRER_PROBLEME(347, "Largest integer divisible by two primes")
 		resultat += p.second;
 	}
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

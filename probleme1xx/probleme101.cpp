@@ -117,5 +117,5 @@ ENREGISTRER_PROBLEME(101, "Optimum polynomial")
         resultat += bop;
     }
     
-    std::cout << "Solution: " << resultat.numerator() << std::endl;
+    return std::to_string(resultat.numerator());
 }

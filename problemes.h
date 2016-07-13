@@ -13,20 +13,20 @@ private:
 public:
     static RegistreProbleme & instance();
     
-    void ajout(const size_t numero, const std::string & nom, const std::function<void()> & fonction);
+    void ajout(const size_t numero, const std::string & nom, const std::function<std::string()> & fonction);
     
     int execute(int argc, char** argv);
     
 private:
-    std::map<size_t, std::pair<std::string, std::function<void()>>> _registre;
+    std::map<size_t, std::pair<std::string, std::function<std::string()>>> _registre;
 };
 
 struct Probleme
 {
-    Probleme(const size_t numero, const std::string & nom, const std::function<void()> & fonction);
+    Probleme(const size_t numero, const std::string & nom, const std::function<std::string()> & fonction);
 };
 
 #define ENREGISTRER_PROBLEME(numero, nom) \
-void probleme##numero(); \
+std::string probleme##numero(); \
 static Probleme p##numero(numero, nom, probleme##numero); \
-void probleme##numero()
+std::string probleme##numero()

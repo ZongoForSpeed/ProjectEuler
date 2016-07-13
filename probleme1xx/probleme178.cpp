@@ -46,5 +46,5 @@ ENREGISTRER_PROBLEME(178, "Step Numbers")
     for(nombre z=1;z<=9;z++)
         resultat+=f[i][0][9][z];
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

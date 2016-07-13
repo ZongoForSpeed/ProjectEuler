@@ -180,5 +180,5 @@ ENREGISTRER_PROBLEME(161, "Triominoes")
     matrice m (9, std::vector<bool>(12, true));
     std::map<matrice, nombre> cache;
     nombre resultat = combinaison(cache, m);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

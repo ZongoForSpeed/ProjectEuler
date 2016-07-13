@@ -45,5 +45,5 @@ ENREGISTRER_PROBLEME(78, "Coin partitions")
         partition.push_back(p%1000000);   
     }
     
-    std::cout << "Solution: " << n << std::endl;
+    return std::to_string(n);
 }

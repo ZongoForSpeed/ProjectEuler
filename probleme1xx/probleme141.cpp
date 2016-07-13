@@ -50,6 +50,6 @@ ENREGISTRER_PROBLEME(141, "Investigating progressive numbers, n, which are also 
 	}
 
 	nombre resultat = std::accumulate(solutions.begin(), solutions.end(), 0ULL);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
+#include "utilitaires.h"
 
 #include <iostream>
 
@@ -39,5 +40,5 @@ ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
         b += tmp;
         ++n;
     }
-    std::cout << "Solution: " << n << std::endl;
+    return std::to_string(n);
 }

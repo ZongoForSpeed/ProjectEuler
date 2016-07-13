@@ -42,5 +42,5 @@ ENREGISTRER_PROBLEME(123, "Prime square remainders")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

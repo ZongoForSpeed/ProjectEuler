@@ -32,5 +32,5 @@ ENREGISTRER_PROBLEME(279, "Triangles with integral sides and an integral angle")
             }
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

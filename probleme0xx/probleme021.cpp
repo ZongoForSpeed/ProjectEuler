@@ -32,5 +32,5 @@ ENREGISTRER_PROBLEME(21, "Amicable numbers")
             resultat += d + n;
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

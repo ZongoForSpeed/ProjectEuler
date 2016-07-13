@@ -6,9 +6,9 @@
 #include <fstream>
 #include <algorithm>
 
-#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/gmp.hpp>
 
-typedef boost::multiprecision::cpp_int nombre;
+typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(113, "Non-bouncy numbers")
 {
@@ -39,5 +39,5 @@ ENREGISTRER_PROBLEME(113, "Non-bouncy numbers")
         
     resultat -= 10*longueur;
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

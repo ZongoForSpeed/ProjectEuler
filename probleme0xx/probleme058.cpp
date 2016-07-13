@@ -54,5 +54,5 @@ ENREGISTRER_PROBLEME(58, "Spiral primes")
             break;
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

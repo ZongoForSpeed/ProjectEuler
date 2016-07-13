@@ -72,5 +72,5 @@ ENREGISTRER_PROBLEME(102, "Triangle containment")
         if (contient(A,B,C))
             ++resultat;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

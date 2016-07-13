@@ -49,5 +49,5 @@ ENREGISTRER_PROBLEME(249, "Prime Subset Sums")
         resultat = (resultat + t[p]) % masque;
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

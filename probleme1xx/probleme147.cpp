@@ -51,5 +51,5 @@ ENREGISTRER_PROBLEME(147, "Rectangles in cross-hatched grids")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

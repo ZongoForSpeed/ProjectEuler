@@ -71,5 +71,5 @@ ENREGISTRER_PROBLEME(89, "Roman numerals")
         resultat += ligne.size() - oss.str().size();
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

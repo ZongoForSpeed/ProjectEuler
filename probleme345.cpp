@@ -61,5 +61,5 @@ ENREGISTRER_PROBLEME(345, "Matrix Sum")
     }
     
     nombre resultat = dp[limite - 1];
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

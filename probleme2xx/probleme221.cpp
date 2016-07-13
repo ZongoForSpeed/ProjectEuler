@@ -51,5 +51,5 @@ ENREGISTRER_PROBLEME(221, "Alexandrian Integers")
     std::sort(Alexandrian.begin(), Alexandrian.end());
 
     nombre resultat = Alexandrian[limite - 1];
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

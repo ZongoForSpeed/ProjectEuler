@@ -90,5 +90,5 @@ ENREGISTRER_PROBLEME(256, "Tatami-Free Rooms")
             break;
         }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

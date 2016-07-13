@@ -117,5 +117,5 @@ ENREGISTRER_PROBLEME(106, "Special subset sums: meta-testing")
 		}
 	}
 	
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

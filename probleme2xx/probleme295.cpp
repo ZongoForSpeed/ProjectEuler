@@ -133,5 +133,5 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes")
         resultat += Ri.size() * (Ri.size() + 1) / 2 + rem.size();
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

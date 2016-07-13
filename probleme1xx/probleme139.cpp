@@ -51,6 +51,6 @@ ENREGISTRER_PROBLEME(139, "Pythagorean tiles")
 		}
 	}
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

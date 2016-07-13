@@ -83,5 +83,5 @@ ENREGISTRER_PROBLEME(261, "Stone Game")
 	}
 	
 	nombre resultat = std::accumulate(pivots.begin(), pivots.end(), 0ULL);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

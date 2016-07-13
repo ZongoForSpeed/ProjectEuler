@@ -6,6 +6,20 @@
 #include <boost/algorithm/string.hpp>
 #include <gperftools/profiler.h>
 
+#include <fstream>
+
+namespace
+{
+    const std::string getEnvironnement(const std::string & variable)
+    {
+        std::string resultat;
+        if (const char * env = std::getenv(variable.c_str()))
+            resultat.assign(env);
+        
+        return resultat;
+    }
+}
+
 RegistreProbleme::RegistreProbleme() 
 {
     
@@ -17,16 +31,32 @@ RegistreProbleme & RegistreProbleme::instance()
     return _instance_;
 }
 
-void RegistreProbleme::ajout(const size_t numero, const std::string & nom, const std::function<void()> & fonction)
+void RegistreProbleme::ajout(const size_t numero, const std::string & nom, const std::function<std::string()> & fonction)
 {
     _registre.insert(std::make_pair(numero, std::make_pair(nom, fonction)));
 }
 
 int RegistreProbleme::execute(int argc, char** argv)
 {
-    const std::string profile = std::getenv("CPUPROFILE");
+    const std::string profile = getEnvironnement("CPUPROFILE");
     if (!profile.empty())
         ProfilerStart("Euler.log");
+
+    std::map<size_t /*numero*/, std::string/*solution*/> solutions;
+    {
+        std::ifstream ifs("data/solutions.txt");
+        if (ifs)
+        {
+            size_t numero;
+            std::string solution;
+            
+            while (ifs >> numero >> solution)
+            {
+                solutions[numero] = solution;
+            }
+        }          
+    }
+  
     std::vector<std::string> arguments(argv + 1, argv+argc);
     std::vector<size_t> problemes;
     for (auto p: arguments)
@@ -51,23 +81,38 @@ int RegistreProbleme::execute(int argc, char** argv)
     
     for (auto n: problemes)
     {
+        std::cout << std::endl;
         auto it = _registre.find(n);
         if (it != _registre.end())
         {
+            const std::string & solution = solutions[it->first];
             std::ostringstream oss;
             oss << "probleme " << it->first << ": " << it->second.first;
             Timer t(oss.str());
-            it->second.second();            
+            const std::string resultat = it->second.second();
+            if (resultat == solution)
+            {
+                std::cout << "\033[1;32m" << "Solution : " << resultat << "\033[0m" << std::endl;
+            }
+            else
+            {
+                std::cout << "\033[1;31m" << "ERREUR !" << std::endl;
+                std::cout << "Resultat : " << resultat << std::endl;
+                std::cout << "Solution : " << solution << std::endl;
+                std::cout << "\033[0m";
+            }
         }
         else
             std::cout << "Le probleme " << n << " n'existe pas !" << std::endl;
     }
+    
     if (!profile.empty())
         ProfilerStop();
+    
     return 0;
 }
 
-Probleme::Probleme(const size_t numero, const std::string & nom, const std::function<void()> & fonction)
+Probleme::Probleme(const size_t numero, const std::string & nom, const std::function<std::string()> & fonction)
 {
     RegistreProbleme::instance().ajout(numero, nom, fonction);
 }

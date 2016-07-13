@@ -59,5 +59,5 @@ ENREGISTRER_PROBLEME(225, "Tribonacci non-divisors")
 		}			
 	}
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

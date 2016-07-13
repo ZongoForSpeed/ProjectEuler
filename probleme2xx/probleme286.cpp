@@ -108,6 +108,5 @@ ENREGISTRER_PROBLEME(286, "Scoring probabilities")
             q += dq;
     }
     
-    nombre resultat = q;
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(q, 10);
 }

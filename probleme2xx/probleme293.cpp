@@ -86,5 +86,5 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
     for (const nombre & n: pseudoFortunate)
         resultat += n;
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

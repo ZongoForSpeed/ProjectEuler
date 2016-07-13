@@ -50,5 +50,5 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients")
     
     // std::cout << square_free << std::endl;
     nombre resultat = std::accumulate(square_free.begin(), square_free.end(), nombre(0));
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -153,6 +153,16 @@ namespace std
             binary_op(*first1++, *first2++);
         }
     }
+    
+    std::string to_string(const boost::multiprecision::mpz_int & n);
+    
+    template<typename Nombre>
+    std::string to_string(Nombre n, int p)
+    {
+        std::ostringstream oss;
+        oss << std::fixed << std::setprecision(p) << n;
+        return oss.str();
+    }
 }
 
 template<typename Nombre>
@@ -162,8 +172,7 @@ Nombre racine_carre(Nombre n)
     return x;
 }
 
-template<>
-boost::multiprecision::mpz_int racine_carre<boost::multiprecision::mpz_int>(boost::multiprecision::mpz_int n);
+boost::multiprecision::mpz_int racine_carre(boost::multiprecision::mpz_int n);
 
 template<typename Nombre, typename = typename std::enable_if<std::is_integral<Nombre>::value, Nombre>::type>
 Nombre racine_cubique(Nombre n)

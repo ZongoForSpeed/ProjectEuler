@@ -62,5 +62,5 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers")
         }
     }
 
-    std::cout << "Solution: " << resultat%masque << std::endl;
+    return std::to_string(resultat%masque);
 }

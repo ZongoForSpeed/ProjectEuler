@@ -37,6 +37,6 @@ ENREGISTRER_PROBLEME(135, "Same differences")
     }
     
     auto resultat = std::count (compteur.begin(), compteur.end(), 10);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

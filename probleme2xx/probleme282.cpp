@@ -105,5 +105,5 @@ ENREGISTRER_PROBLEME(282, "The Ackermann function")
     resultat += 2 * (algorithme(100, modulo, premiers) - 3);
     resultat %= modulo;
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

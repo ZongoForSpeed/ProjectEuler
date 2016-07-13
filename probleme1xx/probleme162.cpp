@@ -46,6 +46,5 @@ ENREGISTRER_PROBLEME(162, "Hexadecimal numbers")
     std::string str = oss.str();
     boost::to_upper(str);
     
-    
-    std::cout << "Solution: " << str << " = " << resultat << std::endl;
+    return str;
 }

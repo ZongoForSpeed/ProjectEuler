@@ -40,6 +40,6 @@ ENREGISTRER_PROBLEME(129, "Repunit divisibility")
 		}
 	}
 	
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

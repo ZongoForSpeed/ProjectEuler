@@ -36,5 +36,5 @@ ENREGISTRER_PROBLEME(173, "Using up to one million tiles how many different \"ho
     for (nombre n = 1; 2*n - 1 < limite; ++n)
         resultat += (racine_carre(n*n + limite) - n) / 2;
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

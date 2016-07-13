@@ -64,6 +64,5 @@ ENREGISTRER_PROBLEME(226, "A Scoop of Blancmange")
             resultat += y * dx;
     }
     
-    std::cout << std::setprecision(8);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 8);
 }

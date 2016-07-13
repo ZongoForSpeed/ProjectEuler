@@ -62,6 +62,6 @@ ENREGISTRER_PROBLEME(67, "Maximum path sum II")
         resultat.push_back(ligne);
     }
     const auto it = std::max_element(resultat.back().begin(), resultat.back().end());
-    std::cout << "Solution: " << *it << std::endl;
+    return std::to_string(*it);
 }
 

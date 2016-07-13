@@ -81,6 +81,5 @@ ENREGISTRER_PROBLEME(272, "Modular Cubes, part 2")
     }
     
     nombre resultat = algorithme(premiers_cubiques.begin(), premiers_cubiques.end(), limite, 5, 1);
-    std::cout << "Solution: " << resultat << std::endl;
-    std::cout << "          8495585919506151122" << std::endl;
+    return std::to_string(resultat);
 }

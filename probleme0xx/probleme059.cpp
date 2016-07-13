@@ -88,5 +88,5 @@ ENREGISTRER_PROBLEME(59, "XOR decryption")
     			return r + static_cast<nombre>(c);
 			}
     	);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

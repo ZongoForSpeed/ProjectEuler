@@ -50,5 +50,5 @@ ENREGISTRER_PROBLEME(160, "Factorial trailing digits")
         resultat = (resultat * m)%masque;
     }
     resultat = (resultat * puissance::puissance_modulaire<nombre>(2, facteur2 - facteur5, masque))%masque;
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

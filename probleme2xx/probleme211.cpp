@@ -31,5 +31,5 @@ ENREGISTRER_PROBLEME(211, "Divisor Square Sum")
 			resultat += d;
 	}
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

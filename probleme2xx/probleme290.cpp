@@ -51,5 +51,5 @@ ENREGISTRER_PROBLEME(290, "Digital Signature")
             resultat += p.second;
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

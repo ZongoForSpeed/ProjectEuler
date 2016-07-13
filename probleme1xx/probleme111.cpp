@@ -79,5 +79,5 @@ ENREGISTRER_PROBLEME(111, "Primes with runs")
         std::cout << e.first << "\t" << p.first << "\t" << p.second.size() << "\t" << somme << std::endl;
     }
     
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

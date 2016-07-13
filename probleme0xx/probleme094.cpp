@@ -32,5 +32,5 @@ ENREGISTRER_PROBLEME(94, "Almost equilateral triangles")
             resultat += 6*k + 2;
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

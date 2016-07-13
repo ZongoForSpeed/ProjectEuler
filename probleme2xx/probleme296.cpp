@@ -36,5 +36,5 @@ ENREGISTRER_PROBLEME(296, "Angular Bisector and Tangent")
 		resultat += cmax / d - (cmin - 1) / d;
 	}
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

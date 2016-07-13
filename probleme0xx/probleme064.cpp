@@ -61,5 +61,5 @@ ENREGISTRER_PROBLEME(64, "Odd period square roots")
         if (periode(n)%2 == 1)
             ++resultat;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

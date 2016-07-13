@@ -29,5 +29,5 @@ ENREGISTRER_PROBLEME(190, "Maximising a weighted product")
         resultat += std::floor(produit);
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

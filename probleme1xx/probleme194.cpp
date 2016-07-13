@@ -88,5 +88,5 @@ ENREGISTRER_PROBLEME(194, "Coloured Configurations")
     nombre resultat = N(cache, 25, 75, 1984) % 100000000;
     std::cout << "N(25,75,1984) = " << resultat << std::endl;
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

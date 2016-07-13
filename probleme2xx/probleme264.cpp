@@ -96,6 +96,5 @@ ENREGISTRER_PROBLEME(264, "Triangle Centres")
         }
     }
         
-    std::cout << std::fixed << std::setprecision(4);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 4);
 }

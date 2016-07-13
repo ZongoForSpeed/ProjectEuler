@@ -53,6 +53,6 @@ ENREGISTRER_PROBLEME(140, "Modified Fibonacci golden nuggets")
         resultat += 2*v - fibonacci[i];
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

@@ -68,5 +68,5 @@ ENREGISTRER_PROBLEME(104, "Pandigital Fibonacci ends")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

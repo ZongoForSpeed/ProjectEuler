@@ -72,5 +72,5 @@ ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 d
     }
 
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

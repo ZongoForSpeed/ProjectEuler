@@ -107,5 +107,5 @@ ENREGISTRER_PROBLEME(283, "Integer sided triangles for which the area/perimeter 
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

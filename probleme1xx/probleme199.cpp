@@ -80,5 +80,5 @@ ENREGISTRER_PROBLEME(199, "Iterative Circle Packing")
     }
     
     long double resultat = 1.0 - A / a0;
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 8);
 }

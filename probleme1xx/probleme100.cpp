@@ -34,5 +34,5 @@ ENREGISTRER_PROBLEME(100, "Arranged probability")
     }
     
     nombre resultat = b;
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

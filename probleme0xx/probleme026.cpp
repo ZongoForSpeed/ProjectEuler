@@ -54,5 +54,5 @@ ENREGISTRER_PROBLEME(26, "Reciprocal cycles")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

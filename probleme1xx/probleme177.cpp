@@ -121,5 +121,5 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals")
     for(nombre i = 1; i <= 8; i++)
         resultat += solution[i] / i;
         
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

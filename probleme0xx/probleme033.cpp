@@ -35,5 +35,6 @@ ENREGISTRER_PROBLEME(33, "Digit cancelling fractions")
             resultat *= fraction(ab, bc);
         }
     }
-    std::cout << "solution: " << resultat.denominator() << std::endl;
+    std::cout << std::endl;
+    return std::to_string(resultat.denominator());
 }

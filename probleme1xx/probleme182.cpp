@@ -78,5 +78,5 @@ ENREGISTRER_PROBLEME(182, "RSA encryption")
             resultat += e;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

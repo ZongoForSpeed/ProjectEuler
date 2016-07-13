@@ -219,7 +219,6 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia")
     {
         resultat += std::abs(etat.first) * etat.second;
     }
-    
-    std::cout << std::fixed << std::setprecision(8);
-    std::cout << "Solution: " << resultat << std::endl;
+
+    return std::to_string(resultat, 8);
 }

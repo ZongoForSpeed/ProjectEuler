@@ -165,5 +165,5 @@ ENREGISTRER_PROBLEME(246, "Tangents to an ellipse")
     //
     // For how many lattice points P is angle RPS greater than 45 degrees?
     Probleme246 p;
-	std::cout << "Solution: " << p.algorithme() << std::endl;
+    return std::to_string(p.algorithme());
 }

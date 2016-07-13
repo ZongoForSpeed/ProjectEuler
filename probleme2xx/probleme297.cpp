@@ -73,5 +73,5 @@ ENREGISTRER_PROBLEME(297, "Zeckendorf Representation")
 	}
 	
 	nombre resultat = Zeckendorf(fibonacci, limite);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

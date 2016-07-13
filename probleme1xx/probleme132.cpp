@@ -35,6 +35,6 @@ ENREGISTRER_PROBLEME(132, "Large repunit factors")
 	            break;
 	    }
 	}
- 	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

@@ -75,5 +75,5 @@ ENREGISTRER_PROBLEME(223, "Almost right-angled triangles I")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

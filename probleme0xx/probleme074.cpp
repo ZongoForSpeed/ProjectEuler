@@ -53,5 +53,5 @@ ENREGISTRER_PROBLEME(74, "Digit factorial chains")
             ++resultat;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

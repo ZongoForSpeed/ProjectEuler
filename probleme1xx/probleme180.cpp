@@ -94,5 +94,5 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
     }
     
     grand_nombre resultat = (u + v)/arithmetiques::PGCD(u,v);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -81,5 +81,5 @@ ENREGISTRER_PROBLEME(153, "Investigating Gaussian Integers")
 		}
 	}
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

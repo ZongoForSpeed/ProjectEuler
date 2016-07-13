@@ -1,14 +1,15 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
+#include "utilitaires.h"
 
 #include <iostream>
 #include <algorithm>
 #include <list>
 #include <map>
-#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/gmp.hpp>
 
-typedef boost::multiprecision::cpp_int nombre;
+typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(56, "Powerful digit sum")
 {
@@ -25,5 +26,5 @@ ENREGISTRER_PROBLEME(56, "Powerful digit sum")
         chiffres::boucle_chiffre(puissance::puissance<nombre>(a,b), [&somme] (const nombre & d) { somme += d; });
         maximum = std::max(maximum, somme);
     }
-    std::cout << "Solution: " << maximum << std::endl;
+    return std::to_string(maximum);
 }

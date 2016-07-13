@@ -116,5 +116,5 @@ ENREGISTRER_PROBLEME(254, "Sums of Digit Factorials")
         }
     }
     
-    std::cout << "Solution: " << somme << std::endl;
+    return std::to_string(somme);
 }

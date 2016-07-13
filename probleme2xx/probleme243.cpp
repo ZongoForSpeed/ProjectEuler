@@ -59,5 +59,5 @@ ENREGISTRER_PROBLEME(243, "Odd Triplets")
 		}
 	}
 
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -50,5 +50,5 @@ ENREGISTRER_PROBLEME(174, "Counting the number of \"hollow\" square laminae that
             ++resultat;
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

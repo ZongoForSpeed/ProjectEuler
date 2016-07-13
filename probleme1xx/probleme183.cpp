@@ -80,5 +80,5 @@ ENREGISTRER_PROBLEME(183, "Maximum product of parts")
             resultat_positif += n;
     }
 
-    std::cout << "Solution: " << resultat_positif - resultat_negatif << std::endl;
+    return std::to_string(resultat_positif - resultat_negatif);
 }

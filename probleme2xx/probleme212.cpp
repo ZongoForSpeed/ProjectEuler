@@ -129,5 +129,5 @@ ENREGISTRER_PROBLEME(212, "Combined Volume of Cuboids")
 	
 	nombre resultat = resultat_plus - resultat_moins;
 	
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

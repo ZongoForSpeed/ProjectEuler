@@ -33,5 +33,5 @@ ENREGISTRER_PROBLEME(193, "Squarefree Numbers")
         resultat += arithmetiques::moebius(k, premiers) * limite*limite / (k*k);
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

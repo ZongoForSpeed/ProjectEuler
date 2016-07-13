@@ -43,5 +43,5 @@ ENREGISTRER_PROBLEME(69, "Totient maximum")
             break;
         resultat *= p;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

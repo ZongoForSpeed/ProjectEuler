@@ -42,6 +42,6 @@ ENREGISTRER_PROBLEME(134, "Prime pair connection")
             resultat += b * puissance::puissance(dix, chiffres) + p1;
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

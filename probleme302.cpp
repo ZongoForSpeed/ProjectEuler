@@ -14,8 +14,7 @@
 
 #include <boost/multiprecision/gmp.hpp>
 
-// typedef boost::multiprecision::mpz_int nombre;
-typedef unsigned long long nombre;
+typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
@@ -121,5 +120,5 @@ ENREGISTRER_PROBLEME(302, "Strong Achilles Numbers")
     std::map<nombre, size_t> decomposition;
     nombre resultat = algorithme(1, limite_crible, 0, decomposition, limite, premiers);
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

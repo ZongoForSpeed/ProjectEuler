@@ -78,5 +78,5 @@ ENREGISTRER_PROBLEME(299, "Three similar triangles")
         resultat += (limite-1) / (2*b); 
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

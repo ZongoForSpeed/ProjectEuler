@@ -38,5 +38,5 @@ ENREGISTRER_PROBLEME(71, "Ordered fractions")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat.numerator());
 }

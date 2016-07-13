@@ -43,5 +43,5 @@ ENREGISTRER_PROBLEME(176, "Right-angled triangles that share a cathetus")
     for (nombre n = 0; n < facteurs.size(); ++n)
         resultat *= puissance::puissance(premiers[n], facteurs[n]);
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

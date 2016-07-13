@@ -38,6 +38,6 @@ ENREGISTRER_PROBLEME(239, "Infinite string tour")
     
     boost::multiprecision::mpf_float resultat = numerateur;
     resultat /= denominateur;
-    std::cout << std::setprecision(12);
-    std::cout << "Solution: " << resultat << std::endl;
+    
+    return std::to_string(resultat, 12);
 }

@@ -63,5 +63,5 @@ ENREGISTRER_PROBLEME(269, "Polynomials with at least one integer root")
     // What is Z(10**16)?
     vecteur residue(10, 0);
     nombre resultat = algorithme(residue, 16);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -52,5 +52,5 @@ ENREGISTRER_PROBLEME(206, "Concealed Square")
         }
     }
      
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

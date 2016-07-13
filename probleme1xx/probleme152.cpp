@@ -72,5 +72,5 @@ ENREGISTRER_PROBLEME(152, "Writing 1/2 as a sum of inverse squares")
     for (size_t p: premiers)
         resultat += generer(premiers, p);
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

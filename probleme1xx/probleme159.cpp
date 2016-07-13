@@ -70,5 +70,5 @@ ENREGISTRER_PROBLEME(159, "Digital root sums of factorisations")
     std::cout << "maximumDRS[24] = " << maximumDRS[24] << std::endl;
     
     nombre resultat = std::accumulate(maximumDRS.begin(), maximumDRS.end(), 0ULL);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

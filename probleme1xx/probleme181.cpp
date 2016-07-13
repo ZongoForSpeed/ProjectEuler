@@ -66,5 +66,5 @@ ENREGISTRER_PROBLEME(181, "Investigating in how many ways objects of two differe
     }
     
     nombre resultat = combinaison[objets.first][objets.second];
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

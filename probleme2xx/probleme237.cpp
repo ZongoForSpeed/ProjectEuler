@@ -44,5 +44,5 @@ ENREGISTRER_PROBLEME(237, "Tours on a 4 x n playing board")
 	auto m_n = matrice::puissance_matrice(m, n - 4, 100000000LL);
 	nombre resultat = boost::numeric::ublas::prod(m_n, i)(0);
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

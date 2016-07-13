@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
+#include "utilitaires.h"
 
 #include <iostream>
 
@@ -16,5 +17,5 @@ ENREGISTRER_PROBLEME(16, "Power digit sum")
     nombre n = puissance::puissance<nombre>(2, 1000);
     nombre resultat = 0;
     chiffres::boucle_chiffre(n, [&resultat](nombre d) { resultat += d; });
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

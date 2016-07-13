@@ -25,5 +25,5 @@ ENREGISTRER_PROBLEME(31, "Coin sums")
     for (nombre p2 = 0; p2 <= 200 - p200 - p100 - p50 - p20 - p10 - p5; p2 += 2)
         ++resultat;
         
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

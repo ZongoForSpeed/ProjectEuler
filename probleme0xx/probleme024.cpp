@@ -18,8 +18,8 @@ ENREGISTRER_PROBLEME(24, "Lexicographic permutations")
     for (size_t n = 1; n < 1000000; ++n)
         std::next_permutation(v.begin(), v.end());
         
-    std::cout << "Solution: ";
+    std::ostringstream oss;
     for (const auto n : v)
-        std::cout << n;
-    std::cout << std::endl;
+        oss << n;
+    return oss.str();
 }

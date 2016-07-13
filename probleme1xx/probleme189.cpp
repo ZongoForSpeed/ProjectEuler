@@ -90,5 +90,5 @@ ENREGISTRER_PROBLEME(189, "Tri-colouring a triangular grid")
         resultat += valeur1 * valeur2 * valeur3;
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

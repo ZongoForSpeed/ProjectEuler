@@ -22,5 +22,5 @@ ENREGISTRER_PROBLEME(34, "Digit factorials")
         chiffres::boucle_chiffre(n, [&s](nombre d) { s += combinatoire::factorielle(d); });
         if (s == n) solution += n;
     }
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

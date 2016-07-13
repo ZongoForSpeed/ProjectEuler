@@ -40,5 +40,5 @@ ENREGISTRER_PROBLEME(22, "Names scores")
         });
         resultat += (++compteur * score);
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

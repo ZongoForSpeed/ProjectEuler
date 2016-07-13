@@ -83,5 +83,5 @@ ENREGISTRER_PROBLEME(263, "An engineers' dream come true")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

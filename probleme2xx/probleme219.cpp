@@ -48,5 +48,5 @@ ENREGISTRER_PROBLEME(219, "Skew-cost coding")
         resultat += (a + static_cast<nombre>(n))*S[n];
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -23,5 +23,5 @@ ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime")
     nombre masque = puissance::puissance<nombre>(10, 10);
     nombre mersenne = puissance::puissance_modulaire<nombre>(2, 7830457, masque);
     mersenne = (mersenne * 28433 + 1)%masque;
-    std::cout << "Solution: " << mersenne << std::endl;
+    return std::to_string(mersenne);
 }

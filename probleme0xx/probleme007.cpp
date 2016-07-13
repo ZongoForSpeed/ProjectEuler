@@ -14,5 +14,5 @@ ENREGISTRER_PROBLEME(7, "10001st prime")
     vecteur premiers;
     premiers::crible<nombre>(200000, std::back_inserter(premiers));
     nombre solution = premiers.at(10000);
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

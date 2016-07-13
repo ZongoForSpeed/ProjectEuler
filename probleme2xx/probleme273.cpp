@@ -81,5 +81,5 @@ ENREGISTRER_PROBLEME(273, "Sum of Squares")
         resultat += algorithme(std::next(it), en, *it);
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

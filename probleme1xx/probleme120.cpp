@@ -18,5 +18,5 @@ ENREGISTRER_PROBLEME(120, "Square remainders")
 	for(nombre a = 3; a <= 1000; ++a)
 		resultat += 2*a*((a*a - 1)/(2*a));
 		
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -88,5 +88,5 @@ ENREGISTRER_PROBLEME(122, "Efficient exponentiation")
         auto p = min_puissance(cache, n);
         resultat += p.front().size();
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

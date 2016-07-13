@@ -52,5 +52,5 @@ ENREGISTRER_PROBLEME(23, "Non-abundant sums")
     {
         if (test.at(n)) resultat += n;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

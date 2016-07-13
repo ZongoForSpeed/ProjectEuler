@@ -44,5 +44,5 @@ ENREGISTRER_PROBLEME(99, "Largest exponential")
         }
         ++numero_ligne;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -75,5 +75,5 @@ ENREGISTRER_PROBLEME(144, "Investigating multiple reflections of a laser beam")
 		a = c;
 		++resultat;
 	}
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

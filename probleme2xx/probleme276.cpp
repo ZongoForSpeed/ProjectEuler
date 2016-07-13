@@ -38,5 +38,5 @@ ENREGISTRER_PROBLEME(276, "Primitive Triangles")
             dp[j] += u;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

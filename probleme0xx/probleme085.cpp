@@ -37,5 +37,5 @@ ENREGISTRER_PROBLEME(85, "Counting rectangles")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

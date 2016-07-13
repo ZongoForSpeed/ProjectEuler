@@ -59,5 +59,5 @@ ENREGISTRER_PROBLEME(95, "Amicable chains")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

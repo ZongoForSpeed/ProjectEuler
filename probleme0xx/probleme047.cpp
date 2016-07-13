@@ -63,5 +63,5 @@ ENREGISTRER_PROBLEME(47, "Distinct primes factors")
         ++n;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

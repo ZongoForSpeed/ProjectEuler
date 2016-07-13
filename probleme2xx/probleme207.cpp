@@ -48,5 +48,5 @@ ENREGISTRER_PROBLEME(207, "Integer partition equations")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

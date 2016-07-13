@@ -72,5 +72,5 @@ ENREGISTRER_PROBLEME(184, "Triangles containing the origin")
         }
     }
 
-    std::cout << "Solution: " << resultat * 4 / 3 << std::endl;
+    return std::to_string(resultat * 4 / 3);
 }

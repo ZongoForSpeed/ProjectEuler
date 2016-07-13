@@ -140,7 +140,7 @@ namespace
     public:
         Probleme498(const unsigned long long & _n, const unsigned long long & _m, const unsigned long long & _d) : n(_n), m(_m), d(_d) {}
     
-        void algorithme()
+        nombre algorithme()
         {
             nombre i = d;
             Number<p> resultat(0);
@@ -176,16 +176,13 @@ namespace
                 i += p;
             }
             
-            std::cout << "Resultat = " << resultat << std::endl;
-            // if (resultat.value() != 0)
-            //  std::cout << " ou " << -resultat << std::endl;
+            return resultat.value();
         }
     };
-    
 }
 
 ENREGISTRER_PROBLEME(498, "Remainder of polynomial division")
 {
     Probleme498<999999937> p(10000000000000LL, 1000000000000LL, 10000);
-    p.algorithme();
+    return std::to_string(p.algorithme());
 }

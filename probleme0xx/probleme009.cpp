@@ -28,5 +28,5 @@ ENREGISTRER_PROBLEME(9, "Special Pythagorean triplet")
     };
     nombre a,b,c;
     boost::tie(a, b, c) = pythagorean(1000);
-    std::cout << "Solution: " << a*b*c << " (a, b, c) = (" << a << ", " << b << ", " << c << ")" << std::endl;
+    return std::to_string(a*b*c);
 }

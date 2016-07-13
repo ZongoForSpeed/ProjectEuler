@@ -31,5 +31,5 @@ ENREGISTRER_PROBLEME(52, "Permuted multiples")
         }
         ++n;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

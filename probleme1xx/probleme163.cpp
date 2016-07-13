@@ -41,5 +41,5 @@ ENREGISTRER_PROBLEME(163, "Cross-hatched triangles")
                   );
     resultat += 3 * ((22*n*n*n + 45*n*n - 4*n)/48);
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

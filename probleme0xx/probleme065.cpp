@@ -8,9 +8,9 @@
 
 #include <boost/rational.hpp>
 #include <boost/range/adaptor/reversed.hpp>
-#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/gmp.hpp>
 
-typedef boost::multiprecision::cpp_int nombre;
+typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
@@ -49,5 +49,5 @@ ENREGISTRER_PROBLEME(65, "Convergents of e")
     
     auto chiffres = chiffres::extraire_chiffres(f.numerator());
     nombre resultat = std::accumulate(chiffres.begin(), chiffres.end(), nombre(0));
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -36,7 +36,7 @@ class Probleme500
 	nombre limite;
 public:
 	Probleme500(nombre l = 500500) : limite(l) {}
-    void algorithme()
+    nombre algorithme()
     {
         vecteur premiers;
         premiers::crible<nombre>(100000000, std::back_inserter(premiers));
@@ -66,12 +66,12 @@ public:
             r *= puissance::puissance_modulaire(premiers[n], resultat[n], p);
             r %= p;
         }
-        std::cout << "Resultat = " << r << std::endl;
+        return r;
     }
 };
 
 ENREGISTRER_PROBLEME(500, "Problem 500!!!")
 {
 	Probleme500 p;
-	p.algorithme();
+	return std::to_string(p.algorithme());
 }

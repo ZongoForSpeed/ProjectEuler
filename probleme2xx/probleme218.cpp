@@ -58,5 +58,5 @@ ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

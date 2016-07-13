@@ -28,5 +28,5 @@ ENREGISTRER_PROBLEME(2, "Even Fibonacci numbers")
     {
         return (f%2 == 0) ? somme + f : somme;
     });
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

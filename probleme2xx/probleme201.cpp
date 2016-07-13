@@ -77,5 +77,5 @@ ENREGISTRER_PROBLEME(201, "Subsets with a unique sum")
 	        resultat += n;
 	}
 	
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

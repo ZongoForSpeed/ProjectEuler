@@ -92,5 +92,5 @@ ENREGISTRER_PROBLEME(270, "Cutting Squares")
     // 
     // What is C(30) mod 10**8 ?
     nombre resultat = C(30) % 100000000;
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

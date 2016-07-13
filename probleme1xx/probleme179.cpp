@@ -33,5 +33,5 @@ ENREGISTRER_PROBLEME(179, "Consecutive positive divisors")
         else 
             sigma = s;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -48,5 +48,5 @@ ENREGISTRER_PROBLEME(70, "Totient permutation")
             }
         }
     }
-    std::cout << "Solution: " << min_n << std::endl;
+    return std::to_string(min_n);
 }

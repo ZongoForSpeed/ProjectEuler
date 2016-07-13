@@ -57,5 +57,5 @@ ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits")
         resultat.insert(c.begin(), c.end());
     }
     
-    std::cout << "Solution: " << resultat.size() << std::endl;
+    return std::to_string(resultat.size());
 }

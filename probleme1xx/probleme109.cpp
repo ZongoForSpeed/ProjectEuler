@@ -126,5 +126,5 @@ ENREGISTRER_PROBLEME(109, "Darts")
             resultat += r.second.size();
     }
     
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

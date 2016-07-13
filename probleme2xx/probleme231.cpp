@@ -45,6 +45,6 @@ ENREGISTRER_PROBLEME(231, "The prime factorisation of binomial coefficients")
 		resultat += p * (x(n,p) - x(k, p) - x(n - k, p));
 	}
 	
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

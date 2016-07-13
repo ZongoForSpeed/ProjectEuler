@@ -130,6 +130,5 @@ ENREGISTRER_PROBLEME(275, "Balanced Sculptures")
     Points F { std::make_pair(0, 1) };
     Points R;
     nombre resultat = algorithme(n, P, F, R, 0, 0, 0) / 2;
-    std::cout << "Solution: " << resultat << std::endl;
-    std::cout << "          15030564" << std::endl;
+    return std::to_string(resultat);
 }

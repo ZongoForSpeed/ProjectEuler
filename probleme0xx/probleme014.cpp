@@ -56,5 +56,5 @@ ENREGISTRER_PROBLEME(14, "Longest Collatz sequence")
         }
     }
     
-    std::cout << "Solution: " << max_nombre << std::endl;
+    return std::to_string(max_nombre);
 }

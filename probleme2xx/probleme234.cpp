@@ -48,5 +48,5 @@ ENREGISTRER_PROBLEME(234, "Semidivisible numbers")
 		}
 		p1 = p2;
 	}
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

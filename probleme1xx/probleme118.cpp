@@ -66,5 +66,5 @@ ENREGISTRER_PROBLEME(118, "Pandigital prime sets")
     }
     while (std::next_permutation(chiffres.begin(), chiffres.end()));
     
-    std::cout << "Solution: " << resultat.size() << std::endl;
+    return std::to_string(resultat.size());
 }

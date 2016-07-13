@@ -111,5 +111,5 @@ ENREGISTRER_PROBLEME(292, "Pythagorean Polygons")
     
     size_t resultat = algorithme(triplets, perimetre, 0, 0, 0, 0);
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

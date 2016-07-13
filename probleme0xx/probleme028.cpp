@@ -30,5 +30,5 @@ ENREGISTRER_PROBLEME(28, "Number spiral diagonals")
             somme += 2*n*n-4*(n-1);
         }
     }
-    std::cout << "Solution: " << somme << std::endl;
+    return std::to_string(somme);
 }

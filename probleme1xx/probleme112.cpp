@@ -52,5 +52,5 @@ ENREGISTRER_PROBLEME(112, "Bouncy numbers")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

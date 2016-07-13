@@ -59,5 +59,5 @@ ENREGISTRER_PROBLEME(214, "Totient Chains")
             resultat += p;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

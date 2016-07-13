@@ -48,5 +48,5 @@ ENREGISTRER_PROBLEME(62, "Cubic permutations")
         ++n;
     }
     std::cout << resultat << std::endl;
-    std::cout << "Solution: " << resultat.front() << std::endl;
+    return resultat.front();
 }

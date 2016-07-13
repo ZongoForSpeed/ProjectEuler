@@ -49,6 +49,6 @@ ENREGISTRER_PROBLEME(137, "Fibonacci golden nuggets")
         f = std::make_pair(f.first + f.second, f.first + 2*f.second);
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

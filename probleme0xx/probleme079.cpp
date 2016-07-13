@@ -83,5 +83,5 @@ ENREGISTRER_PROBLEME(79, "Passcode derivation")
         }
     }
     
-    std::cout << "Solution: " << mot_de_passe << std::endl;
+    return mot_de_passe;
 }

@@ -38,5 +38,5 @@ ENREGISTRER_PROBLEME(164, "Numbers for which no three consecutive digits have a 
     	resultat += compte(compteur, 0, i, limite - 1);
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

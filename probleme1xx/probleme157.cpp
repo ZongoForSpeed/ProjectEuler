@@ -69,5 +69,5 @@ ENREGISTRER_PROBLEME(157, "Solving the diophantine equation 1/a+1/b= p/10n")
         resultat += resultat_n;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

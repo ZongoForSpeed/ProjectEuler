@@ -60,5 +60,5 @@ ENREGISTRER_PROBLEME(172, "Investigating numbers with few repeated digits")
 		}
 	}
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

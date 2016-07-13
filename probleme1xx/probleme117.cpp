@@ -38,5 +38,5 @@ ENREGISTRER_PROBLEME(117, "Red, green, and blue tiles")
         resultat += n/d;
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

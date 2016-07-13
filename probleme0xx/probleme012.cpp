@@ -32,5 +32,5 @@ ENREGISTRER_PROBLEME(12, "Highly divisible triangular number")
     nombre triangle = 1;
     nombre n = 1;
     while (arithmetiques::nombre_diviseurs(triangle, premiers) < 500) triangle += ++n;
-    std::cout << "Solution: " << triangle << std::endl;
+    return std::to_string(triangle);
 }

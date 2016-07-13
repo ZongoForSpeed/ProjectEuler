@@ -68,5 +68,5 @@ ENREGISTRER_PROBLEME(107, "Minimal network")
     
     nombre resultat = std::accumulate(A.begin(), A.end(), 0UL, somme_poids) - std::accumulate(arbre_mini.begin(), arbre_mini.end(), 0UL, somme_poids);;
     // std::cout << A << std::endl;
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

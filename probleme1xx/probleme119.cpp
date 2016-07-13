@@ -38,5 +38,5 @@ ENREGISTRER_PROBLEME(119, "Digit power sum")
     
     std::sort(resultat.begin(), resultat.end());
     
-    std::cout << "Solution: " << resultat.at(29) << std::endl;
+    return std::to_string(resultat[29]);
 }

@@ -44,5 +44,5 @@ ENREGISTRER_PROBLEME(42, "Coded triangle numbers")
         if (triangle.find(score) != triangle.end())
             ++resultat;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

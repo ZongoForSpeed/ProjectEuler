@@ -49,5 +49,5 @@ ENREGISTRER_PROBLEME(46, "Goldbach's other conjecture")
         
         n += 2;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

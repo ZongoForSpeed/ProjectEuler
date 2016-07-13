@@ -43,5 +43,5 @@ ENREGISTRER_PROBLEME(145, "How many reversible numbers are there below one-billi
         if (n%10 != 0 && impaire(n + chiffres::inverser_nombre(n)))
             ++resultat;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

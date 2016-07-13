@@ -43,5 +43,6 @@ ENREGISTRER_PROBLEME(168, "Number Rotations")
             }
         }
     }
-    std::cout << "Solution: " << resultat%100000 << std::endl;
+    
+    return std::to_string(resultat%100000);
 }

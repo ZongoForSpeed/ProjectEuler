@@ -89,5 +89,5 @@ ENREGISTRER_PROBLEME(284, "Steady Squares")
         modulos.back() *= 7;
     }
     
-    std::cout << "Solution: " << affiche(resultat) << std::endl;
+    return affiche(resultat);
 }

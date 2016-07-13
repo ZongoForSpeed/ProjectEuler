@@ -135,5 +135,5 @@ ENREGISTRER_PROBLEME(149, "Searching for a maximum-sum subsequence")
     	resultat = std::max(resultat, maximum(v));
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

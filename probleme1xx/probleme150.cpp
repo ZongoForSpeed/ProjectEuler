@@ -83,5 +83,5 @@ ENREGISTRER_PROBLEME(150, "Searching a triangular array for a sub-triangle havin
             }
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

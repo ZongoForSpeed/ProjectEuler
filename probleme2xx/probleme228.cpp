@@ -90,5 +90,5 @@ ENREGISTRER_PROBLEME(228, "Minkowski Sums")
 	}
 
 	nombre resultat = minkowski.size();
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

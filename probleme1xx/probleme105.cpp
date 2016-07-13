@@ -146,5 +146,5 @@ ENREGISTRER_PROBLEME(105, "Special subset sums: testing")
             resultat += std::accumulate(set.begin(), set.end(), 0ULL);
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

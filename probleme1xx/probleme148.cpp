@@ -43,5 +43,5 @@ ENREGISTRER_PROBLEME(148, "Exploring Pascal's triangle")
 		resultat += r;
 	}
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

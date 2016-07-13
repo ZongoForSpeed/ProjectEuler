@@ -91,5 +91,5 @@ ENREGISTRER_PROBLEME(200, "Find the 200th prime-proof sqube containing the conti
     }
     
     nombre resultat = squbes.back();
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

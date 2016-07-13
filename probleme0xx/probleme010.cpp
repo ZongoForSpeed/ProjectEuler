@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "premiers.h"
+#include "utilitaires.h"
 
 #include <iostream>
 #include <numeric>
@@ -17,5 +18,5 @@ ENREGISTRER_PROBLEME(10, "Summation of primes")
     vecteur premiers;
     premiers::crible<nombre>(2000000, std::back_inserter(premiers));
     nombre solution = std::accumulate(premiers.begin(), premiers.end(), nombre(0));
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

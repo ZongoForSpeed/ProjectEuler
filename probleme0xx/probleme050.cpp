@@ -46,5 +46,5 @@ ENREGISTRER_PROBLEME(50, "Consecutive prime sum")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

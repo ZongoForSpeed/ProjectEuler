@@ -50,5 +50,5 @@ ENREGISTRER_PROBLEME(108, "Diophantine reciprocals I")
         }
     }
     
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

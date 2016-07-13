@@ -115,5 +115,5 @@ ENREGISTRER_PROBLEME(186, "Connectedness of a network")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

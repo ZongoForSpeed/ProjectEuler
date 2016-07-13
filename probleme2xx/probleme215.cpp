@@ -88,5 +88,5 @@ ENREGISTRER_PROBLEME(215, "Crack-free Walls")
     for (auto m: dp)
         resultat += m.second;
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

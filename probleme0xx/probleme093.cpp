@@ -103,6 +103,5 @@ ENREGISTRER_PROBLEME(93, "Arithmetic expressions")
         }
     }
 
-    
-    std::cout << "Solution: " << chiffres::conversion_nombre<nombre>(resultat.begin(), resultat.end()) << std::endl;
+    return std::to_string(chiffres::conversion_nombre<nombre>(resultat.begin(), resultat.end()));
 }

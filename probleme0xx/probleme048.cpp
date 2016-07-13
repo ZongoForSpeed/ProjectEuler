@@ -1,13 +1,14 @@
 #include "problemes.h"
 #include "arithmetiques.h"
+#include "utilitaires.h"
 
 #include <iostream>
 #include <algorithm>
 #include <list>
 #include <map>
-#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/gmp.hpp>
 
-typedef boost::multiprecision::cpp_int nombre;
+typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(48, "Self powers")
 {
@@ -21,5 +22,5 @@ ENREGISTRER_PROBLEME(48, "Self powers")
         resultat = resultat%10000000000LL; 
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

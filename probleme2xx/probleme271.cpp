@@ -40,5 +40,5 @@ ENREGISTRER_PROBLEME(271, "Modular Cubes, part 1")
     // Find S(13082761331670030).
     nombre n = 13082761331670030ULL;
     nombre resultat = S(n);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

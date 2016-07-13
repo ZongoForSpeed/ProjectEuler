@@ -15,5 +15,5 @@ ENREGISTRER_PROBLEME(5, "Smallest multiple")
     {
         solution = arithmetiques::PPCM(d, solution);
     }
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

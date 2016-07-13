@@ -67,5 +67,5 @@ ENREGISTRER_PROBLEME(257, "Angular Bisectors")
         }
     }
 
-    std::cout << "Solution: " << compteur << std::endl;
+    return std::to_string(compteur);
 }

@@ -81,5 +81,5 @@ ENREGISTRER_PROBLEME(259, "Reachable Numbers")
         }
     }
     
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

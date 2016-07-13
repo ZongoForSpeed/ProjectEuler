@@ -33,5 +33,5 @@ ENREGISTRER_PROBLEME(72, "Counting fractions")
     {
         resultat += arithmetiques::phi(n, premiers);   
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

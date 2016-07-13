@@ -30,5 +30,5 @@ ENREGISTRER_PROBLEME(29, "Distinct powers")
             resultat.insert(puissance::puissance(a, b));
         }
     }
-    std::cout << "Solution: " << resultat.size() << std::endl;
+    return std::to_string(resultat.size());
 }

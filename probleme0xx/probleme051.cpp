@@ -61,5 +61,5 @@ ENREGISTRER_PROBLEME(51, "Prime digit replacements")
             break;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

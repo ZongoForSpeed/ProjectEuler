@@ -39,5 +39,5 @@ ENREGISTRER_PROBLEME(43, "Sub-string divisibility")
         }
     }
     while ( std::next_permutation(pandigital.begin(),pandigital.end()) );
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

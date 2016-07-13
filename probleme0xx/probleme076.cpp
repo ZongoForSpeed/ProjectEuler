@@ -25,6 +25,7 @@ ENREGISTRER_PROBLEME(76, "Counting summations")
     size_t limite = 100;
     vecteur partition(limite + 1, 0);
     partition[0] = 1;
+    // https://en.wikipedia.org/wiki/Partition_(number_theory)#Partition_function
     for (size_t n = 1; n <= limite; ++n)
     {
         nombre p = 0;
@@ -39,5 +40,5 @@ ENREGISTRER_PROBLEME(76, "Counting summations")
         partition[n] = p;
     }
     
-    std::cout << "Solution: " << partition.back() - 1 << std::endl;
+    return std::to_string(partition.back() - 1);
 }

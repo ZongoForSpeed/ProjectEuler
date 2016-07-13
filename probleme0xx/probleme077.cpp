@@ -58,5 +58,5 @@ ENREGISTRER_PROBLEME(77, "Prime summations")
         ++n;
     }
     
-    std::cout << "Solution: " << n << std::endl;
+    return std::to_string(n);
 }

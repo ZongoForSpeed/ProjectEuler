@@ -56,5 +56,5 @@ ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 			}
 		}
 	}  
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

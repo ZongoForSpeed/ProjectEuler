@@ -99,5 +99,5 @@ ENREGISTRER_PROBLEME(229, "Four Representations using Squares")
 
 	nombre resultat = forme1.count();
 	
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

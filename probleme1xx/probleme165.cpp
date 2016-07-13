@@ -143,5 +143,5 @@ ENREGISTRER_PROBLEME(165, "Intersections")
             intersections.insert(*p);
     }
     
-    std::cout << "Solution: " << intersections.size() << std::endl;
+    return std::to_string(intersections.size());
 }

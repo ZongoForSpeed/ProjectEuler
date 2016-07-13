@@ -50,10 +50,16 @@ ENREGISTRER_PROBLEME(175, "Fractions involving the number of different ways a nu
 	}
 
     std::ostringstream oss;
+    bool premier = true;
     for (auto i : boost::adaptors::reverse(resultat))
     {
-        oss << i << ",";
+        if (premier)
+            premier = false;
+        else
+            oss << ",";
+            
+        oss << i;
     }
     
-    std::cout << "Solution: " << resultat << " = " << oss.str() << std::endl;
+    return oss.str();
 }

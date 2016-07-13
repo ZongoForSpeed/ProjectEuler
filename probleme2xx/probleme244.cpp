@@ -12,13 +12,7 @@
 
 #include <boost/range/adaptor/reversed.hpp>
 
-// #include <boost/rational.hpp>
-// #include <boost/multiprecision/gmp.hpp>
-//
-// typedef boost::multiprecision::mpz_int nombre;
-
 typedef unsigned long long nombre;
-// typedef boost::rational<nombre> fraction;
 typedef std::vector<nombre> vecteur;
 
 namespace
@@ -170,5 +164,5 @@ ENREGISTRER_PROBLEME(244, "Sliders")
 	for (auto c: chemins[fin])
 		resultat += checksum(c);
 
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -53,5 +53,5 @@ ENREGISTRER_PROBLEME(198, "Ambiguous Numbers")
         }
     }
         
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -85,5 +85,5 @@ ENREGISTRER_PROBLEME(294, "Sum of digits - experience #23")
 	nombre n = puissance::puissance<nombre>(11, 12);
 	nombre resultat = algorithme(n, modulo, masque)[std::make_pair(23,0)];
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

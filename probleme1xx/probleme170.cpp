@@ -86,5 +86,5 @@ ENREGISTRER_PROBLEME(170, "Find the largest 0 to 9 pandigital that can be formed
     } 
     while(std::next_permutation(chiffres.begin(), chiffres.end()));
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

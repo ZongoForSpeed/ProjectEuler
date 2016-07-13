@@ -104,5 +104,5 @@ ENREGISTRER_PROBLEME(156, "Counting Digits")
             resultat += s;
         }
     }
-    std::cout << "Resultat = " << resultat << std::endl;
+    return std::to_string(resultat);
 }

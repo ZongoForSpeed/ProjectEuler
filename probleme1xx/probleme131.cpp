@@ -35,6 +35,6 @@ ENREGISTRER_PROBLEME(131, "Prime cube partnership")
             ++resultat;
     }
 
-  	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

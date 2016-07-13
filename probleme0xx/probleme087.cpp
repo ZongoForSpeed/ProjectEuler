@@ -49,5 +49,5 @@ ENREGISTRER_PROBLEME(87, "Prime power triples")
         }
     }
     
-    std::cout << "Solution: " << resultat.size() << std::endl;
+    return std::to_string(resultat.size());
 }

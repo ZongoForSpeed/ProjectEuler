@@ -191,5 +191,5 @@ ENREGISTRER_PROBLEME(252, "Convex Holes")
         polygones = algorithme(polygones, dictionnaire);
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 1);
 }

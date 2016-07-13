@@ -40,5 +40,5 @@ ENREGISTRER_PROBLEME(91, "Right triangles with integer coordinates")
         if (triangle_rectangle(*it1, *it2))
             ++resultat;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

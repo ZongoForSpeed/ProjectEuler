@@ -59,6 +59,5 @@ ENREGISTRER_PROBLEME(213, "Flea Circus")
         resultat += e;
     }
     
-    std::cout << std::setprecision(9);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat, 6);
 }

@@ -69,6 +69,6 @@ ENREGISTRER_PROBLEME(230, "Fibonacci Words")
     	resultat += static_cast<nombre>(F[lettre(f/100 + 1)][f%100] - '0') * puissance::puissance<nombre>(10,n);
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

@@ -55,5 +55,5 @@ ENREGISTRER_PROBLEME(191, "Prize Strings")
     std::map<std::tuple<nombre, nombre, bool>, nombre> cache;
     nombre resultat = sequence(cache, 30, 0, false);
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

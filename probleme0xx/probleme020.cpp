@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "combinatoire.h"
+#include "utilitaires.h"
 
 #include <iostream>
 
@@ -19,5 +20,5 @@ ENREGISTRER_PROBLEME(20, "Factorial digit sum")
     nombre factorielle = combinatoire::factorielle<nombre>(100);
     nombre resultat = 0;
     chiffres::boucle_chiffre(factorielle, [&resultat](nombre d) { resultat += d; });
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

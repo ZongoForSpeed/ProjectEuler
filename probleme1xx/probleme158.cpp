@@ -47,5 +47,5 @@ ENREGISTRER_PROBLEME(158, "Exploring strings for which only one character comes 
         resultat = std::max(resultat, p);
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

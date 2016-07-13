@@ -43,5 +43,5 @@ ENREGISTRER_PROBLEME(86, "Cuboid route")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

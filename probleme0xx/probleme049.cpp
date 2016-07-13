@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
+#include "utilitaires.h"
 
 #include <iostream>
 #include <algorithm>
@@ -57,10 +58,5 @@ ENREGISTRER_PROBLEME(49, "Prime permutations")
         }
     }
     
-    std::cout << "Solution: ";
-    for (const auto & p: resultat)
-    {
-        std::cout << p;
-    }
-    std::cout << std::endl;
+    return std::to_string(chiffres::conversion_nombre<nombre>(resultat.begin(), resultat.end(), 10000));
 }

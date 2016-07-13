@@ -61,5 +61,5 @@ ENREGISTRER_PROBLEME(83, "Path sum: four ways")
     
     graphe::Dijkstra dijkstra(graphe, 0, (taille - 1) * (taille + 1));
     nombre resultat = dijkstra.algorithme() + m[taille - 1][taille - 1];
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

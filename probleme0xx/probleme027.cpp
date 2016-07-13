@@ -69,5 +69,5 @@ ENREGISTRER_PROBLEME(27, "Quadratic primes")
         }
     }
     
-    std::cout << "Solution: " << (a_max * b_max) << std::endl;
+    return std::to_string(a_max * b_max);
 }

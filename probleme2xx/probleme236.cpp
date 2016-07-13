@@ -83,6 +83,8 @@ ENREGISTRER_PROBLEME(236, "Luxury Hampers")
             }
         }
     }
-
-    std::cout << "Solution: " << resultat << std::endl;
+    
+    std::ostringstream oss;
+    oss << resultat;
+    return oss.str();
 }

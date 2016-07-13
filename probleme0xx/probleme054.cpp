@@ -256,5 +256,5 @@ ENREGISTRER_PROBLEME(54, "Poker hands")
         if (m2 < m1)
             ++compteur;
     }
-    std::cout << "Solution: " << compteur << std::endl;
+    return std::to_string(compteur);
 }

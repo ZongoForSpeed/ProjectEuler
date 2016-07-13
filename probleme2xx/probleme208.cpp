@@ -52,5 +52,5 @@ ENREGISTRER_PROBLEME(208, "Robot Walks")
         }
     }
 
-    std::cout << "Solution: " << 2*resultat << std::endl;
+    return std::to_string(2 * resultat);
 }

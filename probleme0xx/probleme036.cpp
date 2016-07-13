@@ -18,5 +18,5 @@ ENREGISTRER_PROBLEME(36, "Double-base palindromes")
         if (chiffres::palindrome(n, 10) && chiffres::palindrome(n, 2))
             resultat += n;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

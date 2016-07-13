@@ -53,5 +53,5 @@ ENREGISTRER_PROBLEME(11, "Largest product in a grid")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

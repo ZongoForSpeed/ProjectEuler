@@ -40,6 +40,6 @@ ENREGISTRER_PROBLEME(197, "Investigating the behaviour of a recursively defined 
         u_n = u_n1;
         u_n1 = u_n2;
     }
-    std::cout << std::setprecision(10);
-    std::cout << "Solution: " << resultat << std::endl;
+    
+    return std::to_string(resultat, 10);
 }

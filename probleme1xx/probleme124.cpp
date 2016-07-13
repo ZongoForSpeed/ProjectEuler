@@ -49,5 +49,5 @@ ENREGISTRER_PROBLEME(124, "Ordered radicals")
     std::sort(rad.begin(), rad.end());
     
     nombre resultat = rad.at(10000).second;
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

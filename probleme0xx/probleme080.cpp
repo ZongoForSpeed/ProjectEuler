@@ -37,10 +37,10 @@ ENREGISTRER_PROBLEME(80, "Square root digital expansion")
         }
     }
     
-    nombre resultat = 0;
+    long resultat = 0;
     for (auto c: oss.str())
     {
         resultat += (c - '0');
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

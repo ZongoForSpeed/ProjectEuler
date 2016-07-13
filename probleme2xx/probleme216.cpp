@@ -38,5 +38,5 @@ ENREGISTRER_PROBLEME(216, "Investigating the primality of numbers of the form 2n
             ++resultat;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

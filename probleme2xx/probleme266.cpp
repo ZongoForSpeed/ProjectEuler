@@ -51,5 +51,5 @@ ENREGISTRER_PROBLEME(266, "Pseudo Square Root")
         }
     }
     
-    std::cout << "Solution: " << resultat % modulo << std::endl;
+    return std::to_string(resultat%modulo);
 }

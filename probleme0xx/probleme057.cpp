@@ -1,14 +1,15 @@
 #include "problemes.h"
 #include "chiffres.h"
+#include "utilitaires.h"
 
 #include <iostream>
 #include <algorithm>
 #include <list>
 #include <map>
-#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/gmp.hpp>
 #include <boost/rational.hpp>
 
-typedef boost::multiprecision::cpp_int nombre;
+typedef boost::multiprecision::mpz_int nombre;
 typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(57, "Square root convergents")
@@ -39,5 +40,5 @@ ENREGISTRER_PROBLEME(57, "Square root convergents")
         }
     }
 
-    std::cout << "Solution: " << compteur << std::endl;
+    return std::to_string(compteur);
 }

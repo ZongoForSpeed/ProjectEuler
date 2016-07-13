@@ -35,5 +35,5 @@ ENREGISTRER_PROBLEME(291, "Panaitopol Primes")
             ++resultat;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

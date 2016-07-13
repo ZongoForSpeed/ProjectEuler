@@ -39,5 +39,5 @@ ENREGISTRER_PROBLEME(202, "\"Laserbeam\"")
     
     resultat *= 2;
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

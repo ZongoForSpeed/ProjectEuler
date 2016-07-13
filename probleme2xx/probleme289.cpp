@@ -285,6 +285,5 @@ ENREGISTRER_PROBLEME(289, "Eulerian Cycles")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
-    std::cout << "          6567944538" << std::endl;
+    return std::to_string(resultat);
 }

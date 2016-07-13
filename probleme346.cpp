@@ -1,10 +1,11 @@
 #include "problemes.h"
+#include "utilitaires.h"
 
 #include <set>
 #include <numeric>
-#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/gmp.hpp>
 
-typedef boost::multiprecision::cpp_int nombre;
+typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(346, "Strong Repunits")
 {
@@ -24,5 +25,5 @@ ENREGISTRER_PROBLEME(346, "Strong Repunits")
 		}
 		somme = std::accumulate(ensemble.begin(), ensemble.end(), nombre(0));
 	}
-	std::cout << "Resultat: " << somme << std::endl;
+	return std::to_string(somme);
 }

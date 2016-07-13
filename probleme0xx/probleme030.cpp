@@ -26,5 +26,5 @@ ENREGISTRER_PROBLEME(30, "Digit fifth powers")
         if (s == n) resultat += n;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -62,5 +62,5 @@ ENREGISTRER_PROBLEME(265, "Binary Circles")
     std::set<nombre> S { 0 };
     const nombre resultat = BinaryCircles(S, 0, puissance::puissance<nombre>(2, N)) / puissance::puissance<nombre>(2, N - 1);
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -19,5 +19,5 @@ ENREGISTRER_PROBLEME(3, "Largest prime factor")
         else
             ++d;
     }
-    std::cout << "Solution: " << d << std::endl;
+    return std::to_string(d);
 }

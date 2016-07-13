@@ -52,6 +52,6 @@ ENREGISTRER_PROBLEME(130, "Composites with prime repunit property")
 		}
 	}
 	
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

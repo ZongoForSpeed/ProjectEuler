@@ -128,5 +128,7 @@ ENREGISTRER_PROBLEME(220, "Heighway Dragon")
         }
     }
 
-    std::cout << "Solution: " << resultat.z << std::endl;
+    std::ostringstream oss;
+    oss << resultat.z.real() << "," << resultat.z.imag();
+    return oss.str();
 }

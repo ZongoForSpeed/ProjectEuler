@@ -84,5 +84,5 @@ ENREGISTRER_PROBLEME(248, "Numbers for which Euler’s totient function equals 1
     enumerate(1, phi, facteurs.begin(), facteurs.end(), resultat);
     std::sort(resultat.begin(), resultat.end());
     
-	std::cout << "Solution: " << resultat[150000 - 1] << std::endl;
+    return std::to_string(resultat[150000-1]);
 }

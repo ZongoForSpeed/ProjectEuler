@@ -39,7 +39,7 @@ ENREGISTRER_PROBLEME(37, "Truncatable primes")
             resultat += p;
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 
 

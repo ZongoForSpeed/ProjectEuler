@@ -92,5 +92,5 @@ ENREGISTRER_PROBLEME(98, "Anagramic squares")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -46,5 +46,5 @@ ENREGISTRER_PROBLEME(188, "The hyperexponentiation of a number")
     for (auto m : boost::adaptors::reverse(masques))
         resultat = puissance::puissance_modulaire<nombre>(1777, resultat, m);
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

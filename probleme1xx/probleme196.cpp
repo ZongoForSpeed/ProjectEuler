@@ -121,5 +121,5 @@ ENREGISTRER_PROBLEME(196, "Prime triplets")
     // Find  S(5678027) + S(7208785).
     std::cout << std::boolalpha;
     nombre resultat = S(5678027) + S(7208785);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

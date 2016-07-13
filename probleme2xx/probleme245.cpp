@@ -105,5 +105,5 @@ ENREGISTRER_PROBLEME(245, "Coresilience")
 		resultat += somme;
 	}
 
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

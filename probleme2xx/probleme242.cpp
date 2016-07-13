@@ -55,5 +55,5 @@ ENREGISTRER_PROBLEME(242, "Odd Triplets")
 	//
 	// How many odd-triplets are there with n ≤ 1012 ?
 	nombre resultat = triplets_impairs(puissance::puissance<nombre>(10, 12));
-	std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

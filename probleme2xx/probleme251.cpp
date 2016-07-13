@@ -44,5 +44,5 @@ ENREGISTRER_PROBLEME(251, "Cardano Triplets")
             resultat += c / (8 * n * n * n + (3 * n + d) * d * d) + 1;
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

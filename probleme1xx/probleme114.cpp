@@ -27,5 +27,5 @@ ENREGISTRER_PROBLEME(114, "Counting block combinations I")
         valeur.push_back(2*valeur.back() - valeur.at(n - 2) + valeur.at(n - 4));
     }
     
-    std::cout << "Solution: " << valeur.back() << std::endl;
+    return std::to_string(valeur.back());
 }

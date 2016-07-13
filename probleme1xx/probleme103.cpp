@@ -159,9 +159,10 @@ ENREGISTRER_PROBLEME(103, "Special subset sums: optimum")
             //std::cout << solution << " = " << minimum << std::endl;
         }
     }
-    std::cout << solution << " = " << minimum << std::endl;
-    std::cout << "Solution: ";
+    
+    std::ostringstream oss;
     for (auto s: solution)
-        std::cout << s;
-    std::cout << std::endl;
+        oss << s;
+    
+    return oss.str();
 }

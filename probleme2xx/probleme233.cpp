@@ -115,6 +115,6 @@ ENREGISTRER_PROBLEME(233, "Lattice points on a circle")
 		}
 	}
 	
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

@@ -83,5 +83,5 @@ ENREGISTRER_PROBLEME(287, "Quadtree encoding (a simple compression algorithm)")
         + algorithme(0, 0, p2N/2, p2N/2, N) 
         + 2*algorithme(p2N/2, 0, p2N, p2N/2, N) 
         + algorithme(p2N/2, p2N/2, p2N, p2N, N);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -73,5 +73,5 @@ ENREGISTRER_PROBLEME(166, "Criss Cross")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

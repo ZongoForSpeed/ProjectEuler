@@ -58,5 +58,5 @@ ENREGISTRER_PROBLEME(81, "Path sum: two ways")
             chemin[i][j] = graphe[i][j] + std::min(chemin[i][j - 1], chemin[i - 1][j]);
 
     }
-    std::cout << "Solution: " << chemin.back().back() << std::endl;
+    return std::to_string(chemin.back().back());
 }

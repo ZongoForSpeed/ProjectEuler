@@ -34,5 +34,5 @@ ENREGISTRER_PROBLEME(19, "Counting Sundays")
         }
         ++start;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

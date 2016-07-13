@@ -93,5 +93,5 @@ ENREGISTRER_PROBLEME(240, "Top Dice")
     vecteur arrangement(13, 0);
     
     nombre resultat = A(10, arrangement, 12);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

@@ -70,5 +70,5 @@ ENREGISTRER_PROBLEME(209, "Circular Logic")
         resultat *= combinaison(composante.size());
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

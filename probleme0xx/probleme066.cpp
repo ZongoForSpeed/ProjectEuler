@@ -91,5 +91,5 @@ ENREGISTRER_PROBLEME(66, "Diophantine equation")
             }
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

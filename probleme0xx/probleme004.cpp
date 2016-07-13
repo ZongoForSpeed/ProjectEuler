@@ -27,5 +27,5 @@ ENREGISTRER_PROBLEME(4, "Largest palindrome product")
                 solution = std::max(solution, ab);
         }
     }
-    std::cout << "Solution: " << solution << std::endl;
+    return std::to_string(solution);
 }

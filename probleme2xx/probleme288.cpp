@@ -78,5 +78,5 @@ ENREGISTRER_PROBLEME(288, "An enormous factorial")
     //
     // Find NF(61,10**7) mod 61**10
     nombre resultat = NF(61, 10000000, 10);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

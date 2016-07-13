@@ -39,5 +39,5 @@ ENREGISTRER_PROBLEME(17, "Number letter counts")
             if (n%100 != 0) resultat += et;
         }
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

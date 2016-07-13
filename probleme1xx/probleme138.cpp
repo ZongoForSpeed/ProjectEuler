@@ -53,6 +53,6 @@ ENREGISTRER_PROBLEME(138, "Special isosceles triangles")
 		resultat += fibonacci(6*n + 3) / 2;
 	}
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

@@ -14,8 +14,6 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-typedef boost::rational<nombre> fraction;
-
 ENREGISTRER_PROBLEME(110, "Diophantine reciprocals II")
 {
     // In the following equation x, y, and n are positive integers.
@@ -34,31 +32,21 @@ ENREGISTRER_PROBLEME(110, "Diophantine reciprocals II")
     vecteur premiers;
     premiers::crible23<nombre>(limite * 3, std::back_inserter(premiers));
     
-    std::map<nombre, nombre> decomposition;
-    for (nombre n = 2*limite + 1;; n += 2)
+    nombre solutions = 0;
+    nombre resultat = 0;
+    while (solutions <= limite)
     {
-        decomposition.clear();
-        arithmetiques::decomposition(n, premiers, decomposition);
+        resultat += 2036934900; // 2^2 * 3^2 * 5^2 * 7^2 * 11 * 13 * 17
+                                
+        std::map<nombre, size_t> decomposition;
+        arithmetiques::decomposition(resultat, premiers, decomposition);
         
-        vecteur facteur_premiers;
-        for (const auto & d: decomposition)
-            facteur_premiers.push_back(d.first);
+        solutions = 1;
+        for (auto d: decomposition)
+            solutions *= (2 * d.second + 1);
 
-        if (std::equal(facteur_premiers.begin(), facteur_premiers.end(), premiers.begin()))
-            break;
+        solutions /= 2;
     }
-
-    vecteur exposants;
-    for (const auto & d: decomposition)
-        exposants.insert(exposants.end(), d.second, (d.first - 1) / 2);
-
-    std::reverse(exposants.begin(), exposants.end());
-
-    nombre resultat = 1;
-    for (size_t n = 0; n < exposants.size(); ++n)
-    {
-        resultat *= puissance::puissance(premiers[n], exposants[n]);
-    }
-
-	std::cout << "Solution: " << resultat << std::endl;
+    
+    return std::to_string(resultat);
 }

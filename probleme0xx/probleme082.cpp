@@ -74,5 +74,5 @@ ENREGISTRER_PROBLEME(82, "Path sum: three ways")
     }
     
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

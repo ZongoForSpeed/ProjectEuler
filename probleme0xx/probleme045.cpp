@@ -28,5 +28,5 @@ ENREGISTRER_PROBLEME(45, "Triangular, pentagonal, and hexagonal")
         }
         ++n;
     }
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

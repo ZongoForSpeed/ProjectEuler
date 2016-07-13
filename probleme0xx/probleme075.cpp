@@ -63,5 +63,5 @@ ENREGISTRER_PROBLEME(75, "Singular integer right triangles")
             ++resultat;
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

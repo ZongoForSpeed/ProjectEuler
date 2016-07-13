@@ -116,5 +116,5 @@ ENREGISTRER_PROBLEME(13, "Large sum")
     while( is >> n ) somme += n;
     std::ostringstream os;
     os << somme;
-    std::cout << "Solution: " << os.str().substr(0, 10) << std::endl;
+    return os.str().substr(0, 10);
 }

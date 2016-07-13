@@ -68,5 +68,5 @@ ENREGISTRER_PROBLEME(68, "Magic 5-gon ring")
             }
     }
     while(std::next_permutation(arrangements.begin(), arrangements.end()));
-    std::cout << "Solution: " << max_solution << std::endl;
+    return std::to_string(max_solution);
 }

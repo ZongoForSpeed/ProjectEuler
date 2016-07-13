@@ -38,6 +38,6 @@ ENREGISTRER_PROBLEME(136, "Singleton difference")
     }
     
     auto resultat = std::count (compteur.begin(), compteur.end(), 1);
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }
 

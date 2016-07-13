@@ -66,5 +66,5 @@ ENREGISTRER_PROBLEME(258, "A lagged Fibonacci sequence")
     vecteur g = puissance_(m, k, masque);
     nombre resultat = std::accumulate(g.begin(), g.end(), 0ULL) % masque;
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

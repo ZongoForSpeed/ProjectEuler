@@ -23,5 +23,5 @@ ENREGISTRER_PROBLEME(39, "Integer right triangles")
     }
 
     auto it = std::max_element(solutions.begin(),solutions.end());
-    std::cout << "Solution: " << std::distance(solutions.begin(), it) << std::endl;
+    return std::to_string(std::distance(solutions.begin(), it));
 }

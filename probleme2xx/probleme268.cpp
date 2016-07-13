@@ -52,5 +52,5 @@ ENREGISTRER_PROBLEME(268, "Counting numbers with at least four distinct prime fa
         produits.assign(suivants.begin(), suivants.end());
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

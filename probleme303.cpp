@@ -1,19 +1,19 @@
 #include "problemes.h"
+#include "utilitaires.h"
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <map>
-#include <boost/multiprecision/cpp_int.hpp>
-typedef boost::multiprecision::cpp_int nombre;
+#include <boost/multiprecision/gmp.hpp>
+
+typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::map<nombre, vecteur> dictionnaire;
 
-class Probleme303
+namespace
 {
-	nombre limite;
-public:
-	Probleme303(nombre _limite = 10000) : limite(_limite) {}
-	static bool trinary(nombre n)
+    bool trinary(nombre n)
 	{
 		while (n%10 < 3 && n > 10)
 		{
@@ -21,7 +21,8 @@ public:
 		}
 		return n%10 < 3;
 	}
-	nombre f(nombre n) const
+	
+	nombre f(nombre n)
 	{
 		nombre base = 1;
 		vecteur v;
@@ -47,18 +48,8 @@ public:
 			std::swap(tmp, v);
 		}
 	}
-    void algorithme()
-    {
-    	nombre resultat = 0;
-		{
-			for (nombre n = 1; n < limite + 1; ++n)
-			{
-				resultat += f(n);
-			}
-		}
-		std::cout << "Resultat : " << resultat << std::endl;
-    }
-};
+}
+
 ENREGISTRER_PROBLEME(303, "Multiples with small digits")
 {
     // For a positive integer n, define f(n) as the least positive multiple of n that, written in base 10, uses only digits ≤ 2.
@@ -68,6 +59,11 @@ ENREGISTRER_PROBLEME(303, "Multiples with small digits")
     // Also, ∑ n=1..100 f(n)/n = 11363107
     // 
     // Find ∑ n=1..10000 f(n)/n.
-	Probleme303 p;
-	p.algorithme();
+    nombre limite = 10000;
+    nombre resultat = 0;
+    for (nombre n = 1; n < limite + 1; ++n)
+    {
+        resultat += f(n);
+    }
+    return std::to_string(resultat);
 }

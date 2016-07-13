@@ -109,5 +109,5 @@ ENREGISTRER_PROBLEME(260, "Stone Game")
         }
     }
     
-    std::cout << "Solution: " << resultat << std::endl;
+    return std::to_string(resultat);
 }

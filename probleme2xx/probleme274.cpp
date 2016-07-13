@@ -51,6 +51,5 @@ ENREGISTRER_PROBLEME(274, "Divisibility Multipliers")
         }
     }
 
-    std::cout << "Solution: " << resultat << std::endl;
-    std::cout << "          1601912348822" << std::endl;
+    return std::to_string(resultat);
 }

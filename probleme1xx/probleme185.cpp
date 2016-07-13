@@ -174,5 +174,5 @@ ENREGISTRER_PROBLEME(185, "Number Mind")
     for (auto s: solutions)
         oss << *s.begin();
         
-    std::cout << "Solution: " << oss.str() << std::endl;
+    return oss.str();
 }

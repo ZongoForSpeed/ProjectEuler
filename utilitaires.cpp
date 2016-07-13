@@ -10,6 +10,13 @@ namespace std
         assert(false);
         return 1.0;
     }
+    
+    std::string to_string(const boost::multiprecision::mpz_int & n)
+    {
+        std::ostringstream oss;
+        oss << n;
+        return oss.str();
+    }
 }
 
 template<>
