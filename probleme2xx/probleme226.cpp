@@ -18,7 +18,7 @@ namespace
 {
     long double cercle(long double x)
     {
-        return 0.5 - std::sqrt(0.0625 - (x - 0.25) * (x - 0.25));
+        return 0.5L - std::sqrt(0.0625L - (x - 0.25L) * (x - 0.25L));
     }
     
     long double s(long double x)
@@ -29,7 +29,7 @@ namespace
     
     long double blanc(long double x, size_t precision = 50)
     {
-        long double resultat = 0.0;
+        long double resultat = 0.0L;
         nombre exposant = 1;
         for (size_t n = 0; n < precision; ++n)
         {
@@ -54,10 +54,10 @@ ENREGISTRER_PROBLEME(226, "A Scoop of Blancmange")
     // 
     // What area under the blancmange curve is enclosed by C?
     // Give your answer rounded to eight decimal places in the form 0.abcdefgh
-    long double resultat = 0.0;
-    const long double dx = 0.000001;
+    long double resultat = 0.0L;
+    const long double dx = 0.000001L;
     
-    for (long double x = 0.0; x <= 0.5; x += dx)
+    for (long double x = 0.0L; x <= 0.5L; x += dx)
     {
         long double y = blanc(x) - cercle(x);
         if (y > 0)

@@ -8,13 +8,14 @@
 #include <limits>
 
 #include <boost/range/adaptor/reversed.hpp>
+#include <boost/math/constants/constants.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
 {
-    const long double epsilon = 1e-9;
+    const long double epsilon = 1e-9L;
 
     struct comparedouble
     {
@@ -44,9 +45,10 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals")
     //
     // Note: In your calculations you may assume that a calculated angle is integral if it is within
     // a tolerance of 10-9 of an integer value.
-    std::vector<long double> sinus(180, 0.0);
-    std::vector<long double> cosinus(180, 0.0);
-    std::vector<long double> rad(180, 0.0);
+    const long double pi = boost::math::constants::pi<long double>();
+    std::vector<long double> sinus(180, 0.0L);
+    std::vector<long double> cosinus(180, 0.0L);
+    std::vector<long double> rad(180, 0.0L);
     std::vector<bool> prevalue(10000 + 1, false);
     
     std::vector<nombre> solution(8+1, 0);
@@ -54,7 +56,7 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals")
     std::set<long double, comparedouble> fs;
     for (nombre i = 1; i < 180; i++)
     {
-        rad[i] = static_cast<long double>(i)*M_PI/180.0;
+        rad[i] = static_cast<long double>(i)*pi / 180.0L;
         sinus[i] = std::sin(rad[i]);
         cosinus[i] = std::cos(rad[i]);
         nombre j = static_cast<nombre>(sinus[i]*10000);
@@ -83,10 +85,10 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals")
             {
                 if (siny > 1) siny=1;
                 
-                nombre y = static_cast<nombre>(std::asin(siny)*180/M_PI+0.01);
+                nombre y = static_cast<nombre>(std::asin(siny)*180/pi + 0.01L);
                 long double sinx = m*siny;
-                long double xangle = (std::abs(sinx-1) < epsilon) ? 90 : std::asin(sinx)*180/M_PI;
-                nombre x = static_cast<nombre>(xangle+0.01);
+                long double xangle = (std::abs(sinx-1) < epsilon) ? 90 : std::asin(sinx)*180/pi;
+                nombre x = static_cast<nombre>(xangle + 0.01L);
                 if (xangle < x + epsilon && xangle > x - epsilon)
                 {
                     x = (180-x+y==a+c) ? 180 - x : x;

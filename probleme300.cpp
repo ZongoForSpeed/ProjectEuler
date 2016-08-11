@@ -143,7 +143,7 @@ ENREGISTRER_PROBLEME(300, "Protein folding")
         somme += max_compteur;
     }
     
-    long double resultat = ((long double)somme) / nombre_proteines;
+    long double resultat = static_cast<long double>(somme) / nombre_proteines;
     std::cout << std::setprecision(20);
     std::cout << "Solution: " << somme << " / " << nombre_proteines << " = " << resultat << std::endl;
 

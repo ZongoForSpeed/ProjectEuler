@@ -8,6 +8,7 @@
 #include <limits>
 
 #include <boost/rational.hpp>
+#include <boost/math/constants/constants.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -30,7 +31,7 @@ namespace
     
     bool terminating(nombre n)
     {
-        long double k0 = n / M_E;
+        long double k0 = n / boost::math::constants::e<long double>();
         nombre k_max = static_cast<nombre>(std::ceil(k0));
         nombre k_min = static_cast<nombre>(std::floor(k0));
 

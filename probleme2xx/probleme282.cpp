@@ -55,7 +55,7 @@ namespace
                 // si m premier avec 2
                 // alors 2↑↑a mod m = 2**(2↑↑(n-1) mod phi(m)) mod m
                 nombre x = algorithme(a - 1, arithmetiques::phi(m, premiers), premiers);
-                return puissance::puissance_modulaire<nombre>(2, (size_t)x, m);
+                return puissance::puissance_modulaire<nombre>(2, static_cast<size_t>(x), m);
             }
         }
         else

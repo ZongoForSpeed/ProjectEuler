@@ -8,7 +8,7 @@ namespace std
         return std::sqrt(n.convert_to<long double>());
 
         assert(false);
-        return 1.0;
+        return 1.0L;
     }
     
     std::string to_string(const boost::multiprecision::mpz_int & n)

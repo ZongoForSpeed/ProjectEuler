@@ -29,20 +29,20 @@ ENREGISTRER_PROBLEME(227, "The Chase")
     // In a game with 100 players, what is the expected number of turns the game lasts?
     //
     // Give your answer rounded to ten significant digits.
-    vecteur chase(51, 0.0);
-    chase.back() = 1.0;
+    vecteur chase(51, 0.0L);
+    chase.back() = 1.0L;
     
     nombre tours = 0;
-    long double fin = 0.0;
-    long double esperance = 0.0;
+    long double fin = 0.0L;
+    long double esperance = 0.0L;
     
     long double erreur = std::pow(0.1L, 12);
     
     while (fin < 1 - erreur)
     {
-    	chase.front() = 0.0;
+    	chase.front() = 0.0L;
     	++tours;
-    	vecteur nouveau(51, 0.0);
+    	vecteur nouveau(51, 0.0L);
     	for (size_t i = 0; i < 51; ++i)
     	{
     		switch(i)

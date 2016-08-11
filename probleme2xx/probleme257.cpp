@@ -37,8 +37,8 @@ ENREGISTRER_PROBLEME(257, "Angular Bisectors")
     // How many triangles ABC with perimeter≤100,000,000 exist so that the ratio
     // area(ABC)/area(AEG) is integral?
     nombre limite = 100000000;
-    const long double racine2 = std::sqrt(2.0);
-    const long double racine3 = std::sqrt(3.0);
+    const long double racine2 = std::sqrt(2.0L);
+    const long double racine3 = std::sqrt(3.0L);
 
     nombre compteur = limite / 3; // Cas a = b = c
     

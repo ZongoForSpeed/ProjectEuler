@@ -21,7 +21,7 @@ namespace
     long double aire(long double a, long double b, long double c)
     {
         // Aire = \dfrac{1}{4}\sqrt{(a+b+c)(-a+b+c)(a-b+c)(a+b-c)}=\sqrt{p(p-a)(p-b)(p-c)}.
-        long double aire2 = (a+b+c)*(b+c-a)*(a+c-b)*(a+b-c) / 16.0;
+        long double aire2 = (a+b+c)*(b+c-a)*(a+c-b)*(a+b-c) / 16.0L;
         return std::sqrt(aire2);
     }
 }

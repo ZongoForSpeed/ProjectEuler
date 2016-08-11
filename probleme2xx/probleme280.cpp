@@ -48,7 +48,7 @@ namespace
             if (y<4) ++t;
             if (y>0) ++t;
             
-            long double f = 1.0 / t;
+            long double f = 1.0L / t;
 
             b(p) = 1;
             if (x<4) A(p, x+1+y*5) = -f;

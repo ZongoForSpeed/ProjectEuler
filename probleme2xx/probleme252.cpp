@@ -29,7 +29,7 @@ namespace
     {
         nombre determinant = (B.first - A.first) * (C.second - A.second)
             - (C.first - A.first) * (B.second - A.second);
-        return std::abs(determinant) / 2.0;
+        return std::abs(determinant) / 2.0L;
     }
     
     long double determinant(const point & A, const point & B, const point & C)
@@ -41,12 +41,12 @@ namespace
     bool inclus(const polygone & p, const point & c)
     {
         const size_t n = p.points.size();
-        long double aire_totale = 0.0;
+        long double aire_totale = 0.0L;
         for (size_t k = 0; k < n; ++k)
         {
             aire_totale += aire(c, p.points[k], p.points[(k + 1)%n]);
         }
-        return std::abs(aire_totale - p.aire) < 0.000001;
+        return std::abs(aire_totale - p.aire) < 0.000001L;
     }
     
     bool convexe(const polygone & p)
@@ -150,7 +150,7 @@ ENREGISTRER_PROBLEME(252, "Convex Holes")
         for (const point & D: points)
         if (A != D && B != D && C != D)
         {
-            if (std::abs(aire(A, B, D) + aire(A, D, C) + aire(D, B, C) - ABC) < 0.000001)
+            if (std::abs(aire(A, B, D) + aire(A, D, C) + aire(D, B, C) - ABC) < 0.000001L)
             {
                 minimal = false;
                 break;
@@ -178,7 +178,7 @@ ENREGISTRER_PROBLEME(252, "Convex Holes")
     std::cout << std::setprecision(1);
     std::cout << std::fixed;
     
-    long double resultat = 0.0;
+    long double resultat = 0.0L;
     
     auto polygones = triangles;
     while (!polygones.empty())

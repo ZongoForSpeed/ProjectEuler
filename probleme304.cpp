@@ -15,45 +15,45 @@ typedef std::vector<nombre> vecteur;
 
 namespace
 {
-	std::pair<nombre, nombre> fibonacci_(nombre n, nombre modulo)
-	{
-		if (n == 0)
-			return std::make_pair(1,0);
-			
-		static std::map<nombre, std::pair<nombre, nombre>> cache;
-		auto it = cache.find(n);
-		if (it != cache.end())
-		    return it->second;
-
-		std::pair<nombre, nombre> p = fibonacci_(n/2, modulo);
-		nombre fk = p.second;
-		nombre fk_1 = p.first;
-		
-		std::pair<nombre, nombre> resultat;
-		
-		if (n%2 == 0)
-			resultat = std::make_pair(fk * fk + fk_1 * fk_1, fk * (2 * fk_1 + fk));
-		else
-			resultat = std::make_pair(fk * (2 * fk_1 + fk), (fk_1 + fk)*(fk_1 + fk) + fk * fk);
-			
-		resultat.first %= modulo;
-		resultat.second %= modulo;
-			
-		cache[n] = resultat;
-		return resultat;
-	}
-	
-	nombre fibonacci(nombre n, nombre modulo)
-	{
-		return fibonacci_(n, modulo).second;
-	}
-	
-	nombre premier_suivant(nombre n)
-	{
+    std::pair<nombre, nombre> fibonacci_(nombre n, nombre modulo)
+    {
+        if (n == 0)
+            return std::make_pair(1,0);
+        
+        static std::map<nombre, std::pair<nombre, nombre>> cache;
+        auto it = cache.find(n);
+        if (it != cache.end())
+            return it->second;
+        
+        std::pair<nombre, nombre> p = fibonacci_(n/2, modulo);
+        nombre fk = p.second;
+        nombre fk_1 = p.first;
+        
+        std::pair<nombre, nombre> resultat;
+        
+        if (n%2 == 0)
+            resultat = std::make_pair(fk * fk + fk_1 * fk_1, fk * (2 * fk_1 + fk));
+        else
+            resultat = std::make_pair(fk * (2 * fk_1 + fk), (fk_1 + fk)*(fk_1 + fk) + fk * fk);
+        
+        resultat.first %= modulo;
+        resultat.second %= modulo;
+        
+        cache[n] = resultat;
+        return resultat;
+    }
+    
+    nombre fibonacci(nombre n, nombre modulo)
+    {
+        return fibonacci_(n, modulo).second;
+    }
+    
+    nombre premier_suivant(nombre n)
+    {
         nombre suivant;
         mpz_nextprime(suivant.backend().data(), n.backend().data());
         return suivant;
-	}
+    }
 }
 
 ENREGISTRER_PROBLEME(304, "Primonacci")

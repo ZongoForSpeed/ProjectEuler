@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <limits>
 
+#include <boost/math/constants/constants.hpp>
+
 // #include <boost/multiprecision/gmp.hpp>
 // #include <boost/multiprecision/cpp_int.hpp>
 //
@@ -45,7 +47,7 @@ namespace
 		std::vector<coordonnee> s;
 		for (size_t k = 0; k < n; ++k)
 		{
-			const long double x = (2.0*k-1)/n + M_PI;
+			const long double x = (2.0L*k-1L)/n + boost::math::constants::pi<long double>();
 			s.push_back(std::make_pair(std::cos(x), std::sin(x)));
 		}
 		
@@ -77,7 +79,7 @@ ENREGISTRER_PROBLEME(228, "Minkowski Sums")
 	//
 	// How many sides does S1864 + S1865 + … + S1909 have?
 	std::set<coordonnee, std::function<bool(const coordonnee & v1, const coordonnee & v2)>> minkowski([] (const coordonnee & v1, const coordonnee & v2){
-		if (std::abs(1.0-produit_scalaire(v1, v2)) < 0.0000000000001)
+		if (std::abs(1.0L - produit_scalaire(v1, v2)) < 0.0000000000001L)
 			return false;
 			
 		return v1 < v2;

@@ -102,7 +102,7 @@ namespace
             
             long double prod = ( (x-x0)*(x-x1) + (y-y0)*(y-y1) ) / ( norm0 * norm1 );
             
-            return prod < sqrt(1/2.);
+            return prod < std::sqrt(1.0L/2.0L);
         }
         
         nombre algorithme()

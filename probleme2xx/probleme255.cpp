@@ -37,9 +37,9 @@ namespace
     long double algorithme(nombre L, nombre R, nombre x)
     {
         if (f(L, x) == x && f(R, x) == x)
-            return 1.0;
+            return 1.0L;
         if (f(L, x) == f(R, x))
-            return 1.0 + algorithme(L, R, f(L, x));
+            return 1.0L + algorithme(L, R, f(L, x));
         
         nombre k = ceil(L, x);
         long double resultat = 0;
@@ -57,7 +57,7 @@ namespace
             somme += k2 - k1 + 1;
             ++k;
         }
-        resultat = 1.0 + resultat / somme;
+        resultat = 1.0L + resultat / somme;
         return resultat;
     }
 }

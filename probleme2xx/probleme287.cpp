@@ -19,7 +19,7 @@ namespace
     bool pixel_noir(nombre x, nombre y, nombre N)
     {
         // (x - 2**N-1)² + (y - 2**N-1)² ≤ 2**(2N-2)
-        const nombre centre = puissance::puissance<nombre>(2, (size_t)N - 1);
+        const nombre centre = puissance::puissance<nombre>(2, static_cast<size_t>(N) - 1);
         bool r = (x - centre)*(x - centre) + (y - centre)*(y - centre) <= centre*centre;
         return r;
     }

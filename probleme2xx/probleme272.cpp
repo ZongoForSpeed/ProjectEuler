@@ -32,7 +32,7 @@ namespace
                 break;
             }
             
-            if (n*puissance::puissance(it->first, (size_t)m) > limite)
+            if (n*puissance::puissance(it->first, static_cast<size_t>(m)) > limite)
                 break;
             nombre m2 = m;
             if (it->second == 3)

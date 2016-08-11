@@ -16,9 +16,9 @@ namespace
 	long double TheGame(std::map<std::pair<nombre, nombre>, long double> & cache, nombre n, nombre k)
 	{
 		if (k <= 0)
-			return 1.0;
+			return 1.0L;
 		if (k > 0 && n <= 0)
-			return 0.0;
+			return 0.0L;
 			
 		const auto it = cache.find(std::make_pair(n, k));
 		if (it != cache.end())
@@ -30,13 +30,13 @@ namespace
 			strategies.push_back(2 * strategies.back());
 		}
 		
-		long double probabilite = 0.0;
+		long double probabilite = 0.0L;
 		for (auto t: strategies)
 		{
-			long double p1_reussi = 1.0 / 2;
-			long double p2_reussi = 1.0 / t;
-			long double p1_rate = 1 - p1_reussi;
-			long double p2_rate = 1 - p2_reussi;
+			long double p1_reussi = 1.0L / 2;
+			long double p2_reussi = 1.0L / t;
+			long double p1_rate = 1.0L - p1_reussi;
+			long double p2_rate = 1.0L - p2_reussi;
 			
 			nombre gain = t / 2;
 			
@@ -64,7 +64,7 @@ ENREGISTRER_PROBLEME(232, "The Race")
 	// 
 	// Give your answer rounded to eight decimal places in the form 0.abcdefgh .
 	std::map<std::pair<nombre, nombre>, long double> cache;
-	long double resultat = 0.5 * TheGame(cache, 100, 100) + 0.5 * TheGame(cache, 99, 100);
+	long double resultat = 0.5L * TheGame(cache, 100, 100) + 0.5L * TheGame(cache, 99, 100);
 
     return std::to_string(resultat, 8);
 }

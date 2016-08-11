@@ -18,7 +18,7 @@ namespace
 {
     long double f(long double alpha, nombre n, nombre N)
     {
-        return (std::log(N) - n*std::log(1-alpha)) / (std::log(1+2*alpha) - std::log(1-alpha) );
+        return (std::log(1.0L*N) - n*std::log(1.0L-alpha)) / (std::log(1.0L + 2.0L*alpha) - std::log(1.0L-alpha) );
     }
     
     long double recherche(std::function<long double(long double)> & f, 
@@ -59,7 +59,7 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
     
     std::function<long double(long double)> lambda_f = [n, N] (long double x) -> long double { return f(x, n, N); };
     
-    const nombre alpha = static_cast<nombre>(std::ceil( f(recherche(lambda_f, 0.01, 0.99, 0.000001), n, N)));
+    const nombre alpha = static_cast<nombre>(std::ceil( f(recherche(lambda_f, 0.01L, 0.99L, 0.000001L), n, N)));
     
     std::vector<boost::multiprecision::cpp_int> C { 1 };
     for (nombre k = 1; k < n + 1; ++k)

@@ -20,7 +20,7 @@ namespace
         std::ostringstream oss;
         for (auto c: chiffres::extraire_chiffres(n, 14))
         {
-            switch((size_t)c)
+            switch (static_cast<size_t>(c))
             {
             case 10: 
                 oss << 'a';

@@ -15,10 +15,10 @@ namespace
 {
 	long double S(long double r)
 	{
-		long double s = 0.0;
+		long double s = 0.0L;
 		for (size_t k = 1; k <= 5000; ++k)
 		{
-			s += (900.0 - 3.0 * k) * puissance::puissance(r, k - 1);
+			s += (900.0L - 3.0L * k) * puissance::puissance(r, k - 1);
 		}
 		
 		return s;
@@ -34,11 +34,11 @@ ENREGISTRER_PROBLEME(235, "An Arithmetic Geometric sequence")
 	// 
 	//Give your answer rounded to 12 places behind the decimal point.
 	const long double objectif = -600000000000;
-	long double r = 1.0;
-	long double dr = 0.125;
+	long double r = 1.0L;
+	long double dr = 0.125L;
 	
-	long double s = 0.0;
-	while (std::abs(s - objectif) > 1.0)
+	long double s = 0.0L;
+	while (std::abs(s - objectif) > 1.0L)
 	{
 		s = S(r);
 		if (s > objectif)

@@ -26,8 +26,8 @@ ENREGISTRER_PROBLEME(210, "Obtuse Angled Triangles")
     nombre r = 1000000000LL;
 
     nombre k = r / 4;
-    nombre RR=k*k/2;
-    nombre R=(nombre)sqrtl(RR);
+    nombre RR = k*k/2;
+    nombre R = static_cast<nombre>(sqrtl(RR));
 
     nombre compteur = 0;
     for(nombre x = k/2, y = k/2; x; --x)

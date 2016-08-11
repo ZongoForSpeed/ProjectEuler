@@ -42,10 +42,10 @@ namespace
         {
             // x² + (x_a - y_b).x - 1 = 0
             const long double b = (coordonnees.second - coordonnees.first);
-            const long double delta = b*b + 4.00;
+            const long double delta = b*b + 4.0L;
             if (delta > 0)
             {
-                taille = (std::sqrt(delta) - b) / 2.0 - coordonnees.first;
+                taille = (std::sqrt(delta) - b) / 2.0L - coordonnees.first;
             }
             else
             {

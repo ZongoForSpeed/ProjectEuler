@@ -15,7 +15,7 @@ namespace
 {
     long double f(long double x)
     {
-        return std::floor(std::pow(2.0L, 30.403243784-x*x)) * 0.000000001;
+        return std::floor(std::pow(2.0L, 30.403243784L-x*x)) * 0.000000001L;
     }
 }
 
@@ -26,9 +26,9 @@ ENREGISTRER_PROBLEME(197, "Investigating the behaviour of a recursively defined 
     // 
     // Find u_n + u_n+1 for n = 1012.
     // Give your answer with 9 digits after the decimal point.
-    long double u_n = -1.0;
+    long double u_n = -1.0L;
     long double u_n1 = f(u_n);
-    long double resultat = 0.0;
+    long double resultat = 0.0L;
     while (true)
     {
         long double u_n2 = f(u_n1);
@@ -41,5 +41,5 @@ ENREGISTRER_PROBLEME(197, "Investigating the behaviour of a recursively defined 
         u_n1 = u_n2;
     }
     
-    return std::to_string(resultat, 10);
+    return std::to_string(resultat, 9);
 }

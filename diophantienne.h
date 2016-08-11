@@ -12,7 +12,7 @@ namespace diophantienne
     template<typename Nombre>
     std::pair<std::vector<Nombre>, size_t> PQa(Nombre p0, Nombre q0, Nombre d)
     {
-        long double sqrt_d = std::sqrt(d);
+        long double sqrt_d = static_cast<long double>(std::sqrt(d));
         //   assert 0 < d, "D cannot be negative or zero"
         //   assert q0 != 0, "Q0 cannot be zero"
         //   assert (p0*p0 - d) % q0 == 0, "P0² cannot be different from D modulo Q0"

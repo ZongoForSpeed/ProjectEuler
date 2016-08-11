@@ -199,7 +199,7 @@ namespace
         
         size_t count(size_t id) const
         {
-            return (size_t)std::count(connectedID.begin(), connectedID.end(), id);
+            return static_cast<size_t>(std::count(connectedID.begin(), connectedID.end(), id));
         }
         
         void swap(size_t id1, size_t id2)

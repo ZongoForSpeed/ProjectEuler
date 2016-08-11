@@ -176,7 +176,7 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia")
             {
                 if (std::get<0>(t) == suivant && std::get<1>(t) == score)
                 {
-                    std::get<2>(t) += 0.1;
+                    std::get<2>(t) += 0.1L;
                     found = true;
                 }
             }
@@ -213,11 +213,11 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia")
         std::swap(suivant, dp);
     }
     
-    long double resultat = 0.0;
+    long double resultat = 0.0L;
     for (const auto & p: dp)
     for (const auto & etat: p)
     {
-        resultat += std::abs(etat.first) * etat.second;
+        resultat += static_cast<long double>(std::abs(etat.first)) * etat.second;
     }
 
     return std::to_string(resultat, 8);

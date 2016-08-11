@@ -88,7 +88,7 @@ namespace arithmetiques
     Nombre nombre_diviseurs(Nombre n, const Conteneur & premiers)
     {
         Nombre d = 1;
-        for (auto p: premiers)
+        for (const auto & p: premiers)
         {
             if (p*p > n)
                 break;
@@ -113,7 +113,7 @@ namespace arithmetiques
     Nombre somme_diviseurs(Nombre n, const Conteneur & premiers)
     {
         Nombre s = 1;
-        for (auto p: premiers)
+        for (const auto & p: premiers)
         {
             if (p*p > n)
                 break;
@@ -195,7 +195,7 @@ namespace arithmetiques
     Nombre phi(Nombre n, const Conteneur & premiers)
     {
         Nombre resultat = n;
-        for (const auto p: premiers)
+        for (const auto & p: premiers)
         {
             if (p*p > n)
                 break;
@@ -269,7 +269,7 @@ namespace arithmetiques
         std::map<Nombre, size_t> d;
         decomposition<Nombre>(n, premiers, d);
         std::deque<Nombre> resultat { 1 };
-        for (auto facteur: d)
+        for (const auto & facteur: d)
         {
             std::deque<Nombre> r = resultat;
             Nombre p = facteur.first;
@@ -368,7 +368,7 @@ namespace arithmetiques
             return 0;
 
         Nombre n = 1;
-        for (auto p: modulos) n *= p;
+        for (const auto & p: modulos) n *= p;
         
         Nombre resultat = 0;
         
@@ -391,7 +391,7 @@ namespace arithmetiques
             return 0;
 
         Nombre n = 1;
-        for (auto p: modulos) n *= p;
+        for (const auto & p: modulos) n *= p;
         
         Nombre resultat = 0;
         

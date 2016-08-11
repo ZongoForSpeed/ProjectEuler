@@ -62,9 +62,9 @@ ENREGISTRER_PROBLEME(285, "Pythagorean odds")
     //      [1/k, 1+1/k] x [1/k, 1+1/k]
     for (nombre k = 1; k <= 100000; ++k)
     {
-        long double p = aire_section_disque(1.0 + 1.0/(2.0*k), 1.0/k, 1.0/k);
+        long double p = aire_section_disque(1.0L + 1.0L/(2.0L*k), 1.0L/k, 1.0L/k);
         if (k > 1) // dans le cas où k=1, l'aire de la petite section est nulle     
-            p -= aire_section_disque(1.0 - 1.0/(2.0*k), 1.0/k, 1.0/k);
+            p -= aire_section_disque(1.0L - 1.0L/(2.0L*k), 1.0L/k, 1.0L/k);
         resultat += k * p;
     }
 

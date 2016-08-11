@@ -20,7 +20,7 @@ namespace
     // const long double L = 100.0;
     long double hauteur(const long double r1, const long double r2)
     {
-        return 2.0 * std::sqrt(r1 + r2 - 1.0);
+        return 2.0L * std::sqrt(r1 + r2 - 1.0L);
     }
 
     long double hauteur(const std::deque<long double> & empilement)
@@ -41,11 +41,11 @@ ENREGISTRER_PROBLEME(222, "Sphere Packing")
     // balls of radii 30mm, 31mm, ..., 50mm?
     //
     // Give your answer in micrometres (10^-6 m) rounded to the nearest integer.
-    const long double R = 50.0;
+    const long double R = 50.0L;
     const nombre taille = 21;
     std::deque<long double> rayons;
     for (size_t n = 0; n < taille; ++n)
-        rayons.push_back((30.0 + n) / R);
+        rayons.push_back((30.0L + n) / R);
         
     std::cout << std::setprecision(9);
     
