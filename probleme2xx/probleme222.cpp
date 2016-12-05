@@ -7,6 +7,7 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
+#include <random>
 
 // #include <boost/multiprecision/gmp.hpp>
 // #include <boost/multiprecision/cpp_int.hpp>
