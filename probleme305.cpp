@@ -16,131 +16,93 @@ namespace
     size_t calcul_position(size_t n)
     {
         std::ostringstream oss;
-        for (size_t i = 0; i < n; ++i)
+        for (size_t i = 0; i < n*n; ++i)
             oss << i;
         const std::string S = oss.str();
-        return S.size();
-        // for (nombre i = 1; i < 100; ++i)
-        // {
-        //     const std::string n = std::to_string(i);
-        //     size_t position = 0;
-        //     size_t compteur = 0;
-        //     while (compteur < i)
-        //     {
-        //         position = S.find(n, position + 1);
-        //         ++compteur;
-        //     }
-        //     std::cout << "f(" << i << ") = " << position << std::endl;
-        // }
+
+        const std::string ns = std::to_string(n);
+        size_t position = 0;
+        size_t compteur = 0;
+        while (compteur < n)
+        {
+            position = S.find(ns, position + 1);
+            ++compteur;
+        }
+        return position;
     }
     
-    size_t calcul_position2(size_t n)
+    nombre d(nombre n)
     {
-        static std::vector<size_t> positions_dizaine;
-        if (positions_dizaine.empty())
-        {
-            positions_dizaine.push_back(1);
-            for (size_t i = 1; i < 15; ++i)
-            {
-                positions_dizaine.push_back(9 * puissance::puissance<size_t>(10, i - 1) * i + positions_dizaine.back());
-            }
+        nombre i = 1;
+        nombre t = 1;
+        nombre c = 1;
+        
+        while (10 * i <= n) {
+            c += t * i * 9;
+            i *= 10;
+            t += 1;
         }
         
-        const size_t c = chiffres::nombre_chiffres(n);
-        return positions_dizaine[c-1] + (n - puissance::puissance<size_t>(10, c - 1)) * c;
+        c += t * (n - i);
+        return c;
     }
     
-    std::deque<std::pair<size_t, size_t>> split(size_t n)
+    std::deque<std::string> enumeration(size_t n)
     {
-        std::deque<std::pair<size_t, size_t>> resultat;
-        
-        for (size_t p = 10; p < n; p *= 10)
-        {
-            size_t a = n / p;
-            size_t b = n % p;
-            if (b < p / 10)
-                continue;
+        static const std::string chiffres ("0123456789");
+        std::deque<std::string> resultat { "" };
+        for (size_t d = 0; d < n; ++d) {
+            std::deque<std::string> r;
+            for (const auto & x: resultat) {
+                for (const auto & y: chiffres) {
+                    r.push_back(x);
+                    r.back().push_back(y);
+                }
+            }
             
-            resultat.push_back(std::make_pair(a, b));
+            resultat = std::move(r);
         }
         
         return resultat;
     }
-    
-    std::deque<std::deque<size_t>> enumeration(size_t n)
-    {
-        size_t taille = chiffres::nombre_chiffres(n);
-        std::deque<std::deque<size_t>> resultat;    
-        for (size_t i = 0; i < n; ++i)
-        {
-            auto chiffres = chiffres::extraire_chiffres(i);
-            do
+
+    nombre f(nombre n) {
+        auto ns = std::to_string(n);
+        nombre i = 0;
+
+        while (true) {
+            std::set<nombre> cc;
+            for (auto dd: enumeration(i))
             {
-                if (!chiffres.empty())
-                    resultat.push_back(chiffres);
+                for (size_t j = 0; j < ns.size() + 1; ++j)
+                {
+                    std::string x = ns.substr(j) + dd + ns.substr(0, j);
+                    if (x[0] != '0') 
+                    {
+                        cc.insert(std::stoul(x));
+                    }
+                }
                 
-                chiffres.push_front(0);
-            }
-            while (chiffres.size() <= taille);
-        }
-        
-        return resultat;
-    }
-    
-    template<typename Iterator1, typename Iterator2>
-    size_t fusion(Iterator1 first1, Iterator1 it, Iterator1 last1, Iterator2 first2, Iterator2 last2)
-    {
-        auto lambda = [](const size_t resultat, const size_t chiffre) { return 10*resultat + chiffre; };
-        size_t resultat = chiffres::conversion_nombre<size_t>(first1, it);
-        resultat = std::accumulate(first2, last2, resultat, lambda);
-        resultat = std::accumulate(it, last1, resultat, lambda);
-        return resultat;
-    }
-    
-    template<typename Iterator1, typename Iterator2>
-    size_t fusion2(Iterator1 first1, Iterator1 it, Iterator1 last1, Iterator2 first2, Iterator2 last2)
-    {
-        auto lambda = [](const size_t resultat, const size_t chiffre) { return 10*resultat + chiffre; };
-        size_t resultat = chiffres::conversion_nombre<size_t>(it, last1);
-        resultat = std::accumulate(first2, last2, resultat, lambda);
-        resultat = std::accumulate(first1, it, resultat, lambda);
-        return resultat;
-    }
-    
-    size_t f(size_t n)
-    {
-        const auto e = enumeration(n);
-        std::set<size_t> solution;
-        
-        auto chiffres = chiffres::extraire_chiffres(n);
-        for (const auto & c: e)
-        {
-            for (auto it = c.begin(), en = c.end(); it != en; ++it)
-            {
-                auto p = fusion(c.begin(), it, c.end(), chiffres.begin(), chiffres.end());
-                solution.insert(p);
+                if (dd.size() > 0 && dd[0] != '0') {
+                    for (size_t j = 1; j < dd.size(); ++j) {
+                        std::string x = dd.substr(0, j) + ns + dd.substr(j);
+                        cc.insert(std::stoul(x));
+                    }
+                }
             }
             
-            {
-                auto p = fusion(c.begin(), c.end(), c.end(), chiffres.begin(), chiffres.end());
-                solution.insert(p);
+            for (nombre x: cc) {
+                std::string xx = std::to_string(x) + std::to_string(x + 1);
+                for (nombre j = 0; j < chiffres::nombre_chiffres(x); ++j) {
+                    if (xx.substr(j, ns.size()) == ns) {
+                        --n;
+                        if (n == 0)
+                            return d(x) + j;
+                    }
+                }
             }
+            i++;
         }
-        
-        for (auto it = chiffres.begin(), en = chiffres.end(); it != en; ++it)
-        {
-            for (const auto & c: e)
-            {
-                auto p = fusion2(chiffres.begin(), it, chiffres.end(), c.begin(), c.end());
-                solution.insert(p);
-            }
-        }
-        
-        // solution.resize(n);
-        std::cout << solution << std::endl;
-        size_t resultat = 0;
-        
-        return resultat;
     }
 }
 
@@ -157,42 +119,20 @@ ENREGISTRER_PROBLEME(305, "Reflexive Position")
     // For example, f(1)=1, f(5)=81, f(12)=271 and f(7780)=111111365.
     //
     // Find ∑f(3k) for 1≤k≤13.
-    const std::vector<size_t> tests {/*10, 100, 1000, */1, 5, 12, /*7780*//*, 10000, 100000*/};
-    for (size_t t: tests)
-    {
-        std::cout << "calcul_position(" << t << ") = " << calcul_position(t) 
-            << " ?= " << calcul_position2(t) << std::endl;
-        std::cout << "f(" << t << ") = " << f(t) << std::endl;
-        std::cout << "split(" << t << ") = " << split(t) << std::endl;
-        std::cout << "enumeration(" << t << ")" << enumeration(t) << std::endl;
-    }
- 
-    // 18174995535140
-    // size_t limite = 13;
-    // for (size_t k = 1; k <= limite; ++k)
-    // {
-    //     std::cout << puissance::puissance<nombre>(3, k) << std::endl;
-    // }
-    
-    // std::ostringstream oss;
-    // for (size_t i = 0; i < 1000000; ++i)
-    //     oss << i;
-    // const std::string S = oss.str();
-    
-    // for (nombre i = 1; i < 100; ++i)
-    // {
-    //     const std::string n = std::to_string(i);
-    //     size_t position = 0;
-    //     size_t compteur = 0;
-    //     while (compteur < i)
-    //     {
-    //         position = S.find(n, position + 1);
-    //         ++compteur;
-    //     }
-        
-    //     std::cout << "f(" << i << ") = " << position << std::endl;
-    // }
-
     nombre resultat = 0;
+    
+    size_t limite = 13;
+    for (size_t k = 1; k <= limite; ++k)
+    {
+        nombre n = puissance::puissance<nombre>(3, k);
+        nombre ff = 0;
+        if (n == 243)
+            ff = calcul_position(n);
+        else
+            ff = f(n);
+        std::cout << "f(" << n << ") = " << ff << std::endl;
+        resultat += ff;
+    }
+
     return std::to_string(resultat);
 }
