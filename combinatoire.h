@@ -21,6 +21,18 @@ namespace combinatoire
     }
     
     template<typename Nombre>
+    Nombre arrangement(Nombre n, Nombre p)
+    {
+        Nombre resultat = 1;
+        for (Nombre k = n - p + 1; k < n + 1; ++k)
+        {
+            resultat *= k;
+        }
+        
+        return resultat;
+    }
+    
+    template<typename Nombre>
     Nombre catalan(Nombre n)
     {
         return coefficient_binomial<Nombre>(2*n, n) / (n + 1);

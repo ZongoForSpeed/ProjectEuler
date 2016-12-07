@@ -7,7 +7,8 @@ WARNINGS= \
     -Wno-c++98-compat-pedantic \
     -Wno-padded \
     -Wno-global-constructors \
-    -Wno-exit-time-destructors
+    -Wno-exit-time-destructors \
+    -Wno-double-promotion
 
 CPPFLAGS= \
     -std=gnu++11 -c -O3 $(WARNINGS) -I. \
