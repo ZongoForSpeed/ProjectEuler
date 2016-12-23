@@ -3,7 +3,7 @@
 namespace combinatoire
 {
     template<typename Nombre>
-    Nombre coefficient_binomial(Nombre n, Nombre p)
+    constexpr Nombre coefficient_binomial(Nombre n, Nombre p)
     {
         if (p < 1 || n < p)
             return Nombre(1);
@@ -21,7 +21,7 @@ namespace combinatoire
     }
     
     template<typename Nombre>
-    Nombre arrangement(Nombre n, Nombre p)
+    constexpr Nombre arrangement(Nombre n, Nombre p)
     {
         Nombre resultat = 1;
         for (Nombre k = n - p + 1; k < n + 1; ++k)
@@ -33,13 +33,13 @@ namespace combinatoire
     }
     
     template<typename Nombre>
-    Nombre catalan(Nombre n)
+    constexpr Nombre catalan(Nombre n)
     {
         return coefficient_binomial<Nombre>(2*n, n) / (n + 1);
     }
     
     template<typename Nombre>
-    Nombre factorielle(Nombre n)
+    constexpr Nombre factorielle(Nombre n)
     {
         Nombre resultat = 1;
         for (Nombre k = 2; k <= n; ++k) resultat *= k;

@@ -115,7 +115,7 @@ ENREGISTRER_PROBLEME(302, "Strong Achilles Numbers")
     std::set<nombre> premiers;
     premiers::crible235<nombre>(limite_crible, std::inserter(premiers, premiers.begin()));
     
-    nombre limite = puissance::puissance<nombre>(10, 18);
+    nombre limite = puissance::puissance<nombre, unsigned>(10, 18);
     
     std::map<nombre, size_t> decomposition;
     nombre resultat = algorithme(1, limite_crible, 0, decomposition, limite, premiers);

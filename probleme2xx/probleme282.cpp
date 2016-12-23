@@ -55,7 +55,7 @@ namespace
                 // si m premier avec 2
                 // alors 2↑↑a mod m = 2**(2↑↑(n-1) mod phi(m)) mod m
                 nombre x = algorithme(a - 1, arithmetiques::phi(m, premiers), premiers);
-                return puissance::puissance_modulaire<nombre>(2, static_cast<size_t>(x), m);
+                return puissance::puissance_modulaire<nombre>(2, x, m);
             }
         }
         else
@@ -87,7 +87,7 @@ ENREGISTRER_PROBLEME(282, "The Ackermann function")
     // For example A(1, 0) = 2, A(2, 2) = 7 and A(3, 4) = 125.
     //
     // Find ∑ A(n, n), n=0..6 and give your answer mod 14**8.
-    nombre modulo = puissance::puissance<nombre>(14, 8);
+    nombre modulo = puissance::puissance<nombre, unsigned>(14, 8);
     
     vecteur premiers;
     premiers::crible235<nombre>(1000000, std::back_inserter(premiers));

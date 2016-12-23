@@ -54,6 +54,6 @@ ENREGISTRER_PROBLEME(242, "Odd Triplets")
 	// [1,1,f(1,1) = 1], [5,1,f(5,1) = 3], [5,5,f(5,5) = 1], [9,1,f(9,1) = 5] and [9,9,f(9,9) = 1].
 	//
 	// How many odd-triplets are there with n ≤ 1012 ?
-	nombre resultat = triplets_impairs(puissance::puissance<nombre>(10, 12));
+	nombre resultat = triplets_impairs(puissance::puissance<nombre, unsigned>(10, 12));
     return std::to_string(resultat);
 }

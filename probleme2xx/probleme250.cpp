@@ -20,7 +20,7 @@ ENREGISTRER_PROBLEME(250, "250250")
     // Find the number of non-empty subsets of {1^1, 2^2, 3^3,..., 250250^250250}, 
     // the sum of whose elements is divisible by 250. Enter the rightmost 16 
     // digits as your answer.
-    nombre masque = puissance::puissance<nombre>(10, 16);
+    nombre masque = puissance::puissance<nombre, unsigned>(10, 16);
     
     nombre m = 250;
     vecteur frequence(m, 0);

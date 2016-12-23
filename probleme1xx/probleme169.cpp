@@ -49,7 +49,7 @@ ENREGISTRER_PROBLEME(169, "Exploring the number of different ways a number can b
     // 2 + 8
     // 
     // What is f(10^25)?
-    nombre n = puissance::puissance<nombre>(10, 25);
+    nombre n = puissance::puissance<nombre, unsigned>(10, 25);
     std::map<nombre, nombre> cache;
     nombre resultat = f(cache, n);
     return std::to_string(resultat);

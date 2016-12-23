@@ -49,7 +49,7 @@ ENREGISTRER_PROBLEME(111, "Primes with runs")
     // For d = 0 to 9, the sum of all S(4, d) is 273700.
     //
     // Find the sum of all S(10, d).
-    nombre limite = puissance::puissance(10ULL, 10);
+    nombre limite = puissance::puissance<nombre, unsigned>(10, 10);
     
     vecteur premiers;
     premiers::crible23<nombre>(limite, std::back_inserter(premiers));

@@ -55,7 +55,7 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
     // All computations are assumed to be exact (no rounding), but give your answer rounded to 12 
     // digits behind the decimal point in the form 0.abcdefghijkl.
     const nombre n = 1000;
-    const nombre N = puissance::puissance<nombre>(10, 9);
+    const nombre N = puissance::puissance<nombre, unsigned>(10, 9);
     
     std::function<long double(long double)> lambda_f = [n, N] (long double x) -> long double { return f(x, n, N); };
     
@@ -73,7 +73,7 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
         resultat += C[k];
     }
     
-    boost::multiprecision::cpp_int puissance = puissance::puissance<boost::multiprecision::cpp_int>(2, n);
+    boost::multiprecision::cpp_int puissance = puissance::puissance<boost::multiprecision::cpp_int, nombre>(2, n);
     
     return std::to_string(static_cast<long double>(resultat) / static_cast<long double>(puissance), 12);
 }

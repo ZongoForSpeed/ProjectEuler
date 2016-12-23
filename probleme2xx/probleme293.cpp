@@ -46,7 +46,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
     vecteur premiers;
     premiers::crible<nombre>(50, std::back_inserter(premiers));
     
-    nombre limite = puissance::puissance<nombre>(10, 9);
+    nombre limite = puissance::puissance<nombre, unsigned>(10, 9);
     
     vecteur fortunate;
     for (nombre p = premiers.front(); p < limite; p *= premiers.front())

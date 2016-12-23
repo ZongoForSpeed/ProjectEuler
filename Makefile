@@ -11,7 +11,7 @@ WARNINGS= \
     -Wno-double-promotion
 
 CPPFLAGS= \
-    -std=gnu++11 -c -O3 $(WARNINGS) -I. \
+    -std=gnu++14 -c -O3 $(WARNINGS) -I. \
     -DNDEBUG \
     -DBOOST_UBLAS_NDEBUG \
     -DWITHGPERFTOOLS

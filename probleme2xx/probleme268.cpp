@@ -15,7 +15,7 @@ ENREGISTRER_PROBLEME(268, "Counting numbers with at least four distinct prime fa
     //
     // Find how many positive integers less than 10**16 are divisible by at least 
     // four distinct primes less than 100.
-    const nombre N = puissance::puissance<nombre>(10, 16);
+    const nombre N = puissance::puissance<nombre, unsigned>(10, 16);
     vecteur premiers;
     premiers::crible<nombre>(100, std::back_inserter(premiers));
     

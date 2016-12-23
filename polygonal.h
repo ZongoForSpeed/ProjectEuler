@@ -6,27 +6,27 @@
 namespace polygonal
 {
 	template<typename Nombre>
-    bool est_carre(Nombre n)
+    constexpr bool est_carre(Nombre n)
     {
         Nombre racine = racine_carre(n);
         return racine*racine == n;
     }
     
     template<typename Nombre>
-    bool est_cubique(Nombre n)
+    constexpr bool est_cubique(Nombre n)
     {
         Nombre racine = racine_cubique(n);
         return racine*racine*racine == n;
     }
     
     template<typename Nombre>
-    Nombre triangulaire(Nombre n)
+    constexpr Nombre triangulaire(Nombre n)
     {
         return n*(n+1)/2;
     }
     
     template<typename Nombre>
-    bool est_triangulaire(Nombre n)
+    constexpr bool est_triangulaire(Nombre n)
     {
         Nombre delta = 1 + 8*n;
         Nombre racine_delta = racine_carre(delta);
@@ -34,13 +34,15 @@ namespace polygonal
             return false;
         return (racine_delta-1)%2 == 0;
     }
+    
     template<typename Nombre>
-    Nombre pentagonal(Nombre n)
+    constexpr Nombre pentagonal(Nombre n)
     {
         return n*(3*n-1)/2;
     }
+    
     template<typename Nombre>
-    bool est_pentagonal(Nombre n)
+    constexpr bool est_pentagonal(Nombre n)
     {
         Nombre delta = 1 + 24*n;
         Nombre racine_delta = racine_carre(delta);
@@ -48,13 +50,15 @@ namespace polygonal
             return false;
         return (1+racine_delta)%6 == 0;
     }
+    
     template<typename Nombre>
-    Nombre hexagonal(Nombre n)
+    constexpr Nombre hexagonal(Nombre n)
     {
         return n*(2*n-1);
     }
+    
     template<typename Nombre>
-    bool est_hexagonal(Nombre n)
+    constexpr bool est_hexagonal(Nombre n)
     {
         Nombre delta = 1 + 8*n;
         Nombre racine_delta = racine_carre(delta);
@@ -64,13 +68,13 @@ namespace polygonal
     }
     
     template<typename Nombre>
-    Nombre heptagonal(Nombre n)
+    constexpr Nombre heptagonal(Nombre n)
     {
         return n*(5*n - 3)/2;
     }
     
     template<typename Nombre>
-    bool est_heptagonal(Nombre n)
+    constexpr bool est_heptagonal(Nombre n)
     {
         Nombre delta = 9 + 40*n;
         Nombre racine_delta = racine_carre(delta);
@@ -80,12 +84,13 @@ namespace polygonal
     }
     
     template<typename Nombre>
-    Nombre octagonal(Nombre n)
+    constexpr Nombre octagonal(Nombre n)
     {
         return n*(3*n - 2);
     }
+    
     template<typename Nombre>
-    bool est_octagonal(Nombre n)
+    constexpr bool est_octagonal(Nombre n)
     {
         Nombre delta = 4 + 12*n;
         Nombre racine_delta = racine_carre(delta);
@@ -95,7 +100,7 @@ namespace polygonal
     }
     
     template<typename Nombre>
-    Nombre polygonal(Nombre n, unsigned short type)
+    constexpr Nombre polygonal(Nombre n, unsigned short type)
     {
         switch(type)
         {
@@ -110,7 +115,7 @@ namespace polygonal
     }
     
     template<typename Nombre>
-    Nombre est_polygonal(Nombre n, unsigned short type)
+    constexpr Nombre est_polygonal(Nombre n, unsigned short type)
     {
         switch(type)
         {

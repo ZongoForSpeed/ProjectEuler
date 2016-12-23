@@ -22,7 +22,7 @@ ENREGISTRER_PROBLEME(125, "Palindromic sums")
     // 
     // Find the sum of all the numbers less than 10^8 that are both palindromic and can be written 
     // as the sum of consecutive squares.
-    nombre limite = puissance::puissance(10ULL, 8); 
+    nombre limite = puissance::puissance<nombre, unsigned>(10, 8); 
     vecteur carres;
     for (nombre n = 1; n*n < limite; ++n)
         carres.push_back(n*n);

@@ -71,7 +71,7 @@ ENREGISTRER_PROBLEME(304, "Primonacci")
     //
     // Find ∑b(n) for 1≤n≤100 000. Give your answer mod 1234567891011.
     const nombre modulo = 1234567891011ULL;
-    const nombre a0 = puissance::puissance<nombre>(10, 14);
+    const nombre a0 = puissance::puissance<nombre, unsigned>(10, 14);
     vecteur a(100000 + 1, a0);
     nombre resultat = 0;
     for (size_t n = 1; n < a.size(); ++n)

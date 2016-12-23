@@ -23,7 +23,7 @@ ENREGISTRER_PROBLEME(80, "Square root digital expansion")
     //
     // For the first one hundred natural numbers, find the total of the digital sums of the first 
     // one hundred decimal digits for all the irrational square roots.
-    nombre gogol = puissance::puissance(nombre(10), 100);
+    nombre gogol = puissance::puissance<nombre, unsigned>(10, 100);
     nombre gogol_carre = gogol * gogol;
     
     std::ostringstream oss;

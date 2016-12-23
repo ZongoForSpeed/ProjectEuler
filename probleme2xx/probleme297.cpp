@@ -65,7 +65,7 @@ ENREGISTRER_PROBLEME(297, "Zeckendorf Representation")
 	// Also, for 0<n<10**6, ∑ z(n) = 7894453.
 	//
 	// Find ∑ z(n) for 0<n<10**17.
-	const nombre limite = puissance::puissance<nombre>(10, 17);
+	const nombre limite = puissance::puissance<nombre, unsigned>(10, 17);
 	vecteur fibonacci { 1, 1 };
 	while (fibonacci.back() < limite)
 	{

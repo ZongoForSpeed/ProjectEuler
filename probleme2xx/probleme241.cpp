@@ -63,7 +63,7 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients")
 	// 
 	// Find the sum of all positive integers n ≤ 1018 for which p(n) has the form k + 1/2, where k is an
 	// integer.
-	const nombre limite = puissance::puissance<nombre>(10, 18);
+	const nombre limite = puissance::puissance<nombre, unsigned>(10, 18);
 	vecteur premiers;
 	premiers::crible235<nombre>(1000, std::back_inserter(premiers));
 	

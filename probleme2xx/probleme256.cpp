@@ -56,7 +56,7 @@ ENREGISTRER_PROBLEME(256, "Tatami-Free Rooms")
     // In fact, s = 1320 is the smallest room-size s for which T(s) = 5.
     //
     // Find the smallest room-size s for which T(s) = 200.
-    const nombre limite = puissance::puissance<nombre>(10, 8);
+    const nombre limite = puissance::puissance<nombre, unsigned>(10, 8);
     const nombre Q = 200;
 
     vecteur t(limite, 0);

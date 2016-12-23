@@ -26,7 +26,7 @@ ENREGISTRER_PROBLEME(123, "Prime square remainders")
     vecteur premiers;
     premiers::crible23<nombre>(1000000, std::back_inserter(premiers));
     
-    nombre borne = puissance::puissance(10ULL, 10);
+    nombre borne = puissance::puissance<nombre, unsigned>(10, 10);
 
     nombre resultat = 0;
     for (size_t n = 1;; ++n)

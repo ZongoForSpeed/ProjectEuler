@@ -1,11 +1,14 @@
 #pragma once
+#include <type_traits>
 
 namespace puissance
 {
-    template<typename Nombre>
-    Nombre puissance(Nombre base, size_t exposant)
+    template<typename Base, typename Exposant>
+    constexpr Base puissance(Base base, Exposant exposant)
     {
-        Nombre resultat = 1;
+        static_assert(std::is_unsigned<Exposant>::value, "Exposant doit être un entier non signé.");
+        
+        Base resultat = 1;
         while (exposant > 0)
         {
             if (exposant%2)
@@ -16,10 +19,12 @@ namespace puissance
         return resultat;
     }
     
-    template<typename Nombre1, typename Nombre2>
-    Nombre1 puissance_modulaire(Nombre1 base, size_t exposant, Nombre2 modulo)
+    template<typename Base, typename Exposant, typename Modulo>
+    constexpr Base puissance_modulaire(Base base, Exposant exposant, Modulo modulo)
     {
-        Nombre1 resultat = 1;
+        static_assert(std::is_unsigned<Exposant>::value, "Exposant doit être un entier non signé.");
+        
+        Base resultat = 1;
         while (exposant > 0)
         {
             if (exposant%2)

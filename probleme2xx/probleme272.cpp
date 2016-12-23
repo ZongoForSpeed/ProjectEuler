@@ -70,7 +70,7 @@ ENREGISTRER_PROBLEME(272, "Modular Cubes, part 2")
     // Thus, C(91)=8.
     //
     // Find the sum of the positive numbers n≤10**11 for which C(n)=242.
-    const nombre limite = puissance::puissance<nombre>(10, 11);
+    const nombre limite = puissance::puissance<nombre, unsigned>(10, 11);
     vecteur premiers;
     premiers::crible<nombre>(100000000, std::back_inserter(premiers));
     

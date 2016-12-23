@@ -41,7 +41,7 @@ ENREGISTRER_PROBLEME(312, "Cyclic paths on Sierpiński graphs")
     // C(10 000) mod 13**8 = 617720485
     //
     // Find C(C(C(10 000))) mod 13**8.
-    nombre modulo = puissance::puissance<nombre>(13, 8);
+    nombre modulo = puissance::puissance<nombre, unsigned>(13, 8);
     vecteur premiers;
     premiers::crible235<nombre>(modulo, std::back_inserter(premiers));
     

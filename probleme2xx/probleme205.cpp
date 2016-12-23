@@ -75,6 +75,8 @@ ENREGISTRER_PROBLEME(205, "Dice Game")
             somme += p.second * c.second;
     }
     
-    long double resultat = somme / puissance::puissance(4.0L, 9) / puissance::puissance(6.0L, 6);
+    long double resultat = somme 
+        / puissance::puissance<long double, unsigned>(4, 9) 
+        / puissance::puissance<long double, unsigned>(6, 6);
     return std::to_string(resultat, 7);
 }

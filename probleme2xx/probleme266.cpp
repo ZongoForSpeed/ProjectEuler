@@ -21,7 +21,7 @@ ENREGISTRER_PROBLEME(266, "Pseudo Square Root")
     //
     // Let p be the product of the primes below 190.
     // Find PSR(p) mod 10^16.
-    const nombre modulo = puissance::puissance<nombre>(10, 16);
+    const nombre modulo = puissance::puissance<nombre, unsigned>(10, 16);
     vecteur premiers;
     premiers::crible<nombre>(190, std::back_inserter(premiers));
     

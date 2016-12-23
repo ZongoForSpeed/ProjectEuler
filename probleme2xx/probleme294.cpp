@@ -82,7 +82,7 @@ ENREGISTRER_PROBLEME(294, "Sum of digits - experience #23")
 	nombre masque = 1000000000ULL;
 	nombre modulo = 23;
 	
-	nombre n = puissance::puissance<nombre>(11, 12);
+	nombre n = puissance::puissance<nombre, unsigned>(11, 12);
 	nombre resultat = algorithme(n, modulo, masque)[std::make_pair(23,0)];
 
     return std::to_string(resultat);

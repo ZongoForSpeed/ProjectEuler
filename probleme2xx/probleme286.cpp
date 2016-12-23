@@ -16,13 +16,16 @@ typedef std::vector<nombre> vecteur;
 
 namespace 
 {
-    nombre puissance(nombre base, size_t exposant)
+    template<typename Exposant>
+    nombre puissance(nombre base, Exposant exposant)
     {
+        static_assert(std::is_unsigned<Exposant>::value, "Exposant doit être un entier non signé.");
+        
         nombre resultat(1);
         while (exposant > 0)
         {
             if (exposant%2)
-                resultat *= base;
+                resultat = resultat * base;
             exposant /= 2;
             base = base * base;
         }
@@ -94,7 +97,7 @@ ENREGISTRER_PROBLEME(286, "Scoring probabilities")
     size_t n = 50;
     nombre objectif = 0.02L;
     std::cout << std::fixed << std::setprecision(10);
-    nombre limite = puissance::puissance<nombre>(0.1, 11);
+    nombre limite = puissance<unsigned>(0.1, 11);
     nombre dq = 1;
     nombre q = 50;
     

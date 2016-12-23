@@ -29,8 +29,8 @@ ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
     // -its area is a multiple of the perfect numbers 6 and 28.
     //
     // How many perfect right-angled triangles with c ≤ 10^16 exist that are not super-perfect?
-    nombre limite = puissance::puissance<nombre>(10, 16);
-    nombre limite_m = puissance::puissance<nombre>(10, 4);
+    nombre limite = puissance::puissance<nombre, unsigned>(10, 16);
+    nombre limite_m = puissance::puissance<nombre, unsigned>(10, 4);
     nombre resultat = 0;
 
     for (nombre m = 2; m < limite_m; ++m)

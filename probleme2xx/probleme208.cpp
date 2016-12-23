@@ -38,17 +38,17 @@ ENREGISTRER_PROBLEME(208, "Robot Walks")
 	auto choix_max = choix.back();
 	for (nombre n = 0; n < maximum; ++n)
     {
-        resultat += puissance::puissance(choix_max[n], 5);
+        resultat += puissance::puissance<nombre, unsigned>(choix_max[n], 5);
         if (n > 0)
         {
-            resultat += puissance::puissance(choix_max[n], 4)
-                        * puissance::puissance(choix_max[n - 1], 1);
-            resultat += puissance::puissance(choix_max[n], 3)
-                        * puissance::puissance(choix_max[n - 1], 2);
-            resultat += puissance::puissance(choix_max[n], 2)
-                        * puissance::puissance(choix_max[n - 1], 3);
-            resultat += puissance::puissance(choix_max[n], 1)
-                        * puissance::puissance(choix_max[n - 1], 4);
+            resultat += puissance::puissance<nombre, unsigned>(choix_max[n], 4)
+                        * puissance::puissance<nombre, unsigned>(choix_max[n - 1], 1);
+            resultat += puissance::puissance<nombre, unsigned>(choix_max[n], 3)
+                        * puissance::puissance<nombre, unsigned>(choix_max[n - 1], 2);
+            resultat += puissance::puissance<nombre, unsigned>(choix_max[n], 2)
+                        * puissance::puissance<nombre, unsigned>(choix_max[n - 1], 3);
+            resultat += puissance::puissance<nombre, unsigned>(choix_max[n], 1)
+                        * puissance::puissance<nombre, unsigned>(choix_max[n - 1], 4);
         }
     }
 

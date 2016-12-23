@@ -38,14 +38,14 @@ public:
     static nombre racine_septieme(nombre n)
     {
         nombre resultat = static_cast<nombre>(pow(n, 1.0/7.0));
-        auto p7 = puissance::puissance(resultat, 7);
+        auto p7 = puissance::puissance<nombre, unsigned>(resultat, 7);
         if (p7 < n)
         {
             do
             {
                 ++resultat;
             }
-            while (puissance::puissance(resultat, 7) < n);
+            while (puissance::puissance<nombre, unsigned>(resultat, 7) < n);
             return resultat - 1;
         }
         else if (p7 > n)
@@ -54,7 +54,7 @@ public:
             {
                 --resultat;
             }
-            while (puissance::puissance(resultat, 7) > n);
+            while (puissance::puissance<nombre, unsigned>(resultat, 7) > n);
             return resultat + 1;
         }
         
@@ -142,7 +142,7 @@ public:
             // Forme p1^3*p2 où p1 != p2
             for (const nombre & p : _premiers)
             {
-                size_t p3 = puissance::puissance(p, 3);
+                size_t p3 = puissance::puissance<nombre, unsigned>(p, 3);
                 if (2*p3 > limite)
                     break;
                 

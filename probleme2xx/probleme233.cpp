@@ -20,12 +20,14 @@ ENREGISTRER_PROBLEME(233, "Lattice points on a circle")
 	// It can be shown that f(10000) = 36 
 	// 
 	// What is the sum of all positive integers N ≤ 10^11 such that f(N) = 420 ?
-	const nombre limite = puissance::puissance<nombre>(10, 11);
+	const nombre limite = puissance::puissance<nombre, unsigned>(10, 11);
 
 	vecteur premiers;
-	premiers::crible235<nombre>(limite / ( puissance::puissance<nombre>(5, 3) * puissance::puissance<nombre>(13, 2) ), std::back_inserter(premiers));
+	premiers::crible235<nombre>(limite / ( puissance::puissance<nombre, unsigned>(5, 3) 
+	    * puissance::puissance<nombre, unsigned>(13, 2) ), std::back_inserter(premiers));
 	
-	vecteur multi( limite / ( puissance::puissance<nombre>(5, 3) * puissance::puissance<nombre>(13, 2) * 17) + 1 );
+	vecteur multi( limite / ( puissance::puissance<nombre, unsigned>(5, 3) 
+	    * puissance::puissance<nombre, unsigned>(13, 2) * 17) + 1 );
 	for (size_t c = 0; c < multi.size(); ++c)
 		multi[c] = c;
 
@@ -78,7 +80,7 @@ ENREGISTRER_PROBLEME(233, "Lattice points on a circle")
 	// n = q^3 * r^7
 	for (nombre r: premiers4)
 	{
-		const nombre r7 = puissance::puissance(r, 7);
+		const nombre r7 = puissance::puissance<nombre, unsigned>(r, 7);
 		if (5*5*5 * r7 > limite)
 			break;
 			
@@ -98,7 +100,7 @@ ENREGISTRER_PROBLEME(233, "Lattice points on a circle")
 	// n = q^2 * r^10
 	for (nombre r: premiers4)
 	{
-		const nombre r10 = puissance::puissance(r, 10);
+		const nombre r10 = puissance::puissance<nombre, unsigned>(r, 10);
 		if (5*5*r10 > limite)
 			break;
 			

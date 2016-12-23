@@ -21,7 +21,7 @@ namespace
         if (chiffres < 9)
             return false;
             
-        nombre debut = static_cast<nombre>(f / puissance::puissance(10.0L, chiffres - 8));
+        nombre debut = static_cast<nombre>(f / puissance::puissance(10.0, chiffres - 8));
         return chiffres::pandigital(debut);
     }
     
@@ -46,7 +46,7 @@ ENREGISTRER_PROBLEME(104, "Pandigital Fibonacci ends")
     const long double sqrt5 = std::sqrt(5.0L);
     const long double phi = (1.0L + sqrt5) / 2.0L;
     
-    const nombre masque = puissance::puissance(10ULL, 9);
+    const nombre masque = puissance::puissance<nombre, unsigned>(10, 9);
 
     long double fd = phi / sqrt5;
     nombre fn1 = 0;

@@ -21,7 +21,7 @@ ENREGISTRER_PROBLEME(249, "Prime Subset Sums")
     //
     // Find the number of subsets of S, the sum of whose elements is a prime number.
     // Enter the rightmost 16 digits as your answer.
-    nombre masque = puissance::puissance<nombre>(10, 16);
+    nombre masque = puissance::puissance<nombre, unsigned>(10, 16);
     
     vecteur premiers;
     premiers::crible<nombre>(5000, std::back_inserter(premiers));

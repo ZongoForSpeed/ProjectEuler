@@ -12,7 +12,7 @@
 namespace arithmetiques
 {
     template<typename Nombre>
-    Nombre PGCD(Nombre a, Nombre b)
+    constexpr Nombre PGCD(Nombre a, Nombre b)
     {
         if (a == 0)
             return b;
@@ -38,14 +38,13 @@ namespace arithmetiques
     boost::multiprecision::mpz_int PGCD<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int b);
     
     template<typename Nombre>
-    Nombre PGCD(Nombre a, Nombre b, Nombre c)
+    constexpr Nombre PGCD(Nombre a, Nombre b, Nombre c)
     {
-        const Nombre d = PGCD(b, c);
-        return PGCD(a, d);
+        return PGCD(a, PGCD(b, c));
     }
     
     template<typename Nombre>
-    Nombre PPCM(Nombre a, Nombre b)
+    constexpr Nombre PPCM(Nombre a, Nombre b)
     {
         return (a*b) / PGCD(a,b);
     }
@@ -79,7 +78,7 @@ namespace arithmetiques
     void Bezout<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int b, boost::multiprecision::mpz_int& x, boost::multiprecision::mpz_int& y);
     
     template<typename Nombre>
-    Nombre arrondi(Nombre n, Nombre d)
+    constexpr Nombre arrondi(Nombre n, Nombre d)
     {
         return (n + d / 2) / d;    
     }
@@ -311,7 +310,7 @@ namespace arithmetiques
     namespace repunit
     {
         template<typename Nombre>
-        Nombre A(Nombre n, size_t base = 10)
+        constexpr Nombre A(Nombre n, size_t base = 10)
         {
             Nombre k = 1;
             Nombre q = (base - 1)*n;
@@ -325,7 +324,7 @@ namespace arithmetiques
     }
     
     template<typename Nombre>
-    short signe(Nombre n)
+    constexpr short signe(Nombre n)
     {
         if (n > 0)
             return 1;

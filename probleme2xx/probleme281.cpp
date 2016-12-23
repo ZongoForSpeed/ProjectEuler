@@ -52,7 +52,7 @@ ENREGISTRER_PROBLEME(281, "Pizza Toppings")
     premiers::crible235<nombre>(1000, std::back_inserter(premiers));
     
     nombre resultat = 0;
-    nombre limite = puissance::puissance<nombre>(10, 15);
+    nombre limite = puissance::puissance<nombre, unsigned>(10, 15);
     
     for (size_t m = 2; f(m, 1, premiers) <= limite; ++m)
     for (size_t n = 1; f(m, n, premiers) <= limite; ++n)

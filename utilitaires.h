@@ -22,35 +22,35 @@ namespace std
     long double sqrt(boost::multiprecision::mpz_int n);
     
     template<typename T1, typename T2>
-    std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
+    constexpr std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
     {
         os << "(" << p.first << ", " << p.second << ")";
         return os;
     }
     
     template<typename T1, typename T2, typename T3>
-    std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3> & t)
+    constexpr std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3> & t)
     {
         os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ")";
         return os;
     }
     
     template<typename T1, typename T2, typename T3, typename T4>
-    std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4> & t)
+    constexpr std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4> & t)
     {
         os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ", " << std::get<3>(t) << ")";
         return os;
     }
     
     template<typename T1, typename T2, typename T3, typename T4, typename T5>
-    std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5> & t)
+    constexpr std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5> & t)
     {
         os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << ", " << std::get<3>(t) << ", " << std::get<4>(t) << ")";
         return os;
     }
     
     template<typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
-    std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5, T6> & t)
+    constexpr std::ostream& operator<<(std::ostream& os, const std::tuple<T1, T2, T3, T4, T5, T6> & t)
     {
         os << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) 
            << ", " << std::get<3>(t) << ", " << std::get<4>(t) << ", " << std::get<5>(t) << ")";
@@ -130,14 +130,14 @@ namespace std
     }
     
     template< class Iterator >
-    Iterator next( Iterator it, size_t n) 
+    constexpr Iterator next( Iterator it, size_t n) 
     {
         advance(it, static_cast<typename std::iterator_traits<Iterator>::difference_type>(n));
         return it;    
     }
     
     template<typename T>
-    ostream & operator<<(ostream & os, boost::optional<T> s)
+    constexpr ostream & operator<<(ostream & os, boost::optional<T> s)
     {
         if (s)
             os << *s;
@@ -147,7 +147,7 @@ namespace std
     }
     
     template<class InputIt1, class InputIt2, class BinaryOperation>
-    void for_each2(InputIt1 first1, InputIt1 last1, InputIt2 first2, BinaryOperation binary_op)
+    constexpr void for_each2(InputIt1 first1, InputIt1 last1, InputIt2 first2, BinaryOperation binary_op)
     {
         while (first1 != last1) {
             binary_op(*first1++, *first2++);
@@ -166,16 +166,15 @@ namespace std
 }
 
 template<typename Nombre>
-Nombre racine_carre(Nombre n)
+constexpr Nombre racine_carre(Nombre n)
 {
-    Nombre x = static_cast<Nombre>(std::sqrt(n));
-    return x;
+    return static_cast<Nombre>(std::sqrt(n));
 }
 
 boost::multiprecision::mpz_int racine_carre(boost::multiprecision::mpz_int n);
 
 template<typename Nombre, typename = typename std::enable_if<std::is_integral<Nombre>::value, Nombre>::type>
-Nombre racine_cubique(Nombre n)
+constexpr Nombre racine_cubique(Nombre n)
 {
 	return static_cast<Nombre>(std::cbrt(n));
 }
@@ -191,19 +190,19 @@ boost::optional<Nombre> carre_parfait(Nombre x)
 }
 
 template<typename Nombre> 
-typename std::enable_if<std::is_integral<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
+constexpr typename std::enable_if<std::is_integral<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
 { 
     return a == b;
 }
 
 template<typename Nombre> 
-typename std::enable_if<std::is_class<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
+constexpr typename std::enable_if<std::is_class<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
 { 
     return a == b;
 }
 
 template<typename Nombre>
-typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
+constexpr typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
 { 
     return std::abs(b - a) < std::numeric_limits<Nombre>::epsilon();
 }

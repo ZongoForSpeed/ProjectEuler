@@ -26,7 +26,7 @@ ENREGISTRER_PROBLEME(291, "Panaitopol Primes")
     // for some positive integers x and y.
     //
     // Find how many Panaitopol primes are less than 5×10**15.
-    const nombre limite = 5*puissance::puissance<nombre>(10, 15);
+    const nombre limite = 5*puissance::puissance<nombre, unsigned>(10, 15);
     
     nombre resultat = 0;
     for (nombre n = 1; n*n + (n+1)*(n+1) < limite; ++n)

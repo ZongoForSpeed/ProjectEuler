@@ -78,7 +78,7 @@ ENREGISTRER_PROBLEME(287, "Quadtree encoding (a simple compression algorithm)")
     // 
     // What is the length of the minimal sequence describing D24 ?
     nombre N = 24;
-    nombre p2N = puissance::puissance<nombre>(2, 24);
+    nombre p2N = puissance::puissance<nombre, unsigned>(2, 24);
     nombre resultat = 1 
         + algorithme(0, 0, p2N/2, p2N/2, N) 
         + 2*algorithme(p2N/2, 0, p2N, p2N/2, N) 
