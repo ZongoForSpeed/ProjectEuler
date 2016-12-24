@@ -15,36 +15,24 @@ namespace premiers
     template<typename Nombre, class OutputIterator>
     OutputIterator crible2(const std::size_t & taille, OutputIterator sortie)
     {
-        auto lambda = [&sortie] (const std::size_t & p)
-        {
-            *sortie++ = Nombre(p);
-        };
-        
-        algorithme_crible2(taille, lambda);
+        algorithme_crible2(taille, 
+            [&sortie] (const std::size_t & p) { *sortie++ = Nombre(p); });
         return sortie;
     }
     
     template<typename Nombre, class OutputIterator>
     OutputIterator crible23(const std::size_t & taille, OutputIterator sortie)
     {
-        auto lambda = [&sortie] (const std::size_t & p)
-        {
-            *sortie++ = Nombre(p);
-        };
-        
-        algorithme_crible23(taille, lambda);
+        algorithme_crible23(taille, 
+            [&sortie] (const std::size_t & p) { *sortie++ = Nombre(p); });
         return sortie;
     }
     
     template<typename Nombre, class OutputIterator>
     OutputIterator crible235(const std::size_t & taille, OutputIterator sortie)
     {
-        auto lambda = [&sortie] (const std::size_t & p)
-        {
-            *sortie++ = Nombre(p);
-        };
-        
-        algorithme_crible235(taille, lambda);
+        algorithme_crible235(taille, 
+            [&sortie] (const std::size_t & p) { *sortie++ = Nombre(p); });
         return sortie;
     }
 }
