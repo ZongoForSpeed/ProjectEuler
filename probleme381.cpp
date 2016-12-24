@@ -45,7 +45,7 @@ ENREGISTRER_PROBLEME(381, "(prime-k) factorial")
     size_t limite = 100000000L;
     
     std::deque<size_t> premiers;
-    premiers::crible<size_t>(limite, std::back_inserter(premiers));
+    premiers::crible2<size_t>(limite, std::back_inserter(premiers));
     
     nombre resultat = 0;
     for (const size_t & p : premiers)

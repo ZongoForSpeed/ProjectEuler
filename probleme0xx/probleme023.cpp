@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(23, "Non-abundant sums")
     // Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
     nombre limite = 28123;
     std::vector<nombre> premiers;
-    premiers::crible<nombre>(limite, std::back_inserter(premiers));
+    premiers::crible2<nombre>(limite, std::back_inserter(premiers));
     
     std::vector<nombre> abundant;
     for (nombre n=12; n < limite; ++n)

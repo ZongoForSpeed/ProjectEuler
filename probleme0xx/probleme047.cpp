@@ -26,7 +26,7 @@ ENREGISTRER_PROBLEME(47, "Distinct primes factors")
     // Find the first four consecutive integers to have four distinct prime factors. 
     // What is the first of these numbers?
     std::set<nombre> premiers;
-    premiers::crible<nombre>(1000000, std::inserter(premiers, premiers.begin()));
+    premiers::crible2<nombre>(1000000, std::inserter(premiers, premiers.begin()));
     nombre resultat = 0;
     
     std::list<std::vector<nombre>> decomposition;

@@ -37,7 +37,7 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients")
     // Find the sum of the distinct squarefree numbers in the first 51 rows of Pascal's triangle.
     size_t limite = 50;
     vecteur premiers;
-    premiers::crible<nombre>(limite, std::back_inserter(premiers));
+    premiers::crible2<nombre>(limite, std::back_inserter(premiers));
 
     std::set<nombre> square_free;
     for (nombre n = 0; n <= limite; ++n)

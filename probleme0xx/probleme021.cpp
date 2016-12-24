@@ -18,7 +18,7 @@ ENREGISTRER_PROBLEME(21, "Amicable numbers")
     // 
     // Evaluate the sum of all the amicable numbers under 10000.
     std::vector<nombre> premiers;
-    premiers::crible<nombre>(10000, std::back_inserter(premiers));
+    premiers::crible235<nombre>(10000, std::back_inserter(premiers));
     vecteur diviseurs;
     diviseurs.reserve(10000);
     diviseurs.push_back(0);

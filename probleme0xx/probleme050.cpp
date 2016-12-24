@@ -24,7 +24,7 @@ ENREGISTRER_PROBLEME(50, "Consecutive prime sum")
     nombre limite = 1000000;
     
     std::set<nombre> premiers;
-    premiers::crible<nombre>(limite, std::inserter(premiers, premiers.begin()));
+    premiers::crible2<nombre>(limite, std::inserter(premiers, premiers.begin()));
     
     nombre resultat = 0;
     nombre longueur = 0;

@@ -24,7 +24,7 @@ ENREGISTRER_PROBLEME(46, "Goldbach's other conjecture")
     //
     // What is the smallest odd composite that cannot be written as the sum of a prime and twice a square?
     std::set<nombre> premiers;
-    premiers::crible<nombre>(10000, std::inserter(premiers, premiers.begin()));
+    premiers::crible235<nombre>(10000, std::inserter(premiers, premiers.begin()));
     nombre resultat = 0;
     nombre n = 9;
     bool trouve = false;

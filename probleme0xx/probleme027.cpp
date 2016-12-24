@@ -28,7 +28,7 @@ ENREGISTRER_PROBLEME(27, "Quadratic primes")
     // Find the product of the coefficients, a and b, for the quadratic expression that produces 
     // the maximum number of primes for consecutive values of n, starting with n = 0.
     std::set<nombre> premiers;
-    premiers::crible<nombre>(1000000, std::inserter(premiers, premiers.begin()));
+    premiers::crible235<nombre>(1000000, std::inserter(premiers, premiers.begin()));
     
     auto suite_premier = [&premiers](nombre a, nombre b) -> nombre
     {

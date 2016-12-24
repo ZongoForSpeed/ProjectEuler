@@ -35,7 +35,7 @@ ENREGISTRER_PROBLEME(243, "Odd Triplets")
 	const fraction objectif(15499, 94744);
 	
 	vecteur premiers;
-	premiers::crible<nombre>(100, std::back_inserter(premiers));
+	premiers::crible2<nombre>(100, std::back_inserter(premiers));
 	
 	nombre resultat = 1;
 	for (nombre p: premiers)

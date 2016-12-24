@@ -18,7 +18,7 @@ ENREGISTRER_PROBLEME(37, "Truncatable primes")
     //
     // NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
     std::set<nombre> premiers;
-    premiers::crible<nombre>(1000000, std::inserter(premiers, premiers.begin()));
+    premiers::crible2<nombre>(1000000, std::inserter(premiers, premiers.begin()));
     nombre resultat = 0;
     for (nombre p: premiers)
     {

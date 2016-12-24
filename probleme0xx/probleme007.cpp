@@ -12,7 +12,7 @@ ENREGISTRER_PROBLEME(7, "10001st prime")
     // 
     // What is the 10 001st prime number?
     vecteur premiers;
-    premiers::crible<nombre>(200000, std::back_inserter(premiers));
+    premiers::crible235<nombre>(200000, std::back_inserter(premiers));
     nombre solution = premiers.at(10000);
     return std::to_string(solution);
 }

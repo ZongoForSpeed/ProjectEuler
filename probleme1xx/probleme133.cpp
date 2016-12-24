@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(133, "Repunit nonfactors")
     // Find the sum of all the primes below one-hundred thousand that will never be a factor of R(10n).
     nombre limite = 100000;
     vecteur premiers;
-    premiers::crible<nombre>(limite, std::inserter(premiers, premiers.begin()));
+    premiers::crible2<nombre>(limite, std::inserter(premiers, premiers.begin()));
     
 	nombre resultat = 0;
 	for (nombre p: premiers)

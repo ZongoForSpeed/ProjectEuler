@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(12, "Highly divisible triangular number")
     // 
     // What is the value of the first triangle number to have over five hundred divisors?
     std::deque<nombre> premiers;
-    premiers::crible<nombre>(100000000, std::back_inserter(premiers));
+    premiers::crible235<nombre>(100000000, std::back_inserter(premiers));
 
     nombre triangle = 1;
     nombre n = 1;

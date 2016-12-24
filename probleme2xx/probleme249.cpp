@@ -24,7 +24,7 @@ ENREGISTRER_PROBLEME(249, "Prime Subset Sums")
     nombre masque = puissance::puissance<nombre, unsigned>(10, 16);
     
     vecteur premiers;
-    premiers::crible<nombre>(5000, std::back_inserter(premiers));
+    premiers::crible2<nombre>(5000, std::back_inserter(premiers));
     
     nombre somme = std::accumulate(premiers.begin(), premiers.end(), 0ULL);
     vecteur t(somme + 1, 0);
@@ -41,7 +41,7 @@ ENREGISTRER_PROBLEME(249, "Prime Subset Sums")
     }
     
     premiers.clear();
-    premiers::crible<nombre>(somme, std::back_inserter(premiers));
+    premiers::crible2<nombre>(somme, std::back_inserter(premiers));
     
     nombre resultat = 0;
     for(nombre p: premiers)

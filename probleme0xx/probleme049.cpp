@@ -24,7 +24,7 @@ ENREGISTRER_PROBLEME(49, "Prime permutations")
     nombre limite = 10000;
     
     vecteur premiers;
-    premiers::crible<nombre>(limite, std::back_inserter(premiers));
+    premiers::crible235<nombre>(limite, std::back_inserter(premiers));
     
     std::vector<vecteur> suites_premiers;
     for (size_t i = 0; i < premiers.size(); ++i)

@@ -58,7 +58,7 @@ ENREGISTRER_PROBLEME(273, "Sum of Squares")
     // with 4k+1 < 150.
     const size_t taille = 150;
     vecteur premiers;
-    premiers::crible<nombre>(taille, std::back_inserter(premiers));
+    premiers::crible2<nombre>(taille, std::back_inserter(premiers));
     
     premiers.erase(std::remove_if(premiers.begin(), 
                                   premiers.end(),

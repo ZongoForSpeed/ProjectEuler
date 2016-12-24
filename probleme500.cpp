@@ -39,7 +39,7 @@ public:
     nombre algorithme()
     {
         vecteur premiers;
-        premiers::crible<nombre>(100000000, std::back_inserter(premiers));
+        premiers::crible2<nombre>(100000000, std::back_inserter(premiers));
 
         Facteurs facteurs;
         vecteur resultat;

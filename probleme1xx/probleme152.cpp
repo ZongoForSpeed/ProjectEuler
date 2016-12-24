@@ -66,7 +66,7 @@ ENREGISTRER_PROBLEME(152, "Writing 1/2 as a sum of inverse squares")
     // How many ways are there to write the number 1/2 as a sum of inverse squares using distinct integers
     // between 2 and 80 inclusive?
     vecteur premiers;
-    premiers::crible<size_t>(40, std::back_inserter(premiers));
+    premiers::crible2<size_t>(40, std::back_inserter(premiers));
     
     nombre resultat = 0;
     for (size_t p: premiers)

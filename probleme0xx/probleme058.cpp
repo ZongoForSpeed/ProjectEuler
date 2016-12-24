@@ -33,7 +33,7 @@ ENREGISTRER_PROBLEME(58, "Spiral primes")
     std::set<nombre> premiers;
     {
         Timer t_crible("crible");
-        premiers::crible<nombre>(1000000000, std::inserter(premiers, premiers.begin()));
+        premiers::crible235<nombre>(1000000000, std::inserter(premiers, premiers.begin()));
     }
     nombre nbPremiers = 0;
     nombre nbDiagonales = 1;

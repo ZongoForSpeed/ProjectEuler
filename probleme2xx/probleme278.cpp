@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(278, "Linear Combinations of Semiprimes")
     //
     // Find ∑ f(p*q,p*r,q*r), where p, q and r are prime numbers and p < q < r < 5000.
     vecteur premiers;
-    premiers::crible<nombre>(5000, std::back_inserter(premiers));
+    premiers::crible2<nombre>(5000, std::back_inserter(premiers));
     
     nombre resultat = 0;
 

@@ -17,7 +17,7 @@ ENREGISTRER_PROBLEME(268, "Counting numbers with at least four distinct prime fa
     // four distinct primes less than 100.
     const nombre N = puissance::puissance<nombre, unsigned>(10, 16);
     vecteur premiers;
-    premiers::crible<nombre>(100, std::back_inserter(premiers));
+    premiers::crible2<nombre>(100, std::back_inserter(premiers));
     
     vecteur produits;
     for (auto it1 = premiers.begin(), en = premiers.end(); it1 != en; ++it1)

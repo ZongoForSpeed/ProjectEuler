@@ -65,7 +65,7 @@ public:
     {
         nombre limite_crible = racine_cubique(limite) + 1;
         limite_crible *= limite_crible;
-        premiers::crible<nombre>(limite_crible, std::back_inserter(_premiers));
+        premiers::crible2<nombre>(limite_crible, std::back_inserter(_premiers));
         
         std::size_t dernier = 0;
         std::size_t compteur = 0;

@@ -44,7 +44,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
     // Find the sum of all distinct pseudo-Fortunate numbers for admissible numbers
     // N less than 10**9.
     vecteur premiers;
-    premiers::crible<nombre>(50, std::back_inserter(premiers));
+    premiers::crible2<nombre>(50, std::back_inserter(premiers));
     
     nombre limite = puissance::puissance<nombre, unsigned>(10, 9);
     

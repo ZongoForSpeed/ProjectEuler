@@ -12,7 +12,6 @@ typedef std::vector<nombre> vecteur;
 
 namespace
 {
-    
     template<typename Iterator>
     nombre algorithme(Iterator it, Iterator en, nombre limite, nombre m, nombre n)
     {
@@ -72,7 +71,7 @@ ENREGISTRER_PROBLEME(272, "Modular Cubes, part 2")
     // Find the sum of the positive numbers n≤10**11 for which C(n)=242.
     const nombre limite = puissance::puissance<nombre, unsigned>(10, 11);
     vecteur premiers;
-    premiers::crible<nombre>(100000000, std::back_inserter(premiers));
+    premiers::crible2<nombre>(100000000, std::back_inserter(premiers));
     
     std::vector<std::pair<nombre, short>> premiers_cubiques;
     for (nombre p : premiers)

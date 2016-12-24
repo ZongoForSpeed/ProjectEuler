@@ -50,7 +50,7 @@ ENREGISTRER_PROBLEME(35, "Circular primes")
     // 
     // How many circular primes are there below one million?
     std::set<nombre> premiers;
-    premiers::crible<nombre>(1000000, std::inserter(premiers, premiers.begin()));
+    premiers::crible2<nombre>(1000000, std::inserter(premiers, premiers.begin()));
     
     
     nombre resultat = 0;

@@ -23,7 +23,7 @@ ENREGISTRER_PROBLEME(266, "Pseudo Square Root")
     // Find PSR(p) mod 10^16.
     const nombre modulo = puissance::puissance<nombre, unsigned>(10, 16);
     vecteur premiers;
-    premiers::crible<nombre>(190, std::back_inserter(premiers));
+    premiers::crible2<nombre>(190, std::back_inserter(premiers));
     
     nombre p1 = 1;
     for (size_t n = 0; n < premiers.size() / 2; ++n)

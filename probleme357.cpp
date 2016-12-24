@@ -34,7 +34,7 @@ ENREGISTRER_PROBLEME(357, "Prime generating integers")
     nombre              taille = 100000000L;
     std::set<nombre>    premiers;
     
-    premiers::crible<nombre>(taille, std::inserter(premiers, premiers.begin()));
+    premiers::crible2<nombre>(taille, std::inserter(premiers, premiers.begin()));
 	
 	nombre solution = 0;
     for (const nombre & p : premiers)

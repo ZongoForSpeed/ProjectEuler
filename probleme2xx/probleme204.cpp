@@ -22,7 +22,7 @@ ENREGISTRER_PROBLEME(204, "Generalised Hamming Numbers")
     nombre limite = 1000000000;
     nombre h = 100;
     vecteur premiers;
-    premiers::crible<nombre>(limite, std::back_inserter(premiers));
+    premiers::crible2<nombre>(limite, std::back_inserter(premiers));
     
     std::vector<bool> Hamming(limite + 1, true);
     Hamming[0] = false;

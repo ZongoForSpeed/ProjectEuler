@@ -54,7 +54,7 @@ ENREGISTRER_PROBLEME(308, "An amazing Prime-generating Automaton")
     // program produces 2**10001st prime ?
     nombre p = 104743;
     vecteur premiers;
-    premiers::crible<nombre>(p, std::back_inserter(premiers));
+    premiers::crible2<nombre>(p, std::back_inserter(premiers));
     
     nombre resultat = 0;
     for (nombre n = 2; n < p + 1; ++n)
