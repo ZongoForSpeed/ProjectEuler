@@ -3,6 +3,7 @@
 #include "premiers.h"
 #include "puissance.h"
 #include "utilitaires.h"
+#include "pythagoricien.h"
 
 #include <iostream>
 #include <iomanip>
@@ -33,32 +34,15 @@ ENREGISTRER_PROBLEME(309, "Integer Ladders")
     nombre limite = 1000000;
     
     // https://en.wikipedia.org/wiki/Crossed_ladders_problem
-    // https://fr.wikipedia.org/wiki/Triplet_pythagoricien#Th.C3.A9or.C3.A8me_fondamental
-    std::vector<triplet> triplets;
-    for (nombre p = 1; p*p < limite; ++p) {
-        for (nombre q = 1; q < p; ++q) {
-            nombre z = p*p + q*q;
-            if (z > limite)
-                break;
-            
-            if (p%2 != q%2 && arithmetiques::PGCD(p, q) == 1) {
-                nombre x = p*p - q*q;
-                nombre y = 2*p*q;
-                
-                for (nombre k = 1; z*k < limite; ++k) {
-                    triplets.push_back(std::make_tuple(k*x, k*y, k*z));
-                }
-            }
-        }
-    }
-    
-    // std::cout << triplets << std::endl;
     std::map<nombre, std::vector<paire>> dictionnaire;
-    for (const auto & t: triplets) {
+    Pythagoricien pythagoricien(limite);
+    for (const auto t: pythagoricien) {
         nombre x,y,z;
         std::tie(x,y,z) = t;
-        dictionnaire[x].push_back(std::make_pair(y,z));
-        dictionnaire[y].push_back(std::make_pair(x,z));
+        for (nombre k = 1; z*k < limite; ++k) {
+            dictionnaire[k*x].push_back(std::make_pair(k*y, k*z));
+            dictionnaire[k*y].push_back(std::make_pair(k*x, k*z));
+        }
     }
     
     // std::cout << dictionnaire << std::endl;

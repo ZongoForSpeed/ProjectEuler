@@ -32,6 +32,7 @@ SOURCES= \
     premiers.cpp \
     graphe.cpp \
     utilitaires.cpp \
+    pythagoricien.cpp \
     $(wildcard probleme*.cpp) \
     $(wildcard probleme0xx/*.cpp) \
     $(wildcard probleme1xx/*.cpp) \

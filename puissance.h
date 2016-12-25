@@ -18,7 +18,7 @@ namespace puissance
         }
         return resultat;
     }
-    
+
     template<typename Base, typename Exposant, typename Modulo>
     constexpr Base puissance_modulaire(Base base, Exposant exposant, Modulo modulo)
     {
