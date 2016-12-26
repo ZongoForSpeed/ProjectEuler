@@ -51,7 +51,7 @@ ENREGISTRER_PROBLEME(183, "Maximum product of parts")
     // Let P be the product of these parts, P = r × r × ... × r = rk.
     //
     // For example, if 11 is split into five equal parts, 11 = 2.2 + 2.2 + 2.2 + 2.2 + 2.2, 
-    // then P = 2.25 = 51.53632.
+    // then P = 2.2**5 = 51.53632.
     //
     // Let M(N) = Pmax for a given value of N.
     //

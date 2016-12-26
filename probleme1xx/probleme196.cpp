@@ -1,16 +1,15 @@
 #include "problemes.h"
 #include "polygonal.h"
 #include "utilitaires.h"
+#include "premiers.h"
 
 #include <iostream>
 #include <fstream>
 #include <algorithm>
 #include <limits>
 
-// #include <gmpxx.h>
 #include <boost/multiprecision/gmp.hpp>
 
-// typedef unsigned long long nombre;
 typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
@@ -37,7 +36,7 @@ namespace
         if (t_ij%2 == 0)
             return false;
             
-        return mpz_probab_prime_p(t_ij.backend().data(), 25) != 0;
+        return premiers::test(t_ij, 25);
     }
     
     bool triplet_premier(nombre i, nombre j, bool recursif = false)
@@ -67,11 +66,10 @@ namespace
         nombre min = polygonal::triangulaire<nombre>(ligne - 1);
         nombre max = polygonal::triangulaire<nombre>(ligne);
         
-        // std::set<nombre> premiers;
         nombre resultat = 0;
         for (nombre premier = min;;)
         {
-            mpz_nextprime(premier.backend().data(), premier.backend().data());
+            premiers::suivant(premier);
             if (premier > max)
                 break;
                 

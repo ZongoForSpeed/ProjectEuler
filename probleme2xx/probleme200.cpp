@@ -28,7 +28,7 @@ namespace
     bool premier(nombre n)
     {
         boost::multiprecision::mpz_int m(n);
-        return mpz_probab_prime_p(m.backend().data(), 25) != 0;
+        return premiers::test(m, 25);
     }
     
     bool test(nombre n)

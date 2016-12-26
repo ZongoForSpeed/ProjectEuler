@@ -23,11 +23,11 @@ namespace
             a2 = 7500*7500;
             b2 = 2500*12500;
             
-            // center of ellipse
+            // centre de l'ellipse
             centre = std::make_pair(3000, 1500);
         }
         
-        // paramètres del'ellipse
+        // paramètres de l'ellipse
         long double a2; // demi-grand axe au carré
         long double b2; // demi-petit axe au carré
         

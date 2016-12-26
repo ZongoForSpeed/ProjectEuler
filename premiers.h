@@ -4,6 +4,8 @@
 #include <vector>
 #include <functional>
 
+#include <boost/multiprecision/gmp.hpp>
+
 namespace premiers
 {
     void algorithme_crible2(const std::size_t & taille, std::function<void(const std::size_t &)> sortie);
@@ -35,4 +37,10 @@ namespace premiers
             [&sortie] (const std::size_t & p) { *sortie++ = Nombre(p); });
         return sortie;
     }
+    
+    bool test(const boost::multiprecision::mpz_int & n, int probabilite);
+    
+    void suivant(boost::multiprecision::mpz_int & n);
+    void suivant(boost::multiprecision::mpz_int & n, const boost::multiprecision::mpz_int & p);
+
 }

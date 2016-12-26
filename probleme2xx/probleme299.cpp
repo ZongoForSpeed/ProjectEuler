@@ -5,6 +5,7 @@
 #include "puissance.h"
 #include "utilitaires.h"
 #include "timer.h"
+#include "pythagoricien.h"
 
 #include <iostream>
 #include <iomanip>
@@ -43,24 +44,17 @@ ENREGISTRER_PROBLEME(299, "Three similar triangles")
     nombre limite = 100000000;
     
     nombre resultat = 0;
-    for (nombre n = 1; n < limite/2; n++)
-    for (nombre m = 1; m < n; m++)
+    Pythagoricien pythagoricien(limite);
+    for (auto t: pythagoricien)
     {
-        if ((m+n) % 2 == 0) 
-            continue;
-        if (arithmetiques::PGCD(m,n) != 1) 
-            continue;
-            
-        nombre b = n*n - m*m;
-        nombre d = 2*n*m;
-        nombre somme = b+d;
-        if (somme >= limite)
-            break;
+        nombre a,b,c;
+        std::tie(a,b,c) = t;
         
-        if(b == d)
-            resultat += limite/somme;
-        else 
+        nombre somme = a+b;
+        if (somme < limite)
+        {
             resultat += 2*(limite/somme);
+        }
     }
  
     for (nombre n = 1; n < limite; n+=2)

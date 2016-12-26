@@ -22,8 +22,7 @@ ENREGISTRER_PROBLEME(56, "Powerful digit sum")
     for (size_t a = 1; a < 100; ++a)
     for (size_t b = 1; b < 100; ++b)
     {
-        nombre somme = 0;
-        chiffres::boucle_chiffre(puissance::puissance<nombre>(a,b), [&somme] (const nombre & d) { somme += d; });
+        nombre somme = chiffres::somme_chiffres(puissance::puissance<nombre>(a,b));
         maximum = std::max(maximum, somme);
     }
     return std::to_string(maximum);

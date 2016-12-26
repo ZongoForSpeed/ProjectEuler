@@ -13,9 +13,6 @@
 #include <algorithm>
 #include <limits>
 
-// #include <boost/multiprecision/gmp.hpp>
-// typedef boost::multiprecision::mpz_limite     nombre;
-
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 

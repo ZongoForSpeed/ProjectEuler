@@ -335,4 +335,19 @@ namespace premiers
             if (test29.at(p)) { sortie(30*p + 29); }
         }
     }
+    
+    bool test(const boost::multiprecision::mpz_int & n, int probabilite)
+    {
+        return mpz_probab_prime_p(n.backend().data(), probabilite) != 0;
+    }
+    
+    void suivant(boost::multiprecision::mpz_int & n)
+    {
+        mpz_nextprime(n.backend().data(), n.backend().data());
+    }
+    
+    void suivant(boost::multiprecision::mpz_int & n, const boost::multiprecision::mpz_int & p)
+    {
+        mpz_nextprime(n.backend().data(), p.backend().data());
+    }
 }

@@ -47,13 +47,6 @@ namespace
     {
         return fibonacci_(n, modulo).second;
     }
-    
-    nombre premier_suivant(nombre n)
-    {
-        nombre suivant;
-        mpz_nextprime(suivant.backend().data(), n.backend().data());
-        return suivant;
-    }
 }
 
 ENREGISTRER_PROBLEME(304, "Primonacci")
@@ -76,7 +69,7 @@ ENREGISTRER_PROBLEME(304, "Primonacci")
     nombre resultat = 0;
     for (size_t n = 1; n < a.size(); ++n)
     {
-        a[n] = premier_suivant(a[n - 1]);
+        premiers::suivant(a[n], a[n - 1]);
         resultat += fibonacci(a[n], modulo);
     }
 

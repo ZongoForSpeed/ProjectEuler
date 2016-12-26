@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "utilitaires.h"
+#include "premiers.h"
 
 #include <iostream>
 #include <iomanip>
@@ -18,7 +19,7 @@ namespace
     bool premier(nombre n)
     {
         boost::multiprecision::mpz_int m(n);
-        return mpz_probab_prime_p(m.backend().data(), 25) != 0;
+        return premiers::test(m, 25);
     }
 }
 

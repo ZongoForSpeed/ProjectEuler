@@ -12,8 +12,6 @@
 #include <boost/rational.hpp>
 #include <boost/multiprecision/gmp.hpp>
 
-// typedef boost::multiprecision::mpz_int nombre;
-
 typedef unsigned long long nombre;
 typedef boost::rational<nombre> fraction;
 typedef std::vector<nombre> vecteur;

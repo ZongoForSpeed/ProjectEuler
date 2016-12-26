@@ -10,8 +10,6 @@
 
 #include <queue>
 
-// #include <boost/multiprecision/gmp.hpp>
-
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 

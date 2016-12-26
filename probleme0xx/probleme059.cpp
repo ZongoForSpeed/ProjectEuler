@@ -83,10 +83,7 @@ ENREGISTRER_PROBLEME(59, "XOR decryption")
     }
     
     nombre resultat = std::accumulate(message.begin(), message.end(), 0UL,
-    		[](const nombre r, const char c)
-			{
-    			return r + static_cast<nombre>(c);
-			}
+        [](const nombre r, const char c) { return r + static_cast<nombre>(c); }
     	);
     return std::to_string(resultat);
 }

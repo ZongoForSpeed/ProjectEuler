@@ -10,10 +10,6 @@
 
 #include <boost/dynamic_bitset.hpp>
 
-// #include <boost/multiprecision/gmp.hpp>
-// #include <boost/multiprecision/cpp_int.hpp>
-//
-// typedef boost::multiprecision::mpz_int nombre;
 typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(229, "Four Representations using Squares")
@@ -21,11 +17,8 @@ ENREGISTRER_PROBLEME(229, "Four Representations using Squares")
     // Consider the number 3600. It is very special, because
 	//
 	// 				3600 = 48² +   36²
-	//
 	//				3600 = 20² + 2×40²
-	//
 	//				3600 = 30² + 3×30²
-	//
 	//				3600 = 45² + 7×15²
 	//
 	// Similarly, we find that 88201 = 99² + 280² = 287² + 2×54² = 283² + 3×52² = 1972 + 7×84².
@@ -34,11 +27,8 @@ ENREGISTRER_PROBLEME(229, "Four Representations using Squares")
 	// in the numbers n which admit representations of all of the following four types:
 	//
 	//				n = a1² +   b1²
-	//
 	//				n = a2² + 2 b2²
-	//
 	//				n = a3² + 3 b3²
-	//
 	//				n = a7² + 7 b7²,
 	//
 	// where the ak and bk are positive integers.

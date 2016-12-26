@@ -8,10 +8,7 @@
 #include <algorithm>
 #include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-
 typedef unsigned long long nombre;
-// typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 typedef std::pair<nombre, nombre> paire;
@@ -20,9 +17,8 @@ namespace
 {
     long double aire(long double a, long double b, long double c)
     {
-        // Aire = \dfrac{1}{4}\sqrt{(a+b+c)(-a+b+c)(a-b+c)(a+b-c)}=\sqrt{p(p-a)(p-b)(p-c)}.
-        long double aire2 = (a+b+c)*(b+c-a)*(a+c-b)*(a+b-c) / 16.0L;
-        return std::sqrt(aire2);
+        // Aire = sqrt((a+b+c)(-a+b+c)(a-b+c)(a+b-c)) / 4.
+        return std::sqrt((a+b+c)*(b+c-a)*(a+c-b)*(a+b-c)) / 4.0L;
     }
 }
 

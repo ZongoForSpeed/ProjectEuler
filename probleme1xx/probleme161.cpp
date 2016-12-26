@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "utilitaires.h"
+#include "multidimension.h"
 
 #include <iostream>
-#include <fstream>
 #include <algorithm>
 #include <limits>
 
@@ -14,9 +14,8 @@
 #include <boost/optional.hpp>
 
 typedef boost::multiprecision::mpz_int nombre;
-// typedef unsigned long long nombre;
 
-typedef std::vector<std::vector<bool>> matrice;
+typedef multidimension<bool, 2> matrice;
 typedef std::pair<size_t, size_t> paire;
 
 namespace
@@ -177,7 +176,7 @@ ENREGISTRER_PROBLEME(161, "Triominoes")
     // different there are 41 ways a 2 by 9 grid can be tiled with triominoes:
     //
     // In how many ways can a 9 by 12 grid be tiled in this way by triominoes?
-    matrice m (9, std::vector<bool>(12, true));
+    matrice m (9u, 12u, true);
     std::map<matrice, nombre> cache;
     nombre resultat = combinaison(cache, m);
     return std::to_string(resultat);

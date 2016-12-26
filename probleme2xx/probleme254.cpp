@@ -13,9 +13,8 @@
 #include <limits>
 
 #include <boost/multiprecision/gmp.hpp>
-typedef boost::multiprecision::mpz_int nombre;
 
-// typedef unsigned long long nombre;
+typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<size_t> vecteur;
 
 namespace

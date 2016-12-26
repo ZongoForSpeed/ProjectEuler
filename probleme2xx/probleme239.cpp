@@ -11,8 +11,6 @@
 #include <boost/multiprecision/gmp.hpp>
 
 typedef boost::multiprecision::mpz_int nombre;
-// typedef unsigned long long nombre;
-
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(239, "Infinite string tour")

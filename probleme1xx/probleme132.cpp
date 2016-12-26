@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(132, "Large repunit factors")
 	nombre resultat = 0;
 	for (nombre p: premiers)
 	{
-	    if (puissance::puissance_modulaire(10ULL, 1000000000ULL, 9*p) == 1)
+	    if (puissance::puissance_modulaire<nombre>(10, 1000000000u, 9*p) == 1)
 	    {
 	        ++compteur;
 	        resultat += p;

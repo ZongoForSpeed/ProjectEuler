@@ -1,10 +1,10 @@
 #include "problemes.h"
-#include "arithmetiques.h"
 #include "utilitaires.h"
+#include "premiers.h"
 
-#include <gmpxx.h>
+#include <boost/multiprecision/gmp.hpp>
 
-typedef mpz_class nombre;
+typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 {
@@ -20,36 +20,29 @@ ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 		size_t reste = n%210;
 		if (reste == 10 || reste == 80 || reste == 130 || reste == 200)
 		{
-			nombre n2 = n;
-			n2 = n2 * n;
-			nombre k = (n2+1);
-			if (!mpz_probab_prime_p(k.get_mpz_t(),5))
+			nombre n2 = n*n;
+			nombre p = (n2+1);
+			if (!premiers::test(p, 5))
 			    continue;
 			    
-			nombre next;
-			nombre curr = k;
-			mpz_nextprime(next.get_mpz_t(), curr.get_mpz_t());
-			if (next != ( n2 + 3 ))
+			premiers::suivant(p);
+			if (p != ( n2 + 3 ))
 			    continue;
 			    
-			curr = next;
-			mpz_nextprime(next.get_mpz_t(), curr.get_mpz_t());
-			if (next != ( n2 + 7 ))
+			premiers::suivant(p);
+			if (p != ( n2 + 7 ))
 			    continue;
 			    
-			curr = next;
-			mpz_nextprime(next.get_mpz_t(), curr.get_mpz_t());
-			if (next != ( n2 + 9 ))
+			premiers::suivant(p);
+			if (p != ( n2 + 9 ))
 			    continue;
 			    
-			curr = next;
-			mpz_nextprime(next.get_mpz_t(), curr.get_mpz_t());
-			if (next != ( n2 + 13 ))
+			premiers::suivant(p);
+			if (p != ( n2 + 13 ))
 			    continue;
 			    
-			curr = next;
-			mpz_nextprime(next.get_mpz_t() , curr.get_mpz_t());
-			if( next == ( n2 + 27 )) 
+			premiers::suivant(p);
+			if( p == ( n2 + 27 )) 
 			{
 				std::cout << n << std::endl;
 				resultat += n;

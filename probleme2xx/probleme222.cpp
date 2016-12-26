@@ -9,10 +9,6 @@
 #include <limits>
 #include <random>
 
-// #include <boost/multiprecision/gmp.hpp>
-// #include <boost/multiprecision/cpp_int.hpp>
-//
-// typedef boost::multiprecision::mpz_int nombre;
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 

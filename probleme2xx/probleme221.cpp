@@ -14,7 +14,6 @@
 #include <boost/multiprecision/cpp_int.hpp>
 
 typedef boost::multiprecision::mpz_int nombre;
-// typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(221, "Alexandrian Integers")

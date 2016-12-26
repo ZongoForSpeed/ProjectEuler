@@ -2,6 +2,7 @@
 #include "arithmetiques.h"
 #include "utilitaires.h"
 #include "polygonal.h"
+#include "pythagoricien.h"
 
 #include <iostream>
 #include <algorithm>
@@ -31,37 +32,23 @@ ENREGISTRER_PROBLEME(75, "Singular integer right triangles")
     //
     // Given that L is the length of the wire, for how many values of L ≤ 1,500,000 can exactly one 
     // integer sided right angle triangle be formed?
-    std::map<nombre, std::set<std::tuple<nombre, nombre, nombre>>> solutions;
-    
-    // const nombre limite = 150;
     const nombre limite = 1500000;
-    const nombre max_p = racine_carre(limite / 2) + 1;
-    for (nombre p = 1; p < max_p; ++p)
+
+    vecteur solutions(limite + 1, 0);
+
+    Pythagoricien pythagoricien(limite / 2);
+    for (auto t: pythagoricien)
     {
-        for (nombre q = 1; q < p; ++q)
+        nombre a,b,c;
+        std::tie(a,b,c) = t;
+        
+        nombre l = a+b+c;
+        for (nombre k = 1; k*l <= limite; ++k)
         {
-            if ((p+q)%2 == 1 && arithmetiques::PGCD(p, q) == 1)
-            {
-                nombre a = p*p - q*q;
-                nombre b = 2*p*q;
-                if (a > b)
-                    std::swap(a, b);
-                nombre c = p*p + q*q;
-                nombre l = a+b+c;
-                for (nombre k = 1; k*l <= limite; ++k)
-                {
-                    solutions[k*l].insert(std::make_tuple(k*a, k*b, k*c));
-                }
-            }
+            solutions[k*l]++;
         }
     }
     
-    nombre resultat = 0;
-    for (const auto & s: solutions)
-    {
-        if (s.second.size() == 1)
-            ++resultat;
-    }
-
+    auto resultat = std::count(solutions.begin(), solutions.end(), 1);
     return std::to_string(resultat);
 }

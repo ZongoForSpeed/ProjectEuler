@@ -8,9 +8,6 @@
 #include <algorithm>
 #include <limits>
 
-#include <boost/assign/list_of.hpp>
-#include <boost/range/adaptor/reversed.hpp>
-
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;

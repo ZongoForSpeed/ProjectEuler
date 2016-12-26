@@ -12,9 +12,6 @@
 #include <algorithm>
 #include <limits>
 
-// #include <boost/multiprecision/gmp.hpp>
-// typedef boost::multiprecision::mpz_int nombre;
-
 typedef long long nombre;
 
 namespace

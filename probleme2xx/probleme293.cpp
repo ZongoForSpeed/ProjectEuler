@@ -19,10 +19,8 @@ namespace
     nombre premier_suivant(nombre n)
     {
         boost::multiprecision::mpz_int z = n;
-        boost::multiprecision::mpz_int premier;
-        mpz_nextprime(premier.backend().data(), z.backend().data());
-        
-        return static_cast<nombre>(premier);  
+        premiers::suivant(z);
+        return static_cast<nombre>(z);  
     }
 }
 
