@@ -8,6 +8,8 @@ WARNINGS= \
     -Wno-padded \
     -Wno-global-constructors \
     -Wno-exit-time-destructors \
+    -Wno-unused-member-function \
+    -Wno-missing-prototypes \
     -Wno-double-promotion
 
 CPPFLAGS= \
@@ -29,6 +31,7 @@ LDFLAGS= \
 SOURCES= \
     timer.cpp \
     arithmetiques.cpp \
+    nombre.cpp \
     premiers.cpp \
     graphe.cpp \
     utilitaires.cpp \
