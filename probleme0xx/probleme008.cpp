@@ -5,9 +5,7 @@
 #include <iostream>
 #include <numeric>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
+#include "nombre.h"
 
 ENREGISTRER_PROBLEME(8, "Largest product in a series")
 {

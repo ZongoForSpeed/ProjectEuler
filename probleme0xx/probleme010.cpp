@@ -5,9 +5,8 @@
 #include <iostream>
 #include <numeric>
 
-#include <boost/multiprecision/gmp.hpp>
+#include "nombre.h"
 
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(10, "Summation of primes")

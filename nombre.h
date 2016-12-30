@@ -5,7 +5,7 @@
 
 #include <boost/optional.hpp>
 
-class Nombre
+class nombre
 {
     mpz_t data;
     
@@ -41,23 +41,23 @@ class Nombre
     }
     
 public:
-    Nombre();
-    Nombre(const mpz_t & op);
-    Nombre(const Nombre & op);
+    nombre();
+    nombre(const mpz_t & op);
+    nombre(const nombre & op);
     
-    explicit Nombre(unsigned int op);
-    explicit Nombre(signed int op);
-    explicit Nombre(unsigned long op);
-    explicit Nombre(signed long op);
-    explicit Nombre(double op);
-    explicit Nombre(const std::string & op, int base = 10);
-    explicit Nombre(unsigned long long op);
-    explicit Nombre(signed long long op);
-    explicit Nombre(long double op);
-    virtual ~Nombre();
+    nombre(unsigned int op);
+    nombre(signed int op);
+    nombre(unsigned long op);
+    nombre(signed long op);
+    nombre(double op);
+    nombre(const std::string & op, int base = 10);
+    nombre(unsigned long long op);
+    nombre(signed long long op);
+    nombre(long double op);
+    virtual ~nombre();
     
     void set(const mpz_t & op);
-    void set(const Nombre & op);
+    void set(const nombre & op);
     void set(unsigned long op);
     void set(signed long op);
     void set(unsigned int op);
@@ -121,7 +121,7 @@ public:
         return mpz_sgn (data);
     }
     
-    int compare(const Nombre & op) const
+    int compare(const nombre & op) const
     {
         return mpz_cmp(data, op.data);
     }
@@ -144,18 +144,18 @@ public:
     template<typename T>
     int compare(const T & op) const
     {
-        Nombre n(op);
+        nombre n(op);
         return compare(n);
     }
     
     template<typename T>
-    static int compare(const Nombre & op1, const T & op2)
+    static int compare(const nombre & op1, const T & op2)
     {
         return op1.compare(op2);
     }
     
     template<typename T>
-    static int compare(const T & op1, const Nombre & op2)
+    static int compare(const T & op1, const nombre & op2)
     {
         return -op2.compare(op1);
     }
@@ -196,7 +196,7 @@ public:
         return compare(b) > -1;
     }
     
-    void swap(Nombre & op)
+    void swap(nombre & op)
     {
         mpz_swap(data, op.data);
     }
@@ -212,113 +212,113 @@ public:
         return resultat;
     }
     
-    Nombre & addition(const Nombre & op)
+    nombre & addition(const nombre & op)
     {
         mpz_add(data, data, op.data);
         return *this;
     }
     
-    Nombre & addition(unsigned long int op)
+    nombre & addition(unsigned long int op)
     {
         mpz_add_ui(data, data, op);
         return *this;
     }
     
     template<typename T>
-    Nombre & addition(const T & op)
+    nombre & addition(const T & op)
     {
-        Nombre tmp(op);
+        nombre tmp(op);
         addition(tmp);
         return *this;
     }
     
-    Nombre & soustraction(const Nombre & op)
+    nombre & soustraction(const nombre & op)
     {
         mpz_sub(data, data, op.data);
         return *this;
     }
     
-    Nombre & soustraction(unsigned long int op)
+    nombre & soustraction(unsigned long int op)
     {
         mpz_sub_ui(data, data, op);
         return *this;
     }
     
     template<typename T>
-    Nombre & soustraction(const T & op)
+    nombre & soustraction(const T & op)
     {
-        Nombre tmp(op);
+        nombre tmp(op);
         soustraction(tmp);
         return *this;
     }
     
-    Nombre & multiplication(const Nombre & op)
+    nombre & multiplication(const nombre & op)
     {
         mpz_mul(data, data, op.data);
         return *this;
     }
     
-    Nombre & multiplication(unsigned long int op)
+    nombre & multiplication(unsigned long int op)
     {
         mpz_mul_ui(data, data, op);
         return *this;
     }
     
-    Nombre & multiplication(signed long int op)
+    nombre & multiplication(signed long int op)
     {
         mpz_mul_si(data, data, op);
         return *this;
     }
     
     template<typename T>
-    Nombre & multiplication(const T & op)
+    nombre & multiplication(const T & op)
     {
-        Nombre tmp(op);
+        nombre tmp(op);
         multiplication(tmp);
         return *this;
     }
     
-    Nombre & division(const Nombre & op)
+    nombre & division(const nombre & op)
     {
         mpz_fdiv_q (data, data, op.data);
         return *this;
     }
     
-    Nombre & division(unsigned long int op)
+    nombre & division(unsigned long int op)
     {
         mpz_fdiv_q_ui (data, data, op);
         return *this;
     }
     
     template<typename T>
-    Nombre & division(const T & op)
+    nombre & division(const T & op)
     {
-        Nombre tmp(op);
+        nombre tmp(op);
         division(tmp);
         return *this;
     }
     
-    Nombre & modulo(const Nombre & op)
+    nombre & modulo(const nombre & op)
     {
         mpz_mod (data, data, op.data);
         return *this;
     }
     
-    Nombre & modulo(unsigned long int op)
+    nombre & modulo(unsigned long int op)
     {
         mpz_mod_ui (data, data, op);
         return *this;
     }
     
     template<typename T>
-    Nombre & modulo(const T & op)
+    nombre & modulo(const T & op)
     {
-        Nombre tmp(op);
+        nombre tmp(op);
         modulo(tmp);
         return *this;
     }
     
-    bool divisible(const Nombre & op) const
+    bool divisible(const nombre & op) const
     {
         return mpz_divisible_p(data, op.data) != 0;
     }
@@ -329,208 +329,208 @@ public:
     }
     
     template<typename T>
-    bool divisible(const Nombre & op) const
+    bool divisible(const nombre & op) const
     {
-        Nombre tmp(op);
+        nombre tmp(op);
         return divisible(tmp);
     }
     
-    static Nombre addition(const Nombre & op1, const Nombre & op2)
+    static nombre addition(const nombre & op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_add(n.data, op1.data, op2.data);
         return n;
     }
     
-    static Nombre addition(const Nombre & op1, unsigned long int op2)
+    static nombre addition(const nombre & op1, unsigned long int op2)
     {
-        Nombre n;
+        nombre n;
         mpz_add_ui(n.data, op1.data, op2);
         return n;
     }
     
-    static Nombre addition(unsigned long int op1, const Nombre & op2)
+    static nombre addition(unsigned long int op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_add_ui(n.data, op2.data, op1);
         return n;
     }
     
     template<typename T>
-    static Nombre addition(const Nombre & op1, const T & op2)
+    static nombre addition(const nombre & op1, const T & op2)
     {
-        Nombre tmp(op2);
+        nombre tmp(op2);
         return addition(op1, tmp);
     }
     
     template<typename T>
-    static Nombre addition(const T & op1, const Nombre & op2)
+    static nombre addition(const T & op1, const nombre & op2)
     {
-        Nombre tmp(op1);
+        nombre tmp(op1);
         return addition(tmp, op2);
     }
     
-    static Nombre soustraction(const Nombre & op1, const Nombre & op2)
+    static nombre soustraction(const nombre & op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_sub(n.data, op1.data, op2.data);
         return n;
     }
     
-    static Nombre soustraction(const Nombre & op1, unsigned long int op2)
+    static nombre soustraction(const nombre & op1, unsigned long int op2)
     {
-        Nombre n;
+        nombre n;
         mpz_sub_ui(n.data, op1.data, op2);
         return n;
     }
     
-    static Nombre soustraction(unsigned long int op1, const Nombre & op2)
+    static nombre soustraction(unsigned long int op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_ui_sub(n.data, op1, op2.data);
         return n;
     }
     
     template<typename T>
-    static Nombre soustraction(const Nombre & op1, const T & op2)
+    static nombre soustraction(const nombre & op1, const T & op2)
     {
-        Nombre tmp(op2);
+        nombre tmp(op2);
         return soustraction(op1, tmp);
     }
     
     template<typename T>
-    static Nombre soustraction(const T & op1, const Nombre & op2)
+    static nombre soustraction(const T & op1, const nombre & op2)
     {
-        Nombre tmp(op1);
+        nombre tmp(op1);
         return soustraction(tmp, op2);
     }
     
-    static Nombre multiplication(const Nombre & op1, const Nombre & op2)
+    static nombre multiplication(const nombre & op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_mul(n.data, op1.data, op2.data);
         return n;
     }
     
-    static Nombre multiplication(const Nombre & op1, unsigned long int op2)
+    static nombre multiplication(const nombre & op1, unsigned long int op2)
     {
-        Nombre n;
+        nombre n;
         mpz_mul_ui(n.data, op1.data, op2);
         return n;
     }
     
-    static Nombre multiplication(unsigned long int op1, const Nombre & op2)
+    static nombre multiplication(unsigned long int op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_mul_ui(n.data, op2.data, op1);
         return n;
     }
     
-    static Nombre multiplication(const Nombre & op1, signed long int op2)
+    static nombre multiplication(const nombre & op1, signed long int op2)
     {
-        Nombre n;
+        nombre n;
         mpz_mul_si(n.data, op1.data, op2);
         return n;
     }
     
-    static Nombre multiplication(signed long int op1, const Nombre & op2)
+    static nombre multiplication(signed long int op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_mul_si(n.data, op2.data, op1);
         return n;
     }
     
     template<typename T>
-    static Nombre multiplication(const Nombre & op1, const T & op2)
+    static nombre multiplication(const nombre & op1, const T & op2)
     {
-        Nombre tmp(op2);
+        nombre tmp(op2);
         return multiplication(op1, tmp);
     }
     
     template<typename T>
-    static Nombre multiplication(const T & op1, const Nombre & op2)
+    static nombre multiplication(const T & op1, const nombre & op2)
     {
-        Nombre tmp(op1);
+        nombre tmp(op1);
         return multiplication(tmp, op2);
     }
     
-    static Nombre division(const Nombre & op1, const Nombre & op2)
+    static nombre division(const nombre & op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_fdiv_q(n.data, op1.data, op2.data);
         return n;
     }
     
-    static Nombre division(const Nombre & op1, unsigned long int op2)
+    static nombre division(const nombre & op1, unsigned long int op2)
     {
-        Nombre n;
+        nombre n;
         mpz_fdiv_q_ui(n.data, op1.data, op2);
         return n;
     }
     
     template<typename T>
-    static Nombre division(const Nombre & op1, const T & op2)
+    static nombre division(const nombre & op1, const T & op2)
     {
-        Nombre tmp(op2);
+        nombre tmp(op2);
         return division(op1, tmp);
     }
     
     template<typename T>
-    static Nombre division(const T & op1, const Nombre & op2)
+    static nombre division(const T & op1, const nombre & op2)
     {
-        Nombre tmp(op1);
+        nombre tmp(op1);
         return division(tmp, op2);
     }
     
-    static Nombre modulo(const Nombre & op1, const Nombre & op2)
+    static nombre modulo(const nombre & op1, const nombre & op2)
     {
-        Nombre n;
+        nombre n;
         mpz_mod(n.data, op1.data, op2.data);
         return n;
     }
     
-    static Nombre modulo(const Nombre & op1, unsigned long int op2)
+    static nombre modulo(const nombre & op1, unsigned long int op2)
     {
-        Nombre n;
+        nombre n;
         mpz_mod_ui(n.data, op1.data, op2);
         return n;
     }
     
     template<typename T>
-    static Nombre modulo(const Nombre & op1, const T & op2)
+    static nombre modulo(const nombre & op1, const T & op2)
     {
-        Nombre tmp(op2);
+        nombre tmp(op2);
         return modulo(op1, tmp);
     }
     
     template<typename T>
-    static Nombre modulo(const T & op1, const Nombre & op2)
+    static nombre modulo(const T & op1, const nombre & op2)
     {
-        Nombre tmp(op1);
+        nombre tmp(op1);
         return modulo(tmp, op2);
     }
     
-    static bool divise(const Nombre & op1, const Nombre & op2)
+    static bool divise(const nombre & op1, const nombre & op2)
     {
         return op1.divisible(op2);
     }
     
-    static bool divise(const Nombre & op1, unsigned long int op2)
+    static bool divise(const nombre & op1, unsigned long int op2)
     {
         return op1.divisible(op2);
     }
     
     template<typename T>
-    static bool divise(const T & op1, const Nombre & op2)
+    static bool divise(const T & op1, const nombre & op2)
     {
-        Nombre tmp(op1);
+        nombre tmp(op1);
         return tmp.divisible(op2);
     }
     
     template<typename T>
-    static bool divise(const Nombre & op1, const T & op2)
+    static bool divise(const nombre & op1, const T & op2)
     {
-        Nombre tmp(op2);
+        nombre tmp(op2);
         return op1.divisible(tmp);
     }
     
@@ -539,9 +539,9 @@ public:
         mpz_neg(data, data);
     }
     
-    Nombre operator-() const
+    nombre operator-() const
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_neg(resultat.data, data);
         return resultat;
     }
@@ -551,188 +551,188 @@ public:
         mpz_abs(data, data);
     }
     
-    static Nombre abs(const Nombre & op)
+    static nombre abs(const nombre & op)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_abs(resultat.data, op.data);
         return resultat;
     }
     
-    Nombre& operator=(const Nombre & op)
+    nombre& operator=(const nombre & op)
     {
         set(op);
         return *this;
     }
 
-    template<typename T> Nombre& operator=(const T & op)
+    template<typename T> nombre& operator=(const T & op)
     {
         set(op);
         return *this;
     }
     
-    Nombre& operator+=(const Nombre & op)
+    nombre& operator+=(const nombre & op)
     {
         addition(op);
         return *this;
     }
 
-    template<typename T> Nombre& operator+=(const T & op)
+    template<typename T> nombre& operator+=(const T & op)
     {
         addition(op);
         return *this;
     }
     
-    Nombre& operator-=(const Nombre & op)
+    nombre& operator-=(const nombre & op)
     {
         soustraction(op);
         return *this;
     }
 
-    template<typename T> Nombre& operator-=(const T & op)
+    template<typename T> nombre& operator-=(const T & op)
     {
         soustraction(op);
         return *this;
     }
     
-    Nombre& operator*=(const Nombre & op)
+    nombre& operator*=(const nombre & op)
     {
         multiplication(op);
         return *this;
     }
 
-    template<typename T> Nombre& operator*=(const T & op)
+    template<typename T> nombre& operator*=(const T & op)
     {
         multiplication(op);
         return *this;
     }
     
-    Nombre& operator/=(const Nombre & op)
+    nombre& operator/=(const nombre & op)
     {
         division(op);
         return *this;
     }
 
-    template<typename T> Nombre& operator/=(const T & op)
+    template<typename T> nombre& operator/=(const T & op)
     {
         division(op);
         return *this;
     }
     
-    Nombre& operator%=(const Nombre & op)
+    nombre& operator%=(const nombre & op)
     {
         modulo(op);
         return *this;
     }
 
-    template<typename T> Nombre& operator%=(const T & op)
+    template<typename T> nombre& operator%=(const T & op)
     {
         modulo(op);
         return *this;
     }
     
-    Nombre operator<<(const unsigned long & b) const
+    nombre operator<<(const unsigned long & b) const
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_mul_2exp(resultat.data, data, b);
         return resultat;
     }
     
-    Nombre operator>>(const unsigned long & b) const
+    nombre operator>>(const unsigned long & b) const
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_fdiv_q_2exp(resultat.data, data, b);
         return resultat;
     }
     
-    static Nombre puissance(const Nombre & base, unsigned long exposant)
+    static nombre puissance(const nombre & base, unsigned long exposant)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_pow_ui(resultat.data, base.data, exposant);
         return resultat;
     }
     
-    static Nombre puissance(unsigned long base, unsigned long exposant)
+    static nombre puissance(unsigned long base, unsigned long exposant)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_ui_pow_ui(resultat.data, base, exposant);
         return resultat;
     }
     
-    Nombre & puissance(unsigned long exposant)
+    nombre & puissance(unsigned long exposant)
     {
         mpz_pow_ui(data, data, exposant);
         return *this;
     }
     
-    static Nombre puissance_modulaire(const Nombre & base, unsigned long exposant, const Nombre & modulo)
+    static nombre puissance_modulaire(const nombre & base, unsigned long exposant, const nombre & modulo)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_powm_ui(resultat.data, base.data, exposant, modulo.data);
         return resultat;
     }
     
-    Nombre & puissance_modulaire(unsigned long exposant, const Nombre & modulo)
+    nombre & puissance_modulaire(unsigned long exposant, const nombre & modulo)
     {
         mpz_powm_ui(data, data, exposant, modulo.data);
         return *this;
     }
     
-    Nombre & puissance_modulaire(const Nombre & exposant, const Nombre & modulo)
+    nombre & puissance_modulaire(const nombre & exposant, const nombre & modulo)
     {
         mpz_powm(data, data, exposant.data, modulo.data);
         return *this;
     }
     
     template<typename T>
-    static Nombre puissance_modulaire(const Nombre & base, unsigned long exposant, const T & modulo)
+    static nombre puissance_modulaire(const nombre & base, unsigned long exposant, const T & modulo)
     {
-        Nombre tmp_modulo(modulo);
+        nombre tmp_modulo(modulo);
         return puissance_modulaire(base, exposant, tmp_modulo);
     }
     
     template<typename T>
-    Nombre & puissance_modulaire(unsigned long exposant, const T & modulo)
+    nombre & puissance_modulaire(unsigned long exposant, const T & modulo)
     {
-        Nombre tmp_modulo(modulo);
+        nombre tmp_modulo(modulo);
         return puissance_modulaire(exposant, tmp_modulo);
     }
     
     template<typename T>
-    Nombre & puissance_modulaire(const Nombre & exposant, const T & modulo)
+    nombre & puissance_modulaire(const nombre & exposant, const T & modulo)
     {
-        Nombre tmp_modulo(modulo);
+        nombre tmp_modulo(modulo);
         return puissance_modulaire(exposant, tmp_modulo);
     }
     
-    static Nombre racine(const Nombre & op, unsigned long int n)
+    static nombre racine(const nombre & op, unsigned long int n)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_root(resultat.data, op.data, n);
         return resultat;
     }
     
-    static Nombre racine_carre(const Nombre & op)
+    static nombre racine_carre(const nombre & op)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_sqrt(resultat.data, op.data);
         return resultat;
     }
     
-    static bool carre_parfait(const Nombre & op)
+    static bool carre_parfait(const nombre & op)
     {
         return mpz_perfect_square_p(op.data) != 0;
     }
     
-    Nombre racine(unsigned long int n) const
+    nombre racine(unsigned long int n) const
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_root(resultat.data, data, n);
         return resultat;
     }
     
-    Nombre racine_carre() const
+    nombre racine_carre() const
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_sqrt(resultat.data, data);
         return resultat;
     }
@@ -747,334 +747,348 @@ public:
         return mpz_probab_prime_p(data, probabilite) != 0;
     }
     
-    Nombre premier_suivant() const
+    nombre premier_suivant() const
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_nextprime(resultat.data, data);
         return resultat;
     }
     
-    static Nombre PGCD(const Nombre & op1, const Nombre & op2)
+    static nombre PGCD(const nombre & op1, const nombre & op2)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_gcd(resultat.data, op1.data, op2.data);
         return resultat;
     }
     
-    static Nombre PGCD(const Nombre & op1, unsigned long int op2)
+    static nombre PGCD(const nombre & op1, unsigned long int op2)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_gcd_ui(resultat.data, op1.data, op2);
         return resultat;
     }
     
     template<typename T>
-    static Nombre PGCD(const Nombre & op1, const T & op2)
+    static nombre PGCD(const nombre & op1, const T & op2)
     {
-        Nombre n2(op2);
+        nombre n2(op2);
         return PGCD(op1, n2);
     }
     
     template<typename T>
-    static Nombre PGCD(const T & op1, const Nombre & op2)
+    static nombre PGCD(const T & op1, const nombre & op2)
     {
         return PGCD(op2, op1);
     }
     
     template<typename T>
-    Nombre PGCD(const T & op) const
+    nombre PGCD(const T & op) const
     {
         return PGCD(*this, op);
     }
     
-    static Nombre PPCM(const Nombre & op1, const Nombre & op2)
+    static nombre PPCM(const nombre & op1, const nombre & op2)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_lcm(resultat.data, op1.data, op2.data);
         return resultat;
     }
     
-    static Nombre PPCM(const Nombre & op1, unsigned long int op2)
+    static nombre PPCM(const nombre & op1, unsigned long int op2)
     {
-        Nombre resultat;
+        nombre resultat;
         mpz_lcm_ui(resultat.data, op1.data, op2);
         return resultat;
     }
     
     template<typename T>
-    static Nombre PPCM(const Nombre & op1, const T & op2)
+    static nombre PPCM(const nombre & op1, const T & op2)
     {
-        Nombre n2(op2);
+        nombre n2(op2);
         return PPCM(op1, n2);
     }
     
     template<typename T>
-    static Nombre PPCM(const T & op1, const Nombre & op2)
+    static nombre PPCM(const T & op1, const nombre & op2)
     {
         return PPCM(op2, op1);
     }
     
     template<typename T>
-    Nombre PPCM(const T & op) const
+    nombre PPCM(const T & op) const
     {
         return PPCM(*this, op);
     }
     
-    boost::optional<Nombre> inverse_modulaire(const Nombre & modulo) const
+    boost::optional<nombre> inverse_modulaire(const nombre & modulo) const
     {
-        Nombre resultat;
+        nombre resultat;
         if (mpz_invert(resultat.data, data, modulo.data) != 0)
             return resultat;
         
         return boost::none;
     }
     
-    static boost::optional<Nombre> inverse_modulaire(const Nombre & op, const Nombre & modulo)
+    static boost::optional<nombre> inverse_modulaire(const nombre & op, const nombre & modulo)
     {
         return op.inverse_modulaire(modulo);
     }
     
-    Nombre & operator++()
+    nombre & operator++()
     {
         return addition(1);
     }
     
-    Nombre & operator--()
+    nombre & operator--()
     {
         return soustraction(1);
     }
     
-    Nombre operator++(int)
+    nombre operator++(int)
     {
-        Nombre copie(data);
+        nombre copie(data);
         addition(1);
         return copie;
     }
     
-    Nombre operator--(int)
+    nombre operator--(int)
     {
-        Nombre copie(data);
+        nombre copie(data);
         soustraction(1);
         return copie;
     }
     
-    Nombre operator~() const
+    nombre operator~() const
     {
-        Nombre r;
+        nombre r;
         mpz_com(r.data, data);
         return r;
     }
     
-    Nombre & operator &=(const Nombre & n)
+    nombre & operator &=(const nombre & n)
     {
         mpz_and(data, data, n.data);
         return *this;
     }
     
     template<typename T>
-    Nombre & operator &=(const T & op)
+    nombre & operator &=(const T & op)
     {
-        Nombre n(op);
+        nombre n(op);
         mpz_and(data, data, n.data);
         return *this;
     }
     
-    Nombre & operator |=(const Nombre & n)
+    nombre & operator |=(const nombre & n)
     {
         mpz_ior(data, data, n.data);
         return *this;
     }
     
     template<typename T>
-    Nombre & operator |=(const T & op)
+    nombre & operator |=(const T & op)
     {
-        Nombre n(op);
+        nombre n(op);
         mpz_ior(data, data, n.data);
         return *this;
     }
     
-    Nombre & operator ^=(const Nombre & n)
+    nombre & operator ^=(const nombre & n)
     {
         mpz_xor(data, data, n.data);
         return *this;
     }
     
     template<typename T>
-    Nombre & operator ^=(const T & op)
+    nombre & operator ^=(const T & op)
     {
-        Nombre n(op);
+        nombre n(op);
         mpz_xor(data, data, n.data);
         return *this;
+    }
+    
+    static nombre coefficient_binomial(const nombre & n, unsigned long int k)
+    {
+        nombre resultat;
+        mpz_bin_ui (resultat.data, n.data, k);
+        return resultat;
+    }
+    
+    static nombre coefficient_binomial(unsigned long int n, unsigned long int k)
+    {
+        nombre resultat;
+        mpz_bin_uiui (resultat.data, n, k);
+        return resultat;
     }
 };
 
-inline Nombre operator+(const Nombre & op1, const Nombre & op2)
-{
-    return Nombre::addition(op1, op2);
-}
+// inline nombre operator+(const nombre & op1, const nombre & op2)
+// {
+//     return nombre::addition(op1, op2);
+// }
+
+// template<typename T>
+// inline nombre operator+(const nombre & op1, const T & op2)
+// {
+//     return nombre::addition(op1, op2);
+// }
 
 template<typename T>
-inline Nombre operator+(const Nombre & op1, const T & op2)
+inline nombre operator+(const T & op1, const nombre & op2)
 {
-    return Nombre::addition(op1, op2);
+    return nombre::addition(op1, op2);
 }
+
+// inline nombre operator-(const nombre & op1, const nombre & op2)
+// {
+//     return nombre::soustraction(op1, op2);
+// }
+
+// template<typename T>
+// inline nombre operator-(const nombre & op1, const T & op2)
+// {
+//     return nombre::soustraction(op1, op2);
+// }
 
 template<typename T>
-inline Nombre operator+(const T & op1, const Nombre & op2)
+inline nombre operator-(const T & op1, const nombre & op2)
 {
-    return Nombre::addition(op1, op2);
+    return nombre::soustraction(op1, op2);
 }
 
-inline Nombre operator-(const Nombre & op1, const Nombre & op2)
-{
-    return Nombre::soustraction(op1, op2);
-}
+// inline nombre operator*(const nombre & op1, const nombre & op2)
+// {
+//     return nombre::multiplication(op1, op2);
+// }
 
-template<typename T>
-inline Nombre operator-(const Nombre & op1, const T & op2)
-{
-    return Nombre::soustraction(op1, op2);
-}
-
-template<typename T>
-inline Nombre operator-(const T & op1, const Nombre & op2)
-{
-    return Nombre::soustraction(op1, op2);
-}
-
-inline Nombre operator*(const Nombre & op1, const Nombre & op2)
-{
-    return Nombre::multiplication(op1, op2);
-}
+// template<typename T>
+// inline nombre operator*(const nombre & op1, const T & op2)
+// {
+//     return nombre::multiplication(op1, op2);
+// }
 
 template<typename T>
-inline Nombre operator*(const Nombre & op1, const T & op2)
+inline nombre operator*(const T & op1, const nombre & op2)
 {
-    return Nombre::multiplication(op1, op2);
+    return nombre::multiplication(op1, op2);
 }
+
+// inline nombre operator/(const nombre & op1, const nombre & op2)
+// {
+//     return nombre::division(op1, op2);
+// }
+
+// template<typename T>
+// inline nombre operator/(const nombre & op1, const T & op2)
+// {
+//     return nombre::division(op1, op2);
+// }
 
 template<typename T>
-inline Nombre operator*(const T & op1, const Nombre & op2)
+inline nombre operator/(const T & op1, const nombre & op2)
 {
-    return Nombre::multiplication(op1, op2);
+    return nombre::division(op1, op2);
 }
 
-inline Nombre operator/(const Nombre & op1, const Nombre & op2)
-{
-    return Nombre::division(op1, op2);
-}
+// inline nombre operator%(const nombre & op1, const nombre & op2)
+// {
+//     return nombre::modulo(op1, op2);
+// }
 
-template<typename T>
-inline Nombre operator/(const Nombre & op1, const T & op2)
-{
-    return Nombre::division(op1, op2);
-}
-
-template<typename T>
-inline Nombre operator/(const T & op1, const Nombre & op2)
-{
-    return Nombre::division(op1, op2);
-}
-
-inline Nombre operator%(const Nombre & op1, const Nombre & op2)
-{
-    return Nombre::modulo(op1, op2);
-}
+// template<typename T>
+// inline nombre operator%(const nombre & op1, const T & op2)
+// {
+//     return nombre::modulo(op1, op2);
+// }
 
 template<typename T>
-inline Nombre operator%(const Nombre & op1, const T & op2)
+inline nombre operator%(const T & op1, const nombre & op2)
 {
-    return Nombre::modulo(op1, op2);
+    return nombre::modulo(op1, op2);
 }
+
+// inline nombre operator&(const nombre & a, const nombre & b)
+// {
+//     nombre resultat(a);
+//     resultat &= b;
+//     return resultat;
+// }
+
+// template<typename T>
+// inline nombre operator&(const nombre & a, const T & b)
+// {
+//     nombre resultat(b);
+//     resultat &= a;
+//     return resultat;
+// }
 
 template<typename T>
-inline Nombre operator%(const T & op1, const Nombre & op2)
+inline nombre operator&(const T & a, const nombre & b)
 {
-    return Nombre::modulo(op1, op2);
-}
-
-inline Nombre operator&(const Nombre & a, const Nombre & b)
-{
-    Nombre resultat(a);
+    nombre resultat(a);
     resultat &= b;
     return resultat;
 }
 
-template<typename T>
-inline Nombre operator&(const Nombre & a, const T & b)
-{
-    Nombre resultat(b);
-    resultat &= a;
-    return resultat;
-}
+// inline nombre operator|(const nombre & a, const nombre & b)
+// {
+//     nombre resultat(a);
+//     resultat |= b;
+//     return resultat;
+// }
+
+// template<typename T>
+// inline nombre operator|(const nombre & a, const T & b)
+// {
+//     nombre resultat(b);
+//     resultat |= a;
+//     return resultat;
+// }
 
 template<typename T>
-inline Nombre operator&(const T & a, const Nombre & b)
+inline nombre operator|(const T & a, const nombre & b)
 {
-    Nombre resultat(a);
-    resultat &= b;
-    return resultat;
-}
-
-inline Nombre operator|(const Nombre & a, const Nombre & b)
-{
-    Nombre resultat(a);
+    nombre resultat(a);
     resultat |= b;
     return resultat;
 }
 
-template<typename T>
-inline Nombre operator|(const Nombre & a, const T & b)
-{
-    Nombre resultat(b);
-    resultat |= a;
-    return resultat;
-}
+// inline nombre operator^(const nombre & a, const nombre & b)
+// {
+//     nombre resultat(a);
+//     resultat ^= b;
+//     return resultat;
+// }
+
+// template<typename T>
+// inline nombre operator^(const nombre & a, const T & b)
+// {
+//     nombre resultat(b);
+//     resultat ^= a;
+//     return resultat;
+// }
 
 template<typename T>
-inline Nombre operator|(const T & a, const Nombre & b)
+inline nombre operator^(const T & a, const nombre & b)
 {
-    Nombre resultat(a);
-    resultat |= b;
-    return resultat;
-}
-
-inline Nombre operator^(const Nombre & a, const Nombre & b)
-{
-    Nombre resultat(a);
-    resultat ^= b;
-    return resultat;
-}
-
-template<typename T>
-inline Nombre operator^(const Nombre & a, const T & b)
-{
-    Nombre resultat(b);
-    resultat ^= a;
-    return resultat;
-}
-
-template<typename T>
-inline Nombre operator^(const T & a, const Nombre & b)
-{
-    Nombre resultat(a);
+    nombre resultat(a);
     resultat ^= b;
     return resultat;
 }
 
 namespace std
 {
-    Nombre abs(const Nombre & op);
+    nombre abs(const nombre & op);
     
-    void swap(Nombre & op1, Nombre & op2);
+    void swap(nombre & op1, nombre & op2);
     
-    Nombre sqrt(const Nombre & op);
+    nombre sqrt(const nombre & op);
     
-    Nombre cbrt(const Nombre & op);
+    nombre cbrt(const nombre & op);
     
-    std::ostream& operator<<(std::ostream& os, const Nombre & op);
+    std::ostream& operator<<(std::ostream& os, const nombre & op);
     
-    std::istream& operator>>(std::istream& is, Nombre & op);;
+    std::istream& operator>>(std::istream& is, nombre & op);;
     
-    std::string to_string( const Nombre & n );
+    std::string to_string( const nombre & n );
 }

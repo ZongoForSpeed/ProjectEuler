@@ -1,10 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
+#include "nombre.h"
 
 #include <iostream>
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(13, "Large sum")
 {
