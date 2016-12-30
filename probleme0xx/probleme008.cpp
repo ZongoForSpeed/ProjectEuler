@@ -1,9 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <numeric>
 
 #include "nombre.h"
 
@@ -49,5 +45,5 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series")
     nombre solution = 0;
     for (size_t n = 13; n < big_number.size(); ++n)
         solution = std::max(solution, produit(n - 13, n));
-    return std::to_string(solution);
+    return solution.to_string();
 }

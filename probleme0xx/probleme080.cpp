@@ -1,15 +1,8 @@
 #include "problemes.h"
-#include "puissance.h"
-#include "polygonal.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <algorithm>
-#include <limits>
+#include <sstream>
 
-#include <gmpxx.h>
-
-typedef mpz_class nombre;
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(80, "Square root digital expansion")
@@ -23,17 +16,15 @@ ENREGISTRER_PROBLEME(80, "Square root digital expansion")
     //
     // For the first one hundred natural numbers, find the total of the digital sums of the first 
     // one hundred decimal digits for all the irrational square roots.
-    nombre gogol = puissance::puissance<nombre, unsigned>(10, 100);
+    nombre gogol = nombre::puissance(10, 100);
     nombre gogol_carre = gogol * gogol;
     
     std::ostringstream oss;
-    for (size_t n = 1; n < 100; ++n)
+    for (nombre n = 1; n < 100; ++n)
     {
-        if (!polygonal::est_carre(n))
+        if (!n.carre_parfait())
         {
-            std::ostringstream oss2;
-            oss2 << sqrt(n * gogol_carre);
-            oss << oss2.str().substr(0,100);
+            oss << std::sqrt(n * gogol_carre).to_string().substr(0,100);
         }
     }
     

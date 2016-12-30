@@ -2,10 +2,7 @@
 #include "timer.h"
 #include "utilitaires.h"
 
-#include <vector>
 #include <boost/algorithm/string.hpp>
-#include <gperftools/profiler.h>
-
 #include <fstream>
 
 namespace
@@ -38,10 +35,6 @@ void RegistreProbleme::ajout(const size_t numero, const std::string & nom, const
 
 int RegistreProbleme::execute(int argc, char** argv)
 {
-    const std::string profile = getEnvironnement("CPUPROFILE");
-    if (!profile.empty())
-        ProfilerStart("Euler.log");
-
     std::map<size_t /*numero*/, std::string/*solution*/> solutions;
     {
         std::ifstream ifs("data/solutions.txt");
@@ -105,10 +98,7 @@ int RegistreProbleme::execute(int argc, char** argv)
         else
             std::cout << "Le probleme " << n << " n'existe pas !" << std::endl;
     }
-    
-    if (!profile.empty())
-        ProfilerStop();
-    
+
     return 0;
 }
 

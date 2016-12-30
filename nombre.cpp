@@ -136,7 +136,7 @@ namespace std
     
     std::ostream& operator<<(std::ostream& os, const nombre & op)
     {
-        os << op.get_string();
+        os << op.to_string();
         return os;
     }
     
@@ -146,10 +146,5 @@ namespace std
         is >> str;
         op.set(str);
         return is;
-    }
-    
-    std::string to_string( const nombre & n )
-    {
-        return n.get_string();
     }
 }

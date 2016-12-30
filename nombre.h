@@ -9,14 +9,14 @@ class nombre
 {
     mpz_t data;
     
-    template <typename T>
-    void set(T op, std::false_type /*is_signed*/) 
+    template <typename Type>
+    void set(Type op, std::false_type /*is_signed*/)
     {
         mpz_import (data, 1, -1, sizeof op, 0, 0, &op);
     }
     
-    template <typename T>
-    void set(T op, std::true_type /*is_signed*/)
+    template <typename Type>
+    void set(Type op, std::true_type /*is_signed*/)
     {
         bool negatif = (op < 0);
         op = std::abs(op);
@@ -24,18 +24,18 @@ class nombre
         if (negatif) negation();
     }
     
-    template <typename T>
-    T get(std::false_type /*is_signed*/) const
+    template <typename Type>
+    Type get(std::false_type /*is_signed*/) const
     {
-        T result = 0;
+        Type result = 0;
         mpz_export(&result, 0, -1, sizeof result, 0, 0, data);
         return result;
     }
     
-    template <typename T>
-    T get(std::true_type /*is_signed*/) const
+    template <typename Type>
+    Type get(std::true_type /*is_signed*/) const
     {
-        T result = 0;
+        Type result = 0;
         mpz_export(&result, 0, -1, sizeof result, 0, 0, data);
         return signe() * result;
     }
@@ -201,7 +201,7 @@ public:
         mpz_swap(data, op.data);
     }
     
-    const std::string get_string(int base = 10) const
+    const std::string to_string(int base = 10) const
     {
         // std::string resultat (mpz_sizeinbase(data, base) + 2, 0);
         // mpz_get_str(&resultat[0], base, data);
@@ -1088,7 +1088,5 @@ namespace std
     
     std::ostream& operator<<(std::ostream& os, const nombre & op);
     
-    std::istream& operator>>(std::istream& is, nombre & op);;
-    
-    std::string to_string( const nombre & n );
+    std::istream& operator>>(std::istream& is, nombre & op);
 }

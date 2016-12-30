@@ -1,26 +1,14 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "combinatoire.h"
-#include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
 #include "polynome.h"
-
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <cmath>
 
 typedef boost::multiprecision::mpf_float nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace 
 {
-    template<typename Exposant>
-    nombre puissance(nombre base, Exposant exposant)
+    nombre puissance_float(nombre base, unsigned long exposant)
     {
-        static_assert(std::is_unsigned<Exposant>::value, "Exposant doit être un entier non signé.");
-        
         nombre resultat(1);
         while (exposant > 0)
         {
@@ -47,7 +35,7 @@ namespace
         nombre resultat = 0;
         for (size_t j = 1; j <= n; ++j)
         {
-            resultat += puissance(pi(j, q) / qi(j, q), i);
+            resultat += puissance_float(pi(j, q) / qi(j, q), i);
         }
         return resultat;
     }
@@ -97,7 +85,7 @@ ENREGISTRER_PROBLEME(286, "Scoring probabilities")
     size_t n = 50;
     nombre objectif = 0.02L;
     std::cout << std::fixed << std::setprecision(10);
-    nombre limite = puissance<unsigned>(0.1, 11);
+    nombre limite = puissance_float(0.1, 11);
     nombre dq = 1;
     nombre q = 50;
     
