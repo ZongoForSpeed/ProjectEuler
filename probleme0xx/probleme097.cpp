@@ -1,14 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
+#include "nombre.h"
 
 ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime")
 {
@@ -20,8 +12,8 @@ ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime")
     // digits: 28433×2^7830457+1.
     // 
     // Find the last ten digits of this prime number.
-    nombre masque = puissance::puissance<nombre, unsigned>(10, 10);
-    nombre mersenne = puissance::puissance_modulaire<nombre, unsigned>(2, 7830457, masque);
+    nombre masque = nombre::puissance(10, 10);
+    nombre mersenne = nombre::puissance_modulaire(2, 7830457, masque);
     mersenne = (mersenne * 28433 + 1)%masque;
-    return std::to_string(mersenne);
+    return mersenne.to_string();
 }

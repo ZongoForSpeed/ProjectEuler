@@ -1,14 +1,9 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <algorithm>
 #include <list>
-#include <map>
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(55, "Lychrel numbers")
 {
@@ -36,7 +31,7 @@ ENREGISTRER_PROBLEME(55, "Lychrel numbers")
     // the first example is 4994.
     //
     // How many Lychrel numbers are there below ten-thousand?
-    nombre compteur = 0;
+    size_t compteur = 0;
     for (nombre n = 1; n < 10000; ++n)
     {
         bool lychrel = false;

@@ -51,6 +51,13 @@ int RegistreProbleme::execute(int argc, char** argv)
     }
   
     std::vector<std::string> arguments(argv + 1, argv+argc);
+    if (arguments.empty())
+    {
+        std::string argument;
+        std::cout << "Argument : ";
+        std::cin >> argument;
+        arguments.push_back(argument);
+    }
     std::vector<size_t> problemes;
     for (auto p: arguments)
     {

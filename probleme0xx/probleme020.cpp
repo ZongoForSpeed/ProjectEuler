@@ -2,12 +2,7 @@
 #include "chiffres.h"
 #include "combinatoire.h"
 #include "utilitaires.h"
-
-#include <iostream>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
+#include "nombre.h"
 
 ENREGISTRER_PROBLEME(20, "Factorial digit sum")
 {
@@ -20,5 +15,5 @@ ENREGISTRER_PROBLEME(20, "Factorial digit sum")
     nombre factorielle = combinatoire::factorielle<nombre>(100);
     nombre resultat = 0;
     chiffres::boucle_chiffre(factorielle, [&resultat](nombre d) { resultat += d; });
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

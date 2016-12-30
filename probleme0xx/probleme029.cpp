@@ -1,13 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <set>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
-    
 ENREGISTRER_PROBLEME(29, "Distinct powers")
 {
     // Consider all integer combinations of ab for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:

@@ -4,6 +4,7 @@
 #include <gmp.h>
 
 #include <boost/optional.hpp>
+#include <limits>
 
 class nombre
 {
@@ -1089,4 +1090,28 @@ namespace std
     std::ostream& operator<<(std::ostream& os, const nombre & op);
     
     std::istream& operator>>(std::istream& is, nombre & op);
+
+    template<>
+    class numeric_limits<nombre> : public numeric_limits<long long>
+    {
+    public:
+        static constexpr int digits = INT_MAX;
+        static constexpr int digits10 = INT_MAX;
+
+        static nombre min()
+        {
+            return -max();
+        }
+
+        static nombre max()
+        {
+            return nombre::puissance(2, digits);
+        }
+
+        static nombre lowest()
+        {
+            return min();
+        }
+
+    };
 }

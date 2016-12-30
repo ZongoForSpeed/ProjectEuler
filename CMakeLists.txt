@@ -10,31 +10,36 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${GMP_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
 
-set(LIBRARY_FILES
-        arithmetiques.cpp
+set(LIBRARY_HEADERS
         arithmetiques.h
         chiffres.h
         combinatoire.h
         diophantienne.h
-        graphe.cpp
         graphe.h
         nombre.h
-        nombre.cpp
         matrice.h
         multidimension.h
         polygonal.h
         polynome.h
-        premiers.cpp
         premiers.h
-        problemes.cpp
         problemes.h
         puissance.h
-        pythagoricien.cpp
         pythagoricien.h
-        timer.cpp
         timer.h
-        utilitaires.cpp
         utilitaires.h)
+
+set(LIBRARY_FILES
+        arithmetiques.cpp
+        graphe.cpp
+        nombre.cpp
+        premiers.cpp
+        problemes.cpp
+        pythagoricien.cpp
+        timer.cpp
+        utilitaires.cpp)
+
+file( COPY data
+        DESTINATION .)
 
 set(TEST_FILES
         test.cpp
@@ -50,6 +55,7 @@ set(TEST_FILES
         test/puissance.cpp
         test/pythagoricien.cpp
         test/utilitaires.cpp
+        ${LIBRARY_HEADERS}
         ${LIBRARY_FILES})
 
 aux_source_directory(probleme0xx PROBLEME_0XX)
@@ -85,6 +91,7 @@ set(PROBLEMES_FILES
 set(SOURCE_FILES
         euler.cpp
         ${LIBRARY_FILES}
+        ${LIBRARY_HEADERS}
         ${PROBLEMES_FILES})
 
 add_executable(ProjectEuler ${SOURCE_FILES})

@@ -1,12 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-
-#include <iostream>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
+#include "nombre.h"
 
 ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
 {
@@ -40,5 +35,5 @@ ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
         b += tmp;
         ++n;
     }
-    return std::to_string(n);
+    return n.to_string();
 }

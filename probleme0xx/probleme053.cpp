@@ -1,14 +1,8 @@
 #include "problemes.h"
-#include "combinatoire.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <algorithm>
 #include <list>
-#include <map>
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(53, "Combinatoric selections")
 {
@@ -24,12 +18,12 @@ ENREGISTRER_PROBLEME(53, "Combinatoric selections")
     // It is not until n = 23, that a value exceeds one-million: 23C10 = 1144066.
     //
     // How many, not necessarily distinct, values of  nCr, for 1 ≤ n ≤ 100, are greater than one-million?
-    nombre compteur = 0;
-    for (nombre n = 1; n <= 100; ++n)
+    size_t compteur = 0;
+    for (size_t n = 1; n <= 100; ++n)
     {
-        for (nombre p = 0; p <= 100; ++p)
+        for (size_t p = 0; p <= n; ++p)
         {
-            if (combinatoire::coefficient_binomial(n, p) > 1000000) ++compteur;
+            if (nombre::coefficient_binomial(n, p) > 1000000) ++compteur;
         }
     }
     

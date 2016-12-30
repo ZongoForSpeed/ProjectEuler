@@ -2,14 +2,9 @@
 #include "chiffres.h"
 #include "puissance.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <algorithm>
 #include <list>
-#include <map>
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(56, "Powerful digit sum")
 {
@@ -25,5 +20,5 @@ ENREGISTRER_PROBLEME(56, "Powerful digit sum")
         nombre somme = chiffres::somme_chiffres(puissance::puissance<nombre>(a,b));
         maximum = std::max(maximum, somme);
     }
-    return std::to_string(maximum);
+    return maximum.to_string();
 }

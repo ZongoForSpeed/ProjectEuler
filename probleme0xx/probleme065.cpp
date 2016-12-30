@@ -1,16 +1,11 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-
-#include <iostream>
-#include <algorithm>
-#include <functional>
+#include "nombre.h"
 
 #include <boost/rational.hpp>
 #include <boost/range/adaptor/reversed.hpp>
-#include <boost/multiprecision/gmp.hpp>
 
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
@@ -45,9 +40,9 @@ ENREGISTRER_PROBLEME(65, "Convergents of e")
     }
     fraction_continue.resize(99);
     fraction f(1);
-    for (auto p: boost::adaptors::reverse(fraction_continue)) f = p + 1 / f;
+    for (const auto & p: boost::adaptors::reverse(fraction_continue)) f = p + 1 / f;
     
     auto chiffres = chiffres::extraire_chiffres(f.numerator());
     nombre resultat = std::accumulate(chiffres.begin(), chiffres.end(), nombre(0));
-    return std::to_string(resultat);
+    return resultat.to_string();
 }
