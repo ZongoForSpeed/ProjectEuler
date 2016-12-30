@@ -1,17 +1,8 @@
 #include "problemes.h"
-#include "combinatoire.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
-typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(239, "Infinite string tour")
 {
@@ -22,20 +13,22 @@ ENREGISTRER_PROBLEME(239, "Infinite string tour")
     // (Any number of non-prime disks may also be found in or out of their natural positions.)
     //
     // Give your answer rounded to 12 places behind the decimal point in the form 0.abcdefghijkl.
-    const nombre denominateur = combinatoire::factorielle<nombre>(100);
+    const nombre denominateur = nombre::factorielle(100);
 
     nombre numerateur = 0;
-    for (nombre n = 0; n <= 22; ++n)
+    for (size_t n = 0; n <= 22; ++n)
     {
         numerateur += (n%2 == 0?1:-1) 
-            * combinatoire::coefficient_binomial<nombre>(22, n) 
-            * combinatoire::factorielle<nombre>(97-n);
+            * nombre::coefficient_binomial(22, n)
+            * nombre::factorielle(97-n);
     }
     
-    numerateur *= combinatoire::coefficient_binomial<nombre>(25, 22);
-    
-    boost::multiprecision::mpf_float resultat = numerateur;
-    resultat /= denominateur;
-    
+    numerateur *= nombre::coefficient_binomial(25, 22);
+
+    const size_t masque = puissance::puissance<size_t, unsigned>(10, 12);
+    numerateur *= masque;
+    numerateur /= denominateur;
+
+    long double resultat = numerateur.get_double() / masque;
     return std::to_string(resultat, 12);
 }

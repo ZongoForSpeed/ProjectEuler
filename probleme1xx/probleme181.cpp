@@ -1,22 +1,12 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "multidimension.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/rational.hpp>
-#include <boost/multiprecision/gmp.hpp>
 
 typedef unsigned long long nombre;
 
 typedef std::vector<nombre> vecteur;
 typedef multidimension<nombre, 2> matrice;
 typedef std::pair<nombre, nombre> paire;
-typedef boost::rational<nombre> fraction;
 
 namespace
 {

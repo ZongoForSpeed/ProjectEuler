@@ -3,17 +3,9 @@
 #include "puissance.h"
 #include "utilitaires.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/rational.hpp>
-#include <boost/multiprecision/gmp.hpp>
 
 typedef unsigned long long nombre;
-typedef boost::rational<nombre> fraction;
 typedef std::vector<nombre> vecteur;
 
 namespace

@@ -10,17 +10,15 @@
 #include <iterator>
 #include <tuple>
 #include <cmath>
+#include <iomanip>
 
 #include "puissance.h"
 #include "chiffres.h"
 
 #include <boost/optional.hpp>
-#include <boost/multiprecision/gmp.hpp>
 
 namespace std
 {
-    long double sqrt(boost::multiprecision::mpz_int n);
-    
     template<typename T1, typename T2>
     constexpr std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2> & p)
     {
@@ -153,9 +151,7 @@ namespace std
             binary_op(*first1++, *first2++);
         }
     }
-    
-    std::string to_string(const boost::multiprecision::mpz_int & n);
-    
+
     template<typename Nombre>
     std::string to_string(Nombre n, int p)
     {
@@ -170,8 +166,6 @@ constexpr Nombre racine_carre(Nombre n)
 {
     return static_cast<Nombre>(std::sqrt(n));
 }
-
-boost::multiprecision::mpz_int racine_carre(boost::multiprecision::mpz_int n);
 
 template<typename Nombre, typename = typename std::enable_if<std::is_integral<Nombre>::value, Nombre>::type>
 constexpr Nombre racine_cubique(Nombre n)
@@ -206,18 +200,6 @@ constexpr typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::
 { 
     return std::abs(b - a) < std::numeric_limits<Nombre>::epsilon();
 }
-
-long double operator+(const boost::multiprecision::mpz_int & n, const long double d);
-long double operator+(const long double d, const boost::multiprecision::mpz_int & n);
-
-long double operator-(const boost::multiprecision::mpz_int & n, const long double d);
-long double operator-(const long double d, const boost::multiprecision::mpz_int & n);
-
-long double operator/(const boost::multiprecision::mpz_int & n, const long double d);
-long double operator/(const long double d, const boost::multiprecision::mpz_int & n);
-
-long double operator*(const boost::multiprecision::mpz_int & n, const long double d);
-long double operator*(const long double d, const boost::multiprecision::mpz_int & n);
 
 template<typename T1, typename T2>
 std::string concatener(const T1 & t1, const T2 & t2)

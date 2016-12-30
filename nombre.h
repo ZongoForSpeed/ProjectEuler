@@ -747,6 +747,13 @@ public:
     {
         return mpz_probab_prime_p(data, probabilite) != 0;
     }
+
+    template <typename T>
+    static bool premier(const T & n, int probabilite = 25)
+    {
+        nombre tmp(n);
+        return tmp.premier(probabilite);
+    }
     
     nombre premier_suivant() const
     {
@@ -919,6 +926,13 @@ public:
     {
         nombre resultat;
         mpz_bin_uiui (resultat.data, n, k);
+        return resultat;
+    }
+
+    static nombre factorielle(unsigned long int n)
+    {
+        nombre resultat;
+        mpz_fac_ui (resultat.data, n);
         return resultat;
     }
 };

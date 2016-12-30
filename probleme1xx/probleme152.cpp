@@ -1,17 +1,10 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "utilitaires.h"
-
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <limits>
-#include <iomanip>
+#include "nombre.h"
 
 #include <boost/rational.hpp>
-#include <boost/multiprecision/gmp.hpp>
 
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<size_t> vecteur;
 typedef boost::rational<nombre> fraction;
 
@@ -72,5 +65,5 @@ ENREGISTRER_PROBLEME(152, "Writing 1/2 as a sum of inverse squares")
     for (size_t p: premiers)
         resultat += generer(premiers, p);
 
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

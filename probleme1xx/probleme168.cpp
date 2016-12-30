@@ -1,18 +1,9 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "puissance.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/multiprecision/gmp.hpp>
-typedef boost::multiprecision::mpz_int nombre;
-
-#include <boost/rational.hpp>
-#include <boost/optional.hpp>
 
 ENREGISTRER_PROBLEME(168, "Number Rotations")
 {
@@ -25,10 +16,10 @@ ENREGISTRER_PROBLEME(168, "Number Rotations")
     nombre resultat = 0;
     for (size_t puissance = 1; puissance < 101; ++puissance)
     {
-        for (nombre a = 1; a < 10; ++a)
-        for (nombre n = 1; n < 10; ++n)
+        for (size_t a = 1; a < 10; ++a)
+        for (size_t n = 1; n < 10; ++n)
         {
-            nombre numerateur = a * (puissance::puissance<nombre>(10, puissance) - n);
+            nombre numerateur = a * (nombre::puissance(10, puissance) - n);
             nombre denominateur = 10*n - 1;
             
             if (numerateur%denominateur == 0)
@@ -44,5 +35,5 @@ ENREGISTRER_PROBLEME(168, "Number Rotations")
         }
     }
     
-    return std::to_string(resultat%100000);
+    return resultat.modulo(100000).to_string();
 }

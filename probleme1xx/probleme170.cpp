@@ -2,14 +2,7 @@
 #include "chiffres.h"
 #include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
-// #include <boost/multiprecision/gmp.hpp>
-// #include <boost/rational.hpp>
-// #include <boost/optional.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

@@ -1,22 +1,13 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "polygonal.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <limits>
+#include "nombre.h"
 
 #include <boost/rational.hpp>
-#include <boost/multiprecision/gmp.hpp>
 
-typedef unsigned long long nombre;
-typedef boost::multiprecision::mpz_int grand_nombre;
-
-typedef std::vector<nombre> vecteur;
+typedef std::vector<size_t> vecteur;
 typedef std::vector<vecteur> matrice;
-typedef boost::rational<nombre> fraction;
+typedef boost::rational<size_t> fraction;
 
 ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
 {
@@ -38,10 +29,10 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
     // All the s(x,y,z) and t must be in reduced form.
     //
     // Find u + v.
-    nombre limite = 35;
+    size_t limite = 35;
     std::set<fraction> fractions;
-    for (nombre b = 2; b < limite + 1; ++b)
-    for (nombre a = 1; a < b; ++a)
+    for (size_t b = 2; b < limite + 1; ++b)
+    for (size_t a = 1; a < b; ++a)
         fractions.insert(fraction(a, b));
 
     std::set<fraction> solutions;
@@ -85,14 +76,14 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
         }
     }
     
-    grand_nombre u = 0;
-    grand_nombre v = 1;
+    nombre u = 0;
+    nombre v = 1;
     for (auto s: solutions)
     {
         u = s.denominator()*u + s.numerator()*v;
         v *= s.denominator();
     }
     
-    grand_nombre resultat = (u + v)/arithmetiques::PGCD(u,v);
-    return std::to_string(resultat);
+    nombre resultat = (u + v)/arithmetiques::PGCD(u,v);
+    return resultat.to_string();
 }

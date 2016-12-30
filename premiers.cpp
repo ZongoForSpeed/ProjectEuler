@@ -2,13 +2,6 @@
 #include "timer.h"
 #include "utilitaires.h"
 
-#include <vector>
-#include <deque>
-#include <cstdlib>
-#include <cassert>
-#include <numeric>
-#include <algorithm>
-
 namespace
 {
     template<typename Nombre, class OutputIterator>
@@ -334,20 +327,5 @@ namespace premiers
             if (test23.at(p)) { sortie(30*p + 23); }
             if (test29.at(p)) { sortie(30*p + 29); }
         }
-    }
-    
-    bool test(const boost::multiprecision::mpz_int & n, int probabilite)
-    {
-        return mpz_probab_prime_p(n.backend().data(), probabilite) != 0;
-    }
-    
-    void suivant(boost::multiprecision::mpz_int & n)
-    {
-        mpz_nextprime(n.backend().data(), n.backend().data());
-    }
-    
-    void suivant(boost::multiprecision::mpz_int & n, const boost::multiprecision::mpz_int & p)
-    {
-        mpz_nextprime(n.backend().data(), p.backend().data());
     }
 }

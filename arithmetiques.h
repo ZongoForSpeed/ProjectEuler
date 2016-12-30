@@ -34,9 +34,6 @@ namespace arithmetiques
         return pgcd;
     }
     
-    template<>
-    boost::multiprecision::mpz_int PGCD<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int b);
-    
     template<typename Nombre>
     constexpr Nombre PGCD(Nombre a, Nombre b, Nombre c)
     {
@@ -48,9 +45,6 @@ namespace arithmetiques
     {
         return (a*b) / PGCD(a,b);
     }
-    
-    template<>
-    boost::multiprecision::mpz_int PPCM<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int b);
     
     template<typename Nombre>
     void Bezout(Nombre a, Nombre b, Nombre& x, Nombre& y)
@@ -73,10 +67,7 @@ namespace arithmetiques
         x = old_s;
         y = old_t;
     }
-    
-    template<>
-    void Bezout<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int b, boost::multiprecision::mpz_int& x, boost::multiprecision::mpz_int& y);
-    
+
     template<typename Nombre>
     constexpr Nombre arrondi(Nombre n, Nombre d)
     {
@@ -355,10 +346,7 @@ namespace arithmetiques
         else
             return inverse;
     }
-    
-    template<>
-    boost::multiprecision::mpz_int inverse_modulaire<>(boost::multiprecision::mpz_int a, boost::multiprecision::mpz_int n);
-    
+
     template<typename Nombre, typename Conteneur>
     Nombre restes_chinois(const Conteneur & modulos, const Conteneur & restes, const Conteneur & premiers)
     {

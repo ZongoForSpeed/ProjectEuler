@@ -1,19 +1,16 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
+#include "nombre.h"
 
-#include <iostream>
 #include <set>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef unsigned long long nombre;
-typedef std::vector<nombre> vecteur;
-typedef std::pair<nombre, nombre> paire;
+typedef std::vector<size_t> vecteur;
+typedef std::pair<size_t, size_t> paire;
 
 namespace
 {
-    bool test200(nombre n)
+    bool test200(size_t n)
     {
         while (n != 0)
         {
@@ -24,14 +21,8 @@ namespace
         
         return false;
     }
-    
-    bool premier(nombre n)
-    {
-        boost::multiprecision::mpz_int m(n);
-        return premiers::test(m, 25);
-    }
-    
-    bool test(nombre n)
+
+    bool test(size_t n)
     {
         if (!test200(n))
             return false;
@@ -39,13 +30,13 @@ namespace
         auto chiffres = chiffres::extraire_chiffres(n);
         for (size_t i = 0; i < chiffres.size(); ++i)
         {
-            nombre c = chiffres[i];
-            for (nombre a = 0; a < 10; ++a)
+            size_t c = chiffres[i];
+            for (size_t a = 0; a < 10; ++a)
             {
                 if (c != a)
                 {
                     chiffres[i] = a;
-                    if (premier(chiffres::conversion_nombre<nombre>(chiffres.begin(), chiffres.end())))
+                    if (nombre::premier(chiffres::conversion_nombre<size_t>(chiffres.begin(), chiffres.end())))
                         return false;
                 }
             }
@@ -69,8 +60,8 @@ ENREGISTRER_PROBLEME(200, "Find the 200th prime-proof sqube containing the conti
     // contains the contiguous sub-string "200" is 1992008.
     //
     // Find the 200th prime-proof sqube containing the contiguous sub-string "200".
-    std::set<nombre> premiers;
-    premiers::crible235<nombre>(200000, std::inserter(premiers, premiers.end()));
+    std::set<size_t> premiers;
+    premiers::crible235<size_t>(200000, std::inserter(premiers, premiers.end()));
     
     vecteur squbes;
     for (auto p1: premiers)
@@ -78,7 +69,7 @@ ENREGISTRER_PROBLEME(200, "Find the 200th prime-proof sqube containing the conti
     {
         if (p1 != p2)
         {
-            nombre sqube = p1*p1*p1*p2*p2;
+            size_t sqube = p1*p1*p1*p2*p2;
             if ((squbes.size() < 200 || sqube < squbes.back()) && test(sqube))
             {
                 if (squbes.size() == 200)
@@ -90,6 +81,6 @@ ENREGISTRER_PROBLEME(200, "Find the 200th prime-proof sqube containing the conti
         }
     }
     
-    nombre resultat = squbes.back();
+    size_t resultat = squbes.back();
     return std::to_string(resultat);
 }

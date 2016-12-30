@@ -1,13 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "premiers.h"
-#include "utilitaires.h"
-#include "combinatoire.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
@@ -40,5 +34,5 @@ ENREGISTRER_PROBLEME(271, "Modular Cubes, part 1")
     // Find S(13082761331670030).
     nombre n = 13082761331670030ULL;
     nombre resultat = S(n);
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

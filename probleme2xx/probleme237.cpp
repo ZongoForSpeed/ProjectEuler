@@ -1,18 +1,10 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
 #include "matrice.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/io.hpp>
-#include <boost/numeric/ublas/assignment.hpp> 
+#include <boost/numeric/ublas/assignment.hpp>
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;

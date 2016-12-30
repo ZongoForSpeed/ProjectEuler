@@ -1,10 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "premiers.h"
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
+#include "nombre.h"
 
 ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 {
@@ -22,26 +18,26 @@ ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 		{
 			nombre n2 = n*n;
 			nombre p = (n2+1);
-			if (!premiers::test(p, 5))
+			if (!p.premier())
 			    continue;
 			    
-			premiers::suivant(p);
+			p = p.premier_suivant();
 			if (p != ( n2 + 3 ))
 			    continue;
-			    
-			premiers::suivant(p);
+
+			p = p.premier_suivant();
 			if (p != ( n2 + 7 ))
 			    continue;
-			    
-			premiers::suivant(p);
+
+			p = p.premier_suivant();
 			if (p != ( n2 + 9 ))
 			    continue;
-			    
-			premiers::suivant(p);
+
+			p = p.premier_suivant();
 			if (p != ( n2 + 13 ))
 			    continue;
-			    
-			premiers::suivant(p);
+
+			p = p.premier_suivant();
 			if( p == ( n2 + 27 )) 
 			{
 				std::cout << n << std::endl;

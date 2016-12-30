@@ -2,12 +2,7 @@
 #include "premiers.h"
 #include "puissance.h"
 #include "utilitaires.h"
-
-#include <iostream>
-#include <set>
-#include <deque>
-#include <boost/multiprecision/gmp.hpp>
-typedef boost::multiprecision::mpz_int nombre;
+#include "nombre.h"
 
 namespace
 {
@@ -53,5 +48,5 @@ ENREGISTRER_PROBLEME(381, "(prime-k) factorial")
         resultat += S(p);                
     }
     
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

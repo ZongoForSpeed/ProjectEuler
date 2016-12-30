@@ -1,17 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <map>
-#include <tuple>
 
-#include <boost/multiprecision/number.hpp>
-#include <boost/multiprecision/cpp_int.hpp>
-
-typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace

@@ -1,16 +1,10 @@
 #include "problemes.h"
 #include "combinatoire.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
@@ -91,5 +85,5 @@ ENREGISTRER_PROBLEME(240, "Top Dice")
     vecteur arrangement(13, 0);
     
     nombre resultat = A(10, arrangement, 12);
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

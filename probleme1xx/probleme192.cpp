@@ -1,18 +1,12 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
 #include <boost/rational.hpp>
-
 #include <boost/range/adaptor/reversed.hpp>
 
-typedef boost::multiprecision::mpz_int nombre;
 typedef boost::rational<nombre> fraction;
 typedef std::vector<nombre> vecteur;
 
@@ -67,10 +61,9 @@ ENREGISTRER_PROBLEME(192, "Best Approximations")
         if (!polygonal::est_carre(n))
         {
             fraction f = fraction_continue(n, bound);
-            // std::cout << n << "\t" << f << std::endl;
             resultat += f.denominator();
         }
     }
 
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

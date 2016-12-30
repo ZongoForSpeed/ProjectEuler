@@ -1,20 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "premiers.h"
-#include "utilitaires.h"
-#include "combinatoire.h"
-#include "chiffres.h"
+#include "nombre.h"
 
-#include <ostream>
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<size_t> vecteur;
 
 namespace
@@ -115,5 +104,5 @@ ENREGISTRER_PROBLEME(254, "Sums of Digit Factorials")
         }
     }
     
-    return std::to_string(somme);
+    return somme.to_string();
 }

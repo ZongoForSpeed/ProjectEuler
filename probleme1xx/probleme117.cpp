@@ -1,14 +1,6 @@
 #include "problemes.h"
-#include "combinatoire.h"
 #include "utilitaires.h"
-
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
+#include "nombre.h"
 
 ENREGISTRER_PROBLEME(117, "Red, green, and blue tiles")
 {
@@ -19,24 +11,24 @@ ENREGISTRER_PROBLEME(117, "Red, green, and blue tiles")
     // How many ways can a row measuring fifty units in length be tiled?
     // 
     // NOTE: This is related to Problem 116.
-    nombre longueur = 50;
+    size_t longueur = 50;
     nombre resultat = 0;
     
-    for (nombre s4 = 0; s4 < longueur + 1; s4 += 4)
-    for (nombre s3 = 0; s3 < longueur - s4 + 1; s3 += 3)
-    for (nombre s2 = 0; s2 < longueur - s3 - s4 + 1; s2 += 2)
+    for (size_t s4 = 0; s4 < longueur + 1; s4 += 4)
+    for (size_t s3 = 0; s3 < longueur - s4 + 1; s3 += 3)
+    for (size_t s2 = 0; s2 < longueur - s3 - s4 + 1; s2 += 2)
     {
-        nombre n4 = s4 / 4;
-        nombre n3 = s3 / 3;
-        nombre n2 = s2 / 2;
-        nombre n1 = longueur - s2 - s3 - s4;
+        size_t n4 = s4 / 4;
+        size_t n3 = s3 / 3;
+        size_t n2 = s2 / 2;
+        size_t n1 = longueur - s2 - s3 - s4;
         
-        nombre n = combinatoire::factorielle<nombre>(n1 + n2 + n3 + n4);
-        nombre d = combinatoire::factorielle<nombre>(n1) * combinatoire::factorielle<nombre>(n2) 
-            * combinatoire::factorielle<nombre>(n3) * combinatoire::factorielle<nombre>(n4);
+        nombre n = nombre::factorielle(n1 + n2 + n3 + n4);
+        nombre d = nombre::factorielle(n1) * nombre::factorielle(n2)
+            * nombre::factorielle(n3) * nombre::factorielle(n4);
             
         resultat += n/d;
     }
 
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

@@ -1,19 +1,11 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
 #include "timer.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-#include <boost/multiprecision/cpp_int.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(221, "Alexandrian Integers")
@@ -50,5 +42,5 @@ ENREGISTRER_PROBLEME(221, "Alexandrian Integers")
     std::sort(Alexandrian.begin(), Alexandrian.end());
 
     nombre resultat = Alexandrian[limite - 1];
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

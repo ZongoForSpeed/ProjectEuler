@@ -1,16 +1,9 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "utilitaires.h"
-#include "premiers.h"
+#include "nombre.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
@@ -36,7 +29,7 @@ namespace
         if (t_ij%2 == 0)
             return false;
             
-        return premiers::test(t_ij, 25);
+        return t_ij.premier(25);
     }
     
     bool triplet_premier(nombre i, nombre j, bool recursif = false)
@@ -69,7 +62,7 @@ namespace
         nombre resultat = 0;
         for (nombre premier = min;;)
         {
-            premiers::suivant(premier);
+            premier = premier.premier_suivant();
             if (premier > max)
                 break;
                 
@@ -119,5 +112,5 @@ ENREGISTRER_PROBLEME(196, "Prime triplets")
     // Find  S(5678027) + S(7208785).
     std::cout << std::boolalpha;
     nombre resultat = S(5678027) + S(7208785);
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

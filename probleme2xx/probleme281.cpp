@@ -1,24 +1,16 @@
 
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "combinatoire.h"
 #include "premiers.h"
-#include "puissance.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
 {
     nombre combinaison(size_t m, size_t n)
     {
-        return combinatoire::factorielle<nombre>(m * n) 
-            / puissance::puissance<nombre>(combinatoire::factorielle<nombre>(n), m);
+        return nombre::factorielle(m * n) / nombre::puissance(nombre::factorielle(n), m);
     }
     
     nombre f(size_t m, size_t n, const vecteur & premiers)
@@ -52,7 +44,7 @@ ENREGISTRER_PROBLEME(281, "Pizza Toppings")
     premiers::crible235<nombre>(1000, std::back_inserter(premiers));
     
     nombre resultat = 0;
-    nombre limite = puissance::puissance<nombre, unsigned>(10, 15);
+    nombre limite = nombre::puissance(10, 15);
     
     for (size_t m = 2; f(m, 1, premiers) <= limite; ++m)
     for (size_t n = 1; f(m, n, premiers) <= limite; ++n)
@@ -60,5 +52,5 @@ ENREGISTRER_PROBLEME(281, "Pizza Toppings")
         resultat += f(m, n, premiers);
     }
 
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

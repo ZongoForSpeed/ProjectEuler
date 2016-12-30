@@ -1,19 +1,12 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 #include <boost/rational.hpp>
-#include <boost/multiprecision/gmp.hpp>
 
-typedef boost::multiprecision::mpz_int nombre;
 typedef boost::rational<nombre> fraction;
 typedef std::vector<nombre> vecteur;
 
@@ -74,5 +67,5 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients")
 	std::cout << resultats << std::endl;
 
     nombre resultat = std::accumulate(resultats.begin(), resultats.end(), nombre(0));
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

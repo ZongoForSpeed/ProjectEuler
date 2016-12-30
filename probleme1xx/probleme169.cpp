@@ -1,17 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/multiprecision/gmp.hpp>
-typedef boost::multiprecision::mpz_int nombre;
-
-#include <boost/rational.hpp>
-#include <boost/optional.hpp>
+#include "nombre.h"
 
 namespace
 {
@@ -49,8 +38,8 @@ ENREGISTRER_PROBLEME(169, "Exploring the number of different ways a number can b
     // 2 + 8
     // 
     // What is f(10^25)?
-    nombre n = puissance::puissance<nombre, unsigned>(10, 25);
+    nombre n = nombre::puissance(10, 25);
     std::map<nombre, nombre> cache;
     nombre resultat = f(cache, n);
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

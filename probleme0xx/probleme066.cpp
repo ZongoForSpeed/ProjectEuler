@@ -1,24 +1,15 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <algorithm>
-#include <functional>
-
-#include <boost/multiprecision/cpp_int.hpp>
-
-typedef unsigned long long nombre;
-typedef std::vector<nombre> vecteur;
-
-typedef boost::multiprecision::cpp_int grand_nombre;
+typedef std::vector<size_t> vecteur;
 
 namespace
 {
-	vecteur fraction_continue(nombre d)
+	vecteur fraction_continue(size_t d)
     {
         vecteur resultat;
-        nombre d2 = racine_carre(d);
+        size_t d2 = racine_carre(d);
         unsigned long a = racine_carre(d), p = 0, q = 1;
         do 
         {
@@ -32,18 +23,18 @@ namespace
         return resultat;
     }
     
-    grand_nombre equation_pell(nombre d)
+    nombre equation_pell(size_t d)
     {
         const auto c = fraction_continue(d);
         size_t l = c.size() - 1;
         size_t per = l % 2 == 0 ? l - 1 :  2 * l - 1;
-        grand_nombre a = c[ 0 ];
-        grand_nombre a1 = 1;
-        grand_nombre b = a;
-        grand_nombre b1 = 0;
+        nombre a = c[ 0 ];
+        nombre a1 = 1;
+        nombre b = a;
+        nombre b1 = 0;
         for ( size_t i = 1; i <= per; i++ )
         {
-            grand_nombre t = a;
+            nombre t = a;
             a = c[ ( i - 1 ) % l + 1 ] * a + a1;
             a1 = t;
             t = b;
@@ -77,13 +68,13 @@ ENREGISTRER_PROBLEME(66, "Diophantine equation")
     // Find the value of D ≤ 1000 in minimal solutions of x for which the largest value of x is obtained.
     
     
-    grand_nombre maximum = 0;
-    nombre resultat = 0;
-    for ( nombre d = 2; d <= 1000; ++d )
+    nombre maximum = 0;
+    size_t resultat = 0;
+    for ( size_t d = 2; d <= 1000; ++d )
     {
         if (!polygonal::est_carre(d)) 
         {
-            grand_nombre x = equation_pell(d);
+            nombre x = equation_pell(d);
             if ( x > maximum ) 
             {
                 maximum = x;

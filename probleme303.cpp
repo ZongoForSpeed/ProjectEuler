@@ -1,13 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <map>
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::map<nombre, vecteur> dictionnaire;
 
@@ -31,7 +25,7 @@ namespace
 		while (true)
 		{
 			vecteur tmp;
-			for (nombre i = 1; i < 11; ++i)
+			for (size_t i = 1; i < 11; ++i)
 			{
 				for (const nombre & f : v)
 				{
@@ -65,5 +59,5 @@ ENREGISTRER_PROBLEME(303, "Multiples with small digits")
     {
         resultat += f(n);
     }
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

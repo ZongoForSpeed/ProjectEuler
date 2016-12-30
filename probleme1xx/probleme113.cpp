@@ -1,14 +1,8 @@
 #include "problemes.h"
-#include "combinatoire.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(113, "Non-bouncy numbers")
 {
@@ -26,18 +20,18 @@ ENREGISTRER_PROBLEME(113, "Non-bouncy numbers")
     // 10^10.
     //
     // How many numbers below a googol (10^100) are not bouncy?
-    nombre longueur = 100;
+    size_t longueur = 100;
     nombre resultat = 0;
     
-    for (nombre n = 0; n < longueur; ++n)
-    for (nombre d = 0; d < 10; ++d)
-        resultat += combinatoire::coefficient_binomial<nombre>(n + d, d);
+    for (size_t n = 0; n < longueur; ++n)
+    for (size_t d = 0; d < 10; ++d)
+        resultat += nombre::coefficient_binomial(n + d, d);
         
-    for (nombre n = 0; n < longueur; ++n)
-    for (nombre d = 0; d < 9; ++d)
-        resultat += combinatoire::coefficient_binomial<nombre>(n + d, d);
+    for (size_t n = 0; n < longueur; ++n)
+    for (size_t d = 0; d < 9; ++d)
+        resultat += nombre::coefficient_binomial(n + d, d);
         
     resultat -= 10*longueur;
     
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

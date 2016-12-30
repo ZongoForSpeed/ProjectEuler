@@ -1,24 +1,6 @@
 #include "problemes.h"
-#include "arithmetiques.h"
-#include "premiers.h"
+#include "nombre.h"
 #include "puissance.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <cmath>
-
-typedef unsigned long long nombre;
-
-namespace
-{
-    bool premier(nombre n)
-    {
-        boost::multiprecision::mpz_int z = n;
-        return premiers::test(z, 10);
-    }
-}
 
 ENREGISTRER_PROBLEME(291, "Panaitopol Primes")
 {
@@ -26,12 +8,12 @@ ENREGISTRER_PROBLEME(291, "Panaitopol Primes")
     // for some positive integers x and y.
     //
     // Find how many Panaitopol primes are less than 5×10**15.
-    const nombre limite = 5*puissance::puissance<nombre, unsigned>(10, 15);
-    
-    nombre resultat = 0;
-    for (nombre n = 1; n*n + (n+1)*(n+1) < limite; ++n)
+    const size_t limite = 5*puissance::puissance<size_t, unsigned>(10, 15);
+
+    size_t resultat = 0;
+    for (size_t n = 1; n*n + (n+1)*(n+1) < limite; ++n)
     {
-        if (premier(n*n + (n+1)*(n+1)))
+        if (nombre::premier(n*n + (n+1)*(n+1)))
             ++resultat;
     }
     

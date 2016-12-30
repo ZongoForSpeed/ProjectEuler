@@ -1,28 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "combinatoire.h"
 #include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
-#include "timer.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <cmath>
-
-typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
-
-namespace
-{
-    nombre premier_suivant(nombre n)
-    {
-        boost::multiprecision::mpz_int z = n;
-        premiers::suivant(z);
-        return static_cast<nombre>(z);  
-    }
-}
 
 ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
 {
@@ -44,7 +25,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
     vecteur premiers;
     premiers::crible2<nombre>(50, std::back_inserter(premiers));
     
-    nombre limite = puissance::puissance<nombre, unsigned>(10, 9);
+    nombre limite = nombre::puissance(10, 9);
     
     vecteur fortunate;
     for (nombre p = premiers.front(); p < limite; p *= premiers.front())
@@ -73,7 +54,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
             
         for (const nombre & n: suivant)
         {
-            nombre m = premier_suivant(n + 1) - n;
+            nombre m = (n + 1).premier_suivant() - n;
             pseudoFortunate.insert(m);
         }
             
@@ -84,5 +65,5 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
     for (const nombre & n: pseudoFortunate)
         resultat += n;
     
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

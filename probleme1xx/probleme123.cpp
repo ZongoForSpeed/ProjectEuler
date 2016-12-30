@@ -2,15 +2,10 @@
 #include "premiers.h"
 #include "puissance.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(123, "Prime square remainders")
@@ -33,8 +28,8 @@ ENREGISTRER_PROBLEME(123, "Prime square remainders")
     {
         nombre pn = premiers.at(n - 1);
         nombre pnpn = pn*pn;
-        nombre p1 = puissance::puissance_modulaire<nombre>(pn + 1, n, pnpn);
-        nombre p2 = puissance::puissance_modulaire<nombre>(pn - 1, n, pnpn);
+        nombre p1 = nombre::puissance_modulaire(pn + 1, n, pnpn);
+        nombre p2 = nombre::puissance_modulaire(pn - 1, n, pnpn);
         if ((p1 + p2)%(pnpn) > borne)
         {
             resultat = n;
@@ -42,5 +37,5 @@ ENREGISTRER_PROBLEME(123, "Prime square remainders")
         }
     }
     
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

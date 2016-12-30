@@ -1,27 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
-#include "utilitaires.h"
-#include "premiers.h"
-
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef unsigned long long nombre;
-typedef std::vector<nombre> vecteur;
-
-namespace
-{
-    bool premier(nombre n)
-    {
-        boost::multiprecision::mpz_int m(n);
-        return premiers::test(m, 25);
-    }
-}
+#include "nombre.h"
 
 ENREGISTRER_PROBLEME(216, "Investigating the primality of numbers of the form 2n²-1")
 {
@@ -31,11 +9,11 @@ ENREGISTRER_PROBLEME(216, "Investigating the primality of numbers of the form 2n
     // For n ≤ 10000 there are 2202 numbers t(n) that are prime.
     // 
     // How many numbers t(n) are prime for n ≤ 50,000,000 ?
-    nombre limite = 50000000;
-    nombre resultat = 0;
-    for (nombre n = 1; n <= limite; ++n)
+    size_t limite = 50000000;
+    size_t resultat = 0;
+    for (size_t n = 1; n <= limite; ++n)
     {
-        if (premier(2*n*n-1))
+        if (nombre::premier(2*n*n-1))
             ++resultat;
     }
     

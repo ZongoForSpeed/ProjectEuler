@@ -1,46 +1,32 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "combinatoire.h"
-#include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
-#include <vector>
-
-// typedef unsigned long long nombre;
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
 {
-    std::string affiche(nombre n)
+    nombre restes_chinois(const vecteur & modulos, const vecteur & restes)
     {
-        std::ostringstream oss;
-        for (auto c: chiffres::extraire_chiffres(n, 14))
-        {
-            switch (static_cast<size_t>(c))
-            {
-            case 10: 
-                oss << 'a';
-                break;
-            case 11: 
-                oss << 'b';
-                break;
-            case 12: 
-                oss << 'c';
-                break;
-            case 13:
-                oss << 'd';
-                break;
-            default:
-                oss << c;
-                break;
-            }
-        }
-        
-        return oss.str();
+        // https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois
+        if (modulos.size() != restes.size())
+            return 0;
+
+        nombre n = 1;
+        for (const auto & p: modulos) n *= p;
+
+        nombre resultat = 0;
+
+        std::for_each2(modulos.begin(), modulos.end(), restes.begin(),
+                       [&resultat, &n] (const nombre & modulo, const nombre & reste)
+                       {
+                           nombre r = n / modulo;
+                           if (auto inverse = r.inverse_modulaire(modulo))
+                               resultat += r*reste*(*inverse);
+                           resultat %= n;
+                       }
+        );
+        return resultat;
     }
 }
 
@@ -64,9 +50,7 @@ ENREGISTRER_PROBLEME(284, "Steady Squares")
     // Find the sum of the digits of all the n-digit steady squares in the base 
     // 14 numbering system for 1 ≤ n ≤ 10000 (decimal) and give your answer in 
     // the base 14 system using lower case letters where necessary.
-    // vecteur premiers;
-    // premiers::crible<nombre>(10, std::back_inserter(premiers));
-    const vecteur restes1 { 0, 1 };    
+    const vecteur restes1 { 0, 1 };
     const vecteur restes2 { 1, 0 }; 
     
     nombre borne = 1;
@@ -76,11 +60,11 @@ ENREGISTRER_PROBLEME(284, "Steady Squares")
     for (size_t k = 1; k < 10000 + 1; ++k)
     {
         // Cas n = 0 mod 2^k and n = 1 mod 7^k
-        nombre n1 = arithmetiques::restes_chinois<nombre>(modulos, restes1);
+        nombre n1 = restes_chinois(modulos, restes1);
         if (n1 > borne)
             resultat += chiffres::somme_chiffres(n1, 14);
         // Cas n = 1 mod 2^k and n = 0 mod 7^k
-        nombre n2 = arithmetiques::restes_chinois<nombre>(modulos, restes2);
+        nombre n2 = restes_chinois(modulos, restes2);
         if (n2 > borne)
             resultat += chiffres::somme_chiffres(n2, 14);
         
@@ -88,6 +72,6 @@ ENREGISTRER_PROBLEME(284, "Steady Squares")
         modulos.front() *= 2;
         modulos.back() *= 7;
     }
-    
-    return affiche(resultat);
+
+    return resultat.to_string(14);
 }

@@ -1,15 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "combinatoire.h"
 #include "premiers.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <set>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
-// typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
@@ -40,15 +33,14 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients")
     premiers::crible2<nombre>(limite, std::back_inserter(premiers));
 
     std::set<nombre> square_free;
-    for (nombre n = 0; n <= limite; ++n)
-    for (nombre p = 0; p <= n; ++p)
+    for (size_t n = 0; n <= limite; ++n)
+    for (size_t p = 0; p <= n; ++p)
     {
-        nombre Cnp = combinatoire::coefficient_binomial(n, p);
+        nombre Cnp = nombre::coefficient_binomial(n, p);
         if (!arithmetiques::facteur_carre(Cnp, premiers))
             square_free.insert(Cnp);
     }
     
-    // std::cout << square_free << std::endl;
     nombre resultat = std::accumulate(square_free.begin(), square_free.end(), nombre(0));
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

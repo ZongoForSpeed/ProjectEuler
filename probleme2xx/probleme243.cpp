@@ -1,16 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <algorithm>
-#include <limits>
 
 #include <boost/rational.hpp>
-#include <boost/multiprecision/gmp.hpp>
 
 typedef unsigned long long nombre;
 typedef boost::rational<nombre> fraction;

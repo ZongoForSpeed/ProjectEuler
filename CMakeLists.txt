@@ -5,6 +5,10 @@ find_package(GMP REQUIRED)
 find_package(Boost 1.58 REQUIRED system thread timer chrono)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS "-Werror -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-global-constructors -Wno-exit-time-destructors -Wno-double-promotion")
+set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -DBOOST_UBLAS_NDEBUG")
+set(CMAKE_CXX_FLAGS_DEBUG  "-O0 -g")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${GMP_INCLUDE_DIR})
@@ -29,14 +33,12 @@ set(LIBRARY_HEADERS
         utilitaires.h)
 
 set(LIBRARY_FILES
-        arithmetiques.cpp
         graphe.cpp
         nombre.cpp
         premiers.cpp
         problemes.cpp
         pythagoricien.cpp
-        timer.cpp
-        utilitaires.cpp)
+        timer.cpp)
 
 file( COPY data
         DESTINATION .)

@@ -1,13 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(266, "Pseudo Square Root")
@@ -50,6 +45,8 @@ ENREGISTRER_PROBLEME(266, "Pseudo Square Root")
             ++it1;
         }
     }
+
+    resultat %= modulo;
     
-    return std::to_string(resultat%modulo);
+    return resultat.to_string();
 }

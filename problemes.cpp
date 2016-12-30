@@ -5,18 +5,6 @@
 #include <boost/algorithm/string.hpp>
 #include <fstream>
 
-namespace
-{
-    const std::string getEnvironnement(const std::string & variable)
-    {
-        std::string resultat;
-        if (const char * env = std::getenv(variable.c_str()))
-            resultat.assign(env);
-        
-        return resultat;
-    }
-}
-
 RegistreProbleme::RegistreProbleme() 
 {
     

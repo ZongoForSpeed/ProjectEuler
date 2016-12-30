@@ -1,20 +1,10 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "combinatoire.h"
 #include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
-#include "timer.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <cmath>
 #include <bitset>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
@@ -52,7 +42,7 @@ namespace
                 ++resultat;
         }
         
-        nombre maxp = racine_carre<nombre>(limite / n);
+        nombre maxp = (limite / n).racine_carre();
         if (maxp >= lastp)
             maxp = lastp - 1;
         
@@ -120,5 +110,5 @@ ENREGISTRER_PROBLEME(302, "Strong Achilles Numbers")
     std::map<nombre, size_t> decomposition;
     nombre resultat = algorithme(1, limite_crible, 0, decomposition, limite, premiers);
 
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

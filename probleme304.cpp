@@ -1,16 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
-#include <vector>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
@@ -64,14 +55,16 @@ ENREGISTRER_PROBLEME(304, "Primonacci")
     //
     // Find ∑b(n) for 1≤n≤100 000. Give your answer mod 1234567891011.
     const nombre modulo = 1234567891011ULL;
-    const nombre a0 = puissance::puissance<nombre, unsigned>(10, 14);
+    const nombre a0 = nombre::puissance(10, 14);
     vecteur a(100000 + 1, a0);
     nombre resultat = 0;
     for (size_t n = 1; n < a.size(); ++n)
     {
-        premiers::suivant(a[n], a[n - 1]);
+        a[n] = a[n - 1].premier_suivant();
         resultat += fibonacci(a[n], modulo);
     }
 
-    return std::to_string(resultat%modulo);
+    resultat %= modulo;
+
+    return resultat.to_string();
 }

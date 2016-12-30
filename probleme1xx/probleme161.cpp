@@ -1,19 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
 #include "multidimension.h"
-
-#include <iostream>
-#include <algorithm>
-#include <limits>
-
-#include <map>
-#include <set>
-
-#include <boost/multiprecision/gmp.hpp>
-#include <boost/optional.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
+#include "nombre.h"
 
 typedef multidimension<bool, 2> matrice;
 typedef std::pair<size_t, size_t> paire;
@@ -179,5 +167,5 @@ ENREGISTRER_PROBLEME(161, "Triominoes")
     matrice m (9u, 12u, true);
     std::map<matrice, nombre> cache;
     nombre resultat = combinaison(cache, m);
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

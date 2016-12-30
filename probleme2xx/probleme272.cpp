@@ -1,11 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
-#include "combinatoire.h"
-
-#include <iostream>
-#include <boost/multiprecision/gmp.hpp>
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;

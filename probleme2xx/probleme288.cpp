@@ -1,17 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "combinatoire.h"
-#include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
-#include "polynome.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <cmath>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace 
@@ -33,7 +23,7 @@ namespace
     
     nombre NF(size_t p, size_t q, size_t n)
     {
-        const nombre modulo = puissance::puissance<nombre>(p, n);
+        const nombre modulo = nombre::puissance(p, n);
         size_t S = 290797;
         
         nombre resultat = 0;
@@ -46,7 +36,7 @@ namespace
             
             if (i < n)
             {
-                resultat += nombre_facteur(T*puissance::puissance<nombre>(p, i), p, modulo);
+                resultat += nombre_facteur(T*nombre::puissance(p, i), p, modulo);
             }
             else
             {
@@ -78,5 +68,5 @@ ENREGISTRER_PROBLEME(288, "An enormous factorial")
     //
     // Find NF(61,10**7) mod 61**10
     nombre resultat = NF(61, 10000000, 10);
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

@@ -1,19 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/multiprecision/gmp.hpp>
-
-// typedef unsigned long long nombre;
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
-
 typedef std::pair<nombre, nombre> paire;
 
 namespace
@@ -88,5 +77,5 @@ ENREGISTRER_PROBLEME(194, "Coloured Configurations")
     nombre resultat = N(cache, 25, 75, 1984) % 100000000;
     std::cout << "N(25,75,1984) = " << resultat << std::endl;
     
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

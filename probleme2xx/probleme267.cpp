@@ -1,22 +1,14 @@
 #include "problemes.h"
 #include "puissance.h"
 #include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <vector>
-#include <set>
-#include <cmath>
-#include <functional>
-
-#include <boost/multiprecision/cpp_int.hpp>
-
-typedef unsigned long long nombre;
-typedef std::vector<nombre> vecteur;
-typedef std::set<nombre> ensemble;
+typedef std::vector<size_t> vecteur;
+typedef std::set<size_t> ensemble;
 
 namespace
 {
-    long double f(long double alpha, nombre n, nombre N)
+    long double f(long double alpha, size_t n, size_t N)
     {
         return (std::log(1.0L*N) - n*std::log(1.0L-alpha)) / (std::log(1.0L + 2.0L*alpha) - std::log(1.0L-alpha) );
     }
@@ -54,26 +46,29 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
     //
     // All computations are assumed to be exact (no rounding), but give your answer rounded to 12 
     // digits behind the decimal point in the form 0.abcdefghijkl.
-    const nombre n = 1000;
-    const nombre N = puissance::puissance<nombre, unsigned>(10, 9);
+    const size_t n = 1000;
+    const size_t N = puissance::puissance<size_t, unsigned>(10, 9);
     
     std::function<long double(long double)> lambda_f = [n, N] (long double x) -> long double { return f(x, n, N); };
     
-    const nombre alpha = static_cast<nombre>(std::ceil( f(recherche(lambda_f, 0.01L, 0.99L, 0.000001L), n, N)));
+    const size_t alpha = static_cast<size_t>(std::ceil( f(recherche(lambda_f, 0.01L, 0.99L, 0.000001L), n, N)));
     
-    std::vector<boost::multiprecision::cpp_int> C { 1 };
-    for (nombre k = 1; k < n + 1; ++k)
+    std::vector<nombre> C { 1 };
+    for (size_t k = 1; k < n + 1; ++k)
     {
         C.push_back(C.back() * (n - k + 1) / k);
     }
-    
-    boost::multiprecision::cpp_int resultat = 0;
-    for (nombre k = alpha; k < n + 1; ++k)
+
+    nombre resultat = 0;
+    for (size_t k = alpha; k < n + 1; ++k)
     {
         resultat += C[k];
     }
+
+    size_t masque = puissance::puissance<size_t, unsigned>(10,13);
+    resultat *= masque;
+    resultat /= nombre::puissance(2, n);
+    long double solution = resultat.get_double() / masque;
     
-    boost::multiprecision::cpp_int puissance = puissance::puissance<boost::multiprecision::cpp_int, nombre>(2, n);
-    
-    return std::to_string(static_cast<long double>(resultat) / static_cast<long double>(puissance), 12);
+    return std::to_string(solution, 12);
 }

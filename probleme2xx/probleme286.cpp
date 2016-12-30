@@ -2,6 +2,8 @@
 #include "arithmetiques.h"
 #include "polynome.h"
 
+#include <boost/multiprecision/gmp.hpp>
+
 typedef boost::multiprecision::mpf_float nombre;
 typedef std::vector<nombre> vecteur;
 

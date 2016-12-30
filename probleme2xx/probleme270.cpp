@@ -1,13 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "premiers.h"
-#include "utilitaires.h"
 #include "combinatoire.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace
@@ -17,7 +12,7 @@ namespace
         return combinatoire::catalan<nombre>(n - 2); 
     }
     
-    short signe(nombre n)
+    int signe(nombre n)
     {
         return (n % 2 == 0) ? 1 : -1;
     }
@@ -92,5 +87,5 @@ ENREGISTRER_PROBLEME(270, "Cutting Squares")
     // 
     // What is C(30) mod 10**8 ?
     nombre resultat = C(30) % 100000000;
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

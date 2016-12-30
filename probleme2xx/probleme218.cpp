@@ -1,16 +1,10 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
+#include "nombre.h"
+#include "pythagoricien.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
@@ -29,34 +23,23 @@ ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
     // -its area is a multiple of the perfect numbers 6 and 28.
     //
     // How many perfect right-angled triangles with c ≤ 10^16 exist that are not super-perfect?
-    nombre limite = puissance::puissance<nombre, unsigned>(10, 16);
-    nombre limite_m = puissance::puissance<nombre, unsigned>(10, 4);
-    nombre resultat = 0;
+    const size_t limite = puissance::puissance<size_t, unsigned>(10, 8);
 
-    for (nombre m = 2; m < limite_m; ++m)
-    for (nombre n = m%2 + 1; n < m; n += 2)
+    nombre resultat = 0;
+    Pythagoricien pythagoricien(limite);
+    for (const auto t: pythagoricien)
     {
-        if (arithmetiques::PGCD(m, n) == 1)
-        {
-            nombre x = m*m - n*n;
-            nombre y = 2*m*n;
-            
-            nombre z = m*m + n*n;
-            
-            if (x < y) std::swap(x, y);
-            
-            nombre a = x*x - y*y;
-            nombre b = 2*x*y;
-            nombre c = z*z;
-            if (c > limite)
-                break;
-                
-            // std::cout << std::make_tuple(a, b, c) << std::endl;
-            nombre A = a*b / 2;
-            if (A%6 != 0 || A%28 != 0)
-                ++resultat;
-        }
+        nombre x,y,z;
+        std::tie(x,y,z) = t;
+        nombre a = y*y - x*x;
+        nombre b = 2*x*y;
+        // nombre c = z*z;
+
+        nombre A = a*b / 2;
+        if (A%6 != 0 || A%28 != 0)
+            ++resultat;
+
     }
-    
-    return std::to_string(resultat);
+
+    return resultat.to_string();
 }

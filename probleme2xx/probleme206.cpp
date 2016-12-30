@@ -1,18 +1,10 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "polygonal.h"
+#include "nombre.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
-// typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 typedef std::map<nombre, nombre> dictionnaire;
@@ -52,5 +44,5 @@ ENREGISTRER_PROBLEME(206, "Concealed Square")
         }
     }
      
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

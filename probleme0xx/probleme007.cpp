@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "premiers.h"
 
-#include <iostream>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

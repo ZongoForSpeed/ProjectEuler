@@ -1,17 +1,10 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
+#include "nombre.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-#include <iomanip>
 
-#include <boost/multiprecision/gmp.hpp>
 #include <boost/algorithm/string.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 
 ENREGISTRER_PROBLEME(162, "Hexadecimal numbers")
 {
@@ -34,16 +27,13 @@ ENREGISTRER_PROBLEME(162, "Hexadecimal numbers")
     nombre resultat = 0;
     for (size_t n = 3; n < 17; ++n) 
     {
-	    resultat += 15 * puissance::puissance<nombre>(16, n - 1);
-	    resultat += 41 * puissance::puissance<nombre>(14, n - 1);
-	    resultat -= 43 * puissance::puissance<nombre>(15, n - 1);
-	    resultat -= puissance::puissance<nombre>(13, n);
+	    resultat += 15 * nombre::puissance(16, n - 1);
+	    resultat += 41 * nombre::puissance(14, n - 1);
+	    resultat -= 43 * nombre::puissance(15, n - 1);
+	    resultat -=      nombre::puissance(13, n);
     }
-    
-    std::ostringstream oss;
-    oss << std::hex << resultat;
-    
-    std::string str = oss.str();
+
+    std::string str = resultat.to_string(16);
     boost::to_upper(str);
     
     return str;

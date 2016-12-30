@@ -1,20 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "premiers.h"
-#include "utilitaires.h"
-#include "combinatoire.h"
-#include "polygonal.h"
+#include "nombre.h"
 
-#include <ostream>
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/multiprecision/gmp.hpp>
-
-typedef boost::multiprecision::mpz_int nombre;
 
 typedef std::vector<nombre> vecteur;
 typedef std::map<nombre, nombre> dictionnaire;
@@ -143,7 +131,10 @@ ENREGISTRER_PROBLEME(253, "Tidying up")
         denominateur += c.second;
     }
 
-    boost::multiprecision::mpf_float resultat = numerateur;
-    resultat /= denominateur;
+    const size_t masque = puissance::puissance<size_t, unsigned>(10, 7);
+    numerateur *= masque;
+    numerateur /= denominateur;
+    long double resultat = numerateur.get_double();
+    resultat /= masque;
     return std::to_string(resultat, 6);
 }
