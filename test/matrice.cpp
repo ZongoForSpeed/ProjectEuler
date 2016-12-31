@@ -1,4 +1,7 @@
 #include <boost/test/unit_test.hpp>
+#define NDEBUG
+#define BOOST_UBLAS_NDEBUG
+#define BOOST_UBLAS_TYPE_CHECK 0
 
 #include <boost/numeric/ublas/assignment.hpp> 
 #include <boost/rational.hpp>

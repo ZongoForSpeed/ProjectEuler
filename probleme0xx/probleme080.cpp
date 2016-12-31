@@ -2,6 +2,7 @@
 #include "nombre.h"
 
 #include <sstream>
+#include <vector>
 
 typedef std::vector<nombre> vecteur;
 

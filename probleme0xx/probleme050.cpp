@@ -6,6 +6,7 @@
 #include <list>
 #include <map>
 #include <set>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

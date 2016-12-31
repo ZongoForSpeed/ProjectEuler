@@ -1,9 +1,14 @@
 *.o
 Euler
 Euler.log
+ProjectEuler
+ProjectEulerTest
 Test
 .cproject
 .project
 .settings/
 .vscode/
 prof.euler
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
