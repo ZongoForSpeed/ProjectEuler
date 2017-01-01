@@ -40,7 +40,7 @@ set(LIBRARY_FILES
         pythagoricien.cpp
         timer.cpp)
 
-file( COPY data
+file(COPY data
         DESTINATION .)
 
 set(TEST_FILES
@@ -50,6 +50,7 @@ set(TEST_FILES
         test/combinatoire.cpp
         test/diophantienne.cpp
         test/matrice.cpp
+        test/nombre.cpp
         test/multidimension.cpp
         test/polygonal.cpp
         test/polynome.cpp

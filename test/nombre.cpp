@@ -15,10 +15,10 @@ BOOST_AUTO_TEST_SUITE(test_nombre)
         nombre n7("22801763489");
         
         BOOST_CHECK_EQUAL(n1.get_signed_long(), 0);
-        BOOST_CHECK_EQUAL(n2.get_string(2), "101010");
-        BOOST_CHECK_EQUAL(n3.get_string(6), "-3030");
+        BOOST_CHECK_EQUAL(n2.to_string(2), "101010");
+        BOOST_CHECK_EQUAL(n3.to_string(6), "-3030");
         BOOST_CHECK_EQUAL(n4.get_signed_long(), 3);
-        BOOST_CHECK_EQUAL(std::to_string(n5), "22801763489");
+        BOOST_CHECK_EQUAL(n5.to_string(), "22801763489");
         BOOST_CHECK_EQUAL(n6.get_signed_long(), 3);
         BOOST_CHECK_EQUAL(n7, 22801763489);
     }
@@ -29,13 +29,13 @@ BOOST_AUTO_TEST_SUITE(test_nombre)
         BOOST_CHECK_EQUAL(n, 0);
 
         n.set(42);
-        BOOST_CHECK_EQUAL(n.get_string(2), "101010");
+        BOOST_CHECK_EQUAL(n.to_string(2), "101010");
         
         n.set(-666);
-        BOOST_CHECK_EQUAL(n.get_string(6), "-3030");
+        BOOST_CHECK_EQUAL(n.to_string(6), "-3030");
         
         n.set(3.14158);
-        BOOST_CHECK_EQUAL(n.get_string(), "3");
+        BOOST_CHECK_EQUAL(n.to_string(), "3");
         
         n.set(-22801763489LL);
         BOOST_CHECK_EQUAL(n, -22801763489);
@@ -48,12 +48,12 @@ BOOST_AUTO_TEST_SUITE(test_nombre)
         
         nombre m(-22632576532575);
         std::swap(n, m);
-        BOOST_CHECK_EQUAL(m.get_string(), "228017634890");
-        BOOST_CHECK_EQUAL(n.get_string(), "-22632576532575");
+        BOOST_CHECK_EQUAL(m.to_string(), "228017634890");
+        BOOST_CHECK_EQUAL(n.to_string(), "-22632576532575");
         
         n.swap(m);
-        BOOST_CHECK_EQUAL(m.get_string(), "-22632576532575");
-        BOOST_CHECK_EQUAL(n.get_string(), "228017634890");
+        BOOST_CHECK_EQUAL(m.to_string(), "-22632576532575");
+        BOOST_CHECK_EQUAL(n.to_string(), "228017634890");
 
     }
     
@@ -137,25 +137,25 @@ BOOST_AUTO_TEST_SUITE(test_nombre)
         nombre m(22632572575LL);
         n.multiplication(m);
         
-        BOOST_CHECK_EQUAL(n.get_string(), "5160625763047650425");
+        BOOST_CHECK_EQUAL(n.to_string(), "5160625763047650425");
         
         n.multiplication(100);
-        BOOST_CHECK_EQUAL(n.get_string(), "516062576304765042500");
+        BOOST_CHECK_EQUAL(n.to_string(), "516062576304765042500");
         
         n*=m;
-        BOOST_CHECK_EQUAL(n.get_string(), "11679823711459070142704209437500");
+        BOOST_CHECK_EQUAL(n.to_string(), "11679823711459070142704209437500");
         
         nombre p = n * m;
-        BOOST_CHECK_EQUAL(p.get_string(), "264344457812803264146768626852218676562500");
+        BOOST_CHECK_EQUAL(p.to_string(), "264344457812803264146768626852218676562500");
         
         nombre q = 42ul * m;
-        BOOST_CHECK_EQUAL(q.get_string(), "950568048150");
+        BOOST_CHECK_EQUAL(q.to_string(), "950568048150");
         
         nombre r = n * 666ul;
-        BOOST_CHECK_EQUAL(r.get_string(), "7778762591831740715041003485375000");
+        BOOST_CHECK_EQUAL(r.to_string(), "7778762591831740715041003485375000");
         
         r *= 4;
-        BOOST_CHECK_EQUAL(r.get_string(), "31115050367326962860164013941500000");
+        BOOST_CHECK_EQUAL(r.to_string(), "31115050367326962860164013941500000");
     }
     
     BOOST_AUTO_TEST_CASE(test_shift)
@@ -310,10 +310,10 @@ BOOST_AUTO_TEST_SUITE(test_nombre)
         nombre n_xor = n ^ m;
         nombre n_not = ~n;
         
-        BOOST_CHECK_EQUAL(n_and.get_string(2), "10110000001000000");
-        BOOST_CHECK_EQUAL(n_or.get_string(2), "10111110111010101");
-        BOOST_CHECK_EQUAL(n_xor.get_string(2), "1110110010101");
-        BOOST_CHECK_EQUAL(n_not.get_string(2), "-10110000111000110");
+        BOOST_CHECK_EQUAL(n_and.to_string(2), "10110000001000000");
+        BOOST_CHECK_EQUAL(n_or.to_string(2), "10111110111010101");
+        BOOST_CHECK_EQUAL(n_xor.to_string(2), "1110110010101");
+        BOOST_CHECK_EQUAL(n_not.to_string(2), "-10110000111000110");
     }
     
     BOOST_AUTO_TEST_CASE(test_pgcd)
@@ -323,7 +323,7 @@ BOOST_AUTO_TEST_SUITE(test_nombre)
         nombre p(158665);
         
         BOOST_CHECK_EQUAL(nombre::PGCD(n, m), 1);
-        BOOST_CHECK_EQUAL(nombre::PGCD(n + 2, p), 65);
+        BOOST_CHECK_EQUAL(nombre::PGCD(p, 456755), 65);
     }
 
     BOOST_AUTO_TEST_CASE(test_ppcm)
@@ -333,7 +333,7 @@ BOOST_AUTO_TEST_SUITE(test_nombre)
         nombre p(158665u);
         
         BOOST_CHECK_EQUAL(nombre::PPCM(n, m), 44598733179);
-        BOOST_CHECK_EQUAL(nombre::PPCM(n + 2, p), 1114938955);
+        BOOST_CHECK_EQUAL(nombre::PPCM(p, 456755), 1114938955);
     }
     
 BOOST_AUTO_TEST_SUITE_END()
