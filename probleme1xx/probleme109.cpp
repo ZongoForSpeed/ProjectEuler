@@ -88,15 +88,15 @@ ENREGISTRER_PROBLEME(109, "Darts")
 
     for (nombre n = 1; n < 21; ++n)
     {
-        score.push_back(std::make_pair(concatener("S", n), n));
-        score.push_back(std::make_pair(concatener("D", n), 2*n));
-        score.push_back(std::make_pair(concatener("T", n), 3*n));
-        score_double.push_back(std::make_pair(concatener("D", n), 2*n));
+        score.push_back(std::make_pair(utilitaires::concatener("S", n), n));
+        score.push_back(std::make_pair(utilitaires::concatener("D", n), 2*n));
+        score.push_back(std::make_pair(utilitaires::concatener("T", n), 3*n));
+        score_double.push_back(std::make_pair(utilitaires::concatener("D", n), 2*n));
     }
     
-    score.push_back(std::make_pair(concatener("S", 25), 25));
-    score.push_back(std::make_pair(concatener("D", 25), 2*25));
-    score_double.push_back(std::make_pair(concatener("D", 25), 2*25));
+    score.push_back(std::make_pair(utilitaires::concatener("S", 25), 25));
+    score.push_back(std::make_pair(utilitaires::concatener("D", 25), 2*25));
+    score_double.push_back(std::make_pair(utilitaires::concatener("D", 25), 2*25));
     
     const S zero { std::make_pair("0", 0)};
     C combinaisons;

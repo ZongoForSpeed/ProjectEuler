@@ -161,18 +161,21 @@ namespace std
 template<typename Nombre>
 constexpr Nombre racine_carre(Nombre n)
 {
+    static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
     return static_cast<Nombre>(std::sqrt(n));
 }
 
-template<typename Nombre, typename = typename std::enable_if<std::is_integral<Nombre>::value, Nombre>::type>
+template<typename Nombre>
 constexpr Nombre racine_cubique(Nombre n)
 {
+    static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
 	return static_cast<Nombre>(std::cbrt(n));
 }
 
 template<typename Nombre>
 boost::optional<Nombre> carre_parfait(Nombre x)
 {
+    static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
     Nombre s = racine_carre<Nombre>(x);
     if (s * s == x)
         return s;
@@ -196,30 +199,6 @@ template<typename Nombre>
 constexpr typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::type egal(const Nombre & a, const Nombre & b)
 { 
     return std::abs(b - a) < std::numeric_limits<Nombre>::epsilon();
-}
-
-template<typename T1, typename T2>
-std::string concatener(const T1 & t1, const T2 & t2)
-{
-    std::ostringstream oss;
-    oss << t1 << t2;
-    return oss.str();
-}
-
-template<typename T1, typename T2, typename T3>
-std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3)
-{
-    std::ostringstream oss;
-    oss << t1 << t2 << t3;
-    return oss.str();
-}
-
-template<typename T1, typename T2, typename T3, typename T4>
-std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3, const T4 & t4)
-{
-    std::ostringstream oss;
-    oss << t1 << t2 << t3 << t4;
-    return oss.str();
 }
 
 namespace utilitaires
@@ -250,5 +229,29 @@ namespace utilitaires
     inline size_t distance(InputIterator first, InputIterator last)
     {
         return distance(first, last, std::__iterator_category(first));
+    }
+    
+    template<typename T1, typename T2>
+    std::string concatener(const T1 & t1, const T2 & t2)
+    {
+        std::ostringstream oss;
+        oss << t1 << t2;
+        return oss.str();
+    }
+    
+    template<typename T1, typename T2, typename T3>
+    std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3)
+    {
+        std::ostringstream oss;
+        oss << t1 << t2 << t3;
+        return oss.str();
+    }
+    
+    template<typename T1, typename T2, typename T3, typename T4>
+    std::string concatener(const T1 & t1, const T2 & t2, const T3 & t3, const T4 & t4)
+    {
+        std::ostringstream oss;
+        oss << t1 << t2 << t3 << t4;
+        return oss.str();
     }
 }

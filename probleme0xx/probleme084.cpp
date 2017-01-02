@@ -145,5 +145,5 @@ ENREGISTRER_PROBLEME(84, "Monopoly odds")
     std::sort(resultat.begin(), resultat.end(), 
         [] (const paire & a, const paire & b) { return a.second > b.second; });
     
-    return concatener(resultat[0].first, resultat[1].first, resultat[2].first);
+    return utilitaires::concatener(resultat[0].first, resultat[1].first, resultat[2].first);
 }
