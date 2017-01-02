@@ -1,7 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-
 #include "grand_nombre.h"
+
+#include <numeric>
 
 ENREGISTRER_PROBLEME(8, "Largest product in a series")
 {

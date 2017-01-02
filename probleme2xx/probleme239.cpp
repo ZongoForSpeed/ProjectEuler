@@ -1,8 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
 #include "grand_nombre.h"
-
-#include <fstream>
+#include "puissance.h"
 
 ENREGISTRER_PROBLEME(239, "Infinite string tour")
 {

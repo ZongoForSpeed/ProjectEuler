@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <numeric>
 
 #include <boost/algorithm/string.hpp>
 

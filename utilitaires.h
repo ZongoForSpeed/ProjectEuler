@@ -12,9 +12,6 @@
 #include <cmath>
 #include <iomanip>
 
-#include "puissance.h"
-#include "chiffres.h"
-
 #include <boost/optional.hpp>
 
 namespace std

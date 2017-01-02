@@ -2,6 +2,8 @@
 #include "timer.h"
 #include "utilitaires.h"
 
+#include <numeric>
+
 namespace
 {
     template<typename Nombre, class OutputIterator>

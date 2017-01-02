@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "grand_nombre.h"
+#include "chiffres.h"
 
 typedef std::vector<grand_nombre> vecteur;
 

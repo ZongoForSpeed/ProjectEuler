@@ -3,6 +3,8 @@
 #include "premiers.h"
 #include "grand_nombre.h"
 
+#include <numeric>
+
 typedef std::vector<grand_nombre> vecteur;
 typedef std::pair<grand_nombre, grand_nombre> paire;
 

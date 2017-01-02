@@ -7,7 +7,7 @@ typedef std::map<grand_nombre, vecteur> dictionnaire;
 
 namespace
 {
-    bool trinary(const grand_nombre & n)
+    bool trinary(grand_nombre n)
 	{
 		while (n%10 < 3 && n > 10)
 		{

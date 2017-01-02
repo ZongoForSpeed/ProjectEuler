@@ -7,6 +7,7 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
+#include <numeric>
 
 #include <boost/rational.hpp>
 

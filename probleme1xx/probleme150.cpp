@@ -3,9 +3,7 @@
 #include "utilitaires.h"
 
 #include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <limits>
+#include <numeric>
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;

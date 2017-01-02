@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
+#include <numeric>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

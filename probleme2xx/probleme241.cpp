@@ -3,7 +3,7 @@
 #include "premiers.h"
 #include "grand_nombre.h"
 
-#include <fstream>
+#include <numeric>
 
 #include <boost/rational.hpp>
 
@@ -25,11 +25,11 @@ namespace
 		
 		for (size_t a = exposant;; ++a)
 		{
-			grand_nombre m = n * puissance::puissance(p, a);
+			grand_nombre m = n * grand_nombre::puissance(p, a);
 			if (m > limite)
 				break;
 				
-			fraction sigma2 = sigma * fraction(puissance::puissance(p, a + 1) - 1, puissance::puissance(p, a) * (p - 1));
+			fraction sigma2 = sigma * fraction(grand_nombre::puissance(p, a + 1) - 1, grand_nombre::puissance(p, a) * (p - 1));
 				
 			if (sigma2 == 1)
 			{
@@ -55,7 +55,7 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients")
 	// 
 	// Find the sum of all positive integers n ≤ 1018 for which p(n) has the form k + 1/2, where k is an
 	// integer.
-	const grand_nombre limite = puissance::puissance<grand_nombre, unsigned>(10, 18);
+	const grand_nombre limite = grand_nombre::puissance(10, 18);
 	vecteur premiers;
 	premiers::crible235<grand_nombre>(1000, std::back_inserter(premiers));
 	

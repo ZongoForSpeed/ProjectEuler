@@ -5,6 +5,7 @@
 #include "puissance.h"
 #include "utilitaires.h"
 #include "polynome.h"
+#include "chiffres.h"
 
 #include <iostream>
 #include <iomanip>

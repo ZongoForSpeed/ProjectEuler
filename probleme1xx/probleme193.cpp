@@ -20,7 +20,7 @@ ENREGISTRER_PROBLEME(193, "Squarefree Numbers")
     // 6, 7, 10, 11 are squarefree, but not 4, 8, 9, 12.
     //
     // How many squarefree numbers are there below 2^50?
-    nombre limite = puissance::puissance<nombre, unsigned>(2, 25);
+    nombre limite = puissance::puissance<long long, unsigned>(2, 25);
     vecteur premiers;
     premiers::crible235<nombre>(static_cast<size_t>(limite), std::back_inserter(premiers));
     

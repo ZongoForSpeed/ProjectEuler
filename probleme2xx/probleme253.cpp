@@ -2,7 +2,7 @@
 #include "arithmetiques.h"
 #include "grand_nombre.h"
 
-#include <fstream>
+#include <numeric>
 
 typedef std::vector<grand_nombre> vecteur;
 typedef std::map<grand_nombre, grand_nombre> dictionnaire;

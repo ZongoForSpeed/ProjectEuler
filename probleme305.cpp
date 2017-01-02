@@ -3,6 +3,7 @@
 #include "premiers.h"
 #include "puissance.h"
 #include "utilitaires.h"
+#include "chiffres.h"
 
 #include <iostream>
 #include <iomanip>

@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
+#include <numeric>
 
 #include <map>
 #include <set>

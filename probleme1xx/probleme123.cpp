@@ -19,7 +19,7 @@ ENREGISTRER_PROBLEME(123, "Prime square remainders")
     vecteur premiers;
     premiers::crible23<grand_nombre>(1000000, std::back_inserter(premiers));
     
-    grand_nombre borne = puissance::puissance<grand_nombre, unsigned>(10, 10);
+    grand_nombre borne = grand_nombre::puissance(10, 10);
 
     grand_nombre resultat = 0;
     for (size_t n = 1;; ++n)
