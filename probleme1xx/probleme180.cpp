@@ -84,6 +84,6 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
         v *= s.denominator();
     }
     
-    grand_nombre resultat = (u + v)/arithmetiques::PGCD(u,v);
+    grand_nombre resultat = (u + v)/grand_nombre::PGCD(u,v);
     return resultat.to_string();
 }

@@ -251,6 +251,32 @@ bool grand_nombre::divisible(unsigned long int op) const
     return mpz_divisible_ui_p(data, op) != 0;
 }
 
+grand_nombre grand_nombre::coefficient_binomial(const grand_nombre & n, unsigned long int k)
+{
+    grand_nombre resultat;
+    mpz_bin_ui (resultat.data, n.data, k);
+    return resultat;
+}
+
+grand_nombre grand_nombre::coefficient_binomial(unsigned long int n, unsigned long int k)
+{
+    grand_nombre resultat;
+    mpz_bin_uiui (resultat.data, n, k);
+    return resultat;
+}
+
+grand_nombre grand_nombre::factorielle(unsigned long int n)
+{
+    grand_nombre resultat;
+    mpz_fac_ui (resultat.data, n);
+    return resultat;
+}
+
+grand_nombre grand_nombre::catalan(unsigned long int n)
+{
+    return coefficient_binomial(2*n, n) / (n + 1);
+}
+
 namespace std
 {
     grand_nombre abs(const grand_nombre & op)

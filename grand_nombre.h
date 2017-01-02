@@ -129,8 +129,7 @@ public:
     grand_nombre & addition(const T & op)
     {
         grand_nombre tmp(op);
-        addition(tmp);
-        return *this;
+        return addition(tmp);
     }
     
     grand_nombre & soustraction(const grand_nombre & op);
@@ -140,8 +139,7 @@ public:
     grand_nombre & soustraction(const T & op)
     {
         grand_nombre tmp(op);
-        soustraction(tmp);
-        return *this;
+        return soustraction(tmp);
     }
     
     grand_nombre & multiplication(const grand_nombre & op);
@@ -152,8 +150,7 @@ public:
     grand_nombre & multiplication(const T & op)
     {
         grand_nombre tmp(op);
-        multiplication(tmp);
-        return *this;
+        return multiplication(tmp);
     }
     
     grand_nombre & division(const grand_nombre & op);
@@ -163,8 +160,7 @@ public:
     grand_nombre & division(const T & op)
     {
         grand_nombre tmp(op);
-        division(tmp);
-        return *this;
+        return division(tmp);
     }
     
     grand_nombre & modulo(const grand_nombre & op);
@@ -174,8 +170,7 @@ public:
     grand_nombre & modulo(const T & op)
     {
         grand_nombre tmp(op);
-        modulo(tmp);
-        return *this;
+        return modulo(tmp);
     }
     
     bool divisible(const grand_nombre & op) const;
@@ -755,26 +750,10 @@ public:
         return *this;
     }
     
-    static grand_nombre coefficient_binomial(const grand_nombre & n, unsigned long int k)
-    {
-        grand_nombre resultat;
-        mpz_bin_ui (resultat.data, n.data, k);
-        return resultat;
-    }
-    
-    static grand_nombre coefficient_binomial(unsigned long int n, unsigned long int k)
-    {
-        grand_nombre resultat;
-        mpz_bin_uiui (resultat.data, n, k);
-        return resultat;
-    }
-
-    static grand_nombre factorielle(unsigned long int n)
-    {
-        grand_nombre resultat;
-        mpz_fac_ui (resultat.data, n);
-        return resultat;
-    }
+    static grand_nombre coefficient_binomial(const grand_nombre & n, unsigned long int k);
+    static grand_nombre coefficient_binomial(unsigned long int n, unsigned long int k);
+    static grand_nombre factorielle(unsigned long int n);
+    static grand_nombre catalan(unsigned long int n);
 };
 
 template<typename T>

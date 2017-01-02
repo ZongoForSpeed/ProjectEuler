@@ -12,7 +12,7 @@ ENREGISTRER_PROBLEME(20, "Factorial digit sum")
     // and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
     // 
     // Find the sum of the digits in the number 100!
-    grand_nombre factorielle = combinatoire::factorielle<grand_nombre>(100);
+    grand_nombre factorielle = grand_nombre::factorielle(100);
     grand_nombre resultat = 0;
     chiffres::boucle_chiffre(factorielle, [&resultat](grand_nombre d) { resultat += d; });
     return resultat.to_string();

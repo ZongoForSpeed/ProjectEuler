@@ -14,6 +14,7 @@ namespace arithmetiques
     template<typename Nombre>
     constexpr Nombre PGCD(Nombre a, Nombre b)
     {
+        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
         if (a == 0)
             return b;
         if (b == 0)
@@ -49,6 +50,7 @@ namespace arithmetiques
     template<typename Nombre>
     void Bezout(Nombre a, Nombre b, Nombre& x, Nombre& y)
     {
+        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
         // https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
         Nombre s = 0, old_s = 1;
         Nombre t = 1, old_t = 0;

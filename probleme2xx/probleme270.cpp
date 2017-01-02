@@ -7,61 +7,61 @@ typedef std::vector<grand_nombre> vecteur;
 
 namespace
 {
-    grand_nombre G0(grand_nombre n)
+    grand_nombre G0(size_t n)
     {
-        return combinatoire::catalan<grand_nombre>(n - 2); 
+        return grand_nombre::catalan(n - 2); 
     }
     
-    int signe(grand_nombre n)
+    int signe(size_t n)
     {
         return (n % 2 == 0) ? 1 : -1;
     }
     
-    grand_nombre G1(grand_nombre n, grand_nombre k1)
+    grand_nombre G1(size_t n, size_t k1)
     {
         grand_nombre somme = 0;
-        for (grand_nombre j = 0; 2*j < k1 + 1; ++j)
+        for (size_t j = 0; 2*j < k1 + 1; ++j)
         {
-            somme += signe(j)*combinatoire::coefficient_binomial<grand_nombre>(k1-j,j)*G0(n-j);
+            somme += signe(j)*grand_nombre::coefficient_binomial(k1-j,j)*G0(n-j);
         }
         
         return somme;
     }
     
-    grand_nombre G2(grand_nombre n, grand_nombre k1, grand_nombre k2)
+    grand_nombre G2(size_t n, size_t k1, size_t k2)
     {
         grand_nombre somme = 0;
-        for (grand_nombre j = 0; 2*j < k1 + 1; ++j)
+        for (size_t j = 0; 2*j < k1 + 1; ++j)
         {
-            somme += signe(j)*combinatoire::coefficient_binomial<grand_nombre>(k1-j,j)*G1(n-j, k2);
+            somme += signe(j)*grand_nombre::coefficient_binomial(k1-j,j)*G1(n-j, k2);
         }
         
         return somme;
     }
     
-    grand_nombre G3(grand_nombre n, grand_nombre k1, grand_nombre k2, grand_nombre k3)
+    grand_nombre G3(size_t n, size_t k1, size_t k2, size_t k3)
     {
         grand_nombre somme = 0;
-        for (grand_nombre j = 0; 2*j < k1 + 1; ++j)
+        for (size_t j = 0; 2*j < k1 + 1; ++j)
         {
-            somme += signe(j)*combinatoire::coefficient_binomial<grand_nombre>(k1-j,j)*G2(n-j, k2, k3);
+            somme += signe(j)*grand_nombre::coefficient_binomial(k1-j,j)*G2(n-j, k2, k3);
         }
         
         return somme;
     }
     
-    grand_nombre G4(grand_nombre n, grand_nombre k1, grand_nombre k2, grand_nombre k3, grand_nombre k4)
+    grand_nombre G4(size_t n, size_t k1, size_t k2, size_t k3, size_t k4)
     {
         grand_nombre somme = 0;
-        for (grand_nombre j = 0; 2*j < k1 + 1; ++j)
+        for (size_t j = 0; 2*j < k1 + 1; ++j)
         {
-            somme += signe(j)*combinatoire::coefficient_binomial<grand_nombre>(k1-j,j)*G3(n-j, k2, k3, k4);
+            somme += signe(j)*grand_nombre::coefficient_binomial(k1-j,j)*G3(n-j, k2, k3, k4);
         }
         
         return somme;
     }
     
-    grand_nombre C(grand_nombre n)
+    grand_nombre C(size_t n)
     {
         return G4(4*n, n, n, n, n);
     }

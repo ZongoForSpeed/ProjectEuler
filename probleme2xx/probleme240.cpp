@@ -5,7 +5,7 @@
 
 #include <fstream>
 
-typedef std::vector<grand_nombre> vecteur;
+typedef std::vector<size_t> vecteur;
 typedef std::pair<grand_nombre, grand_nombre> paire;
 
 typedef std::map<grand_nombre, grand_nombre> dictionnaire;
@@ -26,8 +26,8 @@ namespace
 	grand_nombre combinaison(const vecteur & arrangement)
 	{
 		grand_nombre resultat = 1;
-		for (grand_nombre a: arrangement)
-			resultat *= combinatoire::factorielle(a);
+		for (auto & a: arrangement)
+			resultat *= grand_nombre::factorielle(a);
 			
 		return resultat;
 	}
@@ -35,7 +35,7 @@ namespace
 	grand_nombre W(size_t n, vecteur arrangement, size_t m)
 	{
 		if (n == 0)
-			return combinatoire::factorielle<grand_nombre>(20);
+			return grand_nombre::factorielle(20);
 			
 		grand_nombre resultat = 0;
 		for (size_t k = 1; k <= m; ++k)
