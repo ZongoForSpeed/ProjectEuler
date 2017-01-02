@@ -20,7 +20,7 @@ set(LIBRARY_HEADERS
         combinatoire.h
         diophantienne.h
         graphe.h
-        nombre.h
+        grand_nombre.h
         matrice.h
         multidimension.h
         polygonal.h
@@ -34,7 +34,7 @@ set(LIBRARY_HEADERS
 
 set(LIBRARY_FILES
         graphe.cpp
-        nombre.cpp
+        grand_nombre.cpp
         premiers.cpp
         problemes.cpp
         pythagoricien.cpp

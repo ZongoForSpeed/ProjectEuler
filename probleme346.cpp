@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 ENREGISTRER_PROBLEME(346, "Strong Repunits")
 {
@@ -9,21 +9,21 @@ ENREGISTRER_PROBLEME(346, "Strong Repunits")
 	//
 	// We shall call a positive integer with this property a strong repunit. It can be verified that there are 8 strong
 	// repunits below 50: {1,7,13,15,21,31,40,43}.
-	// Furthermore, the sum of all strong repunits below 1000 equals 15864.
-	// Find the sum of all strong repunits below 1012.
-	nombre limite = 1000000000000LL;
+	// Furthermore, the sum of all strong repunits below 10**00 equals 15864.
+	// Find the sum of all strong repunits below 10**12.
+	grand_nombre limite = grand_nombre::puissance(10, 12);
 
-	std::set<nombre> ensemble;
+	std::set<grand_nombre> ensemble;
 	ensemble.insert(1);
-	for (nombre base = 2; base * base + base + 1 <= limite; ++base)
+	for (grand_nombre base = 2; base * base + base + 1 <= limite; ++base)
 	{
-		nombre repunit = base * base + base + 1;
+		grand_nombre repunit = base * base + base + 1;
 		while (repunit <= limite)
 		{
 			ensemble.insert(repunit);
 			repunit = repunit * base + 1;
 		}
 	}
-	nombre somme = std::accumulate(ensemble.begin(), ensemble.end(), nombre(0));
+	grand_nombre somme = std::accumulate(ensemble.begin(), ensemble.end(), grand_nombre(0));
 	return somme.to_string();
 }

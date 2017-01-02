@@ -1,10 +1,10 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 namespace
 {
-    nombre f(std::map<nombre, nombre> & cache, nombre n)
+    grand_nombre f(std::map<grand_nombre, grand_nombre> & cache, grand_nombre n)
     {
         auto it = cache.find(n);
         if (it != cache.end())
@@ -12,7 +12,7 @@ namespace
 
         // f(n) = f(n/2) + f(n/2 - 1) si n pair
         // f(n) = f((n-1)/2) si n impair
-        nombre resultat = 0;
+        grand_nombre resultat = 0;
         if (n == 0)
             resultat = 1;
         else if (n%2 == 0)
@@ -38,8 +38,8 @@ ENREGISTRER_PROBLEME(169, "Exploring the number of different ways a number can b
     // 2 + 8
     // 
     // What is f(10^25)?
-    nombre n = nombre::puissance(10, 25);
-    std::map<nombre, nombre> cache;
-    nombre resultat = f(cache, n);
+    grand_nombre n = grand_nombre::puissance(10, 25);
+    std::map<grand_nombre, grand_nombre> cache;
+    grand_nombre resultat = f(cache, n);
     return resultat.to_string();
 }

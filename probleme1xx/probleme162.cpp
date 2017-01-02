@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <fstream>
 
@@ -24,13 +24,13 @@ ENREGISTRER_PROBLEME(162, "Hexadecimal numbers")
     // (A,B,C,D,E and F in upper case, without any leading or trailing code that marks the number as
     // hexadecimal and without leading zeroes , e.g. 1A3F and not: 1a3f and not 0x1a3f and not $1A3F
     // and not #1A3F and not 0000001A3F)
-    nombre resultat = 0;
+    grand_nombre resultat = 0;
     for (size_t n = 3; n < 17; ++n) 
     {
-	    resultat += 15 * nombre::puissance(16, n - 1);
-	    resultat += 41 * nombre::puissance(14, n - 1);
-	    resultat -= 43 * nombre::puissance(15, n - 1);
-	    resultat -=      nombre::puissance(13, n);
+	    resultat += 15 * grand_nombre::puissance(16, n - 1);
+	    resultat += 41 * grand_nombre::puissance(14, n - 1);
+	    resultat -= 43 * grand_nombre::puissance(15, n - 1);
+	    resultat -=      grand_nombre::puissance(13, n);
     }
 
     std::string str = resultat.to_string(16);

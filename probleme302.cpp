@@ -1,17 +1,17 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <bitset>
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 namespace
 {
-    void ajout_facteur(nombre n, std::map<nombre, size_t> & resultat, const std::set<nombre> & premiers)
+    void ajout_facteur(grand_nombre n, std::map<grand_nombre, size_t> & resultat, const std::set<grand_nombre> & premiers)
     {
-        std::map<nombre, size_t> d;
+        std::map<grand_nombre, size_t> d;
         arithmetiques::decomposition(n, premiers, d);
         for (auto p: d)
         {
@@ -19,7 +19,7 @@ namespace
         }
 	}
 	
-	size_t algorithme(nombre n, nombre lastp, size_t pgcd, std::map<nombre, size_t> & decomposition, nombre limite, const std::set<nombre> & premiers)
+	size_t algorithme(grand_nombre n, grand_nombre lastp, size_t pgcd, std::map<grand_nombre, size_t> & decomposition, grand_nombre limite, const std::set<grand_nombre> & premiers)
 	{
         size_t resultat = 0;
         if (pgcd == 1)
@@ -42,11 +42,11 @@ namespace
                 ++resultat;
         }
         
-        nombre maxp = (limite / n).racine_carre();
+        grand_nombre maxp = (limite / n).racine_carre();
         if (maxp >= lastp)
             maxp = lastp - 1;
         
-        nombre minp = 2;
+        grand_nombre minp = 2;
         for (auto it = decomposition.rbegin(), en = decomposition.rend(); it != en; ++it)
         {
             if (it->second < 2)
@@ -58,12 +58,12 @@ namespace
 
         // auto lower = std::lower_bound(premiers.begin(), premiers.end(), minp);
         // auto upper = std::upper_bound(premiers.begin(), premiers.end(), maxp);
-        for(nombre p = maxp; p >= minp; --p)
+        for(grand_nombre p = maxp; p >= minp; --p)
         {
             if (premiers.find(p) != premiers.end()) 
             {
-                nombre m = n * p;
-                std::map<nombre, size_t> d2 = decomposition;
+                grand_nombre m = n * p;
+                std::map<grand_nombre, size_t> d2 = decomposition;
                 ajout_facteur(p - 1, d2, premiers);
                 for(size_t exposant = 2; p * m < limite; ++exposant) 
                 {
@@ -102,13 +102,13 @@ ENREGISTRER_PROBLEME(302, "Strong Achilles Numbers")
     //
     // 1 φ denotes Euler's totient function.
     const size_t limite_crible = 1000000 + 1;
-    std::set<nombre> premiers;
-    premiers::crible235<nombre>(limite_crible, std::inserter(premiers, premiers.begin()));
+    std::set<grand_nombre> premiers;
+    premiers::crible235<grand_nombre>(limite_crible, std::inserter(premiers, premiers.begin()));
     
-    nombre limite = puissance::puissance<nombre, unsigned>(10, 18);
+    grand_nombre limite = puissance::puissance<grand_nombre, unsigned>(10, 18);
     
-    std::map<nombre, size_t> decomposition;
-    nombre resultat = algorithme(1, limite_crible, 0, decomposition, limite, premiers);
+    std::map<grand_nombre, size_t> decomposition;
+    grand_nombre resultat = algorithme(1, limite_crible, 0, decomposition, limite, premiers);
 
     return resultat.to_string();
 }

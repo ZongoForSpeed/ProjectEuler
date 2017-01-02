@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 {
@@ -16,8 +16,8 @@ ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 		size_t reste = n%210;
 		if (reste == 10 || reste == 80 || reste == 130 || reste == 200)
 		{
-			nombre n2 = n*n;
-			nombre p = (n2+1);
+			grand_nombre n2 = n*n;
+			grand_nombre p = (n2+1);
 			if (!p.premier())
 			    continue;
 			    

@@ -1,10 +1,9 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "utilitaires.h"
+#include "grand_nombre.h"
 
-#include "nombre.h"
-
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(10, "Summation of primes")
 {
@@ -12,7 +11,7 @@ ENREGISTRER_PROBLEME(10, "Summation of primes")
     // 
     // Find the sum of all the primes below two million.
     vecteur premiers;
-    premiers::crible2<nombre>(2000000, std::back_inserter(premiers));
-    nombre solution = std::accumulate(premiers.begin(), premiers.end(), nombre(0));
+    premiers::crible2<grand_nombre>(2000000, std::back_inserter(premiers));
+    grand_nombre solution = std::accumulate(premiers.begin(), premiers.end(), grand_nombre(0));
     return solution.to_string();
 }

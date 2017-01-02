@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 
-#include "nombre.h"
+#include "grand_nombre.h"
 
 ENREGISTRER_PROBLEME(8, "Largest product in a series")
 {
@@ -31,18 +31,18 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series")
     // Find the thirteen adjacent digits in the 1000-digit number that have the
     // greatest product. 
     // What is the value of this product?
-    auto produit = [&big_number](const size_t & debut, const size_t & fin) -> nombre
+    auto produit = [&big_number](const size_t & debut, const size_t & fin) -> grand_nombre
     {
         if (debut < fin && fin < big_number.size())
             return std::accumulate(std::next(big_number.begin(), debut),
                                    std::next(big_number.begin(), fin),
-                                   nombre(1),
-                                   [](const nombre & p, char c) -> nombre { return p * (c - '0'); }
+                                   grand_nombre(1),
+                                   [](const grand_nombre & p, char c) -> grand_nombre { return p * (c - '0'); }
                                    );
         else
             return 0;
     };
-    nombre solution = 0;
+    grand_nombre solution = 0;
     for (size_t n = 13; n < big_number.size(); ++n)
         solution = std::max(solution, produit(n - 13, n));
     return solution.to_string();

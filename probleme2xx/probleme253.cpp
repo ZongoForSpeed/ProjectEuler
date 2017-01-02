@@ -1,11 +1,11 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <fstream>
 
-typedef std::vector<nombre> vecteur;
-typedef std::map<nombre, nombre> dictionnaire;
+typedef std::vector<grand_nombre> vecteur;
+typedef std::map<grand_nombre, grand_nombre> dictionnaire;
 
 namespace
 {
@@ -15,7 +15,7 @@ namespace
         if (it != cache.end())
             return it->second;
         
-        nombre somme = std::accumulate(tailles.begin(), tailles.end(), nombre(0));
+        grand_nombre somme = std::accumulate(tailles.begin(), tailles.end(), grand_nombre(0));
         if (somme == 1 && tailles[1] == 1)
         {
             dictionnaire resultat { { 1, 1 } };
@@ -122,8 +122,8 @@ ENREGISTRER_PROBLEME(253, "Tidying up")
     std::map<vecteur, dictionnaire> cache;
     auto combinaison = algorithme(input, cache);
     
-    nombre numerateur = 0;
-    nombre denominateur = 0;
+    grand_nombre numerateur = 0;
+    grand_nombre denominateur = 0;
     
     for (auto c: combinaison)
     {

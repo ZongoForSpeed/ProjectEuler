@@ -1,12 +1,12 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <list>
 #include <boost/rational.hpp>
 
-typedef boost::rational<nombre> fraction;
+typedef boost::rational<grand_nombre> fraction;
 
 ENREGISTRER_PROBLEME(57, "Square root convergents")
 {
@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(57, "Square root convergents")
     // In the first one-thousand expansions, how many fractions contain a numerator with more digits than denominator?
     fraction f(3, 2);
     size_t compteur = 0;
-    for (nombre n = 1; n < 1000; ++n)
+    for (grand_nombre n = 1; n < 1000; ++n)
     {
         f = 1 + 1 / (1 + f);
         if (chiffres::nombre_chiffres(f.numerator()) > chiffres::nombre_chiffres(f.denominator()))

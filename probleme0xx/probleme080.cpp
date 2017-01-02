@@ -1,10 +1,10 @@
 #include "problemes.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <sstream>
 #include <vector>
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(80, "Square root digital expansion")
 {
@@ -17,11 +17,11 @@ ENREGISTRER_PROBLEME(80, "Square root digital expansion")
     //
     // For the first one hundred natural numbers, find the total of the digital sums of the first 
     // one hundred decimal digits for all the irrational square roots.
-    nombre gogol = nombre::puissance(10, 100);
-    nombre gogol_carre = gogol * gogol;
+    grand_nombre gogol = grand_nombre::puissance(10, 100);
+    grand_nombre gogol_carre = gogol * gogol;
     
     std::ostringstream oss;
-    for (nombre n = 1; n < 100; ++n)
+    for (grand_nombre n = 1; n < 100; ++n)
     {
         if (!n.carre_parfait())
         {

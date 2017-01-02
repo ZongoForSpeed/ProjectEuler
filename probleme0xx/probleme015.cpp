@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 ENREGISTRER_PROBLEME(15, "Lattice paths")
 {
@@ -8,5 +8,5 @@ ENREGISTRER_PROBLEME(15, "Lattice paths")
     // there are exactly 6 routes to the bottom right corner.
     //
     // How many such routes are there through a 20×20 grid?
-    return nombre::coefficient_binomial(40, 20).to_string();
+    return grand_nombre::coefficient_binomial(40, 20).to_string();
 }

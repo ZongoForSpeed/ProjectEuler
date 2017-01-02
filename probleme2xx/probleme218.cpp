@@ -1,11 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 #include "pythagoricien.h"
-
-#include <fstream>
-
-typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
 {
@@ -25,20 +21,19 @@ ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
     // How many perfect right-angled triangles with c ≤ 10^16 exist that are not super-perfect?
     const size_t limite = puissance::puissance<size_t, unsigned>(10, 8);
 
-    nombre resultat = 0;
+    grand_nombre resultat = 0;
     Pythagoricien pythagoricien(limite);
     for (const auto t: pythagoricien)
     {
-        nombre x,y,z;
+        grand_nombre x,y,z;
         std::tie(x,y,z) = t;
-        nombre a = y*y - x*x;
-        nombre b = 2*x*y;
-        // nombre c = z*z;
+        grand_nombre a = y*y - x*x;
+        grand_nombre b = 2*x*y;
+        // grand_nombre c = z*z;
 
-        nombre A = a*b / 2;
+        grand_nombre A = a*b / 2;
         if (A%6 != 0 || A%28 != 0)
             ++resultat;
-
     }
 
     return resultat.to_string();

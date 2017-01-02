@@ -2,24 +2,24 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 namespace
 {
-    nombre combinaison(size_t m, size_t n)
+    grand_nombre combinaison(size_t m, size_t n)
     {
-        return nombre::factorielle(m * n) / nombre::puissance(nombre::factorielle(n), m);
+        return grand_nombre::factorielle(m * n) / grand_nombre::puissance(grand_nombre::factorielle(n), m);
     }
     
-    nombre f(size_t m, size_t n, const vecteur & premiers)
+    grand_nombre f(size_t m, size_t n, const vecteur & premiers)
     {
-        nombre somme = 0;
+        grand_nombre somme = 0;
         for (size_t d = 1; d < n + 1; ++d)
         {
             if (n % d == 0)
-                somme += combinaison(m, d) * arithmetiques::phi<nombre>(n / d, premiers);
+                somme += combinaison(m, d) * arithmetiques::phi<grand_nombre>(n / d, premiers);
         }
         return somme / (m*n);
     }
@@ -41,10 +41,10 @@ ENREGISTRER_PROBLEME(281, "Pizza Toppings")
     // p281_pizza.gif
     // Find the sum of all f(m,n) such that f(m,n) ≤ 10**15.
     vecteur premiers;
-    premiers::crible235<nombre>(1000, std::back_inserter(premiers));
+    premiers::crible235<grand_nombre>(1000, std::back_inserter(premiers));
     
-    nombre resultat = 0;
-    nombre limite = nombre::puissance(10, 15);
+    grand_nombre resultat = 0;
+    grand_nombre limite = grand_nombre::puissance(10, 15);
     
     for (size_t m = 2; f(m, 1, premiers) <= limite; ++m)
     for (size_t n = 1; f(m, n, premiers) <= limite; ++n)

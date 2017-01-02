@@ -2,7 +2,7 @@
 #include "chiffres.h"
 #include "combinatoire.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 ENREGISTRER_PROBLEME(20, "Factorial digit sum")
 {
@@ -12,8 +12,8 @@ ENREGISTRER_PROBLEME(20, "Factorial digit sum")
     // and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
     // 
     // Find the sum of the digits in the number 100!
-    nombre factorielle = combinatoire::factorielle<nombre>(100);
-    nombre resultat = 0;
-    chiffres::boucle_chiffre(factorielle, [&resultat](nombre d) { resultat += d; });
+    grand_nombre factorielle = combinatoire::factorielle<grand_nombre>(100);
+    grand_nombre resultat = 0;
+    chiffres::boucle_chiffre(factorielle, [&resultat](grand_nombre d) { resultat += d; });
     return resultat.to_string();
 }

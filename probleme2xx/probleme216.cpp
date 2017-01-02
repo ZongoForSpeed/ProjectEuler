@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 ENREGISTRER_PROBLEME(216, "Investigating the primality of numbers of the form 2n²-1")
 {
@@ -13,7 +13,7 @@ ENREGISTRER_PROBLEME(216, "Investigating the primality of numbers of the form 2n
     size_t resultat = 0;
     for (size_t n = 1; n <= limite; ++n)
     {
-        if (nombre::premier(2*n*n-1))
+        if (grand_nombre::premier(2*n*n-1))
             ++resultat;
     }
     

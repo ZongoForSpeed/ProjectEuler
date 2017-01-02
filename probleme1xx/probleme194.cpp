@@ -1,16 +1,16 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
-typedef std::pair<nombre, nombre> paire;
+typedef std::vector<grand_nombre> vecteur;
+typedef std::pair<grand_nombre, grand_nombre> paire;
 
 namespace
 {
-    nombre combinaison_b(nombre couleur)
+    grand_nombre combinaison_b(grand_nombre couleur)
     {
-        nombre c = couleur - 2;
-        nombre resultat = 0;
+        grand_nombre c = couleur - 2;
+        grand_nombre resultat = 0;
         
         resultat += c*c*c + c;
         resultat += c*(c*c*c + c*c + c - 1);
@@ -20,10 +20,10 @@ namespace
         return resultat;
     }
     
-    nombre combinaison_a(nombre couleur)
+    grand_nombre combinaison_a(grand_nombre couleur)
     {
-        nombre c = couleur - 2;
-        nombre resultat = 0;
+        grand_nombre c = couleur - 2;
+        grand_nombre resultat = 0;
         
         resultat += 1 * (c*c*c + c);
         resultat += (c-1)*c * (c*c*c + c - 2);
@@ -32,7 +32,7 @@ namespace
         return resultat;
     }
     
-    nombre N(std::map<std::tuple<nombre, nombre, nombre>, nombre> & cache, nombre a, nombre b, nombre c)
+    grand_nombre N(std::map<std::tuple<grand_nombre, grand_nombre, grand_nombre>, grand_nombre> & cache, grand_nombre a, grand_nombre b, grand_nombre c)
     {
         if (a == 0 && b == 0)
             return c*(c - 1);
@@ -41,7 +41,7 @@ namespace
         if (it != cache.end())
             return it->second;
             
-        nombre resultat = 0;
+        grand_nombre resultat = 0;
         if (b > 0)
             resultat += combinaison_b(c)*N(cache, a, b - 1, c);
             
@@ -68,13 +68,13 @@ ENREGISTRER_PROBLEME(194, "Coloured Configurations")
     // For example, N(1,0,3) = 24, N(0,2,4) = 92928 and N(2,2,3) = 20736.
     //
     // Find the last 8 digits of N(25,75,1984).
-    std::map<std::tuple<nombre, nombre, nombre>, nombre> cache;
+    std::map<std::tuple<grand_nombre, grand_nombre, grand_nombre>, grand_nombre> cache;
 
     std::cout << "N(1,0,3) = " << N(cache, 1, 0, 3) << std::endl;
     std::cout << "N(0,2,4) = " << N(cache, 0, 2, 4) << std::endl;
     std::cout << "N(2,2,3) = " << N(cache, 2, 2, 3) << std::endl;
 
-    nombre resultat = N(cache, 25, 75, 1984) % 100000000;
+    grand_nombre resultat = N(cache, 25, 75, 1984) % 100000000;
     std::cout << "N(25,75,1984) = " << resultat << std::endl;
     
     return resultat.to_string();

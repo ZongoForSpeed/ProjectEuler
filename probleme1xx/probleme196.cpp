@@ -1,15 +1,15 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <fstream>
 
-typedef std::vector<nombre> vecteur;
-typedef std::pair<nombre, nombre> paire;
+typedef std::vector<grand_nombre> vecteur;
+typedef std::pair<grand_nombre, grand_nombre> paire;
 
 namespace
 {
-    nombre triangle(nombre i, nombre j)
+    grand_nombre triangle(const grand_nombre & i, const grand_nombre & j)
     {
         if (i == 0 || j == 0)
             return 0;
@@ -20,22 +20,22 @@ namespace
         if (j > i)
             return 0;
         
-        return polygonal::triangulaire<nombre>(i - 1) + j;
+        return polygonal::triangulaire<grand_nombre>(i - 1) + j;
     }
     
-    bool test(nombre i, nombre j)
+    bool test(const grand_nombre & i, const grand_nombre & j)
     {
-        nombre t_ij = triangle(i, j);
+        grand_nombre t_ij = triangle(i, j);
         if (t_ij%2 == 0)
             return false;
             
         return t_ij.premier(25);
     }
     
-    bool triplet_premier(nombre i, nombre j, bool recursif = false)
+    bool triplet_premier(const grand_nombre & i, const grand_nombre & j, bool recursif = false)
     {
-        nombre t_ij = triangle(i, j);
-        nombre resultat = 0;
+        grand_nombre t_ij = triangle(i, j);
+        grand_nombre resultat = 0;
         std::vector<paire> p;
         if (test(i+1, j-1)) p.push_back(paire(i+1, j-1));
         if (test(i+1, j)) p.push_back(paire(i+1, j));
@@ -53,14 +53,14 @@ namespace
         return false;
     }
     
-    nombre S(nombre n)
+    grand_nombre S(const grand_nombre & n)
     {
-        nombre ligne = n;
-        nombre min = polygonal::triangulaire<nombre>(ligne - 1);
-        nombre max = polygonal::triangulaire<nombre>(ligne);
+        grand_nombre ligne = n;
+        grand_nombre min = polygonal::triangulaire<grand_nombre>(ligne - 1);
+        grand_nombre max = polygonal::triangulaire<grand_nombre>(ligne);
         
-        nombre resultat = 0;
-        for (nombre premier = min;;)
+        grand_nombre resultat = 0;
+        for (grand_nombre premier = min;;)
         {
             premier = premier.premier_suivant();
             if (premier > max)
@@ -111,6 +111,6 @@ ENREGISTRER_PROBLEME(196, "Prime triplets")
     //
     // Find  S(5678027) + S(7208785).
     std::cout << std::boolalpha;
-    nombre resultat = S(5678027) + S(7208785);
+    grand_nombre resultat = S(5678027) + S(7208785);
     return resultat.to_string();
 }

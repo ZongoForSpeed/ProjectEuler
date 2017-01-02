@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <fstream>
 
@@ -13,17 +13,17 @@ ENREGISTRER_PROBLEME(239, "Infinite string tour")
     // (Any number of non-prime disks may also be found in or out of their natural positions.)
     //
     // Give your answer rounded to 12 places behind the decimal point in the form 0.abcdefghijkl.
-    const nombre denominateur = nombre::factorielle(100);
+    const grand_nombre denominateur = grand_nombre::factorielle(100);
 
-    nombre numerateur = 0;
+    grand_nombre numerateur = 0;
     for (size_t n = 0; n <= 22; ++n)
     {
         numerateur += (n%2 == 0?1:-1) 
-            * nombre::coefficient_binomial(22, n)
-            * nombre::factorielle(97-n);
+            * grand_nombre::coefficient_binomial(22, n)
+            * grand_nombre::factorielle(97-n);
     }
     
-    numerateur *= nombre::coefficient_binomial(25, 22);
+    numerateur *= grand_nombre::coefficient_binomial(25, 22);
 
     const size_t masque = puissance::puissance<size_t, unsigned>(10, 12);
     numerateur *= masque;

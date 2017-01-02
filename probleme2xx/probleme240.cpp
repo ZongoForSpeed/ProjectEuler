@@ -1,20 +1,20 @@
 #include "problemes.h"
 #include "combinatoire.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <fstream>
 
-typedef std::vector<nombre> vecteur;
-typedef std::pair<nombre, nombre> paire;
+typedef std::vector<grand_nombre> vecteur;
+typedef std::pair<grand_nombre, grand_nombre> paire;
 
-typedef std::map<nombre, nombre> dictionnaire;
+typedef std::map<grand_nombre, grand_nombre> dictionnaire;
 
 namespace
 {
-	nombre somme(const vecteur & arrangement)
+	grand_nombre somme(const vecteur & arrangement)
 	{
-		nombre resultat = 0;
+		grand_nombre resultat = 0;
 		for (size_t i = 0; i < arrangement.size(); ++i)
 		{
 			resultat += i * arrangement[i];
@@ -23,21 +23,21 @@ namespace
 		return resultat;
 	}
 	
-	nombre combinaison(const vecteur & arrangement)
+	grand_nombre combinaison(const vecteur & arrangement)
 	{
-		nombre resultat = 1;
-		for (nombre a: arrangement)
+		grand_nombre resultat = 1;
+		for (grand_nombre a: arrangement)
 			resultat *= combinatoire::factorielle(a);
 			
 		return resultat;
 	}
 	
-	nombre W(size_t n, vecteur arrangement, size_t m)
+	grand_nombre W(size_t n, vecteur arrangement, size_t m)
 	{
 		if (n == 0)
-			return combinatoire::factorielle<nombre>(20);
+			return combinatoire::factorielle<grand_nombre>(20);
 			
-		nombre resultat = 0;
+		grand_nombre resultat = 0;
 		for (size_t k = 1; k <= m; ++k)
 		{
 			arrangement[k] += 1;
@@ -47,7 +47,7 @@ namespace
 		return resultat;
 	}
 	
-	nombre A(size_t n, vecteur arrangement, size_t m)
+	grand_nombre A(size_t n, vecteur arrangement, size_t m)
 	{
 		if (n == 0)
 		{
@@ -59,7 +59,7 @@ namespace
 			return 0;
 		}
 		
-		nombre resultat = 0;
+		grand_nombre resultat = 0;
 		for (size_t k = 1; k <= m; ++k)
 		{
 			arrangement[k] += 1;
@@ -84,6 +84,6 @@ ENREGISTRER_PROBLEME(240, "Top Dice")
     // ten sum to 70?
     vecteur arrangement(13, 0);
     
-    nombre resultat = A(10, arrangement, 12);
+    grand_nombre resultat = A(10, arrangement, 12);
     return resultat.to_string();
 }

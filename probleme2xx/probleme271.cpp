@@ -1,19 +1,19 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 namespace
 {
-    nombre S(nombre n)
+    grand_nombre S(const grand_nombre & n)
     {
-        nombre somme = 0;
-        nombre increment = 2*3*5*11*17*23*29*41;
+        grand_nombre somme = 0;
+        grand_nombre increment = 2*3*5*11*17*23*29*41;
         
-        for (nombre x = increment + 1; x < n; x += increment)
+        for (grand_nombre x = increment + 1; x < n; x += increment)
         {
-            nombre x3 = x*x*x;
+            grand_nombre x3 = x*x*x;
             if (x3 % n == 1)
                 somme += x;
         }
@@ -32,7 +32,7 @@ ENREGISTRER_PROBLEME(271, "Modular Cubes, part 1")
     // Thus, S(91)=9+16+22+29+53+74+79+81=363.
     //
     // Find S(13082761331670030).
-    nombre n = 13082761331670030ULL;
-    nombre resultat = S(n);
+    grand_nombre n = 13082761331670030ULL;
+    grand_nombre resultat = S(n);
     return resultat.to_string();
 }

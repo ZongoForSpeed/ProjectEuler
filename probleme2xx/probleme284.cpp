@@ -1,26 +1,26 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 namespace
 {
-    nombre restes_chinois(const vecteur & modulos, const vecteur & restes)
+    grand_nombre restes_chinois(const vecteur & modulos, const vecteur & restes)
     {
         // https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois
         if (modulos.size() != restes.size())
             return 0;
 
-        nombre n = 1;
+        grand_nombre n = 1;
         for (const auto & p: modulos) n *= p;
 
-        nombre resultat = 0;
+        grand_nombre resultat = 0;
 
         std::for_each2(modulos.begin(), modulos.end(), restes.begin(),
-                       [&resultat, &n] (const nombre & modulo, const nombre & reste)
+                       [&resultat, &n] (const grand_nombre & modulo, const grand_nombre & reste)
                        {
-                           nombre r = n / modulo;
+                           grand_nombre r = n / modulo;
                            if (auto inverse = r.inverse_modulaire(modulo))
                                resultat += r*reste*(*inverse);
                            resultat %= n;
@@ -53,18 +53,18 @@ ENREGISTRER_PROBLEME(284, "Steady Squares")
     const vecteur restes1 { 0, 1 };
     const vecteur restes2 { 1, 0 }; 
     
-    nombre borne = 1;
+    grand_nombre borne = 1;
     vecteur modulos { 2, 7 };
     
-    nombre resultat = 1; // Cas n = 1 
+    grand_nombre resultat = 1; // Cas n = 1 
     for (size_t k = 1; k < 10000 + 1; ++k)
     {
         // Cas n = 0 mod 2^k and n = 1 mod 7^k
-        nombre n1 = restes_chinois(modulos, restes1);
+        grand_nombre n1 = restes_chinois(modulos, restes1);
         if (n1 > borne)
             resultat += chiffres::somme_chiffres(n1, 14);
         // Cas n = 1 mod 2^k and n = 0 mod 7^k
-        nombre n2 = restes_chinois(modulos, restes2);
+        grand_nombre n2 = restes_chinois(modulos, restes2);
         if (n2 > borne)
             resultat += chiffres::somme_chiffres(n2, 14);
         

@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime")
 {
@@ -12,8 +12,8 @@ ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime")
     // digits: 28433×2^7830457+1.
     // 
     // Find the last ten digits of this prime number.
-    nombre masque = nombre::puissance(10, 10);
-    nombre mersenne = nombre::puissance_modulaire(2, 7830457, masque);
+    grand_nombre masque = grand_nombre::puissance(10, 10);
+    grand_nombre mersenne = grand_nombre::puissance_modulaire(2, 7830457, masque);
     mersenne = (mersenne * 28433 + 1)%masque;
     return mersenne.to_string();
 }

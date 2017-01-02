@@ -1,67 +1,67 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "combinatoire.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 namespace
 {
-    nombre G0(nombre n)
+    grand_nombre G0(grand_nombre n)
     {
-        return combinatoire::catalan<nombre>(n - 2); 
+        return combinatoire::catalan<grand_nombre>(n - 2); 
     }
     
-    int signe(nombre n)
+    int signe(grand_nombre n)
     {
         return (n % 2 == 0) ? 1 : -1;
     }
     
-    nombre G1(nombre n, nombre k1)
+    grand_nombre G1(grand_nombre n, grand_nombre k1)
     {
-        nombre somme = 0;
-        for (nombre j = 0; 2*j < k1 + 1; ++j)
+        grand_nombre somme = 0;
+        for (grand_nombre j = 0; 2*j < k1 + 1; ++j)
         {
-            somme += signe(j)*combinatoire::coefficient_binomial<nombre>(k1-j,j)*G0(n-j);
+            somme += signe(j)*combinatoire::coefficient_binomial<grand_nombre>(k1-j,j)*G0(n-j);
         }
         
         return somme;
     }
     
-    nombre G2(nombre n, nombre k1, nombre k2)
+    grand_nombre G2(grand_nombre n, grand_nombre k1, grand_nombre k2)
     {
-        nombre somme = 0;
-        for (nombre j = 0; 2*j < k1 + 1; ++j)
+        grand_nombre somme = 0;
+        for (grand_nombre j = 0; 2*j < k1 + 1; ++j)
         {
-            somme += signe(j)*combinatoire::coefficient_binomial<nombre>(k1-j,j)*G1(n-j, k2);
+            somme += signe(j)*combinatoire::coefficient_binomial<grand_nombre>(k1-j,j)*G1(n-j, k2);
         }
         
         return somme;
     }
     
-    nombre G3(nombre n, nombre k1, nombre k2, nombre k3)
+    grand_nombre G3(grand_nombre n, grand_nombre k1, grand_nombre k2, grand_nombre k3)
     {
-        nombre somme = 0;
-        for (nombre j = 0; 2*j < k1 + 1; ++j)
+        grand_nombre somme = 0;
+        for (grand_nombre j = 0; 2*j < k1 + 1; ++j)
         {
-            somme += signe(j)*combinatoire::coefficient_binomial<nombre>(k1-j,j)*G2(n-j, k2, k3);
+            somme += signe(j)*combinatoire::coefficient_binomial<grand_nombre>(k1-j,j)*G2(n-j, k2, k3);
         }
         
         return somme;
     }
     
-    nombre G4(nombre n, nombre k1, nombre k2, nombre k3, nombre k4)
+    grand_nombre G4(grand_nombre n, grand_nombre k1, grand_nombre k2, grand_nombre k3, grand_nombre k4)
     {
-        nombre somme = 0;
-        for (nombre j = 0; 2*j < k1 + 1; ++j)
+        grand_nombre somme = 0;
+        for (grand_nombre j = 0; 2*j < k1 + 1; ++j)
         {
-            somme += signe(j)*combinatoire::coefficient_binomial<nombre>(k1-j,j)*G3(n-j, k2, k3, k4);
+            somme += signe(j)*combinatoire::coefficient_binomial<grand_nombre>(k1-j,j)*G3(n-j, k2, k3, k4);
         }
         
         return somme;
     }
     
-    nombre C(nombre n)
+    grand_nombre C(grand_nombre n)
     {
         return G4(4*n, n, n, n, n);
     }
@@ -86,6 +86,6 @@ ENREGISTRER_PROBLEME(270, "Cutting Squares")
     //                          p270_CutSquare.gif
     // 
     // What is C(30) mod 10**8 ?
-    nombre resultat = C(30) % 100000000;
+    grand_nombre resultat = C(30) % 100000000;
     return resultat.to_string();
 }

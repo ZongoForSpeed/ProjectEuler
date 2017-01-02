@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(266, "Pseudo Square Root")
 {
@@ -16,27 +16,27 @@ ENREGISTRER_PROBLEME(266, "Pseudo Square Root")
     //
     // Let p be the product of the primes below 190.
     // Find PSR(p) mod 10^16.
-    const nombre modulo = puissance::puissance<nombre, unsigned>(10, 16);
+    const grand_nombre modulo = grand_nombre::puissance(10, 16);
     vecteur premiers;
-    premiers::crible2<nombre>(190, std::back_inserter(premiers));
+    premiers::crible2<grand_nombre>(190, std::back_inserter(premiers));
     
-    nombre p1 = 1;
+    grand_nombre p1 = 1;
     for (size_t n = 0; n < premiers.size() / 2; ++n)
         p1 *= premiers[n];
     auto d1 = arithmetiques::diviseurs(p1, premiers);
     
-    nombre p2 = 1;
+    grand_nombre p2 = 1;
     for (size_t n = premiers.size() / 2; n < premiers.size(); ++n)
         p2 *= premiers[n];
     auto d2 = arithmetiques::diviseurs(p2, premiers);
     
-    nombre resultat = 0;
+    grand_nombre resultat = 0;
     
     auto it1 = d1.begin();
     auto it2 = d2.rbegin();
     while (it1 != d1.end() && it2 != d2.rend())
     {
-        nombre courant = (*it1) * (*it2);
+        grand_nombre courant = (*it1) * (*it2);
         if (courant * courant > p1 * p2)
             ++it2;
         else

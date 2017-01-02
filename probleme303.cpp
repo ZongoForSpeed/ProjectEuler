@@ -1,13 +1,13 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
-typedef std::map<nombre, vecteur> dictionnaire;
+typedef std::vector<grand_nombre> vecteur;
+typedef std::map<grand_nombre, vecteur> dictionnaire;
 
 namespace
 {
-    bool trinary(nombre n)
+    bool trinary(const grand_nombre & n)
 	{
 		while (n%10 < 3 && n > 10)
 		{
@@ -16,21 +16,21 @@ namespace
 		return n%10 < 3;
 	}
 	
-	nombre f(nombre n)
+	grand_nombre f(size_t n)
 	{
-		nombre base = 1;
+		grand_nombre base = 1;
 		vecteur v;
 		v.push_back(0);
-		nombre d = 0;
+		grand_nombre d = 0;
 		while (true)
 		{
 			vecteur tmp;
 			for (size_t i = 1; i < 11; ++i)
 			{
-				for (const nombre & f : v)
+				for (const grand_nombre & f : v)
 				{
-					nombre m = i * base + f;
-					nombre mn = m*n;
+					grand_nombre m = i * base + f;
+					grand_nombre mn = m*n;
 					if (trinary(mn))
 						return m;
 					else if (trinary(mn%base))
@@ -53,9 +53,9 @@ ENREGISTRER_PROBLEME(303, "Multiples with small digits")
     // Also, ∑ n=1..100 f(n)/n = 11363107
     // 
     // Find ∑ n=1..10000 f(n)/n.
-    nombre limite = 10000;
-    nombre resultat = 0;
-    for (nombre n = 1; n < limite + 1; ++n)
+    size_t limite = 10000;
+    grand_nombre resultat = 0;
+    for (size_t n = 1; n < limite + 1; ++n)
     {
         resultat += f(n);
     }

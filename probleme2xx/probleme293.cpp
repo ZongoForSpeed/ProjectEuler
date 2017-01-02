@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
 {
@@ -23,25 +23,25 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
     // Find the sum of all distinct pseudo-Fortunate numbers for admissible numbers
     // N less than 10**9.
     vecteur premiers;
-    premiers::crible2<nombre>(50, std::back_inserter(premiers));
+    premiers::crible2<grand_nombre>(50, std::back_inserter(premiers));
     
-    nombre limite = nombre::puissance(10, 9);
+    grand_nombre limite = grand_nombre::puissance(10, 9);
     
     vecteur fortunate;
-    for (nombre p = premiers.front(); p < limite; p *= premiers.front())
+    for (grand_nombre p = premiers.front(); p < limite; p *= premiers.front())
     {
         fortunate.push_back(p);
     }
     
-    std::set<nombre> pseudoFortunate;
-    for (const nombre & p: premiers)
+    std::set<grand_nombre> pseudoFortunate;
+    for (const grand_nombre & p: premiers)
     {
         vecteur suivant;
-        for (nombre produit = p; produit < limite; produit *= p)
+        for (grand_nombre produit = p; produit < limite; produit *= p)
         {
-            for (const nombre & n: fortunate)
+            for (const grand_nombre & n: fortunate)
             {
-                nombre f = produit*n;
+                grand_nombre f = produit*n;
                 if (f >= limite)
                     break;  
                 suivant.push_back(f);
@@ -52,17 +52,17 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers")
         if (suivant.size() == 0)
             break;
             
-        for (const nombre & n: suivant)
+        for (const grand_nombre & n: suivant)
         {
-            nombre m = (n + 1).premier_suivant() - n;
+            grand_nombre m = (n + 1).premier_suivant() - n;
             pseudoFortunate.insert(m);
         }
             
         std::swap(fortunate, suivant);
     }
 
-    nombre resultat = 0;
-    for (const nombre & n: pseudoFortunate)
+    grand_nombre resultat = 0;
+    for (const grand_nombre & n: pseudoFortunate)
         resultat += n;
     
     return resultat.to_string();

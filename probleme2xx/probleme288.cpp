@@ -1,15 +1,15 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
-typedef std::vector<nombre> vecteur;
+typedef std::vector<grand_nombre> vecteur;
 
 namespace 
 {
-    nombre nombre_facteur(nombre n, nombre p, nombre modulo)
+    grand_nombre nombre_facteur(grand_nombre n, grand_nombre p, grand_nombre modulo)
     {
-        nombre quotient = n / p;
-        nombre resultat = quotient;
+        grand_nombre quotient = n / p;
+        grand_nombre resultat = quotient;
         
         while (quotient >= p)
         {
@@ -21,12 +21,12 @@ namespace
         return resultat;
     }
     
-    nombre NF(size_t p, size_t q, size_t n)
+    grand_nombre NF(size_t p, size_t q, size_t n)
     {
-        const nombre modulo = nombre::puissance(p, n);
+        const grand_nombre modulo = grand_nombre::puissance(p, n);
         size_t S = 290797;
         
-        nombre resultat = 0;
+        grand_nombre resultat = 0;
         
         vecteur cache(p, 0);
         for (size_t i = 0; i <= q; ++i)
@@ -36,7 +36,7 @@ namespace
             
             if (i < n)
             {
-                resultat += nombre_facteur(T*nombre::puissance(p, i), p, modulo);
+                resultat += nombre_facteur(T*grand_nombre::puissance(p, i), p, modulo);
             }
             else
             {
@@ -67,6 +67,6 @@ ENREGISTRER_PROBLEME(288, "An enormous factorial")
     // You are given that NF(3,10000) mod 3**20=624955285.
     //
     // Find NF(61,10**7) mod 61**10
-    nombre resultat = NF(61, 10000000, 10);
+    grand_nombre resultat = NF(61, 10000000, 10);
     return resultat.to_string();
 }

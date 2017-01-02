@@ -1,12 +1,12 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "utilitaires.h"
-#include "nombre.h"
+#include "grand_nombre.h"
 
 #include <boost/rational.hpp>
 
 typedef std::vector<size_t> vecteur;
-typedef boost::rational<nombre> fraction;
+typedef boost::rational<grand_nombre> fraction;
 
 namespace
 {
@@ -61,7 +61,7 @@ ENREGISTRER_PROBLEME(152, "Writing 1/2 as a sum of inverse squares")
     vecteur premiers;
     premiers::crible2<size_t>(40, std::back_inserter(premiers));
     
-    nombre resultat = 0;
+    grand_nombre resultat = 0;
     for (size_t p: premiers)
         resultat += generer(premiers, p);
 
