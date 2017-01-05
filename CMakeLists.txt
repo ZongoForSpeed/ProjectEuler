@@ -14,6 +14,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${GMP_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
 
+
 set(LIBRARY_HEADERS
         arithmetiques.h
         chiffres.h
@@ -26,7 +27,6 @@ set(LIBRARY_HEADERS
         polygonal.h
         polynome.h
         premiers.h
-        problemes.h
         puissance.h
         pythagoricien.h
         timer.h
@@ -36,7 +36,6 @@ set(LIBRARY_FILES
         graphe.cpp
         grand_nombre.cpp
         premiers.cpp
-        problemes.cpp
         pythagoricien.cpp
         timer.cpp)
 
@@ -64,34 +63,18 @@ set(TEST_FILES
 aux_source_directory(probleme0xx PROBLEME_0XX)
 aux_source_directory(probleme1xx PROBLEME_1XX)
 aux_source_directory(probleme2xx PROBLEME_2XX)
+FILE(GLOB PROBLEME_YYY probleme*.cpp)
+
 
 set(PROBLEMES_FILES
         ${PROBLEME_0XX}
         ${PROBLEME_1XX}
         ${PROBLEME_2XX}
-        probleme300.cpp
-        probleme301.cpp
-        probleme302.cpp
-        probleme303.cpp
-        probleme304.cpp
-        probleme305.cpp
-        probleme306.cpp
-        probleme307.cpp
-        probleme308.cpp
-        probleme309.cpp
-        probleme310.cpp
-        probleme311.cpp
-        probleme312.cpp
-        probleme345.cpp
-        probleme346.cpp
-        probleme347.cpp
-        probleme357.cpp
-        probleme381.cpp
-        probleme498.cpp
-        probleme500.cpp
-        probleme501.cpp)
+        ${PROBLEME_YYY})
 
 set(SOURCE_FILES
+        problemes.h
+        problemes.cpp
         euler.cpp
         ${LIBRARY_FILES}
         ${LIBRARY_HEADERS}
