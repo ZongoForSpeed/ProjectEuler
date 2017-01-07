@@ -54,6 +54,17 @@ namespace
     {
         return n < 10 ? 0 : chiffres::somme_chiffres(n);
     }
+
+    std::vector<size_t> clocks(size_t n)
+    {
+        std::vector<size_t> result;
+        for (; n > 0; n = suivant(n))
+        {
+            result.push_back(n);
+        }
+
+        return result;
+    }
 }
 
 ENREGISTRER_PROBLEME(315, "Digital root clocks")
@@ -133,40 +144,24 @@ ENREGISTRER_PROBLEME(315, "Digital root clocks")
         transitions[d1][d2] = d.count();
     }
     
-    std::cout << digits << std::endl;
-    std::cout << transitions << std::endl;
-
-    // premiers = {137, 137};
-    vecteur clocks;
-    for (auto p: premiers)
-    {
-        for (size_t n = p; n > 0; n = suivant(n))
-        {
-            clocks.push_back(n);
-        }
-    }
-    
-    // std::cout << clocks << std::endl;
     size_t totalSam = 0;
     size_t totalMax = 0;
-    
-    size_t precedent = 0;
-    for (auto n: clocks)
+    for (auto p: premiers)
     {
-        totalSam += 2 * compteur(digits, n);
-        if (precedent == 0)
-            totalMax += compteur(digits, n);
-        else
-            totalMax += transition(transitions, digits, precedent, n);
+        size_t precedent = 0;
+        for (auto n: clocks(p))
+        {
+            totalSam += 2 * compteur(digits, n);
+            if (precedent == 0)
+                totalMax += compteur(digits, n);
+            else
+                totalMax += transition(transitions, digits, precedent, n);
 
-        precedent = n;
+            precedent = n;
+        }
+
+        totalMax += compteur(digits, precedent);
     }
-    
-    totalMax += compteur(digits, precedent);
-    
-    std::cout << totalSam << " " << totalMax << std::endl; 
-    
-    size_t resultat = totalSam - totalMax;
-    
-    return std::to_string(resultat);
+
+    return std::to_string(totalSam - totalMax);
 }
