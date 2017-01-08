@@ -25,10 +25,10 @@ ENREGISTRER_PROBLEME(168, "Number Rotations")
             if (numerateur%denominateur == 0)
             {
                 grand_nombre valeur = numerateur/denominateur;
-                if (chiffres::nombre_chiffres(valeur) == puissance)
+                if (valeur.nombre_chiffres() == puissance)
                 {
                     valeur = 10*valeur + a;
-                    if (chiffres::nombre_chiffres(valeur) <= 100)
+                    if (valeur.nombre_chiffres() <= 100)
                         resultat += valeur;
                 }
             }

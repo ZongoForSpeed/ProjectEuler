@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "puissance.h"
 #include "utilitaires.h"
 #include "grand_nombre.h"
 
@@ -17,7 +16,7 @@ ENREGISTRER_PROBLEME(56, "Powerful digit sum")
     for (size_t a = 1; a < 100; ++a)
     for (size_t b = 1; b < 100; ++b)
     {
-        grand_nombre somme = chiffres::somme_chiffres(grand_nombre::puissance(a,b));
+        grand_nombre somme = grand_nombre::puissance(a,b).somme_chiffres();
         maximum = std::max(maximum, somme);
     }
     return maximum.to_string();

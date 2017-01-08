@@ -28,7 +28,7 @@ ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
     grand_nombre n = 1;
     grand_nombre a = 0;
     grand_nombre b = 1;
-    while (chiffres::nombre_chiffres(b) < 1000)
+    while (b.nombre_chiffres() < 1000)
     {
         grand_nombre tmp = a;
         a = b;

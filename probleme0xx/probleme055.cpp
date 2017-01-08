@@ -38,8 +38,8 @@ ENREGISTRER_PROBLEME(55, "Lychrel numbers")
         grand_nombre m = n;
         for (grand_nombre i = 0; i < 50; ++i)
         {
-            m = chiffres::inverser_nombre(m) + m;
-            if (chiffres::palindrome(m))
+            m = m.inverser_nombre() + m;
+            if (m.palindrome())
             {
                 lychrel = true;
                 break;

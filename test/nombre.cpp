@@ -335,5 +335,29 @@ BOOST_AUTO_TEST_SUITE(test_grand_nombre)
         BOOST_CHECK_EQUAL(grand_nombre::PPCM(n, m), 44598733179);
         BOOST_CHECK_EQUAL(grand_nombre::PPCM(p, 456755), 1114938955);
     }
-    
+
+    BOOST_AUTO_TEST_CASE(test_chiffres)
+    {
+        grand_nombre n("31115050367326962860164013941500001");
+
+        std::deque<unsigned long int> chiffres;
+        n.boucle_chiffre([&chiffres] (unsigned long int d) { chiffres.push_front(d); });
+
+        const std::vector<unsigned long int> resultat {
+                3,1,1,1,5,0,5,0,3,6,7,3,2,6,9,6,2,8,6,0,1,6,4,0,1,3,9,4,1,5,0,0,0,0,1
+        };
+
+        BOOST_CHECK_EQUAL_COLLECTIONS(resultat.begin(), resultat.end(), chiffres.begin(), chiffres.end());
+
+        BOOST_CHECK_EQUAL(n.nombre_chiffres(), 35);
+        BOOST_CHECK_EQUAL(n.somme_chiffres(14), 198);
+
+        auto ec = n.extraire_chiffres();
+        BOOST_CHECK_EQUAL_COLLECTIONS(resultat.begin(), resultat.end(), ec.begin(), ec.end());
+
+        BOOST_CHECK_EQUAL(n.inverser_nombre(), "10000514931046106826962376305051113");
+        BOOST_CHECK(!n.palindrome());
+        grand_nombre m("89123457675432198");
+        BOOST_CHECK(m.palindrome());
+    }
 BOOST_AUTO_TEST_SUITE_END()

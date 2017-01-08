@@ -1,10 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 
-#include <iostream>
-#include <algorithm>
 #include <list>
-#include <map>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

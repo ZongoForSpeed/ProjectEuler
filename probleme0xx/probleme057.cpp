@@ -30,7 +30,7 @@ ENREGISTRER_PROBLEME(57, "Square root convergents")
     for (grand_nombre n = 1; n < 1000; ++n)
     {
         f = 1 + 1 / (1 + f);
-        if (chiffres::nombre_chiffres(f.numerator()) > chiffres::nombre_chiffres(f.denominator()))
+        if (f.numerator().nombre_chiffres() > f.denominator().nombre_chiffres())
         {
             ++compteur;
         }

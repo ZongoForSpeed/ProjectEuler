@@ -5,6 +5,7 @@
 
 #include <boost/optional.hpp>
 #include <limits>
+#include <deque>
 
 class grand_nombre
 {
@@ -381,10 +382,11 @@ public:
         grand_nombre tmp(op2);
         return op1.divisible(tmp);
     }
-    
-    void negation()
+
+    grand_nombre negation()
     {
         mpz_neg(data, data);
+        return *this;
     }
     
     grand_nombre operator-() const
@@ -754,6 +756,13 @@ public:
     static grand_nombre coefficient_binomial(unsigned long int n, unsigned long int k);
     static grand_nombre factorielle(unsigned long int n);
     static grand_nombre catalan(unsigned long int n);
+
+    void boucle_chiffre(std::function<void(unsigned long int)> op, unsigned long int base = 10) const;
+    size_t nombre_chiffres(unsigned long int base = 10) const;
+    grand_nombre somme_chiffres(unsigned long int base = 10) const;
+    std::deque<unsigned long int> extraire_chiffres(unsigned long int base = 10) const;
+    grand_nombre inverser_nombre(unsigned long int base = 10) const;
+    bool palindrome(unsigned long int base = 10) const;
 };
 
 template<typename T>

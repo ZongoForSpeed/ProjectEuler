@@ -41,8 +41,7 @@ ENREGISTRER_PROBLEME(65, "Convergents of e")
     fraction_continue.resize(99);
     fraction f(1);
     for (const auto & p: boost::adaptors::reverse(fraction_continue)) f = p + 1 / f;
-    
-    auto chiffres = chiffres::extraire_chiffres(f.numerator());
-    grand_nombre resultat = std::accumulate(chiffres.begin(), chiffres.end(), grand_nombre(0));
+
+    grand_nombre resultat = f.numerator().somme_chiffres();
     return resultat.to_string();
 }

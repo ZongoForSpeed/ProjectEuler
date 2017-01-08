@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "grand_nombre.h"
-#include "chiffres.h"
 
 typedef std::vector<grand_nombre> vecteur;
 
@@ -63,11 +62,11 @@ ENREGISTRER_PROBLEME(284, "Steady Squares")
         // Cas n = 0 mod 2^k and n = 1 mod 7^k
         grand_nombre n1 = restes_chinois(modulos, restes1);
         if (n1 > borne)
-            resultat += chiffres::somme_chiffres(n1, 14);
+            resultat += n1.somme_chiffres(14);
         // Cas n = 1 mod 2^k and n = 0 mod 7^k
         grand_nombre n2 = restes_chinois(modulos, restes2);
         if (n2 > borne)
-            resultat += chiffres::somme_chiffres(n2, 14);
+            resultat += n2.somme_chiffres(14);
         
         borne *= 14;
         modulos.front() *= 2;

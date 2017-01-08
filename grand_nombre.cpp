@@ -277,6 +277,54 @@ grand_nombre grand_nombre::catalan(unsigned long int n)
     return coefficient_binomial(2*n, n) / (n + 1);
 }
 
+void grand_nombre::boucle_chiffre(std::function<void(unsigned long int)> op, unsigned long int base /*= 10*/) const
+{
+    grand_nombre n(data);
+
+    while (n != 0)
+    {
+        unsigned long int r = mpz_fdiv_q_ui (n.data, n.data, base);
+        op(r);
+    }
+}
+
+size_t grand_nombre::nombre_chiffres(unsigned long int base /*= 10*/) const
+{
+    size_t d = 0;
+    boucle_chiffre([&d](unsigned long int) { ++d; }, base);
+    return d;
+}
+
+grand_nombre grand_nombre::somme_chiffres(unsigned long int base /*= 10*/) const
+{
+    grand_nombre resultat = 0;
+    boucle_chiffre([&resultat] (unsigned long int d){ resultat += d; }, base);
+    return resultat;
+}
+
+std::deque<unsigned long int> grand_nombre::extraire_chiffres(unsigned long int base /*= 10*/) const
+{
+    std::deque<unsigned long int> resultat;
+    boucle_chiffre([&resultat] (unsigned long int d){ resultat.push_front(d); }, base);
+    return resultat;
+}
+
+grand_nombre grand_nombre::inverser_nombre(unsigned long int base /*= 10*/) const
+{
+    grand_nombre resultat = 0;
+    boucle_chiffre([&resultat, &base] (unsigned long int d) {
+        resultat *= base;
+        resultat += d;
+    }, base);
+    return resultat;
+}
+
+bool grand_nombre::palindrome(unsigned long int base /*= 10*/) const
+{
+    const auto chiffres = extraire_chiffres(base);
+    return std::equal(chiffres.begin(), chiffres.begin() + chiffres.size()/2, chiffres.rbegin());
+}
+
 namespace std
 {
     grand_nombre abs(const grand_nombre & op)

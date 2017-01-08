@@ -13,7 +13,7 @@ namespace
 {
     bool test(grand_nombre n)
     {
-        auto chiffres = chiffres::extraire_chiffres(n);
+        auto chiffres = n.extraire_chiffres();
         return chiffres[0] == 1 && chiffres[2] == 2 && chiffres[4] == 3 && chiffres[6] == 4 && chiffres[8] == 5 
             && chiffres[10] == 6 && chiffres[12] == 7 && chiffres[14] == 8 && chiffres[16] == 9 && chiffres[18] == 0;
     }

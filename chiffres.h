@@ -11,6 +11,7 @@ namespace chiffres
     template<typename Nombre, class Operation>
     void boucle_chiffre(Nombre n, Operation op, unsigned short base = 10)
     {
+        static_assert(std::is_integral<Nombre>::value, "Nombre doit être un entier.");
         while (n != 0)
         {
             op(n%base);
@@ -30,7 +31,7 @@ namespace chiffres
     Nombre somme_chiffres(Nombre n, unsigned short base = 10)
     {
         Nombre resultat = 0;
-        boucle_chiffre(n, [&resultat] (Nombre d){ resultat = resultat + d; }, base);
+        boucle_chiffre(n, [&resultat] (Nombre d){ resultat += d; }, base);
         return resultat;
     }
     
@@ -41,12 +42,14 @@ namespace chiffres
         boucle_chiffre(n, [&resultat](Nombre d){ resultat.push_front(d); }, base);
         return resultat;
     }
+
     template<typename Nombre>
     bool palindrome(Nombre n, unsigned short base = 10)
     {
         const auto chiffres = extraire_chiffres(n, base);
         return std::equal(chiffres.begin(), chiffres.begin() + chiffres.size()/2, chiffres.rbegin());
     }
+
     template<typename Nombre>
     bool pandigital(const Nombre & n, unsigned short base = 10)
     {
