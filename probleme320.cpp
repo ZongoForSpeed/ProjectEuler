@@ -20,9 +20,10 @@ namespace {
     }
 
     nombre calcul_exposant(const nombre & p, const nombre & exposant, const nombre & borne_inf) {
+        // N(i - 1) ≤ N(i) ≤ 1234567890i
         nombre inferieur = borne_inf;
-        nombre superieur = borne_inf == 0 ? 2 : borne_inf;
-        while (!test_exposant(p, exposant, superieur)) superieur *= 2;
+        nombre superieur = exposant * p;
+        // while (!test_exposant(p, exposant, superieur)) superieur *= 2;
         while (inferieur < superieur) {
             nombre moyennne = (inferieur + superieur) / 2;
             if (!test_exposant(p, exposant, moyennne))
@@ -45,6 +46,7 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer")
     // Find S(1 000 000) mod 10**18.
     const size_t limite = 1000000;
     const size_t exposant = 1234567890;
+    const nombre modulo = puissance::puissance<nombre>(10, 18u);
 
     vecteur premiers;
     premiers::crible235<nombre>(limite, std::back_inserter(premiers));
@@ -54,21 +56,20 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer")
     std::map<nombre, size_t> decomposition;
     arithmetiques::decomposition(combinatoire::factorielle<nombre>(9), premiers, decomposition);
 
+    nombre N = 0;
     for (nombre i = 10; i < limite + 1; ++i) {
         std::map<nombre, size_t> d;
         arithmetiques::decomposition(i, premiers, d);
-        for (const auto & e: d) {
-            decomposition[e.first] += e.second;
+        for (const auto & entry: d) {
+            auto & e = decomposition[entry.first];
+            e += entry.second;
+            N = std::max(calcul_exposant(entry.first, e * exposant, N), N);
         }
-        nombre N = 0;
-        for (const auto & e: decomposition) {
-            N = std::max(calcul_exposant(e.first, e.second * exposant, N), N);
-        }
-
-        if (i % 100 == 0)
-            std::cout << "N(" << i << ") = " << N << std::endl;
+        
         resultat += N;
     }
 
+    std::cout << resultat << std::endl;
+    resultat %= modulo;
     return resultat.to_string();
 }
