@@ -7,7 +7,7 @@ find_package(Boost 1.58 REQUIRED system thread timer chrono)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "-Werror -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-global-constructors -Wno-exit-time-destructors -Wno-double-promotion -Wno-missing-prototypes -Wno-unused-macros")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -DBOOST_UBLAS_NDEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})

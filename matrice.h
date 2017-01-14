@@ -1,5 +1,9 @@
 #pragma once
 
+#define NDEBUG
+#define BOOST_UBLAS_NDEBUG
+#define BOOST_UBLAS_TYPE_CHECK 0
+
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/io.hpp>

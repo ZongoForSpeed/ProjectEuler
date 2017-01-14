@@ -819,6 +819,36 @@ inline grand_nombre operator^(const T & a, const grand_nombre & b)
     return resultat;
 }
 
+template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+inline bool operator ==(const T & a, const grand_nombre & b) {
+    return b.compare(a) == 0; 
+}
+
+template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+inline bool operator !=(const T & a, const grand_nombre & b) { 
+    return b.compare(a) != 0; 
+}
+
+template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+inline bool operator <(const T & a, const grand_nombre & b) { 
+    return b.compare(a) > 0; 
+}
+
+template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+inline bool operator >(const T & a, const grand_nombre & b) { 
+    return b.compare(a) < 0; 
+}
+
+template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+inline bool operator <=(const T & a, const grand_nombre & b) { 
+    return b.compare(a) > -1; 
+}
+
+template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+inline bool operator >=(const T & a, const grand_nombre & b) { 
+    return b.compare(a) < 1; 
+}
+
 namespace std
 {
     grand_nombre abs(const grand_nombre & op);
