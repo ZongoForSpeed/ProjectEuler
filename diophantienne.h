@@ -10,8 +10,7 @@ namespace diophantienne
     // PQa algorithm as described in: http://www.jpr2718.org/pell.pdf
     // This performs the continued fraction expansion for (p0+sqrt(d))/q0
     template<typename Nombre>
-    std::pair<std::vector<Nombre>, size_t> PQa(Nombre p0, Nombre q0, Nombre d)
-    {
+    std::pair<std::vector<Nombre>, size_t> PQa(Nombre p0, Nombre q0, Nombre d) {
         long double sqrt_d = static_cast<long double>(std::sqrt(d));
         //   assert 0 < d, "D cannot be negative or zero"
         //   assert q0 != 0, "Q0 cannot be zero"
@@ -63,8 +62,7 @@ namespace diophantienne
     
     // Get the minimal solution for x² - d.y² = epsilon, where epsilon can be 1 or -1
     template<typename Nombre>
-    std::pair<Nombre, Nombre> pell1_min(Nombre d, Nombre epsilon)
-    {
+    std::pair<Nombre, Nombre> pell1_min(Nombre d, Nombre epsilon) {
         // assert epsilon == 1 or epsilon == -1, "epsilon is different from -1 and 1"
         std::vector<Nombre> alphas;
         size_t l = 0;
@@ -100,8 +98,7 @@ namespace diophantienne
 
     // Get the minimal solution for x² - d.y² = 4*epsilon, where epsilon can be 1 or -1
     template<typename Nombre>
-    std::pair<Nombre, Nombre> pell4_min(Nombre d, Nombre epsilon)
-    {
+    std::pair<Nombre, Nombre> pell4_min(Nombre d, Nombre epsilon) {
         // assert epsilon == 1 or epsilon == -1, "epsilon is different from -1 and 1"
         switch(d % 4)
         {
@@ -151,8 +148,7 @@ namespace diophantienne
     
     // Get all the solutions for x² - d.y² = epsilon, where epsilon can be 1 or -1
     template<typename Nombre, typename Callback>
-    void pell1(Nombre d, Nombre epsilon, Callback & callback)
-    {
+    void pell1(Nombre d, Nombre epsilon, Callback & callback) {
         Nombre t = 0;
         Nombre u = 0;
         
@@ -175,8 +171,7 @@ namespace diophantienne
 
     // Yield all the solutions for x² - d.y² = 4*epsilon, where epsilon can be 1 or -1
     template<typename Nombre, typename Callback>
-    void pell4(Nombre d, Nombre epsilon, Callback & callback)
-    {
+    void pell4(Nombre d, Nombre epsilon, Callback & callback) {
         Nombre t = 0;
         Nombre u = 0;
         
@@ -199,8 +194,7 @@ namespace diophantienne
     }
     
     template<typename Nombre>
-    std::vector<std::pair<Nombre, Nombre>> pell_funds_bf(Nombre d, Nombre n)
-    {
+    std::vector<std::pair<Nombre, Nombre>> pell_funds_bf(Nombre d, Nombre n) {
         Nombre t = 0;
         Nombre u = 0;
         std::tie(t, u) = pell1_min<Nombre>(d, 1);
@@ -236,8 +230,7 @@ namespace diophantienne
     }
     
     template<typename Nombre>
-    std::vector<std::pair<Nombre, Nombre>> pell_bf(Nombre d, Nombre n, Nombre max_x)
-    {
+    std::vector<std::pair<Nombre, Nombre>> pell_bf(Nombre d, Nombre n, Nombre max_x) {
         auto funds = pell_funds_bf<Nombre>(d, n);
         std::set<std::pair<Nombre, Nombre>> solution;
         for (auto p: funds)
@@ -267,8 +260,7 @@ namespace diophantienne
 
     // Find solutions to a.x² - b.y² = c²
     template<typename Nombre>
-    std::vector<std::pair<Nombre, Nombre>> quad_s(Nombre a, Nombre b, Nombre c, Nombre max_x)
-    {
+    std::vector<std::pair<Nombre, Nombre>> quad_s(Nombre a, Nombre b, Nombre c, Nombre max_x) {
         std::vector<std::pair<Nombre, Nombre>> resultat;
         auto pell = pell_bf<Nombre>(a*b, a*c, a*max_x);
         for (auto p : pell)
@@ -279,4 +271,36 @@ namespace diophantienne
         
         return resultat;
     }
+    
+    class GenerateurEquationLineaire;
+    class IterateurEquationLineaire
+    {
+        const GenerateurEquationLineaire & source;
+    public:
+        IterateurEquationLineaire (const GenerateurEquationLineaire & _source);
+        
+        bool operator!= (const IterateurEquationLineaire& it) const;
+        
+        std::pair<long long int, long long int> operator* () const;
+        const IterateurEquationLineaire & operator++();
+        
+        size_t t;
+    };
+    
+    class GenerateurEquationLineaire
+    {
+        long long int d;
+        long long int e;
+        
+        std::vector<std::pair<long long int, long long int>> primitives;
+    public:
+        GenerateurEquationLineaire(long long int A, long long int B, long long int C);
+    
+        IterateurEquationLineaire begin () const;
+        IterateurEquationLineaire end () const;
+        void suivant(IterateurEquationLineaire & it) const;
+        std::pair<long long int, long long int> solution(size_t t) const;
+    };
+    
+    GenerateurEquationLineaire equation_lineaire(long long int A, long long int B, long long int C);
 }

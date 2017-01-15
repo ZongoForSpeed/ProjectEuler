@@ -33,6 +33,7 @@ set(LIBRARY_HEADERS
         utilitaires.h)
 
 set(LIBRARY_FILES
+        diophantienne.cpp
         graphe.cpp
         grand_nombre.cpp
         premiers.cpp
