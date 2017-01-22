@@ -1,9 +1,7 @@
 *.o
-Euler
 Euler.log
 ProjectEuler
 ProjectEulerTest
-Test
 .cproject
 .project
 .settings/

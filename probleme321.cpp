@@ -11,12 +11,6 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-// namespace {
-//     nombre M(nombre n) {
-//         return n*(n+2);
-//     }
-// }
-
 ENREGISTRER_PROBLEME(321, "Swapping Counters")
 {
     // A horizontal row comprising of 2n + 1 squares has n red counters placed at one end and n blue 
