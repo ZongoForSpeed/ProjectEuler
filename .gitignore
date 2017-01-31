@@ -2,7 +2,7 @@
 Euler.log
 ProjectEuler
 ProjectEulerTest
-.idea
+.idea/
 .cproject
 .project
 .settings/
@@ -12,3 +12,5 @@ CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 Makefile
+cmake-build-debug/
+cmake-build-release/
