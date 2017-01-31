@@ -1,20 +1,19 @@
 #include "problemes.h"
-#include "combinatoire.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <fstream>
 
 typedef std::vector<size_t> vecteur;
-typedef std::pair<grand_nombre, grand_nombre> paire;
+typedef std::pair<mp_nombre, mp_nombre> paire;
 
-typedef std::map<grand_nombre, grand_nombre> dictionnaire;
+typedef std::map<mp_nombre, mp_nombre> dictionnaire;
 
 namespace
 {
-	grand_nombre somme(const vecteur & arrangement)
+	mp_nombre somme(const vecteur & arrangement)
 	{
-		grand_nombre resultat = 0;
+		mp_nombre resultat = 0;
 		for (size_t i = 0; i < arrangement.size(); ++i)
 		{
 			resultat += i * arrangement[i];
@@ -23,21 +22,21 @@ namespace
 		return resultat;
 	}
 	
-	grand_nombre combinaison(const vecteur & arrangement)
+	mp_nombre combinaison(const vecteur & arrangement)
 	{
-		grand_nombre resultat = 1;
+		mp_nombre resultat = 1;
 		for (auto & a: arrangement)
-			resultat *= grand_nombre::factorielle(a);
+			resultat *= mp_nombre::factorielle(a);
 			
 		return resultat;
 	}
 	
-	grand_nombre W(size_t n, vecteur arrangement, size_t m)
+	mp_nombre W(size_t n, vecteur arrangement, size_t m)
 	{
 		if (n == 0)
-			return grand_nombre::factorielle(20);
+			return mp_nombre::factorielle(20);
 			
-		grand_nombre resultat = 0;
+		mp_nombre resultat = 0;
 		for (size_t k = 1; k <= m; ++k)
 		{
 			arrangement[k] += 1;
@@ -47,7 +46,7 @@ namespace
 		return resultat;
 	}
 	
-	grand_nombre A(size_t n, vecteur arrangement, size_t m)
+	mp_nombre A(size_t n, vecteur arrangement, size_t m)
 	{
 		if (n == 0)
 		{
@@ -59,7 +58,7 @@ namespace
 			return 0;
 		}
 		
-		grand_nombre resultat = 0;
+		mp_nombre resultat = 0;
 		for (size_t k = 1; k <= m; ++k)
 		{
 			arrangement[k] += 1;
@@ -84,6 +83,6 @@ ENREGISTRER_PROBLEME(240, "Top Dice")
     // ten sum to 70?
     vecteur arrangement(13, 0);
     
-    grand_nombre resultat = A(10, arrangement, 12);
+    mp_nombre resultat = A(10, arrangement, 12);
     return resultat.to_string();
 }

@@ -2,18 +2,18 @@
 #include "premiers.h"
 #include "puissance.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 namespace
 {
-    grand_nombre S(size_t p)
+    mp_nombre S(size_t p)
     {
         if (p < 5)
             return 0;
         
         size_t f = p - 1;
         // std::cout << p - 1 << "! mod " << p << " = " << f << std::endl;
-        grand_nombre resultat = f;
+        mp_nombre resultat = f;
         for (size_t n = 2; n < 6; ++n)
         {
             f *= puissance::puissance_modulaire(p - n + 1, p - 2, p);
@@ -42,7 +42,7 @@ ENREGISTRER_PROBLEME(381, "(prime-k) factorial")
     std::deque<size_t> premiers;
     premiers::crible2<size_t>(limite, std::back_inserter(premiers));
     
-    grand_nombre resultat = 0;
+    mp_nombre resultat = 0;
     for (const size_t & p : premiers)
     {
         resultat += S(p);                

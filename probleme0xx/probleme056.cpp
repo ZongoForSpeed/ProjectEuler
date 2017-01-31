@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <list>
 
@@ -12,11 +12,11 @@ ENREGISTRER_PROBLEME(56, "Powerful digit sum")
     // digits in each number is only 1.
     //
     // Considering natural numbers of the form, a^b, where a, b < 100, what is the maximum digital sum?
-    grand_nombre maximum = 0;
+    mp_nombre maximum = 0;
     for (size_t a = 1; a < 100; ++a)
     for (size_t b = 1; b < 100; ++b)
     {
-        grand_nombre somme = grand_nombre::puissance(a,b).somme_chiffres();
+        mp_nombre somme = mp_nombre::puissance(a,b).somme_chiffres();
         maximum = std::max(maximum, somme);
     }
     return maximum.to_string();

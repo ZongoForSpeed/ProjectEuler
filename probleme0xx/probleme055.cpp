@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <list>
 
@@ -32,11 +32,11 @@ ENREGISTRER_PROBLEME(55, "Lychrel numbers")
     //
     // How many Lychrel numbers are there below ten-thousand?
     size_t compteur = 0;
-    for (grand_nombre n = 1; n < 10000; ++n)
+    for (mp_nombre n = 1; n < 10000; ++n)
     {
         bool lychrel = false;
-        grand_nombre m = n;
-        for (grand_nombre i = 0; i < 50; ++i)
+        mp_nombre m = n;
+        for (mp_nombre i = 0; i < 50; ++i)
         {
             m = m.inverser_nombre() + m;
             if (m.palindrome())

@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <list>
 
@@ -23,7 +23,7 @@ ENREGISTRER_PROBLEME(53, "Combinatoric selections")
     {
         for (size_t p = 0; p <= n; ++p)
         {
-            if (grand_nombre::coefficient_binomial(n, p) > 1000000) ++compteur;
+            if (mp_nombre::coefficient_binomial(n, p) > 1000000) ++compteur;
         }
     }
     

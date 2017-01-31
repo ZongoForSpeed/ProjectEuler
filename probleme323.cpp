@@ -1,12 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 #include "arithmetiques.h"
-#include "premiers.h"
-#include "combinatoire.h"
-#include "polygonal.h"
-
-#include <numeric>
 
 typedef long long int nombre;
 typedef std::vector<nombre> vecteur;

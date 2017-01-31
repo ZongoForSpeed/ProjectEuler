@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <fstream>
 
@@ -13,18 +13,18 @@ ENREGISTRER_PROBLEME(168, "Number Rotations")
     // This demonstrates an unusual property of 142857: it is a divisor of its right-rotation.
     //
     // Find the last 5 digits of the sum of all integers n, 10 < n < 10^100, that have this property.
-    grand_nombre resultat = 0;
+    mp_nombre resultat = 0;
     for (size_t puissance = 1; puissance < 101; ++puissance)
     {
         for (size_t a = 1; a < 10; ++a)
         for (size_t n = 1; n < 10; ++n)
         {
-            grand_nombre numerateur = a * (grand_nombre::puissance(10, puissance) - n);
-            grand_nombre denominateur = 10*n - 1;
+            mp_nombre numerateur = a * (mp_nombre::puissance(10, puissance) - n);
+            mp_nombre denominateur = 10*n - 1;
             
             if (numerateur%denominateur == 0)
             {
-                grand_nombre valeur = numerateur/denominateur;
+                mp_nombre valeur = numerateur/denominateur;
                 if (valeur.nombre_chiffres() == puissance)
                 {
                     valeur = 10*valeur + a;
@@ -35,5 +35,5 @@ ENREGISTRER_PROBLEME(168, "Number Rotations")
         }
     }
     
-    return resultat.modulo(100000).to_string();
+    return std::to_string(resultat%100000ul);
 }

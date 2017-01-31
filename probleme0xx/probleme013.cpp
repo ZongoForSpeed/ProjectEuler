@@ -1,8 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "grand_nombre.h"
-
-#include <iostream>
+#include "mp_nombre.h"
 
 ENREGISTRER_PROBLEME(13, "Large sum")
 {
@@ -109,8 +107,8 @@ ENREGISTRER_PROBLEME(13, "Large sum")
     "20849603980134001723930671666823555245252804609722 "
     "53503534226472524250874054075591789781264330331690";
     std::istringstream is(entree);
-    grand_nombre somme = 0;
-    grand_nombre n;
+    mp_nombre somme = 0;
+    mp_nombre n;
     while( is >> n ) somme += n;
     std::ostringstream os;
     os << somme;

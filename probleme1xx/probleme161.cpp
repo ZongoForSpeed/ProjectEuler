@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "multidimension.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 typedef multidimension<bool, 2> matrice;
 typedef std::pair<size_t, size_t> paire;
@@ -70,13 +70,13 @@ namespace
         return m[i][j] && m[i+1][j] && m[i+1][j-1];
     }
     
-    grand_nombre combinaison(std::map<matrice, grand_nombre> & cache, const matrice & m)
+    mp_nombre combinaison(std::map<matrice, mp_nombre> & cache, const matrice & m)
     {
         auto it = cache.find(m);
         if (it != cache.end())
             return it->second;
             
-        grand_nombre resultat = 0;    
+        mp_nombre resultat = 0;    
         
         if (auto p = libre(m))
         {
@@ -165,7 +165,7 @@ ENREGISTRER_PROBLEME(161, "Triominoes")
     //
     // In how many ways can a 9 by 12 grid be tiled in this way by triominoes?
     matrice m (9u, 12u, true);
-    std::map<matrice, grand_nombre> cache;
-    grand_nombre resultat = combinaison(cache, m);
+    std::map<matrice, mp_nombre> cache;
+    mp_nombre resultat = combinaison(cache, m);
     return resultat.to_string();
 }

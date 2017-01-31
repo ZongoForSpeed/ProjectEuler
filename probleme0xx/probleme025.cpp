@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
 {
@@ -25,12 +25,12 @@ ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
     // The 12th term, F12, is the first term to contain three digits.
     // 
     // What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
-    grand_nombre n = 1;
-    grand_nombre a = 0;
-    grand_nombre b = 1;
+    mp_nombre n = 1;
+    mp_nombre a = 0;
+    mp_nombre b = 1;
     while (b.nombre_chiffres() < 1000)
     {
-        grand_nombre tmp = a;
+        mp_nombre tmp = a;
         a = b;
         b += tmp;
         ++n;

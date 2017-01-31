@@ -1,12 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
-#include "arithmetiques.h"
-#include "premiers.h"
-#include "combinatoire.h"
-#include "polygonal.h"
+#include "mp_nombre.h"
 
-#include <numeric>
 #include <fstream>
 
 typedef unsigned long long int nombre;
@@ -50,7 +45,7 @@ ENREGISTRER_PROBLEME(324, "Building a tower")
     {
         std::ifstream ifs("data/p324_list.txt");
         size_t i;
-        grand_nombre n;
+        mp_nombre n;
         while (ifs >> i >> n) {
             init.push_back(n % q);
         }

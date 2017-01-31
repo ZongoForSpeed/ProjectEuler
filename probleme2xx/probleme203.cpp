@@ -1,12 +1,10 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
-#include <numeric>
-
-typedef std::vector<grand_nombre> vecteur;
-typedef std::pair<grand_nombre, grand_nombre> paire;
+typedef std::vector<mp_nombre> vecteur;
+typedef std::pair<mp_nombre, mp_nombre> paire;
 
 ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients")
 {
@@ -32,17 +30,17 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients")
     // Find the sum of the distinct squarefree numbers in the first 51 rows of Pascal's triangle.
     size_t limite = 50;
     vecteur premiers;
-    premiers::crible2<grand_nombre>(limite, std::back_inserter(premiers));
+    premiers::crible2<mp_nombre>(limite, std::back_inserter(premiers));
 
-    std::set<grand_nombre> square_free;
+    std::set<mp_nombre> square_free;
     for (size_t n = 0; n <= limite; ++n)
     for (size_t p = 0; p <= n; ++p)
     {
-        grand_nombre Cnp = grand_nombre::coefficient_binomial(n, p);
+        mp_nombre Cnp = mp_nombre::coefficient_binomial(n, p);
         if (!arithmetiques::facteur_carre(Cnp, premiers))
             square_free.insert(Cnp);
     }
     
-    grand_nombre resultat = std::accumulate(square_free.begin(), square_free.end(), grand_nombre(0));
+    mp_nombre resultat = std::accumulate(square_free.begin(), square_free.end(), mp_nombre(0));
     return resultat.to_string();
 }

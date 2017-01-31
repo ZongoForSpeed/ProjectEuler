@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <set>
 
@@ -36,7 +36,7 @@ namespace
                 if (c != a)
                 {
                     chiffres[i] = a;
-                    if (grand_nombre::premier(chiffres::conversion_nombre<size_t>(chiffres.begin(), chiffres.end())))
+                    if (mp_nombre::premier(chiffres::conversion_nombre<size_t>(chiffres.begin(), chiffres.end())))
                         return false;
                 }
             }

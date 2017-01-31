@@ -1,27 +1,27 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
-typedef std::vector<grand_nombre> vecteur;
+typedef std::vector<mp_nombre> vecteur;
 
 namespace
 {
-    grand_nombre restes_chinois(const vecteur & modulos, const vecteur & restes)
+    mp_nombre restes_chinois(const vecteur & modulos, const vecteur & restes)
     {
         // https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois
         if (modulos.size() != restes.size())
             return 0;
 
-        grand_nombre n = 1;
+        mp_nombre n = 1;
         for (const auto & p: modulos) n *= p;
 
-        grand_nombre resultat = 0;
+        mp_nombre resultat = 0;
 
         std::for_each2(modulos.begin(), modulos.end(), restes.begin(),
-                       [&resultat, &n] (const grand_nombre & modulo, const grand_nombre & reste)
+                       [&resultat, &n] (const mp_nombre & modulo, const mp_nombre & reste)
                        {
-                           grand_nombre r = n / modulo;
-                           if (auto inverse = r.inverse_modulaire(modulo))
+                           mp_nombre r = n / modulo;
+                           if (auto inverse = mp_nombre::inverse_modulaire(r, modulo))
                                resultat += r*reste*(*inverse);
                            resultat %= n;
                        }
@@ -53,18 +53,18 @@ ENREGISTRER_PROBLEME(284, "Steady Squares")
     const vecteur restes1 { 0, 1 };
     const vecteur restes2 { 1, 0 }; 
     
-    grand_nombre borne = 1;
+    mp_nombre borne = 1;
     vecteur modulos { 2, 7 };
     
-    grand_nombre resultat = 1; // Cas n = 1 
+    mp_nombre resultat = 1; // Cas n = 1 
     for (size_t k = 1; k < 10000 + 1; ++k)
     {
         // Cas n = 0 mod 2^k and n = 1 mod 7^k
-        grand_nombre n1 = restes_chinois(modulos, restes1);
+        mp_nombre n1 = restes_chinois(modulos, restes1);
         if (n1 > borne)
             resultat += n1.somme_chiffres(14);
         // Cas n = 1 mod 2^k and n = 0 mod 7^k
-        grand_nombre n2 = restes_chinois(modulos, restes2);
+        mp_nombre n2 = restes_chinois(modulos, restes2);
         if (n2 > borne)
             resultat += n2.somme_chiffres(14);
         

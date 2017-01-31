@@ -1,26 +1,26 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
-typedef std::vector<grand_nombre> vecteur;
+typedef std::vector<mp_nombre> vecteur;
 
 namespace
 {
-    std::pair<grand_nombre, grand_nombre> fibonacci_(grand_nombre n, grand_nombre modulo)
+    std::pair<mp_nombre, mp_nombre> fibonacci_(mp_nombre n, mp_nombre modulo)
     {
         if (n == 0)
             return std::make_pair(1,0);
         
-        static std::map<grand_nombre, std::pair<grand_nombre, grand_nombre>> cache;
+        static std::map<mp_nombre, std::pair<mp_nombre, mp_nombre>> cache;
         auto it = cache.find(n);
         if (it != cache.end())
             return it->second;
         
-        std::pair<grand_nombre, grand_nombre> p = fibonacci_(n/2, modulo);
-        grand_nombre fk = p.second;
-        grand_nombre fk_1 = p.first;
+        std::pair<mp_nombre, mp_nombre> p = fibonacci_(n/2, modulo);
+        mp_nombre fk = p.second;
+        mp_nombre fk_1 = p.first;
         
-        std::pair<grand_nombre, grand_nombre> resultat;
+        std::pair<mp_nombre, mp_nombre> resultat;
         
         if (n%2 == 0)
             resultat = std::make_pair(fk * fk + fk_1 * fk_1, fk * (2 * fk_1 + fk));
@@ -34,7 +34,7 @@ namespace
         return resultat;
     }
     
-    grand_nombre fibonacci(grand_nombre n, grand_nombre modulo)
+    mp_nombre fibonacci(mp_nombre n, mp_nombre modulo)
     {
         return fibonacci_(n, modulo).second;
     }
@@ -54,13 +54,13 @@ ENREGISTRER_PROBLEME(304, "Primonacci")
     // The sequence b(n) is defined as f(a(n)).
     //
     // Find ∑b(n) for 1≤n≤100 000. Give your answer mod 1234567891011.
-    const grand_nombre modulo = 1234567891011ULL;
-    const grand_nombre a0 = grand_nombre::puissance(10, 14);
+    const mp_nombre modulo = 1234567891011ULL;
+    const mp_nombre a0 = mp_nombre::puissance(10, 14);
     vecteur a(100000 + 1, a0);
-    grand_nombre resultat = 0;
+    mp_nombre resultat = 0;
     for (size_t n = 1; n < a.size(); ++n)
     {
-        a[n] = a[n - 1].premier_suivant();
+        a[n] = mp_nombre::premier_suivant(a[n - 1]);
         resultat += fibonacci(a[n], modulo);
     }
 

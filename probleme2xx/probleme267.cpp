@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "puissance.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 typedef std::vector<size_t> vecteur;
 typedef std::set<size_t> ensemble;
@@ -53,13 +53,13 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
     
     const size_t alpha = static_cast<size_t>(std::ceil( f(recherche(lambda_f, 0.01L, 0.99L, 0.000001L), n, N)));
     
-    std::vector<grand_nombre> C { 1 };
+    std::vector<mp_nombre> C { 1 };
     for (size_t k = 1; k < n + 1; ++k)
     {
         C.push_back(C.back() * (n - k + 1) / k);
     }
 
-    grand_nombre resultat = 0;
+    mp_nombre resultat = 0;
     for (size_t k = alpha; k < n + 1; ++k)
     {
         resultat += C[k];
@@ -67,7 +67,7 @@ ENREGISTRER_PROBLEME(267, "Binary Circles")
 
     size_t masque = puissance::puissance<size_t, unsigned>(10,13);
     resultat *= masque;
-    resultat /= grand_nombre::puissance(2, n);
+    resultat /= mp_nombre::puissance(2, n);
     long double solution = resultat.get_double() / masque;
     
     return std::to_string(solution, 12);

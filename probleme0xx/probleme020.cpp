@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 ENREGISTRER_PROBLEME(20, "Factorial digit sum")
 {
@@ -11,6 +11,6 @@ ENREGISTRER_PROBLEME(20, "Factorial digit sum")
     // and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
     // 
     // Find the sum of the digits in the number 100!
-    grand_nombre resultat = grand_nombre::factorielle(100).somme_chiffres();
+    mp_nombre resultat = mp_nombre::factorielle(100).somme_chiffres();
     return resultat.to_string();
 }

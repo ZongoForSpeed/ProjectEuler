@@ -1,25 +1,25 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <fstream>
 
 #include <boost/rational.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 
-typedef boost::rational<grand_nombre> fraction;
-typedef std::vector<grand_nombre> vecteur;
+typedef boost::rational<mp_nombre> fraction;
+typedef std::vector<mp_nombre> vecteur;
 
-typedef std::pair<grand_nombre, grand_nombre> paire;
+typedef std::pair<mp_nombre, mp_nombre> paire;
 
 namespace
 {
-    bool evaluer(grand_nombre a, grand_nombre b, grand_nombre s)
+    bool evaluer(mp_nombre a, mp_nombre b, mp_nombre s)
     {
         return a*a < b*b*s;
     }
 
-    fraction fraction_continue(size_t S, grand_nombre bound)
+    fraction fraction_continue(size_t S, mp_nombre bound)
     {
         paire a(racine_carre(S), 1);
         paire b(a.first + 1, 1);
@@ -54,8 +54,8 @@ ENREGISTRER_PROBLEME(192, "Best Approximations")
     //
     // Find the sum of all denominators of the best approximations to √n for the denominator bound 10^12,
     // where n is not a perfect square and 1 < n ≤ 100000.
-    grand_nombre bound = 1000000000000ULL;
-    grand_nombre resultat = 0;
+    mp_nombre bound = 1000000000000ULL;
+    mp_nombre resultat = 0;
     for (size_t n = 1; n <= 100000; ++n)
     {
         if (!polygonal::est_carre(n))

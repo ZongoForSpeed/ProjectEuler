@@ -1,15 +1,15 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <fstream>
 
-typedef std::vector<grand_nombre> vecteur;
-typedef std::pair<grand_nombre, grand_nombre> paire;
+typedef std::vector<mp_nombre> vecteur;
+typedef std::pair<mp_nombre, mp_nombre> paire;
 
 namespace
 {
-    grand_nombre triangle(const grand_nombre & i, const grand_nombre & j)
+    mp_nombre triangle(const mp_nombre & i, const mp_nombre & j)
     {
         if (i == 0 || j == 0)
             return 0;
@@ -20,22 +20,22 @@ namespace
         if (j > i)
             return 0;
         
-        return polygonal::triangulaire<grand_nombre>(i - 1) + j;
+        return polygonal::triangulaire<mp_nombre>(i - 1) + j;
     }
     
-    bool test(const grand_nombre & i, const grand_nombre & j)
+    bool test(const mp_nombre & i, const mp_nombre & j)
     {
-        grand_nombre t_ij = triangle(i, j);
+        mp_nombre t_ij = triangle(i, j);
         if (t_ij%2 == 0)
             return false;
             
         return t_ij.premier(25);
     }
     
-    bool triplet_premier(const grand_nombre & i, const grand_nombre & j, bool recursif = false)
+    bool triplet_premier(const mp_nombre & i, const mp_nombre & j, bool recursif = false)
     {
-        grand_nombre t_ij = triangle(i, j);
-        grand_nombre resultat = 0;
+        mp_nombre t_ij = triangle(i, j);
+        mp_nombre resultat = 0;
         std::vector<paire> p;
         if (test(i+1, j-1)) p.push_back(paire(i+1, j-1));
         if (test(i+1, j)) p.push_back(paire(i+1, j));
@@ -53,16 +53,16 @@ namespace
         return false;
     }
     
-    grand_nombre S(const grand_nombre & n)
+    mp_nombre S(const mp_nombre & n)
     {
-        grand_nombre ligne = n;
-        grand_nombre min = polygonal::triangulaire<grand_nombre>(ligne - 1);
-        grand_nombre max = polygonal::triangulaire<grand_nombre>(ligne);
+        mp_nombre ligne = n;
+        mp_nombre min = polygonal::triangulaire<mp_nombre>(ligne - 1);
+        mp_nombre max = polygonal::triangulaire<mp_nombre>(ligne);
         
-        grand_nombre resultat = 0;
-        for (grand_nombre premier = min;;)
+        mp_nombre resultat = 0;
+        for (mp_nombre premier = min;;)
         {
-            premier = premier.premier_suivant();
+            premier = mp_nombre::premier_suivant(premier);
             if (premier > max)
                 break;
                 
@@ -111,6 +111,6 @@ ENREGISTRER_PROBLEME(196, "Prime triplets")
     //
     // Find  S(5678027) + S(7208785).
     std::cout << std::boolalpha;
-    grand_nombre resultat = S(5678027) + S(7208785);
+    mp_nombre resultat = S(5678027) + S(7208785);
     return resultat.to_string();
 }

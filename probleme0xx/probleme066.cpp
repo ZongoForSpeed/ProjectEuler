@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 typedef std::vector<size_t> vecteur;
 
@@ -23,18 +23,18 @@ namespace
         return resultat;
     }
     
-    grand_nombre equation_pell(size_t d)
+    mp_nombre equation_pell(size_t d)
     {
         const auto c = fraction_continue(d);
         size_t l = c.size() - 1;
         size_t per = l % 2 == 0 ? l - 1 :  2 * l - 1;
-        grand_nombre a = c[ 0 ];
-        grand_nombre a1 = 1;
-        grand_nombre b = a;
-        grand_nombre b1 = 0;
+        mp_nombre a = c[ 0 ];
+        mp_nombre a1 = 1;
+        mp_nombre b = a;
+        mp_nombre b1 = 0;
         for ( size_t i = 1; i <= per; i++ )
         {
-            grand_nombre t = a;
+            mp_nombre t = a;
             a = c[ ( i - 1 ) % l + 1 ] * a + a1;
             a1 = t;
             t = b;
@@ -68,13 +68,13 @@ ENREGISTRER_PROBLEME(66, "Diophantine equation")
     // Find the value of D ≤ 1000 in minimal solutions of x for which the largest value of x is obtained.
     
     
-    grand_nombre maximum = 0;
+    mp_nombre maximum = 0;
     size_t resultat = 0;
     for ( size_t d = 2; d <= 1000; ++d )
     {
         if (!polygonal::est_carre(d)) 
         {
-            grand_nombre x = equation_pell(d);
+            mp_nombre x = equation_pell(d);
             if ( x > maximum ) 
             {
                 maximum = x;

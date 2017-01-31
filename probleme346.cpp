@@ -1,8 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
-
-#include <numeric>
+#include "mp_nombre.h"
 
 ENREGISTRER_PROBLEME(346, "Strong Repunits")
 {
@@ -13,19 +11,19 @@ ENREGISTRER_PROBLEME(346, "Strong Repunits")
 	// repunits below 50: {1,7,13,15,21,31,40,43}.
 	// Furthermore, the sum of all strong repunits below 10**00 equals 15864.
 	// Find the sum of all strong repunits below 10**12.
-	grand_nombre limite = grand_nombre::puissance(10, 12);
+	mp_nombre limite = mp_nombre::puissance(10, 12);
 
-	std::set<grand_nombre> ensemble;
+	std::set<mp_nombre> ensemble;
 	ensemble.insert(1);
-	for (grand_nombre base = 2; base * base + base + 1 <= limite; ++base)
+	for (mp_nombre base = 2; base * base + base + 1 <= limite; ++base)
 	{
-		grand_nombre repunit = base * base + base + 1;
+		mp_nombre repunit = base * base + base + 1;
 		while (repunit <= limite)
 		{
 			ensemble.insert(repunit);
 			repunit = repunit * base + 1;
 		}
 	}
-	grand_nombre somme = std::accumulate(ensemble.begin(), ensemble.end(), grand_nombre(0));
+	mp_nombre somme = std::accumulate(ensemble.begin(), ensemble.end(), mp_nombre(0));
 	return somme.to_string();
 }

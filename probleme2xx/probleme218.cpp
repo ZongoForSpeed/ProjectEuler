@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 #include "pythagoricien.h"
 
 ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
@@ -21,17 +21,17 @@ ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles")
     // How many perfect right-angled triangles with c ≤ 10^16 exist that are not super-perfect?
     const size_t limite = puissance::puissance<size_t, unsigned>(10, 8);
 
-    grand_nombre resultat = 0;
+    mp_nombre resultat = 0;
     Pythagoricien pythagoricien(limite);
     for (const auto t: pythagoricien)
     {
-        grand_nombre x,y,z;
+        mp_nombre x,y,z;
         std::tie(x,y,z) = t;
-        grand_nombre a = y*y - x*x;
-        grand_nombre b = 2*x*y;
-        // grand_nombre c = z*z;
+        mp_nombre a = y*y - x*x;
+        mp_nombre b = 2*x*y;
+        // mp_nombre c = z*z;
 
-        grand_nombre A = a*b / 2;
+        mp_nombre A = a*b / 2;
         if (A%6 != 0 || A%28 != 0)
             ++resultat;
     }

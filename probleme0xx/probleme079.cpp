@@ -1,10 +1,10 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <fstream>
 
-typedef std::vector<grand_nombre> vecteur;
+typedef std::vector<mp_nombre> vecteur;
 
 namespace
 {

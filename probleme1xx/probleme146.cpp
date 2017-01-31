@@ -1,8 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
-
-#include <numeric>
+#include "mp_nombre.h"
 
 ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 {
@@ -18,28 +16,28 @@ ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ")
 		size_t reste = n%210;
 		if (reste == 10 || reste == 80 || reste == 130 || reste == 200)
 		{
-			grand_nombre n2 = n*n;
-			grand_nombre p = (n2+1);
-			if (!p.premier())
+			mp_nombre n2 = n*n;
+			mp_nombre p = (n2+1);
+			if (!mp_nombre::premier(p))
 			    continue;
 			    
-			p = p.premier_suivant();
+			p = mp_nombre::premier_suivant(p);
 			if (p != ( n2 + 3 ))
 			    continue;
 
-			p = p.premier_suivant();
+			p = mp_nombre::premier_suivant(p);
 			if (p != ( n2 + 7 ))
 			    continue;
 
-			p = p.premier_suivant();
+			p = mp_nombre::premier_suivant(p);
 			if (p != ( n2 + 9 ))
 			    continue;
 
-			p = p.premier_suivant();
+			p = mp_nombre::premier_suivant(p);
 			if (p != ( n2 + 13 ))
 			    continue;
 
-			p = p.premier_suivant();
+			p = mp_nombre::premier_suivant(p);
 			if( p == ( n2 + 27 )) 
 			{
 				std::cout << n << std::endl;

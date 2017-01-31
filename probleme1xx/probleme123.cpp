@@ -1,10 +1,9 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "puissance.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
-typedef std::vector<grand_nombre> vecteur;
+typedef std::vector<mp_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(123, "Prime square remainders")
 {
@@ -17,17 +16,17 @@ ENREGISTRER_PROBLEME(123, "Prime square remainders")
     //
     // Find the least value of n for which the remainder first exceeds 10^10.
     vecteur premiers;
-    premiers::crible23<grand_nombre>(1000000, std::back_inserter(premiers));
+    premiers::crible23<mp_nombre>(1000000, std::back_inserter(premiers));
     
-    grand_nombre borne = grand_nombre::puissance(10, 10);
+    mp_nombre borne = mp_nombre::puissance(10, 10);
 
-    grand_nombre resultat = 0;
+    mp_nombre resultat = 0;
     for (size_t n = 1;; ++n)
     {
-        grand_nombre pn = premiers.at(n - 1);
-        grand_nombre pnpn = pn*pn;
-        grand_nombre p1 = grand_nombre::puissance_modulaire(pn + 1, n, pnpn);
-        grand_nombre p2 = grand_nombre::puissance_modulaire(pn - 1, n, pnpn);
+        mp_nombre pn = premiers.at(n - 1);
+        mp_nombre pnpn = pn*pn;
+        mp_nombre p1 = mp_nombre::puissance_modulaire(pn + 1, n, pnpn);
+        mp_nombre p2 = mp_nombre::puissance_modulaire(pn - 1, n, pnpn);
         if ((p1 + p2)%(pnpn) > borne)
         {
             resultat = n;

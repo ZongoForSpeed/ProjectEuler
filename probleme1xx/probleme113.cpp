@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <fstream>
 
@@ -21,15 +21,15 @@ ENREGISTRER_PROBLEME(113, "Non-bouncy numbers")
     //
     // How many numbers below a googol (10^100) are not bouncy?
     size_t longueur = 100;
-    grand_nombre resultat = 0;
+    mp_nombre resultat = 0;
     
     for (size_t n = 0; n < longueur; ++n)
     for (size_t d = 0; d < 10; ++d)
-        resultat += grand_nombre::coefficient_binomial(n + d, d);
+        resultat += mp_nombre::coefficient_binomial(n + d, d);
         
     for (size_t n = 0; n < longueur; ++n)
     for (size_t d = 0; d < 9; ++d)
-        resultat += grand_nombre::coefficient_binomial(n + d, d);
+        resultat += mp_nombre::coefficient_binomial(n + d, d);
         
     resultat -= 10*longueur;
     

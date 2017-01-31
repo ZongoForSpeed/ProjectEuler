@@ -2,11 +2,11 @@
 #include "arithmetiques.h"
 #include "premiers.h"
 #include "timer.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <fstream>
 
-typedef std::vector<grand_nombre> vecteur;
+typedef std::vector<mp_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(221, "Alexandrian Integers")
 {
@@ -23,24 +23,24 @@ ENREGISTRER_PROBLEME(221, "Alexandrian Integers")
     vecteur premiers;
     {
         Timer timer_crible("crible");
-        premiers::crible235<grand_nombre>(1000000000ULL, std::back_inserter(premiers));
+        premiers::crible235<mp_nombre>(1000000000ULL, std::back_inserter(premiers));
     }
     
     vecteur Alexandrian;
-    for (grand_nombre p = 1; p < limite * 2 / 3; ++p)
+    for (mp_nombre p = 1; p < limite * 2 / 3; ++p)
     {
-        grand_nombre pp = p * p + 1;
-        const auto diviseurs = arithmetiques::diviseurs<grand_nombre>(pp, premiers);
+        mp_nombre pp = p * p + 1;
+        const auto diviseurs = arithmetiques::diviseurs<mp_nombre>(pp, premiers);
         for (size_t n = 0; 2*n < diviseurs.size(); ++n)
         {
             auto d = diviseurs[n];
-            grand_nombre A = p * (p + d) * (p + pp / d);
+            mp_nombre A = p * (p + d) * (p + pp / d);
             Alexandrian.push_back(A);
         }
     }
     
     std::sort(Alexandrian.begin(), Alexandrian.end());
 
-    grand_nombre resultat = Alexandrian[limite - 1];
+    mp_nombre resultat = Alexandrian[limite - 1];
     return resultat.to_string();
 }

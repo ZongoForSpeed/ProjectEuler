@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "polygonal.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <boost/rational.hpp>
 
@@ -76,14 +76,14 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables")
         }
     }
     
-    grand_nombre u = 0;
-    grand_nombre v = 1;
+    mp_nombre u = 0;
+    mp_nombre v = 1;
     for (auto s: solutions)
     {
         u = s.denominator()*u + s.numerator()*v;
         v *= s.denominator();
     }
     
-    grand_nombre resultat = (u + v)/grand_nombre::PGCD(u,v);
+    mp_nombre resultat = (u + v)/mp_nombre::PGCD(u,v);
     return resultat.to_string();
 }

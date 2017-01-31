@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 #include "arithmetiques.h"
 #include "premiers.h"
 #include "combinatoire.h"
@@ -51,7 +51,7 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer")
     vecteur premiers;
     premiers::crible235<nombre>(limite, std::back_inserter(premiers));
 
-    grand_nombre resultat = 0;
+    mp_nombre resultat = 0;
 
     std::map<nombre, size_t> decomposition;
     arithmetiques::decomposition(combinatoire::factorielle<nombre>(9), premiers, decomposition);

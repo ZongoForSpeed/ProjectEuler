@@ -15,30 +15,28 @@ include_directories(${GMP_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
 
 
-set(LIBRARY_HEADERS
+set(LIBRARY_FILES
         arithmetiques.h
         chiffres.h
         combinatoire.h
+        diophantienne.cpp
         diophantienne.h
+        graphe.cpp
         graphe.h
-        grand_nombre.h
         matrice.h
         multidimension.h
         polygonal.h
         polynome.h
+        premiers.cpp
         premiers.h
         puissance.h
-        pythagoricien.h
-        timer.h
-        utilitaires.h)
-
-set(LIBRARY_FILES
-        diophantienne.cpp
-        graphe.cpp
-        grand_nombre.cpp
-        premiers.cpp
         pythagoricien.cpp
-        timer.cpp)
+        pythagoricien.h
+        timer.cpp
+        timer.h
+        mp_nombre.cpp
+        mp_nombre.h
+        utilitaires.h)
 
 file(COPY data
         DESTINATION .)
@@ -78,7 +76,6 @@ set(SOURCE_FILES
         problemes.cpp
         euler.cpp
         ${LIBRARY_FILES}
-        ${LIBRARY_HEADERS}
         ${PROBLEMES_FILES})
 
 add_executable(ProjectEuler ${SOURCE_FILES})

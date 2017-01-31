@@ -1,14 +1,14 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "grand_nombre.h"
+#include "mp_nombre.h"
 
 #include <boost/rational.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 
-typedef std::vector<grand_nombre> vecteur;
+typedef std::vector<mp_nombre> vecteur;
 
-typedef boost::rational<grand_nombre> fraction;
+typedef boost::rational<mp_nombre> fraction;
 
 ENREGISTRER_PROBLEME(65, "Convergents of e")
 {
@@ -32,7 +32,7 @@ ENREGISTRER_PROBLEME(65, "Convergents of e")
     // Find the sum of digits in the numerator of the 100th convergent of the continued fraction for e.
     vecteur fraction_continue;
     fraction_continue.push_back(2);
-    for (grand_nombre n = 2; n < 101; n += 2)
+    for (mp_nombre n = 2; n < 101; n += 2)
     {
         fraction_continue.push_back(1);
         fraction_continue.push_back(n);
@@ -42,6 +42,6 @@ ENREGISTRER_PROBLEME(65, "Convergents of e")
     fraction f(1);
     for (const auto & p: boost::adaptors::reverse(fraction_continue)) f = p + 1 / f;
 
-    grand_nombre resultat = f.numerator().somme_chiffres();
+    mp_nombre resultat = f.numerator().somme_chiffres();
     return resultat.to_string();
 }
