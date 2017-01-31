@@ -92,8 +92,6 @@ ENREGISTRER_PROBLEME(322, "Binomial coefficients divisible by 10")
     // Find T(10**18, 10**12-10).
     const nombre m = puissance::puissance<nombre>(10, 18u);
     const nombre n = puissance::puissance<nombre>(10, 12u) - 10;
-    // const nombre m = puissance::puissance<nombre>(10, 9u);
-    // const nombre n = puissance::puissance<nombre>(10, 7u) - 10;
     
     nombre resultat = m - n;
     resultat -= covers(m, n, 5);

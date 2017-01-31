@@ -338,11 +338,10 @@ public:
         return n;
     }
     
-    static grand_nombre modulo(const grand_nombre & op1, unsigned long int op2)
+    static unsigned long int modulo(const grand_nombre & op1, unsigned long int op2)
     {
         grand_nombre n;
-        mpz_mod_ui(n.data, op1.data, op2);
-        return n;
+        return mpz_mod_ui(n.data, op1.data, op2);
     }
     
     template<typename T>
@@ -791,6 +790,11 @@ inline grand_nombre operator/(const T & op1, const grand_nombre & op2)
 
 template<typename T>
 inline grand_nombre operator%(const T & op1, const grand_nombre & op2)
+{
+    return grand_nombre::modulo(op1, op2);
+}
+
+inline unsigned long operator%(const grand_nombre & op1, const unsigned long & op2)
 {
     return grand_nombre::modulo(op1, op2);
 }
