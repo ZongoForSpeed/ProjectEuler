@@ -2,6 +2,9 @@
 #include "utilitaires.h"
 #include "mp_nombre.h"
 
+#include <numeric>
+#include <set>
+
 ENREGISTRER_PROBLEME(346, "Strong Repunits")
 {
 	// The number 7 is special, because 7 is 111 written in base 2, and 11 written in base 6

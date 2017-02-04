@@ -2,6 +2,8 @@
 #include "arithmetiques.h"
 #include "mp_nombre.h"
 
+#include <numeric>
+
 ENREGISTRER_PROBLEME(8, "Largest product in a series")
 {
     // The four adjacent digits in the 1000-digit number that have the greatest 

@@ -3,6 +3,9 @@
 #include "premiers.h"
 #include "mp_nombre.h"
 
+#include <numeric>
+#include <vector>
+
 #include <boost/rational.hpp>
 
 typedef boost::rational<mp_nombre> fraction;

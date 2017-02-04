@@ -3,6 +3,8 @@
 #include "utilitaires.h"
 #include "mp_nombre.h"
 
+#include <numeric>
+
 typedef std::vector<mp_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(10, "Summation of primes")

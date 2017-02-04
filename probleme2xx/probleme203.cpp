@@ -3,6 +3,9 @@
 #include "premiers.h"
 #include "mp_nombre.h"
 
+#include <numeric>
+#include <vector>
+
 typedef std::vector<mp_nombre> vecteur;
 typedef std::pair<mp_nombre, mp_nombre> paire;
 

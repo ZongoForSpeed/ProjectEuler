@@ -2,6 +2,9 @@
 #include "arithmetiques.h"
 #include "mp_nombre.h"
 
+#include <numeric>
+#include <vector>
+
 typedef std::vector<mp_nombre> vecteur;
 typedef std::map<mp_nombre, mp_nombre> dictionnaire;
 
