@@ -46,6 +46,10 @@ public:
 
     template<typename T>
     T get() const;
+    
+    const mpz_t & get_data() const {
+        return data;
+    }
     // endregion Getters
 
     void swap(mp_nombre &op);
@@ -316,14 +320,14 @@ private:
     }
 
     template<typename Type>
-    Type get(std::false_type /*is_signed*/) const {
+    Type get(Type /*type*/, std::false_type /*is_signed*/) const {
         Type result = 0;
         mpz_export(&result, 0, -1, sizeof result, 0, 0, data);
         return result;
     }
 
     template<typename Type>
-    Type get(std::true_type /*is_signed*/) const {
+    Type get(Type /*type*/, std::true_type /*is_signed*/) const {
         Type result = 0;
         mpz_export(&result, 0, -1, sizeof result, 0, 0, data);
         return signe() * result;
@@ -436,4 +440,8 @@ namespace std {
             return min();
         }
     };
+    
+    inline string to_string(const mp_nombre & op) {
+        return op.to_string();
+    }
 }

@@ -7,7 +7,7 @@ void mp_nombre::set(T x) {
 template<typename T>
 T mp_nombre::get() const {
     static_assert(std::is_integral<T>::value, "Integer required.");
-    return get(std::is_signed<T>());
+    return get(T(0), std::is_signed<T>());
 }
 
 template<typename T>
