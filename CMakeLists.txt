@@ -1,7 +1,8 @@
 project(ProjectEuler)
 
 cmake_minimum_required(VERSION 3.5)
-find_package(GMP REQUIRED)
+find_package(GMP 2.6 REQUIRED)
+find_package(MPFR 3.1 REQUIRED)
 find_package(Boost 1.58 REQUIRED system thread timer chrono)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -13,7 +14,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${GMP_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
-
+include_directories(${MPFR_INCLUDES})
 
 set(LIBRARY_FILES
         arithmetiques.h
@@ -34,6 +35,8 @@ set(LIBRARY_FILES
         pythagoricien.h
         timer.cpp
         timer.h
+        mp_float.cpp
+        mp_float.h
         mp_nombre.cpp
         mp_nombre.h
         utilitaires.h)
@@ -48,7 +51,8 @@ set(TEST_FILES
         test/combinatoire.cpp
         test/diophantienne.cpp
         test/matrice.cpp
-        test/nombre.cpp
+        test/mp_float.cpp
+        test/mp_nombre.cpp
         test/multidimension.cpp
         test/polygonal.cpp
         test/polynome.cpp
@@ -81,5 +85,5 @@ set(SOURCE_FILES
 add_executable(ProjectEuler ${SOURCE_FILES})
 add_executable(ProjectEulerTest ${TEST_FILES})
 
-target_link_libraries(ProjectEuler ${GMP_LIBRARIES} ${Boost_LIBRARIES})
-target_link_libraries(ProjectEulerTest ${GMP_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(ProjectEuler ${GMP_LIBRARIES} ${Boost_LIBRARIES} ${MPFR_LIBRARIES})
+target_link_libraries(ProjectEulerTest ${GMP_LIBRARIES} ${Boost_LIBRARIES} ${MPFR_LIBRARIES})

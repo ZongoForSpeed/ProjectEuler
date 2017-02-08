@@ -47,6 +47,10 @@ public:
     template<typename T>
     T get() const;
     
+    mpz_t & get_data() {
+        return data;
+    }
+    
     const mpz_t & get_data() const {
         return data;
     }
