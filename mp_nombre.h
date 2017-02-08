@@ -8,7 +8,7 @@
 #include <deque>
 
 class mp_nombre {
-    mpz_t data;
+    mpz_t _data;
 
 public:
     // region Constructors
@@ -48,11 +48,11 @@ public:
     T get() const;
     
     mpz_t & get_data() {
-        return data;
+        return _data;
     }
     
     const mpz_t & get_data() const {
-        return data;
+        return _data;
     }
     // endregion Getters
 
@@ -269,9 +269,9 @@ public:
 
     // region Chiffres
     void boucle_chiffre(std::function<void(unsigned long int)> op, unsigned long int base = 10) const {
-        mp_nombre n(data);
+        mp_nombre n(_data);
         while (n != 0) {
-            unsigned long int r = mpz_fdiv_q_ui(n.data, n.data, base);
+            unsigned long int r = mpz_fdiv_q_ui(n._data, n._data, base);
             op(r);
         }
     }
@@ -312,28 +312,28 @@ public:
 private:
     template<typename Type>
     void set(Type op, std::false_type /*is_signed*/) {
-        mpz_import(data, 1, -1, sizeof op, 0, 0, &op);
+        mpz_import(_data, 1, -1, sizeof op, 0, 0, &op);
     }
 
     template<typename Type>
     void set(Type op, std::true_type /*is_signed*/) {
         bool negatif = (op < 0);
         op = std::abs(op);
-        mpz_import(data, 1, -1, sizeof op, 0, 0, &op);
+        mpz_import(_data, 1, -1, sizeof op, 0, 0, &op);
         if (negatif) negation();
     }
 
     template<typename Type>
     Type get(Type /*type*/, std::false_type /*is_signed*/) const {
         Type result = 0;
-        mpz_export(&result, 0, -1, sizeof result, 0, 0, data);
+        mpz_export(&result, 0, -1, sizeof result, 0, 0, _data);
         return result;
     }
 
     template<typename Type>
     Type get(Type /*type*/, std::true_type /*is_signed*/) const {
         Type result = 0;
-        mpz_export(&result, 0, -1, sizeof result, 0, 0, data);
+        mpz_export(&result, 0, -1, sizeof result, 0, 0, _data);
         return signe() * result;
     }
 };

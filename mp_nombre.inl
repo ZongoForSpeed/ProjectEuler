@@ -60,7 +60,7 @@ template<typename T>
 mp_nombre mp_nombre::operator+(const T &op) const {
     mp_nombre resultat;
     mp_nombre n(op);
-    mpz_add(resultat.data, data, n.data);
+    mpz_add(resultat._data, _data, n._data);
     return resultat;
 }
 

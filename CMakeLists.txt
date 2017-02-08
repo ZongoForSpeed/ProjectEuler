@@ -35,8 +35,6 @@ set(LIBRARY_FILES
         pythagoricien.h
         timer.cpp
         timer.h
-        mp_float.cpp
-        mp_float.h
         mp_nombre.cpp
         mp_nombre.h
         utilitaires.h)
@@ -51,7 +49,6 @@ set(TEST_FILES
         test/combinatoire.cpp
         test/diophantienne.cpp
         test/matrice.cpp
-        test/mp_float.cpp
         test/mp_nombre.cpp
         test/multidimension.cpp
         test/polygonal.cpp
