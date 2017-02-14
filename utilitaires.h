@@ -13,6 +13,7 @@
 #include <iomanip>
 
 #include <boost/optional.hpp>
+#include <boost/rational.hpp>
 
 namespace std
 {
@@ -154,6 +155,13 @@ namespace std
     {
         std::ostringstream oss;
         oss << std::fixed << std::setprecision(p) << n;
+        return oss.str();
+    }
+    
+    template<typename Nombre>
+    std::string to_string(const boost::rational<Nombre>& f) {
+        std::ostringstream oss;
+        oss << f;
         return oss.str();
     }
 }
