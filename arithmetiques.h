@@ -349,8 +349,8 @@ namespace arithmetiques
             return inverse;
     }
 
-    template<typename Nombre, typename Conteneur>
-    Nombre restes_chinois(const Conteneur & modulos, const Conteneur & restes, const Conteneur & premiers)
+    template<typename Nombre, typename Conteneur1, typename Conteneur2, typename Conteneur3>
+    Nombre restes_chinois(const Conteneur1 & modulos, const Conteneur2 & restes, const Conteneur3 & premiers)
     {
         // https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois
         if (modulos.size() != restes.size())
@@ -372,8 +372,8 @@ namespace arithmetiques
         return resultat;
     }
     
-    template<typename Nombre, typename Conteneur>
-    Nombre restes_chinois(const Conteneur & modulos, const Conteneur & restes)
+    template<typename Nombre, typename Conteneur1, typename Conteneur2>
+    Nombre restes_chinois(const Conteneur1 & modulos, const Conteneur2 & restes)
     {
         // https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois
         if (modulos.size() != restes.size())
