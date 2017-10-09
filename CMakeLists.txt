@@ -45,6 +45,7 @@ set(LIBRARY_FILES
         graphe.h
         matrice.h
         multidimension.h
+        permutation.h
         polygonal.h
         polynome.h
         premiers.cpp
@@ -70,6 +71,7 @@ set(TEST_FILES
         test/matrice.cpp
         test/mp_nombre.cpp
         test/multidimension.cpp
+        test/permutation.cpp
         test/polygonal.cpp
         test/polynome.cpp
         test/premiers.cpp

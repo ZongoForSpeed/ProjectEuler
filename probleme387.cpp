@@ -11,8 +11,6 @@
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
-typedef std::pair<nombre, nombre> paire;
-typedef std::tuple<nombre, nombre, nombre> point;
 
 ENREGISTRER_PROBLEME(387, "Harshad Numbers")
 {
