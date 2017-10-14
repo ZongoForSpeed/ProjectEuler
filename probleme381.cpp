@@ -4,30 +4,26 @@
 #include "utilitaires.h"
 #include "mp_nombre.h"
 
-namespace
-{
-    mp_nombre S(size_t p)
-    {
+namespace {
+    mp_nombre S(size_t p) {
         if (p < 5)
             return 0;
-        
+
         size_t f = p - 1;
         // std::cout << p - 1 << "! mod " << p << " = " << f << std::endl;
         mp_nombre resultat = f;
-        for (size_t n = 2; n < 6; ++n)
-        {
+        for (size_t n = 2; n < 6; ++n) {
             f *= puissance::puissance_modulaire(p - n + 1, p - 2, p);
             f %= p;
             // std::cout << p - n << "! mod " << p << " = " << f << std::endl;
             resultat += f;
         }
-        
+
         return resultat % p;
     }
 }
 
-ENREGISTRER_PROBLEME(381, "(prime-k) factorial")
-{
+ENREGISTRER_PROBLEME(381, "(prime-k) factorial") {
     // For a prime p let S(p) = (Sum(p-k)!) mod(p) for 1 ≤ k ≤ 5.
     //
     // For example, if p=7,
@@ -38,15 +34,14 @@ ENREGISTRER_PROBLEME(381, "(prime-k) factorial")
     //
     // Find SumS(p) for 5 ≤ p < 10^8.
     size_t limite = 100000000L;
-    
+
     std::deque<size_t> premiers;
     premiers::crible2<size_t>(limite, std::back_inserter(premiers));
-    
+
     mp_nombre resultat = 0;
-    for (const size_t & p : premiers)
-    {
-        resultat += S(p);                
+    for (const size_t &p : premiers) {
+        resultat += S(p);
     }
-    
+
     return resultat.to_string();
 }

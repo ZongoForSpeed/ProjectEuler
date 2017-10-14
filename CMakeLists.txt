@@ -1,5 +1,7 @@
 project(ProjectEuler)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/install/")
+
 cmake_minimum_required(VERSION 3.5)
 find_package(GMP 2.6 REQUIRED)
 find_package(MPFR 3.1 REQUIRED)
