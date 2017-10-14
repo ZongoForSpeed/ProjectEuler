@@ -1,25 +1,14 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <map>
-#include <set>
-
-#include <boost/rational.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
-typedef std::set<nombre> ensemble; 
+typedef std::set<nombre> ensemble;
 
-ENREGISTRER_PROBLEME(157, "Solving the diophantine equation 1/a+1/b= p/10n")
-{
+ENREGISTRER_PROBLEME(157, "Solving the diophantine equation 1/a+1/b= p/10n") {
     // Consider the diophantine equation 1/a+1/b= p/10^n with a, b, p, n positive integers and a ≤ b.
     // For n=1 this equation has 20 solutions that are listed below:
     // 
@@ -33,41 +22,38 @@ ENREGISTRER_PROBLEME(157, "Solving the diophantine equation 1/a+1/b= p/10n")
     premiers::crible235<nombre>(1000000000ULL, std::back_inserter(premiers));
     nombre limite = 9;
     nombre resultat = 0;
-    for (nombre n = 1; n < limite + 1; ++n)
-    {
+    for (nombre n = 1; n < limite + 1; ++n) {
         nombre m = puissance::puissance(10UL, n);
         vecteur d2;
         vecteur d5;
-        for (nombre p = 0; p < n + 1; ++p)
-        {
-        d2.push_back(puissance::puissance(2UL, p));
+        for (nombre p = 0; p < n + 1; ++p) {
+            d2.push_back(puissance::puissance(2UL, p));
             d5.push_back(puissance::puissance(5UL, p));
         }
-        
+
         ensemble diviseurs;
         for (nombre i: d2)
-        for (nombre j: d5)
-            diviseurs.insert(i*j);
-    
+            for (nombre j: d5)
+                diviseurs.insert(i * j);
+
         nombre resultat_n = 0;
-        
+
         for (nombre b: diviseurs)
-        for (nombre a: diviseurs)
-        {
-            if (a > b)
-                break;
-            if (a * b > m)
-                break;
-                
-            if (arithmetiques::PGCD(a, b) != 1)
-                continue;
-                    
-            nombre p = m * (a + b) / a / b;
-            resultat_n += arithmetiques::nombre_diviseurs(p, premiers);
-        }
+            for (nombre a: diviseurs) {
+                if (a > b)
+                    break;
+                if (a * b > m)
+                    break;
+
+                if (arithmetiques::PGCD(a, b) != 1)
+                    continue;
+
+                nombre p = m * (a + b) / a / b;
+                resultat_n += arithmetiques::nombre_diviseurs(p, premiers);
+            }
         std::cout << "Solutions(" << n << ") = " << resultat_n << std::endl;
         resultat += resultat_n;
     }
-    
+
     return std::to_string(resultat);
 }

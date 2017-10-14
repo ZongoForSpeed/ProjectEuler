@@ -2,10 +2,8 @@
 #include "arithmetiques.h"
 #include "mp_nombre.h"
 
-namespace
-{
-    mp_nombre f(std::map<mp_nombre, mp_nombre> & cache, mp_nombre n)
-    {
+namespace {
+    mp_nombre f(std::map<mp_nombre, mp_nombre> &cache, mp_nombre n) {
         auto it = cache.find(n);
         if (it != cache.end())
             return it->second;
@@ -15,19 +13,19 @@ namespace
         mp_nombre resultat = 0;
         if (n == 0)
             resultat = 1;
-        else if (n%2 == 0)
-            resultat = f(cache, n/2) + f(cache, n/2 - 1);
+        else if (n % 2 == 0)
+            resultat = f(cache, n / 2) + f(cache, n / 2 - 1);
         else
-            resultat = f(cache, n/2);
-            
+            resultat = f(cache, n / 2);
+
         cache[n] = resultat;
-        return  resultat;
+        return resultat;
     }
 }
 
-ENREGISTRER_PROBLEME(169, "Exploring the number of different ways a number can be expressed as a sum of powers of 2")
-{
-    // Define f(0)=1 and f(n) to be the number of different ways n can be expressed as a sum of integer powers of 2 using each power no more than twice.
+ENREGISTRER_PROBLEME(169, "Exploring the number of different ways a number can be expressed as a sum of powers of 2") {
+    // Define f(0)=1 and f(n) to be the number of different ways n can be expressed as a sum of integer powers of 2
+    // using each power no more than twice.
     //
     // For example, f(10)=5 since there are five different ways to express 10:
     // 

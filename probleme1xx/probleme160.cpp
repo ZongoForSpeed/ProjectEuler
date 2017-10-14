@@ -1,20 +1,12 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <map>
-#include <set>
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(160, "Factorial trailing digits")
-{
-	// For any N, let f(N) be the last five digits before the trailing zeroes in N!.
+ENREGISTRER_PROBLEME(160, "Factorial trailing digits") {
+    // For any N, let f(N) be the last five digits before the trailing zeroes in N!.
     // For example,
     // 
     //      9! = 362880 so f(9)=36288
@@ -24,7 +16,7 @@ ENREGISTRER_PROBLEME(160, "Factorial trailing digits")
     // Find f(1,000,000,000,000)
     nombre limite = 1000000000000ULL;
     nombre masque = 100000;
-    
+
     // f(1,000,000,000,000) = f(2560000)
     while (limite % 5 == 0)
         limite /= 5;
@@ -33,22 +25,19 @@ ENREGISTRER_PROBLEME(160, "Factorial trailing digits")
     nombre resultat = 1;
     nombre facteur2 = 0;
     nombre facteur5 = 0;
-    for (nombre n = 1; n < limite + 1; ++n)
-    {
+    for (nombre n = 1; n < limite + 1; ++n) {
         nombre m = n;
-        while (m%5 == 0)
-        {
+        while (m % 5 == 0) {
             ++facteur5;
             m /= 5;
         }
-    
-        while (m%2 == 0)
-        {
+
+        while (m % 2 == 0) {
             ++facteur2;
             m /= 2;
         }
-        resultat = (resultat * m)%masque;
+        resultat = (resultat * m) % masque;
     }
-    resultat = (resultat * puissance::puissance_modulaire<nombre>(2, facteur2 - facteur5, masque))%masque;
+    resultat = (resultat * puissance::puissance_modulaire<nombre>(2, facteur2 - facteur5, masque)) % masque;
     return std::to_string(resultat);
 }

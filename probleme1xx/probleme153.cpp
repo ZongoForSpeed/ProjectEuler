@@ -1,19 +1,14 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "timer.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(153, "Investigating Gaussian Integers")
-{
-	// As we all know the equation x2=-1 has no solutions for real x. 
+ENREGISTRER_PROBLEME(153, "Investigating Gaussian Integers") {
+    // As we all know the equation x2=-1 has no solutions for real x.
     // If we however introduce the imaginary number i this equation has two solutions: x=i and x=-i. 
     // If we go a step further the equation (x-3)2=-4 has two complex solutions: x=3+2i and x=3-2i. 
     // x=3+2i and x=3-2i are called each others' complex conjugate. 
@@ -30,11 +25,10 @@ ENREGISTRER_PROBLEME(153, "Investigating Gaussian Integers")
     // The result is 5/(1+2i) = 1-2i. 
     // So 1+2i is a divisor of 5. 
     // Note that 1+i is not a divisor of 5 because 5/(1+i) = 5/2 - 5/2i. 
-    // Note also that if the Gaussian Integer (a+bi) is a divisor of a rational integer n, then its 
-    // complex conjugate (a−bi) is also a divisor of n.
+    // Note also that if the Gaussian Integer (a+bi) is a divisor of a rational integer n, then its complex conjugate
+    // (a−bi) is also a divisor of n.
     //
-    // In fact, 5 has six divisors such that the real part is positive: 
-    // {1, 1 + 2i, 1 − 2i, 2 + i, 2 − i, 5}. 
+    // In fact, 5 has six divisors such that the real part is positive: {1, 1 + 2i, 1 − 2i, 2 + i, 2 − i, 5}.
     // 
     // The following is a table of all of the divisors for the first five positive rational integers:
     //
@@ -50,36 +44,31 @@ ENREGISTRER_PROBLEME(153, "Investigating Gaussian Integers")
     // For 1 ≤ n ≤ 105, ∑ s(n)=17924657155.
     //
     // What is ∑ s(n) for 1 ≤ n ≤ 108?
-	nombre limite = 100000000ULL;
-	nombre resultat = 0;
-	// Cas des diviseurs entiers
-	{
-		Timer t("Cas des diviseurs entiers");
-		for (nombre i=1; i < limite + 1; i++) 
-		{
-			resultat += (limite/i) * i;             
-		}
-	}
-	
-	// Cas des nombres de la forme (a + ib)
-	{
-		Timer t("Cas des nombres complexes");
-		for(nombre a = 1; a*a < limite; ++a)
-		{
-			for(nombre b = 1; b < a + 1; ++b)
-			{
-				if(arithmetiques::PGCD(a,b)==1)
-				{  
-					nombre z = a*a+b*b;
-					nombre val = (a==b)?(a+b):2*(a+b);
-					for(nombre j=1; z*j < limite + 1; ++j)
-					{
-						resultat += (j*val*(limite/(z*j)));
-					}
-				}				
-			}
-		}
-	}
+    nombre limite = 100000000ULL;
+    nombre resultat = 0;
+    // Cas des diviseurs entiers
+    {
+        Timer t("Cas des diviseurs entiers");
+        for (nombre i = 1; i < limite + 1; i++) {
+            resultat += (limite / i) * i;
+        }
+    }
+
+    // Cas des nombres de la forme (a + ib)
+    {
+        Timer t("Cas des nombres complexes");
+        for (nombre a = 1; a * a < limite; ++a) {
+            for (nombre b = 1; b < a + 1; ++b) {
+                if (arithmetiques::PGCD(a, b) == 1) {
+                    nombre z = a * a + b * b;
+                    nombre val = (a == b) ? (a + b) : 2 * (a + b);
+                    for (nombre j = 1; z * j < limite + 1; ++j) {
+                        resultat += (j * val * (limite / (z * j)));
+                    }
+                }
+            }
+        }
+    }
 
     return std::to_string(resultat);
 }
