@@ -3,16 +3,12 @@
 #include "puissance.h"
 #include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(125, "Palindromic sums")
-{
+ENREGISTRER_PROBLEME(125, "Palindromic sums") {
     // The palindromic number 595 is interesting because it can be written as the sum of 
     // consecutive squares: 6² + 7² + 8² + 9² + 10² + 11² + 12².
     //
@@ -22,17 +18,15 @@ ENREGISTRER_PROBLEME(125, "Palindromic sums")
     // 
     // Find the sum of all the numbers less than 10^8 that are both palindromic and can be written 
     // as the sum of consecutive squares.
-    nombre limite = puissance::puissance<nombre, unsigned>(10, 8); 
+    auto limite = puissance::puissance<nombre, unsigned>(10, 8);
     vecteur carres;
-    for (nombre n = 1; n*n < limite; ++n)
-        carres.push_back(n*n);
-        
+    for (nombre n = 1; n * n < limite; ++n)
+        carres.push_back(n * n);
+
     std::set<nombre> resultat;
-    for (auto it1 = carres.begin(), en = carres.end(); it1 != en; ++it1)
-    {
+    for (auto it1 = carres.begin(), en = carres.end(); it1 != en; ++it1) {
         nombre somme = *it1;
-        for (auto it2 = std::next(it1); it2 != en; ++it2)
-        {
+        for (auto it2 = std::next(it1); it2 != en; ++it2) {
             somme += *it2;
             if (somme >= limite)
                 break;
@@ -40,6 +34,6 @@ ENREGISTRER_PROBLEME(125, "Palindromic sums")
                 resultat.insert(somme);
         }
     }
-    
+
     return std::to_string(std::accumulate(resultat.begin(), resultat.end(), 0ULL));
 }

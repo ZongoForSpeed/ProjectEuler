@@ -1,24 +1,19 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
-ENREGISTRER_PROBLEME(124, "Ordered radicals")
-{
-    // The radical of n, rad(n), is the product of the distinct prime factors of n. For example, 
-    // 504 = 2^3 × 3^2 × 7, so rad(504) = 2 × 3 × 7 = 42.
+ENREGISTRER_PROBLEME(124, "Ordered radicals") {
+    // The radical of n, rad(n), is the product of the distinct prime factors of n. For example, 504 = 2^3 × 3^2 × 7,
+    // so rad(504) = 2 × 3 × 7 = 42.
     //
-    // If we calculate rad(n) for 1 ≤ n ≤ 10, then sort them on rad(n), and sorting on n if the 
-    //  radical values are equal, we get:
+    // If we calculate rad(n) for 1 ≤ n ≤ 10, then sort them on rad(n), and sorting on n if the radical values are equal,
+    // we get:
     //
     //                  Unsorted            Sorted
     //                  n   rad(n)          n   rad(n)  k
@@ -39,15 +34,14 @@ ENREGISTRER_PROBLEME(124, "Ordered radicals")
     nombre limite = 100000;
     vecteur premiers;
     premiers::crible23<nombre>(limite, std::back_inserter(premiers));
-    
-    std::vector<paire> rad { paire(0, 0), paire(1, 1) };
-    for (nombre n = 2; n < limite + 1; ++n)
-    {
-        rad.push_back(paire(arithmetiques::radical(n, premiers), n));
+
+    std::vector<paire> rad{paire(0, 0), paire(1, 1)};
+    for (nombre n = 2; n < limite + 1; ++n) {
+        rad.emplace_back(arithmetiques::radical(n, premiers), n);
     }
-    
+
     std::sort(rad.begin(), rad.end());
-    
+
     nombre resultat = rad.at(10000).second;
     return std::to_string(resultat);
 }

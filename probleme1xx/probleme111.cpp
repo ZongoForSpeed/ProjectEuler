@@ -3,35 +3,26 @@
 #include "premiers.h"
 #include "puissance.h"
 #include "utilitaires.h"
-#include "graphe.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-
-#include <boost/rational.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
-
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(111, "Primes with runs")
-{
-    // Considering 4-digit primes containing repeated digits it is clear that they cannot all be the 
-    // same: 1111 is divisible by 11, 2222 is divisible by 22, and so on. But there are nine 4-digit 
-    // primes containing three ones:
+ENREGISTRER_PROBLEME(111, "Primes with runs") {
+    // Considering 4-digit primes containing repeated digits it is clear that they cannot all be the same:
+    // 1111 is divisible by 11, 2222 is divisible by 22, and so on. But there are nine 4-digit primes containing three
+    // ones:
     //
     //                  1117, 1151, 1171, 1181, 1511, 1811, 2111, 4111, 8111
     //
-    // We shall say that M(n, d) represents the maximum number of repeated digits for an n-digit prime
-    // where d is the repeated digit, N(n, d) represents the number of such primes, and S(n, d) 
-    // represents the sum of these primes.
+    // We shall say that M(n, d) represents the maximum number of repeated digits for an n-digit prime where d is the
+    // repeated digit, N(n, d) represents the number of such primes, and S(n, d) represents the sum of these primes.
     //
-    // So M(4, 1) = 3 is the maximum number of repeated digits for a 4-digit prime where one is the 
-    // repeated digit, there are N(4, 1) = 9 such primes, and the sum of these primes is 
-    // S(4, 1) = 22275. It turns out that for d = 0, it is only possible to have M(4, 0) = 2 repeated 
-    // digits, but there are N(4, 0) = 13 such cases.
+    // So M(4, 1) = 3 is the maximum number of repeated digits for a 4-digit prime where one is the repeated digit,
+    // there are N(4, 1) = 9 such primes, and the sum of these primes is S(4, 1) = 22275. It turns out that for d = 0,
+    // it is only possible to have M(4, 0) = 2 repeated digits, but there are N(4, 0) = 13 such cases.
     //
     // In the same way we obtain the following results for 4-digit primes.
     //
@@ -49,35 +40,31 @@ ENREGISTRER_PROBLEME(111, "Primes with runs")
     // For d = 0 to 9, the sum of all S(4, d) is 273700.
     //
     // Find the sum of all S(10, d).
-    nombre limite = puissance::puissance<nombre, unsigned>(10, 10);
-    
+    auto limite = puissance::puissance<nombre, unsigned>(10, 10);
+
     vecteur premiers;
     premiers::crible23<nombre>(limite, std::back_inserter(premiers));
-    
+
     std::map<unsigned short, std::map<nombre, vecteur>> ensemble;
-    for (nombre p: premiers)
-    {
-        if (p > limite / 10)
-        {
+    for (nombre p: premiers) {
+        if (p > limite / 10) {
             vecteur chiffres(10, 0);
-            chiffres::boucle_chiffre(p, [&chiffres] (nombre d){ chiffres.at(d)++; });
-            
-            for (unsigned short n = 0; n < 10; ++n)
-            {
-                if (chiffres[n] > 5) ensemble[n][chiffres[n]].push_back(p);                
+            chiffres::boucle_chiffre(p, [&chiffres](nombre d) { chiffres.at(d)++; });
+
+            for (unsigned short n = 0; n < 10; ++n) {
+                if (chiffres[n] > 5) ensemble[n][chiffres[n]].push_back(p);
             }
         }
     }
-    
+
     std::cout << limite / 10 << std::endl;
     nombre resultat = 0;
-    for (const auto & e: ensemble)
-    {
-        const std::pair<nombre, vecteur> & p = *e.second.rbegin();
+    for (const auto &e: ensemble) {
+        const std::pair<nombre, vecteur> &p = *e.second.rbegin();
         nombre somme = std::accumulate(p.second.begin(), p.second.end(), 0ULL);
         resultat += somme;
         std::cout << e.first << "\t" << p.first << "\t" << p.second.size() << "\t" << somme << std::endl;
     }
-    
+
     return std::to_string(resultat);
 }

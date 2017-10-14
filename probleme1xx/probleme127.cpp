@@ -1,19 +1,14 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::set<nombre> ensemble;
 
-ENREGISTRER_PROBLEME(127, "abc-hits")
-{
+ENREGISTRER_PROBLEME(127, "abc-hits") {
     // The radical of n, rad(n), is the product of distinct prime factors of n. For example, 
     // 504 = 23 × 32 × 7, so rad(504) = 2 × 3 × 7 = 42.
     //
@@ -38,21 +33,18 @@ ENREGISTRER_PROBLEME(127, "abc-hits")
     nombre limite = 120000;
     ensemble premiers;
     premiers::crible23<nombre>(limite, std::inserter(premiers, premiers.begin()));
-    
-    vecteur radical { 0, 1 };
+
+    vecteur radical{0, 1};
     for (nombre n = 2; n < limite; ++n)
         radical.push_back(arithmetiques::radical(n, premiers));
-    
+
     nombre resultat = 0;
-    for (nombre c = 3; c < limite; ++c)
-    {
+    for (nombre c = 3; c < limite; ++c) {
         if (premiers.find(c) != premiers.end())
             continue;
         nombre rad_c = radical[c];
-        if (rad_c < c)
-        {
-            for (nombre a = 1; 2*a < c; ++a)
-            {
+        if (rad_c < c) {
+            for (nombre a = 1; 2 * a < c; ++a) {
                 nombre b = c - a;
                 nombre rad_a = radical[a];
                 nombre rad_b = radical[b];
@@ -61,6 +53,6 @@ ENREGISTRER_PROBLEME(127, "abc-hits")
             }
         }
     }
-    
+
     return std::to_string(resultat);
 }

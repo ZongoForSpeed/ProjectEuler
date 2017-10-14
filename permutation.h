@@ -1,3 +1,7 @@
+#pragma once
+
+#include "utilitaires.h"
+
 #include <boost/range/join.hpp>
 #include <boost/iterator/iterator_facade.hpp>
 

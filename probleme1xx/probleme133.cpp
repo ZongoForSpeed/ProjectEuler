@@ -1,20 +1,15 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(133, "Repunit nonfactors")
-{
-	// A number consisting entirely of ones is called a repunit. We shall define R(k) to be a repunit of 
-	// length k; for example, R(6) = 111111.
+ENREGISTRER_PROBLEME(133, "Repunit nonfactors") {
+    // A number consisting entirely of ones is called a repunit. We shall define R(k) to be a repunit of length k;
+    // for example, R(6) = 111111.
     //
     // Let us consider repunits of the form R(10n).
     // 
@@ -26,23 +21,21 @@ ENREGISTRER_PROBLEME(133, "Repunit nonfactors")
     nombre limite = 100000;
     vecteur premiers;
     premiers::crible2<nombre>(limite, std::inserter(premiers, premiers.begin()));
-    
-	nombre resultat = 0;
-	for (nombre p: premiers)
-	{
-		if (p == 2 || p == 5)
-		{
-			resultat += p;
-			continue;
-		}
-		nombre k = arithmetiques::repunit::A(p);
-		
-		while (k%2 == 0) k /= 2;
-		while (k%5 == 0) k /= 5;
-		
-		if (k != 1)
-			resultat += p;
-	}
+
+    nombre resultat = 0;
+    for (nombre p: premiers) {
+        if (p == 2 || p == 5) {
+            resultat += p;
+            continue;
+        }
+        nombre k = arithmetiques::repunit::A(p);
+
+        while (k % 2 == 0) k /= 2;
+        while (k % 5 == 0) k /= 5;
+
+        if (k != 1)
+            resultat += p;
+    }
     return std::to_string(resultat);
 }
 

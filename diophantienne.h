@@ -1,3 +1,5 @@
+#pragma once
+
 #include "arithmetiques.h"
 #include "polygonal.h"
 
