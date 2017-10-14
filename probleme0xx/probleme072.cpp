@@ -1,21 +1,13 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <algorithm>
-#include <list>
-#include <map>
-
-#include <boost/rational.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(72, "Counting fractions")
-{
-    // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is called a reduced proper fraction.
+ENREGISTRER_PROBLEME(72, "Counting fractions") {
+    // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is called a reduced
+    // proper fraction.
     //
     // If we list the set of reduced proper fractions for d ≤ 8 in ascending order of size, we get:
     //
@@ -27,11 +19,10 @@ ENREGISTRER_PROBLEME(72, "Counting fractions")
     nombre limite = 1000000;
     vecteur premiers;
     premiers::crible23<nombre>(limite, std::back_inserter(premiers));
-    
+
     nombre resultat = 0;
-    for (nombre n = 2; n <= limite; ++n)
-    {
-        resultat += arithmetiques::phi(n, premiers);   
+    for (nombre n = 2; n <= limite; ++n) {
+        resultat += arithmetiques::phi(n, premiers);
     }
     return std::to_string(resultat);
 }

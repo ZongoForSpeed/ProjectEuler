@@ -2,16 +2,12 @@
 #include "premiers.h"
 #include "timer.h"
 
-#include <iostream>
 #include <algorithm>
-#include <list>
-#include <map>
 #include <set>
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(58, "Spiral primes")
-{
+ENREGISTRER_PROBLEME(58, "Spiral primes") {
     // Starting with 1 and spiralling anticlockwise in the following way, a square spiral 
     // with side length 7 is formed.
     //
@@ -39,17 +35,14 @@ ENREGISTRER_PROBLEME(58, "Spiral primes")
     nombre nbDiagonales = 1;
     nombre n = 1;
     nombre resultat;
-    while (true)
-    {
-        nombre difference = ((n+2)*(n+2) - n*n)/4;
+    while (true) {
+        nombre difference = ((n + 2) * (n + 2) - n * n) / 4;
         nbDiagonales += 4;
-        for (nombre k = 1; k < 4; ++k)
-        {
-            if (premiers.find(n*n + difference*k) != premiers.end()) ++nbPremiers;
+        for (nombre k = 1; k < 4; ++k) {
+            if (premiers.find(n * n + difference * k) != premiers.end()) ++nbPremiers;
         }
         n += 2;
-        if (10 * nbPremiers < nbDiagonales)
-        {
+        if (10 * nbPremiers < nbDiagonales) {
             resultat = n;
             break;
         }

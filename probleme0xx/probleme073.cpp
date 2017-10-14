@@ -1,16 +1,11 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <algorithm>
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(73, "Counting fractions in a range")
-{
-    // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is
-    // called a reduced proper fraction.
+ENREGISTRER_PROBLEME(73, "Counting fractions in a range") {
+    // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is called a reduced
+    // proper fraction.
     //
     // If we list the set of reduced proper fractions for d ≤ 8 in ascending order of size, we get:
     // 
@@ -18,14 +13,11 @@ ENREGISTRER_PROBLEME(73, "Counting fractions in a range")
     // 
     // It can be seen that there are 3 fractions between 1/3 and 1/2.
     //
-    // How many fractions lie between 1/3 and 1/2 in the sorted set of reduced proper fractions for 
-    // d ≤ 12,000?
+    // How many fractions lie between 1/3 and 1/2 in the sorted set of reduced proper fractions for d ≤ 12,000?
     nombre resultat = 0;
     nombre limite = 12000;
-    for (nombre n = 5; n <= limite; ++n)
-    {
-        for (nombre k = n/3 + 1; 2 * k <= n - 1; ++k)
-        {
+    for (nombre n = 5; n <= limite; ++n) {
+        for (nombre k = n / 3 + 1; 2 * k <= n - 1; ++k) {
             if (arithmetiques::PGCD(k, n) == 1)
                 ++resultat;
         }

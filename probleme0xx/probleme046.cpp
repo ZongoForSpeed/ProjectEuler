@@ -2,14 +2,9 @@
 #include "premiers.h"
 #include "polygonal.h"
 
-#include <iostream>
-#include <algorithm>
-#include <set>
-
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(46, "Goldbach's other conjecture")
-{
+ENREGISTRER_PROBLEME(46, "Goldbach's other conjecture") {
     // It was proposed by Christian Goldbach that every odd composite number can be written as the 
     // sum of a prime and twice a square.
     //
@@ -28,25 +23,19 @@ ENREGISTRER_PROBLEME(46, "Goldbach's other conjecture")
     nombre resultat = 0;
     nombre n = 9;
     bool trouve = false;
-    while (!trouve)
-    {
-        if (premiers.find(n) == premiers.end())
-        {
-            for (nombre p: premiers)
-            {
-                if (p > n)
-                {
+    while (!trouve) {
+        if (premiers.find(n) == premiers.end()) {
+            for (nombre p: premiers) {
+                if (p > n) {
                     resultat = n;
                     trouve = true;
                     break;
-                }
-                else if ((n - p)%2 == 0 && polygonal::est_carre((n-p)/2))
-                {
+                } else if ((n - p) % 2 == 0 && polygonal::est_carre((n - p) / 2)) {
                     break;
                 }
             }
         }
-        
+
         n += 2;
     }
     return std::to_string(resultat);

@@ -1,13 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
 #include "graphe.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
 #include <boost/algorithm/string.hpp>
 
 typedef unsigned long long nombre;
@@ -17,8 +12,7 @@ typedef std::vector<vecteur> matrice;
 typedef std::pair<nombre, nombre> paire;
 typedef std::vector<paire> vecteur_paire;
 
-ENREGISTRER_PROBLEME(83, "Path sum: four ways")
-{
+ENREGISTRER_PROBLEME(83, "Path sum: four ways") {
     // In the 5 by 5 matrix below, the minimal path sum from the top left to the bottom right, 
     // by moving left, right, up, and down, is indicated in bold red and is equal to 2297.
     //
@@ -28,37 +22,34 @@ ENREGISTRER_PROBLEME(83, "Path sum: four ways")
     matrice m;
     std::ifstream ifs("data/p083_matrix.txt");
     std::string ligne;
-    while (ifs >> ligne)
-    {
+    while (ifs >> ligne) {
         std::vector<std::string> v;
-        boost::split(v,ligne,boost::is_any_of(","));
+        boost::split(v, ligne, boost::is_any_of(","));
         vecteur l;
-        for (const auto & s: v)
-        {
+        for (const auto &s: v) {
             l.push_back(std::stoull(s));
         }
         m.push_back(l);
     }
-    
+
     const nombre taille = m.size();
     graphe::Dijkstra::graphe graphe;
     for (nombre i = 0; i < taille; ++i)
-    for (nombre j = 0; j < taille; ++j)
-    {
-        vecteur_paire v;
-        const nombre poids = m[i][j]; 
-        if (i > 0)            
-            v.push_back(std::make_pair((i-1) * taille + j, poids));
-        if (j > 0) 
-            v.push_back(std::make_pair(i * taille + j - 1, poids));
-        if (i < taille - 1)   
-            v.push_back(std::make_pair((i + 1) * taille + j, poids));
-        if (j < taille - 1) 
-            v.push_back(std::make_pair(i * taille + j + 1, poids));
-            
-        graphe[i*taille + j] = v;
-    }
-    
+        for (nombre j = 0; j < taille; ++j) {
+            vecteur_paire v;
+            const nombre poids = m[i][j];
+            if (i > 0)
+                v.push_back(std::make_pair((i - 1) * taille + j, poids));
+            if (j > 0)
+                v.push_back(std::make_pair(i * taille + j - 1, poids));
+            if (i < taille - 1)
+                v.push_back(std::make_pair((i + 1) * taille + j, poids));
+            if (j < taille - 1)
+                v.push_back(std::make_pair(i * taille + j + 1, poids));
+
+            graphe[i * taille + j] = v;
+        }
+
     graphe::Dijkstra dijkstra(graphe, 0, (taille - 1) * (taille + 1));
     nombre resultat = dijkstra.algorithme() + m[taille - 1][taille - 1];
     return std::to_string(resultat);

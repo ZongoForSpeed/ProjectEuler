@@ -2,15 +2,10 @@
 #include "arithmetiques.h"
 #include "premiers.h"
 
-#include <iostream>
-#include <vector>
-#include <list>
-
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(21, "Amicable numbers")
-{
+ENREGISTRER_PROBLEME(21, "Amicable numbers") {
     // Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
     // If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
     // 
@@ -23,12 +18,10 @@ ENREGISTRER_PROBLEME(21, "Amicable numbers")
     diviseurs.reserve(10000);
     diviseurs.push_back(0);
     nombre resultat = 0;
-    for (nombre n = 1; n < 10000; ++n)
-    {
+    for (nombre n = 1; n < 10000; ++n) {
         nombre d = arithmetiques::somme_diviseurs(n, premiers) - n;
         diviseurs.push_back(d);
-        if (d < n && diviseurs[d] == n)
-        {
+        if (d < n && diviseurs[d] == n) {
             resultat += d + n;
         }
     }

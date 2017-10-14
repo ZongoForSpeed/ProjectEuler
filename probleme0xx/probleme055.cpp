@@ -3,10 +3,7 @@
 #include "utilitaires.h"
 #include "mp_nombre.h"
 
-#include <list>
-
-ENREGISTRER_PROBLEME(55, "Lychrel numbers")
-{
+ENREGISTRER_PROBLEME(55, "Lychrel numbers") {
     // If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.
     //
     // Not all numbers produce palindromes so quickly. For example,
@@ -32,24 +29,20 @@ ENREGISTRER_PROBLEME(55, "Lychrel numbers")
     //
     // How many Lychrel numbers are there below ten-thousand?
     size_t compteur = 0;
-    for (mp_nombre n = 1; n < 10000; ++n)
-    {
+    for (mp_nombre n = 1; n < 10000; ++n) {
         bool lychrel = false;
         mp_nombre m = n;
-        for (mp_nombre i = 0; i < 50; ++i)
-        {
+        for (mp_nombre i = 0; i < 50; ++i) {
             m = m.inverser_nombre() + m;
-            if (m.palindrome())
-            {
+            if (m.palindrome()) {
                 lychrel = true;
                 break;
             }
         }
-        if (!lychrel)
-        {
+        if (!lychrel) {
             ++compteur;
         }
-            
+
     }
     return std::to_string(compteur);
 }

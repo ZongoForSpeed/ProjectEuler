@@ -1,12 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 
-#include <iostream>
-
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(28, "Number spiral diagonals")
-{
+ENREGISTRER_PROBLEME(28, "Number spiral diagonals") {
     // Starting with the number 1 and moving to the right in a clockwise direction a 5 by 5 spiral is 
     // formed as follows:
     // 
@@ -20,14 +17,12 @@ ENREGISTRER_PROBLEME(28, "Number spiral diagonals")
     // 
     // What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
     nombre somme = 0;
-    for (nombre n = 1; n < 1002; n+=2)
-    {
+    for (nombre n = 1; n < 1002; n += 2) {
         if (n == 1)
             somme += n;
-        else
-        {
-            somme += 2*n*n-2*(n-1);
-            somme += 2*n*n-4*(n-1);
+        else {
+            somme += 2 * n * n - 2 * (n - 1);
+            somme += 2 * n * n - 4 * (n - 1);
         }
     }
     return std::to_string(somme);

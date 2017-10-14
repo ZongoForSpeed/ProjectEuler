@@ -1,20 +1,12 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/rational.hpp>
 
 typedef unsigned long long nombre;
 typedef boost::rational<nombre> fraction;
 
-ENREGISTRER_PROBLEME(71, "Ordered fractions")
-{
-    // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is 
-    // called a reduced proper fraction.
+ENREGISTRER_PROBLEME(71, "Ordered fractions") {
+    // Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is called a reduced
+    // proper fraction.
     //
     // If we list the set of reduced proper fractions for d ≤ 8 in ascending order of size, we get:
     // 
@@ -22,17 +14,15 @@ ENREGISTRER_PROBLEME(71, "Ordered fractions")
     // 
     // It can be seen that 2/5 is the fraction immediately to the left of 3/7.
     // 
-    // By listing the set of reduced proper fractions for d ≤ 1,000,000 in ascending order of size, 
-    // find the numerator of the fraction immediately to the left of 3/7.
+    // By listing the set of reduced proper fractions for d ≤ 1,000,000 in ascending order of size, find the numerator
+    // of the fraction immediately to the left of 3/7.
     fraction objectif(3, 7);
-    fraction ratio_min (1);
+    fraction ratio_min(1);
     fraction resultat(1);
-    for (nombre d = 2; d <= 1000000; ++d)
-    {
+    for (nombre d = 2; d <= 1000000; ++d) {
         nombre n = objectif.numerator() * d / objectif.denominator();
         fraction ratio = objectif - fraction(n, d);
-        if (ratio> 0 && ratio < ratio_min)
-        {
+        if (ratio > 0 && ratio < ratio_min) {
             ratio_min = ratio;
             resultat = fraction(n, d);
         }

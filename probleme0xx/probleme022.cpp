@@ -1,17 +1,13 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 
-#include <iostream>
 #include <fstream>
-#include <vector>
-#include <numeric>
 
 #include <boost/algorithm/string.hpp>
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(22, "Names scores")
-{
+ENREGISTRER_PROBLEME(22, "Names scores") {
     // Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing 
     // over five-thousand first names, begin by sorting it into alphabetical order. 
     // Then working out the alphabetical value for each name, multiply this value by its alphabetical 
@@ -30,10 +26,8 @@ ENREGISTRER_PROBLEME(22, "Names scores")
     std::sort(names.begin(), names.end());
     nombre compteur = 0;
     nombre resultat = 0;
-    for (const auto & name: names)
-    {
-        nombre score = std::accumulate(name.begin(), name.end(), 0UL, [](const nombre & n, char c)
-        {
+    for (const auto &name: names) {
+        nombre score = std::accumulate(name.begin(), name.end(), 0UL, [](const nombre &n, char c) {
             if (c != '"')
                 return n + 1 + static_cast<nombre>(c - 'A');
             return n;

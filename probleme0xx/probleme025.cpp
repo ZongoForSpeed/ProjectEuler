@@ -3,8 +3,7 @@
 #include "utilitaires.h"
 #include "mp_nombre.h"
 
-ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
-{
+ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number") {
     // The Fibonacci sequence is defined by the recurrence relation:
     //
     // Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
@@ -28,8 +27,7 @@ ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number")
     mp_nombre n = 1;
     mp_nombre a = 0;
     mp_nombre b = 1;
-    while (b.nombre_chiffres() < 1000)
-    {
+    while (b.nombre_chiffres() < 1000) {
         mp_nombre tmp = a;
         a = b;
         b += tmp;

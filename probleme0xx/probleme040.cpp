@@ -1,14 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 
-#include <iostream>
-#include <algorithm>
-#include <sstream>
-
 typedef long long nombre;
 
-ENREGISTRER_PROBLEME(40, "Champernowne's constant")
-{
+ENREGISTRER_PROBLEME(40, "Champernowne's constant") {
     // An irrational decimal fraction is created by concatenating the positive integers:
     //
     //                  0.123456789101112131415161718192021...

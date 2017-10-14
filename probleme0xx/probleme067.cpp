@@ -1,17 +1,13 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
 
 #include <fstream>
-#include <iostream>
-#include <algorithm>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
-ENREGISTRER_PROBLEME(67, "Maximum path sum II")
-{
+ENREGISTRER_PROBLEME(67, "Maximum path sum II") {
     // By starting at the top of the triangle below and moving to adjacent numbers on the row below, 
     // the maximum total from top to bottom is 23.
     //
@@ -33,32 +29,29 @@ ENREGISTRER_PROBLEME(67, "Maximum path sum II")
     matrice triangle;
     vecteur v;
     nombre n;
-    while(ifs >> n)
-    {
+    while (ifs >> n) {
         v.push_back(n);
-        if (v.size() > triangle.size())
-        {
+        if (v.size() > triangle.size()) {
             triangle.push_back(v);
             v.clear();
         }
     }
-    
+
     const size_t taille = triangle.size();
     matrice resultat;
-    for (size_t i = 0; i < taille; ++i)
-    {
+    for (size_t i = 0; i < taille; ++i) {
         vecteur ligne;
         if (i == 0)
             ligne.push_back(triangle[i][i]);
-        else for (size_t j = 0; j <= i; ++j)
-        {
-            if (j == 0)
-                ligne.push_back(resultat[i-1][j] + triangle[i][j]);
-            else if (i == j)
-                ligne.push_back(resultat[i-1][j-1] + triangle[i][j]);
-            else
-                ligne.push_back(std::max(resultat[i-1][j-1],resultat[i-1][j]) + triangle[i][j]);
-        }
+        else
+            for (size_t j = 0; j <= i; ++j) {
+                if (j == 0)
+                    ligne.push_back(resultat[i - 1][j] + triangle[i][j]);
+                else if (i == j)
+                    ligne.push_back(resultat[i - 1][j - 1] + triangle[i][j]);
+                else
+                    ligne.push_back(std::max(resultat[i - 1][j - 1], resultat[i - 1][j]) + triangle[i][j]);
+            }
         resultat.push_back(ligne);
     }
     const auto it = std::max_element(resultat.back().begin(), resultat.back().end());

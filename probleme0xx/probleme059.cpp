@@ -1,18 +1,13 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 
-#include <iostream>
 #include <fstream>
-#include <vector>
-#include <numeric>
-#include <set>
 
 #include <boost/algorithm/string.hpp>
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(59, "XOR decryption")
-{
+ENREGISTRER_PROBLEME(59, "XOR decryption") {
     // Each character on a computer is assigned a unique code and the preferred standard is ASCII 
     // (American Standard Code for Information Interchange). For example, uppercase A = 65, asterisk (*) = 42, 
     // and lowercase k = 107.
@@ -40,50 +35,45 @@ ENREGISTRER_PROBLEME(59, "XOR decryption")
     ifs >> entree;
     std::vector<std::string> names;
     boost::split(names, entree, boost::is_any_of(","));
-    
-    std::set<char> lettres = { ' ', ',', '(', ')', '.', '!', '\'', ';' };
+
+    std::set<char> lettres = {' ', ',', '(', ')', '.', '!', '\'', ';'};
     for (char c = 'a'; c < 'z' + 1; ++c) lettres.insert(c);
     for (char c = 'A'; c < 'Z' + 1; ++c) lettres.insert(c);
     for (char c = '0'; c < '9' + 1; ++c) lettres.insert(c);
-    
+
     std::vector<char> data;
-    std::transform(names.begin(), names.end(), std::back_inserter(data), 
-        [](const std::string& str) { return std::stoi(str); });
+    std::transform(names.begin(), names.end(), std::back_inserter(data),
+                   [](const std::string &str) { return std::stoi(str); });
 
     std::string message;
-    for (char key1 = 'a'; key1 < 'z' + 1; ++key1)
-    {
+    for (char key1 = 'a'; key1 < 'z' + 1; ++key1) {
         if (lettres.find(data[0] ^ key1) == lettres.end())
             continue;
-        for (char key2 = 'a'; key2 < 'z' + 1; ++key2)
-        {
+        for (char key2 = 'a'; key2 < 'z' + 1; ++key2) {
             if (lettres.find(data[1] ^ key2) == lettres.end())
                 continue;
-            for (char key3 = 'a'; key3 < 'z' + 1; ++key3)
-            {
+            for (char key3 = 'a'; key3 < 'z' + 1; ++key3) {
                 if (lettres.find(data[2] ^ key3) == lettres.end())
                     continue;
-                
-                std::string key = { key1, key2, key3 }; 
+
+                std::string key = {key1, key2, key3};
                 std::string decode;
-                for (size_t n = 0; n < data.size(); ++n)
-                {
-                    const char c = data[n] ^ key[n%3];
+                for (size_t n = 0; n < data.size(); ++n) {
+                    const char c = data[n] ^key[n % 3];
                     if (lettres.find(c) == lettres.end())
                         break;
-                    decode.push_back(data[n] ^ key[n%3]);
+                    decode.push_back(data[n] ^ key[n % 3]);
                 }
-                if (decode.size() == data.size())
-                {
+                if (decode.size() == data.size()) {
                     message = decode;
                     std::cout << key << ": " << decode << std::endl;
                 }
             }
         }
     }
-    
+
     nombre resultat = std::accumulate(message.begin(), message.end(), 0UL,
-        [](const nombre r, const char c) { return r + static_cast<nombre>(c); }
-    	);
+                                      [](const nombre r, const char c) { return r + static_cast<nombre>(c); }
+    );
     return std::to_string(resultat);
 }

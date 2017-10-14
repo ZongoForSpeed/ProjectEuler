@@ -1,18 +1,12 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 
-#include <iostream>
 #include <fstream>
-#include <vector>
-#include <numeric>
-#include <set>
-
 #include <boost/algorithm/string.hpp>
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(42, "Coded triangle numbers")
-{
+ENREGISTRER_PROBLEME(42, "Coded triangle numbers") {
     // The nth term of the sequence of triangle numbers is given by, tn = ½n(n+1); so the first ten triangle numbers are:
     //
     //                                      1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
@@ -30,13 +24,11 @@ ENREGISTRER_PROBLEME(42, "Coded triangle numbers")
 
     std::set<nombre> triangle;
     for (nombre n = 1; n < 50; ++n)
-        triangle.insert( n * (n+1) / 2);
+        triangle.insert(n * (n + 1) / 2);
 
     nombre resultat = 0;
-    for (const auto & name: names)
-    {
-        nombre score = std::accumulate(name.begin(), name.end(), 0UL, [](const nombre & n, char c)
-        {
+    for (const auto &name: names) {
+        nombre score = std::accumulate(name.begin(), name.end(), 0UL, [](const nombre &n, char c) {
             if (c != '"')
                 return n + 1 + static_cast<nombre>(c - 'A');
             return n;
