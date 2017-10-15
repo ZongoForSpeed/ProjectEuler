@@ -1,62 +1,48 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
-#include "premiers.h"
-#include "puissance.h"
 #include "arithmetiques.h"
-#include "multidimension.h"
 
 #include <cmath>
+#include <limits>
 
-typedef long double nombre;
-typedef std::vector<nombre> vecteur;
-typedef std::pair<nombre, nombre> paire;
-typedef std::tuple<nombre, nombre, nombre> point;
+namespace {
+    typedef std::tuple<long, long, long> point;
+    
+    bool plan(const point &p1, const point &p2, const point &p3) {
+        long x1, x2, x3, y1, y2, y3, z1, z2, z3;
+        std::tie(x1, y1, z1) = p1;
+        std::tie(x2, y2, z2) = p2;
+        std::tie(x3, y3, z3) = p3;
+        return x1 * y2 * z3 + y1 * z2 * x3 + z1 * x2 * y3
+             - z1 * y2 * x3 - y1 * x2 * z3 - x1 * z2 * y3 != 0;
+    }
 
-namespace 
-{
-    nombre distance(nombre a, nombre b) {
-        return std::sqrt(a*a + b*b);
+    long double angle(const long r, const point &p1, const point &p2) {
+        long x1, x2, y1, y2, z1, z2;
+        std::tie(x1, y1, z1) = p1;
+        std::tie(x2, y2, z2) = p2;
+        const long double m = x1 * x2 + y1 * y2 + z1 * z2;
+        return std::acos(m / (1.0L * r * r));
     }
     
-    // nombre distance(nombre a, nombre b, nombre c) {
-    //     return std::sqrt(a*a + b*b + c*c);
+    // long double angle(const paire & p1, const paire & p2) {
+    //     long double phi1 = p1.first;
+    //     long double phi2 = p2.first;
+    //
+    //     long double lambda1 = p1.second;
+    //     long double lambda2 = p2.second;
+    //
+    //     return std::acos(std::sin(phi1)*std::sin(phi2) 
+    //                     + std::cos(phi1)*std::cos(phi2)*std::cos(lambda2 - lambda1));
     // }
     
-    paire coordonnees_polaire(nombre a, nombre b, nombre c) {
-        nombre lambda = std::atan2(a, b);
-        nombre d = distance(a, b);
-        nombre phi = std::atan2(d, c);
-        
-        return std::make_pair(phi, lambda);
-    }
-    
-    paire coordonnees_polaire(const point & p) {
-        nombre a,b,c;
-        std::tie(a,b,c) = p;
-        return coordonnees_polaire(a,b,c);
-    }
-    
-    nombre angle(const paire & p1, const paire & p2) {
-        nombre phi1 = p1.first;
-        nombre phi2 = p2.first;
-        
-        nombre lambda1 = p1.second;
-        nombre lambda2 = p2.second;
-        
-        return std::acos(std::sin(phi1)*std::sin(phi2) + std::cos(phi1)*std::cos(phi2)*std::cos(lambda2 - lambda1));
-    }
-    
-    nombre angle_solide(const paire & p1, const paire & p2, const paire & p3) {
-        nombre a = std::abs(angle(p1, p2));
-        nombre b = std::abs(angle(p2, p3));
-        nombre c = std::abs(angle(p3, p1));
-        nombre s = (a + b + c) / 2;
-        
-        nombre e = std::tan(s / 2) * std::tan((s - a) / 2) * std::tan((s - b) / 2) * std::tan((s - b) / 2);
+    long double angle_solide(const long double a, const long double b, const long double c) {
+        long double s = (a + b + c) / 2;
+        long double e = std::tan(s / 2) * std::tan((s - a) / 2) * std::tan((s - b) / 2) * std::tan((s - c) / 2);
         return 4 * std::atan(std::sqrt(e));
     }
 }
+
 
 ENREGISTRER_PROBLEME(332, "Spherical triangles")
 {
@@ -73,39 +59,38 @@ ENREGISTRER_PROBLEME(332, "Spherical triangles")
     // For example A(14) is 3.294040 rounded to six decimal places.
     //
     // Find p332_sum.gif A(r). Give your answer rounded to six decimal places.
-    nombre resultat = 0.0;
+    const long R = 50;
+    std::map<long, std::vector<point>> sphere;
     
-    std::vector<point> points;
-    
-    for (int a = 0; a < 15; ++a)
-    for (int b = 0; b < 15; ++b)
-    for (int c = 0; c < 15; ++c) {
-        if (auto r = carre_parfait(a*a + b*b + c*c)) {
-            if (*r == 14) {
-                points.push_back(std::make_tuple(a,b,c));
-                // points.push_back(std::make_tuple(-a,b,c));
-                // points.push_back(std::make_tuple(a,-b,c));
-                // points.push_back(std::make_tuple(a,b,-c));
-                // // points.push_back(std::make_tuple(a,b,c));
-            }    
+    for (long xx = -R; xx <= R; ++xx) 
+    for (long yy = -R; yy <= R; ++yy) 
+    for (long zz = -R; zz <= R; ++zz) {
+        if (auto r = carre_parfait(xx * xx + yy * yy + zz * zz)) {
+            sphere[*r].emplace_back(xx, yy, zz);
         }
     }
     
-    std::cout << points << std::endl;
-    
-    for (auto it1 = points.begin(), en = points.end(); it1 != en; ++it1) {
-        auto p1 = coordonnees_polaire(*it1);
-        for (auto it2 = std::next(it1); it2 != en; ++it2) {
-            auto p2 = coordonnees_polaire(*it2);
-            for (auto it3 = std::next(it1); it3 != en; ++it3) {
-                auto p3 = coordonnees_polaire(*it3);
-                nombre aire = 14*14*angle_solide(p1, p2, p3);
-                if (aire > 0) {
-                    std::cout << std::make_tuple(*it1, *it2, *it3) << " = " << aire << std::endl;
-                }
+    long double resultat = 0;
+    for (long r = 1; r <= R; ++r) {
+        const auto &points = sphere[r];
+        long double optimum = std::numeric_limits<long double>::max();
+        for (auto it1 = points.begin(), en = points.end(); it1 != en; ++it1)
+        for (auto it2 = it1 + 1; it2 != en; ++it2)
+        for (auto it3 = it2 + 1; it3 != en; ++it3) {
+            const auto &i = *it1;
+            const auto &j = *it2;
+            const auto &k = *it3;
+            if (plan(i, j, k)) {
+                long double a = angle(r, i, j);
+                long double b = angle(r, j, k);
+                long double c = angle(r, k, i);
+                long double e = angle_solide(a,b,c);
+                long double aire = r * r * e;
+                optimum = std::min(optimum, aire);
             }
         }
+        // std::cout << r << ' ' << points.size() << ": " << optimum << std::endl;
+        resultat += optimum;
     }
-    
-    return std::to_string(resultat);
+    return std::to_string(resultat, 6);
 }
