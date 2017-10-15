@@ -1,73 +1,57 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "premiers.h"
-#include "utilitaires.h"
-#include "polygonal.h"
 
-#include <ostream>
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-namespace
-{
-    class Square
-    {
+namespace {
+    class Square {
     public:
+        Square() : taille(0.0) {}
+
         std::pair<long double, long double> coordonnees;
         std::pair<nombre, nombre> index;
         long double taille;
-        
-        std::pair<Square, Square> suivant() const
-        {
+
+        std::pair<Square, Square> suivant() const {
             Square s1(*this);
             s1.index.first++;
             s1.coordonnees.first += taille;
             s1.calcul_taille();
-            
+
             Square s2(*this);
             s2.index.second++;
             s2.coordonnees.second += taille;
             s2.calcul_taille();
-            
+
             return std::make_pair(s1, s2);
         }
-        
-        void calcul_taille()
-        {
+
+        void calcul_taille() {
             // x² + (x_a - y_b).x - 1 = 0
             const long double b = (coordonnees.second - coordonnees.first);
-            const long double delta = b*b + 4.0L;
-            if (delta > 0)
-            {
+            const long double delta = b * b + 4.0L;
+            if (delta > 0) {
                 taille = (std::sqrt(delta) - b) / 2.0L - coordonnees.first;
-            }
-            else
-            {
+            } else {
                 taille = std::numeric_limits<long double>::quiet_NaN();
             }
         }
-        
-        bool operator<(const Square & s) const
-        {
+
+        bool operator<(const Square &s) const {
             return taille > s.taille;
         }
     };
-    
-    std::ostream& operator <<(std::ostream& os, const Square & s)
-    {
+
+    std::ostream &operator<<(std::ostream &os, const Square &s) {
         os << s.coordonnees << " " << s.index << " = " << s.taille;
         return os;
     }
-} 
+}
 
-ENREGISTRER_PROBLEME(247, "Squares under a hyperbola")
-{
+ENREGISTRER_PROBLEME(247, "Squares under a hyperbola") {
     // Consider the region constrained by 1 ≤ x and 0 ≤ y ≤ 1/x.
     //
     // Let S1 be the largest square that can fit under the curve.
@@ -86,34 +70,32 @@ ENREGISTRER_PROBLEME(247, "Squares under a hyperbola")
     s1.coordonnees = std::make_pair(1.0, 0.0);
     s1.index = std::make_pair(0, 0);
     s1.calcul_taille();
-    
-    std::set<Square> squares { s1 };
-    
+
+    std::set<Square> squares{s1};
+
     nombre resultat = 0;
     nombre compteur = 1;
-    while (compteur > 0)
-    {
+    while (compteur > 0) {
         ++resultat;
         Square sn = *(squares.begin());
-        
+
         if (sn.index.first <= objectif.first && sn.index.second <= objectif.second)
             --compteur;
         squares.erase(squares.begin());
-        
+
         auto suivant = sn.suivant();
-        
+
         if (suivant.first.index.first <= objectif.first && suivant.first.index.second <= objectif.second)
             ++compteur;
-            
-        
+
+
         if (suivant.first.index.first <= objectif.first && suivant.first.index.second <= objectif.second)
             ++compteur;
-        
+
         squares.insert(suivant.first);
         squares.insert(suivant.second);
-        
-        if (/*sn.index == objectif || */compteur == 0)
-        {
+
+        if (/*sn.index == objectif || */compteur == 0) {
             std::cout << "S_" << resultat << " = " << sn << std::endl;
         }
     }
