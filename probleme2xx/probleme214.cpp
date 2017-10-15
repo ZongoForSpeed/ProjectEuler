@@ -1,24 +1,17 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 #include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/io.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(214, "Totient Chains")
-{
-    // Let φ be Euler's totient function, i.e. for a natural number n, φ(n) is the number of k, 
-    // 1 ≤ k ≤ n, for which gcd(k,n) = 1.
+ENREGISTRER_PROBLEME(214, "Totient Chains") {
+    // Let φ be Euler's totient function, i.e. for a natural number n, φ(n) is the number of k, 1 ≤ k ≤ n, for which
+    // gcd(k,n) = 1.
     // 
     // By iterating φ, each positive integer generates a decreasing chain of numbers ending in 1.
     // E.g. if we start with 5 the sequence 5,4,2,1 is generated.
@@ -40,24 +33,22 @@ ENREGISTRER_PROBLEME(214, "Totient Chains")
     nombre chaine = 25;
     vecteur premiers;
     premiers::crible235<nombre>(limite, std::back_inserter(premiers));
-    
+
     nombre resultat = 0;
-    for (nombre p: premiers)
-    {
+    for (nombre p: premiers) {
         if (p >= limite)
             break;
-        
+
         nombre longueur = 1;
         nombre m = p;
-        while(m != 1 && longueur < chaine)
-        {
+        while (m != 1 && longueur < chaine) {
             m = arithmetiques::phi(m, premiers);
             ++longueur;
-        }    
-        
+        }
+
         if (m == 1 && longueur == chaine)
             resultat += p;
     }
-    
+
     return std::to_string(resultat);
 }

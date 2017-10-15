@@ -1,16 +1,13 @@
 #include "problemes.h"
 #include "multidimension.h"
 
-#include <iostream>
 #include <algorithm>
-#include <numeric>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
-ENREGISTRER_PROBLEME(201, "Subsets with a unique sum")
-{
+ENREGISTRER_PROBLEME(201, "Subsets with a unique sum") {
     // For any set A of numbers, let sum(A) be the sum of the elements of A.
     // Consider the set B = {1,3,6,8,10,11}.
     // There are 20 subsets of B containing three elements, and their sums are:
@@ -37,46 +34,43 @@ ENREGISTRER_PROBLEME(201, "Subsets with a unique sum")
     //                                  sum({8,10,11}) = 29.
     //
     // Some of these sums occur more than once, others are unique.
-    // For a set A, let U(A,k) be the set of unique sums of k-element subsets of A, in our example we
-    // find U(B,3) = {10,12,14,18,21,25,27,29} and sum(U(B,3)) = 156.
+    // For a set A, let U(A,k) be the set of unique sums of k-element subsets of A, in our example we find U(B,3) =
+    // {10,12,14,18,21,25,27,29} and sum(U(B,3)) = 156.
     //
     // Now consider the 100-element set S = {1², 2², ... , 100²}.
     // S has 100891344545564193334812497256 50-element subsets.
     //
-    // Determine the sum of all integers which are the sum of exactly one of the 50-element subsets of 
-    // S, i.e. find sum(U(S,50)).
+    // Determine the sum of all integers which are the sum of exactly one of the 50-element subsets of S, i.e. find
+    // sum(U(S,50)).
     vecteur carres;
     for (nombre n = 1; n < 101; ++n)
-        carres.push_back(n*n);
-    
+        carres.push_back(n * n);
+
     const nombre K = 50;
     nombre minimum = std::accumulate(carres.begin(), carres.begin() + K, 0ULL);
     nombre maximum = std::accumulate(carres.begin() + K, carres.end(), 0ULL);
-    
+
     multidimension<nombre, 2> somme(K + 1, maximum + 1, 0UL);
     somme[0][0] = 1;
-    
-    for (nombre c: carres)
-    {
+
+    for (nombre c: carres) {
         auto tmp = somme;
         tmp[0][0] = 1;
-        for (nombre k = 0; k < K; ++k)
-        {
+        for (nombre k = 0; k < K; ++k) {
             for (nombre s = 0; s < c; ++s)
                 tmp[k + 1][s] = somme[k + 1][s];
             for (nombre s = c; s <= maximum; ++s)
                 tmp[k + 1][s] = somme[k][s - c] + somme[k + 1][s];
         }
-        
+
         std::swap(somme, tmp);
     }
-    
-	nombre resultat = 0;
-	for (nombre n = minimum; n <= maximum; ++n)
-	{
-	    if (somme[K][n] == 1)
-	        resultat += n;
-	}
-	
+
+    nombre resultat = 0;
+    for (nombre n = minimum; n <= maximum; ++n) {
+        if (somme[K][n] == 1)
+            resultat += n;
+    }
+
     return std::to_string(resultat);
 }

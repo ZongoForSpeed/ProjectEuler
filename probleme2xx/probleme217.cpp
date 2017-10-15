@@ -2,12 +2,9 @@
 #include "arithmetiques.h"
 #include "mp_nombre.h"
 
-#include <fstream>
-
 typedef std::vector<mp_nombre> vecteur;
 
-ENREGISTRER_PROBLEME(217, "Balanced Numbers")
-{
+ENREGISTRER_PROBLEME(217, "Balanced Numbers") {
     // A positive integer with k (decimal) digits is called balanced if its first [k/2] digits sum
     // to the same value as its last [k/2] digits, where ⌈x⌉, pronounced ceiling of x, is the smallest
     // integer ≥ x, thus [π] = 4 and [5] = 5.
@@ -20,11 +17,11 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers")
     // Find T(47) mod 3^15
     mp_nombre masque = mp_nombre::puissance(3, 15);
     size_t limite = 47;
-    
+
     typedef std::map<mp_nombre, std::map<mp_nombre, mp_nombre>> dictionnaire;
     dictionnaire T_somme;
     dictionnaire T_compteur;
-    
+
     T_somme[0][0] = 0;
     T_compteur[0][0] = 1;
     T_somme[1][0] = 45;
@@ -32,30 +29,27 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers")
 
     mp_nombre resultat = T_somme[1][0];
 
-    for (size_t n = 2; n <= limite; ++n)
-    {
-        auto & somme = T_somme[n];
-        auto & compteur = T_compteur[n];
-        
+    for (size_t n = 2; n <= limite; ++n) {
+        auto &somme = T_somme[n];
+        auto &compteur = T_compteur[n];
+
         mp_nombre p10 = mp_nombre::puissance(10, n - 1);
-        
+
         for (short c1 = 0; c1 < 10; ++c1)
-        for (short c2 = 0; c2 < 10; ++c2)
-        {
-            for (auto t: T_somme[n - 2])
-            {
-                mp_nombre d = t.first + c1 - c2;
-                mp_nombre c = T_compteur[n - 2][t.first];
-                compteur[d] += c;
-                mp_nombre s = t.second*10 + c*(c1*p10 + c2);
-                somme[d] += s;
-                if (c1 != 0 && d == 0)
-                    resultat += s;
+            for (short c2 = 0; c2 < 10; ++c2) {
+                for (auto t: T_somme[n - 2]) {
+                    mp_nombre d = t.first + c1 - c2;
+                    mp_nombre c = T_compteur[n - 2][t.first];
+                    compteur[d] += c;
+                    mp_nombre s = t.second * 10 + c * (c1 * p10 + c2);
+                    somme[d] += s;
+                    if (c1 != 0 && d == 0)
+                        resultat += s;
+                }
             }
-        }
     }
 
-    resultat%=masque;
+    resultat %= masque;
 
     return resultat.to_string();
 }

@@ -1,19 +1,13 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
 
-#include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 
-ENREGISTRER_PROBLEME(207, "Integer partition equations")
-{
-    // For some positive integers k, there exists an integer partition of the form 4^t = 2^t + k,
-    // where 4t, 2t, and k are all positive integers and t is a real number.
+ENREGISTRER_PROBLEME(207, "Integer partition equations") {
+    // For some positive integers k, there exists an integer partition of the form 4^t = 2^t + k, where 4t, 2t, and k
+    // are all positive integers and t is a real number.
     //
     // The first two such partitions are 4^1 = 2^1 + 2 and 4^1.5849625... = 2^1.5849625... + 6.
     //
@@ -38,12 +32,10 @@ ENREGISTRER_PROBLEME(207, "Integer partition equations")
     // P(x*(x-1)) = floor(log_2(x)) / (x-1)
     // ==> k / (2^k - 1) < 1 / 12345
     nombre resultat = 0;
-    for (nombre k = 0, x = 1;; ++k, x*=2)
-    {
-        if (limite * k < x - 1)
-        {
+    for (nombre k = 0, x = 1;; ++k, x *= 2) {
+        if (limite * k < x - 1) {
             --k;
-            resultat = (limite*k + 2)*(limite*k + 1);
+            resultat = (limite * k + 2) * (limite * k + 1);
             break;
         }
     }
