@@ -1,42 +1,34 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "premiers.h"
-#include "utilitaires.h"
-
-#include <iostream>
-#include <limits>
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
-namespace
-{
-    long double f(nombre xa, nombre xb)
-    {
+namespace {
+    long double f(nombre xa, nombre xb) {
         // Wolfram alpha
-        return static_cast<long double>(-std::sqrt((-(xa*xa)+2*std::sqrt(xa*xa*xa*xa+2*xa*xa*xa*xb-10*xa*xa*xa+3*xa*xa*xb*xb
-            -50*xa*xa*xb+125*xa*xa+2*xa*xb*xb*xb-50*xa*xb*xb+300*xa*xb-500*xa+xb*xb*xb*xb
-            -10*xb*xb*xb+125*xb*xb-500*xb+625)+2*xa*xb-10*xa+2*xb*xb-10*xb+25)/3));
+        return static_cast<long double>(-std::sqrt((-(xa * xa) + 2 * std::sqrt(
+                xa * xa * xa * xa + 2 * xa * xa * xa * xb - 10 * xa * xa * xa + 3 * xa * xa * xb * xb
+                - 50 * xa * xa * xb + 125 * xa * xa + 2 * xa * xb * xb * xb - 50 * xa * xb * xb
+                + 300 * xa * xb - 500 * xa + xb * xb * xb * xb - 10 * xb * xb * xb
+                + 125 * xb * xb - 500 * xb + 625) + 2 * xa * xb - 10 * xa + 2 * xb * xb - 10 * xb + 25) / 3));
     }
-    
+
     template<typename N>
-    N norme(N x, N y)
-    {
+    N norme(N x, N y) {
         return x * x + y * y;
     }
-    
-    long double perimetre(nombre xa, nombre ya, nombre xb, nombre yb, nombre xc, nombre yc)
-    {
+
+    long double perimetre(nombre xa, nombre ya, nombre xb, nombre yb, nombre xc, nombre yc) {
         return static_cast<long double>(
                 std::sqrt(norme(xa - xb, ya - yb))
                 + std::sqrt(norme(xa - xc, ya - yc))
                 + std::sqrt(norme(xb - xc, yb - yc))
-            );
+        );
     }
 }
 
-ENREGISTRER_PROBLEME(264, "Triangle Centres")
-{
+ENREGISTRER_PROBLEME(264, "Triangle Centres") {
     // Consider all the triangles having:
     //
     // All their vertices on lattice points.
@@ -60,43 +52,33 @@ ENREGISTRER_PROBLEME(264, "Triangle Centres")
     // The sum of their perimeters, rounded to four decimal places, is 291.0089.
     //
     // Find all such triangles with a perimeter ≤ 10^5.
-    // Enter as your answer the sum of their perimeters rounded to four decimal 
-    // places.
+    // Enter as your answer the sum of their perimeters rounded to four decimal places.
     long double limite = 100000.0L;
-    
+
     // xa² + ya² = xb² + yb² = xc² + yc², xa + xb + xc = 5, ya + yb + yc = 0
-    long double resultat=0;
+    long double resultat = 0;
     nombre gr = 16000;
     for (nombre xa = 0; xa + gr > 0; --xa)
-    for (nombre xb = xa; xb <= (-xa+5)/2; ++xb)
-    {
-        long double fya = f(xa,xb);
-        if (std::abs(fya - std::round(fya)) < std::numeric_limits<long double>::epsilon())
-        {
-            nombre ya = static_cast<nombre>(fya);
-            long double fyb = static_cast<long double>(std::sqrt(xa*xa+ya*ya-xb*xb));
-            if (std::abs(fyb - std::round(fyb)) < std::numeric_limits<long double>::epsilon())
-            {
-                nombre yb = static_cast<nombre>(fyb);
-                nombre yc = -ya-yb;
-                nombre xc = -xa-xb+5;
-                long double p = perimetre(xa,ya,xb,yb,xc,yc);
-                if (norme(xa, ya) == norme(xb, yb)
-                    && norme(xb, yb) == norme(xc, yc)
-                    && p <= limite)
-                if ((xa != xb || ya != yb)
-                    && (xc != xb || yc != yb)
-                    && (xa != xc || ya != yc))
-                {
-                    if ((xa==xb && ya == -yb && yc == 0)
-                        || (xb == xc && yb == -yc && ya == 0))
-                        resultat += p;
-                    else
-                        resultat += 2*p;
-                }    
+        for (nombre xb = xa; xb <= (-xa + 5) / 2; ++xb) {
+            long double fya = f(xa, xb);
+            if (std::abs(fya - std::round(fya)) < std::numeric_limits<long double>::epsilon()) {
+                auto ya = static_cast<nombre>(fya);
+                auto fyb = static_cast<long double>(std::sqrt(xa * xa + ya * ya - xb * xb));
+                if (std::abs(fyb - std::round(fyb)) < std::numeric_limits<long double>::epsilon()) {
+                    auto yb = static_cast<nombre>(fyb);
+                    nombre yc = -ya - yb;
+                    nombre xc = -xa - xb + 5;
+                    long double p = perimetre(xa, ya, xb, yb, xc, yc);
+                    if (norme(xa, ya) == norme(xb, yb) && norme(xb, yb) == norme(xc, yc) && p <= limite)
+                        if ((xa != xb || ya != yb) && (xc != xb || yc != yb) && (xa != xc || ya != yc)) {
+                            if ((xa == xb && ya == -yb && yc == 0) || (xb == xc && yb == -yc && ya == 0))
+                                resultat += p;
+                            else
+                                resultat += 2 * p;
+                        }
+                }
             }
         }
-    }
-        
+
     return std::to_string(resultat, 4);
 }

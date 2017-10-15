@@ -2,92 +2,72 @@
 #include "arithmetiques.h"
 #include "mp_nombre.h"
 
-#include <numeric>
-#include <vector>
-
 typedef std::vector<mp_nombre> vecteur;
 typedef std::map<mp_nombre, mp_nombre> dictionnaire;
 
-namespace
-{
-    dictionnaire algorithme(const vecteur & tailles, std::map<vecteur, dictionnaire> & cache)
-    {
+namespace {
+    dictionnaire algorithme(const vecteur &tailles, std::map<vecteur, dictionnaire> &cache) {
         auto it = cache.find(tailles);
         if (it != cache.end())
             return it->second;
-        
+
         mp_nombre somme = std::accumulate(tailles.begin(), tailles.end(), mp_nombre(0));
-        if (somme == 1 && tailles[1] == 1)
-        {
-            dictionnaire resultat { { 1, 1 } };
+        if (somme == 1 && tailles[1] == 1) {
+            dictionnaire resultat{{1, 1}};
             return resultat;
-        }
-        else
-        {
+        } else {
             dictionnaire resultat;
             vecteur _tailles = tailles;
-            
-            for (size_t n = 0; n < tailles.size(); ++n)
-            {
+
+            for (size_t n = 0; n < tailles.size(); ++n) {
                 if (tailles[n] == 0)
                     continue;
                 _tailles[n]--;
-                if (n == 1)
-                {
+                if (n == 1) {
                     auto tmp = algorithme(_tailles, cache);
-                    for (auto t: tmp)
-                    {
+                    for (auto t: tmp) {
                         if (t.first < somme)
                             resultat[somme] += t.second * tailles[n];
                         else
                             resultat[t.first] += t.second * tailles[n];
                     }
-                }
-                else
-                {
-                    for (size_t m1 = 0; m1 < n; ++m1)
-                    {
+                } else {
+                    for (size_t m1 = 0; m1 < n; ++m1) {
                         size_t m2 = n - m1 - 1;
                         if (m1 != 0) _tailles[m1]++;
                         if (m2 != 0) _tailles[m2]++;
-                            
+
                         auto tmp = algorithme(_tailles, cache);
-                        for (auto t: tmp)
-                        {
+                        for (auto t: tmp) {
                             if (t.first < somme)
                                 resultat[somme] += t.second * tailles[n];
                             else
                                 resultat[t.first] += t.second * tailles[n];
                         }
-                        
+
                         if (m1 != 0) _tailles[m1]--;
                         if (m2 != 0) _tailles[m2]--;
                     }
                 }
-                
+
                 _tailles[n]++;
             }
-            
+
             cache[tailles] = resultat;
             return resultat;
         }
     }
 }
 
-ENREGISTRER_PROBLEME(253, "Tidying up")
-{
-    // A small child has a “number caterpillar” consisting of forty jigsaw pieces,
-    // each with one number on it, which, when connected together in a line, 
-    // reveal the numbers 1 to 40 in order.
+ENREGISTRER_PROBLEME(253, "Tidying up") {
+    // A small child has a “number caterpillar” consisting of forty jigsaw pieces, each with one number on it, which,
+    // when connected together in a line, reveal the numbers 1 to 40 in order.
     //
-    // Every night, the child's father has to pick up the pieces of the caterpillar
-    // that have been scattered across the play room. He picks up the pieces at
-    // random and places them in the correct order.
-    // As the caterpillar is built up in this way, it forms distinct segments 
-    // that gradually merge together.
-    // The number of segments starts at zero (no pieces placed), generally increases
-    // up to about eleven or twelve, then tends to drop again before finishing 
-    // at a single segment (all pieces placed).
+    // Every night, the child's father has to pick up the pieces of the caterpillar that have been scattered across the
+    // play room. He picks up the pieces at random and places them in the correct order.
+    // As the caterpillar is built up in this way, it forms distinct segments that gradually merge together.
+    // The number of segments starts at zero (no pieces placed), generally increases up to about eleven or twelve, then
+    // tends to drop again before finishing at a single segment (all pieces placed).
     //
     // For example:
     //
@@ -116,23 +96,22 @@ ENREGISTRER_PROBLEME(253, "Tidying up")
     //
     // Give your answer rounded to six decimal places.
     size_t N = 40;
-    
+
     vecteur input(N, 0);
-    input.push_back(1);
-    
+    input.emplace_back(1);
+
     std::map<vecteur, dictionnaire> cache;
     auto combinaison = algorithme(input, cache);
-    
+
     mp_nombre numerateur = 0;
     mp_nombre denominateur = 0;
-    
-    for (auto c: combinaison)
-    {
+
+    for (auto c: combinaison) {
         numerateur += c.first * c.second;
         denominateur += c.second;
     }
 
-    const size_t masque = puissance::puissance<size_t, unsigned>(10, 7);
+    const auto masque = puissance::puissance<size_t, unsigned>(10, 7);
     numerateur *= masque;
     numerateur /= denominateur;
     long double resultat = numerateur.get_double();

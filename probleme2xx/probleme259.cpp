@@ -1,57 +1,42 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
-#include "chiffres.h"
-
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/rational.hpp>
 
 typedef long long nombre;
 typedef boost::rational<nombre> fraction;
 typedef std::vector<fraction> vecteur;
 
-namespace
-{
-    std::set<fraction> algorithme(const vecteur & e, std::map<std::vector<fraction>, std::set<fraction>> & cache)
-    {
+namespace {
+    std::set<fraction> algorithme(const vecteur &e, std::map<std::vector<fraction>, std::set<fraction>> &cache) {
         auto it = cache.find(e);
         if (it != cache.end())
             return it->second;
-            
+
         std::set<fraction> resultat;
 
         fraction f = 0;
-        for (auto d: e) f = f*10 + d;
+        for (auto d: e) f = f * 10 + d;
         resultat.insert(f);
-        
-        for (size_t n = 1; n < e.size(); ++n)
-        {
+
+        for (size_t n = 1; n < e.size(); ++n) {
             auto gauche = algorithme(vecteur(e.begin(), std::next(e.begin(), n)), cache);
             auto droite = algorithme(vecteur(std::next(e.begin(), n), e.end()), cache);
-            
+
             for (auto a: gauche)
-            for (auto b: droite)
-            {
-                resultat.insert(a + b);
-                resultat.insert(a - b);
-                resultat.insert(a * b);
-                if (b != 0)
-                    resultat.insert(a / b);
-            }
+                for (auto b: droite) {
+                    resultat.insert(a + b);
+                    resultat.insert(a - b);
+                    resultat.insert(a * b);
+                    if (b != 0)
+                        resultat.insert(a / b);
+                }
         }
-        
+
         cache.insert(std::make_pair(e, resultat));
         return resultat;
     }
 }
 
-ENREGISTRER_PROBLEME(259, "Reachable Numbers")
-{
+ENREGISTRER_PROBLEME(259, "Reachable Numbers") {
     // A positive integer will be called reachable if it can result from an 
     // arithmetic expression obeying the following rules:
     //
@@ -68,18 +53,16 @@ ENREGISTRER_PROBLEME(259, "Reachable Numbers")
     // For example, 42 is reachable, since (1/23) * ((4*5)-6) * (78-9) = 42.
     //
     // What is the sum of all positive reachable integers?
-    std::vector<fraction> e { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    
+    std::vector<fraction> e{1, 2, 3, 4, 5, 6, 7, 8, 9};
+
     std::map<std::vector<fraction>, std::set<fraction>> cache;
     auto resultat = algorithme(e, cache);
     nombre solution = 0;
-    for (auto f: resultat)
-    {
-        if (f > 0 && f.denominator() == 1)
-        {
+    for (auto f: resultat) {
+        if (f > 0 && f.denominator() == 1) {
             solution += f.numerator();
         }
     }
-    
+
     return std::to_string(solution);
 }
