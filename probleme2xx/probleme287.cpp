@@ -1,50 +1,36 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "combinatoire.h"
-#include "premiers.h"
-#include "puissance.h"
-#include "utilitaires.h"
-#include "polynome.h"
-
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <cmath>
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
-namespace
-{
-    bool pixel_noir(nombre x, nombre y, nombre N)
-    {
+namespace {
+    bool pixel_noir(nombre x, nombre y, nombre N) {
         // (x - 2**N-1)² + (y - 2**N-1)² ≤ 2**(2N-2)
-        const nombre centre = puissance::puissance<nombre>(2, static_cast<size_t>(N) - 1);
-        bool r = (x - centre)*(x - centre) + (y - centre)*(y - centre) <= centre*centre;
+        const auto centre = puissance::puissance<nombre>(2, static_cast<size_t>(N) - 1);
+        bool r = (x - centre) * (x - centre) + (y - centre) * (y - centre) <= centre * centre;
         return r;
     }
-    
-    nombre algorithme(nombre x1, nombre y1, nombre x2, nombre y2, nombre N)
-    {
-        nombre test = 8 * pixel_noir(x1, y1, N) 
-            + 4 * pixel_noir(x2 - 1, y1, N)
-            + 2 * pixel_noir(x2-1, y2-1, N)
-            + pixel_noir(x1, y2-1, N);
-        
+
+    nombre algorithme(nombre x1, nombre y1, nombre x2, nombre y2, nombre N) {
+        nombre test = 8 * pixel_noir(x1, y1, N)
+                      + 4 * pixel_noir(x2 - 1, y1, N)
+                      + 2 * pixel_noir(x2 - 1, y2 - 1, N)
+                      + pixel_noir(x1, y2 - 1, N);
+
         if (test == 15 || test == 0) return 2;
-        
-        nombre xm = (x1 + x2)/2;
-        nombre ym = (y1 + y2)/2;
-        
-        return 1 + algorithme(x1, y1, xm, ym, N) 
-            + algorithme(xm, y1, x2, ym, N) 
-            + algorithme(xm, ym, x2, y2, N) 
-            + algorithme(x1, ym, xm, y2, N);
+
+        nombre xm = (x1 + x2) / 2;
+        nombre ym = (y1 + y2) / 2;
+
+        return 1 + algorithme(x1, y1, xm, ym, N)
+               + algorithme(xm, y1, x2, ym, N)
+               + algorithme(xm, ym, x2, y2, N)
+               + algorithme(x1, ym, xm, y2, N);
     }
 }
 
-ENREGISTRER_PROBLEME(287, "Quadtree encoding (a simple compression algorithm)")
-{
+ENREGISTRER_PROBLEME(287, "Quadtree encoding (a simple compression algorithm)") {
     // The quadtree encoding allows us to describe a 2N×2N black and white image 
     // as a sequence of bits (0 and 1). Those sequences are to be read from left
     // to right like this:
@@ -78,10 +64,10 @@ ENREGISTRER_PROBLEME(287, "Quadtree encoding (a simple compression algorithm)")
     // 
     // What is the length of the minimal sequence describing D24 ?
     nombre N = 24;
-    nombre p2N = puissance::puissance<nombre, unsigned>(2, 24);
-    nombre resultat = 1 
-        + algorithme(0, 0, p2N/2, p2N/2, N) 
-        + 2*algorithme(p2N/2, 0, p2N, p2N/2, N) 
-        + algorithme(p2N/2, p2N/2, p2N, p2N, N);
+    auto p2N = puissance::puissance<nombre, unsigned>(2, 24);
+    nombre resultat = 1
+                      + algorithme(0, 0, p2N / 2, p2N / 2, N)
+                      + 2 * algorithme(p2N / 2, 0, p2N, p2N / 2, N)
+                      + algorithme(p2N / 2, p2N / 2, p2N, p2N, N);
     return std::to_string(resultat);
 }
