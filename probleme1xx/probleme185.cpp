@@ -1,13 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
-
-#include <boost/rational.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -15,103 +9,88 @@ typedef std::vector<nombre> vecteur;
 typedef std::pair<std::string, unsigned short> paire;
 typedef std::vector<paire> ensemble;
 
-namespace
-{
+namespace {
     template<typename Iterator>
-    bool cherche_solution(Iterator debut, Iterator fin, std::vector<std::set<char>> & solutions)
-    {
-        if (debut == fin)
-        {
-            for (auto s: solutions)
+    bool cherche_solution(Iterator debut, Iterator fin, std::vector<std::set<char>> &solutions) {
+        if (debut == fin) {
+            for (const auto &s: solutions)
                 if (s.size() != 1)
                     return false;
-                    
+
             return true;
         }
-        
-        for (auto s: solutions) if (s.size() == 0) return false;
-        
+
+        for (const auto &s: solutions) if (s.empty()) return false;
+
         auto essai = *debut;
-        
+
         std::set<size_t> test;
         for (size_t n = 0; n < solutions.size(); ++n)
             test.insert(n);
 
-        for (size_t n = 0; n < solutions.size(); ++n)
-        {
+        for (size_t n = 0; n < solutions.size(); ++n) {
             auto s = solutions[n];
-            if (solutions[n].size() == 1)
-            {
-                if (*solutions[n].begin() == essai.first[n])
-                {
+            if (solutions[n].size() == 1) {
+                if (*solutions[n].begin() == essai.first[n]) {
                     essai.second--;
                     test.erase(n);
                 }
             }
-            if (s.find(essai.first[n]) == s.end())
-            {
+            if (s.find(essai.first[n]) == s.end()) {
                 test.erase(n);
             }
-        }   
-        
+        }
+
         if (test.size() < essai.second)
             return false;
-        
-        if (essai.second == 0)
-        {
-            for (size_t n: test)
-            {
+
+        if (essai.second == 0) {
+            for (size_t n: test) {
                 solutions[n].erase(essai.first[n]);
             }
-            
+
             return cherche_solution(++debut, fin, solutions);
-        }
-        else
-        {
+        } else {
             std::vector<bool> combinaison(test.size(), true);
             for (size_t n = 0; n < essai.second; ++n)
                 combinaison.at(n) = false;
-            
-            do 
-            {
+
+            do {
                 auto s = solutions;
                 bool suivant = false;
                 size_t position = 0;
-                for (size_t n: test)
-                {
+                for (size_t n: test) {
                     if (combinaison[position])
                         s[n].erase(essai.first[n]);
-                    else if (s[n].find(essai.first[n]) == s[n].end())
-                    {
+                    else if (s[n].find(essai.first[n]) == s[n].end()) {
                         suivant = true;
                         break;
-                    }
-                    else
-                        s[n] = { essai.first[n] };
-                
+                    } else
+                        s[n] = {essai.first[n]};
+
                     ++position;
                 }
                 if (suivant)
                     continue;
-                
-                if (cherche_solution(std::next(debut), fin, s))
-                {
+
+                if (cherche_solution(std::next(debut), fin, s)) {
                     std::swap(s, solutions);
                     return true;
                 }
-            }
-            while(std::next_permutation(combinaison.begin(), combinaison.end()));
+            } while (std::next_permutation(combinaison.begin(), combinaison.end()));
             return false;
         }
     }
 
 }
 
-ENREGISTRER_PROBLEME(185, "Number Mind")
-{
+ENREGISTRER_PROBLEME(185, "Number Mind") {
     // The game Number Mind is a variant of the well known game Master Mind.
     //
-    // Instead of coloured pegs, you have to guess a secret sequence of digits. After each guess you're only told in how many places you've guessed the correct digit. So, if the sequence was 1234 and you guessed 2036, you'd be told that you have one correct digit; however, you would NOT be told that you also have another digit in the wrong place.
+    // Instead of coloured pegs, you have to guess a secret sequence of digits. After each guess you're only told in how
+    // many places you've guessed the correct digit. So, if the sequence was 1234 and you guessed 2036, you'd be told
+    // that you have one correct digit; however, you would NOT be told that you also have another digit in the wrong
+    // place.
     //
     // For instance, given the following guesses for a 5-digit secret sequence,
     //
@@ -150,29 +129,27 @@ ENREGISTRER_PROBLEME(185, "Number Mind")
     //              2659862637316867 ;2 correct
     //
     // Find the unique 16-digit secret sequence.
-    
-    // std::ifstream ifs("data/p185_example.txt");
     std::ifstream ifs("data/p185_number_mind.txt");
+    // std::ifstream ifs("data/p185_example.txt");
     ensemble essais;
-    
+
     size_t taille = 0;
     std::string pattern, correct, ignore;
-    while (ifs >> pattern >> correct >> ignore)
-    {
+    while (ifs >> pattern >> correct >> ignore) {
         taille = pattern.size();
-        essais.push_back(std::make_pair(pattern, correct[1] - '0'));
+        essais.emplace_back(pattern, correct[1] - '0');
     }
-    
-    std::set<char> chiffres { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+    std::set<char> chiffres{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     std::vector<std::set<char>> solutions;
     for (size_t n = 0; n < taille; ++n)
         solutions.push_back(chiffres);
-    
+
     cherche_solution(essais.begin(), essais.end(), solutions);
-    
+
     std::ostringstream oss;
-    for (auto s: solutions)
+    for (const auto &s: solutions)
         oss << *s.begin();
-        
+
     return oss.str();
 }

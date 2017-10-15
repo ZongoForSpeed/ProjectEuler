@@ -1,11 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 #include <memory>
 
 typedef unsigned long long nombre;
@@ -14,55 +10,44 @@ typedef std::vector<nombre> vecteur;
 typedef std::shared_ptr<vecteur> foret;
 typedef std::vector<foret> forets;
 
-namespace
-{
-    nombre LaggedFibonacciGenerator(vecteur & cache, nombre n)
-    {
-        if (cache.empty())
-        {
+namespace {
+    nombre LaggedFibonacciGenerator(vecteur &cache, nombre n) {
+        if (cache.empty()) {
             cache.push_back(0);
-            for (nombre k = 1; k < 56; ++k)
-            {
-                cache.push_back((100003 + 300007*k*k*k - 200003*k)%1000000);
+            for (nombre k = 1; k < 56; ++k) {
+                cache.push_back((100003 + 300007 * k * k * k - 200003 * k) % 1000000);
             }
         }
-        
-        if (cache.size() <= n)
-        {
-            for (nombre k = cache.size(); k < n + 1000; ++k)
-            {
-                cache.push_back((cache[k - 24] + cache[k - 55])%1000000);
+
+        if (cache.size() <= n) {
+            for (nombre k = cache.size(); k < n + 1000; ++k) {
+                cache.push_back((cache[k - 24] + cache[k - 55]) % 1000000);
             }
         }
-        
+
         return cache[n];
     }
-    
-    nombre Caller(vecteur & cache, nombre n)
-    {
-        return LaggedFibonacciGenerator(cache, 2*n - 1);
+
+    nombre Caller(vecteur &cache, nombre n) {
+        return LaggedFibonacciGenerator(cache, 2 * n - 1);
     }
-    
-    nombre Called(vecteur & cache, nombre n)
-    {
-        return LaggedFibonacciGenerator(cache, 2*n);
+
+    nombre Called(vecteur &cache, nombre n) {
+        return LaggedFibonacciGenerator(cache, 2 * n);
     }
-    
-    void merge(forets & f, foret & a, foret & b)
-    {
-	    if (a->size() > b->size())
-	        merge(f, b, a);
-		else
-		{
-			b->insert(b->end(), a->begin(), a->end());
-			for (nombre k: *a)
-				f[k] = b;
-		}
+
+    void merge(forets &f, foret &a, foret &b) {
+        if (a->size() > b->size())
+            merge(f, b, a);
+        else {
+            b->insert(b->end(), a->begin(), a->end());
+            for (nombre k: *a)
+                f[k] = b;
+        }
     }
 }
 
-ENREGISTRER_PROBLEME(186, "Connectedness of a network")
-{
+ENREGISTRER_PROBLEME(186, "Connectedness of a network") {
     // Here are the records from a busy telephone system with one million users:
     //
     //                  RecNr   Caller  Called
@@ -87,30 +72,27 @@ ENREGISTRER_PROBLEME(186, "Connectedness of a network")
     // The Prime Minister's phone number is 524287. After how many successful calls, not counting misdials,
     // will 99% of the users (including the PM) be a friend, or a friend of a friend etc., of the Prime Minister?
     nombre PrimeMinister = 524287;
-	
+
     forets groupe;
-    for (size_t n = 0; n < 1000000; ++n)
-    {
-    	foret f = std::make_shared<vecteur>();
-    	f->push_back(n);
-    	groupe.push_back(f);
+    for (size_t n = 0; n < 1000000; ++n) {
+        foret f = std::make_shared<vecteur>();
+        f->push_back(n);
+        groupe.push_back(f);
     }
     nombre resultat = 0;
     vecteur cache;
 
-    for (nombre n = 1, compteur = 0; compteur < 990000; ++n)
-    {
+    for (nombre n = 1, compteur = 0; compteur < 990000; ++n) {
         nombre i = Caller(cache, n);
         nombre j = Called(cache, n);
         if (i == j)
             continue;
-            
+
         ++resultat;
         foret groupe_i = groupe[i];
         foret groupe_j = groupe[j];
-        if (groupe_j->front() != groupe_i->front())
-        {
-			merge(groupe, groupe_i, groupe_j);
+        if (groupe_j->front() != groupe_i->front()) {
+            merge(groupe, groupe_i, groupe_j);
             compteur = groupe[PrimeMinister]->size();
         }
     }

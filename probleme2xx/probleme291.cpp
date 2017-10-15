@@ -13,7 +13,7 @@ ENREGISTRER_PROBLEME(291, "Panaitopol Primes")
     size_t resultat = 0;
     for (size_t n = 1; n*n + (n+1)*(n+1) < limite; ++n)
     {
-        if (mp_nombre::premier(n*n + (n+1)*(n+1)))
+        if (mp_nombre::premier(n*n + (n+1)*(n+1), 25))
             ++resultat;
     }
     

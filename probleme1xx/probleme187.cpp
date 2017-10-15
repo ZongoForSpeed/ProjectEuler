@@ -1,48 +1,41 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
-#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <limits>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(187, "Semiprimes")
-{
-    // A composite is a number containing at least two prime factors. For example, 15 = 3 × 5; 
-    // 9 = 3 × 3; 12 = 2 × 2 × 3.
+ENREGISTRER_PROBLEME(187, "Semiprimes") {
+    // A composite is a number containing at least two prime factors. For example, 15 = 3 × 5; 9 = 3 × 3;
+    // 12 = 2 × 2 × 3.
     //
-    // There are ten composites below thirty containing precisely two, not necessarily distinct, 
-    // prime factors: 4, 6, 9, 10, 14, 15, 21, 22, 25, 26.
+    // There are ten composites below thirty containing precisely two, not necessarily distinct, prime factors: 4, 6, 9,
+    // 10, 14, 15, 21, 22, 25, 26.
     //
     // How many composite integers, n < 10^8, have precisely two, not necessarily distinct, prime factors?
     nombre limite = 100000000ULL;
     vecteur premiers;
     premiers::crible235<nombre>(limite, std::back_inserter(premiers));
-    
+
     vecteur pi;
     pi.reserve(limite);
-    
+
     nombre q = 0;
     nombre n = 0;
-    for (nombre p: premiers)
-    {
+    for (nombre p: premiers) {
         pi.insert(pi.end(), p - q, n++);
         q = p;
     }
-     
+
     nombre resultat = 0;
-    for (auto p: premiers)
-    {
-        if (p*p > limite)
+    for (auto p: premiers) {
+        if (p * p > limite)
             break;
-            
+
         resultat += pi[limite / p] - pi[p] + 1;
     }
-    
+
     return std::to_string(resultat);
 }

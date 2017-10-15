@@ -448,6 +448,15 @@ mp_nombre mp_nombre::operator>>(const unsigned long &b) const {
     return resultat;
 }
 
+bool mp_nombre::premier(int probabilite) const {
+    return mpz_probab_prime_p(_data, probabilite) != 0;
+}
+
+mp_nombre &mp_nombre::premier_suivant() {
+    mpz_nextprime(_data, _data);
+    return *this;
+}
+
 namespace std
 {
     mp_nombre abs(const mp_nombre & op)

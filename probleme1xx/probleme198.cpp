@@ -1,21 +1,11 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "utilitaires.h"
-#include "polygonal.h"
-
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <limits>
 
 #include <stack>
 
 typedef unsigned long long nombre;
-typedef std::vector<nombre> vecteur;
-typedef std::pair<nombre, nombre> paire;
 
-ENREGISTRER_PROBLEME(198, "Ambiguous Numbers")
-{
+ENREGISTRER_PROBLEME(198, "Ambiguous Numbers") {
     // A best approximation to a real number x for the denominator bound d is a rational number r/s 
     // (in reduced form) with s ≤ d, so that any rational number p/q which is closer to x than r/s 
     // has q > d.
@@ -30,7 +20,7 @@ ENREGISTRER_PROBLEME(198, "Ambiguous Numbers")
     // exceed 10^8?
     nombre limite = 100000000ULL;
     nombre borne = 100;
-    
+
     nombre m = racine_carre(limite / 2);
     std::stack<nombre> s;
     for (nombre i = borne; i < m; ++i)
@@ -38,20 +28,16 @@ ENREGISTRER_PROBLEME(198, "Ambiguous Numbers")
 
     nombre a = m;
     nombre resultat = limite / 2 - borne / 2;
-    while (!s.empty())
-    {
+    while (!s.empty()) {
         nombre b = s.top();
-        if (2*a*b > limite)
-        {
+        if (2 * a * b > limite) {
             a = b;
             s.pop();
-        }
-        else
-        {
+        } else {
             ++resultat;
-            s.push(a+b);
+            s.push(a + b);
         }
     }
-        
+
     return std::to_string(resultat);
 }

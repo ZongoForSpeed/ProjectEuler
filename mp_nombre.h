@@ -124,9 +124,11 @@ public:
     // endregion Puissance
 
     // region Arithmetiques
+    bool premier(int probabilite = 25) const;
     static bool premier(const mp_nombre &op, int probabilite = 25);
 
     static mp_nombre premier_suivant(const mp_nombre &op);
+    mp_nombre& premier_suivant();
 
     static mp_nombre PGCD(const mp_nombre &op1, const mp_nombre &op2);
     static mp_nombre PGCD(const mp_nombre &op1, unsigned long int op2);

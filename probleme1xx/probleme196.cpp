@@ -1,82 +1,75 @@
 #include "problemes.h"
+#include "arithmetiques.h"
 #include "polygonal.h"
 #include "mp_nombre.h"
-
-#include <fstream>
 
 typedef std::vector<mp_nombre> vecteur;
 typedef std::pair<mp_nombre, mp_nombre> paire;
 
-namespace
-{
-    mp_nombre triangle(const mp_nombre & i, const mp_nombre & j)
-    {
+namespace {
+    mp_nombre triangle(const mp_nombre &i, const mp_nombre &j) {
         if (i == 0 || j == 0)
             return 0;
-            
+
         if (i == 1 && j == 1)
             return 1;
-            
+
         if (j > i)
             return 0;
-        
+
         return polygonal::triangulaire<mp_nombre>(i - 1) + j;
     }
-    
-    bool test(const mp_nombre & i, const mp_nombre & j)
-    {
+
+    bool test(const mp_nombre &i, const mp_nombre &j) {
         mp_nombre t_ij = triangle(i, j);
-        if (t_ij%2 == 0)
+        if (t_ij % 2 == 0)
             return false;
-            
+
         return t_ij.premier(25);
+        // return mpz_probab_prime_p(t_ij.get_data(), 25) != 0;
     }
-    
-    bool triplet_premier(const mp_nombre & i, const mp_nombre & j, bool recursif = false)
-    {
+
+    bool triplet_premier(const mp_nombre &i, const mp_nombre &j, bool recursif = false) {
         mp_nombre t_ij = triangle(i, j);
         mp_nombre resultat = 0;
         std::vector<paire> p;
-        if (test(i+1, j-1)) p.push_back(paire(i+1, j-1));
-        if (test(i+1, j)) p.push_back(paire(i+1, j));
-        if (test(i+1, j+1)) p.push_back(paire(i+1, j+1));
-        if (test(i-1, j-1)) p.push_back(paire(i-1, j-1));
-        if (test(i-1, j)) p.push_back(paire(i-1, j));
-        if (test(i-1, j+1)) p.push_back(paire(i-1, j+1));
-        
+        if (test(i + 1, j - 1)) p.emplace_back(i + 1, j - 1);
+        if (test(i + 1, j)) p.emplace_back(i + 1, j);
+        if (test(i + 1, j + 1)) p.emplace_back(i + 1, j + 1);
+        if (test(i - 1, j - 1)) p.emplace_back(i - 1, j - 1);
+        if (test(i - 1, j)) p.emplace_back(i - 1, j);
+        if (test(i - 1, j + 1)) p.emplace_back(i - 1, j + 1);
+
         if (p.size() > 1)
             return true;
-            
+
         if (recursif && p.size() == 1)
             return triplet_premier(p.front().first, p.front().second, false);
-        
+
         return false;
     }
-    
-    mp_nombre S(const mp_nombre & n)
-    {
-        mp_nombre ligne = n;
-        mp_nombre min = polygonal::triangulaire<mp_nombre>(ligne - 1);
-        mp_nombre max = polygonal::triangulaire<mp_nombre>(ligne);
-        
+
+    mp_nombre S(const mp_nombre &ligne) {
+        auto min = polygonal::triangulaire<mp_nombre>(ligne - 1);
+        auto max = polygonal::triangulaire<mp_nombre>(ligne);
+
+        // std::set<mp_nombre> premiers;
         mp_nombre resultat = 0;
-        for (mp_nombre premier = min;;)
-        {
-            premier = mp_nombre::premier_suivant(premier);
+        for (mp_nombre premier = min;;) {
+            premier.premier_suivant();
             if (premier > max)
                 break;
-                
+
             if (triplet_premier(ligne, premier - min, true))
                 resultat += premier;
         }
-        
+
         return resultat;
     }
-    
+
 }
 
-ENREGISTRER_PROBLEME(196, "Prime triplets")
-{
+ENREGISTRER_PROBLEME(196, "Prime triplets") {
     // Build a triangle from all positive integers in the following way:
     //
     //        1
@@ -94,23 +87,22 @@ ENREGISTRER_PROBLEME(196, "Prime triplets")
     //
     // Each positive integer has up to eight neighbours in the triangle.
     //
-    // A set of three primes is called a prime triplet if one of the three primes has the other two 
-    // as neighbours in the triangle.
+    // A set of three primes is called a prime triplet if one of the three primes has the other two as neighbours in the
+    // triangle.
     //
     // For example, in the second row, the prime numbers 2 and 3 are elements of some prime triplet.
     //
-    // If row 8 is considered, it contains two primes which are elements of some prime triplet, i.e. 
-    // 29 and 31.
-    // If row 9 is considered, it contains only one prime which is an element of some prime triplet: 
-    // 37.
+    // If row 8 is considered, it contains two primes which are elements of some prime triplet, i.e. 29 and 31.
+    // If row 9 is considered, it contains only one prime which is an element of some prime triplet: 37.
     //
-    // Define S(n) as the sum of the primes in row n which are elements of any prime triplet.
-    // Then S(8)=60 and S(9)=37.
+    // Define S(n) as the sum of the primes in row n which are elements of any prime triplet. Then S(8)=60 and S(9)=37.
     //
     // You are given that S(10000)=950007619.
     //
     // Find  S(5678027) + S(7208785).
     std::cout << std::boolalpha;
     mp_nombre resultat = S(5678027) + S(7208785);
-    return resultat.to_string();
+    std::ostringstream oss;
+    oss << resultat;
+    return oss.str();
 }

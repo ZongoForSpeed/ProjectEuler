@@ -13,7 +13,7 @@ ENREGISTRER_PROBLEME(216, "Investigating the primality of numbers of the form 2n
     size_t resultat = 0;
     for (size_t n = 1; n <= limite; ++n)
     {
-        if (mp_nombre::premier(2*n*n-1))
+        if (mp_nombre::premier(2*n*n-1, 25))
             ++resultat;
     }
     
