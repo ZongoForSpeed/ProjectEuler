@@ -3,7 +3,7 @@
 #include "mp_nombre.h"
 #include "matrice.h"
 
-typedef std::vector<size_t > vecteur;
+typedef std::vector<size_t> vecteur;
 
 namespace {
     size_t a(size_t n) {
@@ -14,23 +14,22 @@ namespace {
         // a_{6n+3} = n
         // a_{6n+4} = 6n + 3
         // a_{6n+5} = n
-        switch (n%6) {
+        switch (n % 6) {
             case 0:
-                return 3*nd;
+                return 3 * nd;
             case 1:
-                return 4*nd + 1;
+                return 4 * nd + 1;
             case 2:
-                return 3*nd + 1;
+                return 3 * nd + 1;
             case 4:
-                return 6*nd + 3;
+                return 6 * nd + 3;
             default:
                 return nd;
         }
     }
 }
 
-ENREGISTRER_PROBLEME(326, "Modulo Summations")
-{
+ENREGISTRER_PROBLEME(326, "Modulo Summations") {
     // Let an be a sequence recursively defined by: a1 = 1, an = [Sum k.ak k = 1..n-1] mod n.
     //
     // So the first 10 elements of an are: 1,1,0,3,0,3,5,4,1,9.

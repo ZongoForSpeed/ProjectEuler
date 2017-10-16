@@ -2,29 +2,26 @@
 #include "utilitaires.h"
 #include "mp_nombre.h"
 #include "matrice.h"
-#include "multidimension.h"
-#include "puissance.h"
 
 typedef long long int nombre;
 
-namespace
-{
+namespace {
     std::pair<size_t, size_t> min_compteur_cost(size_t n) {
         static std::map<size_t, std::pair<size_t, size_t>> cache;
         if (n < 2)
             return std::make_pair(0, 0);
-        
+
         auto it = cache.find(n);
         if (it != cache.end()) {
             return it->second;
         }
-        
-        size_t min_compteur = std::numeric_limits<size_t>::max(); 
-        size_t min_cost = std::numeric_limits<size_t>::max(); 
+
+        size_t min_compteur = std::numeric_limits<size_t>::max();
+        size_t min_cost = std::numeric_limits<size_t>::max();
         for (size_t i = 1; i <= n; i++) {
-            auto c1 = min_compteur_cost(i-1);
-            auto c2_ = min_compteur_cost(n-i);
-            auto c2 = std::make_pair(c2_.first, c2_.second + c2_.first*i);
+            auto c1 = min_compteur_cost(i - 1);
+            auto c2_ = min_compteur_cost(n - i);
+            auto c2 = std::make_pair(c2_.first, c2_.second + c2_.first * i);
             size_t compteur;
             size_t cost;
             if (c1.first > c2.first) {
@@ -47,21 +44,20 @@ namespace
                 min_cost = std::min(min_cost, cost);
             }
         }
-        
+
         auto resultat = std::make_pair(min_compteur, min_cost);
         cache[n] = resultat;
         return resultat;
     }
-    
-    size_t cost(const std::vector<size_t> & costs, size_t n, size_t d) {
-        auto mmc = min_compteur_cost(n-d);
-        size_t c = d*mmc.first + mmc.second;
-        return d + std::max(costs[d-1], c);
+
+    size_t cost(const std::vector<size_t> &costs, size_t n, size_t d) {
+        auto mmc = min_compteur_cost(n - d);
+        size_t c = d * mmc.first + mmc.second;
+        return d + std::max(costs[d - 1], c);
     }
 }
 
-ENREGISTRER_PROBLEME(328, "Lowest-cost Search")
-{
+ENREGISTRER_PROBLEME(328, "Lowest-cost Search") {
     // We are trying to find a hidden number selected from the set of size_tegers {1, 2, ..., n} by asking questions. 
     // Each number (question) we ask, has a cost equal to the number asked and we get one of three possible answers:
     // 
@@ -80,7 +76,7 @@ ENREGISTRER_PROBLEME(328, "Lowest-cost Search")
     // in order to discriminate between 7 and 8.
     //
     // Thus, our third question will be "7" and the total cost for this worst-case scenario will be 4+6+7=17.
-    
+    //
     // We can improve considerably the worst-case cost for n=8, by asking "5" as our first question.
     // If we are told that the hidden number is higher than 5, our second question will be "7", then we'll know for 
     // certain what the hidden number is (for a total cost of 5+7=12).
@@ -89,7 +85,7 @@ ENREGISTRER_PROBLEME(328, "Lowest-cost Search")
     // Since 12>9, the worst-case cost for this strategy is 12. That's better than what we achieved previously with 
     // the "binary search" strategy; it is also better than or equal to any other strategy.
     // So, in fact, we have just described an optimal strategy for n=8.
-    
+
     // Let C(n) be the worst-case cost achieved by an optimal strategy for n, as described above.
     // Thus C(1) = 0, C(2) = 1, C(3) = 2 and C(8) = 12.
     // Similarly, C(100) = 400 and Sum n=1..100 C(n) = 17575.
@@ -97,14 +93,14 @@ ENREGISTRER_PROBLEME(328, "Lowest-cost Search")
     // Find Sum n=1..200000 C(n).
     const size_t T = 200000;
 
-    std::vector<size_t> costs(T+1, 0);
+    std::vector<size_t> costs(T + 1, 0);
 
     size_t resultat = 0;
     size_t divider = 1;
     size_t div_offset = 1;
     for (size_t i = 2; i <= T; ++i) {
         size_t c = cost(costs, i, divider);
-        for (size_t off = 1; off <= 2*div_offset; off <<= 1) {
+        for (size_t off = 1; off <= 2 * div_offset; off <<= 1) {
             if (off > divider) {
                 break;
             }

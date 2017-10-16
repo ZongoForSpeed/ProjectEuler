@@ -6,17 +6,15 @@
 typedef long long int nombre;
 typedef std::vector<nombre> vecteur;
 
-namespace 
-{
-	long double probabilite(size_t n) {
-	    return puissance::puissance<long double>(1 - puissance::puissance<long double>(0.5L, n), 32u);
-	}
+namespace {
+    long double probabilite(size_t n) {
+        return puissance::puissance<long double>(1 - puissance::puissance<long double>(0.5L, n), 32u);
+    }
 }
 
-ENREGISTRER_PROBLEME(323, "Bitwise-OR operations on random integers")
-{
-    // Let y0, y1, y2,... be a sequence of random unsigned 32 bit integers
-    // (i.e. 0 ≤ yi < 2**32, every value equally likely).
+ENREGISTRER_PROBLEME(323, "Bitwise-OR operations on random integers") {
+    // Let y0, y1, y2,... be a sequence of random unsigned 32 bit integers (i.e. 0 ≤ yi < 2**32, every value equally
+    // likely).
     // 
     // For the sequence xi the following recursion is given:
     //
@@ -27,12 +25,12 @@ ENREGISTRER_PROBLEME(323, "Bitwise-OR operations on random integers")
     //
     // Find the expected value of N. Give your answer rounded to 10 digits after the decimal point.
     long double sum = 0;
-	for (size_t n = 1; ; ++n) {
-		long double p = probabilite(n) - probabilite(n - 1);
-		if (p < 1e-20)
-			break;
-		sum += n * p;
-	}
+    for (size_t n = 1;; ++n) {
+        long double p = probabilite(n) - probabilite(n - 1);
+        if (p < 1e-20)
+            break;
+        sum += n * p;
+    }
 
     return std::to_string(sum, 10);
 }

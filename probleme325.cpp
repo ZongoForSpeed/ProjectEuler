@@ -12,42 +12,41 @@ typedef boost::multiprecision::mpf_float mp_float;
 typedef long long int nombre;
 typedef std::vector<mp_nombre> vecteur;
 
-namespace 
-{
+namespace {
     const mp_float phi = (1 + boost::multiprecision::sqrt(mp_float(5))) / 2;
-    
+
     nombre division(mp_nombre n, mp_float d) {
         mp_float q = n.get_unsigned_long_long() / d;
         return q.convert_to<nombre>();
     }
-    
+
     mp_nombre somme_entier(mp_nombre n) {
-        return n * (n+1) / 2;
+        return n * (n + 1) / 2;
     }
-    
+
     mp_nombre somme_carre(mp_nombre n) {
-        return n*(n+1)*(2*n+1)/6;
+        return n * (n + 1) * (2 * n + 1) / 6;
     }
-    
+
     mp_nombre somme_triangle(mp_nombre n) {
         return (somme_carre(n) + somme_entier(n)) / 2;
     }
-    
+
     std::pair<mp_nombre, mp_nombre> LU(mp_nombre n) {
         if (n < 3) {
             return std::make_pair(0, 0);
         }
-        
+
         mp_nombre m = division(n, phi);
         mp_nombre L0, U0;
         std::tie(L0, U0) = LU(m);
         mp_nombre U1 = somme_carre(m) - somme_entier(m) - U0 - L0;
-        mp_nombre L1 = U1 + somme_triangle(m-1) - L0;
-        mp_nombre L2 = somme_carre(n-m-1) + (m+1)*somme_entier(n-m-1);
-        mp_nombre U2 = n * somme_entier(n-m-1) - somme_carre(n-m-1);
-        return std::make_pair(L0 + L1 + L2 , U0 + U1 + U2);
+        mp_nombre L1 = U1 + somme_triangle(m - 1) - L0;
+        mp_nombre L2 = somme_carre(n - m - 1) + (m + 1) * somme_entier(n - m - 1);
+        mp_nombre U2 = n * somme_entier(n - m - 1) - somme_carre(n - m - 1);
+        return std::make_pair(L0 + L1 + L2, U0 + U1 + U2);
     }
-    
+
     mp_nombre S(mp_nombre n) {
         mp_nombre L, U;
         std::tie(L, U) = LU(n);
@@ -55,8 +54,7 @@ namespace
     }
 }
 
-ENREGISTRER_PROBLEME(325, "Stone Game II")
-{
+ENREGISTRER_PROBLEME(325, "Stone Game II") {
     // A game is played with two piles of stones and two players. At her turn, a player removes a number of stones from 
     // the larger pile. The number of stones she removes must be a positive multiple of the number of stones in the 
     // smaller pile.

@@ -12,10 +12,10 @@ namespace {
         while (n >= p) {
             p *= racine;
         }
-        
+
         nombre m1 = m;
         nombre n1 = n;
-        nombre result = m/p;
+        nombre result = m / p;
         // m is not counted as a covering, but we need to count certain lesser
         // values depending on whether the digits processed so far would be
         bool coveredAtLimit = true;
@@ -28,9 +28,8 @@ namespace {
             result *= racine - nd;
             if (coveredAtLimit) {
                 if (md >= nd) {
-                    result += md-nd;
-                }
-                else {
+                    result += md - nd;
+                } else {
                     coveredAtLimit = false;
                 }
             }
@@ -47,7 +46,7 @@ namespace {
             nombre md = i % racine;
             nombre nd = n % racine;
             result += (nd - md) * d;
-            
+
             d *= racine;
             i /= racine;
             n /= racine;
@@ -58,18 +57,17 @@ namespace {
         // result <= 0, no increment necessary
         return max;
     }
-    
+
     /** Counts the coefficients divisible by neither 2 nor 5 */
     nombre intersection(nombre m, nombre n) {
         nombre count = 0;
-        for (nombre i = n; i < m; ) {
+        for (nombre i = n; i < m;) {
             i += increment(i, n, 5);
             nombre diff = increment(i, n, 2);
             if (diff == 0) {
                 ++count;
                 ++i;
-            }
-            else {
+            } else {
                 i += diff;
             }
         }
@@ -78,16 +76,15 @@ namespace {
     }
 }
 
-ENREGISTRER_PROBLEME(322, "Binomial coefficients divisible by 10")
-{
+ENREGISTRER_PROBLEME(322, "Binomial coefficients divisible by 10") {
     // Let T(m, n) be the number of the binomial coefficients iCn that are divisible by 10 for n ≤ i < m
     // (i, m and n are positive integers).
     // You are given that T(10**9, 10**7-10) = 989697000.
     //
     // Find T(10**18, 10**12-10).
-    const nombre m = puissance::puissance<nombre>(10, 18u);
-    const nombre n = puissance::puissance<nombre>(10, 12u) - 10;
-    
+    const auto m = puissance::puissance<nombre>(10, 18u);
+    const auto n = puissance::puissance<nombre>(10, 12u) - 10;
+
     nombre resultat = m - n;
     resultat -= covers(m, n, 5);
     resultat -= covers(m, n, 2);

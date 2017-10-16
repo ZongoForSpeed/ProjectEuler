@@ -4,8 +4,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
-ENREGISTRER_PROBLEME(318, "2011 nines")
-{
+ENREGISTRER_PROBLEME(318, "2011 nines") {
     // Consider the real number √2+√3.
     // When we calculate the even powers of √2+√3 we get:
     // (√2+√3)2 = 9.898979485566356...
@@ -18,7 +17,7 @@ ENREGISTRER_PROBLEME(318, "2011 nines")
     // (√2+√3)16 = 92198401.99999998915...
     //
     // It looks like that the number of consecutive nines at the beginning of the fractional part of these powers is
-    // // non-decreasing.
+    // non-decreasing.
     // In fact it can be proven that the fractional part of (√2+√3)2n approaches 1 for large n.
     //
     // Consider all real numbers of the form √p+√q with p and q positive integers and p<q, such that the fractional part
@@ -37,7 +36,7 @@ ENREGISTRER_PROBLEME(318, "2011 nines")
         for (nombre q = p + 1; p + q <= n; ++q) {
             long double k = p + q - 2 * std::sqrt(p * q);
             if (k >= 1) break;
-            size_t t = static_cast<size_t>(std::ceil(v / std::log(k)));
+            auto t = static_cast<size_t>(std::ceil(v / std::log(k)));
             resultat += t;
         }
     }

@@ -1,28 +1,26 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "multidimension.h"
 
 namespace {
     bool addition(std::vector<size_t> &P, size_t somme, size_t b, size_t amax) {
-        if (somme < P.size()) 
-            P[somme]++; 
-        else 
-            return false; 
-        for (size_t a=1;;) {
-            if (a < amax && addition(P, somme + a*b, b*3, a)) 
+        if (somme < P.size())
+            P[somme]++;
+        else
+            return false;
+        for (size_t a = 1;;) {
+            if (a < amax && addition(P, somme + a * b, b * 3, a))
                 a *= 2;
-            else if(a > 1) 
+            else if (a > 1)
                 b *= 3, a = 1;
-            else 
+            else
                 return true;
-      } 
+        }
     }
 
 }
 
-ENREGISTRER_PROBLEME(333, "Special partitions")
-{
+ENREGISTRER_PROBLEME(333, "Special partitions") {
     // All positive integers can be partitioned in such a way that each and every term of the partition can be expressed
     // as 2ix3j, where i,j ≥ 0.
     //
@@ -45,13 +43,13 @@ ENREGISTRER_PROBLEME(333, "Special partitions")
     // const size_t L2 = 20;
     // const size_t L3 = 13;
     const size_t limite = 1'000'000;
-    
+
     std::vector<size_t> premiers;
     premiers::crible235<size_t>(limite, std::back_inserter(premiers));
-    
+
     std::vector<size_t> P(limite, 0);
     addition(P, 0, 1, limite);
-    
+
     size_t resultat = 0;
     for (auto p: premiers) {
         if (P[p] == 1) {
