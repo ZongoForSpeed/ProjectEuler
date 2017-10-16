@@ -76,6 +76,12 @@ namespace arithmetiques
         return (n + d / 2) / d;    
     }
     
+    template<typename Nombre>
+    constexpr Nombre plafond(Nombre n, Nombre d) // ceil
+    {
+        return (n + d - 1) / d;    
+    }
+    
     template<typename Nombre, typename Conteneur>
     Nombre nombre_diviseurs(Nombre n, const Conteneur & premiers)
     {
