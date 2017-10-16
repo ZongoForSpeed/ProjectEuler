@@ -31,7 +31,7 @@ public:
     }
 
     static nombre racine_septieme(nombre n) {
-        nombre resultat = static_cast<nombre>(pow(n, 1.0 / 7.0));
+        auto resultat = static_cast<nombre>(pow(n, 1.0 / 7.0));
         auto p7 = puissance::puissance<nombre, unsigned>(resultat, 7);
         if (p7 < n) {
             do {

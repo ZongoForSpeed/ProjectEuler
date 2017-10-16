@@ -5,9 +5,9 @@
 typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(345, "Matrix Sum") {
-    // We define the Matrix Sum of a matrix as the maximum sum of matrix elements
-    // with each element being the only one in his row and column. For example, 
-    // the Matrix Sum of the matrix below equals 3315 ( = 863 + 383 + 343 + 959 + 767):
+    // We define the Matrix Sum of a matrix as the maximum sum of matrix elements with each element being the only one
+    // in his row and column. For example, the Matrix Sum of the matrix below equals 3315
+    // ( = 863 + 383 + 343 + 959 + 767):
     //
     // multidimension<nombre, 2> matrice {
     //     {  7,  53, 183, 439, 863},
@@ -38,7 +38,7 @@ ENREGISTRER_PROBLEME(345, "Matrix Sum") {
     };
 
     nombre taille = matrice.size();
-    nombre limite = (1 << taille);
+    nombre limite = (1ul << taille);
 
     std::vector<nombre> dp(limite, 0);
     std::vector<nombre> colonnes(limite, 0);

@@ -5,15 +5,13 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(347, "Largest integer divisible by two primes") {
-    // The largest integer ≤ 100 that is only divisible by both the primes 2 and
-    // 3 is 96, as 96=32*3=25*3. For two distinct primes p and q let M(p,q,N) be
-    // the largest positive integer ≤N only divisible by both p and q and M(p,q,N)=0
-    // if such a positive integer does not exist.
+    // The largest integer ≤ 100 that is only divisible by both the primes 2 and 3 is 96, as 96=32*3=25*3. For two
+    // distinct primes p and q let M(p,q,N) be the largest positive integer ≤N only divisible by both p and q and
+    // M(p,q,N)=0 if such a positive integer does not exist.
     //
     // E.g. M(2,3,100)=96.
     // M(3,5,100)=75 and not 90 because 90 is divisible by 2 ,3 and 5.
-    // Also M(2,73,100)=0 because there does not exist a positive integer ≤ 100
-    // that is divisible by both 2 and 73.
+    // Also M(2,73,100)=0 because there does not exist a positive integer ≤ 100 that is divisible by both 2 and 73.
     //
     // Let S(N) be the sum of all distinct M(p,q,N). S(100)=2262.
     //
@@ -21,7 +19,7 @@ ENREGISTRER_PROBLEME(347, "Largest integer divisible by two primes") {
     const nombre limite = 10000000L + 1;
     std::vector<vecteur> facteurs(limite);
     for (size_t p = 2; p < limite; ++p) {
-        if (facteurs[p].size() == 0) {
+        if (facteurs[p].empty()) {
             for (size_t q = p; q < limite; q += p) {
                 facteurs[q].push_back(p);
             }
