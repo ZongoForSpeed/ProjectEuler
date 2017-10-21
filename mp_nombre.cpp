@@ -193,6 +193,11 @@ mp_nombre mp_nombre::racine(const mp_nombre &op, unsigned long int n) {
     return resultat;
 }
 
+bool mp_nombre::racine_parfaite(const mp_nombre &op, unsigned long int n) {
+    mp_nombre resultat;
+    return mpz_root(resultat._data, op._data, n) != 0;
+}
+
 mp_nombre mp_nombre::puissance(const mp_nombre &base, unsigned long exposant) {
     mp_nombre resultat;
     mpz_pow_ui(resultat._data, base._data, exposant);

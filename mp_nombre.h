@@ -111,6 +111,8 @@ public:
     static bool carre_parfait(const mp_nombre &op);
 
     static mp_nombre racine(const mp_nombre &op, unsigned long int n);
+    
+    static bool racine_parfaite(const mp_nombre &op, unsigned long int n);
 
     // region Puissance
     static mp_nombre puissance(const mp_nombre &base, unsigned long exposant);
