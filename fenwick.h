@@ -25,7 +25,7 @@ public:
     ValueType somme(size_t i) {
         ValueType sum = 0;
         while (i) {
-            sum += arbre[i - 1];
+            sum += arbre[i];
             i -= LSB(i);
         }
         return sum;
@@ -34,7 +34,7 @@ public:
     ValueType somme(size_t i, const ValueType &modulo) {
         ValueType sum = 0;
         while (i) {
-            sum += arbre[i - 1];
+            sum += arbre[i];
             sum %= modulo;
             i -= LSB(i);
         }
@@ -45,7 +45,7 @@ public:
     void add(size_t i, ValueType delta) {
         while (i < taille) {
             arbre[i] += delta;
-            i += LSB(i + 1);
+            i += LSB(i);
         }
     }
 
@@ -53,7 +53,7 @@ public:
         while (i < taille) {
             arbre[i] += delta;
             arbre[i] %= modulo;
-            i += LSB(i + 1);
+            i += LSB(i);
         }
     }
 
@@ -66,12 +66,12 @@ public:
         ValueType sum = 0;
 
         while (j > i) {
-            sum += arbre[j - 1];
+            sum += arbre[j];
             j -= LSB(j);
         }
 
         while (i > j) {
-            sum -= arbre[i - 1];
+            sum -= arbre[i];
             i -= LSB(i);
         }
         return sum;
@@ -81,13 +81,13 @@ public:
         ValueType sum = 0;
 
         while (j > i) {
-            sum += arbre[j - 1];
+            sum += arbre[j];
             sum %= modulo;
             j -= LSB(j);
         }
 
         while (i > j) {
-            sum += modulo - arbre[i - 1];
+            sum += modulo - arbre[i];
             i -= LSB(i);
         }
         return sum % modulo;
@@ -110,7 +110,7 @@ public:
     }
 
     void set(size_t i, ValueType value, const ValueType &modulo) {
-        add(value - get(i), i, modulo);
+        add(modulo + value - get(i), i, modulo);
     }
 
     // It's possible to initialize a Fenwick tree using Fen_add or
@@ -118,7 +118,7 @@ public:
     // through the array), but for bulk initialization, this is faster.
     void initialisation() {
         for (size_t i = 0; i < taille; i++) {
-            size_t j = i + LSB(i + 1);
+            size_t j = i + LSB(i);
             if (j < taille)
                 arbre[j] += arbre[i];
         }
