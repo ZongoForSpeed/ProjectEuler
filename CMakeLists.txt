@@ -11,20 +11,20 @@ include(CheckCXXCompilerFlag)
 
 # Check for standard to use
 check_cxx_compiler_flag(-std=c++17 HAVE_FLAG_STD_CXX17)
-if(HAVE_FLAG_STD_CXX17)
-	MESSAGE( STATUS "HAVE_FLAG_STD_CXX17"  )
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
-else()
+if (HAVE_FLAG_STD_CXX17)
+    MESSAGE(STATUS "HAVE_FLAG_STD_CXX17")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+else ()
     check_cxx_compiler_flag(-std=c++1z HAVE_FLAG_STD_CXX1Z)
-    if(HAVE_FLAG_STD_CXX1Z)
-    	MESSAGE( STATUS "HAVE_FLAG_STD_CXX1Z"  )
-		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
+    if (HAVE_FLAG_STD_CXX1Z)
+        MESSAGE(STATUS "HAVE_FLAG_STD_CXX1Z")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
         # Have -std=c++1z, use it
-    else()
-    	set(CMAKE_CXX_STANDARD 14)
+    else ()
+        set(CMAKE_CXX_STANDARD 14)
         # And so on and on...
-    endif()
-endif()
+    endif ()
+endif ()
 
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-global-constructors -Wno-exit-time-destructors -Wno-double-promotion -Wno-missing-prototypes -Wno-unused-macros")
@@ -43,6 +43,7 @@ set(LIBRARY_FILES
         combinatoire.h
         diophantienne.cpp
         diophantienne.h
+        fenwick.h
         graphe.cpp
         graphe.h
         matrice.h
@@ -70,6 +71,7 @@ set(TEST_FILES
         test/chiffres.cpp
         test/combinatoire.cpp
         test/diophantienne.cpp
+        test/fenwick.cpp
         test/matrice.cpp
         test/mp_nombre.cpp
         test/multidimension.cpp

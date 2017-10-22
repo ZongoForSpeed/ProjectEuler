@@ -30,7 +30,6 @@ namespace {
     	    fenwick[x] += d;
     	    fenwick[x] %= modulo;
     	}
-    	    
     }
 }
 
