@@ -151,22 +151,6 @@ namespace std {
     }
 }
 
-template<typename Nombre>
-constexpr typename std::enable_if<std::is_integral<Nombre>::value, bool>::type egal(const Nombre &a, const Nombre &b) {
-    return a == b;
-}
-
-template<typename Nombre>
-constexpr typename std::enable_if<std::is_class<Nombre>::value, bool>::type egal(const Nombre &a, const Nombre &b) {
-    return a == b;
-}
-
-template<typename Nombre>
-constexpr typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::type
-egal(const Nombre &a, const Nombre &b) {
-    return std::abs(b - a) < std::numeric_limits<Nombre>::epsilon();
-}
-
 namespace utilitaires {
     template<typename InputIterator>
     inline size_t distance(InputIterator first, InputIterator last, std::input_iterator_tag) {
@@ -211,5 +195,21 @@ namespace utilitaires {
         std::ostringstream oss;
         oss << t1 << t2 << t3 << t4;
         return oss.str();
+    }
+    
+    template<typename Nombre>
+    constexpr typename std::enable_if<std::is_integral<Nombre>::value, bool>::type egal(const Nombre &a, const Nombre &b) {
+        return a == b;
+    }
+    
+    template<typename Nombre>
+    constexpr typename std::enable_if<std::is_class<Nombre>::value, bool>::type egal(const Nombre &a, const Nombre &b) {
+        return a == b;
+    }
+    
+    template<typename Nombre>
+    constexpr typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::type
+    egal(const Nombre &a, const Nombre &b) {
+        return std::abs(b - a) < std::numeric_limits<Nombre>::epsilon();
     }
 }
