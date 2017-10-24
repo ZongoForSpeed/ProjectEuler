@@ -1,5 +1,6 @@
 #pragma once 
 #include "utilitaires.h"
+#include "arithmetiques.h"
 
 #include <cmath>
 
@@ -8,14 +9,14 @@ namespace polygonal
 	template<typename Nombre>
     constexpr bool est_carre(Nombre n)
     {
-        Nombre racine = racine_carre(n);
+        Nombre racine = arithmetiques::racine_carre(n);
         return racine*racine == n;
     }
     
     template<typename Nombre>
     constexpr bool est_cubique(Nombre n)
     {
-        Nombre racine = racine_cubique(n);
+        Nombre racine = arithmetiques::racine_cubique(n);
         return racine*racine*racine == n;
     }
     
@@ -29,7 +30,7 @@ namespace polygonal
     constexpr bool est_triangulaire(Nombre n)
     {
         Nombre delta = 1 + 8*n;
-        Nombre racine_delta = racine_carre(delta);
+        Nombre racine_delta = arithmetiques::racine_carre(delta);
         if (racine_delta*racine_delta != delta)
             return false;
         return (racine_delta-1)%2 == 0;
@@ -45,7 +46,7 @@ namespace polygonal
     constexpr bool est_pentagonal(Nombre n)
     {
         Nombre delta = 1 + 24*n;
-        Nombre racine_delta = racine_carre(delta);
+        Nombre racine_delta = arithmetiques::racine_carre(delta);
         if (racine_delta*racine_delta != delta)
             return false;
         return (1+racine_delta)%6 == 0;
@@ -61,7 +62,7 @@ namespace polygonal
     constexpr bool est_hexagonal(Nombre n)
     {
         Nombre delta = 1 + 8*n;
-        Nombre racine_delta = racine_carre(delta);
+        Nombre racine_delta = arithmetiques::racine_carre(delta);
         if (racine_delta*racine_delta != delta)
             return false;
         return (1+racine_delta)%4 == 0;
@@ -77,7 +78,7 @@ namespace polygonal
     constexpr bool est_heptagonal(Nombre n)
     {
         Nombre delta = 9 + 40*n;
-        Nombre racine_delta = racine_carre(delta);
+        Nombre racine_delta = arithmetiques::racine_carre(delta);
         if (racine_delta*racine_delta != delta)
             return false;
         return (3+racine_delta)%10 == 0;
@@ -93,7 +94,7 @@ namespace polygonal
     constexpr bool est_octagonal(Nombre n)
     {
         Nombre delta = 4 + 12*n;
-        Nombre racine_delta = racine_carre(delta);
+        Nombre racine_delta = arithmetiques::racine_carre(delta);
         if (racine_delta*racine_delta != delta)
             return false;
         return (2+racine_delta)%6 == 0;

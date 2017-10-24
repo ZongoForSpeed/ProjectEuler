@@ -2,6 +2,7 @@
 #include "chiffres.h"
 #include "utilitaires.h"
 #include "mp_nombre.h"
+#include "arithmetiques.h"
 
 #include <fstream>
 
@@ -20,8 +21,8 @@ namespace {
 ENREGISTRER_PROBLEME(206, "Concealed Square") {
     // Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
     // where each “_” is a single digit.
-    mp_nombre minimum = racine_carre(102030405060708LL); // 0900
-    mp_nombre maximum = racine_carre(192939495969798LL); // 9900
+    mp_nombre minimum = arithmetiques::racine_carre(102030405060708LL); // 0900
+    mp_nombre maximum = arithmetiques::racine_carre(192939495969798LL); // 9900
 
     mp_nombre resultat = 0;
     for (mp_nombre n = minimum; n < maximum; ++n) {

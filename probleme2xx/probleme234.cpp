@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "utilitaires.h"
+#include "arithmetiques.h"
 
 #include <fstream>
 
@@ -21,7 +22,7 @@ ENREGISTRER_PROBLEME(234, "Semidivisible numbers") {
     //
     // What is the sum of all semidivisible numbers not exceeding 999966663333 ?
     const nombre limite = 999966663333LL;
-    const nombre borne = racine_carre(limite) + 1;
+    const nombre borne = arithmetiques::racine_carre(limite) + 1;
 
     vecteur premiers;
     premiers::crible235<nombre>(static_cast<size_t>(borne), std::back_inserter(premiers));

@@ -59,7 +59,7 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
     //
     // Find L(100 000).
     const nombre rayon_max = 100000;
-    const nombre limite = 2 * racine_carre(rayon_max);
+    const nombre limite = 2 * arithmetiques::racine_carre(rayon_max);
 
     std::vector<std::set<nombre>> rayons;
     for (nombre dx = 1; dx < limite; dx += 2)

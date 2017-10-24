@@ -207,24 +207,24 @@ namespace diophantienne
         if (n > 0)
         {
             l1 = 0;
-            l2 = racine_carre<Nombre>(n*(t-1)/(2*d));
+            l2 = arithmetiques::racine_carre<Nombre>(n*(t-1)/(2*d));
         }
         else
         {
-            l1 = racine_carre<Nombre>(-n / (1*d));
-            l2 = racine_carre<Nombre>((-n*(t+1)) / (2*d));
+            l1 = arithmetiques::racine_carre<Nombre>(-n / (1*d));
+            l2 = arithmetiques::racine_carre<Nombre>((-n*(t+1)) / (2*d));
         }
         
         std::vector<std::pair<Nombre, Nombre>> funds;
         for (Nombre y = l1; y < l2 + 1; ++y)
         {
-            if (auto s = carre_parfait<Nombre>(n + d*y*y))
+            if (auto s = arithmetiques::carre_parfait<Nombre>(n + d*y*y))
             {
                 Nombre x = *s;
-                funds.push_back(std::make_pair(x, y));
+                funds.emplace_back(x, y);
                 
                 if ((x*x+d*y*y) % n != 0 || (2*x*y) % n != 0) 
-                    funds.push_back(std::make_pair(-x, y));
+                    funds.emplace_back(-x, y);
             }
         }
         
@@ -236,7 +236,7 @@ namespace diophantienne
         auto funds = pell_funds_bf<Nombre>(d, n);
         std::set<std::pair<Nombre, Nombre>> solution;
         for (auto p: funds)
-            solution.insert(std::make_pair(std::abs(p.first), std::abs(p.second)));
+            solution.emplace(std::abs(p.first), std::abs(p.second));
         
         auto callback = [&] (Nombre t, Nombre u)
         {
@@ -248,7 +248,7 @@ namespace diophantienne
                 
                 if (std::abs(x) <= max_x)
                 {
-                    solution.insert(std::make_pair(std::abs(x), std::abs(y)));
+                    solution.emplace(std::abs(x), std::abs(y));
                     added = true;
                 }
             }
@@ -268,7 +268,7 @@ namespace diophantienne
         for (auto p : pell)
         {
             if (p.first % a == 0)
-                resultat.push_back(std::make_pair(p.first / a, p.second));
+                resultat.emplace_back(p.first / a, p.second);
         }
         
         return resultat;

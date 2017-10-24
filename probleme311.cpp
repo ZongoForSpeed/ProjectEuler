@@ -38,7 +38,7 @@ ENREGISTRER_PROBLEME(311, "Biclinic Integral Quadrilaterals") {
         for (nombre x = 0; x * x < limite + 1; ++x) {
             nombre y_min = 0;
             if (x * x < L)
-                y_min = std::max<nombre>(arrondi(racine_carre(L - x * x), 2) + x % 2 - 4, x + 2);
+                y_min = std::max<nombre>(arrondi(arithmetiques::racine_carre(L - x * x), 2) + x % 2 - 4, x + 2);
             else
                 y_min = x + 2;
 
