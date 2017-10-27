@@ -19,7 +19,7 @@ ENREGISTRER_PROBLEME(261, "Stone Game") {
     // 
     // Find the sum of all distinct square-pivots ≤ 10^10.
     const nombre limite = 10000000000ULL;
-    const auto limite_crible = racine_carre<nombre>(limite);
+    const auto limite_crible = arithmetiques::racine_carre<nombre>(limite);
 
     std::vector<bool> crible(limite_crible, true);
     crible[0] = false;
@@ -44,10 +44,10 @@ ENREGISTRER_PROBLEME(261, "Stone Game") {
     std::set<nombre> pivots;
     for (nombre m = 1; 2 * m * (m + 1) <= limite; m++) {
         nombre M = 2 * m + 1;
-        nombre maxy = 2 * m * racine_carre<nombre>(m + 1);
+        nombre maxy = 2 * m * arithmetiques::racine_carre<nombre>(m + 1);
         for (nombre y_ = facteurs[m]; y_ <= maxy; y_ += facteurs[m]) {
             nombre y = y_;
-            if (auto s = carre_parfait((m + 1) * (y * y / m + 1))) {
+            if (auto s = arithmetiques::carre_parfait((m + 1) * (y * y / m + 1))) {
                 nombre x = *s;
                 if (x % 2 == (m + 1) % 2 && y % 2 == m % 2) {
                     while (true) {

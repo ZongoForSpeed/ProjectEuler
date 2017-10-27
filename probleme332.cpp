@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
+#include "arithmetiques.h"
 
 namespace {
     typedef std::tuple<long, long, long> point;
@@ -60,7 +61,7 @@ ENREGISTRER_PROBLEME(332, "Spherical triangles") {
     for (long xx = -R; xx <= R; ++xx)
         for (long yy = -R; yy <= R; ++yy)
             for (long zz = -R; zz <= R; ++zz) {
-                if (auto r = carre_parfait(xx * xx + yy * yy + zz * zz)) {
+                if (auto r = arithmetiques::carre_parfait(xx * xx + yy * yy + zz * zz)) {
                     sphere[*r].emplace_back(xx, yy, zz);
                 }
             }

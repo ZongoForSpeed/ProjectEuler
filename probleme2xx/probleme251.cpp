@@ -18,8 +18,8 @@ ENREGISTRER_PROBLEME(251, "Cardano Triplets") {
     const nombre u = 110000000;
 
     nombre resultat = 0;
-    for (nombre n = 1, n_max = racine_carre(u / 5); n <= n_max; n++)
-        for (nombre d = 1, d_max = racine_carre(u - 5 * n * n - n); d < d_max; d += 2) {
+    for (nombre n = 1, n_max = arithmetiques::racine_carre(u / 5); n <= n_max; n++)
+        for (nombre d = 1, d_max = arithmetiques::racine_carre(u - 5 * n * n - n); d < d_max; d += 2) {
             if (arithmetiques::PGCD(d, n) != 1)
                 continue;
 

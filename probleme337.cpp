@@ -3,35 +3,9 @@
 #include "premiers.h"
 #include "multidimension.h"
 #include "timer.h"
+#include "fenwick.h"
 
-typedef size_t nombre;
-typedef std::pair<nombre, nombre> paire;
-typedef std::vector<nombre> vecteur;
-
-namespace {
-    template<typename T>
-    T LSB(T x) {
-        return ((x^x-1) + 1) >> 1;
-    }
-
-    nombre somme(const vecteur &fenwick, nombre x, nombre modulo)
-    {
-    	nombre s = 0;
-    	for(;x > 0; x -= LSB(x)) { 
-    	    s += fenwick[x];
-    	    s %= modulo;
-    	}
-    	return s;
-    }
-    
-    void ajout(vecteur &fenwick, nombre x, nombre d, nombre modulo)
-    {
-    	for(;x < fenwick.size(); x += LSB(x)) {
-    	    fenwick[x] += d;
-    	    fenwick[x] %= modulo;
-    	}
-    }
-}
+typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(337, "Totient Stairstep Sequences")
 {
@@ -49,29 +23,28 @@ ENREGISTRER_PROBLEME(337, "Totient Stairstep Sequences")
     const nombre limite = 20'000'000;
     const nombre modulo = 100'000'000;
     
-    vecteur premiers;
-    premiers::crible235<nombre>(limite, std::back_inserter(premiers));
-    
-    vecteur phi(limite + 1, 0);
+    std::vector<bool> crible(limite + 1, true);
+    std::vector<size_t> phi(limite + 1, 0);
     std::iota(phi.begin(), phi.end(), 0ul);
 
-    for (auto &p: premiers) {
-        for (nombre n = p; n < limite + 1; n += p) {
-            phi[n] /= p;
-            phi[n] *= p - 1;
+    for (size_t i = 2; i < limite + 1; ++i) {
+        if (crible[i]) {
+            for (size_t j = i; j < limite + 1; j += i) {
+                crible[j] = false;
+                phi[j] /= i;
+                phi[j] *= i-1;
+            }
         }
     }
     
-    vecteur fenwick(limite + 1, 0);
-    
-    nombre resultat = 0;
-	for(nombre n = limite; n > 5; n--)
-	{
-		nombre k = phi[n];
-		resultat = modulo + 1 + somme(fenwick, n - 1, modulo) - somme(fenwick, k, modulo);
-		ajout(fenwick, k, resultat, modulo);
-	}
-	
-	resultat %= modulo;
-    return std::to_string(resultat);
+    Fenwick<nombre> fenwick(limite + 1);
+    std::vector<nombre> f(limite + 1, 0);
+    for (size_t n = limite; n > 5; --n) {
+        size_t k = phi[n];
+        // f[n] = (modulo + 1 + fenwick.somme(n-1, modulo) - fenwick.somme(k, modulo)) % modulo;
+        f[n] = 1 + fenwick.range(k, n - 1, modulo);
+        fenwick.add(k, f[n], modulo);
+    }
+
+    return std::to_string(f[6]);
 }

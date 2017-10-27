@@ -12,7 +12,7 @@ namespace {
     boost::optional<complexe> gauss(nombre p) {
         for (nombre a = 1; 2 * a * a < p + 1; ++a) {
             nombre bb = p - a * a;
-            if (auto r = carre_parfait(bb)) {
+            if (auto r = arithmetiques::carre_parfait(bb)) {
                 nombre b = *r;
                 if (a < b)
                     return complexe(a, b);

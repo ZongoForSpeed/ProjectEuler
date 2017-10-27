@@ -7,8 +7,8 @@ typedef std::vector<size_t> vecteur;
 namespace {
     vecteur fraction_continue(size_t d) {
         vecteur resultat;
-        size_t d2 = racine_carre(d);
-        unsigned long a = racine_carre(d), p = 0, q = 1;
+        size_t d2 = arithmetiques::racine_carre(d);
+        unsigned long a = arithmetiques::racine_carre(d), p = 0, q = 1;
         do {
             resultat.push_back(a);
             p = a * q - p;

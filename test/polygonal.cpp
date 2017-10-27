@@ -1,18 +1,19 @@
 #include <boost/test/unit_test.hpp>
 
 #include "polygonal.h"
+#include "arithmetiques.h"
 
 BOOST_AUTO_TEST_SUITE(test_polygonal)
     BOOST_AUTO_TEST_CASE(carre)
     {
-        BOOST_CHECK_EQUAL(racine_carre(15241383936ULL), 123456ULL);
+        BOOST_CHECK_EQUAL(arithmetiques::racine_carre(15241383936ULL), 123456ULL);
         BOOST_CHECK_EQUAL(polygonal::est_carre(15241383936ULL), true);
         BOOST_CHECK_EQUAL(polygonal::est_carre(15241383935ULL), false);
     }
     
     BOOST_AUTO_TEST_CASE(cubique)
     {
-        BOOST_CHECK_EQUAL(racine_cubique(1881365963625ULL), 12345ULL);
+        BOOST_CHECK_EQUAL(arithmetiques::racine_cubique(1881365963625ULL), 12345ULL);
         BOOST_CHECK_EQUAL(polygonal::est_cubique(1881365963625ULL), true);
         BOOST_CHECK_EQUAL(polygonal::est_cubique(1881365963624ULL), false);
     }

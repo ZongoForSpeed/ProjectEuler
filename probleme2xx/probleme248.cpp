@@ -54,7 +54,7 @@ ENREGISTRER_PROBLEME(248, "Numbers for which Euler’s totient function equals 1
     const nombre phi = combinatoire::factorielle(13ULL);
 
     std::set<nombre> premiers;
-    premiers::crible235<nombre>(racine_carre(phi), std::inserter(premiers, premiers.begin()));
+    premiers::crible235<nombre>(arithmetiques::racine_carre(phi), std::inserter(premiers, premiers.begin()));
 
     vecteur facteurs;
     auto diviseurs = arithmetiques::diviseurs(phi, premiers);

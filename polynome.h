@@ -83,7 +83,7 @@ public:
 
     void reduire() {
         size_t taille = _polynome.size();
-        while (taille > 0 && egal<Nombre>(_polynome[taille - 1], 0))
+        while (taille > 0 && utilitaires::egal<Nombre>(_polynome[taille - 1], 0))
             --taille;
 
         if (taille < _polynome.size())
@@ -95,13 +95,13 @@ public:
         bool first = true;
         for (const Nombre &c: boost::adaptors::reverse(_polynome)) {
             --degre;
-            if (!egal<Nombre>(c, 0)) {
+            if (!utilitaires::egal<Nombre>(c, 0)) {
                 bool signe = (c > 0);
                 if (!first)
                     os << (signe ? " + " : " - ");
                 else if (!signe)
                     os << "-";
-                if ((!egal<Nombre>(c, 1) && !egal<Nombre>(c, -1)) || degre == 0)
+                if ((!utilitaires::egal<Nombre>(c, 1) && !utilitaires::egal<Nombre>(c, -1)) || degre == 0)
                     os << (signe ? c : -c);
                 switch (degre) {
                     case 0:
