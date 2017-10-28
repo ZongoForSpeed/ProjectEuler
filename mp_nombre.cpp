@@ -462,36 +462,29 @@ mp_nombre &mp_nombre::premier_suivant() {
     return *this;
 }
 
-namespace std
-{
-    mp_nombre abs(const mp_nombre & op)
-    {
+namespace std {
+    mp_nombre abs(const mp_nombre &op) {
         return mp_nombre::abs(op);
     }
 
-    void swap(mp_nombre & op1, mp_nombre & op2)
-    {
+    void swap(mp_nombre &op1, mp_nombre &op2) {
         op1.swap(op2);
     }
 
-    mp_nombre sqrt(const mp_nombre & op)
-    {
+    mp_nombre sqrt(const mp_nombre &op) {
         return mp_nombre::racine_carre(op);
     }
 
-    mp_nombre cbrt(const mp_nombre & op)
-    {
+    mp_nombre cbrt(const mp_nombre &op) {
         return mp_nombre::racine(op, 3);
     }
 
-    std::ostream& operator<<(std::ostream& os, const mp_nombre & op)
-    {
+    std::ostream &operator<<(std::ostream &os, const mp_nombre &op) {
         os << op.to_string();
         return os;
     }
 
-    std::istream& operator>>(std::istream& is, mp_nombre & op)
-    {
+    std::istream &operator>>(std::istream &is, mp_nombre &op) {
         std::string str;
         is >> str;
         op.set(str);

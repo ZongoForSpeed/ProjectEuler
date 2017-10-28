@@ -1,9 +1,9 @@
-#include <boost/test/unit_test.hpp>
+#include <gtest/gtest.h>
 
 #include "multidimension.h"
+#include "test.h"
 
-BOOST_AUTO_TEST_SUITE(test_multidimension)
-    BOOST_AUTO_TEST_CASE(multidimension_2)
+    TEST(test_multidimension, multidimension_2)
     {
         multidimension<short, 2> matrice {
             {  7,  53, 183, 439, 863, 497, 383, 563,  79, 973, 287,  63, 343, 169, 583},
@@ -26,17 +26,17 @@ BOOST_AUTO_TEST_SUITE(test_multidimension)
         std::vector<short> ligne1 {  7,  53, 183, 439, 863, 497, 383, 563,  79, 973, 287,  63, 343, 169, 583};
         std::vector<short> ligne7 {973, 965, 905, 919, 133, 673, 665, 235, 509, 613, 673, 815, 165, 992, 326};
         
-        BOOST_CHECK_EQUAL_COLLECTIONS(matrice.front().begin(), matrice.front().end(), 
+        EXPECT_EQ_COLLECTIONS(matrice.front().begin(), matrice.front().end(), 
                                       ligne1.begin(), ligne1.end());
                                       
-        BOOST_CHECK_EQUAL_COLLECTIONS(matrice[6].begin(), matrice[6].end(), 
+        EXPECT_EQ_COLLECTIONS(matrice[6].begin(), matrice[6].end(), 
                                       ligne7.begin(), ligne7.end());
 
-        BOOST_CHECK_EQUAL(matrice.back().back(), 805);
-        BOOST_CHECK_EQUAL(matrice[4][10], 250);
+        EXPECT_EQ(matrice.back().back(), 805);
+        EXPECT_EQ(matrice[4][10], 250);
     }
     
-    BOOST_AUTO_TEST_CASE(multidimension_3)
+    TEST(test_multidimension, multidimension_3)
     {
         multidimension<short, 3> matrice
         {
@@ -44,8 +44,7 @@ BOOST_AUTO_TEST_SUITE(test_multidimension)
             { { 9,10,11 }, {12,13,14 }, {15,16,17 } },
             { {18,19,20 }, {21,22,23 }, {24,25,25 } }
         };
-        
-        BOOST_CHECK_EQUAL(matrice.back().back().back(), 25);
-        BOOST_CHECK_EQUAL(matrice[1][1][1], 13);
+
+        EXPECT_EQ(matrice.back().back().back(), 25);
+        EXPECT_EQ(matrice[1][1][1], 13);
     }
-BOOST_AUTO_TEST_SUITE_END()

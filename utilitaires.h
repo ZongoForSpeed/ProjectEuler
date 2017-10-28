@@ -196,17 +196,18 @@ namespace utilitaires {
         oss << t1 << t2 << t3 << t4;
         return oss.str();
     }
-    
+
     template<typename Nombre>
-    constexpr typename std::enable_if<std::is_integral<Nombre>::value, bool>::type egal(const Nombre &a, const Nombre &b) {
+    constexpr typename std::enable_if<std::is_integral<Nombre>::value, bool>::type
+    egal(const Nombre &a, const Nombre &b) {
         return a == b;
     }
-    
+
     template<typename Nombre>
     constexpr typename std::enable_if<std::is_class<Nombre>::value, bool>::type egal(const Nombre &a, const Nombre &b) {
         return a == b;
     }
-    
+
     template<typename Nombre>
     constexpr typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::type
     egal(const Nombre &a, const Nombre &b) {

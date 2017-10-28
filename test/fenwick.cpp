@@ -1,10 +1,9 @@
-#include <boost/test/unit_test.hpp>
+#include <gtest/gtest.h>
 
 #include "fenwick.h"
 #include "utilitaires.h"
 
-BOOST_AUTO_TEST_SUITE(test_fenwick)
-    // BOOST_AUTO_TEST_CASE(random_fenwick) {
+    // TEST(test_fenwick, random_fenwick) {
     //     // Number of elements in the array
     //     const unsigned long N = 4 * 1024 * 1024;            // Elements in the array
     //     const unsigned long COUNTS = 1'024;                 // Size of values stored
@@ -94,7 +93,7 @@ BOOST_AUTO_TEST_SUITE(test_fenwick)
     //                                   resultat.begin(), resultat.end());
     // }
 
-    BOOST_AUTO_TEST_CASE(modulo_fenwick) {
+    TEST(test_fenwick, modulo_fenwick) {
         size_t taille = 100 + 1;
         std::vector<bool> crible(taille, true);
         std::vector<size_t> phi(taille, 0);
@@ -119,7 +118,5 @@ BOOST_AUTO_TEST_SUITE(test_fenwick)
             fenwick.add(k, f[n]);
         }
         
-        BOOST_CHECK_EQUAL(482073668, f[6]);
+        EXPECT_EQ(482073668, f[6]);
     }
-
-BOOST_AUTO_TEST_SUITE_END()

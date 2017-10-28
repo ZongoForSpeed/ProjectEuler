@@ -1,4 +1,4 @@
-#include <boost/test/unit_test.hpp>
+#include <gtest/gtest.h>
 #define NDEBUG
 #define BOOST_UBLAS_NDEBUG
 #define BOOST_UBLAS_TYPE_CHECK 0
@@ -7,10 +7,9 @@
 #include <boost/rational.hpp>
 
 #include "matrice.h"
+#include "test.h"
 
-BOOST_AUTO_TEST_SUITE(test_matrice)
-
-    BOOST_AUTO_TEST_CASE(puissance)
+    TEST(test_matrice, puissance)
     {
         matrice::matrice<long long> A(2, 2);
         A <<= 1, 1,
@@ -21,18 +20,18 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
         const std::vector<long long> resultat { 165580141, 102334155, 
                                                 102334155, 63245986 };
         
-        BOOST_CHECK_EQUAL(F.size1(), 2);
-        BOOST_CHECK_EQUAL(F.size2(), 2);
-        BOOST_CHECK_EQUAL(F(0, 0), 165580141);
-        BOOST_CHECK_EQUAL(F(1, 0), 102334155);
-        BOOST_CHECK_EQUAL(F(0, 1), 102334155);
-        BOOST_CHECK_EQUAL(F(1, 1), 63245986);
+        EXPECT_EQ(F.size1(), 2);
+        EXPECT_EQ(F.size2(), 2);
+        EXPECT_EQ(F(0, 0), 165580141);
+        EXPECT_EQ(F(1, 0), 102334155);
+        EXPECT_EQ(F(0, 1), 102334155);
+        EXPECT_EQ(F(1, 1), 63245986);
         
-        BOOST_CHECK_EQUAL_COLLECTIONS(resultat.begin(), resultat.end(), 
+        EXPECT_EQ_COLLECTIONS(resultat.begin(), resultat.end(), 
                                       F.data().begin(), F.data().end());
     }
     
-    BOOST_AUTO_TEST_CASE(puissance_modulaire)
+    TEST(test_matrice, puissance_modulaire)
     {
         matrice::matrice<long long> A(2, 2);
         A <<= 1, 1,
@@ -43,18 +42,18 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
         const std::vector<long long> resultat { 817084101, 261915075, 
                                                 261915075, 555169026 };
         
-        BOOST_CHECK_EQUAL(F.size1(), 2);
-        BOOST_CHECK_EQUAL(F.size2(), 2);
-        BOOST_CHECK_EQUAL(F(0, 0), 817084101);
-        BOOST_CHECK_EQUAL(F(1, 0), 261915075);
-        BOOST_CHECK_EQUAL(F(0, 1), 261915075);
-        BOOST_CHECK_EQUAL(F(1, 1), 555169026);
+        EXPECT_EQ(F.size1(), 2);
+        EXPECT_EQ(F.size2(), 2);
+        EXPECT_EQ(F(0, 0), 817084101);
+        EXPECT_EQ(F(1, 0), 261915075);
+        EXPECT_EQ(F(0, 1), 261915075);
+        EXPECT_EQ(F(1, 1), 555169026);
         
-        BOOST_CHECK_EQUAL_COLLECTIONS(resultat.begin(), resultat.end(), 
+        EXPECT_EQ_COLLECTIONS(resultat.begin(), resultat.end(), 
                                       F.data().begin(), F.data().end());
     }
     
-    BOOST_AUTO_TEST_CASE(inversion1)
+    TEST(test_matrice, inversion1)
     {
         typedef boost::rational<long long> fraction;
         
@@ -73,8 +72,8 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
         
         bool inversible = matrice::inversionLU(A, inverse);
         
-        BOOST_CHECK_EQUAL(inversible, true);
-        BOOST_CHECK_EQUAL_COLLECTIONS(resultat.data().begin(), resultat.data().end(), 
+        EXPECT_EQ(inversible, true);
+        EXPECT_EQ_COLLECTIONS(resultat.data().begin(), resultat.data().end(), 
                                       inverse.data().begin(), inverse.data().end());
         
         matrice::matrice<fraction> identite(3, 3);
@@ -84,11 +83,11 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
         
         matrice::matrice<fraction> produit = boost::numeric::ublas::prod(A, inverse);        
 
-        BOOST_CHECK_EQUAL_COLLECTIONS(produit.data().begin(), produit.data().end(), 
+        EXPECT_EQ_COLLECTIONS(produit.data().begin(), produit.data().end(), 
                                       identite.data().begin(), identite.data().end());
     }
     
-    BOOST_AUTO_TEST_CASE(inversion2)
+    TEST(test_matrice, inversion2)
     {
         typedef boost::rational<long long> fraction;
         
@@ -109,8 +108,8 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
         
         bool inversible = matrice::inversionLU(A, inverse);
         
-        BOOST_CHECK_EQUAL(inversible, true);
-        BOOST_CHECK_EQUAL_COLLECTIONS(resultat.data().begin(), resultat.data().end(), 
+        EXPECT_EQ(inversible, true);
+        EXPECT_EQ_COLLECTIONS(resultat.data().begin(), resultat.data().end(), 
                                       inverse.data().begin(), inverse.data().end());
         
         matrice::matrice<fraction> identite(4, 4);
@@ -121,11 +120,11 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
         
         matrice::matrice<fraction> produit = boost::numeric::ublas::prod(A, inverse);        
 
-        BOOST_CHECK_EQUAL_COLLECTIONS(produit.data().begin(), produit.data().end(), 
+        EXPECT_EQ_COLLECTIONS(produit.data().begin(), produit.data().end(), 
                                       identite.data().begin(), identite.data().end());
     }
     
-    BOOST_AUTO_TEST_CASE(resolution_vecteur)
+    TEST(test_matrice, resolution_vecteur)
     {
         typedef boost::rational<long long> fraction;
         
@@ -143,17 +142,17 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
         matrice::vecteur<fraction> x(3);
         bool solution = matrice::resolutionLU(A, b, x);
         
-        BOOST_CHECK_EQUAL(solution, true);
-        BOOST_CHECK_EQUAL_COLLECTIONS(x.data().begin(), x.data().end(), 
+        EXPECT_EQ(solution, true);
+        EXPECT_EQ_COLLECTIONS(x.data().begin(), x.data().end(), 
                                       resultat.data().begin(), resultat.data().end());
                                       
         matrice::vecteur<fraction> produit = boost::numeric::ublas::prod(A, x);        
 
-        BOOST_CHECK_EQUAL_COLLECTIONS(produit.data().begin(), produit.data().end(), 
+        EXPECT_EQ_COLLECTIONS(produit.data().begin(), produit.data().end(), 
                                       b.data().begin(), b.data().end());
     }
     
-    BOOST_AUTO_TEST_CASE(resolution_matrice)
+    TEST(test_matrice, resolution_matrice)
     {
         typedef boost::rational<long long> fraction;
         
@@ -176,13 +175,12 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
         matrice::matrice<fraction> X(3, 3);
         bool solution = matrice::resolutionLU(A, B, X);
         
-        BOOST_CHECK_EQUAL(solution, true);
-        BOOST_CHECK_EQUAL_COLLECTIONS(X.data().begin(), X.data().end(), 
+        EXPECT_EQ(solution, true);
+        EXPECT_EQ_COLLECTIONS(X.data().begin(), X.data().end(), 
                                       resultat.data().begin(), resultat.data().end());
                                       
         matrice::matrice<fraction> produit = boost::numeric::ublas::prod(A, X);        
 
-        BOOST_CHECK_EQUAL_COLLECTIONS(produit.data().begin(), produit.data().end(), 
+        EXPECT_EQ_COLLECTIONS(produit.data().begin(), produit.data().end(), 
                                       B.data().begin(), B.data().end());
     }
-BOOST_AUTO_TEST_SUITE_END()

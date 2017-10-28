@@ -13,45 +13,71 @@ class mp_nombre {
 public:
     // region Constructors
     mp_nombre();
+
     virtual ~mp_nombre();
 
     mp_nombre(const mpz_t &op);
+
     mp_nombre(const mp_nombre &op);
+
     mp_nombre(unsigned int op);
+
     mp_nombre(signed int op);
+
     mp_nombre(unsigned long op);
+
     mp_nombre(signed long op);
+
     mp_nombre(double op);
+
     mp_nombre(const std::string &op, int base = 10);
+
     mp_nombre(unsigned long long op);
+
     mp_nombre(signed long long op);
     // endregion Constructors
 
     // region Setters
     void set(const mpz_t &op);
+
     void set(const mp_nombre &op);
+
     void set(unsigned long int op);
+
     void set(signed long int op);
+
     void set(double op);
+
     void set(const std::string &op, int base = 10);
 
-    template<typename T> void set(T x);
+    template<typename T>
+    void set(T x) {
+        static_assert(std::is_integral<T>::value, "Integer required.");
+        set(x, std::is_signed<T>());
+    }
     // endregion Setters
 
     // region Getters
     unsigned long get_unsigned_long() const;
+
     signed long get_signed_long() const;
+
     double get_double() const;
+
     unsigned long long get_unsigned_long_long() const;
 
     template<typename T>
-    T get() const;
-    
-    mpz_t & get_data() {
+    T get() const {
+        static_assert(std::is_integral<T>::value, "Integer required.");
+        return get(T(0), std::is_signed<T>());
+    }
+
+
+    mpz_t &get_data() {
         return _data;
     }
-    
-    const mpz_t & get_data() const {
+
+    const mpz_t &get_data() const {
         return _data;
     }
     // endregion Getters
@@ -63,10 +89,15 @@ public:
     mp_nombre &negation();
 
     mp_nombre operator-() const;
+
     mp_nombre operator~() const;
+
     mp_nombre &operator++();
+
     mp_nombre &operator--();
+
     mp_nombre operator++(int);
+
     mp_nombre operator--(int);
 
     signed short signe() const;
@@ -74,16 +105,25 @@ public:
     mp_nombre &operator=(const mp_nombre &op);
 
     template<typename T>
-    mp_nombre &operator=(const T &op);
+    mp_nombre &operator=(const T &op) {
+        set(op);
+        return *this;
+    }
 
     // region Comparaison
     int compare(const mp_nombre &op) const;
+
     int compare(double op) const;
+
     int compare(signed long int op) const;
+
     int compare(unsigned long int op) const;
 
     template<typename T>
-    int compare(const T &op) const;
+    int compare(const T &op) const {
+        mp_nombre n(op);
+        return compare(n);
+    }
 
     template<typename T>
     bool operator==(const T &b) const { return compare(b) == 0; }
@@ -111,7 +151,7 @@ public:
     static bool carre_parfait(const mp_nombre &op);
 
     static mp_nombre racine(const mp_nombre &op, unsigned long int n);
-    
+
     static bool racine_parfaite(const mp_nombre &op, unsigned long int n);
 
     // region Puissance
@@ -122,33 +162,50 @@ public:
     static mp_nombre puissance_modulaire(const mp_nombre &base, unsigned long exposant, const mp_nombre &modulo);
 
     template<typename T>
-    static mp_nombre puissance_modulaire(const mp_nombre &base, unsigned long exposant, const T &modulo);
+    static mp_nombre puissance_modulaire(const mp_nombre &base, unsigned long exposant, const T &modulo) {
+        mp_nombre tmp_modulo(modulo);
+        return puissance_modulaire(base, exposant, tmp_modulo);
+    }
     // endregion Puissance
 
     // region Arithmetiques
     bool premier(int probabilite = 25) const;
+
     static bool premier(const mp_nombre &op, int probabilite = 25);
 
     static mp_nombre premier_suivant(const mp_nombre &op);
-    mp_nombre& premier_suivant();
+
+    mp_nombre &premier_suivant();
 
     static mp_nombre PGCD(const mp_nombre &op1, const mp_nombre &op2);
+
     static mp_nombre PGCD(const mp_nombre &op1, unsigned long int op2);
 
     template<typename T>
-    static mp_nombre PGCD(const mp_nombre &op1, const T &op2);
+    mp_nombre PGCD(const mp_nombre &op1, const T &op2) {
+        mp_nombre n2(op2);
+        return PGCD(op1, n2);
+    }
 
     template<typename T>
-    static mp_nombre PGCD(const T &op1, const mp_nombre &op2);
+    mp_nombre PGCD(const T &op1, const mp_nombre &op2) {
+        return PGCD(op2, op1);
+    }
 
     static mp_nombre PPCM(const mp_nombre &op1, const mp_nombre &op2);
+
     static mp_nombre PPCM(const mp_nombre &op1, unsigned long int op2);
 
     template<typename T>
-    static mp_nombre PPCM(const mp_nombre &op1, const T &op2);
+    mp_nombre PPCM(const mp_nombre &op1, const T &op2) {
+        mp_nombre n2(op2);
+        return PPCM(op1, n2);
+    }
 
     template<typename T>
-    static mp_nombre PPCM(const T &op1, const mp_nombre &op2);
+    mp_nombre PPCM(const T &op1, const mp_nombre &op2) {
+        return PPCM(op2, op1);
+    }
 
     static boost::optional<mp_nombre> inverse_modulaire(const mp_nombre &op, const mp_nombre &modulo);
 
@@ -163,72 +220,122 @@ public:
 
     // region Addition
     mp_nombre &operator+=(const mp_nombre &op);
+
     mp_nombre &operator+=(unsigned long int op);
+
     mp_nombre operator+(const mp_nombre &op) const;
+
     mp_nombre operator+(unsigned long int op) const;
 
     template<typename T>
-    mp_nombre &operator+=(const T &op);
+    mp_nombre &operator+=(const T &op) {
+        mp_nombre n(op);
+        return this->operator+=(n);
+    }
 
     template<typename T>
-    mp_nombre operator+(const T &op) const;
+    mp_nombre operator+(const T &op) const {
+        mp_nombre resultat;
+        mp_nombre n(op);
+        mpz_add(resultat._data, _data, n._data);
+        return resultat;
+    }
     // endregion Addition
 
     // region Soustraction
     mp_nombre &operator-=(const mp_nombre &op);
+
     mp_nombre &operator-=(unsigned long int op);
+
     mp_nombre operator-(const mp_nombre &op) const;
+
     mp_nombre operator-(unsigned long int op) const;
 
     template<typename T>
-    mp_nombre &operator-=(const T &op);
+    mp_nombre &operator-=(const T &op) {
+        mp_nombre n(op);
+        return this->operator-=(n);
+    }
 
     template<typename T>
-    mp_nombre operator-(const T &op) const;
+    mp_nombre operator-(const T &op) const {
+        mp_nombre n(op);
+        return this->operator-(n);
+    }
     // endregion Soustraction
 
     // region Multiplication
     mp_nombre &operator*=(const mp_nombre &op);
+
     mp_nombre &operator*=(long int op);
+
     mp_nombre &operator*=(unsigned long int op);
+
     mp_nombre operator*(const mp_nombre &op) const;
+
     mp_nombre operator*(long int op) const;
+
     mp_nombre operator*(unsigned long int op) const;
 
     template<typename T>
-    mp_nombre &operator*=(const T &op);
+    mp_nombre &operator*=(const T &op) {
+        mp_nombre n(op);
+        return this->operator*=(n);
+    }
 
     template<typename T>
-    mp_nombre operator*(const T &op) const;
+    mp_nombre operator*(const T &op) const {
+        mp_nombre n(op);
+        return this->operator*(n);
+    }
     // endregion Multiplication
 
     // region Division
     mp_nombre &operator/=(const mp_nombre &op);
+
     mp_nombre &operator/=(unsigned long int op);
+
     mp_nombre operator/(const mp_nombre &op) const;
+
     mp_nombre operator/(unsigned long int op) const;
 
     template<typename T>
-    mp_nombre &operator/=(const T &op);
+    mp_nombre &operator/=(const T &op) {
+        mp_nombre n(op);
+        return this->operator/=(n);
+    }
 
     template<typename T>
-    mp_nombre operator/(const T &op) const;
+    mp_nombre operator/(const T &op) const {
+        mp_nombre n(op);
+        return this->operator/(n);
+    }
 
-    static bool divisible(const mp_nombre & op1, const mp_nombre & op2);
-    static bool divisible(const mp_nombre & op1, unsigned long int op2);
+    static bool divisible(const mp_nombre &op1, const mp_nombre &op2);
+
+    static bool divisible(const mp_nombre &op1, unsigned long int op2);
     // endregion Division
 
     // region Modulo
     mp_nombre &operator%=(const mp_nombre &op);
+
     mp_nombre &operator%=(unsigned long int op);
+
     mp_nombre operator%(const mp_nombre &op) const;
+
     unsigned long int operator%(unsigned long int op) const;
 
     template<typename T>
-    mp_nombre &operator%=(const T &op);
+    mp_nombre &operator%=(const T &op) {
+        mp_nombre n(op);
+        return this->operator%=(n);
+    }
 
     template<typename T>
-    mp_nombre operator%(const T &op) const;
+    mp_nombre operator%(const T &op) const {
+        mp_nombre n(op);
+        return this->operator%(n);
+    }
     // endregion Modulo
 
     // region AND
@@ -237,10 +344,16 @@ public:
     mp_nombre operator&(const mp_nombre &op) const;
 
     template<typename T>
-    mp_nombre &operator&=(const T &op);
+    mp_nombre &operator&=(const T &op) {
+        mp_nombre n(op);
+        return this->operator&=(n);
+    }
 
     template<typename T>
-    mp_nombre operator&(const T &op) const;
+    mp_nombre operator&(const T &op) const {
+        mp_nombre n(op);
+        return this->operator&(n);
+    }
     // endregion AND
 
     // region OR
@@ -249,10 +362,16 @@ public:
     mp_nombre operator|(const mp_nombre &op) const;
 
     template<typename T>
-    mp_nombre &operator|=(const T &op);
+    mp_nombre &operator|=(const T &op) {
+        mp_nombre n(op);
+        return this->operator|=(n);
+    }
 
     template<typename T>
-    mp_nombre operator|(const T &op) const;
+    mp_nombre operator|(const T &op) const {
+        mp_nombre n(op);
+        return this->operator|(n);
+    }
     // endregion OR
 
     // region XOR
@@ -261,10 +380,16 @@ public:
     mp_nombre operator^(const mp_nombre &op) const;
 
     template<typename T>
-    mp_nombre &operator^=(const T &op);
+    mp_nombre &operator^=(const T &op) {
+        mp_nombre n(op);
+        return this->operator^=(n);
+    }
 
     template<typename T>
-    mp_nombre operator^(const T &op) const;
+    mp_nombre operator^(const T &op) const {
+        mp_nombre n(op);
+        return this->operator^(n);
+    }
     // endregion XOR
 
     mp_nombre operator<<(const unsigned long &b) const;
@@ -415,8 +540,6 @@ inline bool operator>=(const T &a, const mp_nombre &b) {
     return b.compare(a) < 1;
 }
 
-#include "mp_nombre.inl"
-
 namespace std {
     mp_nombre abs(const mp_nombre &op);
 
@@ -448,8 +571,8 @@ namespace std {
             return min();
         }
     };
-    
-    inline string to_string(const mp_nombre & op) {
+
+    inline string to_string(const mp_nombre &op) {
         return op.to_string();
     }
 }

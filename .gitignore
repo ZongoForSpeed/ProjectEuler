@@ -1,4 +1,3 @@
-*.o
 Euler.log
 ProjectEuler
 ProjectEulerTest
@@ -14,4 +13,3 @@ cmake_install.cmake
 Makefile
 cmake-build-debug/
 cmake-build-release/
-.idea/*.xml

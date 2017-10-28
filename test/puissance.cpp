@@ -1,15 +1,10 @@
-#include <boost/test/unit_test.hpp>
-
+#include <gtest/gtest.h>
 #include "puissance.h"
 
-BOOST_AUTO_TEST_SUITE(test_puissance)
-    BOOST_AUTO_TEST_CASE(test_puissance_modulaire)
-    {
-        BOOST_CHECK_EQUAL(puissance::puissance_modulaire(2u, 10u, 100u), 24u);
-    }
+TEST(test_puissance, test_puissance_modulaire) {
+    EXPECT_EQ(puissance::puissance_modulaire(2u, 10u, 100u), 24u);
+}
 
-    BOOST_AUTO_TEST_CASE(test_puissance)
-    {
-        BOOST_CHECK_EQUAL(puissance::puissance(2u, 10u), 1024u);
-    }
-BOOST_AUTO_TEST_SUITE_END()
+TEST(test_puissance, test_puissance) {
+    EXPECT_EQ(puissance::puissance(2u, 10u), 1024u);
+}

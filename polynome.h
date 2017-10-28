@@ -81,6 +81,10 @@ public:
         return true;
     }
 
+    bool operator!=(const Polynome &p) const {
+        return !this->operator==(p);
+    }
+
     void reduire() {
         size_t taille = _polynome.size();
         while (taille > 0 && utilitaires::egal<Nombre>(_polynome[taille - 1], 0))

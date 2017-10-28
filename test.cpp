@@ -1,4 +1,6 @@
-#define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE Project Euler
+#include "gtest/gtest.h"
 
-#include <boost/test/included/unit_test.hpp>
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
