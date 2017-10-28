@@ -26,7 +26,7 @@ namespace {
             p = q * (probabilite(d, i - 1, s1) + probabilite(d, i + 1, s1)) / 2;
         }
 
-        d[std::make_pair(i, s)] = p;
+        d.emplace(std::make_pair(i, s), p);
         return p;
     }
 }
@@ -54,11 +54,11 @@ ENREGISTRER_PROBLEME(329, "Prime Frog") {
     std::map<std::pair<nombre, std::string>, fraction> d;
     for (nombre i = 1; i < 501; ++i) {
         if (premiers.find(i) != premiers.end()) {
-            d[std::make_pair(i, "P")] = fraction(2, 3);
-            d[std::make_pair(i, "N")] = fraction(1, 3);
+            d.emplace(std::make_pair(i, "P"), fraction(2, 3));
+            d.emplace(std::make_pair(i, "N"), fraction(1, 3));
         } else {
-            d[std::make_pair(i, "N")] = fraction(2, 3);
-            d[std::make_pair(i, "P")] = fraction(1, 3);
+            d.emplace(std::make_pair(i, "N"), fraction(2, 3));
+            d.emplace(std::make_pair(i, "P"), fraction(1, 3));
         }
     }
     // std::cout << d << std::endl;

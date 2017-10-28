@@ -104,7 +104,7 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
 
             for (auto u: intersection)
                 for (auto v: difference)
-                    rem.insert(std::make_pair(u, v));
+                    rem.emplace(u, v);
 
             for (auto n: Ri)
                 Rj.erase(n);

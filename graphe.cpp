@@ -3,7 +3,7 @@
 namespace graphe {
     Tarjan::Tarjan(const std::map<nombre, vecteur> &g) : index(0), graphe(g) {
         for (auto &p: g) {
-            sommets.insert(std::make_pair(p.first, Sommet(p.first)));
+            sommets.emplace(p.first, p.first);
         }
     }
 

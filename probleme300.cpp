@@ -13,7 +13,7 @@ namespace {
         if (cache.find(std::make_pair(p, chemin)) != cache.end())
             return;
 
-        cache.insert(std::make_pair(p, chemin));
+        cache.emplace(p, chemin);
 
         if (profondeur == chemin.size()) {
             resultat.insert(chemin);

@@ -44,7 +44,7 @@ public:
         Facteurs facteurs;
         vecteur resultat;
         for (size_t i = 0; i < premiers.size(); ++i) {
-            facteurs.insert(Facteur(premiers[i], i, 1));
+            facteurs.emplace(premiers[i], i, 1);
         }
         for (nombre i = 0; i < limite; ++i) {
             Facteur facteur = *(facteurs.begin());

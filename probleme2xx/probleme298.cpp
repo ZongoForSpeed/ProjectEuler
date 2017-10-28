@@ -150,12 +150,12 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
             }
         }
 
-        graphe.insert(std::make_pair(origine, suivants));
+        graphe.emplace(origine, suivants);
         a_voir.erase(it);
     }
 
     std::deque<std::map<short/*score*/, long double/*probabilite*/>> dp(compteur);
-    dp.front().insert(std::make_pair(0, 1.0));
+    dp.front().emplace(0, 1.0);
 
     for (unsigned short tour = 0; tour < 50; ++tour) {
         std::deque<std::map<short/*score*/, long double/*probabilite*/>> suivant(compteur);

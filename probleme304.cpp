@@ -28,7 +28,7 @@ namespace {
         resultat.first %= modulo;
         resultat.second %= modulo;
 
-        cache[n] = resultat;
+        cache.emplace(n, resultat);
         return resultat;
     }
 

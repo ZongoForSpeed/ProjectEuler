@@ -21,7 +21,7 @@ namespace {
         nombre resultat = 0;
         nombre p = (x - 2) / (c - 2);
         resultat += p * c + x - p * (c - 2) + 1;
-        cache[clef] = resultat;
+        cache.emplace(clef, resultat);
         return resultat;
     }
 }

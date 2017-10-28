@@ -31,7 +31,7 @@ namespace {
                 }
         }
 
-        cache.insert(std::make_pair(e, resultat));
+        cache.emplace(e, resultat);
         return resultat;
     }
 }

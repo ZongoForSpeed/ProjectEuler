@@ -16,7 +16,7 @@ namespace {
         {
             auto p = chiffres::conversion_nombre<nombre>(debut, fin);
             if (premiers.find(p) != premiers.end())
-                resultat.insert(vecteur(1, p));
+                resultat.emplace(1, p);
         }
         for (auto it = std::next(debut); it != fin; ++it) {
             auto p = chiffres::conversion_nombre<nombre>(debut, it);

@@ -18,7 +18,7 @@ RegistreProbleme & RegistreProbleme::instance()
 
 void RegistreProbleme::ajout(const size_t numero, const std::string & nom, const std::function<std::string()> & fonction)
 {
-    _registre.insert(std::make_pair(numero, std::make_pair(nom, fonction)));
+    _registre.emplace(numero, std::make_pair(nom, fonction));
 }
 
 int RegistreProbleme::execute(int argc, char** argv)

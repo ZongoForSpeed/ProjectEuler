@@ -79,7 +79,7 @@ set(SOURCE_FILES
         ${PROBLEMES_FILES})
 
 add_executable(ProjectEuler ${SOURCE_FILES})
-target_link_libraries(ProjectEuler ${GMP_LIBRARIES} )
+target_link_libraries(ProjectEuler ${GMP_LIBRARIES})
 target_link_libraries(ProjectEuler ${Boost_LIBRARIES})
 target_link_libraries(ProjectEuler ${MPFR_LIBRARIES})
 
@@ -88,4 +88,4 @@ add_dependencies(ProjectEulerTest googletest)
 target_link_libraries(ProjectEulerTest ${GTEST_LIBS_DIR}/libgtest.a ${GTEST_LIBS_DIR}/libgtest_main.a)
 target_link_libraries(ProjectEulerTest -lpthread -lm)
 target_link_libraries(ProjectEulerTest ${GMP_LIBRARIES})
-target_link_libraries(ProjectEulerTest  ${Boost_LIBRARIES})
+target_link_libraries(ProjectEulerTest ${Boost_LIBRARIES})

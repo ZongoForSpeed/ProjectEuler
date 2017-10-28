@@ -50,7 +50,7 @@ namespace {
             for (auto d: directions(s.position_vide)) {
                 Sliders n = s;
                 n.deplace(d);
-                resultat.insert(std::make_pair(d, n));
+                resultat.emplace(d, n);
             }
 
             return resultat;

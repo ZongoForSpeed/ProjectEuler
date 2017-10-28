@@ -46,7 +46,7 @@ namespace {
         }
 
         auto resultat = std::make_pair(min_compteur, min_cost);
-        cache[n] = resultat;
+        cache.emplace(n, resultat);
         return resultat;
     }
 

@@ -9,7 +9,7 @@ typedef std::vector<std::set<nombre>> ensemble;
 namespace {
     const ensemble &min_puissance(std::map<nombre, ensemble> &cache, nombre n) {
         if (cache.empty())
-            cache[1].push_back(std::set<nombre>());
+            cache[1].emplace_back();
 
         auto it = cache.find(n);
         if (it != cache.end())
@@ -39,7 +39,7 @@ namespace {
         std::sort(e_min.begin(), e_min.end());
         e_min.erase(std::unique(e_min.begin(), e_min.end()), e_min.end());
 
-        it = cache.insert(it, std::make_pair(n, e_min));
+        it = cache.emplace_hint(it, n, e_min);
         return it->second;
     }
 }

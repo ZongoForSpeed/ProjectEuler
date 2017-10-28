@@ -30,7 +30,7 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables") {
     std::set<fraction> fractions;
     for (size_t b = 2; b < limite + 1; ++b)
         for (size_t a = 1; a < b; ++a)
-            fractions.insert(fraction(a, b));
+            fractions.emplace(a, b);
 
     std::set<fraction> solutions;
     for (auto it1 = fractions.begin(), en = fractions.end(); it1 != en; ++it1)
