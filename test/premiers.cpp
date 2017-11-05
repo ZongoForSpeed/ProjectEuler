@@ -36,3 +36,20 @@ TEST(test_premiers, crible235) {
     EXPECT_EQ(resultat.at(50000), 611957);
     EXPECT_EQ(resultat.at(100000), 1299721);
 }
+
+TEST(test_premiers, crible_simple) {
+    const std::vector<size_t> premiers100{2, 3, 5, 7, 11, 13, 17, 19, 23,
+                                          29, 31, 37, 41, 43, 47, 53, 59,
+                                          61, 67, 71, 73, 79, 83, 89, 97};
+    std::vector<bool> crible;
+    premiers::crible_simple(100, crible);
+
+    EXPECT_EQ(100, crible.size());
+
+    for (auto p: premiers100) {
+        EXPECT_TRUE(crible[p]);
+    }
+    
+    size_t compteur = std::accumulate(crible.begin(), crible.end(), 0ul);
+    EXPECT_EQ(25, compteur);
+}

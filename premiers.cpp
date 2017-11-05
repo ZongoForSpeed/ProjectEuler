@@ -3,24 +3,24 @@
 #include "utilitaires.h"
 
 namespace {
-    template<typename Nombre, class OutputIterator>
-    void crible_simple(const std::size_t taille, OutputIterator sortie) {
-        std::vector<bool> test(taille, true);
-        test.at(0) = false;
-        test.at(1) = false;
-        for (std::size_t p = 2; p * p < taille; ++p) {
-            if (test.at(p)) {
-                for (std::size_t k = p * p; k < taille; k += p)
-                    test.at(k) = false;
-            }
-        }
-        for (std::size_t p = 2; p < taille; ++p) {
-            if (test.at(p)) {
-                *sortie = Nombre(p);
-                ++sortie;
-            }
-        }
-    }
+    // template<typename Nombre, class OutputIterator>
+    // void crible_simple(const std::size_t taille, OutputIterator sortie) {
+    //     std::vector<bool> test(taille, true);
+    //     test.at(0) = false;
+    //     test.at(1) = false;
+    //     for (std::size_t p = 2; p * p < taille; ++p) {
+    //         if (test.at(p)) {
+    //             for (std::size_t k = p * p; k < taille; k += p)
+    //                 test.at(k) = false;
+    //         }
+    //     }
+    //     for (std::size_t p = 2; p < taille; ++p) {
+    //         if (test.at(p)) {
+    //             *sortie = Nombre(p);
+    //             ++sortie;
+    //         }
+    //     }
+    // }
 
     template<typename Nombre, class OutputIterator>
     OutputIterator super_crible(const std::size_t taille, const std::vector<std::size_t> &roue, OutputIterator sortie) {
@@ -289,6 +289,18 @@ namespace premiers {
             if (test19.at(p)) { sortie(30 * p + 19); }
             if (test23.at(p)) { sortie(30 * p + 23); }
             if (test29.at(p)) { sortie(30 * p + 29); }
+        }
+    }
+    
+    void crible_simple(size_t taille, std::vector<bool> & test) {
+        test.assign(taille, true);
+        test.at(0) = false;
+        test.at(1) = false;
+        for (std::size_t p = 2; p * p < taille; ++p) {
+            if (test.at(p)) {
+                for (std::size_t k = p * p; k < taille; k += p)
+                    test.at(k) = false;
+            }
         }
     }
 }

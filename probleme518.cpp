@@ -18,10 +18,9 @@ ENREGISTRER_PROBLEME(518, "Prime triples and geometric sequences") {
     //
     // Find S(10**8).
     size_t limite = 100'000'000;
-    
-    std::set<size_t> premiers;
-    premiers::crible235<size_t>(limite, std::inserter(premiers, premiers.end()));
-    
+    std::vector<bool> premier;
+    premiers::crible_simple(limite + 1, premier);
+
     size_t resultat = 0;
     for (size_t x = 1; x < limite / 4 + 1; ++x) {
         for (size_t y = 1;; ++y) {
@@ -29,18 +28,16 @@ ENREGISTRER_PROBLEME(518, "Prime triples and geometric sequences") {
             if (a > limite)
                 break;
                 
-            if (premiers.find(a) == premiers.end())
+            if (!premier[a])
                 continue;
                 
             for (size_t z = y + 1;; ++z) {
                 size_t c = x * z * z - 1;
                 if (c > limite)
                     break;
-                if (arithmetiques::PGCD(y, z) != 1)
-                    continue;
-                    
+                
                 size_t b = x * y * z - 1;
-                if (premiers.find(b) != premiers.end() && premiers.find(c) != premiers.end()) {
+                if (premier[b] && premier[c] && arithmetiques::PGCD(y, z) == 1) {
                     // std::cout << std::make_tuple(a, b, c) << std::endl;
                     resultat += a + b + c;
                 }

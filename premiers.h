@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <vector>
 
 namespace premiers {
     void algorithme_crible2(const std::size_t &taille, std::function<void(const std::size_t &)> sortie);
@@ -29,4 +30,6 @@ namespace premiers {
                              [&sortie](const std::size_t &p) { *sortie++ = Nombre(p); });
         return sortie;
     }
+    
+    void crible_simple(size_t taille, std::vector<bool> & sortie);
 }
