@@ -127,4 +127,15 @@ namespace polygonal {
                 return false;
         }
     }
+    
+    template<typename Nombre>
+    constexpr Nombre somme_carres(Nombre n) {
+        return n * (n + 1) * (2 * n + 1) / 6;
+    }
+
+    template<typename Nombre>
+    constexpr Nombre somme_cubes(Nombre n) {
+        Nombre t = triangulaire(n);
+        return t*t;
+    }
 }

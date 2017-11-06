@@ -3,43 +3,55 @@
 #include "polygonal.h"
 
 TEST(test_polygonal, carre) {
-    EXPECT_EQ(arithmetiques::racine_carre(15241383936ULL), 123456ULL);
-    EXPECT_EQ(polygonal::est_carre(15241383936ULL), true);
-    EXPECT_EQ(polygonal::est_carre(15241383935ULL), false);
+    EXPECT_EQ(123456ULL, arithmetiques::racine_carre(15241383936ULL));
+    EXPECT_TRUE(polygonal::est_carre(15241383936ULL));
+    EXPECT_FALSE(polygonal::est_carre(15241383935ULL));
 }
 
 TEST(test_polygonal, cubique) {
-    EXPECT_EQ(arithmetiques::racine_cubique(1881365963625ULL), 12345ULL);
-    EXPECT_EQ(polygonal::est_cubique(1881365963625ULL), true);
-    EXPECT_EQ(polygonal::est_cubique(1881365963624ULL), false);
+    EXPECT_EQ(12345ULL, arithmetiques::racine_cubique(1881365963625ULL));
+    EXPECT_TRUE(polygonal::est_cubique(1881365963625ULL));
+    EXPECT_FALSE(polygonal::est_cubique(1881365963624ULL));
 }
 
 TEST(test_polygonal, triangulaire) {
-    EXPECT_EQ(polygonal::triangulaire(100), 5050);
-    EXPECT_EQ(polygonal::est_triangulaire(5050), true);
-    EXPECT_EQ(polygonal::est_triangulaire(5000), false);
+    EXPECT_EQ(5050, polygonal::triangulaire(100));
+    EXPECT_TRUE(polygonal::est_triangulaire(5050));
+    EXPECT_FALSE(polygonal::est_triangulaire(5000));
 }
 
 TEST(test_polygonal, pentagonal) {
-    EXPECT_EQ(polygonal::pentagonal(100), 14950);
-    EXPECT_EQ(polygonal::est_pentagonal(3151), true);
-    EXPECT_EQ(polygonal::est_pentagonal(3150), false);
+    EXPECT_EQ(14950, polygonal::pentagonal(100));
+    EXPECT_TRUE(polygonal::est_pentagonal(3151));
+    EXPECT_FALSE(polygonal::est_pentagonal(3150));
 }
 
 TEST(test_polygonal, hexagonal) {
-    EXPECT_EQ(polygonal::hexagonal(100), 19900);
-    EXPECT_EQ(polygonal::est_hexagonal(4560), true);
-    EXPECT_EQ(polygonal::est_hexagonal(4550), false);
+    EXPECT_EQ(19900, polygonal::hexagonal(100));
+    EXPECT_TRUE(polygonal::est_hexagonal(4560));
+    EXPECT_FALSE(polygonal::est_hexagonal(4550));
 }
 
 TEST(test_polygonal, heptagonal) {
-    EXPECT_EQ(polygonal::heptagonal(100), 24850);
-    EXPECT_EQ(polygonal::est_heptagonal(5688), true);
-    EXPECT_EQ(polygonal::est_heptagonal(5689), false);
+    EXPECT_EQ(24850, polygonal::heptagonal(100));
+    EXPECT_TRUE(polygonal::est_heptagonal(5688));
+    EXPECT_FALSE(polygonal::est_heptagonal(5689));
 }
 
 TEST(test_polygonal, octagonal) {
-    EXPECT_EQ(polygonal::octagonal(100), 29800);
-    EXPECT_EQ(polygonal::est_octagonal(5461), true);
-    EXPECT_EQ(polygonal::est_octagonal(5460), false);
+    EXPECT_EQ(29800, polygonal::octagonal(100));
+    EXPECT_TRUE(polygonal::est_octagonal(5461));
+    EXPECT_FALSE(polygonal::est_octagonal(5460));
+}
+
+TEST(test_polygonal, somme_carres) {
+    EXPECT_EQ(338350, polygonal::somme_carres(100));
+    EXPECT_EQ(54301841231, polygonal::somme_carres(5461ll));
+    EXPECT_EQ(54272018710, polygonal::somme_carres(5460ll));
+}
+
+TEST(test_polygonal, somme_cubes) {
+    EXPECT_EQ(25502500, polygonal::somme_cubes(100));
+    EXPECT_EQ(222427127548081, polygonal::somme_cubes(5461ll));
+    EXPECT_EQ(222264266760900, polygonal::somme_cubes(5460ll));
 }

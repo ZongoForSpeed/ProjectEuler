@@ -1,155 +1,36 @@
 #include "problemes.h"
-
-typedef unsigned long long nombre;
+#include "arithmetiques_modulaire.h"
 
 namespace {
-    template<nombre p>
-    class Number {
-    public:
-        Number(nombre n) : _value(n >= 0 ? n % p : p + n % p) {}
-
-        nombre value() const { return _value; }
-
-        Number<p> &operator+=(const Number<p> &b) {
-            _value += b._value;
-            if (_value >= p) _value -= p;
-            return *this;
-        }
-
-        Number<p> &operator-=(const Number<p> &b) {
-            _value = _value < b._value ? p + _value - b._value : _value - b._value;
-            return *this;
-        }
-
-        Number<p> &operator*=(const Number<p> &b) {
-            nombre c = _value;
-            c *= b._value;
-            _value = c % p;
-            return *this;
-        }
-
-        Number<p> &operator/=(const Number<p> &b) {
-            return operator*=(power(b, p - 2));
-        }
-
-    private:
-        static Number<p> power(Number<p> a, unsigned n) {
-            Number<p> result(1);
-            while (n > 0) {
-                if (n % 2)
-                    result *= a;
-                a *= a;
-                n /= 2;
-            }
-            return result;
-        }
-
-        nombre _value;
-    };
-
-    template<nombre p>
-    std::ostream &operator<<(std::ostream &os, const Number<p> &a) {
-        os << a.value();
-        return os;
-    }
-
-
-    template<nombre p>
-    Number<p> operator-(const Number<p> &a) {
-        return Number<p>(p - a.value());
-    }
-
-    template<nombre p>
-    Number<p> operator+(const Number<p> &a, const Number<p> &b) {
-        Number<p> c(a);
-        c += b;
-        return c;
-    }
-
-    template<nombre p>
-    Number<p> operator-(const Number<p> &a, const Number<p> &b) {
-        Number<p> c(a);
-        c -= b;
-        return c;
-    }
-
-    template<nombre p>
-    Number<p> operator*(const Number<p> &a, const Number<p> &b) {
-        Number<p> c(a);
-        c *= b;
-        return c;
-    }
-
-    template<nombre p>
-    Number<p> operator/(const Number<p> &a, const Number<p> &b) {
-        Number<p> c(a);
-        c /= b;
-        return c;
-    }
-
-    template<nombre p>
-    std::pair<nombre, Number<p> > internalFact(nombre n) {
-        Number<p> resultat = 1;
-        nombre pow = 0;
-        bool sgn = false;
-        while (n > 0) {
-            for (unsigned int i = n % p; i > 1; --i)
-                resultat *= i;
-            n /= p;
-            sgn ^= (n % 2 == 1);
-            pow += n;
-        }
-        return std::make_pair(pow, sgn ? -resultat : resultat);
-    }
-
-    template<unsigned int p>
-    Number<p> fact(nombre n) {
-        return internalFact<p>(n).second;
-    }
-
-    template<unsigned int p>
-    Number<p> A(nombre n, nombre k) {
-        return fact<p>(n) / fact<p>(n - k);
-    }
-
-    template<unsigned int p>
-    Number<p> binomial(nombre n, nombre k) {
-        auto fn = internalFact<p>(n);
-        auto fk = internalFact<p>(k);
-        auto fnk = internalFact<p>(n - k);
-        if (fn.first - fk.first - fnk.first > 0)
-            return Number<p>(0);
-        return fn.second / (fk.second * fnk.second);
-    }
-
-
-    template<nombre p>
+    template<size_t modulo>
     class Probleme498 {
-        nombre n;
-        nombre m;
-        nombre d;
+        size_t n;
+        size_t m;
+        size_t d;
+        
+        typedef arithmetiques::nombre_modulaire<modulo> nombre;
 
     public:
-        Probleme498(const nombre &_n, const nombre &_m, const nombre &_d) : n(_n),
+        Probleme498(const size_t &_n, const size_t &_m, const size_t &_d) : n(_n),
                                                                             m(_m),
                                                                             d(_d) {}
-
-        nombre algorithme() {
-            nombre i = d;
-            Number<p> resultat(0);
+        
+        size_t algorithme() {
+            size_t i = d;
+            nombre resultat(0);
             while (i < m) {
-                nombre j = i;
-                Number<p> u = 0;
-                Number<p> s = 0;
+                size_t j = i;
+                nombre u = 0;
+                nombre s = 0;
                 bool first = true;
                 while (j < m) {
                     if (first) {
-                        u = binomial<p>(n, j) * binomial<p>(j, d);
+                        u = nombre::coefficient_binomial(n, j) * nombre::coefficient_binomial(j, d);
                         // std::cout << "u_" << j << " = " << u << std::endl;
                         if (j % 2 == 0)
                             u = -u;
                         first = false;
-                    } else if ((n - j + 1) % p == 0)
+                    } else if ((n - j + 1) % modulo == 0)
                         break;
                     else {
                         u *= n - j + 1;
@@ -161,7 +42,7 @@ namespace {
                 }
                 // std::cout << "s_" << j << " = " << s << std::endl;
                 resultat += s;
-                i += p;
+                i += modulo;
             }
 
             return resultat.value();
