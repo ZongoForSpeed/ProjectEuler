@@ -42,7 +42,7 @@ namespace arithmetiques {
     }
 
     template<typename Nombre>
-    void Bezout(Nombre a, Nombre b, Nombre &x, Nombre &y) {
+    Nombre Bezout(Nombre a, Nombre b, Nombre &x, Nombre &y) {
         static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
         // https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
         Nombre s = 0, old_s = 1;
@@ -60,6 +60,8 @@ namespace arithmetiques {
         // std::cout << "quotients by the gcd:" << std::make_pair(t, s) << std::endl;
         x = old_s;
         y = old_t;
+        
+        return old_r;
     }
 
     template<typename Nombre>
