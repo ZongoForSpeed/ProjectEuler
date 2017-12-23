@@ -285,6 +285,28 @@ namespace arithmetiques {
 
         return resultat;
     }
+    
+    template<typename Nombre, typename Conteneur>
+    Nombre derivee(Nombre n, const Conteneur &premiers) {
+        Nombre resultat = 0;
+        Nombre x = n;
+        for (const auto &p: premiers) {
+            if (p * p > n)
+                break;
+            if (n % p == 0) {
+                Nombre compteur = 0;
+                while (n % p == 0) {
+                    n /= p;
+                    ++compteur;
+                }
+                resultat += x * compteur / p;
+            }
+        }
+        if (n > 1)
+            resultat += x / n;
+
+        return resultat;
+    }
 
     namespace repunit {
         template<typename Nombre>

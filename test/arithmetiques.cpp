@@ -161,3 +161,13 @@ TEST_F(test_arithmetiques, racine) {
     EXPECT_EQ(arithmetiques::racine_carre<unsigned long long>(1234567890987654321ULL), 1111111106ULL);
     EXPECT_EQ(arithmetiques::racine_carre<unsigned long long>(15241578750190521ULL), 123456789ULL);
 }
+
+TEST_F(test_arithmetiques, derivee) {
+    EXPECT_EQ(24ULL, arithmetiques::derivee(20ULL, premiers));
+    EXPECT_EQ(192ULL, arithmetiques::derivee(64ULL, premiers));
+    EXPECT_EQ(1ULL, arithmetiques::derivee(67ULL, premiers));
+    EXPECT_EQ(2916ULL, arithmetiques::derivee(1080ULL, premiers));
+    EXPECT_EQ(136ULL, arithmetiques::derivee(4399ULL, premiers));
+    EXPECT_EQ(31424ULL, arithmetiques::derivee(8320ULL, premiers));
+    EXPECT_EQ(28000ULL, arithmetiques::derivee(10000ULL, premiers));
+}
