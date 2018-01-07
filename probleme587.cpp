@@ -17,22 +17,15 @@ namespace {
         return (m - std::sqrt(2*m) + 1) / (m*m + 1);
     }
 
-    long double calcul_aire(long double slope)
+    long double calcul_aire(unsigned int m)
     {
-        long double intersection = calcul_intersection(slope);
-        // partie gauche de l'aire
-        long double aire = intersection * (intersection * slope) / 2;
-
-        long double Step = (1 - intersection) / 100000;
-        for (long double x = intersection; x < 1; x += Step)
-        {
-            long double y = 1 - std::sqrt(1 - (x - 1)*(x - 1));
-            aire += y * Step;
-        }
+        long double slope = 1.0L / m;
+        long double x = calcul_intersection(slope);
+        long double y = slope * x;
+        long double theta = std::asin(1 - x);
         
-        return aire;
+        return y * x / 2 + (y + 1) * (1 - x) / 2 - theta / 2;
     }
-    
 }
 
 ENREGISTRER_PROBLEME(587, "Concave triangle") {
@@ -58,17 +51,15 @@ ENREGISTRER_PROBLEME(587, "Concave triangle") {
     // What is the least value of n for which the concave triangle occupies less than 0.1% of the 
     // L-section?
     long double limit = 0.1L / 100;
-    long double L = (4.0L - M_PI) / 4.0L;
+    long double L = 1.0L - M_PI / 4.0L;
     
     unsigned int m = 1;
     unsigned int step = 64;
     
     while (true)
     {
-        auto slope = 1.0L / m;
-        auto area  = calcul_aire(slope);
-
-        auto ratio = area / L;
+        auto aire  = calcul_aire(m);
+        auto ratio = aire / L;
         if (ratio < limit)
         {
             if (step == 1)
