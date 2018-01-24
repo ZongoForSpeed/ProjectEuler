@@ -1,13 +1,10 @@
 #include <gtest/gtest.h>
-#define NDEBUG
-#define BOOST_UBLAS_NDEBUG
-#define BOOST_UBLAS_TYPE_CHECK 0
-
-#include <boost/numeric/ublas/assignment.hpp> 
-#include <boost/rational.hpp>
 
 #include "matrice.h"
 #include "test.h"
+
+#include <boost/numeric/ublas/assignment.hpp> 
+#include <boost/rational.hpp>
 
     TEST(test_matrice, puissance)
     {

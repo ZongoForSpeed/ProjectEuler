@@ -18,12 +18,10 @@ add_compile_options(-Werror
         -Weverything
         -Wno-c++98-compat
         -Wno-c++98-compat-pedantic
+        -Wno-zero-as-null-pointer-constant # pour les macro TEST et TEST_F
         -Wno-padded
         -Wno-global-constructors
         -Wno-exit-time-destructors
-        #-Wno-double-promotion
-        -Wno-missing-prototypes
-        -Wno-unused-macros
         -Wno-weak-vtables)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
