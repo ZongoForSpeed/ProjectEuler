@@ -9,7 +9,7 @@ typedef std::vector<nombre> vecteur;
 namespace {
     class Square {
     public:
-        Square() : taille(0.0) {}
+        Square() : taille(0.0L) {}
 
         std::pair<long double, long double> coordonnees;
         std::pair<nombre, nombre> index;

@@ -30,11 +30,11 @@ ENREGISTRER_PROBLEME(318, "2011 nines") {
     // Find ∑N(p,q) for p+q ≤ 2011.
     const int n = 2011;
 
-    long double v = -n * std::log(10);
+    double v = -n * std::log(10.0);
     nombre resultat = 0;
     for (nombre p = 1; p <= n; ++p) {
         for (nombre q = p + 1; p + q <= n; ++q) {
-            long double k = p + q - 2 * std::sqrt(p * q);
+            double k = p + q - 2.0 * std::sqrt(p * q);
             if (k >= 1) break;
             auto t = static_cast<size_t>(std::ceil(v / std::log(k)));
             resultat += t;

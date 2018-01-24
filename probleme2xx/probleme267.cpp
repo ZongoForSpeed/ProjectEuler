@@ -46,7 +46,7 @@ ENREGISTRER_PROBLEME(267, "Binary Circles") {
     const size_t n = 1000;
     const auto N = puissance::puissance<size_t, unsigned>(10, 9);
 
-    std::function<long double(long double)> lambda_f = [n, N](long double x) -> long double { return f(x, n, N); };
+    std::function<long double(long double)> lambda_f = [](long double x) -> long double { return f(x, n, N); };
 
     const auto alpha = static_cast<size_t>(std::ceil(f(recherche(lambda_f, 0.01L, 0.99L, 0.000001L), n, N)));
 
@@ -63,7 +63,7 @@ ENREGISTRER_PROBLEME(267, "Binary Circles") {
     auto masque = puissance::puissance<size_t, unsigned>(10, 13);
     resultat *= masque;
     resultat /= mp_nombre::puissance(2, n);
-    long double solution = resultat.get_double() / masque;
+    double solution = resultat.get_double() / masque;
 
     return std::to_string(solution, 12);
 }

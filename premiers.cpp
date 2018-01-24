@@ -22,85 +22,6 @@ namespace {
     //     }
     // }
 
-    template<typename Nombre, class OutputIterator>
-    OutputIterator super_crible(const std::size_t taille, const std::vector<std::size_t> &roue, OutputIterator sortie) {
-        typedef std::vector<bool> Crible;
-        typedef std::pair<std::size_t, std::size_t> Paire;
-        typedef std::vector<Paire> VecteurPaire;
-        typedef std::vector<VecteurPaire> MatricePaire;
-        typedef std::vector<std::size_t> Vecteur;
-
-        const std::size_t produit = std::accumulate(roue.begin(), roue.end(), 1UL,
-                                                    [](const std::size_t resultat, const std::size_t p) {
-                                                        return resultat * p;
-                                                    });
-        const std::size_t taille_crible = taille / produit + 1;
-
-        Crible masque(produit, true);
-        masque.at(0) = false;
-
-        for (const std::size_t p: roue)
-            for (std::size_t q = p; q < produit; q += p)
-                masque.at(q) = false;
-
-        Vecteur restes;
-        for (std::size_t p = 0; p < produit; ++p)
-            if (masque.at(p)) restes.push_back(p);
-
-        const std::size_t profondeur = restes.size();
-        std::deque<Crible> test;
-        const VecteurPaire ligne(profondeur, std::make_pair(0, 0));
-        MatricePaire matrice(profondeur, ligne);
-
-        for (std::size_t i = 0; i < profondeur; ++i) {
-            const std::size_t reste = restes.at(i);
-            test.emplace_back(taille_crible, true);
-            // std::cout << "p = " << produit << ".k + " << reste << std::endl;
-
-            for (std::size_t n = 0; n < produit; n += 2) {
-                const std::size_t rrnr = reste * reste + n * reste;
-                const auto it = std::find(restes.begin(), restes.end(), rrnr % produit);
-                if (it != restes.end()) {
-                    // std::cout << "n = " << n << "\t";
-                    // std::cout << produit << ".[ " << produit << ".k² + " << 2*reste + n << ".k + " << rrnr/produit << " ] + " << rrnr%produit << std::endl;
-                    matrice[i][utilitaires::distance(restes.begin(), it)] = std::make_pair(2 * reste + n,
-                                                                                           rrnr / produit);
-                }
-            }
-        }
-
-        test[0][0] = false;
-        for (std::size_t k = 0; produit * k * k < taille_crible; ++k) {
-            for (std::size_t i = 0; i < profondeur; ++i) {
-                if (test[i][k]) // Cas où p = produit*k + restes[i]
-                {
-                    const std::size_t p = produit * k + restes[i];
-                    for (std::size_t j = 0; j < profondeur; ++j) {
-                        const auto &debut = matrice[i][j];
-                        for (std::size_t l = produit * k * k + debut.first * k + debut.second;
-                             l < taille_crible; l += p)
-                            test[j][l] = false;
-                    }
-                }
-            }
-        }
-
-        for (const auto p: roue) {
-            *sortie = Nombre(p);
-            ++sortie;
-        }
-
-        for (std::size_t k = 0; k < taille_crible; ++k) {
-            for (std::size_t i = 0; i < profondeur; ++i) {
-                if (test[i][k]) {
-                    *sortie = Nombre(produit * k + restes[i]);
-                    ++sortie;
-                }
-            }
-        }
-        return sortie;
-    }
-
     void internal_crible2(const std::size_t &taille, std::vector<bool> &test) {
         test.assign(taille, true);
         test.at(0) = false;
@@ -300,6 +221,81 @@ namespace premiers {
             if (test.at(p)) {
                 for (std::size_t k = p * p; k < taille; k += p)
                     test.at(k) = false;
+            }
+        }
+    }
+
+    void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue, std::function<void(const std::size_t &)> sortie) {
+        typedef std::vector<bool> Crible;
+        typedef std::pair<std::size_t, std::size_t> Paire;
+        typedef std::vector<Paire> VecteurPaire;
+        typedef std::vector<VecteurPaire> MatricePaire;
+        typedef std::vector<std::size_t> Vecteur;
+
+        const std::size_t produit = std::accumulate(roue.begin(), roue.end(), 1UL,
+                                                    [](const std::size_t resultat, const std::size_t p) {
+                                                        return resultat * p;
+                                                    });
+        const std::size_t taille_crible = taille / produit + 1;
+
+        Crible masque(produit, true);
+        masque.at(0) = false;
+
+        for (const std::size_t p: roue)
+            for (std::size_t q = p; q < produit; q += p)
+                masque.at(q) = false;
+
+        Vecteur restes;
+        for (std::size_t p = 0; p < produit; ++p)
+            if (masque.at(p)) restes.push_back(p);
+
+        const std::size_t profondeur = restes.size();
+        std::deque<Crible> test;
+        const VecteurPaire ligne(profondeur, std::make_pair(0, 0));
+        MatricePaire matrice(profondeur, ligne);
+
+        for (std::size_t i = 0; i < profondeur; ++i) {
+            const std::size_t reste = restes.at(i);
+            test.emplace_back(taille_crible, true);
+            // std::cout << "p = " << produit << ".k + " << reste << std::endl;
+
+            for (std::size_t n = 0; n < produit; n += 2) {
+                const std::size_t rrnr = reste * reste + n * reste;
+                const auto it = std::find(restes.begin(), restes.end(), rrnr % produit);
+                if (it != restes.end()) {
+                    // std::cout << "n = " << n << "\t";
+                    // std::cout << produit << ".[ " << produit << ".k² + " << 2*reste + n << ".k + " << rrnr/produit << " ] + " << rrnr%produit << std::endl;
+                    matrice[i][utilitaires::distance(restes.begin(), it)] = std::make_pair(2 * reste + n,
+                                                                                           rrnr / produit);
+                }
+            }
+        }
+
+        test[0][0] = false;
+        for (std::size_t k = 0; produit * k * k < taille_crible; ++k) {
+            for (std::size_t i = 0; i < profondeur; ++i) {
+                if (test[i][k]) // Cas où p = produit*k + restes[i]
+                {
+                    const std::size_t p = produit * k + restes[i];
+                    for (std::size_t j = 0; j < profondeur; ++j) {
+                        const auto &debut = matrice[i][j];
+                        for (std::size_t l = produit * k * k + debut.first * k + debut.second;
+                             l < taille_crible; l += p)
+                            test[j][l] = false;
+                    }
+                }
+            }
+        }
+
+        for (const auto p: roue) {
+            sortie(p);
+        }
+
+        for (std::size_t k = 0; k < taille_crible; ++k) {
+            for (std::size_t i = 0; i < profondeur; ++i) {
+                if (test[i][k]) {
+                    sortie(produit * k + restes[i]);
+                }
             }
         }
     }

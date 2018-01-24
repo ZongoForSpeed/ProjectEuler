@@ -92,7 +92,7 @@ double mp_nombre::get_double() const {
 
 unsigned long long mp_nombre::get_unsigned_long_long() const {
     unsigned long long result = 0;
-    mpz_export(&result, 0, -1, sizeof result, 0, 0, _data);
+    mpz_export(&result, nullptr, -1, sizeof result, 0, 0, _data);
     return result;
 }
 
@@ -101,7 +101,7 @@ void mp_nombre::swap(mp_nombre &op) {
 }
 
 const std::string mp_nombre::to_string(int base) const {
-    char *str = mpz_get_str(NULL, base, _data);
+    char *str = mpz_get_str(nullptr, base, _data);
     std::string resultat(str);
     free(str);
     return resultat;

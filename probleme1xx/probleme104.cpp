@@ -16,7 +16,7 @@ namespace {
         if (chiffres < 9)
             return false;
 
-        auto debut = static_cast<nombre>(f / puissance::puissance(10.0, chiffres - 8));
+        auto debut = static_cast<nombre>(f / puissance::puissance(10.0L, chiffres - 8));
         return chiffres::pandigital(debut);
     }
 

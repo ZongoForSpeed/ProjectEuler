@@ -17,14 +17,14 @@ namespace {
         long double a = distance(p1, p2);
         long double b = distance(p2, p3);
         long double c = distance(p3, p1);
-        long double s = (a + b + c) * 0.5;
+        long double s = (a + b + c) * 0.5L;
         // formule de Héron
         return std::sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
-    long double calcul_poids(const point &p1, const point &p2, long double objectif_ratio = 132.5) {
+    long double calcul_poids(const point &p1, const point &p2, long double objectif_ratio = 132.5L) {
         if (p1 == p2)
-            return 0.0;
+            return 0.0L;
 
         long double perimetre = distance(p1, p2);
         long double aire = aire_triangle(p1, p2, point(0, 0));

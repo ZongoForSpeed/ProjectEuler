@@ -14,7 +14,17 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 
 add_subdirectory(gtest)
 
-add_compile_options(-Werror -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-global-constructors -Wno-exit-time-destructors -Wno-double-promotion -Wno-missing-prototypes -Wno-unused-macros -Wno-weak-vtables)
+add_compile_options(-Werror
+        -Weverything
+        -Wno-c++98-compat
+        -Wno-c++98-compat-pedantic
+        -Wno-padded
+        -Wno-global-constructors
+        -Wno-exit-time-destructors
+        #-Wno-double-promotion
+        -Wno-missing-prototypes
+        -Wno-unused-macros
+        -Wno-weak-vtables)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${GMP_INCLUDE_DIR})

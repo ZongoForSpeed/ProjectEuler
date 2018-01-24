@@ -17,7 +17,7 @@ ENREGISTRER_PROBLEME(317, "Firecracker") {
     const long double pi = boost::math::constants::pi<long double>();
     const long double v = 20;
     const long double h = 100;
-    const long double g = 9.81;
+    const long double g = 9.81L;
 
     long double resultat = pi * (2 * g * v * h + v * v * v) * (2 * g * v * h + v * v * v) / (4 * g * g * g);
     return std::to_string(resultat, 4);

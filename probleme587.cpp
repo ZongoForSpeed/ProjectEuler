@@ -51,7 +51,7 @@ ENREGISTRER_PROBLEME(587, "Concave triangle") {
     // What is the least value of n for which the concave triangle occupies less than 0.1% of the 
     // L-section?
     long double limit = 0.1L / 100;
-    long double L = 1.0L - M_PI / 4.0L;
+    long double L = 1.0L - M_PIl / 4.0L;
     
     unsigned int m = 1;
     unsigned int step = 64;

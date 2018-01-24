@@ -7,18 +7,18 @@ typedef std::pair<nombre, nombre> paire;
 typedef std::tuple<long double, nombre, nombre> triplet;
 
 namespace {
-    long double C(nombre n, long double a, long double b) {
+    double C(nombre n, double a, double b) {
         const double epsilon = 1e-6;
 
-        std::priority_queue<triplet, std::vector<triplet>, std::greater<triplet>> tas;
+        std::priority_queue<triplet, std::vector<triplet>, std::greater<>> tas;
         tas.emplace(a, 1, 0);
         tas.emplace(b, 0, 1);
-        std::map<long double, nombre> mem;
+        std::map<double, nombre> mem;
         std::set<paire> used;
         mem[0.0] = 1;
         used.emplace(0, 0);
         while (true) {
-            long double courant;
+            double courant;
             nombre move_a;
             nombre move_b;
             std::tie(courant, move_a, move_b) = tas.top();
@@ -75,9 +75,9 @@ ENREGISTRER_PROBLEME(406, "Guessing Game") {
     // Find ∑1≤k≤30 C(10**12, √k, √Fk), and give your answer rounded to 8 decimal places behind the decimal point.
     std::cout << std::setprecision(10);
     std::cout << "C(5, 2, 3) = " << C(5, 2, 3) << std::endl;
-    std::cout << "C(500, √2, √3) = " << C(500, std::sqrt(2), std::sqrt(3)) << std::endl;
+    std::cout << "C(500, √2, √3) = " << C(500, std::sqrt(2.0), std::sqrt(3.0)) << std::endl;
     std::cout << "C(20000, 5, 7) = " << C(20000, 5, 7) << std::endl;
-    std::cout << "C(2000000, √5, √7) = " << C(2000000, std::sqrt(5), std::sqrt(7)) << std::endl;
+    std::cout << "C(2000000, √5, √7) = " << C(2000000, std::sqrt(5.0), std::sqrt(7.0)) << std::endl;
     
     vecteur fibonacci {0, 1};
     for (size_t k = 2; k < 31; ++k) {
@@ -86,7 +86,7 @@ ENREGISTRER_PROBLEME(406, "Guessing Game") {
     
     nombre limite = 1'000'000'000'000;
     
-    long double resultat = 0.0;
+    double resultat = 0.0;
     for (size_t k = 1; k < 31; ++k) {
         resultat += C(limite, std::sqrt(k), std::sqrt(fibonacci[k]));
     }

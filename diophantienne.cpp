@@ -60,7 +60,7 @@ namespace diophantienne {
 
     std::pair<long long int, long long int> GenerateurEquationLineaire::solution(size_t t) const {
         size_t taille = primitives.size();
-        long long int ordre = static_cast<long long int>(t / taille);
+        auto ordre = static_cast<long long int>(t / taille);
 
         auto &primitive = primitives[t % taille];
 

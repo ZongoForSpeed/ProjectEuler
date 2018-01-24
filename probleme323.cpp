@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(323, "Bitwise-OR operations on random integers") {
     long double sum = 0;
     for (size_t n = 1;; ++n) {
         long double p = probabilite(n) - probabilite(n - 1);
-        if (p < 1e-20)
+        if (p < 1e-20L)
             break;
         sum += n * p;
     }

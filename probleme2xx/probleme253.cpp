@@ -114,7 +114,7 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     const auto masque = puissance::puissance<size_t, unsigned>(10, 7);
     numerateur *= masque;
     numerateur /= denominateur;
-    long double resultat = numerateur.get_double();
+    double resultat = numerateur.get_double();
     resultat /= masque;
     return std::to_string(resultat, 6);
 }

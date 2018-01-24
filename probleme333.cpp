@@ -11,9 +11,10 @@ namespace {
         for (size_t a = 1;;) {
             if (a < amax && addition(P, somme + a * b, b * 3, a))
                 a *= 2;
-            else if (a > 1)
-                b *= 3, a = 1;
-            else
+            else if (a > 1) {
+                b *= 3;
+                a = 1;
+            } else
                 return true;
         }
     }
