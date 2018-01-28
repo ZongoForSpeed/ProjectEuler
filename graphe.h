@@ -23,7 +23,7 @@ namespace graphe {
     public:
         std::vector<std::set<nombre>> resultat;
 
-        Tarjan(const std::map<nombre, vecteur> &g);
+        explicit Tarjan(const std::map<nombre, vecteur> &g);
 
         void algorithme();
 
@@ -41,7 +41,7 @@ namespace graphe {
 
         vecteur resultat;
 
-        Dijkstra(const graphe &_G, const nombre _debut, const nombre _fin);
+        Dijkstra(const graphe &_G, nombre _debut, nombre _fin);
 
         nombre algorithme();
 
@@ -56,7 +56,7 @@ namespace graphe {
         typedef std::tuple<nombre, nombre, nombre> arete;
         typedef std::vector<arete> aretes;
 
-        Kruskal(const aretes &_A);
+        explicit Kruskal(const aretes &_A);
 
         aretes algorithme();
 

@@ -13,7 +13,7 @@ private:
 public:
     static RegistreProbleme &instance();
 
-    void ajout(const size_t numero, const std::string &nom, const std::function<std::string()> &fonction);
+    void ajout(size_t numero, const std::string &nom, const std::function<std::string()> &fonction);
 
     int execute(int argc, char **argv);
 
@@ -22,7 +22,7 @@ private:
 };
 
 struct Probleme {
-    Probleme(const size_t numero, const std::string &nom, const std::function<std::string()> &fonction);
+    Probleme(size_t numero, const std::string &nom, const std::function<std::string()> &fonction);
 };
 
 #define ENREGISTRER_PROBLEME(numero, nom) \

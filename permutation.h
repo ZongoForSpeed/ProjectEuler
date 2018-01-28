@@ -30,7 +30,7 @@ namespace permutation {
     class Permutation {
         T source;
     public:
-        Permutation(const T &v) : source(v) {}
+        explicit Permutation(const T &v) : source(v) {}
 
         ~Permutation() = default;
 

@@ -8,7 +8,7 @@ class Timer {
     std::string _titre;
 
 public:
-    Timer(const std::string &t);
+    explicit Timer(const std::string &t);
 
     ~Timer();
 

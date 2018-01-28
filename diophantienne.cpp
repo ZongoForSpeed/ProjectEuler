@@ -34,7 +34,7 @@ namespace diophantienne {
         long long int v;
         arithmetiques::Bezout(d, e, u, v);
 
-        primitives.push_back(std::make_pair(-f * u, -f * v));
+        primitives.emplace_back(-f * u, -f * v);
 
         // x = et ± fu'
         // y = -dt ± fv'

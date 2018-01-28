@@ -5,10 +5,7 @@
 #include <boost/algorithm/string.hpp>
 #include <fstream>
 
-RegistreProbleme::RegistreProbleme() 
-{
-    
-}
+RegistreProbleme::RegistreProbleme() = default;
 
 RegistreProbleme & RegistreProbleme::instance()
 {

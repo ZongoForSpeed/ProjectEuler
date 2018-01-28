@@ -8,7 +8,7 @@ class Pythagoricien;
 class IterateurPythagoricien {
     const Pythagoricien &source;
 public:
-    IterateurPythagoricien(const Pythagoricien &_source, const size_t _p, const size_t _q);
+    IterateurPythagoricien(const Pythagoricien &_source, size_t _p, size_t _q);
 
     bool operator!=(const IterateurPythagoricien &it) const;
 
@@ -25,7 +25,7 @@ class Pythagoricien {
 public:
     Pythagoricien();
 
-    Pythagoricien(const size_t l);
+    explicit Pythagoricien(size_t l);
 
     IterateurPythagoricien begin() const;
 
