@@ -3,6 +3,7 @@
 #include "premiers.h"
 
 #include <set>
+#include <iterator>
 
 typedef unsigned long long nombre;
 

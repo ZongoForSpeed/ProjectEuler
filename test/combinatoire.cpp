@@ -1,20 +1,23 @@
-#include <gtest/gtest.h>
-
+#include "test.h"
 #include "combinatoire.h"
 
-TEST(test_combinatoire, coefficient_binomial) {
-    EXPECT_EQ(35, combinatoire::coefficient_binomial(7, 3));
-    EXPECT_EQ(70, combinatoire::coefficient_binomial(8, 4));
-    EXPECT_EQ(1, combinatoire::coefficient_binomial(40, 0));
-}
+BOOST_AUTO_TEST_SUITE(test_combinatoire)
 
-TEST(test_combinatoire, catalan) {
-    EXPECT_EQ(1, combinatoire::catalan(0));
-    EXPECT_EQ(1, combinatoire::catalan(1));
-    EXPECT_EQ(16796, combinatoire::catalan<unsigned long long>(10));
-}
+    BOOST_AUTO_TEST_CASE(coefficient_binomial) {
+        BOOST_CHECK_EQUAL(35, combinatoire::coefficient_binomial(7, 3));
+        BOOST_CHECK_EQUAL(70, combinatoire::coefficient_binomial(8, 4));
+        BOOST_CHECK_EQUAL(1, combinatoire::coefficient_binomial(40, 0));
+    }
 
-TEST(test_combinatoire, factorielle) {
-    EXPECT_EQ(120, combinatoire::factorielle(5));
-    EXPECT_EQ(720, combinatoire::factorielle(6));
-}
+    BOOST_AUTO_TEST_CASE(catalan) {
+        BOOST_CHECK_EQUAL(1, combinatoire::catalan(0));
+        BOOST_CHECK_EQUAL(1, combinatoire::catalan(1));
+        BOOST_CHECK_EQUAL(16796, combinatoire::catalan<unsigned long long>(10));
+    }
+
+    BOOST_AUTO_TEST_CASE(factorielle) {
+        BOOST_CHECK_EQUAL(120, combinatoire::factorielle(5));
+        BOOST_CHECK_EQUAL(720, combinatoire::factorielle(6));
+    }
+
+BOOST_AUTO_TEST_SUITE_END()

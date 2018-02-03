@@ -1,11 +1,12 @@
 #pragma once
 
-#include <iostream>
-#include <gmp.h>
-
-#include <boost/optional.hpp>
-#include <limits>
 #include <deque>
+#include <iostream>
+#include <limits>
+#include <type_traits>
+
+#include <gmp.h>
+#include <boost/optional.hpp>
 
 class mp_nombre {
     mpz_t _data;
@@ -50,7 +51,7 @@ public:
 
     void set(const std::string &op, int base = 10);
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     void set(T x) {
         static_assert(std::is_integral<T>::value, "Integer required.");
         set(x, std::is_signed<T>());
@@ -66,12 +67,11 @@ public:
 
     unsigned long long get_unsigned_long_long() const;
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     T get() const {
         static_assert(std::is_integral<T>::value, "Integer required.");
         return get(T(0), std::is_signed<T>());
     }
-
 
     mpz_t &get_data() {
         return _data;
@@ -104,7 +104,7 @@ public:
 
     mp_nombre &operator=(const mp_nombre &op);
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mp_nombre &operator=(const T &op) {
         set(op);
         return *this;
@@ -161,7 +161,7 @@ public:
 
     static mp_nombre puissance_modulaire(const mp_nombre &base, unsigned long exposant, const mp_nombre &modulo);
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     static mp_nombre puissance_modulaire(const mp_nombre &base, unsigned long exposant, const T &modulo) {
         mp_nombre tmp_modulo(modulo);
         return puissance_modulaire(base, exposant, tmp_modulo);
@@ -181,13 +181,13 @@ public:
 
     static mp_nombre PGCD(const mp_nombre &op1, unsigned long int op2);
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mp_nombre PGCD(const mp_nombre &op1, const T &op2) {
         mp_nombre n2(op2);
         return PGCD(op1, n2);
     }
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mp_nombre PGCD(const T &op1, const mp_nombre &op2) {
         return PGCD(op2, op1);
     }
@@ -196,13 +196,13 @@ public:
 
     static mp_nombre PPCM(const mp_nombre &op1, unsigned long int op2);
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mp_nombre PPCM(const mp_nombre &op1, const T &op2) {
         mp_nombre n2(op2);
         return PPCM(op1, n2);
     }
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mp_nombre PPCM(const T &op1, const mp_nombre &op2) {
         return PPCM(op2, op1);
     }
@@ -227,13 +227,13 @@ public:
 
     mp_nombre operator+(unsigned long int op) const;
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mp_nombre &operator+=(const T &op) {
         mp_nombre n(op);
         return this->operator+=(n);
     }
 
-    template<typename T>
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mp_nombre operator+(const T &op) const {
         mp_nombre resultat;
         mp_nombre n(op);
@@ -397,7 +397,7 @@ public:
     mp_nombre operator>>(const unsigned long &b) const;
 
     // region Chiffres
-    void boucle_chiffre(std::function<void(unsigned long int)> op, unsigned long int base = 10) const {
+    void boucle_chiffre(const std::function<void(unsigned long int)> &op, unsigned long int base = 10) const {
         mp_nombre n(_data);
         while (n != 0) {
             unsigned long int r = mpz_fdiv_q_ui(n._data, n._data, base);
@@ -439,11 +439,18 @@ public:
     // endregion Chiffres
 
 private:
+
+#ifdef WIN32
     template<typename Type>
     void set(Type op, std::false_type /*is_signed*/) {
-        mpz_import(_data, 1, -1, sizeof op, 0, 0, &op);
-    }
+        set(std::to_string(op));
+   }
 
+    template<typename Type>
+    void set(Type op, std::true_type /*is_signed*/) {
+        set(std::to_string(op));
+    }
+#else
     template<typename Type>
     void set(Type op, std::true_type /*is_signed*/) {
         bool negatif = (op < 0);
@@ -452,6 +459,12 @@ private:
         if (negatif) negation();
     }
 
+    template<typename Type>
+    void set(Type op, std::false_type /*is_signed*/) {
+        mpz_import(_data, 1, -1, sizeof op, 0, 0, &op);
+    }
+
+#endif
     template<typename Type>
     Type get(Type /*type*/, std::false_type /*is_signed*/) const {
         Type result = 0;
@@ -467,75 +480,75 @@ private:
     }
 };
 
-template<typename T>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mp_nombre operator+(const T &op1, const mp_nombre &op2) {
     return op2.operator+(op1);
 }
 
-template<typename T>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mp_nombre operator-(const T &op1, const mp_nombre &op2) {
     mp_nombre n(op1);
     return n.operator-(op2);
 }
 
-template<typename T>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mp_nombre operator*(const T &op1, const mp_nombre &op2) {
     return op2.operator*(op1);
 }
 
-template<typename T>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mp_nombre operator/(const T &op1, const mp_nombre &op2) {
     mp_nombre n(op1);
     return n.operator/(op2);
 }
 
-template<typename T>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mp_nombre operator%(const T &op1, const mp_nombre &op2) {
     mp_nombre n(op1);
     return n.operator%(op2);
 }
 
-template<typename T>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mp_nombre operator&(const T &op1, const mp_nombre &op2) {
     return op2.operator&(op1);
 }
 
-template<typename T>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mp_nombre operator|(const T &op1, const mp_nombre &op2) {
     return op2.operator|(op1);
 }
 
-template<typename T>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mp_nombre operator^(const T &op1, const mp_nombre &op2) {
     return op2.operator^(op1);
 }
 
-template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline bool operator==(const T &a, const mp_nombre &b) {
     return b.compare(a) == 0;
 }
 
-template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline bool operator!=(const T &a, const mp_nombre &b) {
     return b.compare(a) != 0;
 }
 
-template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline bool operator<(const T &a, const mp_nombre &b) {
     return b.compare(a) > 0;
 }
 
-template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline bool operator>(const T &a, const mp_nombre &b) {
     return b.compare(a) < 0;
 }
 
-template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline bool operator<=(const T &a, const mp_nombre &b) {
     return b.compare(a) > -1;
 }
 
-template<typename T, typename std::enable_if_t<std::is_arithmetic<T>::value>::type>
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline bool operator>=(const T &a, const mp_nombre &b) {
     return b.compare(a) < 1;
 }

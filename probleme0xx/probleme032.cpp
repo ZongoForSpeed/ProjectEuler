@@ -31,6 +31,6 @@ ENREGISTRER_PROBLEME(32, "Pandigital products") {
             }
         }
     } while (std::next_permutation(v.begin(), v.end()));
-    nombre solution = std::accumulate(resultat.begin(), resultat.end(), 0UL);
+    nombre solution = std::accumulate(resultat.begin(), resultat.end(), 0ULL);
     return std::to_string(solution);
 }

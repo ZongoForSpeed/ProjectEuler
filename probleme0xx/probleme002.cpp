@@ -1,3 +1,4 @@
+#include <numeric>
 #include "problemes.h"
 #include "arithmetiques.h"
 
@@ -19,7 +20,7 @@ ENREGISTRER_PROBLEME(2, "Even Fibonacci numbers") {
     }
     fibonacci.pop_back();
 
-    nombre solution = std::accumulate(fibonacci.begin(), fibonacci.end(), 0UL,
+    nombre solution = std::accumulate(fibonacci.begin(), fibonacci.end(), 0ULL,
                                       [](const nombre &somme, const nombre &f) {
                                           return (f % 2 == 0) ? somme + f : somme;
                                       });

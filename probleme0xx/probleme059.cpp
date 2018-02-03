@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include <boost/algorithm/string.hpp>
+#include <numeric>
 
 typedef unsigned long long nombre;
 
@@ -72,7 +73,7 @@ ENREGISTRER_PROBLEME(59, "XOR decryption") {
         }
     }
 
-    nombre resultat = std::accumulate(message.begin(), message.end(), 0UL,
+    nombre resultat = std::accumulate(message.begin(), message.end(), 0ULL,
                                       [](const nombre r, const char c) { return r + static_cast<nombre>(c); }
     );
     return std::to_string(resultat);

@@ -1,17 +1,15 @@
+#include <iostream>
+
 #include "timer.h"
 
 Timer::Timer(const std::string &t) : _titre(t) {
     std::cout << "Debut " << _titre << " ..." << std::endl;
-    _timer.start();
+    _debut = std::chrono::high_resolution_clock::now();
 }
 
 Timer::~Timer() {
-    _timer.stop();
-    std::cout << "Fin " << _titre << " en " << _timer.format(6, "%w") << " secondes " << std::endl;
-}
+    std::chrono::high_resolution_clock::time_point fin = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(fin - _debut);
 
-void Timer::etape(const std::string &t) {
-    _timer.stop();
-    std::cout << "Etape " << t << " en " << _timer.format(6, "%w") << " secondes " << std::endl;
-    _timer.resume();
+    std::cout << "Fin " << _titre << " en " << time_span.count() << " secondes " << std::endl;
 }

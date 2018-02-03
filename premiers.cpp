@@ -2,6 +2,8 @@
 #include "timer.h"
 #include "utilitaires.h"
 
+#include <numeric>
+
 namespace {
     // template<typename Nombre, class OutputIterator>
     // void crible_simple(const std::size_t taille, OutputIterator sortie) {
@@ -232,7 +234,7 @@ namespace premiers {
         typedef std::vector<VecteurPaire> MatricePaire;
         typedef std::vector<std::size_t> Vecteur;
 
-        const std::size_t produit = std::accumulate(roue.begin(), roue.end(), 1UL,
+        const std::size_t produit = std::accumulate(roue.begin(), roue.end(), 1ULL,
                                                     [](const std::size_t resultat, const std::size_t p) {
                                                         return resultat * p;
                                                     });

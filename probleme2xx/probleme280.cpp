@@ -25,7 +25,7 @@ namespace {
                 size_t p = x + 5 * y;
                 A(p, p) = 1;
 
-                if (y == 0 and bas.test(x)) {
+                if (y == 0 && bas.test(x)) {
                     if (haut.none())
                         continue;
                     auto _bas = bas;

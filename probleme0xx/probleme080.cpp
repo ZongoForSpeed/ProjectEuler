@@ -2,6 +2,7 @@
 #include "mp_nombre.h"
 
 #include <sstream>
+#include <vector>
 
 typedef std::vector<mp_nombre> vecteur;
 

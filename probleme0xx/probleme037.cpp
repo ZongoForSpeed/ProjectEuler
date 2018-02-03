@@ -4,6 +4,7 @@
 #include <set>
 #include <algorithm>
 #include <sstream>
+#include <iterator>
 
 typedef unsigned long long nombre;
 

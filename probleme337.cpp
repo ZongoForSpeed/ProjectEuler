@@ -1,3 +1,4 @@
+#include <numeric>
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"

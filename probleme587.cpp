@@ -1,11 +1,9 @@
 #include "problemes.h"
 #include "utilitaires.h"
 
-#include <iostream>
-#include <cmath>
-#include <limits>
-
 namespace {
+    const long double PI = 3.141592653589793238L;
+
     long double calcul_intersection(long double m) {
         // cercle: (x-1)² + (y-1)² = 1
         //                  (y-1)² = 1 - (x-1)²
@@ -51,7 +49,7 @@ ENREGISTRER_PROBLEME(587, "Concave triangle") {
     // What is the least value of n for which the concave triangle occupies less than 0.1% of the 
     // L-section?
     long double limit = 0.1L / 100;
-    long double L = 1.0L - M_PIl / 4.0L;
+    long double L = 1.0L - PI / 4.0L;
     
     unsigned int m = 1;
     unsigned int step = 64;

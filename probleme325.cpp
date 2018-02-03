@@ -1,13 +1,12 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 #include "matrice.h"
-#include "multidimension.h"
 #include "puissance.h"
+#include "mp_nombre.h"
 
-#include <boost/multiprecision/gmp.hpp>
+#include <boost/multiprecision/cpp_bin_float.hpp>
 
-typedef boost::multiprecision::mpf_float mp_float;
+typedef boost::multiprecision::cpp_bin_float_quad mp_float;
 
 typedef long long int nombre;
 typedef std::vector<mp_nombre> vecteur;

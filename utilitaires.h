@@ -154,8 +154,7 @@ namespace std {
 namespace utilitaires {
     template<typename InputIterator>
     inline size_t distance(InputIterator first, InputIterator last, std::input_iterator_tag) {
-        __glibcxx_function_requires(_InputIteratorConcept < InputIterator >)
-
+        //__glibcxx_function_requires(_InputIteratorConcept < InputIterator > )
         size_t result = 0;
         while (first != last) {
             ++first;
@@ -167,13 +166,13 @@ namespace utilitaires {
 
     template<typename RandomAccessIterator>
     inline size_t distance(RandomAccessIterator first, RandomAccessIterator last, std::random_access_iterator_tag) {
-        __glibcxx_function_requires(_RandomAccessIteratorConcept < RandomAccessIterator >)
+        //__glibcxx_function_requires(_RandomAccessIteratorConcept < RandomAccessIterator > )
         return static_cast<size_t>(std::abs(last - first));
     }
 
     template<typename InputIterator>
     inline size_t distance(InputIterator first, InputIterator last) {
-        return distance(first, last, std::__iterator_category(first));
+        return distance(first, last, std::iterator_traits<InputIterator>::iterator_category());
     }
 
     template<typename T1, typename T2>

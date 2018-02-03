@@ -90,11 +90,17 @@ double mp_nombre::get_double() const {
     return mpz_get_d(_data);
 }
 
+#ifdef WIN32
+unsigned long long mp_nombre::get_unsigned_long_long() const {
+    return std::stoull(to_string());
+}
+#else
 unsigned long long mp_nombre::get_unsigned_long_long() const {
     unsigned long long result = 0;
     mpz_export(&result, nullptr, -1, sizeof result, 0, 0, _data);
     return result;
 }
+#endif
 
 void mp_nombre::swap(mp_nombre &op) {
     mpz_swap(_data, op._data);

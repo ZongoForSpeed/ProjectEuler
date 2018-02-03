@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <boost/algorithm/string.hpp>
+#include <numeric>
 
 typedef unsigned long long nombre;
 
@@ -28,7 +29,7 @@ ENREGISTRER_PROBLEME(42, "Coded triangle numbers") {
 
     nombre resultat = 0;
     for (const auto &name: names) {
-        nombre score = std::accumulate(name.begin(), name.end(), 0UL, [](const nombre &n, char c) {
+        nombre score = std::accumulate(name.begin(), name.end(), 0ULL, [](const nombre &n, char c) {
             if (c != '"')
                 return n + 1 + static_cast<nombre>(c - 'A');
             return n;

@@ -52,12 +52,12 @@ int RegistreProbleme::execute(int argc, char** argv)
         boost::split(s, p, boost::is_any_of(":-"));
         if (s.size() == 1)
         {
-            problemes.push_back(stoull(p));
+            problemes.push_back(std::stoull(p));
         }
         else if (s.size() > 1)
         {
-            const size_t debut = stoull(s[0]);
-            const size_t fin = stoull(s[1]);
+            const size_t debut = std::stoull(s[0]);
+            const size_t fin = std::stoull(s[1]);
             for (size_t i = debut; i < fin + 1; ++i)
             {
                 problemes.push_back(i);
@@ -77,6 +77,7 @@ int RegistreProbleme::execute(int argc, char** argv)
             oss << "probleme " << it->first << ": " << it->second.first;
             Timer t(oss.str());
             const std::string resultat = it->second.second();
+#ifndef WIN32
             if (resultat == solution)
             {
                 std::cout << "\033[1;32m" << "Solution : " << resultat << "\033[0m" << std::endl;
@@ -88,6 +89,18 @@ int RegistreProbleme::execute(int argc, char** argv)
                 std::cout << "Solution : " << solution << std::endl;
                 std::cout << "\033[0m";
             }
+#else
+            if (resultat == solution)
+            {
+                std::cout << "Solution : " << resultat << std::endl;
+            }
+            else
+            {
+                std::cout << "ERREUR !" << std::endl;
+                std::cout << "Resultat : " << resultat << std::endl;
+                std::cout << "Solution : " << solution << std::endl;
+            }
+#endif
         }
         else
             std::cout << "Le probleme " << n << " n'existe pas !" << std::endl;

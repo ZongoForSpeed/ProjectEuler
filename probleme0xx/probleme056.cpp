@@ -10,8 +10,8 @@ ENREGISTRER_PROBLEME(56, "Powerful digit sum") {
     //
     // Considering natural numbers of the form, a^b, where a, b < 100, what is the maximum digital sum?
     mp_nombre maximum = 0;
-    for (size_t a = 1; a < 100; ++a)
-        for (size_t b = 1; b < 100; ++b) {
+    for (unsigned long a = 1; a < 100; ++a)
+        for (unsigned long b = 1; b < 100; ++b) {
             mp_nombre somme = mp_nombre::puissance(a, b).somme_chiffres();
             maximum = std::max(maximum, somme);
         }

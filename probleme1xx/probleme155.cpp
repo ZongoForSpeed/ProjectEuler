@@ -38,7 +38,7 @@ ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits") {
             for (auto vi: capacite[i])
                 for (auto vj: capacite[j]) {
                     c.insert(vi + vj);
-                    c.insert(1 / (1 / vi + 1 / vj));
+                    c.insert(fraction(1) / (fraction(1) / vi + fraction(1) / vj));
                 }
         }
         resultat.insert(c.begin(), c.end());

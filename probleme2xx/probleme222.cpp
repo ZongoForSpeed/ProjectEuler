@@ -2,6 +2,7 @@
 #include "arithmetiques.h"
 
 #include <fstream>
+#include <random>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

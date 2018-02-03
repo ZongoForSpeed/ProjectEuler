@@ -10,16 +10,16 @@ ENREGISTRER_PROBLEME(117, "Red, green, and blue tiles") {
     // How many ways can a row measuring fifty units in length be tiled?
     // 
     // NOTE: This is related to Problem 116.
-    size_t longueur = 50;
+    unsigned long longueur = 50;
     mp_nombre resultat = 0;
 
-    for (size_t s4 = 0; s4 < longueur + 1; s4 += 4)
-        for (size_t s3 = 0; s3 < longueur - s4 + 1; s3 += 3)
-            for (size_t s2 = 0; s2 < longueur - s3 - s4 + 1; s2 += 2) {
-                size_t n4 = s4 / 4;
-                size_t n3 = s3 / 3;
-                size_t n2 = s2 / 2;
-                size_t n1 = longueur - s2 - s3 - s4;
+    for (unsigned long s4 = 0; s4 < longueur + 1; s4 += 4)
+        for (unsigned long s3 = 0; s3 < longueur - s4 + 1; s3 += 3)
+            for (unsigned long s2 = 0; s2 < longueur - s3 - s4 + 1; s2 += 2) {
+                unsigned long n4 = s4 / 4;
+                unsigned long n3 = s3 / 3;
+                unsigned long n2 = s2 / 2;
+                unsigned long n1 = longueur - s2 - s3 - s4;
 
                 mp_nombre n = mp_nombre::factorielle(n1 + n2 + n3 + n4);
                 mp_nombre d = mp_nombre::factorielle(n1) * mp_nombre::factorielle(n2)

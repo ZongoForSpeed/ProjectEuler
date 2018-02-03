@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <boost/algorithm/string.hpp>
+#include <numeric>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -44,7 +45,7 @@ ENREGISTRER_PROBLEME(107, "Minimal network") {
         nombre j = 0;
         for (auto &s: strings) {
             if (s != "-" && i < j)
-                A.push_back(std::make_tuple(i, j, stoull(s)));
+                A.push_back(std::make_tuple(i, j, std::stoull(s)));
             ++j;
         }
         ++i;

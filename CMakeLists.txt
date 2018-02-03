@@ -1,34 +1,47 @@
 project(ProjectEuler)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/install/")
+set(Boost_USE_STATIC_LIBS        ON) # only find static libs
+set(Boost_USE_MULTITHREADED      ON)
+set(Boost_USE_STATIC_RUNTIME    ON)
 
 cmake_minimum_required(VERSION 3.9)
+find_package(Boost 1.58 REQUIRED unit_test_framework date_time)
 find_package(GMP 2.6 REQUIRED)
-find_package(Boost 1.58 REQUIRED system thread timer chrono)
 
 # Check for standard to use
 set(CMAKE_CXX_STANDARD 17)
+
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 
-add_subdirectory(gtest)
+IF (WIN32)
+    # set stuff for windows
+    # set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/O2 -g")
+    set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ox")
+    set(CMAKE_CXX_FLAGS_DEBUG "/Od")
+ELSE ()
+    # set stuff for other systems
+    set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+    set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 
-add_compile_options(-Werror
-        -Weverything
-        -Wno-c++98-compat
-        -Wno-c++98-compat-pedantic
-        -Wno-zero-as-null-pointer-constant # pour les macro TEST et TEST_F
-        -Wno-padded
-        -Wno-global-constructors
-        -Wno-exit-time-destructors
-        -Wno-weak-vtables)
+    add_compile_options(-Werror
+            -Weverything
+            -Wno-c++98-compat
+            -Wno-c++98-compat-pedantic
+            -Wno-padded
+            -Wno-global-constructors
+            -Wno-exit-time-destructors
+            -Wno-weak-vtables)
+ENDIF ()
+
+add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${GMP_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
-include_directories(${MPFR_INCLUDES})
-include_directories(SYSTEM ${GTEST_INCLUDE_DIRS})
 
 include(CheckCXXCompilerFlag)
 
@@ -86,14 +99,19 @@ set(SOURCE_FILES
         ${LIBRARY_FILES}
         ${PROBLEMES_FILES})
 
+message("Boost_LIBRARIES = " ${Boost_LIBRARIES})
+
+message("Boost_UNIT_TEST_FRAMEWORK_LIBRARY = " ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+message("Boost_DATE_TIME_LIBRARY = " ${Boost_DATE_TIME_LIBRARY})
+
+message("GMP_LIBRARIES = " ${GMP_LIBRARIES})
+message("GMP_INCLUDE_DIR = " ${GMP_INCLUDE_DIR})
+
 add_executable(ProjectEuler ${SOURCE_FILES})
 target_link_libraries(ProjectEuler ${GMP_LIBRARIES})
-target_link_libraries(ProjectEuler ${Boost_LIBRARIES})
-target_link_libraries(ProjectEuler ${MPFR_LIBRARIES})
+target_link_libraries(ProjectEuler ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+target_link_libraries(ProjectEuler ${Boost_DATE_TIME_LIBRARY})
 
 add_executable(ProjectEulerTest ${TEST_FILES})
-add_dependencies(ProjectEulerTest googletest)
-target_link_libraries(ProjectEulerTest ${GTEST_LIBS_DIR}/libgtest.a ${GTEST_LIBS_DIR}/libgtest_main.a)
-target_link_libraries(ProjectEulerTest -lpthread -lm)
 target_link_libraries(ProjectEulerTest ${GMP_LIBRARIES})
-target_link_libraries(ProjectEulerTest ${Boost_LIBRARIES})
+target_link_libraries(ProjectEulerTest ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})

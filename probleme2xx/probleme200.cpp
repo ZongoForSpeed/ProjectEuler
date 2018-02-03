@@ -4,6 +4,7 @@
 #include "mp_nombre.h"
 
 #include <set>
+#include <iterator>
 
 typedef std::vector<size_t> vecteur;
 typedef std::pair<size_t, size_t> paire;

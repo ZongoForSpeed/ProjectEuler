@@ -108,7 +108,5 @@ ENREGISTRER_PROBLEME(13, "Large sum") {
     mp_nombre somme = 0;
     mp_nombre n;
     while (is >> n) somme += n;
-    std::ostringstream os;
-    os << somme;
-    return os.str().substr(0, 10);
+    return somme.to_string(10).substr(0, 10);
 }

@@ -28,7 +28,7 @@ ENREGISTRER_PROBLEME(375, "Minimum of subsequences") {
     for (nombre i = 1; i < limite + 1; ++i) {
         s = s*s % modulo;
         
-        while (q.size() > 1 and q.front().first > s) {
+        while (q.size() > 1 && q.front().first > s) {
             auto q0 = q.front(); 
             q.pop_front();
             

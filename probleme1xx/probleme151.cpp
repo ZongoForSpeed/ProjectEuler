@@ -60,7 +60,7 @@ ENREGISTRER_PROBLEME(151, "Paper sheets of standard sizes: an expected-value pro
     // Give your answer rounded to six decimal places using the format x.xxxxxx .
     std::map<envelope, fraction> cache;
     envelope e{1};
-    fraction f = calculEsperance(cache, e) - 2;
+    fraction f = calculEsperance(cache, e) - fraction(2);
     double resultat = 1;
     resultat *= f.numerator();
     resultat /= f.denominator();

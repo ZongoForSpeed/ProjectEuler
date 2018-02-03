@@ -2,13 +2,13 @@
 #include "arithmetiques.h"
 #include "polynome.h"
 
-#include <boost/multiprecision/gmp.hpp>
+#include <boost/multiprecision/cpp_bin_float.hpp>
 
-typedef boost::multiprecision::mpf_float nombre;
+typedef boost::multiprecision::cpp_bin_float_quad nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace {
-    nombre puissance_float(nombre base, unsigned long exposant) {
+    nombre puissance_float(nombre base, size_t exposant) {
         nombre resultat(1);
         while (exposant > 0) {
             if (exposant % 2)

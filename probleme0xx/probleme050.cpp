@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <set>
+#include <iterator>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

@@ -44,7 +44,7 @@ namespace diophantienne {
                 q_ir = q_i;
             }
 
-            if (ir && *ir != i && p_i == p_ir and q_i == q_ir)
+            if (ir && *ir != i && p_i == p_ir && q_i == q_ir)
                 break;
 
             alphas.push_back(alpha_i);

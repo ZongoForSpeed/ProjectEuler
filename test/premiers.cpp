@@ -1,55 +1,58 @@
-#include <gtest/gtest.h>
-
 #include <deque>
+#include <numeric>
 
 #include "premiers.h"
 #include "test.h"
 
-TEST(test_premiers, crible) {
+BOOST_AUTO_TEST_SUITE(test_premiers)
+
+BOOST_AUTO_TEST_CASE(crible) {
     const std::vector<size_t> premiers100{2, 3, 5, 7, 11, 13, 17, 19, 23,
                                           29, 31, 37, 41, 43, 47, 53, 59,
                                           61, 67, 71, 73, 79, 83, 89, 97};
     std::deque<size_t> resultat;
     premiers::crible2<size_t>(100ULL, std::back_inserter(resultat));
-    EXPECT_EQ_COLLECTIONS(premiers100.begin(), premiers100.end(), resultat.begin(), resultat.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(premiers100.begin(), premiers100.end(), resultat.begin(), resultat.end());
 }
 
-TEST(test_premiers, crible23) {
+BOOST_AUTO_TEST_CASE(crible23) {
     std::deque<size_t> resultat;
     premiers::crible23<size_t>(10000ULL, std::back_inserter(resultat));
 
-    EXPECT_EQ(resultat.at(1), 3);
-    EXPECT_EQ(resultat.at(2), 5);
-    EXPECT_EQ(resultat.at(100), 547);
-    EXPECT_EQ(resultat.at(1000), 7927);
+    BOOST_CHECK_EQUAL(resultat.at(1), 3);
+    BOOST_CHECK_EQUAL(resultat.at(2), 5);
+    BOOST_CHECK_EQUAL(resultat.at(100), 547);
+    BOOST_CHECK_EQUAL(resultat.at(1000), 7927);
 }
 
-TEST(test_premiers, crible235) {
+BOOST_AUTO_TEST_CASE(crible235) {
     std::deque<size_t> resultat;
     premiers::crible235<size_t>(2000000ULL, std::back_inserter(resultat));
 
-    EXPECT_EQ(resultat.at(1), 3);
-    EXPECT_EQ(resultat.at(2), 5);
-    EXPECT_EQ(resultat.at(100), 547);
-    EXPECT_EQ(resultat.at(1000), 7927);
-    EXPECT_EQ(resultat.at(10000), 104743);
-    EXPECT_EQ(resultat.at(50000), 611957);
-    EXPECT_EQ(resultat.at(100000), 1299721);
+    BOOST_CHECK_EQUAL(resultat.at(1), 3);
+    BOOST_CHECK_EQUAL(resultat.at(2), 5);
+    BOOST_CHECK_EQUAL(resultat.at(100), 547);
+    BOOST_CHECK_EQUAL(resultat.at(1000), 7927);
+    BOOST_CHECK_EQUAL(resultat.at(10000), 104743);
+    BOOST_CHECK_EQUAL(resultat.at(50000), 611957);
+    BOOST_CHECK_EQUAL(resultat.at(100000), 1299721);
 }
 
-TEST(test_premiers, crible_simple) {
+BOOST_AUTO_TEST_CASE(crible_simple) {
     const std::vector<size_t> premiers100{2, 3, 5, 7, 11, 13, 17, 19, 23,
                                           29, 31, 37, 41, 43, 47, 53, 59,
                                           61, 67, 71, 73, 79, 83, 89, 97};
     std::vector<bool> crible;
     premiers::crible_simple(100, crible);
 
-    EXPECT_EQ(100, crible.size());
+    BOOST_CHECK_EQUAL(100, crible.size());
 
     for (auto p: premiers100) {
-        EXPECT_TRUE(crible[p]);
+        BOOST_CHECK(crible[p]);
     }
     
     size_t compteur = std::accumulate(crible.begin(), crible.end(), 0ul);
-    EXPECT_EQ(25, compteur);
+    BOOST_CHECK_EQUAL(25, compteur);
 }
+
+BOOST_AUTO_TEST_SUITE_END()

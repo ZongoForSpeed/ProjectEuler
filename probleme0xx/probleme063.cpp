@@ -11,7 +11,7 @@ ENREGISTRER_PROBLEME(63, "Powerful digit counts") {
     // How many n-digit positive integers exist which are also an nth power?
     nombre resultat = 0;
     for (nombre n = 1; n < 10; ++n) {
-        resultat += floor(log(10) / (log(10) - log(n)));
+        resultat += static_cast<nombre>(std::floor(std::log(10) / (std::log(10) - std::log(n))));
     }
     return std::to_string(resultat);
 }

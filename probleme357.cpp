@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <set>
+#include <iterator>
 
 typedef size_t nombre;
 

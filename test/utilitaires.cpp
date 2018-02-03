@@ -1,32 +1,34 @@
-#include <gtest/gtest.h>
+#include <boost/test/unit_test.hpp>
 
 #include "utilitaires.h"
 
-TEST(test_utilitaires, affiche_vector) {
+BOOST_AUTO_TEST_SUITE(test_utilitaires)
+
+BOOST_AUTO_TEST_CASE(affiche_vector) {
     const std::vector<int> v{1, 1, 2, 3, 5, 8, 13};
     std::ostringstream oss;
     oss << v;
 
-    EXPECT_EQ("[1 1 2 3 5 8 13]", oss.str());
+    BOOST_CHECK_EQUAL("[1 1 2 3 5 8 13]", oss.str());
 }
 
-TEST(test_utilitaires, affiche_deque) {
+BOOST_AUTO_TEST_CASE(affiche_deque) {
     const std::deque<int> v{1, 1, 2, 3, 5, 8, 13, 21, 34};
     std::ostringstream oss;
     oss << v;
 
-    EXPECT_EQ("[1 1 2 3 5 8 13 21 34]", oss.str());
+    BOOST_CHECK_EQUAL("[1 1 2 3 5 8 13 21 34]", oss.str());
 }
 
-TEST(test_utilitaires, affiche_set) {
+BOOST_AUTO_TEST_CASE(affiche_set) {
     const std::set<int> v{1, 1, 2, 3, 5, 8, 13, 21, 34};
     std::ostringstream oss;
     oss << v;
 
-    EXPECT_EQ("{1 2 3 5 8 13 21 34}", oss.str());
+    BOOST_CHECK_EQUAL("{1 2 3 5 8 13 21 34}", oss.str());
 }
 
-TEST(test_utilitaires, affiche_map) {
+BOOST_AUTO_TEST_CASE(affiche_map) {
     const std::map<int, std::string> v{{1,  "1"},
                                        {2,  "3"},
                                        {5,  "8"},
@@ -41,5 +43,7 @@ TEST(test_utilitaires, affiche_map) {
             "    13 => 21\n"
             "}\n";
 
-    EXPECT_EQ(result, oss.str());
+    BOOST_CHECK_EQUAL(result, oss.str());
 }
+
+BOOST_AUTO_TEST_SUITE_END()

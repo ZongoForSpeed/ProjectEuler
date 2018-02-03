@@ -2,6 +2,7 @@
 #include "premiers.h"
 
 #include <set>
+#include <iterator>
 
 typedef long long nombre;
 

@@ -1,3 +1,4 @@
+#include <numeric>
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
@@ -32,8 +33,8 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients") {
     premiers::crible2<mp_nombre>(limite, std::back_inserter(premiers));
 
     std::set<mp_nombre> square_free;
-    for (size_t n = 0; n <= limite; ++n)
-        for (size_t p = 0; p <= n; ++p) {
+    for (unsigned long n = 0; n <= limite; ++n)
+        for (unsigned long p = 0; p <= n; ++p) {
             mp_nombre Cnp = mp_nombre::coefficient_binomial(n, p);
             if (!arithmetiques::facteur_carre(Cnp, premiers))
                 square_free.insert(Cnp);

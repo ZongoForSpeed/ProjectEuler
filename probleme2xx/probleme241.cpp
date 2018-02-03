@@ -1,3 +1,4 @@
+#include <numeric>
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
@@ -12,22 +13,21 @@ namespace {
                   const mp_nombre &n,
                   const fraction &sigma,
                   vecteur &resultat) {
-        std::map<mp_nombre, size_t> decomposition;
+        std::map<mp_nombre, unsigned long> decomposition;
         arithmetiques::decomposition(sigma.numerator(), premiers, decomposition);
 
         mp_nombre p = decomposition.begin()->first;
-        size_t exposant = decomposition.begin()->second;
+        unsigned long exposant = decomposition.begin()->second;
 
         if (n % p == 0)
             return;
 
-        for (size_t a = exposant;; ++a) {
+        for (unsigned long a = exposant;; ++a) {
             mp_nombre m = n * mp_nombre::puissance(p, a);
             if (m > limite)
                 break;
 
-            fraction sigma2 =
-                    sigma * fraction(mp_nombre::puissance(p, a + 1) - 1, mp_nombre::puissance(p, a) * (p - 1));
+            fraction sigma2 = fraction(mp_nombre::puissance(p, a + 1) - 1, mp_nombre::puissance(p, a) * (p - 1)) * sigma;
 
             if (sigma2 == 1) {
                 resultat.push_back(m);

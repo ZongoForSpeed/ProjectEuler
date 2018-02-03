@@ -39,7 +39,7 @@ ENREGISTRER_PROBLEME(121, "Disc game prize fund") {
                 if (permutation.at(n))
                     p *= probabilites.at(n);
                 else
-                    p *= 1 - probabilites.at(n);
+                    p *= fraction(1) - probabilites.at(n);
             }
 
             probabilite += p;

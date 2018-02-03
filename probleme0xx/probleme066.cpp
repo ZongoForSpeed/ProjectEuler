@@ -8,7 +8,7 @@ namespace {
     vecteur fraction_continue(size_t d) {
         vecteur resultat;
         size_t d2 = arithmetiques::racine_carre(d);
-        unsigned long a = arithmetiques::racine_carre(d), p = 0, q = 1;
+        size_t a = arithmetiques::racine_carre(d), p = 0, q = 1;
         do {
             resultat.push_back(a);
             p = a * q - p;
@@ -29,10 +29,10 @@ namespace {
         mp_nombre b1 = 0;
         for (size_t i = 1; i <= per; i++) {
             mp_nombre t = a;
-            a = c[(i - 1) % l + 1] * a + a1;
+            a = a * c[(i - 1) % l + 1] + a1;
             a1 = t;
             t = b;
-            b = c[(i - 1) % l + 1] * b + b1;
+            b = b * c[(i - 1) % l + 1] + b1;
             b1 = t;
         }
         return a;
