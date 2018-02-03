@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(crible23) {
 
 BOOST_AUTO_TEST_CASE(crible235) {
     std::deque<size_t> resultat;
-    premiers::crible235<size_t>(2000000ULL, std::back_inserter(resultat));
+    premiers::crible235<size_t>(2'000'000ULL, std::back_inserter(resultat));
 
     BOOST_CHECK_EQUAL(resultat.at(1), 3);
     BOOST_CHECK_EQUAL(resultat.at(2), 5);

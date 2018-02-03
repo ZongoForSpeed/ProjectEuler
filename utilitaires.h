@@ -172,7 +172,7 @@ namespace utilitaires {
 
     template<typename InputIterator>
     inline size_t distance(InputIterator first, InputIterator last) {
-        return distance(first, last, std::iterator_traits<InputIterator>::iterator_category());
+        return distance(first, last, typename std::iterator_traits<InputIterator>::iterator_category());
     }
 
     template<typename T1, typename T2>
@@ -197,19 +197,17 @@ namespace utilitaires {
     }
 
     template<typename Nombre>
-    constexpr typename std::enable_if<std::is_integral<Nombre>::value, bool>::type
-    egal(const Nombre &a, const Nombre &b) {
+    constexpr bool egal(const Nombre &a, const Nombre &b, std::false_type /*is_floating_point*/) {
         return a == b;
     }
 
     template<typename Nombre>
-    constexpr typename std::enable_if<std::is_class<Nombre>::value, bool>::type egal(const Nombre &a, const Nombre &b) {
-        return a == b;
-    }
-
-    template<typename Nombre>
-    constexpr typename std::enable_if<std::is_floating_point<Nombre>::value, bool>::type
-    egal(const Nombre &a, const Nombre &b) {
+    constexpr bool egal(const Nombre &a, const Nombre &b, std::true_type /*is_floating_point*/) {
         return std::abs(b - a) < std::numeric_limits<Nombre>::epsilon();
+    }
+
+    template<typename Nombre>
+    constexpr bool egal(const Nombre &a, const Nombre &b) {
+        return egal(a, b, std::is_floating_point<Nombre>());
     }
 }
