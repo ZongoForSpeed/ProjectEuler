@@ -1,16 +1,18 @@
+# Output file
 Euler.log
 ProjectEuler
 ProjectEulerTest
+
+# IDE files
 .idea/
 .cproject
 .project
 .settings/
 .vscode/
-prof.euler
+
+# CMake files
 CMakeCache.txt
 CMakeFiles/
+cmake-build-*/
 cmake_install.cmake
 Makefile
-cmake-build-debug/
-cmake-build-release/
-gtest/googletest-prefix/
