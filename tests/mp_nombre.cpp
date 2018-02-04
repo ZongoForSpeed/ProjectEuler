@@ -1,9 +1,11 @@
+#include <boost/test/unit_test.hpp>
+
 #include "utilitaires.h"
 #include "mp_nombre.h"
-#include "test.h"
+
 BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
-BOOST_AUTO_TEST_CASE(test_constructeur)
+    BOOST_AUTO_TEST_CASE(test_constructeur)
     {
         mp_nombre n1;
         mp_nombre n2(42);

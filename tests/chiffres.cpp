@@ -1,5 +1,6 @@
+#include <boost/test/unit_test.hpp>
+
 #include "chiffres.h"
-#include "test.h"
 
 BOOST_AUTO_TEST_SUITE(test_chiffres)
 

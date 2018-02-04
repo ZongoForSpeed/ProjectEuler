@@ -1,5 +1,5 @@
+#include <boost/test/unit_test.hpp>
 #include "matrice.h"
-#include "test.h"
 
 #include <boost/numeric/ublas/assignment.hpp>
 #include <boost/rational.hpp>

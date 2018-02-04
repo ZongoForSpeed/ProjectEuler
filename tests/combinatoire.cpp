@@ -1,4 +1,5 @@
-#include "test.h"
+#include <boost/test/unit_test.hpp>
+
 #include "combinatoire.h"
 
 BOOST_AUTO_TEST_SUITE(test_combinatoire)

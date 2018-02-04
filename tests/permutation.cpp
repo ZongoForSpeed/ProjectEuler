@@ -1,6 +1,7 @@
+#include <boost/test/unit_test.hpp>
+
 #include "utilitaires.h"
 #include "permutation.h"
-#include "test.h"
 
 BOOST_AUTO_TEST_SUITE(test_permutation)
 

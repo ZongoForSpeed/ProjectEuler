@@ -45,73 +45,27 @@ include_directories(${Boost_INCLUDE_DIR})
 
 include(CheckCXXCompilerFlag)
 
-set(LIBRARY_FILES
-        arithmetiques.h
-        chiffres.h
-        combinatoire.h
-        diophantienne.cpp
-        diophantienne.h
-        fenwick.h
-        graphe.cpp
-        graphe.h
-        matrice.h
-        multidimension.h
-        permutation.h
-        polygonal.h
-        polynome.h
-        premiers.cpp
-        premiers.h
-        puissance.h
-        pythagoricien.cpp
-        pythagoricien.h
-        timer.cpp
-        timer.h
-        mp_nombre.cpp
-        mp_nombre.h
-        utilitaires.h)
-
-file(COPY data
-        DESTINATION .)
-
-FILE(GLOB TEST_WILDCARD test/*.cpp)
-set(TEST_FILES
-        test.cpp
-        test/test.h
-        ${TEST_WILDCARD}
-        ${LIBRARY_HEADERS}
-        ${LIBRARY_FILES})
-
-aux_source_directory(probleme0xx PROBLEME_0XX)
-aux_source_directory(probleme1xx PROBLEME_1XX)
-aux_source_directory(probleme2xx PROBLEME_2XX)
-FILE(GLOB PROBLEME_YYY probleme*.cpp)
-
-set(PROBLEMES_FILES
-        ${PROBLEME_0XX}
-        ${PROBLEME_1XX}
-        ${PROBLEME_2XX}
-        ${PROBLEME_YYY})
-
-set(SOURCE_FILES
-        problemes.h
-        problemes.cpp
-        euler.cpp
-        ${LIBRARY_FILES}
-        ${PROBLEMES_FILES})
+file(COPY data DESTINATION .)
 
 message("Boost_LIBRARIES = " ${Boost_LIBRARIES})
-
 message("Boost_UNIT_TEST_FRAMEWORK_LIBRARY = " ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 message("Boost_DATE_TIME_LIBRARY = " ${Boost_DATE_TIME_LIBRARY})
-
 message("GMP_LIBRARIES = " ${GMP_LIBRARIES})
 message("GMP_INCLUDE_DIR = " ${GMP_INCLUDE_DIR})
 
-add_executable(ProjectEuler ${SOURCE_FILES})
+add_subdirectory(maths)
+add_subdirectory(tests)
+add_subdirectory(problemes)
+
+add_executable(ProjectEuler euler.cpp)
+target_link_libraries(ProjectEuler maths)
+target_link_libraries(ProjectEuler problemes)
 target_link_libraries(ProjectEuler ${GMP_LIBRARIES})
 target_link_libraries(ProjectEuler ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 target_link_libraries(ProjectEuler ${Boost_DATE_TIME_LIBRARY})
 
-add_executable(ProjectEulerTest ${TEST_FILES})
+add_executable(ProjectEulerTest test.cpp)
+target_link_libraries(ProjectEulerTest maths)
+target_link_libraries(ProjectEulerTest tests)
 target_link_libraries(ProjectEulerTest ${GMP_LIBRARIES})
 target_link_libraries(ProjectEulerTest ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})

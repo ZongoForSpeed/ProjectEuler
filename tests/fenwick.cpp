@@ -1,9 +1,8 @@
+#include <boost/test/unit_test.hpp>
 #include <numeric>
-#include <boost/test/unit_test_suite.hpp>
 
 #include "fenwick.h"
 #include "utilitaires.h"
-#include "test.h"
 
 BOOST_AUTO_TEST_SUITE(test_fenwick)
 

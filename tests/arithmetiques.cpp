@@ -1,8 +1,6 @@
-#include "test.h"
-
 #include <boost/test/unit_test.hpp>
-#include "arithmetiques.h"
 
+#include "arithmetiques.h"
 
 BOOST_AUTO_TEST_SUITE(test_arithmetiques)
 
