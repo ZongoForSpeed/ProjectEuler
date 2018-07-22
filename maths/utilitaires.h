@@ -149,6 +149,12 @@ namespace std {
         oss << f;
         return oss.str();
     }
+
+    unsigned short popcount(unsigned short S);
+
+    unsigned long popcount(unsigned long S);
+
+    unsigned long long popcount(unsigned long long S);
 }
 
 namespace utilitaires {

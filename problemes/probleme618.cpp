@@ -33,7 +33,7 @@ ENREGISTRER_PROBLEME(618, "Numbers with a given prime factor sum") {
     size_t resultat = 0;
     for (size_t i = 2, a = 1, b = 1; i <= 24; ++i) {
         size_t c = a + b;
-        std::cout << "a = " << a << std::endl;
+        // std::cout << "a = " << a << std::endl;
         resultat += F[a];
         b = a;
         a = c;

@@ -24,6 +24,7 @@ add_library (maths SHARED
         ${PROJECT_SOURCE_DIR}/pythagoricien.h
         ${PROJECT_SOURCE_DIR}/timer.cpp
         ${PROJECT_SOURCE_DIR}/timer.h
+        ${PROJECT_SOURCE_DIR}/utilitaires.cpp
         ${PROJECT_SOURCE_DIR}/utilitaires.h)
 
 include_directories(${PROJECT_SOURCE_DIR})
