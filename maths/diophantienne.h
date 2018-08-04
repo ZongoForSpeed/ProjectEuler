@@ -5,7 +5,7 @@
 
 #include <set>
 #include <vector>
-#include <boost/optional.hpp>
+#include <optional>
 
 namespace diophantienne {
     // PQa algorithm as described in: http://www.jpr2718.org/pell.pdf
@@ -24,7 +24,7 @@ namespace diophantienne {
         Nombre p_ir = 0, q_ir = 0;
 
         size_t i = 0;
-        boost::optional<size_t> ir;
+        std::optional<size_t> ir;
 
         std::vector<Nombre> alphas;
         while (true) {

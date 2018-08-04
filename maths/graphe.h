@@ -2,7 +2,7 @@
 #include <map>
 #include <limits>
 #include <set>
-#include <boost/optional.hpp>
+#include <optional>
 
 namespace graphe {
     typedef unsigned long long nombre;
@@ -13,7 +13,7 @@ namespace graphe {
             nombre n;
             nombre lowlink;
             bool onStack;
-            boost::optional<nombre> index;
+            std::optional<nombre> index;
 
             Sommet(nombre _n) : n(_n), lowlink(std::numeric_limits<nombre>::max()), onStack(false) {}
         };

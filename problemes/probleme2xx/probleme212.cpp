@@ -8,17 +8,17 @@ typedef std::pair<nombre, nombre> segment;
 typedef std::tuple<nombre, nombre, nombre, nombre, nombre, nombre> cuboide;
 
 namespace {
-    boost::optional<segment> intersection(nombre xA, nombre dxA, nombre xB, nombre dxB) {
+    std::optional<segment> intersection(nombre xA, nombre dxA, nombre xB, nombre dxB) {
         nombre x = std::max(xA, xB);
         nombre y = std::min(xA + dxA, xB + dxB);
 
         if (x < y)
             return segment(x, y - x);
         else
-            return boost::none;
+            return std::nullopt;
     }
 
-    boost::optional<cuboide> intersection(const cuboide &A, const cuboide &B) {
+    std::optional<cuboide> intersection(const cuboide &A, const cuboide &B) {
         nombre xa, ya, za, dxa, dya, dza;
         nombre xb, yb, zb, dxb, dyb, dzb;
         std::tie(xa, ya, za, dxa, dya, dza) = A;
@@ -30,7 +30,7 @@ namespace {
                     return cuboide(x->first, y->first, z->first, x->second, y->second, z->second);
                 }
 
-        return boost::none;
+        return std::nullopt;
     }
 
     nombre volume(const cuboide &A) {

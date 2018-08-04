@@ -11,6 +11,9 @@ find_package(GMP 2.6 REQUIRED)
 
 # Check for standard to use
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+add_compile_options(-std=c++17)
 
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
@@ -27,14 +30,14 @@ ELSE ()
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 
-    add_compile_options(-Werror
-            -Weverything
-            -Wno-c++98-compat
-            -Wno-c++98-compat-pedantic
-            -Wno-padded
-            -Wno-global-constructors
-            -Wno-exit-time-destructors
-            -Wno-weak-vtables)
+    add_compile_options(-Werror -Wall -Wextra -Wpedantic -Weverything
+    					-Wno-c++98-compat
+    					-Wno-c++98-compat-pedantic
+    					-Wno-padded
+    					-Wno-global-constructors
+    					-Wno-disabled-macro-expansion
+    					-Wno-exit-time-destructors
+    					-Wno-unused-macros)
 ENDIF ()
 
 add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})

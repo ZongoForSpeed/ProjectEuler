@@ -34,7 +34,7 @@ namespace {
         long double d = 0.0L;
         long double x0 = xmin;
         long double y0 = 0.0L;
-        boost::optional<long double> t0;
+        std::optional<long double> t0;
         long double alpha = xmin;
 
         while (true) {

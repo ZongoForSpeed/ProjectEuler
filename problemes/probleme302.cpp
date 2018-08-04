@@ -3,6 +3,7 @@
 #include "premiers.h"
 #include "mp_nombre.h"
 
+#include <optional>
 #include <bitset>
 
 typedef std::vector<mp_nombre> vecteur;
@@ -24,10 +25,10 @@ namespace {
                       const std::set<mp_nombre> &premiers) {
         size_t resultat = 0;
         if (pgcd == 1) {
-            boost::optional<size_t> exposant;
+            std::optional<size_t> exposant;
             for (auto &it : decomposition) {
                 if (it.second == 1) {
-                    exposant = boost::none;
+                    exposant = std::nullopt;
                     break;
                 }
                 if (exposant)

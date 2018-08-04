@@ -256,12 +256,12 @@ mp_nombre mp_nombre::PPCM(const mp_nombre &op1, unsigned long int op2) {
     return resultat;
 }
 
-boost::optional<mp_nombre> mp_nombre::inverse_modulaire(const mp_nombre &op, const mp_nombre &modulo) {
+std::optional<mp_nombre> mp_nombre::inverse_modulaire(const mp_nombre &op, const mp_nombre &modulo) {
     mp_nombre resultat;
     if (mpz_invert(resultat._data, op._data, modulo._data) != 0)
         return resultat;
 
-    return boost::none;
+    return std::nullopt;
 }
 
 mp_nombre mp_nombre::coefficient_binomial(const mp_nombre &n, unsigned long int k) {

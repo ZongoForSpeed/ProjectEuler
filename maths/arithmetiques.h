@@ -88,13 +88,13 @@ namespace arithmetiques {
     }
 
     template<typename Nombre>
-    boost::optional<Nombre> carre_parfait(Nombre x) {
+    std::optional<Nombre> carre_parfait(Nombre x) {
         static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
         Nombre s = racine_carre<Nombre>(x);
         if (s * s == x)
             return s;
         else
-            return boost::none;
+            return std::nullopt;
     }
 
     template<typename Nombre, typename Conteneur>

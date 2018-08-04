@@ -31,11 +31,11 @@ namespace {
                     m[i] = b - a;
                     test(m, p);
                 }
-                if (a != 0) {
+                if (a != nullptr) {
                     m[i] = b / a;
                     test(m, p);
                 }
-                if (b != 0) {
+                if (b != nullptr) {
                     m[i] = a / b;
                     test(m, p);
                 }

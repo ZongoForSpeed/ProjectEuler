@@ -16,3 +16,6 @@ CMakeFiles/
 cmake-build-*/
 cmake_install.cmake
 Makefile
+
+# Library files
+*.so

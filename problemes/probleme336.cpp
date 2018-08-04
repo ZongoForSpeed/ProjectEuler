@@ -2,6 +2,8 @@
 #include "utilitaires.h"
 #include "mp_nombre.h"
 
+#include <numeric>
+
 namespace {
     void reverse(std::vector<size_t> &train, size_t i) {
         std::reverse(std::next(train.begin(), i), train.end());

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <tuple>
 
 class Pythagoricien;
@@ -21,7 +21,7 @@ public:
 };
 
 class Pythagoricien {
-    boost::optional<size_t> limite;
+    std::optional<size_t> limite;
 public:
     Pythagoricien();
 

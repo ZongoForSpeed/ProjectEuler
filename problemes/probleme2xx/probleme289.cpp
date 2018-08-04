@@ -45,12 +45,12 @@ namespace {
             return false;
         }
 
-        boost::optional<Position> deplacer(unsigned short m) const {
+        std::optional<Position> deplacer(unsigned short m) const {
             Position p(*this);
             if (p.ajouter(m >= 12, m % 4, (m / 4) % 3))
                 return p;
             else
-                return boost::none;
+                return std::nullopt;
         }
 
     private:

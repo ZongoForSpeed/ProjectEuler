@@ -4,9 +4,10 @@
 #include <iostream>
 #include <limits>
 #include <type_traits>
+#include <optional>
+#include <functional>
 
 #include <gmp.h>
-#include <boost/optional.hpp>
 
 class mp_nombre {
     mpz_t _data;
@@ -207,7 +208,7 @@ public:
         return PPCM(op2, op1);
     }
 
-    static boost::optional<mp_nombre> inverse_modulaire(const mp_nombre &op, const mp_nombre &modulo);
+    static std::optional<mp_nombre> inverse_modulaire(const mp_nombre &op, const mp_nombre &modulo);
 
     static mp_nombre coefficient_binomial(const mp_nombre &n, unsigned long int k);
 

@@ -7,7 +7,7 @@ typedef multidimension<bool, 2> matrice;
 typedef std::pair<size_t, size_t> paire;
 
 namespace {
-    boost::optional<paire> libre(const matrice &m) {
+    std::optional<paire> libre(const matrice &m) {
         for (size_t i = 0; i < m.size(); ++i) {
             const auto &ligne = m[i];
             for (size_t j = 0; j < ligne.size(); ++j) {
@@ -15,7 +15,7 @@ namespace {
             }
         }
 
-        return boost::none;
+        return std::nullopt;
     }
 
     bool testForme1(const matrice &m, const size_t i, const size_t j) {

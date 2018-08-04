@@ -27,15 +27,15 @@ namespace {
 
         Segment(const Point &_p1, const Point &_p2) : p1(_p1), p2(_p2) {}
 
-        boost::optional<Point> intersection(const Segment &s) const {
+        std::optional<Point> intersection(const Segment &s) const {
             fraction d = (s.p2.y - s.p1.y) * (p2.x - p1.x) - (s.p2.x - s.p1.x) * (p2.y - p1.y);
             if (d == 0)
-                return boost::none;
+                return std::nullopt;
 
             fraction u = ((s.p2.x - s.p1.x) * (p1.y - s.p1.y) - (s.p2.y - s.p1.y) * (p1.x - s.p1.x)) / d;
             fraction v = ((p2.x - p1.x) * (p1.y - s.p1.y) - (p2.y - p1.y) * (p1.x - s.p1.x)) / d;
             if ((u <= 0) || (u >= 1) || (v <= 0) || (v >= 1))
-                return boost::none;
+                return std::nullopt;
 
             return Point(p1.x + u * (p2.x - p1.x), p1.y + u * (p2.y - p1.y));
         }

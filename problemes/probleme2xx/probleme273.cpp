@@ -9,7 +9,7 @@ typedef std::vector<nombre> vecteur;
 typedef std::complex<nombre> complexe;
 
 namespace {
-    boost::optional<complexe> gauss(nombre p) {
+    std::optional<complexe> gauss(nombre p) {
         for (nombre a = 1; 2 * a * a < p + 1; ++a) {
             nombre bb = p - a * a;
             if (auto r = arithmetiques::carre_parfait(bb)) {
@@ -21,7 +21,7 @@ namespace {
             }
         }
 
-        return boost::none;
+        return std::nullopt;
     }
 
     template<typename Iterator>

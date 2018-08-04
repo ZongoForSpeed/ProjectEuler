@@ -21,7 +21,7 @@ const IterateurPythagoricien &IterateurPythagoricien::operator++() {
     return *this;
 }
 
-Pythagoricien::Pythagoricien() : limite(boost::none) {}
+Pythagoricien::Pythagoricien() : limite(std::nullopt) {}
 
 Pythagoricien::Pythagoricien(const size_t l) : limite(l) {}
 

@@ -13,7 +13,7 @@
 #include <cmath>
 #include <iomanip>
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <boost/rational.hpp>
 
 namespace std {
@@ -121,7 +121,7 @@ namespace std {
     }
 
     template<typename T>
-    constexpr ostream &operator<<(ostream &os, boost::optional<T> s) {
+    constexpr ostream &operator<<(ostream &os, std::optional<T> s) {
         if (s)
             os << *s;
         else
