@@ -19,3 +19,4 @@ Makefile
 
 # Library files
 *.so
+*.prof
