@@ -5,6 +5,7 @@
 #include "utilitaires.h"
 
 #include <fstream>
+#include <maths/timer.h>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -43,7 +44,10 @@ ENREGISTRER_PROBLEME(111, "Primes with runs") {
     auto limite = puissance::puissance<nombre, unsigned>(10, 10);
 
     vecteur premiers;
-    premiers::crible23<nombre>(limite, std::back_inserter(premiers));
+    {
+        Timer t("Crible");
+        premiers::crible23<nombre>(limite, std::back_inserter(premiers));
+    }
 
     std::map<unsigned short, std::map<nombre, vecteur>> ensemble;
     for (nombre p: premiers) {

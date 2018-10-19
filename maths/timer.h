@@ -11,4 +11,6 @@ public:
     explicit Timer(const std::string &t);
 
     ~Timer();
+
+    double timestamp() const;
 };

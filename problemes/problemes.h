@@ -17,6 +17,8 @@ public:
 
     int execute(int argc, char **argv);
 
+    void executeProbleme(std::map<size_t, std::string>& solutions, size_t numero, const std::string &nom, const std::function<std::string()> &fonction);
+
 private:
     std::map<size_t, std::pair<std::string, std::function<std::string()>>> _registre;
 };
