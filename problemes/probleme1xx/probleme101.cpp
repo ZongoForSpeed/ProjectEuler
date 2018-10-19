@@ -88,7 +88,7 @@ ENREGISTRER_PROBLEME(101, "Optimum polynomial") {
     //
     // Find the sum of FITs for the BOPs.
     fraction resultat = 0;
-    polynome p {1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
+    polynome p{1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
     for (size_t k = 1; k < p.taille(); ++k) {
         const auto bop = BOP(static_cast<nombre>(k), p);
         resultat += bop;

@@ -1,9 +1,6 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 
-#include <fstream>
-#include <boost/algorithm/string.hpp>
-
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
