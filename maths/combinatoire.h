@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utilitaires.h"
+
 namespace combinatoire {
     template<typename Nombre>
     constexpr Nombre coefficient_binomial(Nombre n, Nombre p) {

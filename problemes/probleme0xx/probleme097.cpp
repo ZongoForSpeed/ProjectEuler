@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
+
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime") {
     // The first known prime found to exceed one million digits was discovered in 1999, and is a Mersenne prime of the
@@ -10,8 +11,8 @@ ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime") {
     // However, in 2004 there was found a massive non-Mersenne prime which contains 2,357,207 digits: 28433×2^7830457+1.
     // 
     // Find the last ten digits of this prime number.
-    mp_nombre masque = mp_nombre::puissance(10, 10);
-    mp_nombre mersenne = mp_nombre::puissance_modulaire(2, 7830457, masque);
+    nombre masque = puissance::puissance<nombre>(10, 10u);
+    nombre mersenne = puissance::puissance_modulaire<nombre>(2, 7830457u, masque);
     mersenne = (mersenne * 28433 + 1) % masque;
-    return mersenne.to_string();
+    return std::to_string(mersenne);
 }

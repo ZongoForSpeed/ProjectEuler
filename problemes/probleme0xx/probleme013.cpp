@@ -1,6 +1,8 @@
+#include <boost/multiprecision/cpp_int.hpp>
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
+
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(13, "Large sum") {
     // Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
@@ -105,8 +107,8 @@ ENREGISTRER_PROBLEME(13, "Large sum") {
             "20849603980134001723930671666823555245252804609722 "
             "53503534226472524250874054075591789781264330331690";
     std::istringstream is(entree);
-    mp_nombre somme = 0;
-    mp_nombre n;
+    nombre somme = 0;
+        nombre n;
     while (is >> n) somme += n;
-    return somme.to_string(10).substr(0, 10);
+    return somme.convert_to<std::string>().substr(0, 10);
 }

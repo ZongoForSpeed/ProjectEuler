@@ -1,10 +1,12 @@
 #include "problemes.h"
-#include "mp_nombre.h"
+#include "utilitaires.h"
+#include "polygonal.h"
 
 #include <sstream>
 #include <vector>
 
-typedef std::vector<mp_nombre> vecteur;
+typedef boost::multiprecision::cpp_int nombre;
+typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(80, "Square root digital expansion") {
     // It is well known that if the square root of a natural number is not an integer, then it is irrational. The
@@ -15,13 +17,14 @@ ENREGISTRER_PROBLEME(80, "Square root digital expansion") {
     //
     // For the first one hundred natural numbers, find the total of the digital sums of the first one hundred decimal
     // digits for all the irrational square roots.
-    mp_nombre gogol = mp_nombre::puissance(10, 100);
-    mp_nombre gogol_carre = gogol * gogol;
+    nombre gogol = puissance::puissance<nombre>(10, 100u);
 
     std::ostringstream oss;
-    for (mp_nombre n = 1; n < 100; ++n) {
-        if (!mp_nombre::carre_parfait(n)) {
-            oss << std::sqrt(n * gogol_carre).to_string().substr(0, 100);
+    for (size_t n = 1; n < 100; ++n) {
+        if (!polygonal::est_carre(n)) {
+            nombre carre = gogol * gogol * n;
+            nombre s = boost::multiprecision::sqrt(carre);
+            oss << s.str().substr(0, 100);
         }
     }
 

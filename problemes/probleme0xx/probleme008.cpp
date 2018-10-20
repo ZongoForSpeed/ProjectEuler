@@ -1,7 +1,9 @@
 #include <numeric>
+#include <boost/multiprecision/cpp_int.hpp>
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
+
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(8, "Largest product in a series") {
     // The four adjacent digits in the 1000-digit number that have the greatest 
@@ -29,18 +31,18 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series") {
     // Find the thirteen adjacent digits in the 1000-digit number that have the
     // greatest product. 
     // What is the value of this product?
-    auto produit = [&big_number](const size_t &debut, const size_t &fin) -> mp_nombre {
+    auto produit = [&big_number](const size_t &debut, const size_t &fin) -> nombre {
         if (debut < fin && fin < big_number.size())
             return std::accumulate(std::next(big_number.begin(), debut),
                                    std::next(big_number.begin(), fin),
-                                   mp_nombre(1),
-                                   [](const mp_nombre &p, char c) -> mp_nombre { return p * (c - '0'); }
+                                   nombre(1),
+                                   [](const nombre &p, char c) -> nombre { return p * (c - '0'); }
             );
         else
             return 0;
     };
-    mp_nombre solution = 0;
+    nombre solution = 0;
     for (size_t n = 13; n < big_number.size(); ++n)
         solution = std::max(solution, produit(n - 13, n));
-    return solution.to_string();
+    return solution.convert_to<std::string>();
 }

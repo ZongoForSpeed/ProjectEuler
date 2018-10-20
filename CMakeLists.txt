@@ -8,7 +8,7 @@ set(Boost_USE_STATIC_RUNTIME    ON)
 cmake_minimum_required(VERSION 3.9)
 find_package(Boost 1.58 REQUIRED unit_test_framework date_time)
 find_package(GMP 2.6 REQUIRED)
-find_package(Gperftools)
+# find_package(Gperftools)
 
 # Check for standard to use
 set(CMAKE_CXX_STANDARD 17)

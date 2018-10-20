@@ -1,6 +1,5 @@
 #include "utilitaires.h"
 
-
 namespace std {
 #ifdef __GNUG__
     unsigned short popcount(unsigned short S) {
@@ -14,6 +13,7 @@ namespace std {
     unsigned long long popcount(unsigned long long S) {
         return static_cast<unsigned long long>(__builtin_popcountll(S));
     }
+
 #endif
 
 #ifdef _MSC_VER
@@ -29,4 +29,8 @@ namespace std {
         return __popcnt64(S);
     }
 #endif
+
+    std::string to_string(const boost::multiprecision::cpp_int &n) {
+        return n.str();
+    }
 }

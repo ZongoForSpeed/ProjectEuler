@@ -1,7 +1,8 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
+
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(55, "Lychrel numbers") {
     // If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.
@@ -29,12 +30,12 @@ ENREGISTRER_PROBLEME(55, "Lychrel numbers") {
     //
     // How many Lychrel numbers are there below ten-thousand?
     size_t compteur = 0;
-    for (mp_nombre n = 1; n < 10000; ++n) {
+    for (nombre n = 1; n < 10000; ++n) {
         bool lychrel = false;
-        mp_nombre m = n;
-        for (mp_nombre i = 0; i < 50; ++i) {
-            m = m.inverser_nombre() + m;
-            if (m.palindrome()) {
+        nombre m = n;
+        for (nombre i = 0; i < 50; ++i) {
+            m = chiffres::inverser_nombre(m) + m;
+            if (chiffres::palindrome(m)) {
                 lychrel = true;
                 break;
             }

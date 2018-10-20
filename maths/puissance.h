@@ -1,6 +1,7 @@
 #pragma once
 
 #include <type_traits>
+#include "utilitaires.h"
 
 namespace puissance {
     template<typename Base, typename Exposant>

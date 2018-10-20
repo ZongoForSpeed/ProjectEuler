@@ -1,8 +1,8 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "mp_nombre.h"
 
 typedef std::vector<size_t> vecteur;
+typedef boost::multiprecision::cpp_int nombre;
 
 namespace {
     vecteur fraction_continue(size_t d) {
@@ -19,16 +19,16 @@ namespace {
         return resultat;
     }
 
-    mp_nombre equation_pell(size_t d) {
+    nombre equation_pell(size_t d) {
         const auto c = fraction_continue(d);
         size_t l = c.size() - 1;
         size_t per = l % 2 == 0 ? l - 1 : 2 * l - 1;
-        mp_nombre a = c[0];
-        mp_nombre a1 = 1;
-        mp_nombre b = a;
-        mp_nombre b1 = 0;
+        nombre a = c[0];
+        nombre a1 = 1;
+        nombre b = a;
+        nombre b1 = 0;
         for (size_t i = 1; i <= per; i++) {
-            mp_nombre t = a;
+            nombre t = a;
             a = a * c[(i - 1) % l + 1] + a1;
             a1 = t;
             t = b;
@@ -59,11 +59,11 @@ ENREGISTRER_PROBLEME(66, "Diophantine equation") {
     // Hence, by considering minimal solutions in x for D ≤ 7, the largest x is obtained when D=5.
     //
     // Find the value of D ≤ 1000 in minimal solutions of x for which the largest value of x is obtained.
-    mp_nombre maximum = 0;
+    nombre maximum = 0;
     size_t resultat = 0;
     for (size_t d = 2; d <= 1000; ++d) {
         if (!polygonal::est_carre(d)) {
-            mp_nombre x = equation_pell(d);
+            nombre x = equation_pell(d);
             if (x > maximum) {
                 maximum = x;
                 resultat = d;

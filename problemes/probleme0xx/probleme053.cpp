@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
+#include "combinatoire.h"
+
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(53, "Combinatoric selections") {
     // There are exactly ten ways of selecting three from five, 12345:
@@ -18,7 +20,7 @@ ENREGISTRER_PROBLEME(53, "Combinatoric selections") {
     size_t compteur = 0;
     for (unsigned long n = 1; n <= 100; ++n) {
         for (unsigned long p = 0; p <= n; ++p) {
-            if (mp_nombre::coefficient_binomial(n, p) > 1000000) ++compteur;
+            if (combinatoire::coefficient_binomial<nombre>(n, p) > 1000000) ++compteur;
         }
     }
 

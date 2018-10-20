@@ -12,9 +12,11 @@
 #include <tuple>
 #include <cmath>
 #include <iomanip>
+#include <type_traits>
 
 #include <optional>
 #include <boost/rational.hpp>
+#include <boost/multiprecision/cpp_int.hpp>
 
 namespace std {
     template<typename T1, typename T2>
@@ -150,11 +152,17 @@ namespace std {
         return oss.str();
     }
 
+    std::string to_string(const boost::multiprecision::cpp_int &n);
+
     unsigned short popcount(unsigned short S);
 
     unsigned long popcount(unsigned long S);
 
     unsigned long long popcount(unsigned long long S);
+
+    template<>
+    struct is_integral<boost::multiprecision::cpp_int> : public true_type {
+    };
 }
 
 namespace utilitaires {

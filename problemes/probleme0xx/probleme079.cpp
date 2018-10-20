@@ -1,10 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
 
 #include <fstream>
-
-typedef std::vector<mp_nombre> vecteur;
 
 namespace {
     bool est_vide(const std::vector<std::string> &keys) {
