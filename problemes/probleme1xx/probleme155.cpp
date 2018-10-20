@@ -7,6 +7,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 typedef boost::rational<nombre> fraction;
+typedef std::set<fraction> set;
 
 ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits") {
     // An electric circuit uses exclusively identical capacitors of the same value C.
@@ -28,20 +29,33 @@ ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits") {
     //                      CT = C1 + C2 +..., 
     // whereas when connecting them in series, the overall capacitance is given by: 
     //                      1/CT = 1/C1 + 1/C2 +...
-    std::map<nombre, std::set<fraction>> capacite{{1, {fraction(1)}}};
+    std::vector<set> capacite(20, set());
 
-    std::set<fraction> resultat;
+    capacite[1].insert(fraction(1));
+
+    set resultat { fraction(1) };
     for (nombre n = 2; n < 19; ++n) {
-        std::set<fraction> &c = capacite[n];
+        auto &c = capacite[n];
         for (nombre i = 1; i <= n / 2; ++i) {
             nombre j = n - i;
-            for (auto vi: capacite[i])
-                for (auto vj: capacite[j]) {
-                    c.insert(vi + vj);
-                    c.insert(fraction(1) / (fraction(1) / vi + fraction(1) / vj));
+            for (const auto& vi: capacite[i])
+                for (const auto& vj: capacite[j]) {
+                    fraction parallel = vi + vj;
+                    if (resultat.find(parallel) == resultat.end()) {
+                        c.insert(parallel);
+                        resultat.insert(parallel);
+                    }
+
+                    // 1 /(1 / (a1 / b1) + 1 / (a2 / b2 )) = a1 * a2 / (a1 * b2 + a2 * b1)
+                    fraction series(vi.numerator()*vj.numerator(), vi.numerator()*vj.denominator() + vi.denominator()*vj.numerator());
+                    if (resultat.find(series) == resultat.end()) {
+                        c.insert(series);
+                        resultat.insert(series);
+                    }
                 }
         }
-        resultat.insert(c.begin(), c.end());
+
+        std::cout << "D(" << n << ") = " << resultat.size() << std::endl;
     }
 
     return std::to_string(resultat.size());
