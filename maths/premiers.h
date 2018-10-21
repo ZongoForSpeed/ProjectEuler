@@ -56,8 +56,7 @@ namespace premiers {
         }
 
         while (k > 1) {
-            x *= x;
-            x %= n;
+            x = puissance::puissance_modulaire(x, 2, n);
             if (x + 1 == n) {
                 return false;
             }

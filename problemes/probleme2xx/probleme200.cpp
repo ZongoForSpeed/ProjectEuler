@@ -30,7 +30,8 @@ namespace {
             for (size_t a = 0; a < 10; ++a) {
                 if (c != a) {
                     chiffres[i] = a;
-                    if (mp_nombre::premier(chiffres::conversion_nombre<size_t>(chiffres.begin(), chiffres.end()), 25))
+                    size_t convertion = chiffres::conversion_nombre<size_t>(chiffres.begin(), chiffres.end());
+                    if (premiers::miller_rabin<>(convertion, 25))
                         return false;
                 }
             }

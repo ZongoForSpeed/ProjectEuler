@@ -108,6 +108,9 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
         boost::multiprecision::cpp_int p("170141183460469231731687303715884105727");
         BOOST_CHECK(premiers::miller_rabin<boost::multiprecision::cpp_int>(p, 25));
         BOOST_CHECK_EQUAL(false, premiers::miller_rabin<boost::multiprecision::cpp_int>(p - 2, 25));
+
+        size_t ni = 9'074'200'321;
+        BOOST_CHECK(premiers::miller_rabin<size_t>(ni, 25));
     }
 
     BOOST_AUTO_TEST_CASE(suivant) {
