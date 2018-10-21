@@ -1,10 +1,10 @@
 #include <numeric>
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
 
-typedef std::vector<mp_nombre> vecteur;
-typedef std::map<mp_nombre, mp_nombre> dictionnaire;
+typedef boost::multiprecision::cpp_int nombre;
+typedef std::vector<nombre> vecteur;
+typedef std::map<nombre, nombre> dictionnaire;
 
 namespace {
     dictionnaire algorithme(const vecteur &tailles, std::map<vecteur, dictionnaire> &cache) {
@@ -12,7 +12,7 @@ namespace {
         if (it != cache.end())
             return it->second;
 
-        mp_nombre somme = std::accumulate(tailles.begin(), tailles.end(), mp_nombre(0));
+        nombre somme = std::accumulate(tailles.begin(), tailles.end(), nombre(0));
         if (somme == 1 && tailles[1] == 1) {
             dictionnaire resultat{{1, 1}};
             return resultat;
@@ -104,8 +104,8 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     std::map<vecteur, dictionnaire> cache;
     auto combinaison = algorithme(input, cache);
 
-    mp_nombre numerateur = 0;
-    mp_nombre denominateur = 0;
+    nombre numerateur = 0;
+    nombre denominateur = 0;
 
     for (auto c: combinaison) {
         numerateur += c.first * c.second;
@@ -115,7 +115,7 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     const auto masque = puissance::puissance<size_t, unsigned>(10, 7);
     numerateur *= masque;
     numerateur /= denominateur;
-    double resultat = numerateur.get_double();
+    double resultat = numerateur.convert_to<double>();
     resultat /= masque;
     return std::to_string(resultat, 6);
 }

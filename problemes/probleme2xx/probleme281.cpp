@@ -1,20 +1,22 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "mp_nombre.h"
+#include "puissance.h"
+#include "combinatoire.h"
 
-typedef std::vector<mp_nombre> vecteur;
+typedef boost::multiprecision::cpp_int nombre;
+typedef std::vector<nombre> vecteur;
 
 namespace {
-    mp_nombre combinaison(size_t m, size_t n) {
-        return mp_nombre::factorielle(m * n) / mp_nombre::puissance(mp_nombre::factorielle(n), m);
+    nombre combinaison(size_t m, size_t n) {
+        return combinatoire::factorielle<nombre>(m * n) / puissance::puissance<nombre>(combinatoire::factorielle<nombre>(n), m);
     }
 
-    mp_nombre f(size_t m, size_t n, const vecteur &premiers) {
-        mp_nombre somme = 0;
+    nombre f(size_t m, size_t n, const vecteur &premiers) {
+        nombre somme = 0;
         for (size_t d = 1; d < n + 1; ++d) {
             if (n % d == 0)
-                somme += combinaison(m, d) * arithmetiques::phi<mp_nombre>(n / d, premiers);
+                somme += combinaison(m, d) * arithmetiques::phi<nombre>(n / d, premiers);
         }
         return somme / (m * n);
     }
@@ -33,15 +35,15 @@ ENREGISTRER_PROBLEME(281, "Pizza Toppings") {
     // p281_pizza.gif
     // Find the sum of all f(m,n) such that f(m,n) ≤ 10**15.
     vecteur premiers;
-    premiers::crible235<mp_nombre>(1000, std::back_inserter(premiers));
+    premiers::crible235<nombre>(1000, std::back_inserter(premiers));
 
-    mp_nombre resultat = 0;
-    mp_nombre limite = mp_nombre::puissance(10, 15);
+    nombre resultat = 0;
+    nombre limite = puissance::puissance<nombre>(10, 15);
 
     for (size_t m = 2; f(m, 1, premiers) <= limite; ++m)
         for (size_t n = 1; f(m, n, premiers) <= limite; ++n) {
             resultat += f(m, n, premiers);
         }
 
-    return resultat.to_string();
+    return resultat.str();
 }

@@ -111,6 +111,8 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
 
         size_t ni = 9'074'200'321;
         BOOST_CHECK(premiers::miller_rabin<size_t>(ni, 25));
+
+        BOOST_CHECK(premiers::miller_rabin<size_t>(7, 25));
     }
 
     BOOST_AUTO_TEST_CASE(suivant) {

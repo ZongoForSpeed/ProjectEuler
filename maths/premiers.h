@@ -16,7 +16,8 @@ namespace premiers {
 
     void algorithme_crible235(const std::size_t &taille, std::function<void(const std::size_t &)> sortie);
 
-    void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue, std::function<void(const std::size_t &)> sortie);
+    void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue,
+                                 std::function<void(const std::size_t &)> sortie);
 
     template<typename Nombre, class OutputIterator>
     OutputIterator crible2(const std::size_t &taille, OutputIterator sortie) {
@@ -40,15 +41,16 @@ namespace premiers {
     }
 
     template<typename Nombre, class OutputIterator>
-    OutputIterator super_crible(const std::size_t &taille, const std::vector<std::size_t> &roue, OutputIterator sortie) {
+    OutputIterator
+    super_crible(const std::size_t &taille, const std::vector<std::size_t> &roue, OutputIterator sortie) {
         algorithme_super_crible(taille, roue,
                                 [&sortie](const std::size_t &p) { *sortie++ = Nombre(p); });
         return sortie;
     }
-    
-    void crible_simple(size_t taille, std::vector<bool> & sortie);
 
-    template <typename Nombre>
+    void crible_simple(size_t taille, std::vector<bool> &sortie);
+
+    template<typename Nombre>
     bool temoin_miller(const Nombre &n, const Nombre &a, const Nombre &q, size_t k) {
         Nombre x = puissance::puissance_modulaire(a, q, n);
         if (x == 1 || x + 1 == n) {
@@ -68,17 +70,25 @@ namespace premiers {
 
     // Test de primalité de Miller-Rabin
     // https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_de_Miller-Rabin
-    template <typename Nombre>
+    template<typename Nombre>
     bool miller_rabin(const Nombre &n, unsigned short reps = 25) {
         static std::random_device rd;   // Will be used to obtain a seed for the random number engine
         static std::mt19937 mt(rd());   // Standard mersenne_twister_engine seeded with rd()
+
+        const static std::set<size_t> premiers100{2, 3, 5, 7, 11, 13, 17, 19, 23,
+                                                  29, 31, 37, 41, 43, 47, 53, 59,
+                                                  61, 67, 71, 73, 79, 83, 89, 97};
 
         if (n == 2) {
             return true;
         }
 
-        if (n%2 == 0) {
+        if (n % 2 == 0) {
             return false;
+        }
+
+        if (n < 100 && premiers100.find(n) != premiers100.end()) {
+            return true;
         }
 
         Nombre nm1 = n - 1u;
@@ -92,7 +102,7 @@ namespace premiers {
 
         Nombre q = nm1;
         size_t k = 0;
-        while (q%2 == 0) {
+        while (q % 2 == 0) {
             ++k;
             q /= 2;
         }
@@ -107,7 +117,7 @@ namespace premiers {
         return true;
     }
 
-    template <>
+    template<>
     bool miller_rabin(const boost::multiprecision::cpp_int &n, unsigned short reps);
 
     template<typename Nombre>

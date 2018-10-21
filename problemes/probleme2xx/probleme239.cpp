@@ -1,7 +1,9 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 #include "puissance.h"
+#include "combinatoire.h"
+
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(239, "Infinite string tour") {
     // A set of disks numbered 1 through 100 are placed in a line in random order.
@@ -11,21 +13,21 @@ ENREGISTRER_PROBLEME(239, "Infinite string tour") {
     // positions.)
     //
     // Give your answer rounded to 12 places behind the decimal point in the form 0.abcdefghijkl.
-    const mp_nombre denominateur = mp_nombre::factorielle(100);
+    const nombre denominateur = combinatoire::factorielle<nombre>(100);
 
-    mp_nombre numerateur = 0;
+    nombre numerateur = 0;
     for (size_t n = 0; n <= 22; ++n) {
         numerateur += (n % 2 == 0 ? 1 : -1)
-                      * mp_nombre::coefficient_binomial(22, n)
-                      * mp_nombre::factorielle(97 - n);
+                      * combinatoire::coefficient_binomial<nombre>(22, n)
+                      * combinatoire::factorielle<nombre>(97 - n);
     }
 
-    numerateur *= mp_nombre::coefficient_binomial(25, 22);
+    numerateur *= combinatoire::coefficient_binomial<nombre>(25, 22);
 
     const auto masque = puissance::puissance<size_t, unsigned>(10, 12);
     numerateur *= masque;
     numerateur /= denominateur;
 
-    double resultat = numerateur.get_double() / masque;
+    double resultat = numerateur.convert_to<double>() / masque;
     return std::to_string(resultat, 12);
 }

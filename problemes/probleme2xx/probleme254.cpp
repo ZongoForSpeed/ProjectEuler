@@ -1,20 +1,20 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
 #include "chiffres.h"
 
 #include <fstream>
 
+typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<size_t> vecteur;
 
 namespace {
     struct resultat {
         size_t sg;
-        mp_nombre g;
+        nombre g;
     };
 
-    void algorithme(size_t f, const vecteur &factorielles, std::map<mp_nombre, resultat> &cache) {
-        const mp_nombre sf = chiffres::somme_chiffres(f);
+    void algorithme(size_t f, const vecteur &factorielles, std::map<nombre, resultat> &cache) {
+        const nombre sf = chiffres::somme_chiffres(f);
 
         size_t sg = 0;
         vecteur chiffres(10, 0);
@@ -24,7 +24,7 @@ namespace {
             sg += i * chiffres[i];
         }
 
-        mp_nombre n = 0;
+        nombre n = 0;
         for (size_t i = 1; i <= 9; i++) {
             for (size_t j = 0; j < chiffres[i]; j++) {
                 n = n * 10 + i;
@@ -55,7 +55,7 @@ ENREGISTRER_PROBLEME(254, "Sums of Digit Factorials") {
     // What is ∑ sg(i) for 1 ≤ i ≤ 150?
     const vecteur factorielles{1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
 
-    std::map<mp_nombre, resultat> cache;
+    std::map<nombre, resultat> cache;
 
     size_t borne = 999999;      // all values must end in 9 after this
     size_t limite = 9999999;    // all values must be maximal after this
@@ -69,15 +69,15 @@ ENREGISTRER_PROBLEME(254, "Sums of Digit Factorials") {
         algorithme(f, factorielles, cache);
     }
 
-    mp_nombre somme = 0;
+    nombre somme = 0;
     for (const auto &r : cache) {
         somme += r.second.sg;
     }
 
-    mp_nombre prefixe = 9;
-    mp_nombre neufs = 999999;
+    nombre prefixe = 9;
+    nombre neufs = 999999;
     for (size_t sf = 63; sf <= 150; sf++) {
-        mp_nombre lf = chiffres::concatener(prefixe, neufs);
+        nombre lf = chiffres::concatener(prefixe, neufs);
         for (size_t i = 9; i >= 1; i--) {
             somme += i * (lf / factorielles[i]);
             lf %= factorielles[i];
@@ -88,5 +88,5 @@ ENREGISTRER_PROBLEME(254, "Sums of Digit Factorials") {
         }
     }
 
-    return somme.to_string();
+    return somme.str();
 }
