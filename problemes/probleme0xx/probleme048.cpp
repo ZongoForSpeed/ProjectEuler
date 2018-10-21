@@ -13,5 +13,5 @@ ENREGISTRER_PROBLEME(48, "Self powers") {
         resultat %= 10000000000LL;
     }
 
-    return std::to_string(resultat);
+    return resultat.str();
 }

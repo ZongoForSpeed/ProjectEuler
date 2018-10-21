@@ -41,5 +41,5 @@ ENREGISTRER_PROBLEME(65, "Convergents of e") {
     for (const auto &p: boost::adaptors::reverse(fraction_continue)) f = p + 1 / f;
 
     nombre resultat = chiffres::somme_chiffres(f.numerator());
-    return std::to_string(resultat);
+    return resultat.str();
 }

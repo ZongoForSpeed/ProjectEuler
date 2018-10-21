@@ -10,5 +10,5 @@ ENREGISTRER_PROBLEME(16, "Power digit sum") {
     //
     // What is the sum of the digits of the number 2^1000?
     nombre resultat = chiffres::somme_chiffres(puissance::puissance<nombre>(2, 1000u));
-    return std::to_string(resultat);
+    return resultat.str();
 }

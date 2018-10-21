@@ -1,11 +1,11 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "polygonal.h"
-#include "mp_nombre.h"
 
 typedef std::vector<size_t> vecteur;
 typedef std::vector<vecteur> matrice;
 typedef boost::rational<size_t> fraction;
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables") {
     // For any integer n, consider the three functions
@@ -71,13 +71,13 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables") {
             }
         }
 
-    mp_nombre u = 0;
-    mp_nombre v = 1;
+    nombre u = 0;
+    nombre v = 1;
     for (auto s: solutions) {
         u = s.denominator() * u + s.numerator() * v;
         v *= s.denominator();
     }
 
-    mp_nombre resultat = (u + v) / mp_nombre::PGCD(u, v);
-    return resultat.to_string();
+    nombre resultat = (u + v) / arithmetiques::PGCD(u, v);
+    return resultat.str();
 }

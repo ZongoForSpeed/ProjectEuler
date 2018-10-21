@@ -1,9 +1,10 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
 
 #include <fstream>
 #include <boost/algorithm/string.hpp>
+
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(162, "Hexadecimal numbers") {
     // In the hexadecimal number system numbers are represented using 16 different digits:
@@ -21,15 +22,18 @@ ENREGISTRER_PROBLEME(162, "Hexadecimal numbers") {
     //
     // (A,B,C,D,E and F in upper case, without any leading or trailing code that marks the number as hexadecimal and
     // without leading zeroes , e.g. 1A3F and not: 1a3f and not 0x1a3f and not $1A3F and not #1A3F and not 0000001A3F)
-    mp_nombre resultat = 0;
+    nombre resultat = 0;
     for (size_t n = 3; n < 17; ++n) {
-        resultat += 15 * mp_nombre::puissance(16, n - 1);
-        resultat += 41 * mp_nombre::puissance(14, n - 1);
-        resultat -= 43 * mp_nombre::puissance(15, n - 1);
-        resultat -= mp_nombre::puissance(13, n);
+        resultat += 15 * puissance::puissance<nombre>(16, n - 1);
+        resultat += 41 * puissance::puissance<nombre>(14, n - 1);
+        resultat -= 43 * puissance::puissance<nombre>(15, n - 1);
+        resultat -= puissance::puissance<nombre>(13, n);
     }
 
-    std::string str = resultat.to_string(16);
+    std::ostringstream oss;
+    oss << std::hex << resultat;
+
+    std::string str = oss.str();
     boost::to_upper(str);
 
     return str;

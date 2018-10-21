@@ -13,5 +13,5 @@ ENREGISTRER_PROBLEME(20, "Factorial digit sum") {
     // 
     // Find the sum of the digits in the number 100!
     nombre resultat = chiffres::somme_chiffres(combinatoire::factorielle<nombre>(100));
-    return std::to_string(resultat);
+    return resultat.str();
 }

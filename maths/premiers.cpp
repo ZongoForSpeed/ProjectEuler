@@ -1,8 +1,5 @@
 #include "premiers.h"
 #include "timer.h"
-#include "utilitaires.h"
-
-#include <numeric>
 
 namespace {
     // template<typename Nombre, class OutputIterator>
@@ -214,8 +211,8 @@ namespace premiers {
             if (test29.at(p)) { sortie(30 * p + 29); }
         }
     }
-    
-    void crible_simple(size_t taille, std::vector<bool> & test) {
+
+    void crible_simple(size_t taille, std::vector<bool> &test) {
         test.assign(taille, true);
         test.at(0) = false;
         test.at(1) = false;
@@ -227,7 +224,8 @@ namespace premiers {
         }
     }
 
-    void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue, std::function<void(const std::size_t &)> sortie) {
+    void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue,
+                                 std::function<void(const std::size_t &)> sortie) {
         typedef std::vector<bool> Crible;
         typedef std::pair<std::size_t, std::size_t> Paire;
         typedef std::vector<Paire> VecteurPaire;
@@ -300,5 +298,10 @@ namespace premiers {
                 }
             }
         }
+    }
+
+    template <>
+    bool miller_rabin(const boost::multiprecision::cpp_int &n, unsigned short reps) {
+        return boost::multiprecision::miller_rabin_test<boost::multiprecision::cpp_int>(n, reps);
     }
 }

@@ -1,13 +1,14 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "polygonal.h"
-#include "mp_nombre.h"
+#include "premiers.h"
 
-typedef std::vector<mp_nombre> vecteur;
-typedef std::pair<mp_nombre, mp_nombre> paire;
+typedef boost::multiprecision::cpp_int nombre;
+typedef std::vector<nombre> vecteur;
+typedef std::pair<nombre, nombre> paire;
 
 namespace {
-    mp_nombre triangle(const mp_nombre &i, const mp_nombre &j) {
+    nombre triangle(const nombre &i, const nombre &j) {
         if (i == 0 || j == 0)
             return 0;
 
@@ -17,21 +18,19 @@ namespace {
         if (j > i)
             return 0;
 
-        return polygonal::triangulaire<mp_nombre>(i - 1) + j;
+        return polygonal::triangulaire<nombre>(i - 1) + j;
     }
 
-    bool test(const mp_nombre &i, const mp_nombre &j) {
-        mp_nombre t_ij = triangle(i, j);
+    bool test(const nombre &i, const nombre &j) {
+        nombre t_ij = triangle(i, j);
         if (t_ij % 2 == 0)
             return false;
 
-        return t_ij.premier(25);
+        return premiers::miller_rabin(t_ij, 25);
         // return mpz_probab_prime_p(t_ij.get_data(), 25) != 0;
     }
 
-    bool triplet_premier(const mp_nombre &i, const mp_nombre &j, bool recursif = false) {
-        mp_nombre t_ij = triangle(i, j);
-        mp_nombre resultat = 0;
+    bool triplet_premier(const nombre &i, const nombre &j, bool recursif = false) {
         std::vector<paire> p;
         if (test(i + 1, j - 1)) p.emplace_back(i + 1, j - 1);
         if (test(i + 1, j)) p.emplace_back(i + 1, j);
@@ -49,14 +48,14 @@ namespace {
         return false;
     }
 
-    mp_nombre S(const mp_nombre &ligne) {
-        auto min = polygonal::triangulaire<mp_nombre>(ligne - 1);
-        auto max = polygonal::triangulaire<mp_nombre>(ligne);
+    nombre S(const nombre &ligne) {
+        auto min = polygonal::triangulaire<nombre>(ligne - 1);
+        auto max = polygonal::triangulaire<nombre>(ligne);
 
-        // std::set<mp_nombre> premiers;
-        mp_nombre resultat = 0;
-        for (mp_nombre premier = min;;) {
-            premier.premier_suivant();
+        // std::set<nombre> premiers;
+        nombre resultat = 0;
+        for (nombre premier = min;;) {
+            premier = premiers::suivant(premier);
             if (premier > max)
                 break;
 
@@ -101,7 +100,7 @@ ENREGISTRER_PROBLEME(196, "Prime triplets") {
     //
     // Find  S(5678027) + S(7208785).
     std::cout << std::boolalpha;
-    mp_nombre resultat = S(5678027) + S(7208785);
+    nombre resultat = S(5678027) + S(7208785);
     std::ostringstream oss;
     oss << resultat;
     return oss.str();

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <initializer_list>
+#include <boost/functional/hash.hpp>
 
 template<typename T, std::size_t N>
 class multidimension : public std::vector<multidimension<T, N - 1>> {
@@ -37,3 +38,12 @@ public:
 
     multidimension(std::initializer_list<value_type> init) : super_type(init) {}
 };
+
+namespace std {
+    template<typename T, std::size_t N>
+    struct hash<multidimension<T, N>> {
+        std::size_t operator()(const multidimension<T, N> &k) const {
+            return boost::hash_range(k.begin(), k.end());
+        }
+    };
+}

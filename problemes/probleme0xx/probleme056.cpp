@@ -17,5 +17,5 @@ ENREGISTRER_PROBLEME(56, "Powerful digit sum") {
             nombre somme = chiffres::somme_chiffres(puissance::puissance<nombre>(a, b));
             maximum = std::max(maximum, somme);
         }
-    return std::to_string(maximum);
+    return maximum.str();
 }

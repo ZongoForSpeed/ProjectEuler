@@ -1,10 +1,11 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "multidimension.h"
-#include "mp_nombre.h"
 
 typedef multidimension<bool, 2> matrice;
 typedef std::pair<size_t, size_t> paire;
+typedef boost::multiprecision::cpp_int nombre;
+typedef std::unordered_map<matrice, nombre> cache_map;
 
 namespace {
     std::optional<paire> libre(const matrice &m) {
@@ -60,12 +61,12 @@ namespace {
         return m[i][j] && m[i + 1][j] && m[i + 1][j - 1];
     }
 
-    mp_nombre combinaison(std::map<matrice, mp_nombre> &cache, const matrice &m) {
+    nombre combinaison(cache_map &cache, const matrice &m) {
         auto it = cache.find(m);
         if (it != cache.end())
             return it->second;
 
-        mp_nombre resultat = 0;
+        nombre resultat = 0;
 
         if (auto p = libre(m)) {
             size_t i = p->first;
@@ -144,7 +145,7 @@ ENREGISTRER_PROBLEME(161, "Triominoes") {
     //
     // In how many ways can a 9 by 12 grid be tiled in this way by triominoes?
     matrice m(9u, 12u, true);
-    std::map<matrice, mp_nombre> cache;
-    mp_nombre resultat = combinaison(cache, m);
-    return resultat.to_string();
+    cache_map cache;
+    nombre resultat = combinaison(cache, m);
+    return resultat.str();
 }

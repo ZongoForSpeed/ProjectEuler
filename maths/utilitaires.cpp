@@ -29,8 +29,4 @@ namespace std {
         return __popcnt64(S);
     }
 #endif
-
-    std::string to_string(const boost::multiprecision::cpp_int &n) {
-        return n.str();
-    }
 }

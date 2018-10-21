@@ -1,8 +1,10 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
+#include "combinatoire.h"
 
 #include <fstream>
+
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(113, "Non-bouncy numbers") {
     // Working from left-to-right if no digit is exceeded by the digit to its left it is called an increasing number;
@@ -17,17 +19,17 @@ ENREGISTRER_PROBLEME(113, "Non-bouncy numbers") {
     //
     // How many numbers below a googol (10^100) are not bouncy?
     size_t longueur = 100;
-    mp_nombre resultat = 0;
+    nombre resultat = 0;
 
     for (size_t n = 0; n < longueur; ++n)
         for (size_t d = 0; d < 10; ++d)
-            resultat += mp_nombre::coefficient_binomial(n + d, d);
+            resultat += combinatoire::coefficient_binomial<nombre>(n + d, d);
 
     for (size_t n = 0; n < longueur; ++n)
         for (size_t d = 0; d < 9; ++d)
-            resultat += mp_nombre::coefficient_binomial(n + d, d);
+            resultat += combinatoire::coefficient_binomial<nombre>(n + d, d);
 
     resultat -= 10 * longueur;
 
-    return resultat.to_string();
+    return resultat.str();
 }

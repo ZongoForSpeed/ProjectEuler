@@ -1,22 +1,21 @@
 #include "problemes.h"
 #include "polygonal.h"
-#include "mp_nombre.h"
 
 #include <fstream>
-
 #include <boost/range/adaptor/reversed.hpp>
 
-typedef boost::rational<mp_nombre> fraction;
-typedef std::vector<mp_nombre> vecteur;
+typedef boost::multiprecision::cpp_int nombre;
+typedef boost::rational<nombre> fraction;
+typedef std::vector<nombre> vecteur;
 
-typedef std::pair<mp_nombre, mp_nombre> paire;
+typedef std::pair<nombre, nombre> paire;
 
 namespace {
-    bool evaluer(mp_nombre a, mp_nombre b, mp_nombre s) {
+    bool evaluer(const nombre &a, const nombre &b, const nombre &s) {
         return a * a < b * b * s;
     }
 
-    fraction fraction_continue(size_t S, mp_nombre bound) {
+    fraction fraction_continue(size_t S, const nombre &bound) {
         paire a(arithmetiques::racine_carre(S), 1);
         paire b(a.first + 1, 1);
 
@@ -47,8 +46,8 @@ ENREGISTRER_PROBLEME(192, "Best Approximations") {
     //
     // Find the sum of all denominators of the best approximations to √n for the denominator bound 10^12, where n is not
     // a perfect square and 1 < n ≤ 100000.
-    mp_nombre bound = 1000000000000ULL;
-    mp_nombre resultat = 0;
+    nombre bound = 1000000000000ULL;
+    nombre resultat = 0;
     for (size_t n = 1; n <= 100000; ++n) {
         if (!polygonal::est_carre(n)) {
             fraction f = fraction_continue(n, bound);
@@ -56,5 +55,5 @@ ENREGISTRER_PROBLEME(192, "Best Approximations") {
         }
     }
 
-    return resultat.to_string();
+    return resultat.str();
 }

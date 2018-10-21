@@ -1,10 +1,10 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 
 typedef std::vector<size_t> vecteur;
-typedef boost::rational<mp_nombre> fraction;
+typedef boost::multiprecision::cpp_int nombre;
+typedef boost::rational<nombre> fraction;
 
 namespace {
     size_t generer(const vecteur &premiers, const size_t premier, fraction f = fraction(0), size_t a = 0) {
@@ -52,9 +52,9 @@ ENREGISTRER_PROBLEME(152, "Writing 1/2 as a sum of inverse squares") {
     vecteur premiers;
     premiers::crible2<size_t>(40, std::back_inserter(premiers));
 
-    mp_nombre resultat = 0;
+    nombre resultat = 0;
     for (size_t p: premiers)
         resultat += generer(premiers, p);
 
-    return resultat.to_string();
+    return resultat.str();
 }

@@ -152,8 +152,6 @@ namespace std {
         return oss.str();
     }
 
-    std::string to_string(const boost::multiprecision::cpp_int &n);
-
     unsigned short popcount(unsigned short S);
 
     unsigned long popcount(unsigned long S);
