@@ -2,17 +2,14 @@
 #include "utilitaires.h"
 #include "multidimension.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
 
-#include <unordered_map>
-#include <boost/functional/hash.hpp>
-
+typedef boost::multiprecision::cpp_int nombre;
 typedef std::tuple<short, short, short> triplet;
 
 namespace {
-    void algorithme(const triplet& s0, triplet s, std::map<triplet, mp_nombre>& dp, const mp_nombre &v, short d = 0);
+    void algorithme(const triplet& s0, triplet s, std::map<triplet, nombre>& dp, const nombre &v, short d = 0);
 
-    template<std::size_t N> void doUpdate(const triplet &s0, triplet &s, std::map<triplet, mp_nombre>& dp, const mp_nombre &v, short d) {
+    template<std::size_t N> void doUpdate(const triplet &s0, triplet &s, std::map<triplet, nombre>& dp, const nombre &v, short d) {
         if (std::get<N>(s)) {
             std::get<N>(s)--;
             algorithme(s0, s, dp, v*(std::get<N>(s) + 1), d + 1);
@@ -20,7 +17,7 @@ namespace {
         }
     }
     
-    void algorithme(const triplet& s0, triplet s, std::map<triplet, mp_nombre>& dp, const mp_nombre &v, short d) {
+    void algorithme(const triplet& s0, triplet s, std::map<triplet, nombre>& dp, const nombre &v, short d) {
         if (d == 4) {
             std::get<2>(s) += std::get<1>(s0) - std::get<1>(s);
             std::get<1>(s) += std::get<0>(s0) - std::get<0>(s);
@@ -35,10 +32,10 @@ namespace {
 }
 
 ENREGISTRER_PROBLEME(475, "Music festival") {
-    // 12n musicians participate at a music festival. On the first day, they form 3n quartets and practice amp_nombre 
+    // 12n musicians participate at a music festival. On the first day, they form 3n quartets and practice anombre 
     // day.
     //
-    // It is a disaster. At the end of the day, amp_nombre musicians decide they wimp_nombre never again agree to play 
+    // It is a disaster. At the end of the day, anombre musicians decide they winombre never again agree to play 
     // with any member of their quartet.
     //
     // On the second day, they form 4n trios, each musician avoiding his previous quartet partners.
@@ -50,11 +47,11 @@ ENREGISTRER_PROBLEME(475, "Music festival") {
     // Find f(600) mod 1 000 000 007.
     const short n = 600 / 12;
 
-    std::map<triplet, mp_nombre> dp;
+    std::map<triplet, nombre> dp;
     dp[triplet(4*n, 0, 0)] = 1;
 
     for (short i = 0; i < 3*n; i++) {
-        std::map<triplet, mp_nombre> suivant;
+        std::map<triplet, nombre> suivant;
         for (auto &p : dp)
             algorithme(p.first, p.first, suivant, p.second);
         dp.swap(suivant);
@@ -64,6 +61,6 @@ ENREGISTRER_PROBLEME(475, "Music festival") {
     for (short i = 2; i <= 4*n; i++)
         a /= i;
     
-    auto resultat = a % 1000000007;
-    return resultat.to_string();
+    nombre resultat = a % 1000000007;
+    return resultat.str();
 }

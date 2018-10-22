@@ -1,24 +1,25 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
+#include "premiers.h"
 
-typedef std::vector<mp_nombre> vecteur;
+typedef boost::multiprecision::cpp_int nombre;
+typedef std::vector<nombre> vecteur;
 
 namespace {
-    std::pair<mp_nombre, mp_nombre> fibonacci_(const mp_nombre &n, const mp_nombre &modulo) {
+    std::pair<nombre, nombre> fibonacci_(const nombre &n, const nombre &modulo) {
         if (n == 0)
             return std::make_pair(1, 0);
 
-        static std::map<mp_nombre, std::pair<mp_nombre, mp_nombre>> cache;
+        static std::map<nombre, std::pair<nombre, nombre>> cache;
         auto it = cache.find(n);
         if (it != cache.end())
             return it->second;
 
-        std::pair<mp_nombre, mp_nombre> p = fibonacci_(n / 2, modulo);
-        mp_nombre fk = p.second;
-        mp_nombre fk_1 = p.first;
+        std::pair<nombre, nombre> p = fibonacci_(n / 2, modulo);
+        nombre fk = p.second;
+        nombre fk_1 = p.first;
 
-        std::pair<mp_nombre, mp_nombre> resultat;
+        std::pair<nombre, nombre> resultat;
 
         if (n % 2 == 0)
             resultat = std::make_pair(fk * fk + fk_1 * fk_1, fk * (2 * fk_1 + fk));
@@ -32,7 +33,7 @@ namespace {
         return resultat;
     }
 
-    mp_nombre fibonacci(const mp_nombre &n, const mp_nombre &modulo) {
+    nombre fibonacci(const nombre &n, const nombre &modulo) {
         return fibonacci_(n, modulo).second;
     }
 }
@@ -47,16 +48,16 @@ ENREGISTRER_PROBLEME(304, "Primonacci") {
     // The sequence b(n) is defined as f(a(n)).
     //
     // Find ∑b(n) for 1≤n≤100 000. Give your answer mod 1234567891011.
-    const mp_nombre modulo = 1234567891011ULL;
-    const mp_nombre a0 = mp_nombre::puissance(10, 14);
+    const nombre modulo = 1234567891011ULL;
+    const nombre a0 = puissance::puissance<nombre>(10, 14);
     vecteur a(100000 + 1, a0);
-    mp_nombre resultat = 0;
+    nombre resultat = 0;
     for (size_t n = 1; n < a.size(); ++n) {
-        a[n] = mp_nombre::premier_suivant(a[n - 1]);
+        a[n] = premiers::suivant(a[n - 1]);
         resultat += fibonacci(a[n], modulo);
     }
 
     resultat %= modulo;
 
-    return resultat.to_string();
+    return resultat.str();
 }

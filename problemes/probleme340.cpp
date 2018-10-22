@@ -1,8 +1,7 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
 
-typedef mp_nombre nombre;
+typedef boost::multiprecision::cpp_int nombre;
 
 namespace {
     nombre S(nombre a, nombre b, nombre c) {
@@ -28,5 +27,5 @@ ENREGISTRER_PROBLEME(340, "Crazy Function") {
     
     nombre resultat = S(puissance::puissance<size_t>(21, 7u), puissance::puissance<size_t>(7, 21u), puissance::puissance<size_t>(12, 7u));
     resultat %= 1'000'000'000;
-    return std::to_string(resultat);
+    return resultat.str();
 }

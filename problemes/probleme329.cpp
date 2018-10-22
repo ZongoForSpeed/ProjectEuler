@@ -4,7 +4,7 @@
 #include "premiers.h"
 
 typedef unsigned long long int nombre;
-typedef boost::rational<mp_nombre> fraction;
+typedef boost::rational<boost::multiprecision::cpp_int> fraction;
 
 namespace {
     fraction probabilite(std::map<std::pair<nombre, std::string>, fraction> &d, nombre i, const std::string &s) {

@@ -1,28 +1,27 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 
-typedef std::vector<mp_nombre> vecteur;
+typedef unsigned long long nombre;
+typedef std::vector<nombre> vecteur;
 
 namespace {
-    bool trinary(mp_nombre n) {
+    bool trinary(nombre n) {
         while (n % 10 < 3 && n > 10) {
             n /= 10;
         }
         return n % 10 < 3;
     }
 
-    mp_nombre f(size_t n) {
-        mp_nombre base = 1;
+    nombre f(size_t n) {
+        nombre base = 1;
         vecteur v;
         v.emplace_back(0);
-        mp_nombre d = 0;
         while (true) {
             vecteur tmp;
             for (size_t i = 1; i < 11; ++i) {
-                for (const mp_nombre &f : v) {
-                    mp_nombre m = i * base + f;
-                    mp_nombre mn = m * n;
+                for (const nombre &f : v) {
+                    nombre m = i * base + f;
+                    nombre mn = m * n;
                     if (trinary(mn))
                         return m;
                     else if (trinary(mn % base))
@@ -46,9 +45,9 @@ ENREGISTRER_PROBLEME(303, "Multiples with small digits") {
     // 
     // Find ∑ n=1..10000 f(n)/n.
     size_t limite = 10000;
-    mp_nombre resultat = 0;
+    nombre resultat = 0;
     for (size_t n = 1; n < limite + 1; ++n) {
         resultat += f(n);
     }
-    return resultat.to_string();
+    return std::to_string(resultat);
 }

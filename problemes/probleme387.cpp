@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 #include "chiffres.h"
+#include "premiers.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -40,11 +40,11 @@ ENREGISTRER_PROBLEME(387, "Harshad Numbers") {
                 nombre r = i % d;
                 if (r == 0) {
                     courantHarshad.push_back(i);
-                    if (mp_nombre::premier(q, 25)) {
+                    if (premiers::miller_rabin(q, 25)) {
                         nombre b2 = 10 * i;
                         vecteur v{b2 + 1, b2 + 3, b2 + 7, b2 + 9};
                         for (auto j: v) {
-                            if (mp_nombre::premier(j, 25)) {
+                            if (premiers::miller_rabin(j, 25)) {
                                 resultat += j;
                             }
                         }

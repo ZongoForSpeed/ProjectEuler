@@ -1,31 +1,8 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
+#include "chiffres.h"
 
-typedef std::vector<mp_nombre> vecteur;
-
-namespace {
-    mp_nombre restes_chinois(const vecteur &modulos, const vecteur &restes) {
-        // https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_des_restes_chinois
-        if (modulos.size() != restes.size())
-            return 0;
-
-        mp_nombre n = 1;
-        for (const auto &p: modulos) n *= p;
-
-        mp_nombre resultat = 0;
-
-        std::for_each2(modulos.begin(), modulos.end(), restes.begin(),
-                       [&resultat, &n](const mp_nombre &modulo, const mp_nombre &reste) {
-                           mp_nombre r = n / modulo;
-                           if (auto inverse = mp_nombre::inverse_modulaire(r, modulo))
-                               resultat += r * reste * (*inverse);
-                           resultat %= n;
-                       }
-        );
-        return resultat;
-    }
-}
+typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(284, "Steady Squares") {
     // The 3-digit number 376 in the decimal numbering system is an example of numbers with the special property that
@@ -41,27 +18,56 @@ ENREGISTRER_PROBLEME(284, "Steady Squares") {
     // 
     // Find the sum of the digits of all the n-digit steady squares in the base 14 numbering system for 1 ≤ n ≤ 10000
     // (decimal) and give your answer in the base 14 system using lower case letters where necessary.
-    const vecteur restes1{0, 1};
-    const vecteur restes2{1, 0};
+    size_t N = 10000;
+    nombre a = 7;
+    nombre b = 8;
 
-    mp_nombre borne = 1;
-    vecteur modulos{2, 7};
+    nombre answer = a + b + 1;
+    nombre x = a;
+    nombre r = 14;
 
-    mp_nombre resultat = 1; // Cas n = 1 
-    for (size_t k = 1; k < 10000 + 1; ++k) {
-        // Cas n = 0 mod 2^k and n = 1 mod 7^k
-        mp_nombre n1 = restes_chinois(modulos, restes1);
-        if (n1 > borne)
-            resultat += n1.somme_chiffres(14);
-        // Cas n = 1 mod 2^k and n = 0 mod 7^k
-        mp_nombre n2 = restes_chinois(modulos, restes2);
-        if (n2 > borne)
-            resultat += n2.somme_chiffres(14);
+    for (size_t n = 1; n < N; ++n) {
+        nombre q = r;
+        r *= 14;
 
-        borne *= 14;
-        modulos.front() *= 2;
-        modulos.back() *= 7;
+        size_t d = 0;
+        for (; d < 14; ++d) {
+            if ((x * x) % r == x) {
+                break;
+            }
+            x += q;
+        }
+        a = a + d;
+        b = b + 13 - d;
+        if (d) {
+            answer += a;
+        }
+
+        if (13 - d) {
+            answer += b;
+        }
     }
 
-    return resultat.to_string(14);
+    std::ostringstream oss;
+    for (auto c: chiffres::extraire_chiffres(answer.convert_to<size_t>(), 14)) {
+        switch (c) {
+            case 10:
+                oss << 'a';
+                break;
+            case 11:
+                oss << 'b';
+                break;
+            case 12:
+                oss << 'c';
+                break;
+            case 13:
+                oss << 'd';
+                break;
+            default:
+                oss << c;
+                break;
+        }
+    }
+
+    return oss.str();
 }

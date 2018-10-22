@@ -2,16 +2,17 @@
 #include "premiers.h"
 #include "puissance.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
+
+typedef boost::multiprecision::cpp_int nombre;
 
 namespace {
-    mp_nombre S(size_t p) {
+    nombre S(size_t p) {
         if (p < 5)
             return 0;
 
         size_t f = p - 1;
         // std::cout << p - 1 << "! mod " << p << " = " << f << std::endl;
-        mp_nombre resultat = f;
+        nombre resultat = f;
         for (size_t n = 2; n < 6; ++n) {
             f *= puissance::puissance_modulaire(p - n + 1, p - 2, p);
             f %= p;
@@ -38,10 +39,10 @@ ENREGISTRER_PROBLEME(381, "(prime-k) factorial") {
     std::deque<size_t> premiers;
     premiers::crible2<size_t>(limite, std::back_inserter(premiers));
 
-    mp_nombre resultat = 0;
+    nombre resultat = 0;
     for (const size_t &p : premiers) {
         resultat += S(p);
     }
 
-    return resultat.to_string();
+    return resultat.str();
 }

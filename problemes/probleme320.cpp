@@ -50,7 +50,7 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer") {
     vecteur premiers;
     premiers::crible235<nombre>(limite, std::back_inserter(premiers));
 
-    mp_nombre resultat = 0;
+    boost::multiprecision::cpp_int resultat = 0;
 
     std::map<nombre, size_t> decomposition;
     arithmetiques::decomposition(combinatoire::factorielle<nombre>(9), premiers, decomposition);
@@ -70,5 +70,5 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer") {
 
     std::cout << resultat << std::endl;
     resultat %= modulo;
-    return resultat.to_string();
+    return resultat.str();
 }

@@ -2,11 +2,11 @@
 #include "utilitaires.h"
 #include "matrice.h"
 #include "puissance.h"
-#include "mp_nombre.h"
 
 #include <boost/multiprecision/cpp_bin_float.hpp>
 
 typedef boost::multiprecision::cpp_bin_float_quad mp_float;
+typedef boost::multiprecision::cpp_int mp_nombre;
 
 typedef long long int nombre;
 typedef std::vector<mp_nombre> vecteur;
@@ -15,7 +15,7 @@ namespace {
     const mp_float phi = (1 + boost::multiprecision::sqrt(mp_float(5))) / 2;
 
     nombre division(mp_nombre n, mp_float d) {
-        mp_float q = n.get_unsigned_long_long() / d;
+        mp_float q = n.convert_to<nombre>() / d;
         return q.convert_to<nombre>();
     }
 
@@ -79,5 +79,6 @@ ENREGISTRER_PROBLEME(325, "Stone Game II") {
     std::cout << "S(10) = " << S(10) << std::endl;
     std::cout << "S(10000) = " << S(10000) << std::endl;
     mp_nombre resultat = S(N);
-    return std::to_string(resultat % modulo);
+    resultat %= modulo;
+    return resultat.str();
 }

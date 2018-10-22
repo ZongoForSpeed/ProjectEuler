@@ -452,6 +452,7 @@ private:
         set(std::to_string(op));
     }
 #else
+
     template<typename Type>
     void set(Type op, std::true_type /*is_signed*/) {
         bool negatif = (op < 0);
@@ -466,6 +467,7 @@ private:
     }
 
 #endif
+
     template<typename Type>
     Type get(Type /*type*/, std::false_type /*is_signed*/) const {
         Type result = 0;

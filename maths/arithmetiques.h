@@ -8,6 +8,7 @@
 
 #include "puissance.h"
 #include "utilitaires.h"
+#include <boost/multiprecision/integer.hpp>
 
 namespace arithmetiques {
     template<typename Nombre>
@@ -43,7 +44,7 @@ namespace arithmetiques {
 
     template<typename Nombre>
     Nombre Bezout(Nombre a, Nombre b, Nombre &x, Nombre &y) {
-        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
+        // static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
         // https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
         Nombre s = 0, old_s = 1;
         Nombre t = 1, old_t = 0;

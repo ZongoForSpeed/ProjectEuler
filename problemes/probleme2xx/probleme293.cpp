@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "arithmetiques.h"
 #include "premiers.h"
-#include "mp_nombre.h"
 
-typedef std::vector<mp_nombre> vecteur;
+typedef boost::multiprecision::cpp_int nombre;
+typedef std::vector<nombre> vecteur;
 
 ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
     // An even positive integer N will be called admissible, if it is a power of 2 or its distinct prime factors are
@@ -18,21 +18,21 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
     // 
     // Find the sum of all distinct pseudo-Fortunate numbers for admissible numbers N less than 10**9.
     vecteur premiers;
-    premiers::crible2<mp_nombre>(50, std::back_inserter(premiers));
+    premiers::crible2<nombre>(50, std::back_inserter(premiers));
 
-    mp_nombre limite = mp_nombre::puissance(10, 9);
+    nombre limite = puissance::puissance<nombre>(10, 9);
 
     vecteur fortunate;
-    for (mp_nombre p = premiers.front(); p < limite; p *= premiers.front()) {
+    for (nombre p = premiers.front(); p < limite; p *= premiers.front()) {
         fortunate.push_back(p);
     }
 
-    std::set<mp_nombre> pseudoFortunate;
-    for (const mp_nombre &p: premiers) {
+    std::set<nombre> pseudoFortunate;
+    for (const nombre &p: premiers) {
         vecteur suivant;
-        for (mp_nombre produit = p; produit < limite; produit *= p) {
-            for (const mp_nombre &n: fortunate) {
-                mp_nombre f = produit * n;
+        for (nombre produit = p; produit < limite; produit *= p) {
+            for (const nombre &n: fortunate) {
+                nombre f = produit * n;
                 if (f >= limite)
                     break;
                 suivant.push_back(f);
@@ -43,17 +43,17 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
         if (suivant.empty())
             break;
 
-        for (const mp_nombre &n: suivant) {
-            mp_nombre m = mp_nombre::premier_suivant(n + 1) - n;
+        for (const nombre &n: suivant) {
+            nombre m = premiers::suivant<nombre>(n + 1) - n;
             pseudoFortunate.insert(m);
         }
 
         std::swap(fortunate, suivant);
     }
 
-    mp_nombre resultat = 0;
-    for (const mp_nombre &n: pseudoFortunate)
+    nombre resultat = 0;
+    for (const nombre &n: pseudoFortunate)
         resultat += n;
 
-    return resultat.to_string();
+    return resultat.str();
 }

@@ -1,7 +1,7 @@
-#include <maths/mp_nombre.h>
-#include <maths/puissance.h>
 #include "problemes.h"
 #include "utilitaires.h"
+#include "puissance.h"
+#include "premiers.h"
 
 typedef unsigned long long nombre;
 
@@ -24,7 +24,7 @@ ENREGISTRER_PROBLEME(443, "GCD sequence") {
 
     while (true) {
         nombre k = n - 1;
-        if (!mp_nombre::premier(2 * n - 1, 10)) {
+        if (!premiers::miller_rabin(2 * n - 1, 10)) {
             k = 1;
             while ((2 * n - 1) % (2 * k + 1)) {
                 ++k;
