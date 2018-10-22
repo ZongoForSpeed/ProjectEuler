@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "mp_nombre.h"
 
 #include <set>
 #include <iterator>

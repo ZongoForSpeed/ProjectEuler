@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
 #include "polygonal.h"
 
 typedef unsigned long long nombre;

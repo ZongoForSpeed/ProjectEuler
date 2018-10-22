@@ -1,7 +1,6 @@
 #include <numeric>
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

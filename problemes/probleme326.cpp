@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 #include "matrice.h"
 
 typedef std::vector<size_t> vecteur;

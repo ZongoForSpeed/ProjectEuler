@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 
 #include <numeric>
 

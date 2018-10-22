@@ -2,7 +2,6 @@
 #include "premiers.h"
 #include "puissance.h"
 #include "utilitaires.h"
-#include "mp_nombre.h"
 
 // namespace {
 //     size_t dp(size_t n, size_t d, std::vector<long double> & probabilites) {

@@ -3,7 +3,6 @@
 #include "utilitaires.h"
 #include "premiers.h"
 #include "arithmetiques.h"
-#include "mp_nombre.h"
 #include "timer.h"
 
 typedef unsigned long long nombre;
