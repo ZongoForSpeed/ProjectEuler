@@ -1,7 +1,6 @@
-#include "utilitaires.h"
-#include <maths/combinatoire.h>
-#include <boost/multiprecision/cpp_int.hpp>
 #include "problemes.h"
+#include "utilitaires.h"
+#include "combinatoire.h"
 
 typedef boost::multiprecision::cpp_int nombre;
 

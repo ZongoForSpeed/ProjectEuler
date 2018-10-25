@@ -7,7 +7,6 @@ add_library (tests SHARED
         ${PROJECT_SOURCE_DIR}/diophantienne.cpp
         ${PROJECT_SOURCE_DIR}/fenwick.cpp
         ${PROJECT_SOURCE_DIR}/matrice.cpp
-        ${PROJECT_SOURCE_DIR}/mp_nombre.cpp
         ${PROJECT_SOURCE_DIR}/multidimension.cpp
         ${PROJECT_SOURCE_DIR}/permutation.cpp
         ${PROJECT_SOURCE_DIR}/polygonal.cpp

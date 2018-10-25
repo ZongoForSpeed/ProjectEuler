@@ -158,6 +158,10 @@ namespace std {
 
     unsigned long long popcount(unsigned long long S);
 
+	template<>
+	struct is_arithmetic<boost::multiprecision::cpp_int> : public true_type {
+	};
+
     template<>
     struct is_integral<boost::multiprecision::cpp_int> : public true_type {
     };
