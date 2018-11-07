@@ -20,10 +20,20 @@ namespace racine {
     template<typename Nombre>
     std::optional<Nombre> carre_parfait(Nombre x) {
         static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
-        Nombre s = racine_carre<Nombre>(x);
-        if (s * s == x)
-            return s;
-        else
-            return std::nullopt;
+        Nombre h = x & 0xF;
+        switch (h) {
+            case 0:
+            case 1:
+            case 4:
+            case 9: {
+                Nombre s = racine_carre<Nombre>(x);
+                if (s * s == x)
+                    return s;
+                else
+                    return std::nullopt;
+            }
+            default:
+                return std::nullopt;
+        }
     }
 }
