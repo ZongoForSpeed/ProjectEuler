@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "premiers.h"
+#include "racine.h"
 
 #include <complex>
 
@@ -12,7 +13,7 @@ namespace {
     std::optional<complexe> gauss(nombre p) {
         for (nombre a = 1; 2 * a * a < p + 1; ++a) {
             nombre bb = p - a * a;
-            if (auto r = arithmetique::carre_parfait(bb)) {
+            if (auto r = racine::carre_parfait(bb)) {
                 nombre b = *r;
                 if (a < b)
                     return complexe(a, b);

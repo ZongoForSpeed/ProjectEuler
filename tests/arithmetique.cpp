@@ -2,7 +2,7 @@
 
 #include "arithmetique.h"
 
-BOOST_AUTO_TEST_SUITE(test_arithmetiques)
+BOOST_AUTO_TEST_SUITE(test_arithmetique)
 
     struct fixure_arithmetiques {
         std::vector<size_t> premiers;
@@ -121,35 +121,6 @@ BOOST_AUTO_TEST_SUITE(test_arithmetiques)
         BOOST_CHECK_EQUAL(arithmetique::repunit::A(11ULL), 2);
         BOOST_CHECK_EQUAL(arithmetique::repunit::A(3ULL), 3);
         BOOST_CHECK_EQUAL(arithmetique::repunit::A(7ULL), 6);
-    }
-
-    BOOST_FIXTURE_TEST_CASE(inverse, fixure_arithmetiques) {
-        BOOST_CHECK_EQUAL(arithmetique::inverse_modulaire<unsigned long>(3, 11, premiers), 4);
-        BOOST_CHECK_EQUAL(arithmetique::inverse_modulaire<unsigned long long>(97643, 456753, premiers), 368123);
-        BOOST_CHECK_EQUAL(arithmetique::inverse_modulaire<unsigned long long>(107113, 3246999210ULL, premiers),
-                          180730717ULL);
-    }
-
-    BOOST_FIXTURE_TEST_CASE(chinois1, fixure_arithmetiques) {
-        std::vector<unsigned long> modulos{3, 5, 7};
-        std::vector<unsigned long> restes{2, 3, 2};
-
-        auto reste = arithmetique::restes_chinois<unsigned long>(modulos, restes, premiers);
-        BOOST_CHECK_EQUAL(reste, 23);
-    }
-
-    BOOST_FIXTURE_TEST_CASE(chinois2, fixure_arithmetiques) {
-        std::vector<unsigned long> modulos{3, 4, 5};
-        std::vector<unsigned long> restes{2, 3, 1};
-
-        auto reste = arithmetique::restes_chinois<unsigned long>(modulos, restes, premiers);
-        BOOST_CHECK_EQUAL(reste, 11);
-    }
-
-    BOOST_FIXTURE_TEST_CASE(racine, fixure_arithmetiques) {
-        BOOST_CHECK_EQUAL(arithmetique::racine_carre<unsigned long long>(123456789ULL), 11111ULL);
-        BOOST_CHECK_EQUAL(arithmetique::racine_carre<unsigned long long>(1234567890987654321ULL), 1111111106ULL);
-        BOOST_CHECK_EQUAL(arithmetique::racine_carre<unsigned long long>(15241578750190521ULL), 123456789ULL);
     }
 
     BOOST_FIXTURE_TEST_CASE(derivee, fixure_arithmetiques) {

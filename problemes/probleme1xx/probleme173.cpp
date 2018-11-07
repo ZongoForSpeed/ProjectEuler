@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
-
-#include <fstream>
+#include "racine.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -28,7 +27,7 @@ ENREGISTRER_PROBLEME(173, "Using up to one million tiles how many different \"ho
     nombre limite = 1000000;
     nombre resultat = 0;
     for (nombre n = 1; 2 * n - 1 < limite; ++n)
-        resultat += (arithmetique::racine_carre(n * n + limite) - n) / 2;
+        resultat += (racine::racine_carre(n * n + limite) - n) / 2;
 
     return std::to_string(resultat);
 }

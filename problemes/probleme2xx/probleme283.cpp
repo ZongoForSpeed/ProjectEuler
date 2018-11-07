@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "premiers.h"
+#include "racine.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -54,7 +55,7 @@ ENREGISTRER_PROBLEME(283, "Integer sided triangles for which the area/perimeter 
         // 4m²(u² + v²) = [v/(a - 2mv / u - 2mu].[v/(b - 2mv / u - 2mu]
         // avec c = a + b - 4mv/u
         for (nombre u: arithmetique::diviseurs(2 * m, premiers)) {
-            nombre borne_v = arithmetique::racine_carre(3 * u * u);
+            nombre borne_v = racine::racine_carre(3 * u * u);
             for (nombre v = 1; v <= borne_v; ++v) {
                 if (arithmetique::PGCD(u, v) == 1) {
                     // Toutes les factorisations de 4m²(u² + v²) = δ1 · δ2 va 

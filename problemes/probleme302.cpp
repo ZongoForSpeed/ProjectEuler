@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "premiers.h"
+#include "racine.h"
 
 #include <optional>
 #include <bitset>
@@ -41,7 +42,7 @@ namespace {
                 ++resultat;
         }
 
-        nombre maxp = arithmetique::racine_carre(limite / n);
+        nombre maxp = racine::racine_carre(limite / n);
         if (maxp >= lastp)
             maxp = lastp - 1;
 

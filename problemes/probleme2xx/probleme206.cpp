@@ -2,8 +2,7 @@
 #include "chiffres.h"
 #include "utilitaires.h"
 #include "arithmetique.h"
-
-#include <fstream>
+#include "racine.h"
 
 typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<nombre> vecteur;
@@ -21,8 +20,8 @@ namespace {
 ENREGISTRER_PROBLEME(206, "Concealed Square") {
     // Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
     // where each “_” is a single digit.
-    nombre minimum = arithmetique::racine_carre(102030405060708LL); // 0900
-    nombre maximum = arithmetique::racine_carre(192939495969798LL); // 9900
+    nombre minimum = racine::racine_carre(102030405060708LL); // 0900
+    nombre maximum = racine::racine_carre(192939495969798LL); // 9900
 
     nombre resultat = 0;
     for (nombre n = minimum; n < maximum; ++n) {

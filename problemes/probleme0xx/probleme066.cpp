@@ -7,8 +7,8 @@ typedef boost::multiprecision::cpp_int nombre;
 namespace {
     vecteur fraction_continue(size_t d) {
         vecteur resultat;
-        size_t d2 = arithmetique::racine_carre(d);
-        size_t a = arithmetique::racine_carre(d), p = 0, q = 1;
+        size_t d2 = racine::racine_carre(d);
+        size_t a = racine::racine_carre(d), p = 0, q = 1;
         do {
             resultat.push_back(a);
             p = a * q - p;

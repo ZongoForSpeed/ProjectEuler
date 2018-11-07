@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 #include "premiers.h"
 #include "combinatoire.h"
+#include "racine.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -54,7 +55,7 @@ ENREGISTRER_PROBLEME(248, "Numbers for which Euler’s totient function equals 1
     const nombre phi = combinatoire::factorielle(13ULL);
 
     std::set<nombre> premiers;
-    premiers::crible235<nombre>(arithmetique::racine_carre(phi), std::inserter(premiers, premiers.begin()));
+    premiers::crible235<nombre>(racine::racine_carre(phi), std::inserter(premiers, premiers.begin()));
 
     vecteur facteurs;
     auto diviseurs = arithmetique::diviseurs(phi, premiers);

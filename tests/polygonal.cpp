@@ -5,13 +5,13 @@
 BOOST_AUTO_TEST_SUITE(test_polygonal)
 
     BOOST_AUTO_TEST_CASE(carre) {
-        BOOST_CHECK_EQUAL(123456ULL, arithmetique::racine_carre(15241383936ULL));
+        BOOST_CHECK_EQUAL(123456ULL, racine::racine_carre(15241383936ULL));
         BOOST_CHECK(polygonal::est_carre(15241383936ULL));
         BOOST_CHECK(!polygonal::est_carre(15241383935ULL));
     }
 
     BOOST_AUTO_TEST_CASE(cubique) {
-        BOOST_CHECK_EQUAL(12345ULL, arithmetique::racine_cubique(1881365963625ULL));
+        BOOST_CHECK_EQUAL(12345ULL, racine::racine_cubique(1881365963625ULL));
         BOOST_CHECK(polygonal::est_cubique(1881365963625ULL));
         BOOST_CHECK(!polygonal::est_cubique(1881365963624ULL));
     }

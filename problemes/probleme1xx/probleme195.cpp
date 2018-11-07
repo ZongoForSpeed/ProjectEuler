@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
-
-#include <fstream>
+#include "racine.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -25,7 +24,7 @@ ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 d
     //
     // Find T(1053779).
     nombre limite = 1053779;
-    nombre borne = 2 * arithmetique::racine_carre(limite);
+    nombre borne = 2 * racine::racine_carre(limite);
 
     // a = m² - mn + n² 
     // b = 2mn - n² 

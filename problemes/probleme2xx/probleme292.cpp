@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "racine.h"
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -10,7 +11,7 @@ namespace {
     void generer_triplets(const short longueur, std::vector<triplet> &triplets) {
         for (short dx = -longueur; dx <= longueur; ++dx)
             for (short dy = -longueur; dy <= longueur; ++dy) {
-                if (auto racine = arithmetique::carre_parfait(dx * dx + dy * dy)) {
+                if (auto racine = racine::carre_parfait(dx * dx + dy * dy)) {
                     if (*racine < longueur)
                         triplets.push_back(std::make_tuple(dx, dy, *racine));
                 }

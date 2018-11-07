@@ -1,11 +1,12 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "racine.h"
 
 typedef long long nombre;
 
 namespace {
     nombre somme(nombre n, nombre x, nombre modulo) {
-        nombre a = arithmetique::racine_carre(n);
+        nombre a = racine::racine_carre(n);
         if (a > n / x) {
             a = n / x;
         }
@@ -22,7 +23,7 @@ namespace {
 
     nombre somme2(nombre n, nombre modulo) {
         nombre resultat = 0;
-        nombre a = arithmetique::racine_carre(n);
+        nombre a = racine::racine_carre(n);
         for (nombre k = 1; k <= n / (a + 1); k++)
             resultat = (resultat + (n / k) % modulo * ((n / (k + 1) % modulo))) % modulo;
         for (nombre k = 1; k <= a; k++) {

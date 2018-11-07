@@ -8,7 +8,6 @@
 
 #include "puissance.h"
 #include "utilitaires.h"
-#include <boost/multiprecision/integer.hpp>
 
 namespace arithmetique {
     template<typename Nombre>
@@ -74,28 +73,6 @@ namespace arithmetique {
     constexpr Nombre plafond(Nombre n, Nombre d) // ceil
     {
         return (n + d - 1) / d;
-    }
-
-    template<typename Nombre>
-    constexpr Nombre racine_carre(Nombre n) {
-        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
-        return static_cast<Nombre>(std::sqrt(n));
-    }
-
-    template<typename Nombre>
-    constexpr Nombre racine_cubique(Nombre n) {
-        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
-        return static_cast<Nombre>(std::cbrt(n));
-    }
-
-    template<typename Nombre>
-    std::optional<Nombre> carre_parfait(Nombre x) {
-        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
-        Nombre s = racine_carre<Nombre>(x);
-        if (s * s == x)
-            return s;
-        else
-            return std::nullopt;
     }
 
     template<typename Nombre, typename Conteneur>

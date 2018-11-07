@@ -2,8 +2,7 @@
 #include "premiers.h"
 #include "utilitaires.h"
 #include "arithmetique.h"
-
-#include <fstream>
+#include "racine.h"
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -22,7 +21,7 @@ ENREGISTRER_PROBLEME(234, "Semidivisible numbers") {
     //
     // What is the sum of all semidivisible numbers not exceeding 999966663333 ?
     const nombre limite = 999966663333LL;
-    const nombre borne = arithmetique::racine_carre(limite) + 1;
+    const nombre borne = racine::racine_carre(limite) + 1;
 
     vecteur premiers;
     premiers::crible235<nombre>(static_cast<size_t>(borne), std::back_inserter(premiers));

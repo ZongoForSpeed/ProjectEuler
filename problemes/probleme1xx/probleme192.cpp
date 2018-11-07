@@ -16,7 +16,7 @@ namespace {
     }
 
     fraction fraction_continue(size_t S, const nombre &bound) {
-        paire a(arithmetique::racine_carre(S), 1);
+        paire a(racine::racine_carre(S), 1);
         paire b(a.first + 1, 1);
 
         while (a.second + b.second <= bound) {

@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "utilitaires.h"
+#include "racine.h"
 
 #include <boost/multiprecision/cpp_int.hpp>
 
@@ -24,7 +25,7 @@ ENREGISTRER_PROBLEME(390, "Triangles with non rational sides and integral area")
         nombre max_t = limite / (a * a + 1);
         for (nombre t = 2; t <= max_t; t += 2) {
             nombre s = a * a * t * t - a * a + t * t;
-            auto v = arithmetique::racine_carre<nombre>(s);
+            auto v = racine::racine_carre<nombre>(s);
             if (v * v == s) {
                 nombre b = a * t + v;
                 nombre n = a * b + t;

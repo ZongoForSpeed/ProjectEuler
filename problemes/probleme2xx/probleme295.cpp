@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "timer.h"
+#include "racine.h"
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -59,7 +60,7 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
     //
     // Find L(100 000).
     const nombre rayon_max = 100000;
-    const nombre limite = 2 * arithmetique::racine_carre(rayon_max);
+    const nombre limite = 2 * racine::racine_carre(rayon_max);
 
     std::vector<std::set<nombre>> rayons;
     for (nombre dx = 1; dx < limite; dx += 2)

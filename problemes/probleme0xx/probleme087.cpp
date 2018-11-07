@@ -2,6 +2,7 @@
 #include "premiers.h"
 #include "utilitaires.h"
 #include "arithmetique.h"
+#include "racine.h"
 
 #include <fstream>
 
@@ -21,7 +22,7 @@ ENREGISTRER_PROBLEME(87, "Prime power triples") {
     // power?
     const nombre limite = 50000000;
     vecteur premiers;
-    premiers::crible23<nombre>(arithmetique::racine_carre(limite) + 6, std::back_inserter(premiers));
+    premiers::crible23<nombre>(racine::racine_carre(limite) + 6, std::back_inserter(premiers));
 
     std::set<nombre> resultat;
     for (nombre p: premiers) {

@@ -2,6 +2,7 @@
 #include "utilitaires.h"
 #include "multidimension.h"
 #include "arithmetique.h"
+#include "racine.h"
 
 namespace {
     bool test(const multidimension<size_t, 2> & PGCDs, size_t a, size_t b, size_t c, size_t d) {
@@ -10,7 +11,7 @@ namespace {
         size_t cd = PGCDs[c][d]-1;
         size_t da = PGCDs[d][a]-1;
         size_t i = (a*b + b*c + c*d + d*a - ab - bc - cd - da - 2)/2;
-        return arithmetique::carre_parfait(i) ? true : false;
+        return racine::carre_parfait(i) ? true : false;
     }
 }
 
