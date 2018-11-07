@@ -1,6 +1,6 @@
 #include <numeric>
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 #include "combinatoire.h"
 
@@ -37,7 +37,7 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients") {
     for (unsigned long n = 0; n <= limite; ++n)
         for (unsigned long p = 0; p <= n; ++p) {
             auto Cnp = combinatoire::coefficient_binomial<nombre>(n, p);
-            if (!arithmetiques::facteur_carre(Cnp, premiers))
+            if (!arithmetique::facteur_carre(Cnp, premiers))
                 square_free.insert(Cnp);
         }
 

@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <fstream>
 
@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 d
     //
     // Find T(1053779).
     nombre limite = 1053779;
-    nombre borne = 2 * arithmetiques::racine_carre(limite);
+    nombre borne = 2 * arithmetique::racine_carre(limite);
 
     // a = m² - mn + n² 
     // b = 2mn - n² 
@@ -35,11 +35,11 @@ ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 d
     std::cout << std::boolalpha;
     for (nombre n = 1; n < borne; ++n) {
         for (nombre m = 2 * n + 1;; ++m) {
-            if (arithmetiques::PGCD(m, n) == 1) {
+            if (arithmetique::PGCD(m, n) == 1) {
                 nombre a = m * m - m * n + n * n;
                 nombre b = 2 * m * n - n * n;
                 nombre c = m * m - n * n;
-                nombre pgcd = arithmetiques::PGCD(a, arithmetiques::PGCD(b, c));
+                nombre pgcd = arithmetique::PGCD(a, arithmetique::PGCD(b, c));
                 a /= pgcd;
                 b /= pgcd;
                 c /= pgcd;

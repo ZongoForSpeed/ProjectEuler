@@ -1,6 +1,6 @@
 #include <boost/multiprecision/cpp_int.hpp>
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef boost::multiprecision::cpp_int nombre;
 

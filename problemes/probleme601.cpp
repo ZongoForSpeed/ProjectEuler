@@ -1,5 +1,5 @@
 #include <maths/premiers.h>
-#include <maths/arithmetiques.h>
+#include <maths/arithmetique.h>
 #include "problemes.h"
 #include "utilitaires.h"
 
@@ -10,7 +10,7 @@ namespace {
     nombre PPCM(nombre a, nombre b) {
         nombre m = 1;
         for (nombre n = a; n < b; ++n) {
-            m = arithmetiques::PPCM(n, m);
+            m = arithmetique::PPCM(n, m);
         }
 
         return m;

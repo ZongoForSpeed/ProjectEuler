@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 ENREGISTRER_PROBLEME(24, "Lexicographic permutations") {
     // A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits

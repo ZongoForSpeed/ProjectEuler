@@ -20,7 +20,7 @@ namespace diophantienne {
 
     GenerateurEquationLineaire::GenerateurEquationLineaire(long long int A, long long int B, long long int C) {
         // Ax + By + C = 0
-        long long int g = arithmetiques::PGCD(A, B);
+        long long int g = arithmetique::PGCD(A, B);
         if (C % g != 0) {
             // Pas de solution
             return;
@@ -32,7 +32,7 @@ namespace diophantienne {
 
         long long int u;
         long long int v;
-        arithmetiques::Bezout(d, e, u, v);
+        arithmetique::Bezout(d, e, u, v);
 
         primitives.emplace_back(-f * u, -f * v);
 

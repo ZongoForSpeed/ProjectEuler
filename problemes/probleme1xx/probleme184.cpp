@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <fstream>
 
@@ -39,8 +39,8 @@ ENREGISTRER_PROBLEME(184, "Triangles containing the origin") {
     for (nombre x = 0; x < limite; ++x)
         for (nombre y = 1; y < limite; ++y) {
             nombre r2 = x * x + y * y;
-            if (r2 > 0 && r2 < limite * limite && arithmetiques::PGCD(x, y) == 1)
-                points.emplace_back(Point(x, y), arithmetiques::racine_carre((limite * limite - 1) / r2));
+            if (r2 > 0 && r2 < limite * limite && arithmetique::PGCD(x, y) == 1)
+                points.emplace_back(Point(x, y), arithmetique::racine_carre((limite * limite - 1) / r2));
         }
 
     std::sort(points.begin(), points.end());

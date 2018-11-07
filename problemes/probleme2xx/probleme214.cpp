@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -42,7 +42,7 @@ ENREGISTRER_PROBLEME(214, "Totient Chains") {
         nombre longueur = 1;
         nombre m = p;
         while (m != 1 && longueur < chaine) {
-            m = arithmetiques::phi(m, premiers);
+            m = arithmetique::phi(m, premiers);
             ++longueur;
         }
 

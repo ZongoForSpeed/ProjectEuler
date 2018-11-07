@@ -1,5 +1,6 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
+#include "arithmetique_modulaire.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -24,7 +25,7 @@ namespace {
             return 2 % m;
 
         std::map<nombre, size_t> d;
-        arithmetiques::decomposition(m, premiers, d);
+        arithmetique::decomposition(m, premiers, d);
 
         if (d.size() == 1) {
             auto facteur = *d.begin();
@@ -40,7 +41,7 @@ namespace {
             } else {
                 // si m premier avec 2
                 // alors 2↑↑a mod m = 2**(2↑↑(n-1) mod phi(m)) mod m
-                nombre x = algorithme(a - 1, arithmetiques::phi(m, premiers), premiers);
+                nombre x = algorithme(a - 1, arithmetique::phi(m, premiers), premiers);
                 return puissance::puissance_modulaire<nombre>(2, x, m);
             }
         } else {
@@ -54,7 +55,7 @@ namespace {
                 restes.push_back(x);
             }
 
-            return arithmetiques::restes_chinois<nombre>(modulos, restes, premiers);
+            return arithmetique_modulaire::restes_chinois<nombre>(modulos, restes, premiers);
         }
     }
 }

@@ -1,6 +1,6 @@
 #include <numeric>
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -32,7 +32,7 @@ ENREGISTRER_PROBLEME(143, "Investigating the Torricelli point of a triangle") {
         for (nombre n = 1; n < m; ++n) {
             if ((m - n) % 3 == 0)
                 continue;
-            if (arithmetiques::PGCD(n, m) != 1)
+            if (arithmetique::PGCD(n, m) != 1)
                 continue;
 
             nombre a = 2 * n * m + n * n;

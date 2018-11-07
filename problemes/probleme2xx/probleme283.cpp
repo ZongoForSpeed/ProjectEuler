@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -24,7 +24,7 @@ ENREGISTRER_PROBLEME(283, "Integer sided triangles for which the area/perimeter 
     // for (nombre m = 1; m < limite + 1; ++m)
     // {
     //     nombre produit = 8*m*m;
-    //     auto diviseurs = arithmetiques::diviseurs(produit, premiers);
+    //     auto diviseurs = arithmetique::diviseurs(produit, premiers);
     //    
     //     for (nombre delta1: diviseurs)
     //     {
@@ -53,10 +53,10 @@ ENREGISTRER_PROBLEME(283, "Integer sided triangles for which the area/perimeter 
         // Il y a une identité : 
         // 4m²(u² + v²) = [v/(a - 2mv / u - 2mu].[v/(b - 2mv / u - 2mu]
         // avec c = a + b - 4mv/u
-        for (nombre u: arithmetiques::diviseurs(2 * m, premiers)) {
-            nombre borne_v = arithmetiques::racine_carre(3 * u * u);
+        for (nombre u: arithmetique::diviseurs(2 * m, premiers)) {
+            nombre borne_v = arithmetique::racine_carre(3 * u * u);
             for (nombre v = 1; v <= borne_v; ++v) {
-                if (arithmetiques::PGCD(u, v) == 1) {
+                if (arithmetique::PGCD(u, v) == 1) {
                     // Toutes les factorisations de 4m²(u² + v²) = δ1 · δ2 va 
                     // produire des solutions de la forme :
                     //
@@ -66,7 +66,7 @@ ENREGISTRER_PROBLEME(283, "Integer sided triangles for which the area/perimeter 
                     // 
                     // avec v | δ1 + 2mu and v | δ2 + 2mu
                     nombre produit = 4 * m * m * (u * u + v * v);
-                    auto diviseurs = arithmetiques::diviseurs(produit, premiers);
+                    auto diviseurs = arithmetique::diviseurs(produit, premiers);
 
                     for (nombre delta1: diviseurs) {
                         // δ1 ≤ 2m.sqrt(u² + v²)

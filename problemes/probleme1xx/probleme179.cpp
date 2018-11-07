@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -18,7 +18,7 @@ ENREGISTRER_PROBLEME(179, "Consecutive positive divisors") {
     nombre resultat = 0;
     nombre sigma = 1;
     for (nombre n = 2; n < limite; ++n) {
-        nombre s = arithmetiques::nombre_diviseurs(n, premiers);
+        nombre s = arithmetique::nombre_diviseurs(n, premiers);
         if (sigma == s)
             ++resultat;
         else

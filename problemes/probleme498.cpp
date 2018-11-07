@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques_modulaire.h"
+#include "arithmetique_modulaire.h"
 
 namespace {
     template<size_t modulo>
@@ -8,7 +8,7 @@ namespace {
         size_t m;
         size_t d;
         
-        typedef arithmetiques::nombre_modulaire<modulo> nombre;
+        typedef arithmetique_modulaire::nombre_modulaire<modulo> nombre;
 
     public:
         Probleme498(const size_t &_n, const size_t &_m, const size_t &_d) : n(_n),

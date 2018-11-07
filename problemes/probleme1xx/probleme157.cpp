@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -45,11 +45,11 @@ ENREGISTRER_PROBLEME(157, "Solving the diophantine equation 1/a+1/b= p/10n") {
                 if (a * b > m)
                     break;
 
-                if (arithmetiques::PGCD(a, b) != 1)
+                if (arithmetique::PGCD(a, b) != 1)
                     continue;
 
                 nombre p = m * (a + b) / a / b;
-                resultat_n += arithmetiques::nombre_diviseurs(p, premiers);
+                resultat_n += arithmetique::nombre_diviseurs(p, premiers);
             }
         std::cout << "Solutions(" << n << ") = " << resultat_n << std::endl;
         resultat += resultat_n;

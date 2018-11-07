@@ -1,81 +1,69 @@
-#include <maths/multidimension.h>
 #include "problemes.h"
 #include "premiers.h"
 #include "puissance.h"
 
-#include "arithmetiques.h"
-#include "arithmetiques_modulaire.h"
-
-using arithmetiques::nombre_modulaire;
+#include "arithmetique_modulaire.h"
+#include "multidimension.h"
+#include "combinatoire.h"
 
 namespace {
+    class Euler344 {
+    private:
+        size_t pennies;    // Numbers of pennies
+        size_t length;     // Strip length
+        size_t modulo;
+        multidimension<size_t, 2> cache_binomial;
 
-    template<size_t modulo>
-    class Algorithme {
-        size_t n;
-        size_t m;
+        size_t coefficient_binomial(size_t n, size_t k) {
+            if (cache_binomial[(k / 2)][n] == std::numeric_limits<size_t>::max()) {
+                cache_binomial[(k / 2)][n] = combinatoire::coefficient_binomial(n, k, modulo);
+            }
+            return cache_binomial[(k / 2)][n];
+        }
 
-        std::vector<size_t> exposant_factoriels;
-        std::vector<nombre_modulaire<modulo>> factoriels;
-        std::vector<nombre_modulaire<modulo>> inverses;
+        size_t recursion(multidimension<size_t, 2> &cache, size_t segments, size_t extra, size_t free, size_t shift) {
+            size_t bit = 1ul << shift;
+            if (2 * bit > free) return coefficient_binomial(free + extra, extra);
+            if (cache[shift][free] != 0) {
+                return cache[shift][free];
+            }
+            size_t somme = 0;
 
-        nombre_modulaire<modulo> coefficient_binomial(size_t p, size_t k) {
-            const auto & fp = factoriels[p];
-            const auto & fk = inverses[factoriels[k].value()];
-            const auto & fpk = inverses[factoriels[p - k].value()];
-            if (exposant_factoriels[p] - exposant_factoriels[k] - exposant_factoriels[p - k] > 0)
-                return 0;
+            for (size_t i = 0; i * bit <= free && i <= segments; i += 2) {
+                somme += recursion(cache, segments, extra, free - i * bit, shift + 1) *
+                         coefficient_binomial(segments, i);
+                somme %= modulo;
+            }
 
-            return fp * fk * fpk;
+            cache[shift][free] = somme;
+            return somme;
         }
 
     public:
-        Algorithme(size_t n_, size_t m_) : n(n_), m(m_), exposant_factoriels(n + 1), factoriels(n + 1), inverses(modulo) {
-            for (size_t i = 0; i < n_ + 1; ++i) {
-                auto f2 = nombre_modulaire<modulo>::factoriel2(i);
-                exposant_factoriels[i] = f2.first;
-                factoriels[i] = f2.second;
-            }
-
-            for (size_t i = 0; i < modulo; ++i) {
-                inverses[i] = 1 / nombre_modulaire<modulo>(i);
-            }
-        }
-        void dp(std::vector<nombre_modulaire<modulo>> &f, size_t p) {
-            f[0] = 1;
-            for (size_t b1 = 0; b1 < 21; ++b1) {
-                auto b = 20 - b1;
-                // 2^b > n
-                for (size_t i = n; i; --i) {
-                    for (size_t j = 2; j <= p && (j << b) <= i; j += 2) {
-                        f[i] += f[i - (j << b)] * coefficient_binomial(p, j);
-                    }
-                }
-            }
+        Euler344(size_t p, size_t l, size_t m) : pennies(p), length(l), modulo(m) {
+            multidimension<size_t, 2> cache(pennies / 4 + 1, length - pennies / 2 + 1,
+                                            std::numeric_limits<size_t>::max());
+            std::swap(cache_binomial, cache);
         }
 
         size_t W() {
-            auto total = coefficient_binomial(n, m + 1) * (m + 1);
-            // zz_p total = cb(n, m + 1) * (m + 1);
+            // total
+            size_t total = (pennies + 1) * combinatoire::coefficient_binomial(length, pennies + 1, modulo);
 
-            std::vector<nombre_modulaire<modulo>> f(n + 10, 0);
-            std::vector<nombre_modulaire<modulo>> g(n + 10, 0);
-            dp(f, m / 2 + 1);
-            dp(g, m / 2);
+            multidimension<size_t, 2> cache(20u, length, 0u);
 
-            auto ans = total;
-            for (size_t i = 0; i <= n - m; ++i) { // silver is the second one
-                ans -= coefficient_binomial(n - 1 - m / 2 - i, m / 2) * f[i];
-            }
+            // dollar en 2ème position (cas perdants)
+            total += modulo - recursion(cache, pennies / 2 + 1, pennies / 2, length - pennies - 1, 0);
 
-            for (size_t i = 1; i <= n - m + 1; ++i) { // silver is behind the second one
-                ans -= coefficient_binomial(n - m / 2 - i, m / 2) * (f[i] - g[i]) * (m - 1);
-            }
+            // dollar en 3ème position (ajout 1 à longueur)
+            total -= (pennies - 1) * recursion(cache, pennies / 2 + 1, pennies / 2, length - pennies, 0);
+            multidimension<size_t, 2> cache2(20u, length, 0u);
 
-            return ans.value();
+            // cas commençants par "0" for dollar 3rd+ positions
+            total += (pennies - 1) * recursion(cache2, pennies / 2, pennies / 2, length - pennies, 0);
+            return (total + pennies * modulo) % modulo;
         }
     };
-
 }
 
 ENREGISTRER_PROBLEME(344, "Silver dollar game") {
@@ -103,26 +91,21 @@ ENREGISTRER_PROBLEME(344, "Silver dollar game") {
     // You are given that W(10,2) = 324 and W(100,10) = 1514704946113500.
     //
     // Find W(1 000 000, 100) modulo the semiprime 1000 036 000 099 (= 1 000 003 · 1 000 033).
-    // std::vector<size_t> premiers;
-    // premiers::crible235<size_t>(10000000UL, std::back_inserter(premiers));
-    const size_t n = 1000000;
-    const size_t m = 100;
+    std::vector<size_t> premiers;
+    premiers::crible235<size_t>(10'000'000, std::back_inserter(premiers));
 
-    size_t resultat = 65579304332;
-    size_t resultat_1000003 = Algorithme<1000003>(n, m).W();
-    std::cout << resultat_1000003 << std::endl;
-    std::cout << (resultat % 1000003) << std::endl;
+    size_t pennies = 100;
+    size_t length = 1'000'000;
 
-    size_t resultat_1000033 = Algorithme<1000033>(n, m).W();
-    std::cout << resultat_1000033 << std::endl;
-    std::cout << (resultat % 1000033) << std::endl;
+    size_t modulo1 = 1'000'003;
+    size_t modulo2 = 1'000'033;
 
-    std::vector<long long> modulos {1000003, 1000033};
-    std::vector<long long> restes {static_cast<long long>(resultat_1000003), static_cast<long long>(resultat_1000033)};
+    size_t resultat1 = Euler344(pennies, length, modulo1).W();
+    size_t resultat2 = Euler344(pennies, length, modulo2).W();
 
-    long long resultat2 = arithmetiques::restes_chinois<long long>(modulos, restes);
-    std::cout << resultat2 << std::endl;
-    std::cout << (resultat % (1000003UL * 1000033UL)) << std::endl;
+    const std::vector<size_t> modulos{modulo1, modulo2};
+    const std::vector<size_t> restes{resultat1, resultat2};
 
-    return std::to_string(resultat2);
+    auto resultat = arithmetique_modulaire::restes_chinois<size_t>(modulos, restes, premiers);
+    return std::to_string(resultat);
 }

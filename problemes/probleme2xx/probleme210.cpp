@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef long long nombre;
 typedef std::pair<nombre, nombre> point;

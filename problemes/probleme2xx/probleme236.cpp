@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -41,7 +41,7 @@ ENREGISTRER_PROBLEME(236, "Luxury Hampers") {
         for (nombre k = 3; k <= 1888 + 3776 + 5664; k++) {
             nombre a = 59 * b;
             nombre r = 5 * k;
-            nombre pgcd = arithmetiques::PGCD(a, r);
+            nombre pgcd = arithmetique::PGCD(a, r);
             a /= pgcd;
             r /= pgcd;
             nombre end = std::min(5248 / a, (1312 + 2624 + 3936) / r);

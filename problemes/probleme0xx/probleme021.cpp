@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -19,7 +19,7 @@ ENREGISTRER_PROBLEME(21, "Amicable numbers") {
     diviseurs.push_back(0);
     nombre resultat = 0;
     for (nombre n = 1; n < 10000; ++n) {
-        nombre d = arithmetiques::somme_diviseurs(n, premiers) - n;
+        nombre d = arithmetique::somme_diviseurs(n, premiers) - n;
         diviseurs.push_back(d);
         if (d < n && diviseurs[d] == n) {
             resultat += d + n;

@@ -1,6 +1,6 @@
 #include <numeric>
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef boost::multiprecision::cpp_int nombre;
@@ -14,7 +14,7 @@ namespace {
                   const fraction &sigma,
                   vecteur &resultat) {
         std::map<nombre, unsigned long> decomposition;
-        arithmetiques::decomposition(sigma.numerator(), premiers, decomposition);
+        arithmetique::decomposition(sigma.numerator(), premiers, decomposition);
 
         nombre p = decomposition.begin()->first;
         unsigned long exposant = decomposition.begin()->second;

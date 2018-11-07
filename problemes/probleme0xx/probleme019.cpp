@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <boost/date_time/date_defs.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>

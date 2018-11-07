@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -13,10 +13,10 @@ namespace {
         // avec k ≥ 0, p0 < p1 < … < pk premiers, α0, … , αk > 0 et
         // Quelquesoit i dans {0, ... ,k} p_i <= 1+sigma(p_0^a_0.p_1^a_1...p_i-1^a_i-1)
         std::map<nombre, size_t> d;
-        arithmetiques::decomposition(n, premiers, d);
+        arithmetique::decomposition(n, premiers, d);
         nombre s = 1;
         for (auto &p: d) {
-            nombre sigma = arithmetiques::somme_diviseurs(s, premiers);
+            nombre sigma = arithmetique::somme_diviseurs(s, premiers);
             if (p.first > 1 + sigma)
                 return false;
             s *= puissance::puissance(p.first, p.second);

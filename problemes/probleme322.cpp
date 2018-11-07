@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef long long int nombre;
 typedef std::vector<nombre> vecteur;

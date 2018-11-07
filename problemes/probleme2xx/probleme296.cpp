@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "timer.h"
 
 typedef unsigned long long nombre;
@@ -18,7 +18,7 @@ ENREGISTRER_PROBLEME(296, "Angular Bisector and Tangent") {
     nombre resultat = 0;
     for (nombre a = 1; 3 * a <= n; ++a)
         for (nombre b = a; a + 2 * b <= n; ++b) {
-            nombre d = (a + b) / arithmetiques::PGCD(a, b);
+            nombre d = (a + b) / arithmetique::PGCD(a, b);
             nombre cmin = b;
             nombre cmax = std::min(a + b - 1, n - a - b);
             resultat += cmax / d - (cmin - 1) / d;

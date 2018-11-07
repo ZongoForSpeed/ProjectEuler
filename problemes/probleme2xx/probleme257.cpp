@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <fstream>
 
@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(257, "Angular Bisectors") {
     for (nombre q = 1; q * q < limite; ++q) {
         for (nombre p = q + 1; p < racine2 * q; ++p) {
             // Cas (a+b)*(a+c) = 2*b*c
-            if (arithmetiques::PGCD(p, q) == 1) {
+            if (arithmetique::PGCD(p, q) == 1) {
                 nombre d = (p % 2 == 0) ? 2 : 1;
                 nombre r = (p + q) * (p + 2 * q) / d;
                 compteur += limite / r;
@@ -34,7 +34,7 @@ ENREGISTRER_PROBLEME(257, "Angular Bisectors") {
 
         for (nombre p = q + 1; p < racine3 * q; ++p) {
             // Cas (a+b)*(a+c) = 3*b*c
-            if (arithmetiques::PGCD(p, q) == 1) {
+            if (arithmetique::PGCD(p, q) == 1) {
                 nombre d = ((p % 3 == 0) ? 3 : 1) * (((p + q) % 2 == 0) ? 2 : 1);
                 nombre r = (p + q) * (p + 3 * q) / d;
                 compteur += limite / r;

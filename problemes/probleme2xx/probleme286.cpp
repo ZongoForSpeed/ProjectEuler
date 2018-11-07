@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "polynome.h"
 
 #include <boost/multiprecision/cpp_bin_float.hpp>

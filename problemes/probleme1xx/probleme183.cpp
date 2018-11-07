@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <fstream>
 
@@ -12,7 +12,7 @@ typedef boost::rational<nombre> fraction;
 
 namespace {
     bool infini(nombre n, nombre k) {
-        k /= arithmetiques::PGCD(n, k);
+        k /= arithmetique::PGCD(n, k);
         while (k % 2 == 0)
             k /= 2;
 

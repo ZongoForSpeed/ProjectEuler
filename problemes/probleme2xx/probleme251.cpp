@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -18,13 +18,13 @@ ENREGISTRER_PROBLEME(251, "Cardano Triplets") {
     const nombre u = 110000000;
 
     nombre resultat = 0;
-    for (nombre n = 1, n_max = arithmetiques::racine_carre(u / 5); n <= n_max; n++)
-        for (nombre d = 1, d_max = arithmetiques::racine_carre(u - 5 * n * n - n); d < d_max; d += 2) {
-            if (arithmetiques::PGCD(d, n) != 1)
+    for (nombre n = 1, n_max = arithmetique::racine_carre(u / 5); n <= n_max; n++)
+        for (nombre d = 1, d_max = arithmetique::racine_carre(u - 5 * n * n - n); d < d_max; d += 2) {
+            if (arithmetique::PGCD(d, n) != 1)
                 continue;
 
             nombre q, l;
-            arithmetiques::Bezout(d, 8 * n, q, l); // q = d ^ (-1) (mod 8 * n)
+            arithmetique::Bezout(d, 8 * n, q, l); // q = d ^ (-1) (mod 8 * n)
             l = -3 * q * q % (8 * n);
             l += l < 0 ? 8 * n : 0;
             nombre c = u + 1 - (3 * n + d) * (d * d * l + 3) / (8 * n) - n * n * l;

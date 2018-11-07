@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -8,9 +8,9 @@ namespace {
     nombre nombre_triangles(nombre p) {
         // http://mathworld.wolfram.com/IntegerTriangle.html
         if (p % 2 == 1)
-            return arithmetiques::arrondi<nombre>((p + 3) * (p + 3), 48);
+            return arithmetique::arrondi<nombre>((p + 3) * (p + 3), 48);
         else
-            return arithmetiques::arrondi<nombre>(p * p, 48);
+            return arithmetique::arrondi<nombre>(p * p, 48);
     }
 }
 

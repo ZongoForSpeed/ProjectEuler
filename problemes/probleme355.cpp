@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "utilitaires.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <memory>
 #include <utility>

@@ -1,7 +1,9 @@
-#include <maths/premiers.h>
 #include "problemes.h"
 #include "utilitaires.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
+
+#include "premiers.h"
+#include "arithmetique_modulaire.h"
 
 typedef long long int nombre;
 typedef std::vector<nombre> vecteur;
@@ -50,7 +52,7 @@ namespace {
             modulos.push_back(e.second.second);
         }
 
-        return arithmetiques::restes_chinois<nombre>(modulos, restes);
+        return arithmetique_modulaire::restes_chinois<nombre>(modulos, restes);
     }
 }
 
@@ -71,14 +73,14 @@ ENREGISTRER_PROBLEME(531, "Chinese leftovers") {
     nombre resultat = 0;
     for (nombre n = 1000000; n < 1005000; ++n) {
         std::map<nombre, size_t> factorisation_n;
-        arithmetiques::decomposition(n, premiers, factorisation_n);
+        arithmetique::decomposition(n, premiers, factorisation_n);
 
-        nombre phi_n = arithmetiques::phi(n, premiers);
+        nombre phi_n = arithmetique::phi(n, premiers);
         for (nombre m = n + 1; m < 1005000; ++m) {
             std::map<nombre, size_t> factorisation_m;
-            arithmetiques::decomposition(m, premiers, factorisation_m);
+            arithmetique::decomposition(m, premiers, factorisation_m);
 
-            nombre phi_m = arithmetiques::phi(m, premiers);
+            nombre phi_m = arithmetique::phi(m, premiers);
             nombre f = g(phi_n, factorisation_n, phi_m, factorisation_m);
             resultat += f;
         }

@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -37,8 +37,8 @@ namespace {
         for (size_t k = 0; k < n; ++k) {
             long double d = determinant(p.points[k], p.points[(k + 1) % n], p.points[(k + 2) % n]);
             if (signe == 0)
-                signe = arithmetiques::signe(d);
-            else if (arithmetiques::signe(d) != signe)
+                signe = arithmetique::signe(d);
+            else if (arithmetique::signe(d) != signe)
                 return false;
         }
 

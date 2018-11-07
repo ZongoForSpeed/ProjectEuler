@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 #include "combinatoire.h"
 
@@ -52,12 +52,12 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer") {
     boost::multiprecision::cpp_int resultat = 0;
 
     std::map<nombre, size_t> decomposition;
-    arithmetiques::decomposition(combinatoire::factorielle<nombre>(9), premiers, decomposition);
+    arithmetique::decomposition(combinatoire::factorielle<nombre>(9), premiers, decomposition);
 
     nombre N = 0;
     for (nombre i = 10; i < limite + 1; ++i) {
         std::map<nombre, size_t> d;
-        arithmetiques::decomposition(i, premiers, d);
+        arithmetique::decomposition(i, premiers, d);
         for (const auto &entry: d) {
             auto &e = decomposition[entry.first];
             e += entry.second;

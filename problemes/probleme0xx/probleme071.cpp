@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 typedef boost::rational<nombre> fraction;

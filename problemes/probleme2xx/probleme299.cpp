@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "timer.h"
 #include "pythagoricien.h"
 
@@ -40,7 +40,7 @@ ENREGISTRER_PROBLEME(299, "Three similar triangles") {
 
     for (nombre n = 1; n < limite; n += 2)
         for (nombre m = 1; m < limite; m++) {
-            if (arithmetiques::PGCD(m, n) != 1)
+            if (arithmetique::PGCD(m, n) != 1)
                 continue;
 
             nombre g = 2 * n * m;

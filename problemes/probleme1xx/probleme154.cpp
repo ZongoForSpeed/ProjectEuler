@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <fstream>
 
@@ -28,8 +28,8 @@ ENREGISTRER_PROBLEME(154, "Exploring Pascal's pyramid") {
     vecteur cinq(n + 1, 0);
 
     for (nombre i = 1; i <= n; ++i) {
-        deux[i] = deux[i - 1] + arithmetiques::nombre_facteur(i, 2UL);
-        cinq[i] = cinq[i - 1] + arithmetiques::nombre_facteur(i, 5UL);
+        deux[i] = deux[i - 1] + arithmetique::nombre_facteur(i, 2UL);
+        cinq[i] = cinq[i - 1] + arithmetique::nombre_facteur(i, 5UL);
     }
 
     // C(n,i,j) = n! / i!j!(n-i-j)!

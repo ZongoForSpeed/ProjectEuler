@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(243, "Odd Triplets") {
     nombre resultat = 1;
     for (nombre p: premiers) {
         resultat *= p;
-        fraction ratio(arithmetiques::phi(resultat, premiers), resultat - 1);
+        fraction ratio(arithmetique::phi(resultat, premiers), resultat - 1);
         if (ratio < objectif) {
             resultat /= p;
             break;
@@ -35,7 +35,7 @@ ENREGISTRER_PROBLEME(243, "Odd Triplets") {
     }
 
     for (nombre n = resultat;; n += resultat) {
-        fraction ratio(arithmetiques::phi(n, premiers), n - 1);
+        fraction ratio(arithmetique::phi(n, premiers), n - 1);
         if (ratio < objectif) {
             resultat = n;
             break;

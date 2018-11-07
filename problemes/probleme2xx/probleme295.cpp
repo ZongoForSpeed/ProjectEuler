@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "timer.h"
 
 typedef long long nombre;
@@ -20,7 +20,7 @@ namespace {
     std::pair<nombre, nombre> diophantienne(nombre a, nombre b, nombre c) {
         // Résolution de l'equation ax + by = c
         nombre u, v;
-        arithmetiques::Bezout(a, b, u, v);
+        arithmetique::Bezout(a, b, u, v);
 
         u *= c;
         v *= -c;
@@ -59,12 +59,12 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
     //
     // Find L(100 000).
     const nombre rayon_max = 100000;
-    const nombre limite = 2 * arithmetiques::racine_carre(rayon_max);
+    const nombre limite = 2 * arithmetique::racine_carre(rayon_max);
 
     std::vector<std::set<nombre>> rayons;
     for (nombre dx = 1; dx < limite; dx += 2)
         for (nombre dy = 1; dy <= dx; dy += 2) {
-            if (arithmetiques::PGCD(dx, dy) != 1)
+            if (arithmetique::PGCD(dx, dy) != 1)
                 continue;
 
             std::set<nombre> R;

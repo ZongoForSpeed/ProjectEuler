@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 #include "multidimension.h"
 
@@ -42,7 +42,7 @@ ENREGISTRER_PROBLEME(341, "Golomb's self-describing sequence")
             ++k;
         }
         
-        auto decalage = arithmetiques::plafond(
+        auto decalage = arithmetique::plafond(
             (nnn - produit[k - 1]) * (somme[k] - somme[k - 1]), produit[k] - produit[k - 1]);
         // g[nnn] = somme[k - 1] + decalage
         resultat += somme[k - 1] + decalage;

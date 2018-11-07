@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -22,7 +22,7 @@ ENREGISTRER_PROBLEME(72, "Counting fractions") {
 
     nombre resultat = 0;
     for (nombre n = 2; n <= limite; ++n) {
-        resultat += arithmetiques::phi(n, premiers);
+        resultat += arithmetique::phi(n, premiers);
     }
     return std::to_string(resultat);
 }

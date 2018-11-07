@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef size_t nombre;
@@ -38,7 +38,7 @@ ENREGISTRER_PROBLEME(312, "Cyclic paths on Sierpiński graphs") {
 
     vecteur phi{modulo};
     while (phi.size() < 10) {
-        phi.push_back(arithmetiques::phi(phi.back(), premiers));
+        phi.push_back(arithmetique::phi(phi.back(), premiers));
     }
 
     nombre resultat = Sierpinski(3, 10000, 0, phi);

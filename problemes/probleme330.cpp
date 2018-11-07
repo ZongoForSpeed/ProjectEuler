@@ -1,8 +1,9 @@
 #include "problemes.h"
 #include "utilitaires.h"
 #include "premiers.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "multidimension.h"
+#include "arithmetique_modulaire.h"
 
 typedef long long int nombre;
 typedef std::vector<nombre> vecteur;
@@ -85,7 +86,7 @@ ENREGISTRER_PROBLEME(330, "Euler's Number") {
     vecteur premiers;
     premiers::crible235<nombre>(1000u, std::back_inserter(premiers));
 
-    auto facteurs = arithmetiques::facteurs_premiers(modulo, premiers);
+    auto facteurs = arithmetique::facteurs_premiers(modulo, premiers);
     vecteur restes;
 
     for (auto f : facteurs) {
@@ -95,7 +96,7 @@ ENREGISTRER_PROBLEME(330, "Euler's Number") {
     std::cout << facteurs << std::endl;
     std::cout << restes << std::endl;
 
-    auto resultat = arithmetiques::restes_chinois<nombre>(facteurs, restes);
+    auto resultat = arithmetique_modulaire::restes_chinois<nombre>(facteurs, restes);
 
     return std::to_string(resultat);
 }

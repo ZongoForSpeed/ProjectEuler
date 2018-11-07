@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <list>
@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(23, "Non-abundant sums") {
 
     std::vector<nombre> abundant;
     for (nombre n = 12; n < limite; ++n) {
-        if (arithmetiques::somme_diviseurs(n, premiers) > 2 * n)
+        if (arithmetique::somme_diviseurs(n, premiers) > 2 * n)
             abundant.push_back(n);
     }
     std::vector<bool> test(limite, true);

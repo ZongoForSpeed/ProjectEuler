@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef boost::multiprecision::cpp_int nombre;
@@ -21,12 +21,12 @@ ENREGISTRER_PROBLEME(266, "Pseudo Square Root") {
     nombre p1 = 1;
     for (size_t n = 0; n < premiers.size() / 2; ++n)
         p1 *= premiers[n];
-    auto d1 = arithmetiques::diviseurs(p1, premiers);
+    auto d1 = arithmetique::diviseurs(p1, premiers);
 
     nombre p2 = 1;
     for (size_t n = premiers.size() / 2; n < premiers.size(); ++n)
         p2 *= premiers[n];
-    auto d2 = arithmetiques::diviseurs(p2, premiers);
+    auto d2 = arithmetique::diviseurs(p2, premiers);
 
     nombre resultat = 0;
 

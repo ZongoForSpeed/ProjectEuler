@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <stack>
 
@@ -21,7 +21,7 @@ ENREGISTRER_PROBLEME(198, "Ambiguous Numbers") {
     nombre limite = 100000000ULL;
     nombre borne = 100;
 
-    nombre m = arithmetiques::racine_carre(limite / 2);
+    nombre m = arithmetique::racine_carre(limite / 2);
     std::stack<nombre> s;
     for (nombre i = borne; i < m; ++i)
         s.push(i);

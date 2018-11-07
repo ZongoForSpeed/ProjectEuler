@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "polygonal.h"
 
 typedef std::vector<size_t> vecteur;
@@ -54,7 +54,7 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables") {
             {
                 fraction zz = x * x + y * y;
                 if (polygonal::est_carre(zz.numerator()) && polygonal::est_carre(zz.denominator())) {
-                    fraction z(arithmetiques::racine_carre(zz.numerator()), arithmetiques::racine_carre(zz.denominator()));
+                    fraction z(arithmetique::racine_carre(zz.numerator()), arithmetique::racine_carre(zz.denominator()));
                     {
                         // n = 2: z = sqrt(x^2+y^2)
                         if (fractions.find(z) != fractions.end())
@@ -78,6 +78,6 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables") {
         v *= s.denominator();
     }
 
-    nombre resultat = (u + v) / arithmetiques::PGCD(u, v);
+    nombre resultat = (u + v) / arithmetique::PGCD(u, v);
     return resultat.str();
 }

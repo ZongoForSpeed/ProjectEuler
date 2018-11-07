@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "polygonal.h"
 
 #include <fstream>
@@ -30,7 +30,7 @@ ENREGISTRER_PROBLEME(141, "Investigating progressive numbers, n, which are also 
     // m^2 = v*t*(s^3*v+t);
     for (nombre t = 1; t * t * (1 + t * t) < limite; ++t) {
         for (nombre s = t + 1; t * (t + s * s * s) < limite; ++s)
-            if (arithmetiques::PGCD(s, t) == 1) {
+            if (arithmetique::PGCD(s, t) == 1) {
                 nombre s_cube = s * s * s;
                 for (nombre v = 1; v * t * (t + s_cube * v) < limite; ++v) {
                     nombre n = v * t * (t + s_cube * v);

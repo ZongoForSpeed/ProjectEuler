@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <list>
@@ -30,7 +30,7 @@ ENREGISTRER_PROBLEME(47, "Distinct primes factors") {
     while (true) {
         {
             std::map<nombre, nombre> d;
-            arithmetiques::decomposition(n, premiers, d);
+            arithmetique::decomposition(n, premiers, d);
             std::vector<nombre> f;
             for (const auto &i: d)
                 f.push_back(puissance::puissance(i.first, i.second));

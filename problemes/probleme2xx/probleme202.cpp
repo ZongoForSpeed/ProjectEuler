@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(202, "\"Laserbeam\"") {
         nombre n = (limite + 3) / 2 - m;
         if (m > n) break;
         nombre d = n - m;
-        if (d % 3 == 0 && arithmetiques::PGCD(m, n) == 1) {
+        if (d % 3 == 0 && arithmetique::PGCD(m, n) == 1) {
             ++resultat;
             // std::cout << "n = " << n << ", m = " << m << std::endl;
         }

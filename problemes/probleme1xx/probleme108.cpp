@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -28,7 +28,7 @@ ENREGISTRER_PROBLEME(108, "Diophantine reciprocals I") {
     nombre resultat = 0;
     for (nombre n = 2;; ++n) {
         std::map<nombre, nombre> decomposition;
-        arithmetiques::decomposition(n, premiers, decomposition);
+        arithmetique::decomposition(n, premiers, decomposition);
         nombre solutions = 1;
         for (const auto &d: decomposition) {
             solutions *= (2 * d.second + 1);

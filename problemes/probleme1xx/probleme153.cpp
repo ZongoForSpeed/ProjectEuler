@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "timer.h"
 
 #include <fstream>
@@ -59,7 +59,7 @@ ENREGISTRER_PROBLEME(153, "Investigating Gaussian Integers") {
         Timer t("Cas des nombres complexes");
         for (nombre a = 1; a * a < limite; ++a) {
             for (nombre b = 1; b < a + 1; ++b) {
-                if (arithmetiques::PGCD(a, b) == 1) {
+                if (arithmetique::PGCD(a, b) == 1) {
                     nombre z = a * a + b * b;
                     nombre val = (a == b) ? (a + b) : 2 * (a + b);
                     for (nombre j = 1; z * j < limite + 1; ++j) {

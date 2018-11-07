@@ -1,6 +1,6 @@
 #pragma once
 
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "polygonal.h"
 
 #include <set>
@@ -187,15 +187,15 @@ namespace diophantienne {
 
         if (n > 0) {
             l1 = 0;
-            l2 = arithmetiques::racine_carre<Nombre>(n * (t - 1) / (2 * d));
+            l2 = arithmetique::racine_carre<Nombre>(n * (t - 1) / (2 * d));
         } else {
-            l1 = arithmetiques::racine_carre<Nombre>(-n / (1 * d));
-            l2 = arithmetiques::racine_carre<Nombre>((-n * (t + 1)) / (2 * d));
+            l1 = arithmetique::racine_carre<Nombre>(-n / (1 * d));
+            l2 = arithmetique::racine_carre<Nombre>((-n * (t + 1)) / (2 * d));
         }
 
         std::vector<std::pair<Nombre, Nombre>> funds;
         for (Nombre y = l1; y < l2 + 1; ++y) {
-            if (auto s = arithmetiques::carre_parfait<Nombre>(n + d * y * y)) {
+            if (auto s = arithmetique::carre_parfait<Nombre>(n + d * y * y)) {
                 Nombre x = *s;
                 funds.emplace_back(x, y);
 

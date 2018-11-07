@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -23,7 +23,7 @@ ENREGISTRER_PROBLEME(193, "Squarefree Numbers") {
 
     nombre resultat = 0;
     for (nombre k = 1; k < limite; ++k) {
-        resultat += arithmetiques::moebius(k, premiers) * limite * limite / (k * k);
+        resultat += arithmetique::moebius(k, premiers) * limite * limite / (k * k);
     }
 
     return std::to_string(resultat);

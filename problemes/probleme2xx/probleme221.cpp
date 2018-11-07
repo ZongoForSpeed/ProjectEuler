@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 #include "timer.h"
 
@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(221, "Alexandrian Integers") {
     vecteur Alexandrian;
     for (nombre p = 1; p < limite * 2 / 3; ++p) {
         nombre pp = p * p + 1;
-        const auto diviseurs = arithmetiques::diviseurs<nombre>(pp, premiers);
+        const auto diviseurs = arithmetique::diviseurs<nombre>(pp, premiers);
         for (size_t n = 0; 2 * n < diviseurs.size(); ++n) {
             auto d = diviseurs[n];
             nombre A = p * (p + d) * (p + pp / d);

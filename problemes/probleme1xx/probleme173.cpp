@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 #include <fstream>
 
@@ -28,7 +28,7 @@ ENREGISTRER_PROBLEME(173, "Using up to one million tiles how many different \"ho
     nombre limite = 1000000;
     nombre resultat = 0;
     for (nombre n = 1; 2 * n - 1 < limite; ++n)
-        resultat += (arithmetiques::racine_carre(n * n + limite) - n) / 2;
+        resultat += (arithmetique::racine_carre(n * n + limite) - n) / 2;
 
     return std::to_string(resultat);
 }

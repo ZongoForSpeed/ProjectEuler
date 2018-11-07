@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -49,7 +49,7 @@ namespace {
                 if (borne > limite) break;
                 nombre next_n = n * premiers[pidx], next_phi_n = phi_n * (premiers[pidx] - 1);
 
-                if (arithmetiques::PGCD(next_n, next_phi_n) != 1)
+                if (arithmetique::PGCD(next_n, next_phi_n) != 1)
                     continue;
                 resultat += recherche(premiers, limite, next_n, next_phi_n, primes_left - 1, pidx);
             }
@@ -72,7 +72,7 @@ ENREGISTRER_PROBLEME(245, "Coresilience") {
     //
     // Find the sum of all composite integers 1 < n ≤ 2×1011, for which C(n) is a unit fraction.
     const nombre limite = 200000000000LL;
-    const nombre P = arithmetiques::racine_carre(limite);
+    const nombre P = arithmetique::racine_carre(limite);
 
     vecteur premiers;
     premiers::crible235<nombre>(P, std::back_inserter(premiers));

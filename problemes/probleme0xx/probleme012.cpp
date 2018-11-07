@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -27,6 +27,6 @@ ENREGISTRER_PROBLEME(12, "Highly divisible triangular number") {
 
     nombre triangle = 1;
     nombre n = 1;
-    while (arithmetiques::nombre_diviseurs(triangle, premiers) < 500) triangle += ++n;
+    while (arithmetique::nombre_diviseurs(triangle, premiers) < 500) triangle += ++n;
     return std::to_string(triangle);
 }

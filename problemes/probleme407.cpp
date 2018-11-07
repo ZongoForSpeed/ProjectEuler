@@ -1,12 +1,13 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 #include "chiffres.h"
+#include "arithmetique_modulaire.h"
 
 namespace {
     size_t M(const std::vector<size_t> &premiers, size_t n) {
         std::map<size_t, size_t> facteurs;
-        arithmetiques::decomposition(n, premiers, facteurs);
+        arithmetique::decomposition(n, premiers, facteurs);
         std::vector<size_t> modulos;
         for (auto &f: facteurs) {
             modulos.push_back(puissance::puissance(f.first, f.second));
@@ -19,7 +20,7 @@ namespace {
                 restes.insert(restes.begin(), facteurs.size() - restes.size(), 0);
             
             // std::cout << restes << std::endl;
-            size_t r = arithmetiques::restes_chinois<size_t>(modulos, restes, premiers);
+            size_t r = arithmetique_modulaire::restes_chinois<size_t>(modulos, restes, premiers);
             resultat = std::max(r, resultat);
         }
         

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "utilitaires.h"
+#include "puissance.h"
 
 namespace combinatoire {
     template<typename Nombre>
@@ -18,6 +19,23 @@ namespace combinatoire {
         }
 
         return numerateur / denominateur;
+    }
+
+    template<typename Nombre>
+    constexpr Nombre coefficient_binomial(Nombre n, Nombre p, Nombre modulo) {
+        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
+        if (p < 1 || n < p)
+            return Nombre(1);
+        if (p > n / 2)
+            p = n - p;
+
+        size_t numerateur = 1;
+        size_t denominateur = 1;
+        for (size_t i = 0; i < p; ++i) {
+            numerateur = numerateur * (n - i) % modulo;
+            denominateur = denominateur * (i + 1) % modulo;
+        }
+        return numerateur * puissance::puissance_modulaire<size_t>(denominateur, modulo - 2, modulo) % modulo;
     }
 
     template<typename Nombre>

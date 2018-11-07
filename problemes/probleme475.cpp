@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
 #include "multidimension.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef boost::multiprecision::cpp_int nombre;
 typedef std::tuple<short, short, short> triplet;

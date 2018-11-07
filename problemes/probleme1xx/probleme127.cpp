@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -36,7 +36,7 @@ ENREGISTRER_PROBLEME(127, "abc-hits") {
 
     vecteur radical{0, 1};
     for (nombre n = 2; n < limite; ++n)
-        radical.push_back(arithmetiques::radical(n, premiers));
+        radical.push_back(arithmetique::radical(n, premiers));
 
     nombre resultat = 0;
     for (nombre c = 3; c < limite; ++c) {
@@ -48,7 +48,7 @@ ENREGISTRER_PROBLEME(127, "abc-hits") {
                 nombre b = c - a;
                 nombre rad_a = radical[a];
                 nombre rad_b = radical[b];
-                if (rad_a * rad_b * rad_c < c && arithmetiques::PGCD(a, b) == 1)
+                if (rad_a * rad_b * rad_c < c && arithmetique::PGCD(a, b) == 1)
                     resultat += c;
             }
         }

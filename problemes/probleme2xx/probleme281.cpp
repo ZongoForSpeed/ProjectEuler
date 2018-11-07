@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 #include "puissance.h"
 #include "combinatoire.h"
@@ -16,7 +16,7 @@ namespace {
         nombre somme = 0;
         for (size_t d = 1; d < n + 1; ++d) {
             if (n % d == 0)
-                somme += combinaison(m, d) * arithmetiques::phi<nombre>(n / d, premiers);
+                somme += combinaison(m, d) * arithmetique::phi<nombre>(n / d, premiers);
         }
         return somme / (m * n);
     }

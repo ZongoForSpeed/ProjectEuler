@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -7,7 +7,7 @@ typedef std::vector<nombre> vecteur;
 
 namespace {
     nombre conway_premier(nombre n, const vecteur &premiers) {
-        auto diviseurs = arithmetiques::diviseurs(n, premiers);
+        auto diviseurs = arithmetique::diviseurs(n, premiers);
         nombre d = diviseurs[diviseurs.size() - 2];
 
         nombre resultat = n + d - 2 + (6 * n + 2) * (n - d);

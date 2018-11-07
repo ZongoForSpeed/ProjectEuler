@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 typedef unsigned long long nombre;
@@ -26,7 +26,7 @@ ENREGISTRER_PROBLEME(95, "Amicable chains") {
 
     vecteur somme_diviseurs(limite, 0);
     for (nombre n = 2; n < limite; ++n) {
-        somme_diviseurs[n] = arithmetiques::somme_diviseurs(n, premiers) - n;
+        somme_diviseurs[n] = arithmetique::somme_diviseurs(n, premiers) - n;
     }
 
     nombre maximum = 0;

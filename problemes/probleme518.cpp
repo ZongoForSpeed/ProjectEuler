@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
 #include "premiers.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 ENREGISTRER_PROBLEME(518, "Prime triples and geometric sequences") {
     // Let S(n) = Σ a+b+c over all triples (a,b,c) such that:
@@ -37,7 +37,7 @@ ENREGISTRER_PROBLEME(518, "Prime triples and geometric sequences") {
                     break;
                 
                 size_t b = x * y * z - 1;
-                if (premier[b] && premier[c] && arithmetiques::PGCD(y, z) == 1) {
+                if (premier[b] && premier[c] && arithmetique::PGCD(y, z) == 1) {
                     // std::cout << std::make_tuple(a, b, c) << std::endl;
                     resultat += a + b + c;
                 }

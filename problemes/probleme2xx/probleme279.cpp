@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -12,7 +12,7 @@ ENREGISTRER_PROBLEME(279, "Triangles with integral sides and an integral angle")
     nombre resultat = limite / 3;
     for (nombre m = 2; 2 * m * m < limite; ++m)
         for (nombre n = 1; n < m; ++n) {
-            if (arithmetiques::PGCD(m, n) == 1) {
+            if (arithmetique::PGCD(m, n) == 1) {
                 if ((m - n) % 3 != 0) {
                     resultat += limite / (2 * m * m + 2 * n * n + 5 * m * n);
                     resultat += limite / (3 * m * m + 3 * m * n);

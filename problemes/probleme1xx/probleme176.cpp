@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -23,7 +23,7 @@ ENREGISTRER_PROBLEME(176, "Right-angled triangles that share a cathetus") {
     nombre objectif = 47547;
 
     std::map<nombre, nombre> decomposition;
-    arithmetiques::decomposition(objectif * 2 + 1, premiers, decomposition);
+    arithmetique::decomposition(objectif * 2 + 1, premiers, decomposition);
     vecteur facteurs;
     for (auto p: decomposition)
         facteurs.push_back(p.first / 2);

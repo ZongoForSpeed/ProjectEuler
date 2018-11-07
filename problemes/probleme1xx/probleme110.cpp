@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -30,7 +30,7 @@ ENREGISTRER_PROBLEME(110, "Diophantine reciprocals II") {
         resultat += 2036934900; // 2^2 * 3^2 * 5^2 * 7^2 * 11 * 13 * 17
 
         std::map<nombre, size_t> decomposition;
-        arithmetiques::decomposition(resultat, premiers, decomposition);
+        arithmetique::decomposition(resultat, premiers, decomposition);
 
         solutions = 1;
         for (auto d: decomposition)

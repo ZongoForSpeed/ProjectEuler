@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -37,7 +37,7 @@ ENREGISTRER_PROBLEME(124, "Ordered radicals") {
 
     std::vector<paire> rad{paire(0, 0), paire(1, 1)};
     for (nombre n = 2; n < limite + 1; ++n) {
-        rad.emplace_back(arithmetiques::radical(n, premiers), n);
+        rad.emplace_back(arithmetique::radical(n, premiers), n);
     }
 
     std::sort(rad.begin(), rad.end());

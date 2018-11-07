@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <fstream>
@@ -45,7 +45,7 @@ ENREGISTRER_PROBLEME(182, "RSA encryption") {
     nombre phi_n = (p - 1) * (q - 1);
 
     std::map<nombre, nombre> decomposition;
-    arithmetiques::decomposition(phi_n, premiers, decomposition);
+    arithmetique::decomposition(phi_n, premiers, decomposition);
 
     std::vector<bool> crible(phi_n, true);
     crible[0] = false;
@@ -61,7 +61,7 @@ ENREGISTRER_PROBLEME(182, "RSA encryption") {
     nombre resultat = 0;
     nombre minimum_collision = n;
     for (auto e: exposants) {
-        nombre collision = (arithmetiques::PGCD(e - 1, p - 1) + 1) * (arithmetiques::PGCD(e - 1, q - 1) + 1);
+        nombre collision = (arithmetique::PGCD(e - 1, p - 1) + 1) * (arithmetique::PGCD(e - 1, q - 1) + 1);
         if (collision < minimum_collision) {
             resultat = e;
             minimum_collision = collision;

@@ -1,5 +1,5 @@
 #include "pythagoricien.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 IterateurPythagoricien::IterateurPythagoricien(const Pythagoricien &_source, const size_t _p, const size_t _q)
         : source(_source), p(_p), q(_q) {}
@@ -47,7 +47,7 @@ void Pythagoricien::suivant(IterateurPythagoricien &it) const {
                 }
                 break;
             }
-        } while (arithmetiques::PGCD(it.p, it.q) != 1);
+        } while (arithmetique::PGCD(it.p, it.q) != 1);
     } else {
         do {
             it.q += 2;
@@ -56,6 +56,6 @@ void Pythagoricien::suivant(IterateurPythagoricien &it) const {
                 it.q = it.p % 2 + 1;
                 break;
             }
-        } while (arithmetiques::PGCD(it.p, it.q) != 1);
+        } while (arithmetique::PGCD(it.p, it.q) != 1);
     }
 }

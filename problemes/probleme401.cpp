@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "polygonal.h"
 
 typedef unsigned long long nombre;
@@ -40,7 +40,7 @@ ENREGISTRER_PROBLEME(401, "Sum of squares of divisors") {
     nombre limite = puissance::puissance<nombre>(10, 15u);
     nombre modulo = 1'000'000'000;
     
-    nombre racine_limite = arithmetiques::racine_carre(limite);
+    nombre racine_limite = arithmetique::racine_carre(limite);
     
     nombre resultat = 0; 
     for(nombre n = 1; n < racine_limite + 1; ++n) {

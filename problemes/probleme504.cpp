@@ -1,7 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
 #include "multidimension.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 namespace {
     bool test(const multidimension<size_t, 2> & PGCDs, size_t a, size_t b, size_t c, size_t d) {
@@ -10,7 +10,7 @@ namespace {
         size_t cd = PGCDs[c][d]-1;
         size_t da = PGCDs[d][a]-1;
         size_t i = (a*b + b*c + c*d + d*a - ab - bc - cd - da - 2)/2;
-        return arithmetiques::carre_parfait(i) ? true : false;
+        return arithmetique::carre_parfait(i) ? true : false;
     }
 }
 
@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(504, "Square on the Inside") {
     multidimension<size_t, 2> PGCDs(m + 1, m + 1, 0ul);
     for (size_t i = 1; i < m + 1; ++i)
     for (size_t j = i; j < m + 1; ++j) {
-        PGCDs[i][j] = PGCDs[j][i] = arithmetiques::PGCD(i, j);
+        PGCDs[i][j] = PGCDs[j][i] = arithmetique::PGCD(i, j);
     }
     
     size_t resultat = 0;

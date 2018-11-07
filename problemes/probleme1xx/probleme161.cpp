@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "multidimension.h"
 
 typedef multidimension<bool, 2> matrice;

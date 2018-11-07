@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 
@@ -18,7 +18,7 @@ ENREGISTRER_PROBLEME(73, "Counting fractions in a range") {
     nombre limite = 12000;
     for (nombre n = 5; n <= limite; ++n) {
         for (nombre k = n / 3 + 1; 2 * k <= n - 1; ++k) {
-            if (arithmetiques::PGCD(k, n) == 1)
+            if (arithmetique::PGCD(k, n) == 1)
                 ++resultat;
         }
     }

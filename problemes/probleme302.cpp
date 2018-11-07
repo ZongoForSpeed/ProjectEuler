@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetiques.h"
+#include "arithmetique.h"
 #include "premiers.h"
 
 #include <optional>
@@ -11,7 +11,7 @@ typedef std::vector<nombre> vecteur;
 namespace {
     void ajout_facteur(const nombre &n, std::map<nombre, size_t> &resultat, const std::set<nombre> &premiers) {
         std::map<nombre, size_t> d;
-        arithmetiques::decomposition(n, premiers, d);
+        arithmetique::decomposition(n, premiers, d);
         for (auto p: d) {
             resultat[p.first] += p.second;
         }
@@ -32,7 +32,7 @@ namespace {
                     break;
                 }
                 if (exposant)
-                    exposant = arithmetiques::PGCD(*exposant, it.second);
+                    exposant = arithmetique::PGCD(*exposant, it.second);
                 else
                     exposant = it.second;
             }
@@ -41,7 +41,7 @@ namespace {
                 ++resultat;
         }
 
-        nombre maxp = arithmetiques::racine_carre(limite / n);
+        nombre maxp = arithmetique::racine_carre(limite / n);
         if (maxp >= lastp)
             maxp = lastp - 1;
 
@@ -63,7 +63,7 @@ namespace {
                 for (size_t exposant = 2; m <= limite / p; ++exposant) {
                     m *= p;
                     d2[p]++;
-                    resultat += algorithme(m, p, arithmetiques::PGCD(pgcd, exposant), d2, limite, premiers);
+                    resultat += algorithme(m, p, arithmetique::PGCD(pgcd, exposant), d2, limite, premiers);
                 }
             }
         }
