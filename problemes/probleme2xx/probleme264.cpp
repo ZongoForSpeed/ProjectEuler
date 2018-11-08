@@ -20,11 +20,9 @@ namespace {
     }
 
     long double perimetre(nombre xa, nombre ya, nombre xb, nombre yb, nombre xc, nombre yc) {
-        return static_cast<long double>(
-                std::sqrt(norme(xa - xb, ya - yb))
-                + std::sqrt(norme(xa - xc, ya - yc))
-                + std::sqrt(norme(xb - xc, yb - yc))
-        );
+        return std::hypot(1.0L * xa - xb, ya - yb)
+               + std::hypot(1.0L * xa - xc, ya - yc)
+               + std::hypot(1.0L * xb - xc, yb - yc);
     }
 }
 

@@ -5,35 +5,34 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 typedef std::pair<size_t, size_t> point;
-typedef std::map<point, std::pair<long double, point>> graphe;
+typedef std::map<point, std::pair<double, point>> graphe;
 
 namespace {
-    long double distance(const point &p1, const point &p2) {
-        return std::sqrt((1.0L * p1.first - p2.first) * (1.0L * p1.first - p2.first)
-                         + (1.0L * p1.second - p2.second) * (1.0L * p1.second - p2.second));
+    double distance(const point &p1, const point &p2) {
+        return std::hypot(1.0 * p1.first - p2.first, 1.0 * p1.second - p2.second);
     }
 
-    long double aire_triangle(const point &p1, const point &p2, const point &p3) {
-        long double a = distance(p1, p2);
-        long double b = distance(p2, p3);
-        long double c = distance(p3, p1);
-        long double s = (a + b + c) * 0.5L;
+    double aire_triangle(const point &p1, const point &p2, const point &p3) {
+        double a = distance(p1, p2);
+        double b = distance(p2, p3);
+        double c = distance(p3, p1);
+        double s = (a + b + c) * 0.5;
         // formule de Héron
         return std::sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
-    long double calcul_poids(const point &p1, const point &p2, long double objectif_ratio = 132.5L) {
+    double calcul_poids(const point &p1, const point &p2, double objectif_ratio = 132.5) {
         if (p1 == p2)
             return 0.0L;
 
-        long double perimetre = distance(p1, p2);
-        long double aire = aire_triangle(p1, p2, point(0, 0));
+        double perimetre = distance(p1, p2);
+        double aire = aire_triangle(p1, p2, point(0, 0));
 
         return objectif_ratio * perimetre - aire;
     }
 
     auto minimum(graphe &G, const std::set<graphe::key_type> &noeuds) {
-        long double min = std::numeric_limits<long double>::max();
+        double min = std::numeric_limits<double>::max();
         graphe::key_type resultat;
         for (const auto &n: noeuds) {
             const auto &v = G[n];
@@ -97,7 +96,7 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
         if (u == objectif)
             break;
 
-        long double poids = G[u].first;
+        double poids = G[u].first;
         for (auto &entry: G) {
             auto nouveau_poids = calcul_poids(entry.first, u) + poids;
             if (nouveau_poids < entry.second.first)
@@ -105,8 +104,8 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
         }
     }
 
-    long double aire = taille * taille - rayon * rayon;
-    long double perimetre = (taille - rayon) * 2;
+    double aire = taille * taille - rayon * rayon;
+    double perimetre = (taille - rayon) * 2;
 
     point courant = objectif;
     while (courant != source) {
@@ -115,7 +114,7 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
         aire += aire_triangle(courant, node.second, point(0, 0));
         courant = node.second;
     }
-    long double resultat = aire / perimetre;
+    double resultat = aire / perimetre;
 
     return std::to_string(resultat, 8);
 }

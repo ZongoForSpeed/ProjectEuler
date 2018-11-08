@@ -46,10 +46,10 @@ namespace {
             long double tangente = y + dy_dx * (objectif_x - x) - objectif_y;
 
             if (t0 && *t0 * tangente < 0 && std::abs(tangente) < 100) {
-                return d + std::sqrt((x0 - objectif_x) * (x0 - objectif_x) + (y0 - objectif_y) * (y0 - objectif_y));
+                return d + std::hypot(x0 - objectif_x, y0 - objectif_y);
             }
 
-            d += std::sqrt((x0 - x) * (x0 - x) + (y0 - y) * (y0 - y));
+            d += std::hypot(x0 - x, y0 - y);
             x0 = x;
             y0 = y;
             t0 = tangente;

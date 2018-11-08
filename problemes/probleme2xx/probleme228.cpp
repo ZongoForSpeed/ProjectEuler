@@ -8,7 +8,7 @@ typedef std::pair<long double, long double> coordonnee;
 
 namespace {
     long double norme(const coordonnee &v) {
-        return std::sqrt(v.first * v.first + v.second * v.second);
+        return std::hypot(v.first, v.second);
     }
 
     std::vector<coordonnee> convertion(const std::vector<coordonnee> &v) {

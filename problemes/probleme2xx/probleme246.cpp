@@ -78,8 +78,8 @@ namespace {
             }
 
             // scalar product
-            long double norm0 = std::sqrt((x - x0) * (x - x0) + (y - y0) * (y - y0));
-            long double norm1 = std::sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1));
+            long double norm0 = std::hypot(x - x0, y - y0);
+            long double norm1 = std::hypot(x - x1, y - y1);
 
             long double prod = ((x - x0) * (x - x1) + (y - y0) * (y - y1)) / (norm0 * norm1);
 
