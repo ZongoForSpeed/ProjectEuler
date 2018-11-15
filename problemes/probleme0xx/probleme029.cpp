@@ -22,5 +22,6 @@ ENREGISTRER_PROBLEME(29, "Distinct powers") {
             resultat.insert(puissance::puissance<nombre>(a, b));
         }
     }
+
     return std::to_string(resultat.size());
 }

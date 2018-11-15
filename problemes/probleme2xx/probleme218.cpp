@@ -1,8 +1,7 @@
 #include "problemes.h"
+#include "numerique.h"
 #include "arithmetique.h"
 #include "pythagoricien.h"
-
-typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles") {
     // Consider the right angled triangle with sides a=7, b=24 and c=25. The area of this triangle is 84, which is
@@ -21,18 +20,18 @@ ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles") {
     // How many perfect right-angled triangles with c ≤ 10^16 exist that are not super-perfect?
     const auto limite = puissance::puissance<size_t, unsigned>(10, 8);
 
-    nombre resultat = 0;
+    int128_t resultat = 0;
     Pythagoricien pythagoricien(limite);
     for (const auto t: pythagoricien) {
-        nombre x, y, z;
+        int128_t x, y, z;
         std::tie(x, y, z) = t;
-        nombre a = y * y - x * x;
-        nombre b = 2 * x * y;
+        int128_t a = y * y - x * x;
+        int128_t b = 2 * x * y;
 
-        nombre A = a * b / 2;
+        int128_t A = a * b / 2;
         if (A % 6 != 0 || A % 28 != 0)
             ++resultat;
     }
 
-    return resultat.str();
+    return std::to_string(resultat);
 }

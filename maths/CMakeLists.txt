@@ -12,6 +12,8 @@ add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/graphe.h
         ${PROJECT_SOURCE_DIR}/matrice.h
         ${PROJECT_SOURCE_DIR}/multidimension.h
+        ${PROJECT_SOURCE_DIR}/numerique.h
+        ${PROJECT_SOURCE_DIR}/numerique.cpp
         ${PROJECT_SOURCE_DIR}/permutation.h
         ${PROJECT_SOURCE_DIR}/polygonal.h
         ${PROJECT_SOURCE_DIR}/polynome.h

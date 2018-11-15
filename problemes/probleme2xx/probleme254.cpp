@@ -2,8 +2,6 @@
 #include "arithmetique.h"
 #include "chiffres.h"
 
-#include <fstream>
-
 typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<size_t> vecteur;
 

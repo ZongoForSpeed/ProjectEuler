@@ -1,12 +1,12 @@
 #include "problemes.h"
+#include "numerique.h"
 #include "arithmetique.h"
 #include "premiers.h"
 #include "timer.h"
 
 #include <fstream>
 
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
+typedef std::vector<uint128_t> vecteur;
 
 ENREGISTRER_PROBLEME(221, "Alexandrian Integers") {
     // We shall call a positive integer A an "Alexandrian integer", if there exist integers p, q, r such that:
@@ -21,22 +21,22 @@ ENREGISTRER_PROBLEME(221, "Alexandrian Integers") {
     vecteur premiers;
     {
         Timer timer_crible("crible");
-        premiers::crible235<nombre>(1000000000ULL, std::back_inserter(premiers));
+        premiers::crible235<uint128_t>(1000000000ULL, std::back_inserter(premiers));
     }
 
     vecteur Alexandrian;
-    for (nombre p = 1; p < limite * 2 / 3; ++p) {
-        nombre pp = p * p + 1;
-        const auto diviseurs = arithmetique::diviseurs<nombre>(pp, premiers);
+    for (uint128_t p = 1; p < limite * 2 / 3; ++p) {
+        uint128_t pp = p * p + 1;
+        const auto diviseurs = arithmetique::diviseurs<uint128_t>(pp, premiers);
         for (size_t n = 0; 2 * n < diviseurs.size(); ++n) {
             auto d = diviseurs[n];
-            nombre A = p * (p + d) * (p + pp / d);
+            uint128_t A = p * (p + d) * (p + pp / d);
             Alexandrian.push_back(A);
         }
     }
 
     std::sort(Alexandrian.begin(), Alexandrian.end());
 
-    nombre resultat = Alexandrian[limite - 1];
-    return resultat.str();
+    uint128_t resultat = Alexandrian[limite - 1];
+    return std::to_string(resultat);
 }

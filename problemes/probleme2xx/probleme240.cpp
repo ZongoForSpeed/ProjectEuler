@@ -1,15 +1,15 @@
 #include "problemes.h"
+#include "numerique.h"
 #include "utilitaires.h"
 #include "combinatoire.h"
 
-typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<size_t> vecteur;
-typedef std::pair<nombre, nombre> paire;
-typedef std::map<nombre, nombre> dictionnaire;
+typedef std::pair<uint128_t, uint128_t> paire;
+typedef std::map<uint128_t, uint128_t> dictionnaire;
 
 namespace {
-    nombre somme(const vecteur &arrangement) {
-        nombre resultat = 0;
+    uint128_t somme(const vecteur &arrangement) {
+        uint128_t resultat = 0;
         for (size_t i = 0; i < arrangement.size(); ++i) {
             resultat += i * arrangement[i];
         }
@@ -17,19 +17,19 @@ namespace {
         return resultat;
     }
 
-    nombre combinaison(const vecteur &arrangement) {
-        nombre resultat = 1;
+    uint128_t combinaison(const vecteur &arrangement) {
+        uint128_t resultat = 1;
         for (auto &a: arrangement)
-            resultat *= combinatoire::factorielle<nombre>(a);
+            resultat *= combinatoire::factorielle<uint128_t>(a);
 
         return resultat;
     }
 
-    nombre W(size_t n, vecteur arrangement, size_t m) {
+    uint128_t W(size_t n, vecteur arrangement, size_t m) {
         if (n == 0)
-            return combinatoire::factorielle<nombre>(20);
+            return combinatoire::factorielle<uint128_t>(20);
 
-        nombre resultat = 0;
+        uint128_t resultat = 0;
         for (size_t k = 1; k <= m; ++k) {
             arrangement[k] += 1;
             resultat += W(n - 1, arrangement, k) / arrangement[k];
@@ -38,7 +38,7 @@ namespace {
         return resultat;
     }
 
-    nombre A(size_t n, vecteur arrangement, size_t m) {
+    uint128_t A(size_t n, vecteur arrangement, size_t m) {
         if (n == 0) {
             if (somme(arrangement) == 70) {
                 return W(10, arrangement, m) / combinaison(arrangement);
@@ -47,7 +47,7 @@ namespace {
             return 0;
         }
 
-        nombre resultat = 0;
+        uint128_t resultat = 0;
         for (size_t k = 1; k <= m; ++k) {
             arrangement[k] += 1;
             resultat += A(n - 1, arrangement, k);
@@ -69,6 +69,6 @@ ENREGISTRER_PROBLEME(240, "Top Dice") {
     // In how many ways can twenty 12-sided dice (sides numbered 1 to 12) be rolled so that the top ten sum to 70?
     vecteur arrangement(13, 0);
 
-    nombre resultat = A(10, arrangement, 12);
-    return resultat.str();
+    uint128_t resultat = A(10, arrangement, 12);
+    return std::to_string(resultat);
 }

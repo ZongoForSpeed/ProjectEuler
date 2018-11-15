@@ -1,17 +1,16 @@
 #include "problemes.h"
+#include "numerique.h"
 #include "arithmetique.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-
 namespace {
-    nombre f(std::map<nombre, nombre> &cache, nombre n) {
+    size_t f(std::map<uint128_t, size_t> &cache, uint128_t n) {
         auto it = cache.find(n);
         if (it != cache.end())
             return it->second;
 
         // f(n) = f(n/2) + f(n/2 - 1) si n pair
         // f(n) = f((n-1)/2) si n impair
-        nombre resultat = 0;
+        size_t resultat = 0;
         if (n == 0)
             resultat = 1;
         else if (n % 2 == 0)
@@ -37,8 +36,8 @@ ENREGISTRER_PROBLEME(169, "Exploring the number of different ways a number can b
     // 2 + 8
     // 
     // What is f(10^25)?
-    nombre n = puissance::puissance<nombre>(10, 25);
-    std::map<nombre, nombre> cache;
-    nombre resultat = f(cache, n);
-    return resultat.str();
+    uint128_t n = puissance::puissance<uint128_t>(10, 25);
+    std::map<uint128_t, size_t> cache;
+    size_t resultat = f(cache, n);
+    return std::to_string(resultat);
 }

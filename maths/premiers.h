@@ -75,7 +75,7 @@ namespace premiers {
         static std::random_device rd;   // Will be used to obtain a seed for the random number engine
         static std::mt19937 mt(rd());   // Standard mersenne_twister_engine seeded with rd()
 
-        const static std::set<size_t> premiers100{2, 3, 5, 7, 11, 13, 17, 19, 23,
+        const static std::set<Nombre> premiers100{2, 3, 5, 7, 11, 13, 17, 19, 23,
                                                   29, 31, 37, 41, 43, 47, 53, 59,
                                                   61, 67, 71, 73, 79, 83, 89, 97};
 

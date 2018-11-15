@@ -1,8 +1,6 @@
 #include "problemes.h"
-#include "utilitaires.h"
+#include "numerique.h"
 #include "premiers.h"
-
-typedef boost::multiprecision::cpp_int nombre;
 
 ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ") {
     // The smallest positive integer n for which the numbers n²+1, n²+3, n²+7, n²+9, n²+13, and n²+27 are consecutive
@@ -14,8 +12,8 @@ ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ") {
     for (size_t n = 10; n < limite; n += 10) {
         size_t reste = n % 210;
         if (reste == 10 || reste == 80 || reste == 130 || reste == 200) {
-            nombre n2 = n * n;
-            nombre p = (n2 + 1);
+            uint128_t n2 = n * n;
+            uint128_t p = (n2 + 1);
             if (!premiers::miller_rabin(p))
                 continue;
 

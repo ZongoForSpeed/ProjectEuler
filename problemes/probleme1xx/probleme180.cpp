@@ -73,6 +73,7 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables") {
 
     nombre u = 0;
     nombre v = 1;
+
     for (auto s: solutions) {
         u = s.denominator() * u + s.numerator() * v;
         v *= s.denominator();

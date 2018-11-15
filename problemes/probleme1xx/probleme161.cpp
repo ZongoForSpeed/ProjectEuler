@@ -1,10 +1,11 @@
 #include "problemes.h"
+#include "numerique.h"
 #include "arithmetique.h"
 #include "multidimension.h"
 
 typedef multidimension<bool, 2> matrice;
 typedef std::pair<size_t, size_t> paire;
-typedef boost::multiprecision::cpp_int nombre;
+typedef int128_t nombre;
 typedef std::unordered_map<matrice, nombre> cache_map;
 
 namespace {
@@ -147,5 +148,5 @@ ENREGISTRER_PROBLEME(161, "Triominoes") {
     matrice m(9u, 12u, true);
     cache_map cache;
     nombre resultat = combinaison(cache, m);
-    return resultat.str();
+    return std::to_string(resultat);
 }

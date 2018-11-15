@@ -1,9 +1,10 @@
 #include "problemes.h"
+#include "numerique.h"
 #include "arithmetique.h"
 #include "polygonal.h"
 #include "premiers.h"
 
-typedef boost::multiprecision::cpp_int nombre;
+typedef int128_t nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
@@ -101,7 +102,5 @@ ENREGISTRER_PROBLEME(196, "Prime triplets") {
     // Find  S(5678027) + S(7208785).
     std::cout << std::boolalpha;
     nombre resultat = S(5678027) + S(7208785);
-    std::ostringstream oss;
-    oss << resultat;
-    return oss.str();
+    return std::to_string(resultat);
 }
