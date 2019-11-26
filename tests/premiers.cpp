@@ -3,45 +3,6 @@
 
 #include "premiers.h"
 
-/*
- * namespace {
-    bool MillerRabin(nombre n, size_t k) {
-        nombre d = n - 1;
-        size_t r = 0;
-        while (d % 2 == 0) {
-            d /= 2;
-            ++r;
-        }
-
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<nombre> dis(2, n - 2);
-
-        while (k > 0) {
-            --k;
-
-            nombre a = dis(gen);
-            nombre x = puissance::puissance_modulaire(a, d, n);
-            if (x == 1 || x == n - 1)
-                continue;
-
-            for (size_t i = 0; i < r; ++i) {
-                x = (x * x) % n;
-                if (x == 1) {
-                    return false;
-                } else if (x == n - 1)
-                    break;
-            }
-
-            if (x != n - 1)
-                return false;
-        }
-
-        return true;
-    }
-}
- */
-
 BOOST_AUTO_TEST_SUITE(test_premiers)
 
     BOOST_AUTO_TEST_CASE(crible) {
