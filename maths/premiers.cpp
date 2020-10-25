@@ -1,3 +1,4 @@
+#include <numeric>
 #include "premiers.h"
 #include "timer.h"
 
