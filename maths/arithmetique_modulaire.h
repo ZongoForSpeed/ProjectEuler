@@ -89,19 +89,8 @@ namespace arithmetique_modulaire {
             }
         }
 
-        static nombre_modulaire<modulo> puissance(nombre_modulaire<modulo> a, size_t n) {
-            nombre_modulaire<modulo> result(1);
-            while (n > 0) {
-                if (n % 2)
-                    result *= a;
-                a *= a;
-                n /= 2;
-            }
-            return result;
-        }
-
         static std::pair<size_t, nombre_modulaire<modulo>> factoriel2(size_t n) {
-            nombre_modulaire<modulo> resultat = 1;
+            nombre_modulaire<modulo> resultat(1);
             size_t exposant = 0;
             bool sgn = false;
             while (n > 0) {
@@ -117,7 +106,7 @@ namespace arithmetique_modulaire {
         size_t _value;
     public:
         template<typename Type>
-        nombre_modulaire(Type n) : _value(0) {
+        explicit nombre_modulaire(Type n) : _value(0) {
             set(n);
         }
 
@@ -130,7 +119,18 @@ namespace arithmetique_modulaire {
             set(x, std::is_signed<T>());
         }
 
-        size_t value() const { return _value; }
+        static nombre_modulaire<modulo> puissance(nombre_modulaire<modulo> a, size_t n) {
+            nombre_modulaire<modulo> result(1);
+            while (n > 0) {
+                if (n % 2)
+                    result *= a;
+                a *= a;
+                n /= 2;
+            }
+            return result;
+        }
+
+        [[nodiscard]] size_t value() const { return _value; }
 
         nombre_modulaire<modulo> operator-() const {
             return nombre_modulaire<modulo>(modulo - value());

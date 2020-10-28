@@ -82,7 +82,7 @@ namespace arithmetique {
             if (p * p > n)
                 break;
             if (n % p == 0) {
-                Nombre compteur = 0;
+                size_t compteur = 0;
                 while (n % p == 0) {
                     n /= p;
                     ++compteur;
@@ -103,7 +103,7 @@ namespace arithmetique {
             if (p * p > n)
                 break;
             if (n % p == 0) {
-                Nombre compteur = 0;
+                size_t compteur = 0;
                 while (n % p == 0) {
                     n /= p;
                     ++compteur;

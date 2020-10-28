@@ -7,21 +7,21 @@ namespace {
         size_t n;
         size_t m;
         size_t d;
-        
+
         typedef arithmetique_modulaire::nombre_modulaire<modulo> nombre;
 
     public:
         Probleme498(const size_t &_n, const size_t &_m, const size_t &_d) : n(_n),
                                                                             m(_m),
                                                                             d(_d) {}
-        
+
         size_t algorithme() {
             size_t i = d;
             nombre resultat(0);
             while (i < m) {
                 size_t j = i;
-                nombre u = 0;
-                nombre s = 0;
+                nombre u(0);
+                nombre s(0);
                 bool first = true;
                 while (j < m) {
                     if (first) {
