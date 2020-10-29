@@ -10,7 +10,7 @@ namespace {
         if (a > n / x) {
             a = n / x;
         }
-        nombre resultat = 0;;
+        nombre resultat = 0;
         for (nombre k = x; k <= n / (a + 1); k++) {
             resultat += n / k;
         }

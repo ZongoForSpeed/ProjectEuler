@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 #include "polynome.h"
 
+#include <boost/serialization/nvp.hpp>
 #include <boost/multiprecision/cpp_bin_float.hpp>
 
 typedef boost::multiprecision::cpp_bin_float_quad nombre;
@@ -12,7 +13,7 @@ namespace {
         nombre resultat(1);
         while (exposant > 0) {
             if (exposant % 2)
-                resultat = resultat * base;
+                resultat *= base;
             exposant /= 2;
             base = base * base;
         }
@@ -20,7 +21,7 @@ namespace {
     }
 
     nombre pi(size_t x, const nombre &q) {
-        return 1.0 - x / q;
+        return nombre(1.0) - x / q;
     }
 
     nombre qi(size_t x, const nombre &q) {

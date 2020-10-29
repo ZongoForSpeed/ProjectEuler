@@ -6,7 +6,7 @@
 BOOST_AUTO_TEST_SUITE(test_numerique)
 
     BOOST_AUTO_TEST_CASE(ostringstream_signed) {
-        int128_t f = combinatoire::factorielle<int128_t>(30);
+        auto f = combinatoire::factorielle<int128_t>(30);
         std::ostringstream oss;
         oss << f;
         BOOST_CHECK_EQUAL("265252859812191058636308480000000", oss.str());
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_SUITE(test_numerique)
     }
 
     BOOST_AUTO_TEST_CASE(ostringstream_unsigned) {
-        uint128_t f = combinatoire::factorielle<uint128_t>(30);
+        auto f = combinatoire::factorielle<uint128_t>(30);
         std::ostringstream oss;
         oss << f;
         BOOST_CHECK_EQUAL("265252859812191058636308480000000", oss.str());

@@ -15,7 +15,6 @@
 #include <type_traits>
 
 #include <optional>
-#include <boost/rational.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 
 namespace std {
@@ -146,9 +145,9 @@ namespace std {
     }
 
     template<typename Nombre>
-    std::string to_string(const boost::rational<Nombre> &f) {
+    std::string to_string(Nombre n) {
         std::ostringstream oss;
-        oss << f;
+        oss << n;
         return oss.str();
     }
 

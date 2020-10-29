@@ -7,47 +7,7 @@
 
 typedef boost::multiprecision::cpp_int nombre;
 typedef arithmetique_modulaire::nombre_modulaire<1'000'000'007> nombre_modulaire;
-/*
-namespace {
-    size_t sum_of_digits(size_t n, size_t p) {
-        size_t somme = 0;
-        for (size_t i = 0; i < n; ++i) {
-            somme += chiffres::somme_chiffres(i, static_cast<unsigned short>(p));
-        }
 
-        return somme;
-    }
-
-    size_t product_of_binomial_power(size_t n, size_t p) {
-        return (2 * sum_of_digits(n, p) -
-                (n - 1) * chiffres::somme_chiffres(n, static_cast<unsigned short>(p))) / (p - 1);
-    }
-
-    nombre_modulaire sigma_of_binomial_product(size_t n, const std::vector<size_t> &premiers) {
-        nombre_modulaire produit(1);
-        for (auto p: premiers) {
-            if (p > n) {
-                break;
-            }
-            size_t k = product_of_binomial_power(n, p);
-            nombre_modulaire f = nombre_modulaire::puissance(nombre_modulaire(p), k + 1);
-            f /= p - 1;
-            produit *= f;
-        }
-
-        return produit;
-    }
-
-    nombre_modulaire S(size_t n, const std::vector<size_t> &premiers) {
-        nombre_modulaire somme(0);
-        for (size_t k = 1; k <= n; ++k) {
-            somme += sigma_of_binomial_product(k, premiers);
-        }
-
-        return somme;
-    }
-}
- */
 namespace {
     nombre_modulaire D(size_t n, const std::vector<size_t> &premiers) {
         nombre_modulaire s(1);

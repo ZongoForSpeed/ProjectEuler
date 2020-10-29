@@ -48,7 +48,7 @@ ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 d
                     break;
 
                 if (r < limite) {
-                    resultat += std::floor(limite / r);
+                    resultat += static_cast<nombre>(std::floor(limite / r));
                 }
             }
         }

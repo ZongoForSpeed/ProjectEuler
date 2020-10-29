@@ -3,12 +3,13 @@ project(ProjectEuler)
 message("Boost_DIR = " ${Boost_DIR})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/install/")
-set(Boost_USE_STATIC_LIBS        ON) # only find static libs
-set(Boost_USE_MULTITHREADED      ON)
-set(Boost_USE_STATIC_RUNTIME    ON)
+set(Boost_USE_STATIC_LIBS ON) # only find static libs
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME ON)
+set(Boost_DEBUG ON)
 
 cmake_minimum_required(VERSION 3.9)
-find_package(Boost 1.58 REQUIRED unit_test_framework date_time)
+find_package(Boost 1.58.0 REQUIRED)
 # find_package(GMP 2.6 REQUIRED)
 # find_package(Gperftools)
 
@@ -22,23 +23,25 @@ IF (WIN32)
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/O2 /Zi")
     set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ox")
     set(CMAKE_CXX_FLAGS_DEBUG "/Od /Zi")
-	add_compile_options(/std:c++17)
+    add_compile_options(/std:c++17)
 ELSE ()
     # set stuff for other systems
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-	add_compile_options(-std=c++17)
+    add_compile_options(-std=c++17)
 
 
     add_compile_options(-Werror -Wall -Wextra -Wpedantic -Weverything
-    					-Wno-c++98-compat
-    					-Wno-c++98-compat-pedantic
-    					-Wno-padded
-    					-Wno-global-constructors
-    					-Wno-disabled-macro-expansion
-    					-Wno-exit-time-destructors
-    					-Wno-unused-macros)
+            -Wno-c++98-compat
+            -Wno-c++98-compat-pedantic
+            -Wno-padded
+            -Wno-global-constructors
+            -Wno-disabled-macro-expansion
+            -Wno-exit-time-destructors
+            -Wno-unused-macros
+            -Wno-implicit-int-float-conversion
+            -Wno-used-but-marked-unused)
 ENDIF ()
 
 add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})

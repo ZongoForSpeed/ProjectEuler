@@ -45,10 +45,10 @@ namespace {
             return false;
         }
 
-        std::optional<Position> deplacer(unsigned short m) const {
+        [[nodiscard]] std::optional<Position> deplacer(unsigned short m) const {
             Position p(*this);
             if (p.ajouter(m >= 12, m % 4, (m / 4) % 3))
-                return p;
+                return std::move(p);
             else
                 return std::nullopt;
         }

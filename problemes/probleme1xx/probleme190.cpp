@@ -19,7 +19,7 @@ ENREGISTRER_PROBLEME(190, "Maximising a weighted product") {
         for (nombre i = 1; i <= m; ++i) {
             produit *= puissance::puissance(static_cast<long double>(2 * i) / (m + 1), i);
         }
-        resultat += std::floor(produit);
+        resultat += static_cast<nombre>(std::floor(produit));
     }
 
     return std::to_string(resultat);
