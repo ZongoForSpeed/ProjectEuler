@@ -1,10 +1,9 @@
 #include "problemes.h"
+#include "numerique.h"
 #include "utilitaires.h"
 #include "arithmetique.h"
 #include "premiers.h"
 #include "timer.h"
-
-typedef boost::multiprecision::cpp_int nombre;
 
 namespace {
     size_t s(size_t n, const std::vector<size_t> &premiers) {
@@ -56,14 +55,14 @@ ENREGISTRER_PROBLEME(694, "Cube-full Divisors") {
     std::cout << "S(100) = " << S(100, premiers) << std::endl;
     std::cout << "S(10000) = " << S(10000, premiers) << std::endl;
 
-    auto limite = puissance::puissance<nombre>(10, 18);
+    auto limite = puissance::puissance<uint128_t>(10, 18);
 
-    std::set<nombre> cubes {1};
+    std::set<uint128_t> cubes {1};
     for (size_t p: premiers) {
-        std::vector<nombre> suivant;
-        for (nombre f = p * p * p; f <= limite; f *= p) {
+        std::vector<uint128_t> suivant;
+        for (uint128_t f = p * p * p; f <= limite; f *= p) {
             for (auto e: cubes) {
-                nombre n = f * e;
+                uint128_t n = f * e;
                 if (n > limite) {
                     break;
                 }
@@ -75,10 +74,10 @@ ENREGISTRER_PROBLEME(694, "Cube-full Divisors") {
         // std::cout << "p = " << p << ": " << facteurs.size() << std::endl;
     }
 
-    nombre resultat = 0;
+    uint128_t resultat = 0;
     for (auto& f: cubes) {
         resultat += limite / f;
     }
 
-    return resultat.str();
+    return std::to_string(resultat);
 }
