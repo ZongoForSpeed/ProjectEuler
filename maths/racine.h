@@ -8,7 +8,10 @@ namespace racine {
     template<typename Nombre>
     constexpr Nombre racine_carre(Nombre n) {
         static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
-        return static_cast<Nombre>(std::sqrt(n));
+        auto x = static_cast<Nombre>(std::sqrt(n));
+        while (x * x > n) --x;
+        while ((x + 1) * (x + 1) <= n) ++x;
+        return x;
     }
 
     template<typename Nombre>
