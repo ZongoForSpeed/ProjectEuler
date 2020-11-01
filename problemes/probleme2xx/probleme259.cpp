@@ -7,8 +7,7 @@ typedef std::vector<fraction> vecteur;
 
 namespace {
     std::set<fraction> algorithme(const vecteur &e, std::map<std::vector<fraction>, std::set<fraction>> &cache) {
-        auto it = cache.find(e);
-        if (it != cache.end())
+        if (auto it = cache.find(e);it != cache.end())
             return it->second;
 
         std::set<fraction> resultat;

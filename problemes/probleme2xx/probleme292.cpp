@@ -38,14 +38,13 @@ namespace {
 
         static std::map<std::tuple<short, short, short, size_t>, size_t> cache;
         auto clef = std::make_tuple(x, y, l, i);
-        auto it = cache.find(clef);
 
-        if (it != cache.end())
+        if (auto it = cache.find(clef);it != cache.end())
             return it->second;
 
         size_t resultat = 0;
         for (size_t k = i; k < triplets.size(); ++k) {
-            auto [dx, dy, dl] = triplets[k];
+            auto[dx, dy, dl] = triplets[k];
             if (l != dl || x != -dx || y != -dy) {
                 short nx = x + dx;
                 short ny = y + dy;

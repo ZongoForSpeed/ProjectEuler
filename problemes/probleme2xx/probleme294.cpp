@@ -20,26 +20,26 @@ namespace {
 
             auto m = puissance::puissance_modulaire<unsigned short>(10, chiffres / 2, modulo);
 
-            for (const auto &p1: recursion)
-                for (const auto &p2: recursion) {
-                    unsigned short somme = p1.first.first + p2.first.first;
+            for (const auto &[paire1, compteur1]: recursion)
+                for (const auto &[paire2, compteur2]: recursion) {
+                    unsigned short somme = paire1.first + paire2.first;
                     if (somme > modulo)
                         break;
 
-                    unsigned short reste = (p1.first.second * m + p2.first.second) % modulo;
-                    resultat[std::make_pair(somme, reste)] += p1.second * p2.second;
+                    unsigned short reste = (paire1.second * m + paire2.second) % modulo;
+                    resultat[std::make_pair(somme, reste)] += compteur1 * compteur2;
                     resultat[std::make_pair(somme, reste)] %= masque;
                 }
         } else {
             dictionnaire recursion = algorithme(chiffres - 1, modulo, masque);
             for (unsigned short chiffre = 0; chiffre < 10; chiffre++) {
-                for (const auto &p: recursion) {
-                    unsigned short somme = p.first.first + chiffre;
+                for (const auto &[paire, compteur]: recursion) {
+                    unsigned short somme = paire.first + chiffre;
                     if (somme > modulo)
                         break;
 
-                    unsigned short reste = (p.first.second * 10 + chiffre) % modulo;
-                    resultat[std::make_pair(somme, reste)] += p.second;
+                    unsigned short reste = (paire.second * 10 + chiffre) % modulo;
+                    resultat[std::make_pair(somme, reste)] += compteur;
                     resultat[std::make_pair(somme, reste)] %= masque;
                 }
             }

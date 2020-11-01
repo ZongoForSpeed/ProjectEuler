@@ -31,8 +31,7 @@ namespace {
 
         resultat r{sg, n};
 
-        auto it = cache.find(sf);
-        if (it == cache.end() || r.g < it->second.g) {
+        if (auto it = cache.find(sf);it == cache.end() || r.g < it->second.g) {
             cache[sf] = r;
         }
     }

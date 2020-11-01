@@ -15,11 +15,11 @@ namespace {
         std::map<nombre, size_t> d;
         arithmetique::decomposition(n, premiers, d);
         nombre s = 1;
-        for (auto &p: d) {
+        for (auto &[pi, ei]: d) {
             nombre sigma = arithmetique::somme_diviseurs(s, premiers);
-            if (p.first > 1 + sigma)
+            if (pi > 1 + sigma)
                 return false;
-            s *= puissance::puissance(p.first, p.second);
+            s *= puissance::puissance(pi, ei);
         }
 
         return true;

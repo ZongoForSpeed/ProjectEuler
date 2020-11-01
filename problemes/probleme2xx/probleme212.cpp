@@ -79,11 +79,11 @@ ENREGISTRER_PROBLEME(212, "Combined Volume of Cuboids") {
     }
 
     std::vector<std::pair<cuboide, bool>> I;
-    for (auto c: cuboides) {
+    for (auto &c: cuboides) {
         std::vector<std::pair<cuboide, bool>> tmp{std::make_pair(c, true)};
-        for (auto i: I) {
-            if (auto p = intersection(i.first, c)) {
-                tmp.emplace_back(*p, !i.second);
+        for (auto&[cube, marque]: I) {
+            if (auto p = intersection(cube, c)) {
+                tmp.emplace_back(*p, !marque);
             }
         }
 
@@ -93,11 +93,11 @@ ENREGISTRER_PROBLEME(212, "Combined Volume of Cuboids") {
     nombre resultat_plus = 0;
     nombre resultat_moins = 0;
 
-    for (auto i: I) {
-        if (i.second)
-            resultat_plus += volume(i.first);
+    for (auto&[c, marque]: I) {
+        if (marque)
+            resultat_plus += volume(c);
         else
-            resultat_moins += volume(i.first);
+            resultat_moins += volume(c);
     }
 
     nombre resultat = resultat_plus - resultat_moins;

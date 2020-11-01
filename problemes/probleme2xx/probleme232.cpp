@@ -13,8 +13,7 @@ namespace {
         if (k > 0 && n <= 0)
             return 0.0L;
 
-        const auto it = cache.find(std::make_pair(n, k));
-        if (it != cache.end())
+        if (const auto it = cache.find(std::make_pair(n, k));it != cache.end())
             return it->second;
 
         vecteur strategies{2};

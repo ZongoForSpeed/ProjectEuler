@@ -28,9 +28,8 @@ namespace {
         arithmetique::decomposition(m, premiers, d);
 
         if (d.size() == 1) {
-            auto facteur = *d.begin();
-            if (facteur.first == 2) {
-                size_t e = facteur.second;
+            const auto&[p, e] = *d.begin();
+            if (p == 2) {
                 static const std::vector<nombre> f{0, 2, 4, 16, 65536};
                 static const std::vector<size_t> log_f{0, 1, 2, 4, 16, 65536};
 
@@ -47,11 +46,11 @@ namespace {
         } else {
             vecteur modulos;
             vecteur restes;
-            for (auto f: d) {
-                nombre e = puissance::puissance(f.first, f.second);
-                nombre x = algorithme(a, e, premiers);
+            for (auto &[premier, exposant]: d) {
+                nombre f = puissance::puissance(premier, exposant);
+                nombre x = algorithme(a, f, premiers);
 
-                modulos.push_back(e);
+                modulos.push_back(f);
                 restes.push_back(x);
             }
 

@@ -9,8 +9,8 @@ namespace {
     typedef std::set<Point> Points;
 
     bool symetrique(const Points &P) {
-        for (const Point &p : P) {
-            if (P.find(std::make_pair(-p.first, p.second)) == P.end())
+        for (const auto&[x, y] : P) {
+            if (P.find(std::make_pair(-x, y)) == P.end())
                 return false;
         }
 
@@ -19,8 +19,8 @@ namespace {
 
     nombre somme_x(const Points &P) {
         nombre resultat = 0;
-        for (const Point &p : P) {
-            resultat += p.first;
+        for (const auto &[x, y] : P) {
+            resultat += x;
         }
 
         return resultat;
@@ -66,8 +66,8 @@ namespace {
         };
 
         std::vector<Point> NEW;
-        for (const auto &delta: dp) {
-            Point next(f0.first + delta.first, f0.second + delta.second);
+        for (const auto &[dx, dy]: dp) {
+            Point next(f0.first + dx, f0.second + dy);
             if (next.second <= 0 || F.find(next) != F.end()
                 || R.find(next) != R.end() || P.find(next) != P.end())
                 continue;

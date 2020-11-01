@@ -132,8 +132,8 @@ ENREGISTRER_PROBLEME(244, "Sliders") {
         if (n_chemins.empty())
             break;
 
-        for (const auto &p: n_chemins)
-            visites.insert(p.first);
+        for (const auto &[sliders, ignore]: n_chemins)
+            visites.insert(sliders);
 
         std::swap(chemins, n_chemins);
     }

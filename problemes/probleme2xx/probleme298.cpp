@@ -127,14 +127,13 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
 
             unsigned short suivant = 0;
 
-            auto it2 = relation.left.find(nouvel_etat);
 
-            if (it2 == relation.left.end()) {
+            if (auto it2 = relation.left.find(nouvel_etat);it2 != relation.left.end()) {
+                suivant = it2->second;
+            } else {
                 suivant = compteur;
                 relation.insert(bimap_t::value_type(nouvel_etat, compteur++));
                 a_voir.insert(nouvel_etat);
-            } else {
-                suivant = it2->second;
             }
 
             bool found = false;
@@ -172,8 +171,8 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
 
     long double resultat = 0.0L;
     for (const auto &p: dp)
-        for (const auto &etat: p) {
-            resultat += static_cast<long double>(std::abs(etat.first)) * etat.second;
+        for (const auto &[score, probabilite]: p) {
+            resultat += static_cast<long double>(std::abs(score)) * probabilite;
         }
 
     return std::to_string(resultat, 8);

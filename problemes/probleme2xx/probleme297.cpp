@@ -23,8 +23,7 @@ namespace {
 
         static std::map<nombre, nombre> cache;
 
-        auto it = cache.find(n);
-        if (it != cache.end())
+        if (auto it = cache.find(n);it != cache.end())
             return it->second;
 
         nombre m = maximum(fibonacci, n);

@@ -48,17 +48,16 @@ namespace {
     std::vector<polygone> algorithme(const std::vector<polygone> &polygones,
                                      const std::map<std::pair<point, point>, std::vector<std::pair<point, long double>>> &dictionnaire) {
         std::vector<polygone> resultat;
-        for (auto &p: polygones) {
-            auto &v1 = p.points.back();
-            auto &v2 = p.points.front();
+        for (auto &item: polygones) {
+            auto &v1 = item.points.back();
+            auto &v2 = item.points.front();
             auto edge = std::make_pair(v2, v1);
-            auto it = dictionnaire.find(edge);
-            if (it != dictionnaire.end()) {
-                for (auto &t: it->second) {
-                    if (!inclus(p, t.first)) {
-                        polygone q = p;
-                        q.points.push_back(t.first);
-                        q.aire += t.second;
+            if (auto it = dictionnaire.find(edge);it != dictionnaire.end()) {
+                for (auto &[p, aire]: it->second) {
+                    if (!inclus(item, p)) {
+                        polygone q = item;
+                        q.points.push_back(p);
+                        q.aire += aire;
                         if (convexe(q))
                             resultat.push_back(q);
                     }

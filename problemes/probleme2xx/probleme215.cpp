@@ -52,22 +52,22 @@ ENREGISTRER_PROBLEME(215, "Crack-free Walls") {
         }
 
     std::map<std::set<nombre>, nombre> dp;
-    for (auto m: I)
-        dp[m.first] = m.second.size();
+    for (const auto&[k, v]: I)
+        dp[k] = v.size();
 
     for (nombre h = 2; h < hauteur; ++h) {
         std::map<std::set<nombre>, nombre> suite_dp;
-        for (auto m: dp) {
-            for (const auto &i: I[m.first])
-                suite_dp[i] += m.second;
+        for (const auto&[k, v]: dp) {
+            for (const auto &i: I[k])
+                suite_dp[i] += v;
         }
 
         std::swap(suite_dp, dp);
     }
 
     nombre resultat = 0;
-    for (auto m: dp)
-        resultat += m.second;
+    for (const auto&[k, v]: dp)
+        resultat += v;
 
     return std::to_string(resultat);
 }

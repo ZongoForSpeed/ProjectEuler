@@ -33,15 +33,15 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers") {
         auto &somme = T_somme[n];
         auto &compteur = T_compteur[n];
 
-        nombre p10 = puissance::puissance<nombre>(10, n - 1);
+        auto p10 = puissance::puissance<nombre>(10, n - 1);
 
         for (short c1 = 0; c1 < 10; ++c1)
             for (short c2 = 0; c2 < 10; ++c2) {
-                for (auto t: T_somme[n - 2]) {
-                    nombre d = t.first + c1 - c2;
-                    nombre c = T_compteur[n - 2][t.first];
+                for (auto[k, v]: T_somme[n - 2]) {
+                    nombre d = k + c1 - c2;
+                    nombre c = T_compteur[n - 2][k];
                     compteur[d] += c;
-                    nombre s = t.second * 10 + c * (c1 * p10 + c2);
+                    nombre s = v * 10 + c * (c1 * p10 + c2);
                     somme[d] += s;
                     if (c1 != 0 && d == 0)
                         resultat += s;

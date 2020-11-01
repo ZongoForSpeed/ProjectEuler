@@ -16,24 +16,24 @@ ENREGISTRER_PROBLEME(290, "Digital Signature") {
     for (short c = 0; c < taille; ++c) {
         Table suivant;
         for (short d = 0; d < 10; ++d) {
-            for (auto p: table) {
+            for (auto&[paire, compteur]: table) {
                 // Pour tous les nombre x ayant une difference D et une retenue R
                 // alors dx a une retenue de n / 10
                 //            et une difference de difference + d - n%10
                 // où 137*d + retenue
-                auto &difference = p.first.first;
-                auto &retenue = p.first.second;
+                auto &[difference, retenue] = paire;
                 nombre n = 137 * d + retenue;
-                suivant[std::make_pair(difference + d - n % 10, n / 10)] += p.second;
+                suivant[std::make_pair(difference + d - n % 10, n / 10)] += compteur;
             }
         }
         std::swap(suivant, table);
     }
 
     size_t resultat = 0;
-    for (auto p: table) {
-        if (chiffres::somme_chiffres(p.first.second) == p.first.first)
-            resultat += p.second;
+    for (auto&[paire, compteur]: table) {
+        auto &[difference, retenue] = paire;
+        if (chiffres::somme_chiffres(retenue) == difference)
+            resultat += compteur;
     }
 
     return std::to_string(resultat);

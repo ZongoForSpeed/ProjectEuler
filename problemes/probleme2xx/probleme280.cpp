@@ -12,9 +12,7 @@ namespace {
         static std::map<std::tuple<size_t, size_t, size_t, size_t>, long double> cache;
         auto clef = std::make_tuple(sx, sy, haut.to_ulong(), bas.to_ulong());
 
-        auto it = cache.find(clef);
-
-        if (it != cache.end())
+        if (auto it = cache.find(clef);it != cache.end())
             return it->second;
 
         matrice::matrice<long double> A(25, 25, 0);

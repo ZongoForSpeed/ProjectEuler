@@ -221,8 +221,7 @@ ENREGISTRER_PROBLEME(289, "Eulerian Cycles") {
 
     while (true) {
         auto it = cache.begin();
-        Position p = it->first;
-        nombre num = it->second;
+        auto [p, n] = *it;
 
         if (p.nbLignesRemplies == nbLignes)
             break;
@@ -231,7 +230,7 @@ ENREGISTRER_PROBLEME(289, "Eulerian Cycles") {
 
         for (unsigned short m = 0; m < 24; m++) {
             if (auto p2 = p.deplacer(m)) {
-                cache[*p2] += num;
+                cache[*p2] += n;
                 cache[*p2] %= modulo;
             }
         }
@@ -239,9 +238,9 @@ ENREGISTRER_PROBLEME(289, "Eulerian Cycles") {
     }
 
     nombre resultat = 0;
-    for (auto p: cache) {
-        if (p.first.maximum() == 1) {
-            resultat += p.second;
+    for (auto [p, n]: cache) {
+        if (p.maximum() == 1) {
+            resultat += n;
             resultat %= modulo;
         }
     }

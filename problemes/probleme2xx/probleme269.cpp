@@ -9,9 +9,8 @@ namespace {
         static std::map<std::pair<vecteur, nombre>, nombre> cache;
 
         auto key = std::make_pair(residue, nbChiffres);
-        auto it = cache.find(key);
 
-        if (it != cache.end())
+        if (auto it = cache.find(key);it != cache.end())
             return it->second;
 
         nombre resultat = 0;

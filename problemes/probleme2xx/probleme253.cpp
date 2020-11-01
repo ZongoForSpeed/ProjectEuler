@@ -8,8 +8,7 @@ typedef std::map<nombre, nombre> dictionnaire;
 
 namespace {
     dictionnaire algorithme(const vecteur &tailles, std::map<vecteur, dictionnaire> &cache) {
-        auto it = cache.find(tailles);
-        if (it != cache.end())
+        if (auto it = cache.find(tailles);it != cache.end())
             return it->second;
 
         nombre somme = std::accumulate(tailles.begin(), tailles.end(), nombre(0));
@@ -26,11 +25,11 @@ namespace {
                 _tailles[n]--;
                 if (n == 1) {
                     auto tmp = algorithme(_tailles, cache);
-                    for (auto t: tmp) {
-                        if (t.first < somme)
-                            resultat[somme] += t.second * tailles[n];
+                    for (auto& [k, v]: tmp) {
+                        if (k < somme)
+                            resultat[somme] += v * tailles[n];
                         else
-                            resultat[t.first] += t.second * tailles[n];
+                            resultat[k] += v * tailles[n];
                     }
                 } else {
                     for (size_t m1 = 0; m1 < n; ++m1) {
@@ -39,11 +38,11 @@ namespace {
                         if (m2 != 0) _tailles[m2]++;
 
                         auto tmp = algorithme(_tailles, cache);
-                        for (auto t: tmp) {
-                            if (t.first < somme)
-                                resultat[somme] += t.second * tailles[n];
+                        for (auto& [k, v]: tmp) {
+                            if (k < somme)
+                                resultat[somme] += v * tailles[n];
                             else
-                                resultat[t.first] += t.second * tailles[n];
+                                resultat[k] += v * tailles[n];
                         }
 
                         if (m1 != 0) _tailles[m1]--;
@@ -54,7 +53,7 @@ namespace {
                 _tailles[n]++;
             }
 
-            cache[tailles] = resultat;
+            cache.emplace(tailles, resultat);
             return resultat;
         }
     }
@@ -107,15 +106,15 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     nombre numerateur = 0;
     nombre denominateur = 0;
 
-    for (auto c: combinaison) {
-        numerateur += c.first * c.second;
-        denominateur += c.second;
+    for (auto [k, v]: combinaison) {
+        numerateur += k * v;
+        denominateur += v;
     }
 
-    const auto masque = puissance::puissance<size_t, unsigned>(10, 7);
+    const auto masque = puissance::puissance<size_t>(10, 7u);
     numerateur *= masque;
     numerateur /= denominateur;
-    double resultat = numerateur.convert_to<double>();
+    auto resultat = numerateur.convert_to<double>();
     resultat /= masque;
     return std::to_string(resultat, 6);
 }
