@@ -41,6 +41,6 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients") {
                 square_free.insert(Cnp);
         }
 
-    nombre resultat = std::accumulate(square_free.begin(), square_free.end(), nombre(0));
+    nombre resultat = std::reduce(square_free.begin(), square_free.end());
     return resultat.str();
 }

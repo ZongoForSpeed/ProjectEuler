@@ -16,7 +16,7 @@ ENREGISTRER_PROBLEME(249, "Prime Subset Sums") {
     vecteur premiers;
     premiers::crible2<nombre>(5000, std::back_inserter(premiers));
 
-    nombre somme = std::accumulate(premiers.begin(), premiers.end(), 0ULL);
+    nombre somme = std::reduce(premiers.begin(), premiers.end());
     vecteur t(somme + 1, 0);
     t[0] = 1;
 

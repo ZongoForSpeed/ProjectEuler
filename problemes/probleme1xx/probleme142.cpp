@@ -41,7 +41,7 @@ ENREGISTRER_PROBLEME(142, "Perfect Square Collection") {
 
         }
     }
-    // nombre resultat = std::accumulate(solutions.begin(), solutions.end(), 0ULL);
+
     return std::to_string(resultat);
 }
 

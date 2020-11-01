@@ -22,7 +22,7 @@ namespace std {
         static constexpr int digits10 = 38;
 
         static constexpr uint128_t max() {
-            return static_cast<uint128_t>(numeric_limits<uint64_t>::max()) * 2 + 1;
+            return min() - 1;
         }
 
         static constexpr uint128_t min() {
@@ -41,7 +41,7 @@ namespace std {
         static constexpr int digits10 = 38;
 
         static constexpr int128_t max() {
-            return static_cast<int128_t>(numeric_limits<int64_t>::max()) * 2 + 1;
+            return numeric_limits<uint128_t>::max() >> 1;
         }
 
         static constexpr int128_t min() {

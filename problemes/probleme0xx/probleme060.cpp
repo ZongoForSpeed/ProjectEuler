@@ -67,6 +67,6 @@ ENREGISTRER_PROBLEME(60, "Prime pair sets") {
         solution.insert(solution.end(), suivant.begin()->second.begin(), suivant.begin()->second.end());
     }
 
-    nombre resultat = std::accumulate(solution.begin(), solution.end(), nombre(0));
+    nombre resultat = std::reduce(solution.begin(), solution.end());
     return std::to_string(resultat);
 }

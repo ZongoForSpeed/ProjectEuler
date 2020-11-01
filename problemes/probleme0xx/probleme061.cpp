@@ -55,6 +55,6 @@ ENREGISTRER_PROBLEME(61, "Cyclical figurate numbers") {
                                             }
     } while (std::next_permutation(t_polygonal.begin(), t_polygonal.end()) && solution.empty());
 
-    nombre resultat = std::accumulate(solution.begin(), solution.end(), nombre(0));
+    nombre resultat = std::reduce(solution.begin(), solution.end());
     return std::to_string(resultat);
 }

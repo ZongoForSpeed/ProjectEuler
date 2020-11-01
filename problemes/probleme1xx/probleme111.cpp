@@ -65,7 +65,7 @@ ENREGISTRER_PROBLEME(111, "Primes with runs") {
     nombre resultat = 0;
     for (const auto &e: ensemble) {
         const std::pair<nombre, vecteur> &p = *e.second.rbegin();
-        nombre somme = std::accumulate(p.second.begin(), p.second.end(), 0ULL);
+        nombre somme = std::reduce(p.second.begin(), p.second.end());
         resultat += somme;
         std::cout << e.first << "\t" << p.first << "\t" << p.second.size() << "\t" << somme << std::endl;
     }

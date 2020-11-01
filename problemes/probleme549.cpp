@@ -38,6 +38,6 @@ ENREGISTRER_PROBLEME(549, "Divisibility of factorials") {
         }
     }
 
-    unsigned long long solution = std::accumulate(dp.begin(), dp.end(), 0ull);
+    unsigned long long solution = std::reduce(dp.begin(), dp.end(), 0ull);
     return std::to_string(solution);
 }

@@ -37,11 +37,12 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
                     break;
                 suivant.push_back(f);
             }
-            std::sort(suivant.begin(), suivant.end());
         }
 
         if (suivant.empty())
             break;
+
+        std::sort(suivant.begin(), suivant.end());
 
         for (const nombre &n: suivant) {
             nombre m = premiers::suivant<nombre>(n + 1) - n;
@@ -51,9 +52,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
         std::swap(fortunate, suivant);
     }
 
-    nombre resultat = 0;
-    for (const nombre &n: pseudoFortunate)
-        resultat += n;
+    nombre resultat = std::reduce(pseudoFortunate.begin(), pseudoFortunate.end());
 
     return resultat.str();
 }

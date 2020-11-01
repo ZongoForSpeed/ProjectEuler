@@ -65,6 +65,6 @@ ENREGISTRER_PROBLEME(143, "Investigating the Torricelli point of a triangle") {
         }
     }
 
-    nombre resultat = std::accumulate(triplets.begin(), triplets.end(), 0ULL);
+    nombre resultat = std::reduce(triplets.begin(), triplets.end());
     return std::to_string(resultat);
 }

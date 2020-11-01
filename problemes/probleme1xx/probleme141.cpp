@@ -40,7 +40,7 @@ ENREGISTRER_PROBLEME(141, "Investigating progressive numbers, n, which are also 
             }
     }
 
-    nombre resultat = std::accumulate(solutions.begin(), solutions.end(), 0ULL);
+    nombre resultat = std::reduce(solutions.begin(), solutions.end());
     return std::to_string(resultat);
 }
 

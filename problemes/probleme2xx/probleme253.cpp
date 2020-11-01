@@ -11,7 +11,7 @@ namespace {
         if (auto it = cache.find(tailles);it != cache.end())
             return it->second;
 
-        nombre somme = std::accumulate(tailles.begin(), tailles.end(), nombre(0));
+        nombre somme = std::reduce(tailles.begin(), tailles.end());
         if (somme == 1 && tailles[1] == 1) {
             dictionnaire resultat{{1, 1}};
             return resultat;
@@ -25,7 +25,7 @@ namespace {
                 _tailles[n]--;
                 if (n == 1) {
                     auto tmp = algorithme(_tailles, cache);
-                    for (auto& [k, v]: tmp) {
+                    for (auto&[k, v]: tmp) {
                         if (k < somme)
                             resultat[somme] += v * tailles[n];
                         else
@@ -38,7 +38,7 @@ namespace {
                         if (m2 != 0) _tailles[m2]++;
 
                         auto tmp = algorithme(_tailles, cache);
-                        for (auto& [k, v]: tmp) {
+                        for (auto&[k, v]: tmp) {
                             if (k < somme)
                                 resultat[somme] += v * tailles[n];
                             else
@@ -106,7 +106,7 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     nombre numerateur = 0;
     nombre denominateur = 0;
 
-    for (auto [k, v]: combinaison) {
+    for (auto[k, v]: combinaison) {
         numerateur += k * v;
         denominateur += v;
     }

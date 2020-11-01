@@ -24,6 +24,6 @@ ENREGISTRER_PROBLEME(346, "Strong Repunits") {
             repunit = repunit * base + 1;
         }
     }
-    nombre somme = std::accumulate(ensemble.begin(), ensemble.end(), nombre(0));
+    nombre somme = std::reduce(ensemble.begin(), ensemble.end());
     return somme.str();
 }

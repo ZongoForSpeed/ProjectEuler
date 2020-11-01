@@ -56,5 +56,5 @@ ENREGISTRER_PROBLEME(88, "Product-sum numbers") {
         }
     }
 
-    return std::to_string(std::accumulate(resultat.begin(), resultat.end(), 0ULL));
+    return std::to_string(std::reduce(resultat.begin(), resultat.end()));
 }

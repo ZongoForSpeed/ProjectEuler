@@ -166,7 +166,7 @@ ENREGISTRER_PROBLEME(105, "Special subset sums: testing") {
 
         std::sort(set.begin(), set.end());
         if (verifier(set))
-            resultat += std::accumulate(set.begin(), set.end(), 0ULL);
+            resultat += std::reduce(set.begin(), set.end());
     }
 
     return std::to_string(resultat);

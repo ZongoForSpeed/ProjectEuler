@@ -35,5 +35,5 @@ ENREGISTRER_PROBLEME(125, "Palindromic sums") {
         }
     }
 
-    return std::to_string(std::accumulate(resultat.begin(), resultat.end(), 0ULL));
+    return std::to_string(std::reduce(resultat.begin(), resultat.end()));
 }

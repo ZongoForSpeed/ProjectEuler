@@ -64,8 +64,7 @@ ENREGISTRER_PROBLEME(150, "Searching a triangular array for a sub-triangle havin
             nombre somme = 0;
             for (size_t k = i; k < m.size(); ++k) {
                 const vecteur &l = m[k];
-                somme += std::accumulate(std::next(l.begin(), j),
-                                         std::next(l.begin(), k - i + j + 1), 0LL);
+                somme += std::reduce(std::next(l.begin(), j), std::next(l.begin(), k - i + j + 1));
                 resultat = std::min(resultat, somme);
             }
         }

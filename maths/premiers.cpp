@@ -234,10 +234,7 @@ namespace premiers {
         typedef std::vector<VecteurPaire> MatricePaire;
         typedef std::vector<std::size_t> Vecteur;
 
-        const std::size_t produit = std::accumulate(roue.begin(), roue.end(), 1ULL,
-                                                    [](const std::size_t resultat, const std::size_t p) {
-                                                        return resultat * p;
-                                                    });
+        const std::size_t produit = std::reduce(roue.begin(), roue.end(), 1ULL, std::multiplies<>());
         const std::size_t taille_crible = taille / produit + 1;
 
         Crible masque(produit, true);
@@ -302,12 +299,12 @@ namespace premiers {
         }
     }
 
-    template <>
+    template<>
     bool miller_rabin(const boost::multiprecision::cpp_int &n, unsigned short reps) {
         return boost::multiprecision::miller_rabin_test<boost::multiprecision::cpp_int>(n, reps);
     }
 
-    MeisselLehmer::MeisselLehmer(const std::vector<size_t>& _premiers) : premiers(_premiers) {
+    MeisselLehmer::MeisselLehmer(const std::vector<size_t> &_premiers) : premiers(_premiers) {
         std::size_t dernier = 0;
         std::size_t compteur = 0;
         cachePi.reserve(premiers.back());

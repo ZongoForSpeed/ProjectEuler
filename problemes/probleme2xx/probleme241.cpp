@@ -27,7 +27,8 @@ namespace {
             if (m > limite)
                 break;
 
-            fraction sigma2 = fraction(puissance::puissance<uint128_t>(p, a + 1) - 1, puissance::puissance<uint128_t>(p, a) * (p - 1)) * sigma;
+            fraction sigma2 = fraction(puissance::puissance<uint128_t>(p, a + 1) - 1,
+                                       puissance::puissance<uint128_t>(p, a) * (p - 1)) * sigma;
 
             if (sigma2 == 1) {
                 resultat.push_back(m);
@@ -47,7 +48,7 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients") {
     // Let us define the perfection quotient of a positive integer as p(n) = σ(n)/n
     //
     // Find the sum of all positive integers n ≤ 1018 for which p(n) has the form k + 1/2, where k is an integer.
-    const uint128_t limite = puissance::puissance<uint128_t>(10, 18);
+    auto limite = puissance::puissance<uint128_t>(10, 18u);
     vecteur premiers;
     premiers::crible235<uint128_t>(1000, std::back_inserter(premiers));
 
@@ -58,6 +59,6 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients") {
     std::sort(resultats.begin(), resultats.end());
     std::cout << resultats << std::endl;
 
-    uint128_t resultat = std::accumulate(resultats.begin(), resultats.end(), uint128_t(0));
+    uint128_t resultat = std::reduce(resultats.begin(), resultats.end());
     return std::to_string(resultat);
 }

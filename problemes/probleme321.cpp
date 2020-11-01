@@ -66,6 +66,6 @@ ENREGISTRER_PROBLEME(321, "Swapping Counters") {
     std::sort(solutions.begin(), solutions.end());
     // std::cout << solutions << std::endl;
 
-    nombre resultat = std::accumulate(solutions.begin(), std::next(solutions.begin(), limite), nombre(0));
+    nombre resultat = std::reduce(solutions.begin(), std::next(solutions.begin(), limite));
     return std::to_string(resultat);
 }

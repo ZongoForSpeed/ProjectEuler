@@ -18,7 +18,7 @@ ENREGISTRER_PROBLEME(491, "Double pandigital number divisible by 11") {
     std::vector<nombre> pandigital(10);
     std::iota(pandigital.begin(), pandigital.end(), 0);
 
-    nombre somme = (2 * std::accumulate(pandigital.begin(), pandigital.end(), 0ULL)) % 11;
+    nombre somme = (2 * std::reduce(pandigital.begin(), pandigital.end())) % 11;
     nombre longueur = pandigital.size();
     nombre produit_fact = combinatoire::factorielle(longueur) * combinatoire::factorielle(longueur - 1);
 
@@ -32,7 +32,7 @@ ENREGISTRER_PROBLEME(491, "Double pandigital number divisible by 11") {
                 std::vector<nombre> c(distribution.begin(), distribution.end());
                 c.insert(c.end(), dup.begin(), dup.end());
 
-                nombre sc = std::accumulate(c.begin(), c.end(), 0ULL);
+                nombre sc = std::reduce(c.begin(), c.end());
                 if ((2 * sc) % 11 == somme) {
                     // std::cout << "c = " << c << std::endl;
                     auto compteur = static_cast<nombre>(std::count_if(c.begin(), c.end(), [](const nombre &i) {

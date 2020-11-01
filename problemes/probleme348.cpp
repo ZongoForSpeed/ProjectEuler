@@ -21,15 +21,15 @@ ENREGISTRER_PROBLEME(348, "Sum of a square and a cube") {
     // Find the sum of the five smallest such palindromic numbers.
     std::set<paire> seen;
     std::map<nombre, nombre> combinaisons;
-    std::priority_queue<triplet, std::vector<triplet>, std::greater<triplet> > q;
+    std::priority_queue<triplet, std::vector<triplet>, std::greater<> > q;
     q.emplace(12, 2, 2);
-    seen.emplace(2,2);
+    seen.emplace(2, 2);
     std::vector<nombre> palindromes;
     while (palindromes.size() < 5) {
-        auto [p, s, c] = q.top();
+        auto[p, s, c] = q.top();
         q.pop();
         if (chiffres::palindrome(p)) {
-            nombre& ncombinaisons = combinaisons[p];
+            nombre &ncombinaisons = combinaisons[p];
             ++ncombinaisons;
             if (ncombinaisons == 4 && std::get<0>(q.top()) > p) {
                 palindromes.push_back(p);
@@ -37,14 +37,14 @@ ENREGISTRER_PROBLEME(348, "Sum of a square and a cube") {
         }
         auto it = seen.emplace(s + 1, c);
         if (it.second) {
-            q.emplace((s+1)*(s+1)+c*c*c, s+1, c);
+            q.emplace((s + 1) * (s + 1) + c * c * c, s + 1, c);
         }
-        
-        it = seen.emplace(s, c+1);
+
+        it = seen.emplace(s, c + 1);
         if (it.second) {
-            q.emplace(s*s+(c+1)*(c+1)*(c+1), s, c+1);
+            q.emplace(s * s + (c + 1) * (c + 1) * (c + 1), s, c + 1);
         }
     }
-    nombre resultat = std::accumulate(palindromes.begin(), palindromes.end(), 0ull);
+    nombre resultat = std::reduce(palindromes.begin(), palindromes.end());
     return std::to_string(resultat);
 }
