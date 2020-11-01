@@ -37,8 +37,7 @@ namespace {
         }
 
         mp_nombre m = division(n, phi);
-        mp_nombre L0, U0;
-        std::tie(L0, U0) = LU(m);
+        auto[L0, U0] = LU(m);
         mp_nombre U1 = somme_carre(m) - somme_entier(m) - U0 - L0;
         mp_nombre L1 = U1 + somme_triangle(m - 1) - L0;
         mp_nombre L2 = somme_carre(n - m - 1) + (m + 1) * somme_entier(n - m - 1);
@@ -47,8 +46,7 @@ namespace {
     }
 
     mp_nombre S(mp_nombre n) {
-        mp_nombre L, U;
-        std::tie(L, U) = LU(n);
+        auto[L, U] = LU(n);
         return L + U;
     }
 }

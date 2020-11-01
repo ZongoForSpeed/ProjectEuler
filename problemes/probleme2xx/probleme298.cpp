@@ -138,15 +138,15 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
             }
 
             bool found = false;
-            for (tuple_t &t: suivants) {
-                if (std::get<0>(t) == suivant && std::get<1>(t) == score) {
-                    std::get<2>(t) += 0.1L;
+            for (auto&[etat, s, probabilite]: suivants) {
+                if (etat == suivant && s == score) {
+                    probabilite += 0.1L;
                     found = true;
                 }
             }
 
             if (!found) {
-                suivants.emplace_back(std::make_tuple(suivant, score, 0.1));
+                suivants.emplace_back(suivant, score, 0.1);
             }
         }
 
@@ -161,11 +161,9 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
         std::deque<std::map<short/*score*/, long double/*probabilite*/>> suivant(compteur);
         for (unsigned short etat = 0; etat < compteur; ++etat) {
             const auto &etats = graphe[etat];
-            for (auto p: dp[etat]) {
-                const short score = p.first;
-                const long double probabilite = p.second;
-                for (const auto &t: etats) {
-                    suivant[std::get<0>(t)][score + std::get<1>(t)] += std::get<2>(t) * probabilite;
+            for (auto[score, probabilite]: dp[etat]) {
+                for (const auto &[e/*etat*/, s/*score*/, p/*probabilite*/]: etats) {
+                    suivant[e][score + s] += p * probabilite;
                 }
             }
         }

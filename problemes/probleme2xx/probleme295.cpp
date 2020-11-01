@@ -70,8 +70,7 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
 
             std::set<nombre> R;
 
-            nombre x, y;
-            std::tie(x, y) = diophantienne(dx, dy, (dx * dx + dy * dy) / 2);
+            auto[x, y] = diophantienne(dx, dy, (dx * dx + dy * dy) / 2);
             while (true) {
                 nombre rayon = x * x + y * y;
                 if (rayon > rayon_max * rayon_max)

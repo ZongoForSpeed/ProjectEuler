@@ -25,8 +25,7 @@ namespace {
             nombre value = b % d;
             auto it = equation.find(e.first);
             if (it != equation.end()) {
-                nombre prev_value, prev_d;
-                std::tie(prev_value, prev_d) = it->second;
+                auto[prev_value, prev_d] = it->second;
                 if (prev_d == d) {
                     if (prev_value != value) {
                         return 0;

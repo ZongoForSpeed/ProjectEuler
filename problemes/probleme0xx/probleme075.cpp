@@ -29,10 +29,7 @@ ENREGISTRER_PROBLEME(75, "Singular integer right triangles") {
     vecteur solutions(limite + 1, 0);
 
     Pythagoricien pythagoricien(limite / 2);
-    for (auto t: pythagoricien) {
-        nombre a, b, c;
-        std::tie(a, b, c) = t;
-
+    for (auto [a, b, c]: pythagoricien) {
         nombre l = a + b + c;
         for (nombre k = 1; k * l <= limite; ++k) {
             solutions[k * l]++;

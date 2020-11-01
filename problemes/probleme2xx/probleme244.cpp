@@ -60,7 +60,7 @@ namespace {
             return to_string() < s.to_string();
         }
 
-        std::string to_string() const {
+        [[nodiscard]] std::string to_string() const {
             std::string m = etat;
             m[position_vide] = 'X';
             return m;
@@ -117,13 +117,13 @@ ENREGISTRER_PROBLEME(244, "Sliders") {
 
     while (visites.find(fin) == visites.end()) {
         std::map<Sliders, std::vector<chemin>> n_chemins;
-        for (auto p: chemins) {
-            auto suivants = Sliders::suivant(p.first);
-            for (auto s: suivants) {
-                if (visites.find(s.second) == visites.end()) {
-                    for (chemin c: p.second) {
-                        c.push_back(s.first);
-                        n_chemins[s.second].push_back(c);
+        for (const auto&[sliders, ps]: chemins) {
+            auto suivants = Sliders::suivant(sliders);
+            for (const auto&[ch, ss]: suivants) {
+                if (visites.find(ss) == visites.end()) {
+                    for (chemin c: ps) {
+                        c.push_back(ch);
+                        n_chemins[ss].push_back(c);
                     }
                 }
             }
@@ -132,7 +132,7 @@ ENREGISTRER_PROBLEME(244, "Sliders") {
         if (n_chemins.empty())
             break;
 
-        for (auto p: n_chemins)
+        for (const auto &p: n_chemins)
             visites.insert(p.first);
 
         std::swap(chemins, n_chemins);

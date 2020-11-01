@@ -19,10 +19,8 @@ namespace {
     }
 
     std::optional<cuboide> intersection(const cuboide &A, const cuboide &B) {
-        nombre xa, ya, za, dxa, dya, dza;
-        nombre xb, yb, zb, dxb, dyb, dzb;
-        std::tie(xa, ya, za, dxa, dya, dza) = A;
-        std::tie(xb, yb, zb, dxb, dyb, dzb) = B;
+        auto[xa, ya, za, dxa, dya, dza] = A;
+        auto[xb, yb, zb, dxb, dyb, dzb] = B;
 
         if (auto x = intersection(xa, dxa, xb, dxb))
             if (auto y = intersection(ya, dya, yb, dyb))
@@ -34,8 +32,7 @@ namespace {
     }
 
     nombre volume(const cuboide &A) {
-        nombre dx, dy, dz;
-        std::tie(std::ignore, std::ignore, std::ignore, dx, dy, dz) = A;
+        auto[x, y, z, dx, dy, dz] = A;
         return dx * dy * dz;
     }
 }

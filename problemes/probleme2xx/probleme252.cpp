@@ -143,9 +143,6 @@ ENREGISTRER_PROBLEME(252, "Convex Holes") {
         dictionnaire[std::make_pair(t.points[0], t.points[2])].emplace_back(t.points[1], t.aire);
     }
 
-    std::cout << std::setprecision(1);
-    std::cout << std::fixed;
-
     long double resultat = 0.0L;
 
     auto polygones = triangles;
@@ -153,7 +150,7 @@ ENREGISTRER_PROBLEME(252, "Convex Holes") {
         auto max = std::max_element(polygones.begin(), polygones.end(),
                                     [](const polygone &p1, const polygone &p2) { return p1.aire < p2.aire; }
         );
-        std::cout << max->points << " = " << max->aire << std::endl;
+        std::cout << max->points << " = " << std::to_string(max->aire, 1) << std::endl;
         resultat = std::max(max->aire, resultat);
         polygones = algorithme(polygones, dictionnaire);
     }

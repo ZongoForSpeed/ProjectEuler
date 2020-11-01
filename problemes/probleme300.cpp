@@ -20,8 +20,7 @@ namespace {
             return;
         }
 
-        signed char x, y;
-        std::tie(x, y) = p;
+        auto[x, y] = p;
         std::deque<Point> suivants{Point(x + 1, y), Point(x - 1, y), Point(x, y + 1), Point(x, y - 1)};
         for (auto suivant: suivants) {
             if (std::find(chemin.rbegin(), chemin.rend(), suivant) == chemin.rend()) {
@@ -97,7 +96,7 @@ ENREGISTRER_PROBLEME(300, "Protein folding") {
     nombre somme = 0;
     for (size_t proteine = 0; proteine < nombre_proteines; ++proteine) {
         nombre max_compteur = 0;
-        for (auto voisins: voisinages) {
+        for (const auto& voisins: voisinages) {
             nombre compteur = 0;
             for (size_t masque: voisins) {
                 if ((proteine & masque) == masque)
@@ -110,8 +109,7 @@ ENREGISTRER_PROBLEME(300, "Protein folding") {
     }
 
     long double resultat = static_cast<long double>(somme) / nombre_proteines;
-    std::cout << std::setprecision(20);
-    std::cout << "Solution: " << somme << " / " << nombre_proteines << " = " << resultat << std::endl;
+    std::cout << "Solution: " << somme << " / " << nombre_proteines << " = " << std::to_string(resultat, 20) << std::endl;
 
     return std::to_string(resultat, 13);
 }

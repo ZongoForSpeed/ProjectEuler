@@ -28,10 +28,7 @@ ENREGISTRER_PROBLEME(299, "Three similar triangles") {
 
     nombre resultat = 0;
     Pythagoricien pythagoricien(limite);
-    for (auto t: pythagoricien) {
-        nombre a, b, c;
-        std::tie(a, b, c) = t;
-
+    for (auto [a, b, c]: pythagoricien) {
         nombre somme = a + b;
         if (somme < limite) {
             resultat += 2 * (limite / somme);

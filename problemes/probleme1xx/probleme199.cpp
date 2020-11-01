@@ -20,8 +20,7 @@ namespace {
         std::map<triplet, nombre> resultat;
         for (auto p: apollonios) {
             // k4 = k1 + k2 + k3 +/- 2*sqrt(k1.k2 + k2.k3 + k3.k1)
-            long double k1, k2, k3;
-            std::tie(k1, k2, k3) = p.first;
+            auto[k1, k2, k3] = p.first;
             long double k4 = k1 + k2 + k3 + 2.0L * std::sqrt(k1 * k2 + k2 * k3 + k1 * k3);
             A += p.second * aire(k4);
             resultat[std::make_tuple(k4, k1, k2)] += p.second;

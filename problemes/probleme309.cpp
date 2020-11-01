@@ -24,9 +24,7 @@ ENREGISTRER_PROBLEME(309, "Integer Ladders") {
     // https://en.wikipedia.org/wiki/Crossed_ladders_problem
     std::map<nombre, std::vector<paire>> dictionnaire;
     Pythagoricien pythagoricien(limite);
-    for (const auto t: pythagoricien) {
-        nombre x, y, z;
-        std::tie(x, y, z) = t;
+    for (const auto[x, y, z]: pythagoricien) {
         for (nombre k = 1; z * k < limite; ++k) {
             dictionnaire[k * x].emplace_back(k * y, k * z);
             dictionnaire[k * y].emplace_back(k * x, k * z);
@@ -40,11 +38,9 @@ ENREGISTRER_PROBLEME(309, "Integer Ladders") {
         // const nombre w = d.first;
         const auto &v = d.second;
         for (auto it1 = v.begin(), en = v.end(); it1 != en; ++it1) {
-            nombre a1, b1;
-            std::tie(a1, b1) = *it1;
+            auto[a1, b1] = *it1;
             for (auto it2 = std::next(it1); it2 != en; ++it2) {
-                nombre a2, b2;
-                std::tie(a2, b2) = *it2;
+                auto[a2, b2] = *it2;
                 // 1 / h = 1 / a1 + 1 / a2
                 nombre n1 = a1 * a2;
                 nombre n2 = a1 + a2;

@@ -22,10 +22,7 @@ ENREGISTRER_PROBLEME(139, "Pythagorean tiles") {
     nombre limite = 100000000;
 
     nombre resultat = 0;
-    for (const auto t : Pythagoricien(limite)) {
-        nombre a, b, c;
-        std::tie(a, b, c) = t;
-
+    for (const auto[a, b, c] : Pythagoricien(limite)) {
         nombre abc = a + b + c;
         nombre ba = (b - a);
         if (abc < limite && c % ba == 0)

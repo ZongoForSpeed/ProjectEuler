@@ -14,12 +14,11 @@ ENREGISTRER_PROBLEME(224, "Almost right-angled triangles II") {
 
     std::queue<triplet> q;
 
-    q.push(std::make_tuple(2, 2, 3));
+    q.emplace(2, 2, 3);
     ++resultat;
 
     while (!q.empty()) {
-        nombre a1, b1, c1;
-        std::tie(a1, b1, c1) = q.front();
+        auto[a1, b1, c1] = q.front();
         q.pop();
 
         nombre a2 = a1 - 2 * b1 + 2 * c1;

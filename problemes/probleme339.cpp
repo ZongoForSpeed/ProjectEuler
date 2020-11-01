@@ -24,9 +24,7 @@ ENREGISTRER_PROBLEME(339, "Peredur fab Efrawg") {
     std::deque<std::tuple<size_t, size_t, long double>> queue;
     queue.emplace_back(n, n, 1.0);
     while (!queue.empty()) {
-        size_t white_sheep, black_sheep;
-        long double r;
-        std::tie(white_sheep, black_sheep, r) = queue.front();
+        auto[white_sheep, black_sheep, r] = queue.front();
         queue.pop_front();
 
         if (white_sheep == 0) {

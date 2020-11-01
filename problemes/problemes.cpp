@@ -76,7 +76,11 @@ int RegistreProbleme::execute(int argc, char **argv) {
             }
             return 0;
         }
-        arguments.push_back(argument);
+
+        std::vector<std::string> s;
+        boost::split(s, argument, boost::is_any_of(","));
+        arguments.insert(arguments.end(), s.begin(), s.end());
+        // arguments.push_back(argument);
     }
 
     std::vector<size_t> problemes;

@@ -52,41 +52,38 @@ ENREGISTRER_PROBLEME(260, "Stone Game") {
 
                 resultat += x + y + z;
 
-                nombre xi = 0;
-                nombre yi = 0;
-                nombre zi = 0;
                 for (nombre i = 1; i < limite - x + 1; ++i) {
-                    std::tie(xi, yi, zi) = tri(x + i, y, z);
+                    auto[xi, yi, zi] = tri(x + i, y, z);
                     victoire[xi][yi][zi] = true;
                 }
 
                 for (nombre i = 1; i < limite - y + 1; ++i) {
-                    std::tie(xi, yi, zi) = tri(x, y + i, z);
+                    auto[xi, yi, zi] = tri(x, y + i, z);
                     victoire[xi][yi][zi] = true;
                 }
 
                 for (nombre i = 1; i < limite - z + 1; ++i) {
-                    std::tie(xi, yi, zi) = tri(x, y, z + i);
+                    auto[xi, yi, zi] = tri(x, y, z + i);
                     victoire[xi][yi][zi] = true;
                 }
 
                 for (nombre i = 1; i < limite - y + 1; ++i) {
-                    std::tie(xi, yi, zi) = tri(x + i, y + i, z);
+                    auto[xi, yi, zi] = tri(x + i, y + i, z);
                     victoire[xi][yi][zi] = true;
                 }
 
                 for (nombre i = 1; i < limite - z + 1; ++i) {
-                    std::tie(xi, yi, zi) = tri(x, y + i, z + i);
+                    auto[xi, yi, zi] = tri(x, y + i, z + i);
                     victoire[xi][yi][zi] = true;
                 }
 
                 for (nombre i = 1; i < limite - z + 1; ++i) {
-                    std::tie(xi, yi, zi) = tri(x + i, y, z + i);
+                    auto[xi, yi, zi] = tri(x + i, y, z + i);
                     victoire[xi][yi][zi] = true;
                 }
 
                 for (nombre i = 1; i < limite - z + 1; ++i) {
-                    std::tie(xi, yi, zi) = tri(x + i, y + i, z + i);
+                    auto[xi, yi, zi]= tri(x + i, y + i, z + i);
                     victoire[xi][yi][zi] = true;
                 }
             }

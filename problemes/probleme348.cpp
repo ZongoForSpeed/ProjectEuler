@@ -26,8 +26,7 @@ ENREGISTRER_PROBLEME(348, "Sum of a square and a cube") {
     seen.emplace(2,2);
     std::vector<nombre> palindromes;
     while (palindromes.size() < 5) {
-        nombre p, s, c;
-        std::tie(p, s, c) = q.top();
+        auto [p, s, c] = q.top();
         q.pop();
         if (chiffres::palindrome(p)) {
             nombre& ncombinaisons = combinaisons[p];

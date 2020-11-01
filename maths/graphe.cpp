@@ -1,6 +1,7 @@
 #include "graphe.h"
 
 #include <algorithm>
+#include <utility>
 
 namespace graphe {
     Tarjan::Tarjan(const std::map<nombre, vecteur> &g) : index(0), graphe(g) {
@@ -10,8 +11,8 @@ namespace graphe {
     }
 
     void Tarjan::algorithme() {
-        for (const auto &p: graphe) {
-            auto &v = sommets.at(p.first);
+        for (const auto &[k, e]: graphe) {
+            auto &v = sommets.at(k);
             if (!v.index)
                 strongconnect(v);
         }
@@ -52,7 +53,7 @@ namespace graphe {
         }
     }
 
-    Dijkstra::Dijkstra(const graphe &_G, const nombre _debut, const nombre _fin) : G(_G), debut(_debut), fin(_fin) {}
+    Dijkstra::Dijkstra(graphe _G, const nombre _debut, const nombre _fin) : G(std::move(_G)), debut(_debut), fin(_fin) {}
 
     nombre Dijkstra::algorithme() {
         const nombre taille = G.size();
@@ -95,7 +96,7 @@ namespace graphe {
         return distance[fin];
     }
 
-    Kruskal::Kruskal(const aretes &_A) : A(_A) {
+    Kruskal::Kruskal(aretes _A) : A(std::move(_A)) {
         std::sort(A.begin(), A.end(),
                   [](const arete &a, const arete &b) { return std::get<2>(a) < std::get<2>(b); });
     }
@@ -113,8 +114,7 @@ namespace graphe {
             groupe.push_back(sommet);
 
         for (const arete &a: A) {
-            nombre i, j;
-            std::tie(i, j, std::ignore) = a;
+            auto &[i, j, k] = a;
             if (groupe[i] != groupe[j]) {
                 nombre groupe_j = groupe[j];
                 nombre groupe_i = groupe[i];

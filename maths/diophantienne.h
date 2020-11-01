@@ -31,7 +31,7 @@ namespace diophantienne {
             long double xi_i = (p_i + sqrt_d) / q_i;
             long double xibar_i = (p_i - sqrt_d) / q_i;
 
-            Nombre alpha_i = static_cast<Nombre>(xi_i);
+            auto alpha_i = static_cast<Nombre>(xi_i);
 
             std::tie(a_i, a_im) = std::make_pair(alpha_i * a_i + a_im, a_i);
             std::tie(b_i, b_im) = std::make_pair(alpha_i * b_i + b_im, b_i);
@@ -63,11 +63,9 @@ namespace diophantienne {
     template<typename Nombre>
     std::pair<Nombre, Nombre> pell1_min(Nombre d, Nombre epsilon) {
         // assert epsilon == 1 or epsilon == -1, "epsilon is different from -1 and 1"
-        std::vector<Nombre> alphas;
-        size_t l = 0;
-        std::tie(alphas, l) = PQa<Nombre>(0, 1, d);
+        auto[alphas, l] = PQa<Nombre>(0, 1, d);
 
-        size_t index = 0;
+        size_t index;
         if (l & 1) {
             index = (epsilon == 1) ? 2 * l - 1 : l - 1;
         } else if (epsilon == -1) {
@@ -107,9 +105,7 @@ namespace diophantienne {
                 break;
         }
 
-        std::vector<Nombre> alphas;
-        size_t l = 0;
-        std::tie(alphas, l) = PQa<Nombre>(1, 2, d);
+        auto[alphas, l] = PQa<Nombre>(1, 2, d);
 
         if (l % 2 == 0 && epsilon)
             return std::make_pair(0, 0);
@@ -136,10 +132,7 @@ namespace diophantienne {
     // Get all the solutions for x² - d.y² = epsilon, where epsilon can be 1 or -1
     template<typename Nombre, typename Callback>
     void pell1(Nombre d, Nombre epsilon, Callback &callback) {
-        Nombre t = 0;
-        Nombre u = 0;
-
-        std::tie(t, u) = pell1_min(d, epsilon);
+        auto[t, u] = pell1_min(d, epsilon);
         if (t == 0 || u == 0)
             return;
 
@@ -157,10 +150,7 @@ namespace diophantienne {
     // Yield all the solutions for x² - d.y² = 4*epsilon, where epsilon can be 1 or -1
     template<typename Nombre, typename Callback>
     void pell4(Nombre d, Nombre epsilon, Callback &callback) {
-        Nombre t = 0;
-        Nombre u = 0;
-
-        std::tie(t, u) = pell1_min(d, epsilon);
+        auto[t, u] = pell1_min(d, epsilon);
 
         if (t == 0 && u == 0)
             return;
@@ -178,9 +168,7 @@ namespace diophantienne {
 
     template<typename Nombre>
     std::vector<std::pair<Nombre, Nombre>> pell_funds_bf(Nombre d, Nombre n) {
-        Nombre t = 0;
-        Nombre u = 0;
-        std::tie(t, u) = pell1_min<Nombre>(d, 1);
+        auto [t, u] = pell1_min<Nombre>(d, 1);
 
         Nombre l1 = 0;
         Nombre l2 = 0;

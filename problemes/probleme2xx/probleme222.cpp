@@ -34,8 +34,6 @@ ENREGISTRER_PROBLEME(222, "Sphere Packing") {
     for (size_t n = 0; n < taille; ++n)
         rayons.push_back((30.0L + n) / R);
 
-    std::cout << std::setprecision(9);
-
     std::random_device rd;
     std::mt19937 g(rd());
 

@@ -13,7 +13,7 @@ namespace {
             for (short dy = -longueur; dy <= longueur; ++dy) {
                 if (auto racine = racine::carre_parfait(dx * dx + dy * dy)) {
                     if (*racine < longueur)
-                        triplets.push_back(std::make_tuple(dx, dy, *racine));
+                        triplets.emplace_back(dx, dy, *racine);
                 }
             }
     }
@@ -45,8 +45,7 @@ namespace {
 
         size_t resultat = 0;
         for (size_t k = i; k < triplets.size(); ++k) {
-            short dx, dy, dl;
-            std::tie(dx, dy, dl) = triplets[k];
+            auto [dx, dy, dl] = triplets[k];
             if (l != dl || x != -dx || y != -dy) {
                 short nx = x + dx;
                 short ny = y + dy;

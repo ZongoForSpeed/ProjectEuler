@@ -4,7 +4,7 @@
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
-typedef std::tuple<long double, nombre, nombre> triplet;
+typedef std::tuple<double, nombre, nombre> triplet;
 
 namespace {
     double C(nombre n, double a, double b) {
@@ -13,17 +13,13 @@ namespace {
         std::priority_queue<triplet, std::vector<triplet>, std::greater<>> tas;
         tas.emplace(a, 1, 0);
         tas.emplace(b, 0, 1);
-        std::map<double, nombre> mem;
+        std::map<double, nombre> mem{{0.0, 1}};
         std::set<paire> used;
-        mem[0.0] = 1;
         used.emplace(0, 0);
         while (true) {
-            double courant;
-            nombre move_a;
-            nombre move_b;
-            std::tie(courant, move_a, move_b) = tas.top();
+            auto[courant, move_a, move_b] = tas.top();
             tas.pop();
-            
+
             auto ret = used.emplace(move_a, move_b);
             if (!ret.second) {
                 continue;
@@ -78,14 +74,14 @@ ENREGISTRER_PROBLEME(406, "Guessing Game") {
     std::cout << "C(500, √2, √3) = " << C(500, std::sqrt(2.0), std::sqrt(3.0)) << std::endl;
     std::cout << "C(20000, 5, 7) = " << C(20000, 5, 7) << std::endl;
     std::cout << "C(2000000, √5, √7) = " << C(2000000, std::sqrt(5.0), std::sqrt(7.0)) << std::endl;
-    
-    vecteur fibonacci {0, 1};
+
+    vecteur fibonacci{0, 1};
     for (size_t k = 2; k < 31; ++k) {
         fibonacci.push_back(fibonacci[k - 2] + fibonacci[k - 1]);
     }
-    
+
     nombre limite = 1'000'000'000'000;
-    
+
     double resultat = 0.0;
     for (size_t k = 1; k < 31; ++k) {
         resultat += C(limite, std::sqrt(k), std::sqrt(fibonacci[k]));

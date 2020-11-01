@@ -14,7 +14,7 @@ find_package(Boost 1.58.0 REQUIRED)
 # find_package(Gperftools)
 
 # Check for standard to use
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -23,13 +23,13 @@ IF (WIN32)
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/O2 /Zi")
     set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ox")
     set(CMAKE_CXX_FLAGS_DEBUG "/Od /Zi")
-    add_compile_options(/std:c++17)
+    add_compile_options(/std:c++20)
 ELSE ()
     # set stuff for other systems
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-    add_compile_options(-std=c++17)
+    add_compile_options(-std=c++20)
 
 
     add_compile_options(-Werror -Wall -Wextra -Wpedantic -Weverything

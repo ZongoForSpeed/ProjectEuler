@@ -15,7 +15,7 @@ namespace {
         std::pair<nombre, nombre> index;
         long double taille;
 
-        std::pair<Square, Square> suivant() const {
+        [[nodiscard]] std::pair<Square, Square> suivant() const {
             Square s1(*this);
             s1.index.first++;
             s1.coordonnees.first += taille;
@@ -66,12 +66,12 @@ ENREGISTRER_PROBLEME(247, "Squares under a hyperbola") {
     //
     // What is the largest n for which the index of Sn is (3,3)?
     const std::pair<nombre, nombre> objectif(3, 3);
-    Square s1;
-    s1.coordonnees = std::make_pair(1.0, 0.0);
-    s1.index = std::make_pair(0, 0);
-    s1.calcul_taille();
+    Square s0;
+    s0.coordonnees = std::make_pair(1.0, 0.0);
+    s0.index = std::make_pair(0, 0);
+    s0.calcul_taille();
 
-    std::set<Square> squares{s1};
+    std::set<Square> squares{s0};
 
     nombre resultat = 0;
     nombre compteur = 1;
@@ -83,17 +83,17 @@ ENREGISTRER_PROBLEME(247, "Squares under a hyperbola") {
             --compteur;
         squares.erase(squares.begin());
 
-        auto suivant = sn.suivant();
+        auto [s1, s2] = sn.suivant();
 
-        if (suivant.first.index.first <= objectif.first && suivant.first.index.second <= objectif.second)
+        if (s1.index.first <= objectif.first && s1.index.second <= objectif.second)
             ++compteur;
 
 
-        if (suivant.first.index.first <= objectif.first && suivant.first.index.second <= objectif.second)
+        if (s1.index.first <= objectif.first && s1.index.second <= objectif.second)
             ++compteur;
 
-        squares.insert(suivant.first);
-        squares.insert(suivant.second);
+        squares.insert(s1);
+        squares.insert(s2);
 
         if (/*sn.index == objectif || */compteur == 0) {
             std::cout << "S_" << resultat << " = " << sn << std::endl;

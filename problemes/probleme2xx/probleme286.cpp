@@ -73,7 +73,6 @@ ENREGISTRER_PROBLEME(286, "Scoring probabilities") {
     // Find q and give your answer rounded to 10 decimal places.
     size_t n = 50;
     nombre objectif = 0.02L;
-    std::cout << std::fixed << std::setprecision(10);
     nombre limite = puissance_float(0.1, 11);
     nombre dq = 1;
     nombre q = 50;

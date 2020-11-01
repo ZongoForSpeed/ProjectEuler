@@ -25,7 +25,7 @@ namespace racine {
     }
 
     template<typename Nombre>
-    Nombre racine(Nombre n, size_t k) {
+    constexpr Nombre racine(Nombre n, size_t k) {
         static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
         auto x = static_cast<Nombre>(std::pow(n, 1.0 / k));
         while (puissance::puissance<Nombre>(x, k) > n) --x;

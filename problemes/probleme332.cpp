@@ -7,18 +7,16 @@ namespace {
     typedef std::tuple<long, long, long> point;
 
     bool plan(const point &p1, const point &p2, const point &p3) {
-        long x1, x2, x3, y1, y2, y3, z1, z2, z3;
-        std::tie(x1, y1, z1) = p1;
-        std::tie(x2, y2, z2) = p2;
-        std::tie(x3, y3, z3) = p3;
+        auto[x1, y1, z1] = p1;
+        auto[x2, y2, z2] = p2;
+        auto[x3, y3, z3] = p3;
         return x1 * y2 * z3 + y1 * z2 * x3 + z1 * x2 * y3
                - z1 * y2 * x3 - y1 * x2 * z3 - x1 * z2 * y3 != 0;
     }
 
     long double angle(const long r, const point &p1, const point &p2) {
-        long x1, x2, y1, y2, z1, z2;
-        std::tie(x1, y1, z1) = p1;
-        std::tie(x2, y2, z2) = p2;
+        auto[x1, y1, z1] = p1;
+        auto[x2, y2, z2] = p2;
         const long double m = x1 * x2 + y1 * y2 + z1 * z2;
         return std::acos(m / (1.0L * r * r));
     }

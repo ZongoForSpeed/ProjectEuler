@@ -52,7 +52,7 @@ ENREGISTRER_PROBLEME(104, "Pandigital Fibonacci ends") {
         fd *= phi;
         if (fd > masque * masque)
             fd /= masque;
-        std::tie(fn1, fn2) = paire(fn2, (fn1 + fn2) % masque);
+        std::tie(fn1, fn2) = std::make_pair(fn2, (fn1 + fn2) % masque);
         if (test_premier_chiffres(fd) && test_dernier_chiffres(fn2)) {
             resultat = n;
             break;

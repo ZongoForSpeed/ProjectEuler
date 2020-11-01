@@ -22,9 +22,7 @@ ENREGISTRER_PROBLEME(218, "Perfect right-angled triangles") {
 
     int128_t resultat = 0;
     Pythagoricien pythagoricien(limite);
-    for (const auto t: pythagoricien) {
-        int128_t x, y, z;
-        std::tie(x, y, z) = t;
+    for (const auto [x, y, z]: pythagoricien) {
         int128_t a = y * y - x * x;
         int128_t b = 2 * x * y;
 
