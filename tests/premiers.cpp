@@ -96,13 +96,31 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
             BOOST_CHECK_EQUAL(false, premiers::miller_rabin(i, 25));
         }
 
-        std::vector<size_t> suivants{ 4, 8, 15, 16, 23, 42, 69, 666, 8283, 98084, 730210, 2691418, 80314325, 620283078 };
-        for (auto& s : suivants) {
+        std::vector<size_t> suivants{4, 8, 15, 16, 23, 42, 69, 666, 8283, 98084, 730210, 2691418, 80314325, 620283078};
+        for (auto &s : suivants) {
             s = premiers::suivant(s);
         }
 
-        std::vector<size_t> resultats{ 5, 11, 17, 17, 29, 43, 71, 673, 8287, 98101, 730217, 2691421, 80314327, 620283089};
+        std::vector<size_t> resultats{5, 11, 17, 17, 29, 43, 71, 673, 8287, 98101, 730217, 2691421, 80314327,
+                                      620283089};
         BOOST_CHECK_EQUAL(resultats, suivants);
+    }
+
+    BOOST_AUTO_TEST_CASE(meissel_lehmer) {
+        std::vector<size_t> premiers;
+        premiers::crible235<size_t>(10'000'000, std::back_inserter(premiers));
+        premiers::MeisselLehmer algo(premiers);
+
+        BOOST_CHECK_EQUAL(4, algo.pi(10));
+        BOOST_CHECK_EQUAL(25, algo.pi(100));
+        BOOST_CHECK_EQUAL(168, algo.pi(1000));
+        BOOST_CHECK_EQUAL(1'229, algo.pi(10'000));
+        BOOST_CHECK_EQUAL(9'592, algo.pi(100'000));
+        BOOST_CHECK_EQUAL(78'498, algo.pi(1'000'000));
+        BOOST_CHECK_EQUAL(664'579, algo.pi(10'000'000));
+        BOOST_CHECK_EQUAL(5'761'455, algo.pi(100'000'000));
+        BOOST_CHECK_EQUAL(50'847'534, algo.pi(1'000'000'000));
+        BOOST_CHECK_EQUAL(455'052'511, algo.pi(10'000'000'000));
     }
 
 BOOST_AUTO_TEST_SUITE_END()

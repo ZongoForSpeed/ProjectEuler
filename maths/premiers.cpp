@@ -1,6 +1,7 @@
 #include <numeric>
 #include "premiers.h"
 #include "timer.h"
+#include "racine.h"
 
 namespace {
     // template<typename Nombre, class OutputIterator>
@@ -305,4 +306,62 @@ namespace premiers {
     bool miller_rabin(const boost::multiprecision::cpp_int &n, unsigned short reps) {
         return boost::multiprecision::miller_rabin_test<boost::multiprecision::cpp_int>(n, reps);
     }
+
+    MeisselLehmer::MeisselLehmer(const std::vector<size_t>& _premiers) : premiers(_premiers) {
+        std::size_t dernier = 0;
+        std::size_t compteur = 0;
+        cachePi.reserve(premiers.back());
+        for (const auto &p : premiers) {
+            std::fill_n(std::back_inserter(cachePi), p - dernier, compteur);
+            ++compteur;
+            dernier = p;
+        }
+    }
+
+    size_t MeisselLehmer::P2(size_t m, size_t n) {
+        size_t resultat = 0;
+
+        auto m2 = racine::racine_carre(m);
+        for (size_t i = n;; ++i) {
+            auto pi = premiers.at(i);
+            if (pi > m2)
+                break;
+
+            resultat += cachePi.at(m / pi) - cachePi.at(pi) + 1;
+        }
+
+        return resultat;
+    }
+
+    size_t MeisselLehmer::Phi(size_t m, size_t n) {
+        if (n == 0)
+            return m;
+        if (m == 0)
+            return 0;
+
+        size_t pn = premiers.at(n - 1);
+
+        if (m < cachePi.size() && pn <= racine::racine_carre(m) && pn >= racine::racine_cubique(m))
+            return cachePi.at(m) - n + 1 + P2(m, n);
+        return Phi(m, n - 1) - Phi(m / pn, n - 1);
+    }
+
+    size_t MeisselLehmer::pi(size_t m) {
+        if (m < cachePi.size())
+            return cachePi.at(m);
+
+        auto m3 = racine::racine_cubique(m);
+        auto n = cachePi.at(m3);
+
+        size_t resultat = 0;
+        resultat += Phi(m, n);
+        resultat += n - 1;
+        resultat -= P2(m, n);
+        return resultat;
+    }
+
+    size_t MeisselLehmer::pi(size_t m, size_t n) {
+        return pi(n) - pi(m);
+    }
+
 }

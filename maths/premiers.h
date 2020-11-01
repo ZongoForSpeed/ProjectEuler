@@ -191,4 +191,22 @@ namespace premiers {
             ++it;
         }
     }
+
+    // https://en.wikipedia.org/wiki/Prime-counting_function#The_Meissel%E2%80%93Lehmer_algorithm
+    class MeisselLehmer {
+        const std::vector<size_t>& premiers;
+        std::vector<size_t> cachePi;
+
+        size_t P2(size_t m, size_t n);
+
+    public:
+        MeisselLehmer(const std::vector<size_t>& _premiers);
+
+        size_t Phi(size_t m, size_t n);
+
+        size_t pi(size_t m);
+
+        size_t pi(size_t m, size_t n);
+    };
+
 }

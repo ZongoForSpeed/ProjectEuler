@@ -3,6 +3,7 @@
 #include <type_traits>
 #include <cmath>
 #include <optional>
+#include "puissance.h"
 
 namespace racine {
     template<typename Nombre>
@@ -17,7 +18,19 @@ namespace racine {
     template<typename Nombre>
     constexpr Nombre racine_cubique(Nombre n) {
         static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
-        return static_cast<Nombre>(std::cbrt(n));
+        auto x = static_cast<Nombre>(std::cbrt(n));
+        while (x * x * x > n) --x;
+        while ((x + 1) * (x + 1) * (x + 1) <= n) ++x;
+        return x;
+    }
+
+    template<typename Nombre>
+    Nombre racine(Nombre n, size_t k) {
+        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
+        auto x = static_cast<Nombre>(std::pow(n, 1.0 / k));
+        while (puissance::puissance<Nombre>(x, k) > n) --x;
+        while (puissance::puissance<Nombre>(x + 1, k) <= n) ++x;
+        return x;
     }
 
     template<typename Nombre>

@@ -1,8 +1,9 @@
 #include <iostream>
+#include <utility>
 
 #include "timer.h"
 
-Timer::Timer(const std::string &t) : _titre(t) {
+Timer::Timer(std::string t) : _titre(std::move(t)) {
     std::cout << "Debut " << _titre << " ..." << std::endl;
     _debut = std::chrono::high_resolution_clock::now();
 }

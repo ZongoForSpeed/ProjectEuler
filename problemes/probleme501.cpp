@@ -4,129 +4,38 @@
 #include "timer.h"
 
 #include <vector>
-#include <cmath>
+#include "racine.h"
 
-typedef unsigned long long nombre;
-typedef std::vector<nombre> vecteur;
+namespace {
+    size_t f(size_t n) {
+        std::vector<size_t> premiers;
 
-class Probleme501 {
-    // The eight divisors of 24 are 1, 2, 3, 4, 6, 8, 12 and 24.
-    // The ten numbers not exceeding 100 having exactly eight divisors are 24, 30, 40, 42, 54, 56, 66, 70, 78 and 88.
-    // Let f(n) be the count of numbers not exceeding n with exactly eight divisors.
-    // You are given f(100) = 10, f(1000) = 180 and f(10^6) = 224427.
-    // Find f(10^12).
-    nombre limite;
-
-    vecteur _premiers;
-    vecteur _pi;
-public:
-    Probleme501(nombre _limite = 1000000000000LL) : limite(_limite) {}
-
-    static nombre racine_carre(nombre n) {
-        return static_cast<nombre>(sqrt(n));
-    }
-
-    static nombre racine_cubique(nombre n) {
-        return static_cast<nombre>(cbrt(n));
-    }
-
-    static nombre racine_septieme(nombre n) {
-        auto resultat = static_cast<nombre>(pow(n, 1.0 / 7.0));
-        auto p7 = puissance::puissance<nombre, unsigned>(resultat, 7);
-        if (p7 < n) {
-            do {
-                ++resultat;
-            } while (puissance::puissance<nombre, unsigned>(resultat, 7) < n);
-            return resultat - 1;
-        } else if (p7 > n) {
-            do {
-                --resultat;
-            } while (puissance::puissance<nombre, unsigned>(resultat, 7) > n);
-            return resultat + 1;
-        }
-
-        return resultat;
-    }
-
-    void crible() {
-        nombre limite_crible = racine_cubique(limite) + 1;
-        limite_crible *= limite_crible;
-        premiers::crible2<nombre>(limite_crible, std::back_inserter(_premiers));
-
-        std::size_t dernier = 0;
-        std::size_t compteur = 0;
-        for (const auto &p : _premiers) {
-            std::fill_n(std::back_inserter(_pi), p - dernier, compteur);
-            ++compteur;
-            dernier = p;
-        }
-    }
-
-    size_t Phi(size_t m, size_t n) {
-        if (n == 0)
-            return m;
-        if (m == 0)
-            return 0;
-
-        size_t pn = _premiers.at(n - 1);
-
-        if (m < _pi.size() && pn <= racine_carre(m) && pn >= racine_cubique(m))
-            return _pi.at(m) - n + 1 + P2(m, n);
-        return Phi(m, n - 1) - Phi(m / pn, n - 1);
-    }
-
-    size_t pi2(size_t m) {
-        if (m < _pi.size())
-            return _pi.at(m);
-
-        auto m3 = racine_cubique(m);
-        auto n = _pi.at(m3);
-
-        size_t resultat = 0;
-        resultat += Phi(m, n);
-        resultat += n - 1;
-        resultat -= P2(m, n);
-        return resultat;
-    }
-
-    size_t P2(size_t m, size_t n) {
-        size_t resultat = 0;
-
-        auto m2 = racine_carre(m);
-        for (size_t i = n;; ++i) {
-            auto pi = _premiers.at(i);
-            if (pi > m2)
-                break;
-
-            resultat += _pi.at(m / pi) - _pi.at(pi) + 1;
-        }
-
-        return resultat;
-    }
-
-    nombre algorithme() {
         {
             Timer t("crible");
-            crible();
+            size_t limite_crible = racine::racine_cubique(n) + 1;
+            limite_crible *= limite_crible;
+            premiers::crible235<size_t>(limite_crible, std::back_inserter(premiers));
         }
 
-        nombre resultat = 0;
+        premiers::MeisselLehmer algo(premiers);
+
+        size_t resultat = 0;
         {
             Timer t("forme p^7");
             // Forme p^7
-            resultat += pi2(racine_septieme(limite));
+            resultat += algo.pi(racine::racine(n, 7));
         }
 
         {
             Timer t("forme p1^3*p2 où p1 != p2");
             // Forme p1^3*p2 où p1 != p2
-            for (const nombre &p : _premiers) {
-                size_t p3 = puissance::puissance<nombre, unsigned>(p, 3);
-                if (2 * p3 > limite)
+            for (const size_t &p : premiers) {
+                auto p3 = puissance::puissance<size_t>(p, 3u);
+                if (2 * p3 > n)
                     break;
 
-                auto r = pi2(limite / p3);
-                if (limite > p3 * p) --r;
+                auto r = algo.pi(n / p3);
+                if (n > p3 * p) --r;
                 resultat += r;
             }
         }
@@ -134,32 +43,40 @@ public:
         {
             Timer t("forme p1*p2*p3 où p1 < p2 < p3");
             // Forme p1*p2*p3 où p1 < p2 < p3
-            auto l1 = racine_cubique(limite);
-            for (size_t n1 = 0; n1 < _premiers.size(); ++n1) {
-                auto p1 = _premiers.at(n1);
+            auto l1 = racine::racine_cubique(n);
+            for (size_t n1 = 0; n1 < premiers.size(); ++n1) {
+                auto p1 = premiers.at(n1);
                 if (p1 > l1)
                     break;
 
-                auto l2 = racine_carre(limite / p1);
+                auto l2 = racine::racine_carre(n / p1);
 
-                for (size_t n2 = n1 + 1; n2 < _premiers.size(); ++n2) {
-                    auto p2 = _premiers.at(n2);
+                for (size_t n2 = n1 + 1; n2 < premiers.size(); ++n2) {
+                    auto p2 = premiers.at(n2);
                     if (p2 > l2)
                         break;
 
-                    auto l = limite / (p1 * p2);
+                    auto l = n / (p1 * p2);
 
                     if (l <= p2)
                         break;
-                    resultat += pi2(l) - n2 - 1;
+                    resultat += algo.pi(l) - n2 - 1;
                 }
             }
         }
         return resultat;
     }
-};
+}
 
 ENREGISTRER_PROBLEME(501, "Eight Divisors") {
-    Probleme501 p;
-    return std::to_string(p.algorithme());
+    // The eight divisors of 24 are 1, 2, 3, 4, 6, 8, 12 and 24.
+    // The ten numbers not exceeding 100 having exactly eight divisors are 24, 30, 40, 42, 54, 56, 66, 70, 78 and 88.
+    // Let f(n) be the count of numbers not exceeding n with exactly eight divisors.
+    // You are given f(100) = 10, f(1000) = 180 and f(10^6) = 224427.
+    // Find f(10^12).
+    // std::cout << "f(100) = "<< f(100) << std::endl;
+    // std::cout << "f(1000) = "<< f(1000) << std::endl;
+    // std::cout << "f(1000000) = "<< f(1'000'000) << std::endl;
+
+    return std::to_string(f(1'000'000'000'000));
 }

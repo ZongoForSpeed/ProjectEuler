@@ -8,9 +8,9 @@ class Timer {
     std::string _titre;
 
 public:
-    explicit Timer(const std::string &t);
+    explicit Timer(std::string t);
 
     ~Timer();
 
-    double timestamp() const;
+    [[nodiscard]] double timestamp() const;
 };
