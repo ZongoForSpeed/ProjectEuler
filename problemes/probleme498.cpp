@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "arithmetique_modulaire.h"
+#include "nombre_modulaire.h"
 
 namespace {
     template<size_t modulo>
@@ -8,8 +8,6 @@ namespace {
         size_t m;
         size_t d;
 
-        typedef arithmetique_modulaire::nombre_modulaire<modulo> nombre;
-
     public:
         Probleme498(const size_t &_n, const size_t &_m, const size_t &_d) : n(_n),
                                                                             m(_m),
@@ -17,15 +15,16 @@ namespace {
 
         size_t algorithme() {
             size_t i = d;
-            nombre resultat(0);
+            nombre_modulaire resultat(modulo, 0);
             while (i < m) {
                 size_t j = i;
-                nombre u(0);
-                nombre s(0);
+                nombre_modulaire u(modulo, 0);
+                nombre_modulaire s(modulo, 0);
                 bool first = true;
                 while (j < m) {
                     if (first) {
-                        u = nombre::coefficient_binomial(n, j) * nombre::coefficient_binomial(j, d);
+                        u = nombre_modulaire::coefficient_binomial(modulo, n, j) *
+                            nombre_modulaire::coefficient_binomial(modulo, j, d);
                         // std::cout << "u_" << j << " = " << u << std::endl;
                         if (j % 2 == 0)
                             u = -u;

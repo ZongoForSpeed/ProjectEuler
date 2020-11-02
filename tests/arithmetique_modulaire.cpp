@@ -18,9 +18,11 @@ BOOST_AUTO_TEST_SUITE(test_arithmetique_modulaire)
 
     BOOST_FIXTURE_TEST_CASE(inverse1, fixure_arithmetiques) {
         BOOST_CHECK_EQUAL(arithmetique_modulaire::inverse_modulaire<unsigned long>(3, 11, premiers), 4);
-        BOOST_CHECK_EQUAL(arithmetique_modulaire::inverse_modulaire<unsigned long long>(97643, 456753, premiers), 368123);
-        BOOST_CHECK_EQUAL(arithmetique_modulaire::inverse_modulaire<unsigned long long>(107113, 3246999210ULL, premiers),
-                          180730717ULL);
+        BOOST_CHECK_EQUAL(arithmetique_modulaire::inverse_modulaire<unsigned long long>(97643, 456753, premiers),
+                          368123);
+        BOOST_CHECK_EQUAL(
+                arithmetique_modulaire::inverse_modulaire<unsigned long long>(107113, 3246999210ULL, premiers),
+                180730717ULL);
     }
 
     BOOST_FIXTURE_TEST_CASE(inverse2, fixure_arithmetiques) {

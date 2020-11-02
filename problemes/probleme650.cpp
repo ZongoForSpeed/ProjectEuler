@@ -1,16 +1,15 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "arithmetique_modulaire.h"
 #include "chiffres.h"
 #include "premiers.h"
+#include "nombre_modulaire.h"
 #include "timer.h"
 
 typedef boost::multiprecision::cpp_int nombre;
-typedef arithmetique_modulaire::nombre_modulaire<1'000'000'007> nombre_modulaire;
 
 namespace {
-    nombre_modulaire D(size_t n, const std::vector<size_t> &premiers) {
-        nombre_modulaire s(1);
+    nombre_modulaire D(size_t modulo, size_t n, const std::vector<size_t> &premiers) {
+        nombre_modulaire s(modulo, 1);
         size_t m = n + 1;
         for (auto &p: premiers) {
             if (p > n) {
@@ -27,7 +26,7 @@ namespace {
             }
 
             if (compteur != 0) {
-                s *= nombre_modulaire::puissance(nombre_modulaire(p), compteur + 1) - 1;
+                s *= nombre_modulaire::puissance(nombre_modulaire(modulo, p), compteur + 1) - 1;
                 s /= (p - 1);
             }
         }
@@ -35,10 +34,10 @@ namespace {
         return s;
     }
 
-    nombre_modulaire S(size_t n, const std::vector<size_t> &premiers) {
-        nombre_modulaire s(0);
+    nombre_modulaire S(size_t modulo, size_t n, const std::vector<size_t> &premiers) {
+        nombre_modulaire s(modulo, 0);
         for (size_t m = 1; m <= n; ++m) {
-            s += D(m, premiers);
+            s += D(modulo, m, premiers);
         }
         return s;
     }
@@ -63,15 +62,16 @@ ENREGISTRER_PROBLEME(650, "Divisors of Binomial Product") {
     //
     // Find S(20'000) mod 1'000'000'007.
     //
+    size_t modulo = 1'000'000'007;
     size_t limite = 20'000;
     std::vector<size_t> premiers;
     premiers::crible235<size_t>(limite, std::back_inserter(premiers));
 
-    std::cout << "D(5) = " << D(5, premiers) << std::endl;
-    std::cout << "S(5) = " << S(5, premiers) << std::endl;
+    std::cout << "D(5) = " << D(modulo, 5, premiers) << std::endl;
+    std::cout << "S(5) = " << S(modulo, 5, premiers) << std::endl;
 
-    std::cout << "S(10) = " << S(10, premiers) << std::endl;
-    std::cout << "S(100) = " << S(100, premiers) << std::endl;
+    std::cout << "S(10) = " << S(modulo, 10, premiers) << std::endl;
+    std::cout << "S(100) = " << S(modulo, 100, premiers) << std::endl;
 
-    return std::to_string(S(20'000, premiers).value());
+    return std::to_string(S(modulo, limite, premiers).value());
 }
