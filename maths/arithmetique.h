@@ -230,13 +230,13 @@ namespace arithmetique {
         std::map<Nombre, size_t> d;
         decomposition<Nombre>(n, premiers, d);
         std::deque<Nombre> resultat{1};
-        for (const auto &facteur: d) {
+        for (const auto &[p, exposant]: d) {
             std::deque<Nombre> r = resultat;
-            Nombre p = facteur.first;
-            for (size_t f = 0; f < facteur.second; ++f) {
+            Nombre f = p;
+            for (size_t e = 0; e < exposant; ++e) {
                 for (auto i: resultat)
-                    r.push_back(i * p);
-                p *= facteur.first;
+                    r.push_back(i * f);
+                f *= p;
             }
 
             resultat.swap(r);

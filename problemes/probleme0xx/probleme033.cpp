@@ -18,7 +18,6 @@ ENREGISTRER_PROBLEME(33, "Digit cancelling fractions") {
     for (nombre a = 1; a < 10; ++a)
         for (nombre b = 1; b < 10; ++b)
             for (nombre c = 1; c < 10; ++c) {
-                // nombre ac = a*10 + c;
                 nombre bc = b * 10 + c;
                 nombre ab = a * 10 + b;
                 if (a != b && ab * c == bc * a) {
