@@ -9,32 +9,6 @@ typedef boost::multiprecision::cpp_int nombre;
 
 namespace {
 
-    template<typename Nombre, typename Conteneur>
-    std::deque<Nombre> _diviseurs(Nombre n, const Conteneur &premiers, Nombre limite) {
-        std::map<Nombre, size_t> d;
-        arithmetique::decomposition<Nombre>(n, premiers, d);
-        std::deque<Nombre> resultat{1};
-        for (const auto &[p, exposant]: d) {
-            // std::cout << "p = " << p << ", exposant = " << exposant << std::endl;
-            std::deque<Nombre> r = resultat;
-            Nombre f = p;
-            for (size_t e = 0; e < exposant; ++e) {
-                for (const auto &i: resultat) {
-                    if (Nombre ff = i * f; ff < limite) {
-                        r.push_back(i * f);
-                    }
-                }
-                f *= p;
-            }
-
-            // std::cout << "r.size() = " << r.size() << std::endl;
-            resultat.swap(r);
-        }
-
-        std::sort(resultat.begin(), resultat.end());
-        return resultat;
-    }
-
     nombre racine_cubique(const nombre &x) {
         nombre l = 1;
         nombre r = x;
@@ -50,24 +24,43 @@ namespace {
         return r;
     }
 
+    template<typename Nombre, typename Iterator, class OutputIterator>
+    void boucle_diviseurs(Nombre x, Iterator it, Iterator en, Nombre min, Nombre max, OutputIterator sortie) {
+        if (it == en) {
+            if (x > min) {
+                *sortie++ = x;
+            }
+        } else {
+            auto&[p, exposant] = *it;
+            for (size_t n = 0; n <= exposant; ++n) {
+                boucle_diviseurs(x, std::next(it), en, min, max, sortie);
+                Nombre y = x * p;
+                if (y > max) {
+                    break;
+                }
+                x = y;
+            }
+        }
+    }
+
     nombre f(nombre n, const std::vector<size_t> &premiers,
              boost::rational<long long> ratio_limite = boost::rational<long long>(1, 2)) {
         long double ratio_min = std::numeric_limits<long double>::max();
         nombre abc = 0;
         nombre limite = racine_cubique(n);
-        // std::cout << "limite = " << limite << std::endl;
-        nombre limite_inf =
+        nombre limite_min =
                 ((ratio_limite.denominator() - ratio_limite.numerator()) * limite) / ratio_limite.denominator();
-        nombre limite_sup =
+        nombre limite_max =
                 ((ratio_limite.denominator() + ratio_limite.numerator()) * limite) / ratio_limite.denominator();
 
-        auto diviseurs = _diviseurs<nombre>(n, premiers, limite_sup);
-        // std::cout << "diviseurs : " << diviseurs.size() << std::endl;
-        auto it1 = std::lower_bound(diviseurs.begin(), diviseurs.end(), limite_inf);
-        auto en = std::upper_bound(diviseurs.begin(), diviseurs.end(), limite_sup);
+        std::map<nombre, size_t> decomposition;
+        arithmetique::decomposition(n, premiers, decomposition);
 
-        // std::cout << "std::distance(it1, en) = " << std::distance(it1, en) << std::endl;
-        for (; it1 != en; ++it1) {
+        std::set<nombre> diviseurs;
+        boucle_diviseurs<nombre>(1, decomposition.begin(), decomposition.end(), limite_min, limite_max,
+                                 std::inserter(diviseurs, diviseurs.begin()));
+
+        for (auto it1 = diviseurs.begin(), en = diviseurs.end(); it1 != en; ++it1) {
             nombre a = *it1;
             if (a > limite) {
                 break;
