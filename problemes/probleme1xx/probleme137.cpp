@@ -30,7 +30,7 @@ ENREGISTRER_PROBLEME(137, "Fibonacci golden nuggets") {
     // 
     // Find the 15th golden nugget.
     nombre objectif = 15;
-    nombre resultat = 0;
+    nombre resultat;
 
     std::pair<nombre, nombre> f(1, 2);
     for (nombre k = 1;; ++k) {

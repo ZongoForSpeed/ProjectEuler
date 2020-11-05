@@ -15,8 +15,7 @@ ENREGISTRER_PROBLEME(45, "Triangular, pentagonal, and hexagonal") {
     nombre resultat = 0;
     nombre n = 286;
     while (true) {
-        nombre tn = polygonal::triangulaire(n);
-        if (polygonal::est_hexagonal(tn) && polygonal::est_pentagonal(tn)) {
+        if (nombre tn = polygonal::triangulaire(n);polygonal::est_hexagonal(tn) && polygonal::est_pentagonal(tn)) {
             resultat = tn;
             break;
         }

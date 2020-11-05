@@ -10,14 +10,14 @@
 #include "puissance.h"
 
 namespace premiers {
-    void algorithme_crible2(const std::size_t &taille, std::function<void(const std::size_t &)> sortie);
+    void algorithme_crible2(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie);
 
-    void algorithme_crible23(const std::size_t &taille, std::function<void(const std::size_t &)> sortie);
+    void algorithme_crible23(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie);
 
-    void algorithme_crible235(const std::size_t &taille, std::function<void(const std::size_t &)> sortie);
+    void algorithme_crible235(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie);
 
     void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue,
-                                 std::function<void(const std::size_t &)> sortie);
+                                 const std::function<void(const std::size_t &)>& sortie);
 
     template<typename Nombre, class OutputIterator>
     OutputIterator crible2(const std::size_t &taille, OutputIterator sortie) {

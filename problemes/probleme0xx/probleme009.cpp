@@ -7,8 +7,7 @@ namespace {
     nombre Pythagorean(nombre limite) {
         for (nombre a = 1; a < limite / 3; ++a) {
             for (nombre b = a + 1; b < limite / 2; ++b) {
-                nombre c = limite - a - b;
-                if (a * a + b * b == c * c)
+                if (nombre c = limite - a - b;a * a + b * b == c * c)
                     return a * b * c;
             }
         }

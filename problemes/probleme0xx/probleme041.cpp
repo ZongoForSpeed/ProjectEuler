@@ -14,8 +14,8 @@ ENREGISTRER_PROBLEME(41, "Pandigital prime") {
     nombre resultat = 0;
     std::vector<nombre> pandigital{1, 2, 3, 4, 5, 6, 7, 8, 9};
     for (nombre p: premiers) {
-        auto chiffres = chiffres::extraire_chiffres(p);
-        if (std::is_permutation(chiffres.begin(), chiffres.end(), pandigital.begin()))
+        if (auto chiffres = chiffres::extraire_chiffres(p);
+                std::is_permutation(chiffres.begin(), chiffres.end(), pandigital.begin()))
             resultat = p;
     }
     return std::to_string(resultat);

@@ -12,8 +12,7 @@ typedef boost::rational<nombre> fraction;
 
 namespace {
     fraction calculEsperance(std::map<envelope, fraction> &cache, const envelope &e) {
-        auto it = cache.find(e);
-        if (it != cache.end())
+        if (auto it = cache.find(e);it != cache.end())
             return it->second;
 
         fraction resultat(0, 1);

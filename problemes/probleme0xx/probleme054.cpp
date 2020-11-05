@@ -82,19 +82,19 @@ namespace {
             std::sort(cartes.begin(), cartes.end());
         }
 
-        unsigned short royal_flush() const {
+        [[nodiscard]] unsigned short royal_flush() const {
             if (straight_flush() == 14)
                 return 14;
             return 0;
         }
 
-        unsigned short straight_flush() const {
+        [[nodiscard]] unsigned short straight_flush() const {
             if (flush() != 0)
                 return straight();
             return 0;
         }
 
-        unsigned short flush() const {
+        [[nodiscard]] unsigned short flush() const {
             if (cartes.at(0).couleur == cartes.at(1).couleur
                 && cartes.at(0).couleur == cartes.at(2).couleur
                 && cartes.at(0).couleur == cartes.at(3).couleur
@@ -103,7 +103,7 @@ namespace {
             return 0;
         }
 
-        unsigned short straight() const {
+        [[nodiscard]] unsigned short straight() const {
             if (cartes.at(0).valeur + 1 == cartes.at(1).valeur
                 && cartes.at(0).valeur + 2 == cartes.at(2).valeur
                 && cartes.at(0).valeur + 3 == cartes.at(3).valeur
@@ -112,7 +112,7 @@ namespace {
             return 0;
         }
 
-        unsigned short full_house() const {
+        [[nodiscard]] unsigned short full_house() const {
             if (cartes.at(0).valeur == cartes.at(1).valeur
                 && cartes.at(0).valeur == cartes.at(2).valeur
                 && cartes.at(3).valeur == cartes.at(4).valeur)
@@ -124,7 +124,7 @@ namespace {
             return 0;
         }
 
-        unsigned short carre() const {
+        [[nodiscard]] unsigned short carre() const {
             if ((cartes.at(0).valeur == cartes.at(1).valeur && cartes.at(0).valeur == cartes.at(2).valeur &&
                  cartes.at(0).valeur == cartes.at(3).valeur)
                 || (cartes.at(1).valeur == cartes.at(2).valeur && cartes.at(1).valeur == cartes.at(3).valeur &&
@@ -133,7 +133,7 @@ namespace {
             return 0;
         }
 
-        unsigned short brelan() const {
+        [[nodiscard]] unsigned short brelan() const {
             if ((cartes.at(0).valeur == cartes.at(1).valeur && cartes.at(0).valeur == cartes.at(2).valeur)
                 || (cartes.at(1).valeur == cartes.at(2).valeur && cartes.at(1).valeur == cartes.at(3).valeur)
                 || (cartes.at(2).valeur == cartes.at(3).valeur && cartes.at(2).valeur == cartes.at(4).valeur))
@@ -141,7 +141,7 @@ namespace {
             return 0;
         }
 
-        unsigned short paire() const {
+        [[nodiscard]] unsigned short paire() const {
             if (cartes.at(0).valeur == cartes.at(1).valeur || cartes.at(1).valeur == cartes.at(2).valeur)
                 return cartes.at(1).valeur;
             if (cartes.at(2).valeur == cartes.at(3).valeur || cartes.at(3).valeur == cartes.at(4).valeur)
@@ -149,7 +149,7 @@ namespace {
             return 0;
         }
 
-        std::pair<unsigned short, unsigned short> double_paire() const {
+        [[nodiscard]] std::pair<unsigned short, unsigned short> double_paire() const {
             if (cartes.at(0).valeur == cartes.at(1).valeur &&
                 (cartes.at(2).valeur == cartes.at(3).valeur || cartes.at(3).valeur == cartes.at(4).valeur))
                 return std::make_pair(cartes.at(3).valeur, cartes.at(1).valeur);

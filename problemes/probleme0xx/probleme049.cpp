@@ -24,8 +24,8 @@ ENREGISTRER_PROBLEME(49, "Prime permutations") {
     for (size_t i = 0; i < premiers.size(); ++i) {
         nombre p = premiers.at(i);
         vecteur suite{p};
-        auto chiffres = chiffres::extraire_chiffres<nombre>(p);
         if (p > 1000) {
+            auto chiffres = chiffres::extraire_chiffres<nombre>(p);
             for (size_t j = i + 1; j < premiers.size(); ++j) {
                 nombre q = premiers.at(j);
                 if (std::is_permutation(chiffres.begin(), chiffres.end(),

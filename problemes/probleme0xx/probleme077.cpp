@@ -28,11 +28,10 @@ ENREGISTRER_PROBLEME(77, "Prime summations") {
             if (premiers.find(n - p) != premiers.end()) {
                 vecteur s = {n - p, p};
                 std::sort(s.begin(), s.end());
-                solutions_n.insert(s);
+                solutions_n.insert(std::move(s));
             }
 
-            auto it = solutions.find(n - p);
-            if (it != solutions.end()) {
+            if (auto it = solutions.find(n - p); it != solutions.end()) {
                 for (auto s: it->second) {
                     s.push_back(p);
                     std::sort(s.begin(), s.end());
@@ -40,7 +39,7 @@ ENREGISTRER_PROBLEME(77, "Prime summations") {
                 }
             }
         }
-        solutions[n] = solutions_n;
+        solutions.emplace(n, solutions_n);
         if (solutions_n.size() > 5000)
             break;
         ++n;

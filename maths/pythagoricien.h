@@ -27,9 +27,9 @@ public:
 
     explicit Pythagoricien(size_t l);
 
-    IterateurPythagoricien begin() const;
+    [[nodiscard]] IterateurPythagoricien begin() const;
 
-    IterateurPythagoricien end() const;
+    [[nodiscard]] IterateurPythagoricien end() const;
 
     void suivant(IterateurPythagoricien &it) const;
 };

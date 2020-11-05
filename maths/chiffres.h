@@ -45,13 +45,11 @@ namespace chiffres {
 
     template<typename Nombre>
     bool pandigital(const Nombre &n, unsigned short base = 10) {
-        std::vector<std::size_t> chiffres(base + 1, 0);
+        std::vector<size_t> chiffres(base + 1, 0);
         boucle_chiffre(n, [&chiffres](Nombre d) { chiffres[d]++; }, base);
         if (chiffres[0] != 0)
             return false;
-        for (auto c: chiffres)
-            if (c > 1) return false;
-        return true;
+        return std::all_of(chiffres.begin(), chiffres.end(), [](size_t c) { return c < 2; });
     }
 
     template<typename Nombre, class InputIterator1, class InputIterator2>

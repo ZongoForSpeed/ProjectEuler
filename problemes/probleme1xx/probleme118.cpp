@@ -13,16 +13,12 @@ namespace {
                            vecteur::const_iterator debut,
                            vecteur::const_iterator fin) {
         std::set<vecteur> resultat;
-        {
-            auto p = chiffres::conversion_nombre<nombre>(debut, fin);
-            if (premiers.find(p) != premiers.end())
-                resultat.emplace(1, p);
-        }
+        if (auto p = chiffres::conversion_nombre<nombre>(debut, fin);premiers.find(p) != premiers.end())
+            resultat.emplace(1, p);
+
         for (auto it = std::next(debut); it != fin; ++it) {
-            auto p = chiffres::conversion_nombre<nombre>(debut, it);
-            if (premiers.find(p) != premiers.end()) {
-                std::set<vecteur> s = test(premiers, it, fin);
-                if (!s.empty()) {
+            if (auto p = chiffres::conversion_nombre<nombre>(debut, it);premiers.find(p) != premiers.end()) {
+                if (std::set<vecteur> s = test(premiers, it, fin); !s.empty()) {
                     for (vecteur v: s) {
                         v.push_back(p);
                         std::sort(v.begin(), v.end());

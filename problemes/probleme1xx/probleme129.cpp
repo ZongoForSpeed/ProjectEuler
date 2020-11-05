@@ -21,9 +21,7 @@ ENREGISTRER_PROBLEME(129, "Repunit divisibility") {
     nombre resultat = 0;
     for (nombre n = 999999;; n += 2) {
         if (n % 5 != 0) {
-            nombre k = arithmetique::repunit::A(n);
-
-            if (k > limite) {
+            if (nombre k = arithmetique::repunit::A(n);k > limite) {
                 std::cout << "A(" << n << ") = " << k << std::endl;
                 resultat = n;
                 break;

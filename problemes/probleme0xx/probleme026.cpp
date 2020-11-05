@@ -37,8 +37,7 @@ ENREGISTRER_PROBLEME(26, "Reciprocal cycles") {
     nombre resultat = 0;
     for (nombre n = 3; n < 1000; ++n) {
         if (n % 2 != 0 && n % 5 != 0) {
-            nombre l = longueur_cycle(n);
-            if (l > l_max) {
+            if (nombre l = longueur_cycle(n);l > l_max) {
                 l_max = l;
                 resultat = n;
             }

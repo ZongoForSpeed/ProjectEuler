@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <random>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
@@ -71,11 +73,16 @@ ENREGISTRER_PROBLEME(84, "Monopoly odds") {
     // If, instead of using two 6-sided dice, two 4-sided dice are used, find the six-digit modal string.
     vecteur plateau(40, 0);
 
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<nombre> distrib_de(1, 4);
+    std::uniform_int_distribution<nombre> distrib_carte(1, 16);
+
     nombre position = 0;
     nombre double_de = 0;
     for (nombre c = 0; c < 10000000; ++c) {
-        nombre d1 = rand() % 4 + 1;
-        nombre d2 = rand() % 4 + 1;
+        nombre d1 = distrib_de(gen);
+        nombre d2 = distrib_de(gen);
 
         position += (d1 + d2);
         if (position > 39) position -= 40;
@@ -89,7 +96,7 @@ ENREGISTRER_PROBLEME(84, "Monopoly odds") {
             case 2:
             case 17:
             case 33:
-                switch (rand() % 16 + 1) {
+                switch (distrib_carte(gen)) {
                     case 1:
                         position = 0;
                         break;
@@ -103,7 +110,7 @@ ENREGISTRER_PROBLEME(84, "Monopoly odds") {
             case 7:
             case 22:
             case 36:
-                switch (rand() % 16 + 1) {
+                switch (distrib_carte(gen)) {
                     case 1:
                         position = 0;
                         break;

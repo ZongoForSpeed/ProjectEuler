@@ -41,17 +41,17 @@ ENREGISTRER_PROBLEME(18, "Maximum path sum I") {
     for (size_t i = 0; i < taille; ++i) {
         vecteur ligne;
         if (i == 0)
-            ligne.push_back(triangle[i][i]);
+            ligne.emplace_back(triangle[i][i]);
         else
             for (size_t j = 0; j <= i; ++j) {
                 if (j == 0)
-                    ligne.push_back(resultat[i - 1][j] + triangle[i][j]);
+                    ligne.emplace_back(resultat[i - 1][j] + triangle[i][j]);
                 else if (i == j)
-                    ligne.push_back(resultat[i - 1][j - 1] + triangle[i][j]);
+                    ligne.emplace_back(resultat[i - 1][j - 1] + triangle[i][j]);
                 else
-                    ligne.push_back(std::max(resultat[i - 1][j - 1], resultat[i - 1][j]) + triangle[i][j]);
+                    ligne.emplace_back(std::max(resultat[i - 1][j - 1], resultat[i - 1][j]) + triangle[i][j]);
             }
-        resultat.push_back(ligne);
+        resultat.push_back(std::move(ligne));
     }
     const auto it = std::max_element(resultat.back().begin(), resultat.back().end());
     return std::to_string(*it);

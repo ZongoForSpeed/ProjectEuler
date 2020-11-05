@@ -45,7 +45,7 @@ ENREGISTRER_PROBLEME(107, "Minimal network") {
         nombre j = 0;
         for (auto &s: strings) {
             if (s != "-" && i < j)
-                A.push_back(std::make_tuple(i, j, std::stoull(s)));
+                A.emplace_back(i, j, std::stoull(s));
             ++j;
         }
         ++i;
@@ -54,7 +54,7 @@ ENREGISTRER_PROBLEME(107, "Minimal network") {
     graphe::Kruskal kruskal(A);
     auto arbre_mini = kruskal.algorithme();
 
-    auto somme_poids = [](const nombre& r, const graphe::Kruskal::arete &a) { return r + std::get<2>(a); };
+    auto somme_poids = [](const nombre &r, const graphe::Kruskal::arete &a) { return r + std::get<2>(a); };
 
     nombre resultat = std::accumulate(A.begin(), A.end(), 0ull, somme_poids) -
                       std::accumulate(arbre_mini.begin(), arbre_mini.end(), 0ull, somme_poids);

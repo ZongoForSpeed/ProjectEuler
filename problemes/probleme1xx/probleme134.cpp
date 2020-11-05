@@ -20,9 +20,7 @@ ENREGISTRER_PROBLEME(134, "Prime pair connection") {
     // Find ∑ S for every pair of consecutive primes with 5 ≤ p1 ≤ 1000000.
     nombre limite = 1000000;
     vecteur premiers;
-    premiers::crible235<nombre>(limite, std::inserter(premiers, premiers.begin()));
-
-    nombre dix = 10;
+    premiers::crible235<nombre>(limite, std::back_inserter(premiers));
 
     nombre resultat = 0;
     for (nombre n = 0; n < premiers.size() - 1; ++n) {
@@ -30,10 +28,10 @@ ENREGISTRER_PROBLEME(134, "Prime pair connection") {
         nombre p2 = premiers.at(n + 1);
         if (p1 > 4 && p1 < limite) {
             nombre chiffres = chiffres::nombre_chiffres(p1);
-            nombre b = puissance::puissance_modulaire(dix, chiffres * (p2 - 2), p2);
+            nombre b = puissance::puissance_modulaire<nombre>(10, chiffres * (p2 - 2), p2);
             b *= p2 - p1;
             b %= p2;
-            resultat += b * puissance::puissance(dix, chiffres) + p1;
+            resultat += b * puissance::puissance<nombre>(10, chiffres) + p1;
         }
     }
     return std::to_string(resultat);

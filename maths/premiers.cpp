@@ -165,7 +165,7 @@ namespace {
 }
 
 namespace premiers {
-    void algorithme_crible2(const std::size_t &taille, std::function<void(const std::size_t &)> sortie) {
+    void algorithme_crible2(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie) {
         std::size_t taille_crible = taille / 2;
         std::vector<bool> test;
         internal_crible2(taille_crible, test);
@@ -178,7 +178,7 @@ namespace premiers {
         }
     }
 
-    void algorithme_crible23(const std::size_t &taille, std::function<void(const std::size_t &)> sortie) {
+    void algorithme_crible23(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie) {
         std::size_t taille_crible = taille / 6;
         std::vector<bool> test1;
         std::vector<bool> test5;
@@ -195,7 +195,7 @@ namespace premiers {
         }
     }
 
-    void algorithme_crible235(const std::size_t &taille, std::function<void(const std::size_t &)> sortie) {
+    void algorithme_crible235(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie) {
         std::size_t taille_crible = taille / 30 + 1;
         std::vector<bool> test1, test7, test11, test13, test17, test19, test23, test29;
         internal_crible235(taille_crible, test1, test7, test11, test13, test17, test19, test23, test29);
@@ -227,7 +227,7 @@ namespace premiers {
     }
 
     void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue,
-                                 std::function<void(const std::size_t &)> sortie) {
+                                 const std::function<void(const std::size_t &)>& sortie) {
         typedef std::vector<bool> Crible;
         typedef std::pair<std::size_t, std::size_t> Paire;
         typedef std::vector<Paire> VecteurPaire;

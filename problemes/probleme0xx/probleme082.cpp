@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(82, "Path sum: three ways") {
         for (const auto &s: v) {
             l.push_back(std::stoull(s));
         }
-        graphe.push_back(l);
+        graphe.push_back(std::move(l));
     }
 
     const nombre taille = graphe.size();

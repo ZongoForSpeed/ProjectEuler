@@ -5,11 +5,9 @@
 
 namespace {
     bool est_vide(const std::vector<std::string> &keys) {
-        for (const auto &key: keys) {
-            if (!key.empty()) return false;
-        }
-
-        return true;
+        return std::all_of(keys.begin(), keys.end(), [](const std::string &key) {
+            return key.empty();
+        });
     }
 
     char minimum(const std::vector<std::string> &keys) {

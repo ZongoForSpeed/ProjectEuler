@@ -18,7 +18,7 @@ namespace arithmetique {
         if (b == 0)
             return a;
 
-        Nombre pgcd = 0;
+        Nombre pgcd;
         while (true) {
             pgcd = a % b;
             if (pgcd == 0) {

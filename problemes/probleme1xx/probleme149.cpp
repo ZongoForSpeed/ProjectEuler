@@ -76,8 +76,8 @@ ENREGISTRER_PROBLEME(149, "Searching for a maximum-sum subsequence") {
     // Somme colonne
     for (size_t i = 0; i < m.size(); ++i) {
         vecteur v;
-        for (size_t j = 0; j < m.size(); ++j)
-            v.push_back(m[j][i]);
+        for (auto & j : m)
+            v.push_back(j[i]);
 
         resultat = std::max(resultat, maximum(v));
     }

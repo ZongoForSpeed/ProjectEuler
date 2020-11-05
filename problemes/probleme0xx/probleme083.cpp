@@ -29,7 +29,7 @@ ENREGISTRER_PROBLEME(83, "Path sum: four ways") {
         for (const auto &s: v) {
             l.push_back(std::stoull(s));
         }
-        m.push_back(l);
+        m.push_back(std::move(l));
     }
 
     const nombre taille = m.size();
@@ -39,13 +39,13 @@ ENREGISTRER_PROBLEME(83, "Path sum: four ways") {
             vecteur_paire v;
             const nombre poids = m[i][j];
             if (i > 0)
-                v.push_back(std::make_pair((i - 1) * taille + j, poids));
+                v.emplace_back((i - 1) * taille + j, poids);
             if (j > 0)
-                v.push_back(std::make_pair(i * taille + j - 1, poids));
+                v.emplace_back(i * taille + j - 1, poids);
             if (i < taille - 1)
-                v.push_back(std::make_pair((i + 1) * taille + j, poids));
+                v.emplace_back((i + 1) * taille + j, poids);
             if (j < taille - 1)
-                v.push_back(std::make_pair(i * taille + j + 1, poids));
+                v.emplace_back(i * taille + j + 1, poids);
 
             graphe[i * taille + j] = v;
         }

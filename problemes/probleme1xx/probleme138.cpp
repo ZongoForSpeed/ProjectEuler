@@ -11,9 +11,7 @@ namespace {
         if (n == 0)
             return std::make_pair(1, 0);
 
-        std::pair<nombre, nombre> p = fibonacci_(n / 2);
-        nombre fk = p.second;
-        nombre fk_1 = p.first;
+        auto[fk_1, fk] = fibonacci_(n / 2);
 
         if (n % 2 == 0)
             return std::make_pair(fk * fk + fk_1 * fk_1, fk * (2 * fk_1 + fk));

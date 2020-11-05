@@ -18,9 +18,9 @@ ENREGISTRER_PROBLEME(44, "Pentagon numbers") {
         nombre pentagonal_i = polygonal::pentagonal(i);
         bool trouve = false;
         for (nombre j = i + 1; j < 3000; ++j) {
-            nombre pentagonal_j = polygonal::pentagonal(j);
-            if (polygonal::est_pentagonal(pentagonal_j - pentagonal_i) &&
-                polygonal::est_pentagonal(pentagonal_j + pentagonal_i)) {
+            if (nombre pentagonal_j = polygonal::pentagonal(j);
+                    polygonal::est_pentagonal(pentagonal_j - pentagonal_i) &&
+                    polygonal::est_pentagonal(pentagonal_j + pentagonal_i)) {
                 trouve = true;
                 resultat = pentagonal_j - pentagonal_i;
             }

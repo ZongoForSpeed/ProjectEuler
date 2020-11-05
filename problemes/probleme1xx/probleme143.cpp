@@ -45,16 +45,14 @@ ENREGISTRER_PROBLEME(143, "Investigating the Torricelli point of a triangle") {
         }
     }
 
-    for (auto &p: dictionnaire) std::sort(p.second.begin(), p.second.end());
+    for (auto &[k, v]: dictionnaire) std::sort(v.begin(), v.end());
 
     ensemble triplets;
-    for (auto &p: dictionnaire) {
-        nombre a = p.first;
-        for (nombre b: p.second) {
-            auto itFind = dictionnaire.find(b);
-            if (itFind != dictionnaire.end()) {
+    for (auto &[a, bs]: dictionnaire) {
+        for (nombre b: bs) {
+            if (auto itFind = dictionnaire.find(b);itFind != dictionnaire.end()) {
                 vecteur resultat;
-                std::set_intersection(p.second.begin(), p.second.end(),
+                std::set_intersection(bs.begin(), bs.end(),
                                       itFind->second.begin(), itFind->second.end(),
                                       std::back_inserter(resultat));
 

@@ -48,8 +48,7 @@ ENREGISTRER_PROBLEME(27, "Quadratic primes") {
         if (premiers.find(b) != premiers.end()) {
             for (nombre a = -999; a < 1000; ++a) {
                 if (std::llabs(a) > 1) {
-                    nombre compteur = suite_premier(a, b);
-                    if (compteur > c_max) {
+                    if (nombre compteur = suite_premier(a, b);compteur > c_max) {
                         c_max = compteur;
                         a_max = a;
                         b_max = b;

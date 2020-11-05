@@ -46,7 +46,6 @@ ENREGISTRER_PROBLEME(35, "Circular primes") {
     std::set<nombre> premiers;
     premiers::crible2<nombre>(1000000, std::inserter(premiers, premiers.begin()));
 
-
     nombre resultat = 0;
     for (const auto p: premiers) {
         if (valide(p, premiers)) ++resultat;

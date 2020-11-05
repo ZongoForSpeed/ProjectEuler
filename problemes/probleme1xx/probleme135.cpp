@@ -20,8 +20,7 @@ ENREGISTRER_PROBLEME(135, "Same differences") {
 
     for (nombre x = 1; x < limite; ++x) {
         for (nombre m = (x + 2) / 3; m < limite; ++m) {
-            nombre n = (m + x) * (3 * m - x);
-            if (n < limite)
+            if (nombre n = (m + x) * (3 * m - x);n < limite)
                 compteur[n]++;
             else
                 break;
