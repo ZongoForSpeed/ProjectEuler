@@ -31,23 +31,23 @@ ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits") {
     //                      1/CT = 1/C1 + 1/C2 +...
     std::vector<set> capacite(20, set());
 
-    capacite[1].insert(fraction(1));
+    capacite[1].emplace(1);
 
-    set resultat { fraction(1) };
+    set resultat{fraction(1)};
     for (nombre n = 2; n < 19; ++n) {
         auto &c = capacite[n];
         for (nombre i = 1; i <= n / 2; ++i) {
             nombre j = n - i;
-            for (const auto& vi: capacite[i])
-                for (const auto& vj: capacite[j]) {
-                    fraction parallel = vi + vj;
-                    if (resultat.find(parallel) == resultat.end()) {
+            for (const auto &vi: capacite[i])
+                for (const auto &vj: capacite[j]) {
+                    if (fraction parallel = vi + vj; resultat.find(parallel) == resultat.end()) {
                         c.insert(parallel);
                         resultat.insert(parallel);
                     }
 
                     // 1 /(1 / (a1 / b1) + 1 / (a2 / b2 )) = a1 * a2 / (a1 * b2 + a2 * b1)
-                    fraction series(vi.numerator()*vj.numerator(), vi.numerator()*vj.denominator() + vi.denominator()*vj.numerator());
+                    fraction series(vi.numerator() * vj.numerator(),
+                                    vi.numerator() * vj.denominator() + vi.denominator() * vj.numerator());
                     if (resultat.find(series) == resultat.end()) {
                         c.insert(series);
                         resultat.insert(series);
