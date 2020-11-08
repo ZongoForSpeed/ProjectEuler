@@ -12,8 +12,8 @@ namespace {
         for (short dx = -longueur; dx <= longueur; ++dx)
             for (short dy = -longueur; dy <= longueur; ++dy) {
                 if (auto racine = racine::carre_parfait(dx * dx + dy * dy)) {
-                    if (*racine < longueur)
-                        triplets.emplace_back(dx, dy, *racine);
+                    if (racine.value() < longueur)
+                        triplets.emplace_back(dx, dy, racine.value());
                 }
             }
     }

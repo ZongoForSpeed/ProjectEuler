@@ -44,7 +44,7 @@ namespace diophantienne {
                 q_ir = q_i;
             }
 
-            if (ir && *ir != i && p_i == p_ir && q_i == q_ir)
+            if (ir && ir.value() != i && p_i == p_ir && q_i == q_ir)
                 break;
 
             alphas.push_back(alpha_i);
@@ -184,7 +184,7 @@ namespace diophantienne {
         std::vector<std::pair<Nombre, Nombre>> funds;
         for (Nombre y = l1; y < l2 + 1; ++y) {
             if (auto s = racine::carre_parfait<Nombre>(n + d * y * y)) {
-                Nombre x = *s;
+                Nombre x = s.value();
                 funds.emplace_back(x, y);
 
                 if ((x * x + d * y * y) % n != 0 || (2 * x * y) % n != 0)

@@ -11,7 +11,7 @@ namespace {
         size_t cd = PGCDs[c][d]-1;
         size_t da = PGCDs[d][a]-1;
         size_t i = (a*b + b*c + c*d + d*a - ab - bc - cd - da - 2)/2;
-        return racine::carre_parfait(i) ? true : false;
+        return racine::carre_parfait(i).has_value();
     }
 }
 

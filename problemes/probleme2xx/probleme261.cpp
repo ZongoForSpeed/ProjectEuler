@@ -50,7 +50,7 @@ ENREGISTRER_PROBLEME(261, "Stone Game") {
         for (nombre y_ = facteurs[m]; y_ <= maxy; y_ += facteurs[m]) {
             nombre y = y_;
             if (auto s = racine::carre_parfait((m + 1) * (y * y / m + 1))) {
-                nombre x = *s;
+                nombre x = s.value();
                 if (x % 2 == (m + 1) % 2 && y % 2 == m % 2) {
                     while (true) {
                         if (x >= y + 2 * m + 1 && (y + m) / 2 <= limite)

@@ -35,11 +35,11 @@ namespace graphe {
                 v.lowlink = std::min(v.lowlink, w.lowlink);
             } else if (w.onStack) {
                 // Successor w is in stack S and hence in the current SCC
-                v.lowlink = std::min(v.lowlink, *(w.index));
+                v.lowlink = std::min(v.lowlink, w.index.value());
             }
         }
         // If v is a root node, pop the stack and generate an SCC
-        if (v.lowlink == *(v.index)) {
+        if (v.lowlink == v.index.value()) {
             std::set<nombre> composante_connexe;
             do {
                 nombre w = S.back();

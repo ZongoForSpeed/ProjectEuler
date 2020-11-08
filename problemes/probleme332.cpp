@@ -61,7 +61,7 @@ ENREGISTRER_PROBLEME(332, "Spherical triangles") {
         for (long yy = -R; yy <= R; ++yy)
             for (long zz = -R; zz <= R; ++zz) {
                 if (auto r = racine::carre_parfait(xx * xx + yy * yy + zz * zz)) {
-                    sphere[*r].emplace_back(xx, yy, zz);
+                    sphere[r.value()].emplace_back(xx, yy, zz);
                 }
             }
 

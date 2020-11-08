@@ -29,7 +29,7 @@ namespace {
             x++;
             // Si x² - n est un carré alors n = x² - y² et donc n = (x - y)(x + y)
             if (auto y = racine::carre_parfait(x * x - n))
-                return std::make_pair(x - *y, x + *y);
+                return std::make_pair(x - y.value(), x + y.value());
         }
 
         return std::nullopt;

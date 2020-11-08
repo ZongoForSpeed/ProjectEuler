@@ -35,7 +35,7 @@ IterateurPythagoricien Pythagoricien::end() const {
 
 void Pythagoricien::suivant(IterateurPythagoricien &it) const {
     if (limite) {
-        const size_t &l = *limite;
+        const size_t &l = limite.value();
         do {
             it.q += 2;
             if (it.q > it.p || it.p * it.p + it.q * it.q >= l) {

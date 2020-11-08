@@ -15,7 +15,7 @@ namespace graphe {
             bool onStack;
             std::optional<nombre> index;
 
-            Sommet(nombre _n) : n(_n), lowlink(std::numeric_limits<nombre>::max()), onStack(false) {}
+            explicit Sommet(nombre _n) : n(_n), lowlink(std::numeric_limits<nombre>::max()), onStack(false) {}
         };
 
         void strongconnect(Sommet &v);

@@ -14,7 +14,7 @@ namespace {
         for (nombre a = 1; 2 * a * a < p + 1; ++a) {
             nombre bb = p - a * a;
             if (auto r = racine::carre_parfait(bb)) {
-                nombre b = *r;
+                nombre b = r.value();
                 if (a < b)
                     return complexe(a, b);
                 else

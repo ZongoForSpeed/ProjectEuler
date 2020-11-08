@@ -286,6 +286,27 @@ namespace arithmetique {
         return resultat;
     }
 
+    // https://fr.wikipedia.org/wiki/Racine_primitive_modulo_n
+    template<typename Nombre, typename Conteneur>
+    std::optional<Nombre> racine_primitive(Nombre p, const Conteneur &premiers) {
+        Nombre phi = p - 1;
+        auto facteurs = facteurs_premiers(phi, premiers);
+        for (Nombre x = 1; x < p; ++x) {
+            bool primitif = true;
+            for (auto f: facteurs) {
+                if (puissance::puissance_modulaire(x, phi / f, p) == 1) {
+                    primitif = false;
+                    break;
+                }
+            }
+            if (primitif) {
+                return x;
+            }
+        }
+
+        return std::nullopt;
+    }
+
     namespace repunit {
         template<typename Nombre>
         constexpr Nombre A(Nombre n, size_t base = 10) {
