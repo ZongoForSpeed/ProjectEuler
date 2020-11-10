@@ -12,7 +12,7 @@ namespace {
         nombre k = 0;
         while (c % 2 == 0) {
             ++k;
-            c >>= 1;
+            c >>= 1u;
         }
 
         return k;
