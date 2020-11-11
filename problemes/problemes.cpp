@@ -22,7 +22,7 @@ RegistreProbleme::executeProbleme(std::map<size_t, std::string> &solutions, size
                                   const std::function<std::string()> &fonction) {
     const std::string &solution = solutions[numero];
     std::ostringstream oss;
-    oss << "probleme " << numero << ": " << nom;
+    oss << "problème " << numero << ": " << nom;
     Timer t(oss.str());
     const std::string resultat = fonction();
 #ifndef WIN32
@@ -30,7 +30,7 @@ RegistreProbleme::executeProbleme(std::map<size_t, std::string> &solutions, size
         std::cout << "\033[1;32m" << "Solution : " << resultat << "\033[0m" << std::endl;
     } else {
         std::cout << "\033[1;31m" << "ERREUR !" << std::endl;
-        std::cout << "Resultat : " << resultat << std::endl;
+        std::cout << "Résultat : " << resultat << std::endl;
         std::cout << "Solution : " << solution << std::endl;
         std::cout << "\033[0m";
     }

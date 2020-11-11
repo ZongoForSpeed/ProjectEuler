@@ -4,7 +4,7 @@
 #include "timer.h"
 
 Timer::Timer(std::string t) : _titre(std::move(t)) {
-    std::cout << "Debut " << _titre << " ..." << std::endl;
+    std::cout << "Début " << _titre << " ..." << std::endl;
     _debut = std::chrono::high_resolution_clock::now();
 }
 

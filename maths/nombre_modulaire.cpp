@@ -21,7 +21,7 @@ std::pair<size_t, nombre_modulaire> nombre_modulaire::factoriel2(size_t modulo, 
 
 void nombre_modulaire::meme_mod(const nombre_modulaire &n1, const nombre_modulaire &n2) {
     if (n1._modulo != n2._modulo) {
-        throw std::domain_error("Modulo diffenent !");
+        throw std::domain_error("Modulo different !");
     }
 }
 
