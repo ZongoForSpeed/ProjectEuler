@@ -37,23 +37,23 @@ ENREGISTRER_PROBLEME(59, "XOR decryption") {
     std::vector<std::string> names;
     boost::split(names, entree, boost::is_any_of(","));
 
-    std::set<char> lettres = {' ', ',', '(', ')', '.', '!', '\'', ';'};
-    for (char c = 'a'; c < 'z' + 1; ++c) lettres.insert(c);
-    for (char c = 'A'; c < 'Z' + 1; ++c) lettres.insert(c);
-    for (char c = '0'; c < '9' + 1; ++c) lettres.insert(c);
+    std::set<char> lettres = {' ', ',', '(', ')', '[', ']', '.', '!', '\'', ';', '"', '+', '-', '/', '*', ':'};
+    for (char c = 'a'; c <= 'z'; ++c) lettres.insert(c);
+    for (char c = 'A'; c <= 'Z'; ++c) lettres.insert(c);
+    for (char c = '0'; c <= '9'; ++c) lettres.insert(c);
 
     std::vector<char> data;
     std::transform(names.begin(), names.end(), std::back_inserter(data),
                    [](const std::string &str) { return std::stoi(str); });
 
     std::string message;
-    for (char key1 = 'a'; key1 < 'z' + 1; ++key1) {
+    for (char key1 = 'a'; key1 <= 'z'; ++key1) {
         if (lettres.find(data[0] ^ key1) == lettres.end())
             continue;
-        for (char key2 = 'a'; key2 < 'z' + 1; ++key2) {
+        for (char key2 = 'a'; key2 <= 'z'; ++key2) {
             if (lettres.find(data[1] ^ key2) == lettres.end())
                 continue;
-            for (char key3 = 'a'; key3 < 'z' + 1; ++key3) {
+            for (char key3 = 'a'; key3 <= 'z'; ++key3) {
                 if (lettres.find(data[2] ^ key3) == lettres.end())
                     continue;
 
@@ -63,7 +63,7 @@ ENREGISTRER_PROBLEME(59, "XOR decryption") {
                     const char c = data[n] ^key[n % 3];
                     if (lettres.find(c) == lettres.end())
                         break;
-                    decode.push_back(data[n] ^ key[n % 3]);
+                    decode.push_back(c);
                 }
                 if (decode.size() == data.size()) {
                     message = decode;
