@@ -2,7 +2,6 @@
 #include "numerique.h"
 #include "utilitaires.h"
 #include "arithmetique.h"
-#include "premiers.h"
 #include "timer.h"
 
 ENREGISTRER_PROBLEME(692, "Siegbert and Jo") {
@@ -27,7 +26,6 @@ ENREGISTRER_PROBLEME(692, "Siegbert and Jo") {
     // G(13) = 43.
     //
     // Find G(23416728348467685).
-    // size_t n = 23416728348467685;
     std::vector<uint128_t> F{1, 1};
     std::vector<uint128_t> G{1, 1};
 
