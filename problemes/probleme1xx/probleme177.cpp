@@ -34,7 +34,6 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals") {
     //
     // Note: In your calculations you may assume that a calculated angle is integral if it is within a tolerance of 10-9
     // of an integer value.
-    const long double pi = boost::math::constants::pi<long double>();
     std::vector<long double> sinus(180, 0.0L);
     std::vector<long double> cosinus(180, 0.0L);
     std::vector<long double> rad(180, 0.0L);
@@ -44,7 +43,7 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals") {
 
     std::set<long double, comparedouble> fs;
     for (nombre i = 1; i < 180; i++) {
-        rad[i] = static_cast<long double>(i) * pi / 180.0L;
+        rad[i] = static_cast<long double>(i) * M_PIl / 180.0L;
         sinus[i] = std::sin(rad[i]);
         cosinus[i] = std::cos(rad[i]);
         auto j = static_cast<nombre>(sinus[i] * 10000);
@@ -70,9 +69,9 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals") {
                     if (fs.find(siny) != fs.end()) {
                         if (siny > 1) siny = 1;
 
-                        auto y = static_cast<nombre>(std::asin(siny) * 180 / pi + 0.01L);
+                        auto y = static_cast<nombre>(std::asin(siny) * 180 / M_PIl + 0.01L);
                         long double sinx = m * siny;
-                        long double xangle = (std::abs(sinx - 1) < epsilon) ? 90 : std::asin(sinx) * 180 / pi;
+                        long double xangle = (std::abs(sinx - 1) < epsilon) ? 90 : std::asin(sinx) * 180 / M_PIl;
                         auto x = static_cast<nombre>(xangle + 0.01L);
                         if (xangle < x + epsilon && xangle > x - epsilon) {
                             x = (180 - x + y == a + c) ? 180 - x : x;

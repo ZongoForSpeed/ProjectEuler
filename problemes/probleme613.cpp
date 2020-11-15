@@ -24,8 +24,7 @@ ENREGISTRER_PROBLEME(613, "Pythagorean Ant") {
     // Give your answer rounded to 10 digits after the decimal point.
     const long double beta1 = std::acos(0.6L);
     const long double beta2 = std::acos(0.8L);
-    const long double pi = boost::math::constants::pi<long double>();
 
-    long double resultat = 1.0L / 4 + (integral(beta1) + integral(beta2)) / (2 * pi);
+    long double resultat = 1.0L / 4 + (integral(beta1) + integral(beta2)) / (2 * M_PIl);
     return std::to_string(resultat, 10);
 }

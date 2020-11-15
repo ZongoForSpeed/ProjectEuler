@@ -12,7 +12,7 @@ namespace {
 
     long double aire(long double k) {
         long double rayon = std::abs(1.0L / k);
-        return rayon * rayon * boost::math::constants::pi<long double>();
+        return rayon * rayon * M_PIl;
     }
 
     long double iteration(std::map<triplet, nombre> &apollonios) {

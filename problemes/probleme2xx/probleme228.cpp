@@ -31,7 +31,7 @@ namespace {
     std::vector<coordonnee> S(size_t n) {
         std::vector<coordonnee> s;
         for (size_t k = 0; k < n; ++k) {
-            const long double x = (2.0L * k - 1L) / n + boost::math::constants::pi<long double>();
+            const long double x = (2.0L * k - 1L) / n + M_PIl;
             s.emplace_back(std::cos(x), std::sin(x));
         }
 
