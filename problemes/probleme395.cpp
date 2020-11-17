@@ -2,8 +2,6 @@
 #include "utilitaires.h"
 #include "combinatoire.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-
 namespace {
     struct noeud {
         noeud(long double x1_, long double y1_, long double x2_, long double y2_) :

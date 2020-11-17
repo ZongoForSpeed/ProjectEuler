@@ -1,12 +1,11 @@
 #include "problemes.h"
 #include "arithmetique.h"
-
-typedef boost::multiprecision::cpp_int nombre;
+#include "mpz_nombre.h"
 
 namespace {
-    nombre S(nombre a, nombre b, nombre c) {
-        nombre L = b / a;
-        nombre resultat = b*(b+1)/2 - (b+1)*c + a*(4*a - 3*c)*L*(L+1)/2;
+    mpz_nombre S(const mpz_nombre& a, const mpz_nombre& b, const mpz_nombre& c) {
+        mpz_nombre L = b / a;
+        mpz_nombre resultat = b*(b+1)/2 - (b+1)*c + a*(4*a - 3*c)*L*(L+1)/2;
         resultat += (b - L*a + 1) * (4*a - 3*c) * (L+1);
         return resultat;
     }
@@ -25,7 +24,7 @@ ENREGISTRER_PROBLEME(340, "Crazy Function") {
     // Find the last 9 digits of S(21**7, 7**21, 12**7).
     std::cout << "S(50, 2000, 40) = " << S(50, 2000, 40) << std::endl;
     
-    nombre resultat = S(puissance::puissance<size_t>(21, 7u), puissance::puissance<size_t>(7, 21u), puissance::puissance<size_t>(12, 7u));
+    mpz_nombre resultat = S(puissance::puissance<size_t>(21, 7u), puissance::puissance<size_t>(7, 21u), puissance::puissance<size_t>(12, 7u));
     resultat %= 1'000'000'000;
-    return resultat.str();
+    return resultat.to_string();
 }

@@ -1,25 +1,24 @@
 #include "problemes.h"
 #include "arithmetique.h"
-#include "premiers.h"
+#include "mpz_nombre.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
+typedef std::vector<mpz_nombre> vecteur;
 
 namespace {
-    std::pair<nombre, nombre> fibonacci_(const nombre &n, const nombre &modulo) {
+    std::pair<mpz_nombre, mpz_nombre> fibonacci_(const mpz_nombre &n, const mpz_nombre &modulo) {
         if (n == 0)
             return std::make_pair(1, 0);
 
-        static std::map<nombre, std::pair<nombre, nombre>> cache;
+        static std::map<mpz_nombre, std::pair<mpz_nombre, mpz_nombre>> cache;
         auto it = cache.find(n);
         if (it != cache.end())
             return it->second;
 
-        std::pair<nombre, nombre> p = fibonacci_(n / 2, modulo);
-        nombre fk = p.second;
-        nombre fk_1 = p.first;
+        std::pair<mpz_nombre, mpz_nombre> p = fibonacci_(n / 2, modulo);
+        mpz_nombre fk = p.second;
+        mpz_nombre fk_1 = p.first;
 
-        std::pair<nombre, nombre> resultat;
+        std::pair<mpz_nombre, mpz_nombre> resultat;
 
         if (n % 2 == 0)
             resultat = std::make_pair(fk * fk + fk_1 * fk_1, fk * (2 * fk_1 + fk));
@@ -33,7 +32,7 @@ namespace {
         return resultat;
     }
 
-    nombre fibonacci(const nombre &n, const nombre &modulo) {
+    mpz_nombre fibonacci(const mpz_nombre &n, const mpz_nombre &modulo) {
         return fibonacci_(n, modulo).second;
     }
 }
@@ -48,16 +47,16 @@ ENREGISTRER_PROBLEME(304, "Primonacci") {
     // The sequence b(n) is defined as f(a(n)).
     //
     // Find ∑b(n) for 1≤n≤100 000. Give your answer mod 1234567891011.
-    const nombre modulo = 1234567891011ULL;
-    const nombre a0 = puissance::puissance<nombre>(10, 14);
+    const mpz_nombre modulo = 1234567891011ULL;
+    const mpz_nombre a0 = mpz_nombre::puissance(10, 14);
     vecteur a(100000 + 1, a0);
-    nombre resultat = 0;
+    mpz_nombre resultat = 0;
     for (size_t n = 1; n < a.size(); ++n) {
-        a[n] = premiers::suivant(a[n - 1]);
+        a[n] = mpz_nombre::premier_suivant(a[n - 1]);
         resultat += fibonacci(a[n], modulo);
     }
 
     resultat %= modulo;
 
-    return resultat.str();
+    return resultat.to_string();
 }

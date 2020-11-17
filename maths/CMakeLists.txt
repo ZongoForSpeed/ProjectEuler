@@ -12,6 +12,8 @@ add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/graphe.cpp
         ${PROJECT_SOURCE_DIR}/matrice.h
         ${PROJECT_SOURCE_DIR}/multidimension.h
+        ${PROJECT_SOURCE_DIR}/mpz_nombre.h
+        ${PROJECT_SOURCE_DIR}/mpz_nombre.cpp
         ${PROJECT_SOURCE_DIR}/nombre_modulaire.h
         ${PROJECT_SOURCE_DIR}/nombre_modulaire.cpp
         ${PROJECT_SOURCE_DIR}/numerique.h

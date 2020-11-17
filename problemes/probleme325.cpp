@@ -1,51 +1,51 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "matrice.h"
 #include "puissance.h"
+#include "mpz_nombre.h"
 
+#include <boost/serialization/nvp.hpp>
 #include <boost/multiprecision/cpp_bin_float.hpp>
 
 typedef boost::multiprecision::cpp_bin_float_quad mp_float;
-typedef boost::multiprecision::cpp_int mp_nombre;
 
 typedef long long int nombre;
-typedef std::vector<mp_nombre> vecteur;
+typedef std::vector<mpz_nombre> vecteur;
 
 namespace {
     const mp_float phi = (1 + boost::multiprecision::sqrt(mp_float(5))) / 2;
 
-    nombre division(mp_nombre n, mp_float d) {
-        mp_float q = n.convert_to<nombre>() / d;
+    nombre division(mpz_nombre n, mp_float d) {
+        mp_float q = n.get<nombre>() / d;
         return q.convert_to<nombre>();
     }
 
-    mp_nombre somme_entier(mp_nombre n) {
+    mpz_nombre somme_entier(mpz_nombre n) {
         return n * (n + 1) / 2;
     }
 
-    mp_nombre somme_carre(mp_nombre n) {
+    mpz_nombre somme_carre(mpz_nombre n) {
         return n * (n + 1) * (2 * n + 1) / 6;
     }
 
-    mp_nombre somme_triangle(mp_nombre n) {
+    mpz_nombre somme_triangle(mpz_nombre n) {
         return (somme_carre(n) + somme_entier(n)) / 2;
     }
 
-    std::pair<mp_nombre, mp_nombre> LU(mp_nombre n) {
+    std::pair<mpz_nombre, mpz_nombre> LU(mpz_nombre n) {
         if (n < 3) {
             return std::make_pair(0, 0);
         }
 
-        mp_nombre m = division(n, phi);
+        mpz_nombre m = division(n, phi);
         auto[L0, U0] = LU(m);
-        mp_nombre U1 = somme_carre(m) - somme_entier(m) - U0 - L0;
-        mp_nombre L1 = U1 + somme_triangle(m - 1) - L0;
-        mp_nombre L2 = somme_carre(n - m - 1) + (m + 1) * somme_entier(n - m - 1);
-        mp_nombre U2 = n * somme_entier(n - m - 1) - somme_carre(n - m - 1);
+        mpz_nombre U1 = somme_carre(m) - somme_entier(m) - U0 - L0;
+        mpz_nombre L1 = U1 + somme_triangle(m - 1) - L0;
+        mpz_nombre L2 = somme_carre(n - m - 1) + (m + 1) * somme_entier(n - m - 1);
+        mpz_nombre U2 = n * somme_entier(n - m - 1) - somme_carre(n - m - 1);
         return std::make_pair(L0 + L1 + L2, U0 + U1 + U2);
     }
 
-    mp_nombre S(mp_nombre n) {
+    mpz_nombre S(mpz_nombre n) {
         auto[L, U] = LU(n);
         return L + U;
     }
@@ -76,7 +76,7 @@ ENREGISTRER_PROBLEME(325, "Stone Game II") {
     nombre modulo = puissance::puissance<nombre>(7, 10u);
     std::cout << "S(10) = " << S(10) << std::endl;
     std::cout << "S(10000) = " << S(10000) << std::endl;
-    mp_nombre resultat = S(N);
+    mpz_nombre resultat = S(N);
     resultat %= modulo;
-    return resultat.str();
+    return resultat.to_string();
 }

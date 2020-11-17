@@ -1,17 +1,17 @@
 #include <numeric>
 #include "problemes.h"
 #include "arithmetique.h"
+#include "mpz_nombre.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
-typedef std::map<nombre, nombre> dictionnaire;
+typedef std::vector<mpz_nombre> vecteur;
+typedef std::map<mpz_nombre, mpz_nombre> dictionnaire;
 
 namespace {
     dictionnaire algorithme(const vecteur &tailles, std::map<vecteur, dictionnaire> &cache) {
         if (auto it = cache.find(tailles);it != cache.end())
             return it->second;
 
-        nombre somme = std::reduce(tailles.begin(), tailles.end());
+        mpz_nombre somme = std::reduce(tailles.begin(), tailles.end());
         if (somme == 1 && tailles[1] == 1) {
             dictionnaire resultat{{1, 1}};
             return resultat;
@@ -103,8 +103,8 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     std::map<vecteur, dictionnaire> cache;
     auto combinaison = algorithme(input, cache);
 
-    nombre numerateur = 0;
-    nombre denominateur = 0;
+    mpz_nombre numerateur = 0;
+    mpz_nombre denominateur = 0;
 
     for (auto[k, v]: combinaison) {
         numerateur += k * v;
@@ -114,7 +114,7 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     const auto masque = puissance::puissance<size_t>(10, 7u);
     numerateur *= masque;
     numerateur /= denominateur;
-    auto resultat = numerateur.convert_to<double>();
+    auto resultat = numerateur.get_double();
     resultat /= masque;
     return std::to_string(resultat, 6);
 }

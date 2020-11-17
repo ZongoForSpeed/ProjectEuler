@@ -1,16 +1,13 @@
 #include "problemes.h"
-#include "arithmetique.h"
-
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
+#include "mpz_nombre.h"
 
 namespace {
-    nombre S(const nombre &n) {
-        nombre somme = 0;
-        nombre increment = 2 * 3 * 5 * 11 * 17 * 23 * 29 * 41;
+    mpz_nombre S(size_t n) {
+        mpz_nombre somme = 0;
+        size_t increment = 2 * 3 * 5 * 11 * 17 * 23 * 29 * 41;
 
-        for (nombre x = increment + 1; x < n; x += increment) {
-            nombre x3 = x * x * x;
+        for (mpz_nombre x = increment + 1; x < n; x += increment) {
+            mpz_nombre x3 = x * x * x;
             if (x3 % n == 1)
                 somme += x;
         }
@@ -26,7 +23,7 @@ ENREGISTRER_PROBLEME(271, "Modular Cubes, part 1") {
     // S(91)=9+16+22+29+53+74+79+81=363.
     //
     // Find S(13082761331670030).
-    nombre n = 13082761331670030ULL;
-    nombre resultat = S(n);
-    return resultat.str();
+    size_t n = 13082761331670030ULL;
+    mpz_nombre resultat = S(n);
+    return std::to_string(resultat);
 }

@@ -3,6 +3,7 @@
 #include "arithmetique.h"
 #include "premiers.h"
 #include "combinatoire.h"
+#include "mpz_nombre.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -49,7 +50,7 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer") {
     vecteur premiers;
     premiers::crible235<nombre>(limite, std::back_inserter(premiers));
 
-    boost::multiprecision::cpp_int resultat = 0;
+    mpz_nombre resultat = 0;
 
     std::map<nombre, size_t> decomposition;
     arithmetique::decomposition(combinatoire::factorielle<nombre>(9), premiers, decomposition);
@@ -69,5 +70,5 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer") {
 
     std::cout << resultat << std::endl;
     resultat %= modulo;
-    return resultat.str();
+    return resultat.to_string();
 }

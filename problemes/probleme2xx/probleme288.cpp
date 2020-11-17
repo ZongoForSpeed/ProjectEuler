@@ -1,13 +1,12 @@
 #include "problemes.h"
-#include "arithmetique.h"
+#include "mpz_nombre.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
+typedef std::vector<mpz_nombre> vecteur;
 
 namespace {
-    nombre nombre_facteur(const nombre &n, const nombre &p, const nombre &modulo) {
-        nombre quotient = n / p;
-        nombre resultat = quotient;
+    mpz_nombre nombre_facteur(const mpz_nombre &n, const mpz_nombre &p, const mpz_nombre &modulo) {
+        mpz_nombre quotient = n / p;
+        mpz_nombre resultat = quotient;
 
         while (quotient >= p) {
             quotient /= p;
@@ -18,11 +17,11 @@ namespace {
         return resultat;
     }
 
-    nombre NF(size_t p, size_t q, size_t n) {
-        const nombre modulo = puissance::puissance<nombre>(p, n);
+    mpz_nombre NF(size_t p, size_t q, size_t n) {
+        const mpz_nombre modulo = mpz_nombre::puissance(p, n);
         size_t S = 290797;
 
-        nombre resultat = 0;
+        mpz_nombre resultat = 0;
 
         vecteur cache(p, 0);
         for (size_t i = 0; i <= q; ++i) {
@@ -30,7 +29,7 @@ namespace {
             S = (S * S) % 50515093;
 
             if (i < n) {
-                resultat += nombre_facteur(T * puissance::puissance<nombre>(p, i), p, modulo);
+                resultat += nombre_facteur(T * mpz_nombre::puissance(p, i), p, modulo);
             } else {
                 if (cache[T] == 0) cache[T] = nombre_facteur(T * modulo, p, modulo);
                 resultat += cache[T];
@@ -57,6 +56,6 @@ ENREGISTRER_PROBLEME(288, "An enormous factorial") {
     // You are given that NF(3,10000) mod 3**20=624955285.
     //
     // Find NF(61,10**7) mod 61**10
-    nombre resultat = NF(61, 10000000, 10);
-    return resultat.str();
+    mpz_nombre resultat = NF(61, 10000000, 10);
+    return resultat.to_string();
 }

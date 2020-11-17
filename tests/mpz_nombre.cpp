@@ -1,18 +1,18 @@
 #include <boost/test/unit_test.hpp>
 
 #include "utilitaires.h"
-#include "mp_nombre.h"
+#include "mpz_nombre.h"
 
-BOOST_AUTO_TEST_SUITE(test_mp_nombre)
+BOOST_AUTO_TEST_SUITE(test_mpz_nombre)
 
     BOOST_AUTO_TEST_CASE(test_constructeur)
     {
-        mp_nombre n1;
-        mp_nombre n2(42);
-        mp_nombre n3(-666);
-        mp_nombre n4(3.14158);
-        mp_nombre n5(22801763489LL);
-        mp_nombre n7("22801763489");
+        mpz_nombre n1;
+        mpz_nombre n2(42);
+        mpz_nombre n3(-666);
+        mpz_nombre n4(3.14158);
+        mpz_nombre n5(22801763489LL);
+        mpz_nombre n7("22801763489");
 
         BOOST_CHECK_EQUAL(n1.get_signed_long(), 0);
         BOOST_CHECK_EQUAL(n2.to_string(2), "101010");
@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
     
     BOOST_AUTO_TEST_CASE(test_assignation)
     {
-        mp_nombre n;
+        mpz_nombre n;
         BOOST_CHECK_EQUAL(n, 0);
 
         n.set(42);
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
         n.set("228017634890", 10);
         BOOST_CHECK_EQUAL(n, 228017634890);
         
-        mp_nombre m(-22632576532575);
+        mpz_nombre m(-22632576532575);
         std::swap(n, m);
         BOOST_CHECK_EQUAL(m.to_string(), "228017634890");
         BOOST_CHECK_EQUAL(n.to_string(), "-22632576532575");
@@ -54,8 +54,8 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
     
     BOOST_AUTO_TEST_CASE(test_addition)
     {
-        mp_nombre n(22801763489LL);
-        mp_nombre m(22632576532575LL);
+        mpz_nombre n(22801763489LL);
+        mpz_nombre m(22632576532575LL);
         n += m;
 
         BOOST_CHECK_EQUAL(n.get_unsigned_long_long(), 22655378296064);
@@ -66,13 +66,13 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
         n += m;
         BOOST_CHECK_EQUAL(n.get_unsigned_long_long(), 45287954828739);
 
-        mp_nombre p = n + m;
+        mpz_nombre p = n + m;
         BOOST_CHECK_EQUAL(p.get_unsigned_long_long(), 67920531361314);
 
-        mp_nombre q = 42ul + m;
+        mpz_nombre q = 42ul + m;
         BOOST_CHECK_EQUAL(q.get_unsigned_long_long(), 22632576532617);
 
-        mp_nombre r = n + 666ul;
+        mpz_nombre r = n + 666ul;
         BOOST_CHECK_EQUAL(r.get_unsigned_long_long(), 45287954829405);
 
         r += 400000000000000ull;
@@ -81,8 +81,8 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_negation)
     {
-        mp_nombre n(22632576532575LL);
-        mp_nombre m = -n;
+        mpz_nombre n(22632576532575LL);
+        mpz_nombre m = -n;
         BOOST_CHECK_EQUAL(m, -22632576532575);
 
         m.negation();
@@ -91,8 +91,8 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_comparaison)
     {
-        mp_nombre n (25413164);
-        mp_nombre m (22632576532575);
+        mpz_nombre n (25413164);
+        mpz_nombre m (22632576532575);
 
         BOOST_CHECK(n == 25413164);
         BOOST_CHECK(n != 2543164);
@@ -111,18 +111,18 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_abs)
     {
-        mp_nombre n(-22632576532575LL);
-        mp_nombre m = std::abs(n);
+        mpz_nombre n(-22632576532575LL);
+        mpz_nombre m = std::abs(n);
         BOOST_CHECK_EQUAL(m.get_unsigned_long_long(), 22632576532575);
 
-        n = mp_nombre::abs(n);
+        n = mpz_nombre::abs(n);
         BOOST_CHECK_EQUAL(n.get_unsigned_long_long(), 22632576532575);
     }
 
     BOOST_AUTO_TEST_CASE(test_soustraction)
     {
-        mp_nombre n(22801763489LL);
-        mp_nombre m(22632576532575LL);
+        mpz_nombre n(22801763489LL);
+        mpz_nombre m(22632576532575LL);
         n -= m;
 
         BOOST_CHECK_EQUAL(n, -22609774769086);
@@ -133,13 +133,13 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
         n -= m;
         BOOST_CHECK_EQUAL(n, -45242351301761);
 
-        mp_nombre p = n - m;
+        mpz_nombre p = n - m;
         BOOST_CHECK_EQUAL(p, -67874927834336);
 
-        mp_nombre q = 42ul - m;
+        mpz_nombre q = 42ul - m;
         BOOST_CHECK_EQUAL(q, -22632576532533);
 
-        mp_nombre r = n - 666ul;
+        mpz_nombre r = n - 666ul;
         BOOST_CHECK_EQUAL(r, -45242351302427);
 
         r -= 400000000000000ull;
@@ -148,8 +148,8 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_multiplication)
     {
-        mp_nombre n(228017639LL);
-        mp_nombre m(22632572575LL);
+        mpz_nombre n(228017639LL);
+        mpz_nombre m(22632572575LL);
         n *= m;
 
         BOOST_CHECK_EQUAL(n.to_string(), "5160625763047650425");
@@ -160,13 +160,13 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
         n *= m;
         BOOST_CHECK_EQUAL(n.to_string(), "11679823711459070142704209437500");
 
-        mp_nombre p = n * m;
+        mpz_nombre p = n * m;
         BOOST_CHECK_EQUAL(p.to_string(), "264344457812803264146768626852218676562500");
 
-        mp_nombre q = 42ul * m;
+        mpz_nombre q = 42ul * m;
         BOOST_CHECK_EQUAL(q.to_string(), "950568048150");
 
-        mp_nombre r = n * 666ul;
+        mpz_nombre r = n * 666ul;
         BOOST_CHECK_EQUAL(r.to_string(), "7778762591831740715041003485375000");
 
         r *= 4;
@@ -175,19 +175,19 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_shift)
     {
-        mp_nombre n(228);
+        mpz_nombre n(228);
 
-        mp_nombre m = n << 10;
+        mpz_nombre m = n << 10;
         BOOST_CHECK_EQUAL(m, 233472);
 
-        mp_nombre p = n >> 5;
+        mpz_nombre p = n >> 5;
         BOOST_CHECK_EQUAL(p, 7);
     }
 
     BOOST_AUTO_TEST_CASE(test_division)
     {
-        mp_nombre n(228017639LL);
-        mp_nombre m(275LL);
+        mpz_nombre n(228017639LL);
+        mpz_nombre m(275LL);
         n /= m;
 
         BOOST_CHECK_EQUAL(n, 829155);
@@ -199,13 +199,13 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
         BOOST_CHECK_EQUAL(n, 30);
 
         n.set(2280176);
-        mp_nombre p = n / m;
+        mpz_nombre p = n / m;
         BOOST_CHECK_EQUAL(p, 8291);
 
-        mp_nombre q = 42000000000000ul / m;
+        mpz_nombre q = 42000000000000ul / m;
         BOOST_CHECK_EQUAL(q, 152727272727);
 
-        mp_nombre r = n / 666ul;
+        mpz_nombre r = n / 666ul;
         BOOST_CHECK_EQUAL(r, 3423);
 
         r /= 4;
@@ -214,8 +214,8 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_modulo)
     {
-        mp_nombre n(228017639LL);
-        mp_nombre m(275LL);
+        mpz_nombre n(228017639LL);
+        mpz_nombre m(275LL);
         n %= m;
 
         BOOST_CHECK_EQUAL(n, 14);
@@ -228,10 +228,10 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
         BOOST_CHECK_EQUAL(n, 151);
 
         n.set(2280176);
-        mp_nombre p = n % m;
+        mpz_nombre p = n % m;
         BOOST_CHECK_EQUAL(p, 151);
 
-        mp_nombre q = 42000000000000ul % m;
+        mpz_nombre q = 42000000000000ul % m;
         BOOST_CHECK_EQUAL(q, 75);
 
         unsigned long r = n % 666ul;
@@ -243,71 +243,71 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_divisible)
     {
-        mp_nombre n(228017635LL);
-        mp_nombre m(275LL);
+        mpz_nombre n(228017635LL);
+        mpz_nombre m(275LL);
 
-        BOOST_CHECK_EQUAL(mp_nombre::divisible(n, m), false);
-        BOOST_CHECK_EQUAL(mp_nombre::divisible(n, 5), true);
-        BOOST_CHECK_EQUAL(mp_nombre::divisible(2750000, m), true);
+        BOOST_CHECK_EQUAL(mpz_nombre::divisible(n, m), false);
+        BOOST_CHECK_EQUAL(mpz_nombre::divisible(n, 5), true);
+        BOOST_CHECK_EQUAL(mpz_nombre::divisible(2750000, m), true);
     }
 
     BOOST_AUTO_TEST_CASE(test_puissance)
     {
-        mp_nombre n(24);
-        n = mp_nombre::puissance(n, 10);
+        mpz_nombre n(24);
+        n = mpz_nombre::puissance(n, 10);
 
         BOOST_CHECK_EQUAL(n, 63403380965376);
 
-        n = mp_nombre::puissance_modulaire(n, 5, 1000);
+        n = mpz_nombre::puissance_modulaire(n, 5, 1000);
         BOOST_CHECK_EQUAL(n, 376);
 
-        mp_nombre m = mp_nombre::puissance(9, 10);
+        mpz_nombre m = mpz_nombre::puissance(9, 10);
         BOOST_CHECK_EQUAL(m, 3486784401);
 
-        mp_nombre p = mp_nombre::puissance_modulaire(m, 100000, 1024);
+        mpz_nombre p = mpz_nombre::puissance_modulaire(m, 100000, 1024);
         BOOST_CHECK_EQUAL(p, 513);
     }
 
     BOOST_AUTO_TEST_CASE(test_racine)
     {
-        mp_nombre n(63403380965376);
-        BOOST_CHECK_EQUAL(mp_nombre::carre_parfait(n), true);
+        mpz_nombre n(63403380965376);
+        BOOST_CHECK_EQUAL(mpz_nombre::carre_parfait(n), true);
 
-        mp_nombre m = mp_nombre::racine_carre(n);
+        mpz_nombre m = mpz_nombre::racine_carre(n);
         BOOST_CHECK_EQUAL(m, 7962624);
-        BOOST_CHECK_EQUAL(mp_nombre::carre_parfait(m), false);
+        BOOST_CHECK_EQUAL(mpz_nombre::carre_parfait(m), false);
 
-        mp_nombre p = mp_nombre::racine(n, 10);
+        mpz_nombre p = mpz_nombre::racine(n, 10);
         BOOST_CHECK_EQUAL(p, 24);
 
-        mp_nombre q = std::sqrt(n);
+        mpz_nombre q = std::sqrt(n);
         BOOST_CHECK_EQUAL(q, 7962624);
 
-        mp_nombre r = std::cbrt(n);
+        mpz_nombre r = std::cbrt(n);
         BOOST_CHECK_EQUAL(r, 39875);
     }
 
     BOOST_AUTO_TEST_CASE(test_premier)
     {
-        mp_nombre n(22801763489);
-        BOOST_CHECK(mp_nombre::premier(n));
+        mpz_nombre n(22801763489);
+        BOOST_CHECK(mpz_nombre::premier(n));
 
         n *= 10;
-        BOOST_CHECK(!mp_nombre::premier(n));
+        BOOST_CHECK(!mpz_nombre::premier(n));
 
-        mp_nombre m = mp_nombre::premier_suivant(n);
+        mpz_nombre m = mpz_nombre::premier_suivant(n);
         BOOST_CHECK_EQUAL(m, 228017634893);
-        BOOST_CHECK(mp_nombre::premier(m));
+        BOOST_CHECK(mpz_nombre::premier(m));
     }
 
     BOOST_AUTO_TEST_CASE(test_stream)
     {
         std::ostringstream oss;
-        mp_nombre n(22801763489);
+        mpz_nombre n(22801763489);
         oss << n;
 
         std::istringstream iss(oss.str());
-        mp_nombre m;
+        mpz_nombre m;
         iss >> m;
 
         BOOST_CHECK_EQUAL(n, m);
@@ -315,13 +315,13 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_logique)
     {
-        mp_nombre n("10110000111000101", 2);
-        mp_nombre m("10111110001010000", 2);
+        mpz_nombre n("10110000111000101", 2);
+        mpz_nombre m("10111110001010000", 2);
 
-        mp_nombre n_and = n & m;
-        mp_nombre n_or = n | m;
-        mp_nombre n_xor = n ^ m;
-        mp_nombre n_not = ~n;
+        mpz_nombre n_and = n & m;
+        mpz_nombre n_or = n | m;
+        mpz_nombre n_xor = n ^ m;
+        mpz_nombre n_not = ~n;
 
         BOOST_CHECK_EQUAL(n_and.to_string(2), "10110000001000000");
         BOOST_CHECK_EQUAL(n_or.to_string(2), "10111110111010101");
@@ -331,27 +331,27 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
     BOOST_AUTO_TEST_CASE(test_pgcd)
     {
-        mp_nombre n(456753);
-        mp_nombre m(97643);
-        mp_nombre p(158665);
+        mpz_nombre n(456753);
+        mpz_nombre m(97643);
+        mpz_nombre p(158665);
 
-        BOOST_CHECK_EQUAL(mp_nombre::PGCD(n, m), 1);
-        BOOST_CHECK_EQUAL(mp_nombre::PGCD(p, 456755ul), 65);
+        BOOST_CHECK_EQUAL(mpz_nombre::PGCD(n, m), 1);
+        BOOST_CHECK_EQUAL(mpz_nombre::PGCD(p, 456755ul), 65);
     }
 
     BOOST_AUTO_TEST_CASE(test_ppcm)
     {
-        mp_nombre n(456753u);
-        mp_nombre m(97643u);
-        mp_nombre p(158665u);
+        mpz_nombre n(456753u);
+        mpz_nombre m(97643u);
+        mpz_nombre p(158665u);
 
-        BOOST_CHECK_EQUAL(mp_nombre::PPCM(n, m), 44598733179);
-        BOOST_CHECK_EQUAL(mp_nombre::PPCM(p, 456755ul), 1114938955);
+        BOOST_CHECK_EQUAL(mpz_nombre::PPCM(n, m), 44598733179);
+        BOOST_CHECK_EQUAL(mpz_nombre::PPCM(p, 456755ul), 1114938955);
     }
 
     BOOST_AUTO_TEST_CASE(test_chiffres)
     {
-        mp_nombre n("31115050367326962860164013941500001");
+        mpz_nombre n("31115050367326962860164013941500001");
 
         std::deque<unsigned long int> chiffres;
         n.boucle_chiffre([&chiffres] (unsigned long int d) { chiffres.push_front(d); });
@@ -370,7 +370,7 @@ BOOST_AUTO_TEST_SUITE(test_mp_nombre)
 
         BOOST_CHECK_EQUAL(n.inverser_nombre(), "10000514931046106826962376305051113");
         BOOST_CHECK(!n.palindrome());
-        mp_nombre m("89123457675432198");
+        mpz_nombre m("89123457675432198");
         BOOST_CHECK(m.palindrome());
     }
 

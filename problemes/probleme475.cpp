@@ -2,14 +2,14 @@
 #include "utilitaires.h"
 #include "multidimension.h"
 #include "arithmetique.h"
+#include "mpz_nombre.h"
 
-typedef boost::multiprecision::cpp_int nombre;
 typedef std::tuple<short, short, short> triplet;
 
 namespace {
-    void algorithme(const triplet& s0, triplet s, std::map<triplet, nombre>& dp, const nombre &v, short d = 0);
+    void algorithme(const triplet& s0, triplet s, std::map<triplet, mpz_nombre>& dp, const mpz_nombre &v, short d = 0);
 
-    template<std::size_t N> void doUpdate(const triplet &s0, triplet &s, std::map<triplet, nombre>& dp, const nombre &v, short d) {
+    template<std::size_t N> void doUpdate(const triplet &s0, triplet &s, std::map<triplet, mpz_nombre>& dp, const mpz_nombre &v, short d) {
         if (std::get<N>(s)) {
             std::get<N>(s)--;
             algorithme(s0, s, dp, v*(std::get<N>(s) + 1), d + 1);
@@ -17,7 +17,7 @@ namespace {
         }
     }
     
-    void algorithme(const triplet& s0, triplet s, std::map<triplet, nombre>& dp, const nombre &v, short d) {
+    void algorithme(const triplet& s0, triplet s, std::map<triplet, mpz_nombre>& dp, const mpz_nombre &v, short d) {
         if (d == 4) {
             std::get<2>(s) += std::get<1>(s0) - std::get<1>(s);
             std::get<1>(s) += std::get<0>(s0) - std::get<0>(s);
@@ -47,11 +47,11 @@ ENREGISTRER_PROBLEME(475, "Music festival") {
     // Find f(600) mod 1 000 000 007.
     const short n = 600 / 12;
 
-    std::map<triplet, nombre> dp;
+    std::map<triplet, mpz_nombre> dp;
     dp[triplet(4*n, 0, 0)] = 1;
 
     for (short i = 0; i < 3*n; i++) {
-        std::map<triplet, nombre> suivant;
+        std::map<triplet, mpz_nombre> suivant;
         for (auto &p : dp)
             algorithme(p.first, p.first, suivant, p.second);
         dp.swap(suivant);
@@ -61,6 +61,6 @@ ENREGISTRER_PROBLEME(475, "Music festival") {
     for (short i = 2; i <= 4*n; i++)
         a /= i;
     
-    nombre resultat = a % 1000000007;
-    return resultat.str();
+    mpz_nombre resultat = a % 1000000007;
+    return resultat.to_string();
 }

@@ -1,56 +1,56 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "combinatoire.h"
+#include "mpz_nombre.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
+typedef std::vector<mpz_nombre> vecteur;
 
 namespace {
-    nombre G0(size_t n) {
-        return combinatoire::catalan<nombre>(n - 2);
+    mpz_nombre G0(size_t n) {
+        return mpz_nombre::catalan(n - 2);
     }
 
     int signe(size_t n) {
         return (n % 2 == 0) ? 1 : -1;
     }
 
-    nombre G1(size_t n, size_t k1) {
-        nombre somme = 0;
+    mpz_nombre G1(size_t n, size_t k1) {
+        mpz_nombre somme = 0;
         for (size_t j = 0; 2 * j < k1 + 1; ++j) {
-            somme += signe(j) * combinatoire::coefficient_binomial<nombre>(k1 - j, j) * G0(n - j);
+            somme += signe(j) * mpz_nombre::coefficient_binomial(k1 - j, j) * G0(n - j);
         }
 
         return somme;
     }
 
-    nombre G2(size_t n, size_t k1, size_t k2) {
-        nombre somme = 0;
+    mpz_nombre G2(size_t n, size_t k1, size_t k2) {
+        mpz_nombre somme = 0;
         for (size_t j = 0; 2 * j < k1 + 1; ++j) {
-            somme += signe(j) * combinatoire::coefficient_binomial<nombre>(k1 - j, j) * G1(n - j, k2);
+            somme += signe(j) * mpz_nombre::coefficient_binomial(k1 - j, j) * G1(n - j, k2);
         }
 
         return somme;
     }
 
-    nombre G3(size_t n, size_t k1, size_t k2, size_t k3) {
-        nombre somme = 0;
+    mpz_nombre G3(size_t n, size_t k1, size_t k2, size_t k3) {
+        mpz_nombre somme = 0;
         for (size_t j = 0; 2 * j < k1 + 1; ++j) {
-            somme += signe(j) * combinatoire::coefficient_binomial<nombre>(k1 - j, j) * G2(n - j, k2, k3);
+            somme += signe(j) * mpz_nombre::coefficient_binomial(k1 - j, j) * G2(n - j, k2, k3);
         }
 
         return somme;
     }
 
-    nombre G4(size_t n, size_t k1, size_t k2, size_t k3, size_t k4) {
-        nombre somme = 0;
+    mpz_nombre G4(size_t n, size_t k1, size_t k2, size_t k3, size_t k4) {
+        mpz_nombre somme = 0;
         for (size_t j = 0; 2 * j < k1 + 1; ++j) {
-            somme += signe(j) * combinatoire::coefficient_binomial<nombre>(k1 - j, j) * G3(n - j, k2, k3, k4);
+            somme += signe(j) * mpz_nombre::coefficient_binomial(k1 - j, j) * G3(n - j, k2, k3, k4);
         }
 
         return somme;
     }
 
-    nombre C(size_t n) {
+    mpz_nombre C(size_t n) {
         return G4(4 * n, n, n, n, n);
     }
 }
@@ -70,6 +70,6 @@ ENREGISTRER_PROBLEME(270, "Cutting Squares") {
     //                          p270_CutSquare.gif
     // 
     // What is C(30) mod 10**8 ?
-    nombre resultat = C(30) % 100000000;
-    return resultat.str();
+    mpz_nombre resultat = C(30) % 100000000;
+    return resultat.to_string();
 }

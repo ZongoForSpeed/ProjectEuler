@@ -5,8 +5,6 @@
 #include "nombre_modulaire.h"
 #include "timer.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-
 namespace {
     nombre_modulaire D(size_t modulo, size_t n, const std::vector<size_t> &premiers) {
         nombre_modulaire s(modulo, 1);

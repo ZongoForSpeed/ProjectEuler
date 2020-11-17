@@ -2,16 +2,16 @@
 #include "utilitaires.h"
 #include "matrice.h"
 #include "puissance.h"
+#include "mpz_nombre.h"
 
 #include <fstream>
 
-typedef boost::multiprecision::cpp_int mp_nombre;
 typedef long long int nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace {
     template<typename Nombre>
-    matrice::matrice<Nombre> puissance_matrice(matrice::matrice<Nombre> base, mp_nombre exposant, Nombre modulo) {
+    matrice::matrice<Nombre> puissance_matrice(matrice::matrice<Nombre> base, mpz_nombre& exposant, Nombre modulo) {
         matrice::matrice<Nombre> resultat(base.size1(), base.size2(), 0);
         for (size_t i = 0; i < base.size1(); ++i) resultat(i, i) = 1;
 
@@ -44,7 +44,7 @@ ENREGISTRER_PROBLEME(324, "Building a tower") {
     // Find f(10**10000) mod 100000007.
     const long long modulo = 100000007;
     const size_t N = 10000;
-    mp_nombre exposant = puissance::puissance<mp_nombre>(10, N) / 2;
+    mpz_nombre exposant = mpz_nombre::puissance(10, N) / 2;
     vecteur C{679, 99923830, 3519127, 14088452, 35862961, 76806653, 56470433, 33422571, 39262562, 84928070, 25900794,
               74099213, 15071937, 60737445, 66577436, 43529574, 23193354, 64137046, 85911555, 96480880, 76177, 99999328,
               1};

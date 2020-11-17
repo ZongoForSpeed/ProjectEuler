@@ -38,7 +38,7 @@ ENREGISTRER_PROBLEME(512, "Sums of totients of powers") {
     }
 
     // f(n) = phi(n) * (1 - n**n) / (1 - n) mod (n + 1) 
-    // mp_nombre fn = (mp_nombre::puissance(n, n) - 1) / (n - 1) * phi[n];
+    // mpz_nombre fn = (mpz_nombre::puissance(n, n) - 1) / (n - 1) * phi[n];
     // fn %= n + 1;
     // return fn.get<nombre>();
     

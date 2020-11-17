@@ -1,8 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "mpz_nombre.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
+typedef std::vector<mpz_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(217, "Balanced Numbers") {
     // A positive integer with k (decimal) digits is called balanced if its first [k/2] digits sum
@@ -15,10 +15,10 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers") {
     // Thus: T(1) = 45, T(2) = 540 and T(5) = 334795890.
     //
     // Find T(47) mod 3^15
-    nombre masque = puissance::puissance<nombre>(3, 15);
+    mpz_nombre masque = mpz_nombre::puissance(3, 15);
     size_t limite = 47;
 
-    typedef std::map<nombre, std::map<nombre, nombre>> dictionnaire;
+    typedef std::map<mpz_nombre, std::map<mpz_nombre, mpz_nombre>> dictionnaire;
     dictionnaire T_somme;
     dictionnaire T_compteur;
 
@@ -27,21 +27,21 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers") {
     T_somme[1][0] = 45;
     T_compteur[1][0] = 10;
 
-    nombre resultat = T_somme[1][0];
+    mpz_nombre resultat = T_somme[1][0];
 
     for (size_t n = 2; n <= limite; ++n) {
         auto &somme = T_somme[n];
         auto &compteur = T_compteur[n];
 
-        auto p10 = puissance::puissance<nombre>(10, n - 1);
+        auto p10 = mpz_nombre::puissance(10, n - 1);
 
         for (short c1 = 0; c1 < 10; ++c1)
             for (short c2 = 0; c2 < 10; ++c2) {
                 for (auto[k, v]: T_somme[n - 2]) {
-                    nombre d = k + c1 - c2;
-                    nombre c = T_compteur[n - 2][k];
+                    mpz_nombre d = k + c1 - c2;
+                    mpz_nombre c = T_compteur[n - 2][k];
                     compteur[d] += c;
-                    nombre s = v * 10 + c * (c1 * p10 + c2);
+                    mpz_nombre s = v * 10 + c * (c1 * p10 + c2);
                     somme[d] += s;
                     if (c1 != 0 && d == 0)
                         resultat += s;
@@ -50,5 +50,5 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers") {
     }
 
     resultat %= masque;
-    return resultat.str();
+    return resultat.to_string();
 }

@@ -1,8 +1,7 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
-
-typedef boost::multiprecision::cpp_int nombre;
+#include "mpz_nombre.h"
 
 ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number") {
     // The Fibonacci sequence is defined by the recurrence relation:
@@ -26,10 +25,10 @@ ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number") {
     // 
     // What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
     size_t n = 1;
-    nombre a = 0;
-    nombre b = 1;
-    while (chiffres::nombre_chiffres(b) < 1000) {
-        nombre tmp = a;
+    mpz_nombre a = 0;
+    mpz_nombre b = 1;
+    while (b.nombre_chiffres() < 1000) {
+        mpz_nombre tmp = a;
         a = b;
         b += tmp;
         ++n;

@@ -2,8 +2,7 @@
 #include "chiffres.h"
 #include "utilitaires.h"
 #include "combinatoire.h"
-
-typedef boost::multiprecision::cpp_int nombre;
+#include "mpz_nombre.h"
 
 ENREGISTRER_PROBLEME(20, "Factorial digit sum") {
     // n! means n × (n − 1) × ... × 3 × 2 × 1
@@ -12,6 +11,6 @@ ENREGISTRER_PROBLEME(20, "Factorial digit sum") {
     // and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
     // 
     // Find the sum of the digits in the number 100!
-    nombre resultat = chiffres::somme_chiffres(combinatoire::factorielle<nombre>(100));
-    return resultat.str();
+    mpz_nombre resultat = mpz_nombre::factorielle(100).somme_chiffres();
+    return resultat.to_string();
 }

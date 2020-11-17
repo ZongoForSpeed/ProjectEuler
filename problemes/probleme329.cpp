@@ -1,9 +1,10 @@
 #include "problemes.h"
+#include "numerique.h"
 #include "utilitaires.h"
 #include "premiers.h"
 
 typedef unsigned long long int nombre;
-typedef boost::rational<boost::multiprecision::cpp_int> fraction;
+typedef boost::rational<int128_t> fraction;
 
 namespace {
     fraction probabilite(std::map<std::pair<nombre, std::string>, fraction> &d, nombre i, const std::string &s) {

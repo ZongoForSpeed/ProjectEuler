@@ -9,6 +9,7 @@ add_library (tests SHARED
         ${PROJECT_SOURCE_DIR}/fenwick.cpp
         ${PROJECT_SOURCE_DIR}/matrice.cpp
         ${PROJECT_SOURCE_DIR}/multidimension.cpp
+        ${PROJECT_SOURCE_DIR}/mpz_nombre.cpp
         ${PROJECT_SOURCE_DIR}/nombre_modulaire.cpp
         ${PROJECT_SOURCE_DIR}/numerique.cpp
         ${PROJECT_SOURCE_DIR}/permutation.cpp

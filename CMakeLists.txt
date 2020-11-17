@@ -1,4 +1,6 @@
 project(ProjectEuler)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/install/")
+
 
 message("Boost_DIR = " ${Boost_DIR})
 
@@ -10,7 +12,7 @@ set(Boost_DEBUG ON)
 
 cmake_minimum_required(VERSION 3.9)
 find_package(Boost 1.58.0 REQUIRED)
-# find_package(GMP 2.6 REQUIRED)
+find_package(GMP REQUIRED)
 # find_package(Gperftools)
 
 # Check for standard to use
@@ -58,8 +60,8 @@ file(COPY data DESTINATION .)
 message("Boost_LIBRARIES = " ${Boost_LIBRARIES})
 message("Boost_UNIT_TEST_FRAMEWORK_LIBRARY = " ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 message("Boost_DATE_TIME_LIBRARY = " ${Boost_DATE_TIME_LIBRARY})
-# message("GMP_LIBRARIES = " ${GMP_LIBRARIES})
-# message("GMP_INCLUDE_DIR = " ${GMP_INCLUDE_DIR})
+message("GMP_LIBRARIES = " ${GMP_LIBRARIES})
+message("GMP_INCLUDE_DIR = " ${GMP_INCLUDE_DIR})
 
 add_subdirectory(maths)
 add_subdirectory(tests)
@@ -68,14 +70,14 @@ add_subdirectory(problemes)
 add_executable(ProjectEuler euler.cpp)
 target_link_libraries(ProjectEuler maths)
 target_link_libraries(ProjectEuler problemes)
-# target_link_libraries(ProjectEuler ${GMP_LIBRARIES})
+target_link_libraries(ProjectEuler ${GMP_LIBRARIES})
 target_link_libraries(ProjectEuler ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 target_link_libraries(ProjectEuler ${Boost_DATE_TIME_LIBRARY})
-# target_link_libraries(ProjectEuler ${GPERFTOOLS_LIBRARIES})
+target_link_libraries(ProjectEuler ${GPERFTOOLS_LIBRARIES})
 
 add_executable(ProjectEulerTest test.cpp)
 target_link_libraries(ProjectEulerTest maths)
 target_link_libraries(ProjectEulerTest tests)
-# target_link_libraries(ProjectEulerTest ${GMP_LIBRARIES})
+target_link_libraries(ProjectEulerTest ${GMP_LIBRARIES})
 target_link_libraries(ProjectEulerTest ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
-# target_link_libraries(ProjectEulerTest ${GPERFTOOLS_LIBRARIES})
+target_link_libraries(ProjectEulerTest ${GPERFTOOLS_LIBRARIES})

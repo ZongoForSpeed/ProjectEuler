@@ -1,8 +1,8 @@
 #include "problemes.h"
 #include "puissance.h"
 #include "utilitaires.h"
+#include "mpz_nombre.h"
 
-typedef boost::multiprecision::cpp_int nombre;
 typedef std::vector<size_t> vecteur;
 typedef std::set<size_t> ensemble;
 
@@ -50,20 +50,20 @@ ENREGISTRER_PROBLEME(267, "Binary Circles") {
 
     const auto alpha = static_cast<size_t>(std::ceil(f(recherche(lambda_f, 0.01L, 0.99L, 0.000001L), n, N)));
 
-    std::vector<nombre> C{1};
+    std::vector<mpz_nombre> C{1};
     for (size_t k = 1; k < n + 1; ++k) {
         C.push_back(C.back() * (n - k + 1) / k);
     }
 
-    nombre resultat = 0;
+    mpz_nombre resultat = 0;
     for (size_t k = alpha; k < n + 1; ++k) {
         resultat += C[k];
     }
 
     auto masque = puissance::puissance<size_t, unsigned>(10, 13);
     resultat *= masque;
-    resultat /= puissance::puissance<nombre>(2, n);
-    double solution = resultat.convert_to<double>() / masque;
+    resultat /= mpz_nombre::puissance(2, n);
+    double solution = resultat.get_double() / masque;
 
     return std::to_string(solution, 12);
 }

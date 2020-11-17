@@ -2,11 +2,10 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "premiers.h"
-#include "combinatoire.h"
+#include "mpz_nombre.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
-typedef std::pair<nombre, nombre> paire;
+typedef std::vector<mpz_nombre> vecteur;
+typedef std::pair<mpz_nombre, mpz_nombre> paire;
 
 ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients") {
     // The binomial coefficients nCk can be arranged in triangular form, Pascal's triangle, like this:
@@ -31,16 +30,16 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients") {
     // Find the sum of the distinct squarefree numbers in the first 51 rows of Pascal's triangle.
     size_t limite = 50;
     vecteur premiers;
-    premiers::crible2<nombre>(limite, std::back_inserter(premiers));
+    premiers::crible2<mpz_nombre>(limite, std::back_inserter(premiers));
 
-    std::set<nombre> square_free;
+    std::set<mpz_nombre> square_free;
     for (unsigned long n = 0; n <= limite; ++n)
         for (unsigned long p = 0; p <= n; ++p) {
-            auto Cnp = combinatoire::coefficient_binomial<nombre>(n, p);
+            auto Cnp = mpz_nombre::coefficient_binomial(n, p);
             if (!arithmetique::facteur_carre(Cnp, premiers))
                 square_free.insert(Cnp);
         }
 
-    nombre resultat = std::reduce(square_free.begin(), square_free.end());
-    return resultat.str();
+    mpz_nombre resultat = std::reduce(square_free.begin(), square_free.end());
+    return resultat.to_string();
 }

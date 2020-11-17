@@ -1,8 +1,7 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "chiffres.h"
-
-typedef boost::multiprecision::cpp_int nombre;
+#include "mpz_nombre.h"
 
 ENREGISTRER_PROBLEME(284, "Steady Squares") {
     // The 3-digit number 376 in the decimal numbering system is an example of numbers with the special property that
@@ -19,15 +18,15 @@ ENREGISTRER_PROBLEME(284, "Steady Squares") {
     // Find the sum of the digits of all the n-digit steady squares in the base 14 numbering system for 1 ≤ n ≤ 10000
     // (decimal) and give your answer in the base 14 system using lower case letters where necessary.
     size_t N = 10000;
-    nombre a = 7;
-    nombre b = 8;
+    mpz_nombre a = 7;
+    mpz_nombre b = 8;
 
-    nombre answer = a + b + 1;
-    nombre x = a;
-    nombre r = 14;
+    mpz_nombre answer = a + b + 1;
+    mpz_nombre x = a;
+    mpz_nombre r = 14;
 
     for (size_t n = 1; n < N; ++n) {
-        nombre q = r;
+        mpz_nombre q = r;
         r *= 14;
 
         size_t d = 0;
@@ -49,7 +48,7 @@ ENREGISTRER_PROBLEME(284, "Steady Squares") {
     }
 
     std::ostringstream oss;
-    for (auto c: chiffres::extraire_chiffres(answer.convert_to<size_t>(), 14)) {
+    for (auto c: chiffres::extraire_chiffres(answer.get<size_t>(), 14)) {
         switch (c) {
             case 10:
                 oss << 'a';
