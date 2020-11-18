@@ -1,27 +1,20 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "puissance.h"
-
-typedef boost::multiprecision::cpp_int nombre;
+#include "mpz_nombre.h"
 
 namespace {
-    bool cubique(const nombre &n) {
-        long double ld_racine = std::cbrt(n.convert_to<long double>()) + 0.5L;
-        auto racine = static_cast<size_t>(ld_racine);
-        return puissance::puissance<nombre>(racine, 3) == n;
-    }
-
     template<typename Iterateur>
-    size_t algorithme(Iterateur debut, Iterateur fin, size_t courant, const nombre &phi, size_t limite) {
+    size_t algorithme(Iterateur debut, Iterateur fin, size_t courant, const mpz_nombre &phi, size_t limite) {
         size_t resultat = 0;
-        if (courant != 1 && cubique(phi)) {
+        if (courant != 1 && mpz_nombre::racine_parfaite(phi, 3)) {
             resultat += courant;
         }
         for (Iterateur it = debut; it != fin; ++it) {
             size_t p = *it;
             if (courant * p > limite || courant * p * p > limite)
                 break;
-            nombre y = phi * (p - 1) * p;
+            mpz_nombre y = phi * (p - 1) * p;
             for (size_t x = courant * p; x <= limite; x *= p, y *= p * p) {
                 resultat += algorithme(std::next(it), fin, x, y, limite);
             }

@@ -299,11 +299,6 @@ namespace premiers {
         }
     }
 
-    template<>
-    bool miller_rabin(const boost::multiprecision::cpp_int &n, unsigned short reps) {
-        return boost::multiprecision::miller_rabin_test<boost::multiprecision::cpp_int>(n, reps);
-    }
-
     MeisselLehmer::MeisselLehmer(const std::vector<size_t> &_premiers) : premiers(_premiers) {
         std::size_t dernier = 0;
         std::size_t compteur = 0;

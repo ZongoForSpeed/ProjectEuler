@@ -2,6 +2,7 @@
 #include "chiffres.h"
 #include "utilitaires.h"
 
+#include <boost/rational.hpp>
 #include <fstream>
 
 typedef unsigned long long nombre;

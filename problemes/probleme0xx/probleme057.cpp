@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
+#include "mpz_nombre.h"
+#include "mpq_fraction.h"
 
-typedef boost::multiprecision::cpp_int nombre;
-typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(57, "Square root convergents") {
     // It is possible to show that the square root of two can be expressed as an infinite continued fraction.
@@ -21,11 +21,11 @@ ENREGISTRER_PROBLEME(57, "Square root convergents") {
     // first example where the number of digits in the numerator exceeds the number of digits in the denominator.
     // 
     // In the first one-thousand expansions, how many fractions contain a numerator with more digits than denominator?
-    fraction f(3, 2);
+    mpq_fraction f(3ul, 2ul);
     size_t compteur = 0;
     for (size_t n = 1; n < 1000; ++n) {
         f = 1 + 1 / (1 + f);
-        if (chiffres::nombre_chiffres(f.numerator()) > chiffres::nombre_chiffres(f.denominator())) {
+        if (f.numerateur().nombre_chiffres() > f.denominateur().nombre_chiffres()) {
             ++compteur;
         }
     }

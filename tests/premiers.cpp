@@ -1,6 +1,7 @@
 #include <boost/test/unit_test.hpp>
 #include <deque>
 
+#include "numerique.h"
 #include "premiers.h"
 
 BOOST_AUTO_TEST_SUITE(test_premiers)
@@ -55,20 +56,16 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
     }
 
     BOOST_AUTO_TEST_CASE(miller_rabin) {
-        boost::multiprecision::cpp_int n("32416189721");
-        BOOST_CHECK(premiers::miller_rabin<boost::multiprecision::cpp_int>(n, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<boost::multiprecision::cpp_int>(n + 44, 25));
+        uint128_t n = 32416189721ull;
+        BOOST_CHECK(premiers::miller_rabin<uint128_t>(n, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<uint128_t>(n + 44, 25));
 
-        boost::multiprecision::cpp_int m("2305843009213693951");
-        BOOST_CHECK(premiers::miller_rabin<boost::multiprecision::cpp_int>(m, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<boost::multiprecision::cpp_int>(m + 44, 25));
+        uint128_t m = 2305843009213693951ull;
+        BOOST_CHECK(premiers::miller_rabin<uint128_t>(m, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<uint128_t>(m + 44, 25));
 
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<boost::multiprecision::cpp_int>(n * m, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<boost::multiprecision::cpp_int>(n * m - 2, 25));
-
-        boost::multiprecision::cpp_int p("170141183460469231731687303715884105727");
-        BOOST_CHECK(premiers::miller_rabin<boost::multiprecision::cpp_int>(p, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<boost::multiprecision::cpp_int>(p - 2, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<uint128_t>(n * m, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<uint128_t>(n * m - 2, 25));
 
         size_t ni = 9'074'200'321;
         BOOST_CHECK(premiers::miller_rabin<size_t>(ni, 25));
@@ -77,22 +74,17 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
     }
 
     BOOST_AUTO_TEST_CASE(suivant) {
-        boost::multiprecision::cpp_int n("32416189721");
+        uint128_t n = 32416189721ull;
         BOOST_CHECK_EQUAL(32416189733, premiers::suivant(n));
 
-        boost::multiprecision::cpp_int m("32416189877");
+        uint128_t m = 32416189877ull;
         BOOST_CHECK_EQUAL(32416189909, premiers::suivant(m));
 
-        boost::multiprecision::cpp_int p("2305843009213693951");
-        BOOST_CHECK_EQUAL(2305843009213693967, premiers::suivant(p));
-        for (boost::multiprecision::cpp_int i = p + 2; i < 2305843009213693967; i += 2) {
-            BOOST_CHECK_EQUAL(false, premiers::miller_rabin(i, 25));
-        }
+        BOOST_CHECK_EQUAL("1050809361084791654327", std::to_string(premiers::suivant(m * n)));
 
-        boost::multiprecision::cpp_int r("170141183460469231731687303715884105757");
-        boost::multiprecision::cpp_int q("170141183460469231731687303715884105727");
-        BOOST_CHECK_EQUAL(r, premiers::suivant(q));
-        for (boost::multiprecision::cpp_int i = q + 2; i < r; i += 2) {
+        uint128_t p = 2305843009213693951ull;
+        BOOST_CHECK_EQUAL(2305843009213693967, premiers::suivant(p));
+        for (uint128_t i = p + 2; i < 2305843009213693967; i += 2) {
             BOOST_CHECK_EQUAL(false, premiers::miller_rabin(i, 25));
         }
 

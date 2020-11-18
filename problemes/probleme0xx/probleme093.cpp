@@ -2,6 +2,8 @@
 #include "chiffres.h"
 #include "utilitaires.h"
 
+#include <boost/rational.hpp>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef boost::rational<nombre> fraction;

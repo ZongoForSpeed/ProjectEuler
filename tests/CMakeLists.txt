@@ -9,6 +9,7 @@ add_library (tests SHARED
         ${PROJECT_SOURCE_DIR}/fenwick.cpp
         ${PROJECT_SOURCE_DIR}/matrice.cpp
         ${PROJECT_SOURCE_DIR}/multidimension.cpp
+        ${PROJECT_SOURCE_DIR}/mpq_fraction.cpp
         ${PROJECT_SOURCE_DIR}/mpz_nombre.cpp
         ${PROJECT_SOURCE_DIR}/nombre_modulaire.cpp
         ${PROJECT_SOURCE_DIR}/numerique.cpp
@@ -19,7 +20,8 @@ add_library (tests SHARED
         ${PROJECT_SOURCE_DIR}/puissance.cpp
         ${PROJECT_SOURCE_DIR}/pythagoricien.cpp
         ${PROJECT_SOURCE_DIR}/racine.cpp
-        ${PROJECT_SOURCE_DIR}/utilitaires.cpp)
+        ${PROJECT_SOURCE_DIR}/utilitaires.cpp
+        )
 
 include_directories(${PROJECT_SOURCE_DIR})
 

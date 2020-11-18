@@ -1,12 +1,10 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "utilitaires.h"
+#include "mpz_nombre.h"
+#include "mpq_fraction.h"
 
 #include <boost/range/adaptor/reversed.hpp>
-
-typedef boost::multiprecision::cpp_int nombre;
-typedef std::vector<nombre> vecteur;
-typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(65, "Convergents of e") {
     // The square root of 2 can be written as an infinite continued fraction.
@@ -29,17 +27,17 @@ ENREGISTRER_PROBLEME(65, "Convergents of e") {
     // The sum of digits in the numerator of the 10th convergent is 1+4+5+7=17.
     // 
     // Find the sum of digits in the numerator of the 100th convergent of the continued fraction for e.
-    vecteur fraction_continue;
+    std::vector<mpz_nombre> fraction_continue;
     fraction_continue.emplace_back(2);
-    for (nombre n = 2; n < 101; n += 2) {
+    for (mpz_nombre n = 2; n < 101; n += 2) {
         fraction_continue.emplace_back(1);
         fraction_continue.push_back(n);
         fraction_continue.emplace_back(1);
     }
     fraction_continue.resize(99);
-    fraction f(1);
+    mpq_fraction f(1);
     for (const auto &p: boost::adaptors::reverse(fraction_continue)) f = p + 1 / f;
 
-    nombre resultat = chiffres::somme_chiffres(f.numerator());
-    return resultat.str();
+    mpz_nombre resultat = f.numerateur().somme_chiffres();
+    return resultat.to_string();
 }

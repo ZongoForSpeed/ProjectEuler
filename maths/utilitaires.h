@@ -15,7 +15,6 @@
 #include <type_traits>
 
 #include <optional>
-#include <boost/multiprecision/cpp_int.hpp>
 
 namespace std {
     template<typename T1, typename T2>
@@ -156,14 +155,6 @@ namespace std {
     unsigned long popcount(unsigned long S);
 
     unsigned long long popcount(unsigned long long S);
-
-	template<>
-	struct is_arithmetic<boost::multiprecision::cpp_int> : public true_type {
-	};
-
-    template<>
-    struct is_integral<boost::multiprecision::cpp_int> : public true_type {
-    };
 }
 
 namespace utilitaires {

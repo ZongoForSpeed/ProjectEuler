@@ -3,8 +3,6 @@
 #include "utilitaires.h"
 #include "racine.h"
 
-#include <boost/multiprecision/cpp_int.hpp>
-
 typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(390, "Triangles with non rational sides and integral area") {

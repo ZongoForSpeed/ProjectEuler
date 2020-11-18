@@ -4,8 +4,6 @@
 #include <vector>
 
 #include <random>
-#include <boost/multiprecision/cpp_int.hpp>
-#include <boost/multiprecision/miller_rabin.hpp>
 
 #include "puissance.h"
 
@@ -116,9 +114,6 @@ namespace premiers {
         }
         return true;
     }
-
-    template<>
-    bool miller_rabin(const boost::multiprecision::cpp_int &n, unsigned short reps);
 
     template<typename Nombre>
     Nombre suivant(Nombre n) {
