@@ -2,41 +2,35 @@
 #include "utilitaires.h"
 #include "puissance.h"
 #include "mpz_nombre.h"
-
-#include <boost/serialization/nvp.hpp>
-#include <boost/multiprecision/cpp_bin_float.hpp>
-
-typedef boost::multiprecision::cpp_bin_float_quad mp_float;
+#include "mpf_nombre.h"
 
 typedef long long int nombre;
 typedef std::vector<mpz_nombre> vecteur;
 
 namespace {
-    const mp_float phi = (1 + boost::multiprecision::sqrt(mp_float(5))) / 2;
-
-    nombre division(mpz_nombre n, mp_float d) {
-        mp_float q = n.get<nombre>() / d;
-        return q.convert_to<nombre>();
+    nombre division(const mpz_nombre& n, const mpf_nombre& d) {
+        mpf_nombre q = n / d;
+        return q.get_signed_long();
     }
 
-    mpz_nombre somme_entier(mpz_nombre n) {
+    mpz_nombre somme_entier(const mpz_nombre& n) {
         return n * (n + 1) / 2;
     }
 
-    mpz_nombre somme_carre(mpz_nombre n) {
+    mpz_nombre somme_carre(const mpz_nombre& n) {
         return n * (n + 1) * (2 * n + 1) / 6;
     }
 
-    mpz_nombre somme_triangle(mpz_nombre n) {
+    mpz_nombre somme_triangle(const mpz_nombre& n) {
         return (somme_carre(n) + somme_entier(n)) / 2;
     }
 
-    std::pair<mpz_nombre, mpz_nombre> LU(mpz_nombre n) {
+    std::pair<mpz_nombre, mpz_nombre> LU(const mpz_nombre& n) {
         if (n < 3) {
             return std::make_pair(0, 0);
         }
 
-        mpz_nombre m = division(n, phi);
+        mpz_nombre m = division(n, mpf_nombre::phi());
         auto[L0, U0] = LU(m);
         mpz_nombre U1 = somme_carre(m) - somme_entier(m) - U0 - L0;
         mpz_nombre L1 = U1 + somme_triangle(m - 1) - L0;
@@ -45,7 +39,7 @@ namespace {
         return std::make_pair(L0 + L1 + L2, U0 + U1 + U2);
     }
 
-    mpz_nombre S(mpz_nombre n) {
+    mpz_nombre S(const mpz_nombre& n) {
         auto[L, U] = LU(n);
         return L + U;
     }
@@ -72,8 +66,8 @@ ENREGISTRER_PROBLEME(325, "Stone Game II") {
     // S(10) = 211 and S(10^4) = 230312207313.
     //
     // Find S(10^16) mod 7^10.
-    nombre N = puissance::puissance<nombre>(10, 16u);
-    nombre modulo = puissance::puissance<nombre>(7, 10u);
+    auto N = puissance::puissance<nombre>(10, 16u);
+    auto modulo = puissance::puissance<nombre>(7, 10u);
     std::cout << "S(10) = " << S(10) << std::endl;
     std::cout << "S(10000) = " << S(10000) << std::endl;
     mpz_nombre resultat = S(N);

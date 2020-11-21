@@ -1,61 +1,42 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "polynome.h"
-
-#include <boost/serialization/nvp.hpp>
-#include <boost/multiprecision/cpp_bin_float.hpp>
-
-typedef boost::multiprecision::cpp_bin_float_quad nombre;
-typedef std::vector<nombre> vecteur;
+#include "mpf_nombre.h"
 
 namespace {
-    nombre puissance_float(nombre base, size_t exposant) {
-        nombre resultat(1);
-        while (exposant > 0) {
-            if (exposant % 2)
-                resultat *= base;
-            exposant /= 2;
-            base = base * base;
-        }
-        return resultat;
+
+    mpf_nombre pi(size_t x, const mpf_nombre &q) {
+        return 1 - x / q;
     }
 
-    nombre pi(size_t x, const nombre &q) {
-        return nombre(1.0) - x / q;
-    }
-
-    nombre qi(size_t x, const nombre &q) {
+    mpf_nombre qi(size_t x, const mpf_nombre &q) {
         return x / q;
     }
 
-    nombre T(size_t i, size_t n, const nombre &q) {
-        nombre resultat = 0;
+    mpf_nombre T(size_t i, size_t n, const mpf_nombre &q) {
+        mpf_nombre resultat = 0;
         for (size_t j = 1; j <= n; ++j) {
-            resultat += puissance_float(pi(j, q) / qi(j, q), i);
+            resultat += std::pow(pi(j, q) / qi(j, q), i);
         }
         return resultat;
     }
 
-    template<typename Nombre>
-    short parite(Nombre i) {
-        if (i % 2 == 0)
-            return 1;
-        else
-            return -1;
+    short parite(size_t i) {
+        return i % 2 == 0 ? 1 : -1;
     }
 
-    nombre P(size_t k, size_t n, const nombre &q) {
-        std::vector<nombre> Pk{1};
+    mpf_nombre P(size_t k, size_t n, const mpf_nombre &q) {
+        std::vector<mpf_nombre> Pk{1};
         for (size_t i = 1; i <= n; ++i)
             Pk.front() *= qi(i, q);
 
         for (size_t i = 1; i <= k; ++i) {
-            nombre pk = 0;
+            mpf_nombre pk = 0;
             for (size_t j = 1; j <= i; ++j) {
                 pk += parite(j - 1) * Pk.at(i - j) * T(j, n, q);
             }
             pk /= i;
-            Pk.push_back(pk);
+            Pk.emplace_back(pk);
         }
 
         return Pk.back();
@@ -71,20 +52,25 @@ ENREGISTRER_PROBLEME(286, "Scoring probabilities") {
     // she has precisely a 2 % chance to score a total of exactly 20 points.
     //
     // Find q and give your answer rounded to 10 decimal places.
+    std::cout << std::setprecision(15);
+    mpf_nombre::setPrecision(256);
     size_t n = 50;
-    nombre objectif = 0.02L;
-    nombre limite = puissance_float(0.1, 11);
-    nombre dq = 1;
-    nombre q = 50;
+    long double objectif = 0.02L;
+    mpf_nombre limite;
+    mpf_nombre::puissance(limite, 10, 11);
+    mpf_nombre::inverse(limite, limite);
+    mpf_nombre dq2 = 1;
+    mpf_nombre q2 = 50;
 
-    while (dq > limite) {
+    while (dq2 > limite) {
         // https://fr.wikipedia.org/wiki/Loi_Poisson_binomiale
-        const nombre p = P(20, n, q + dq);
-        if (p < objectif)
-            dq /= 10.0;
-        else
-            q += dq;
+        const auto p2 = P(20, n, q2 + dq2);
+        if (p2 < objectif) {
+            dq2 /= 10.0;
+        } else {
+            q2 += dq2;
+        }
     }
 
-    return std::to_string(q, 10);
+    return std::to_fixed(q2, 10);
 }

@@ -78,5 +78,5 @@ ENREGISTRER_PROBLEME(264, "Triangle Centres") {
             }
         }
 
-    return std::to_string(resultat, 4);
+    return std::to_fixed(resultat, 4);
 }

@@ -72,5 +72,5 @@ ENREGISTRER_PROBLEME(607, "Divisibility streaks") {
         angle_courant = angle_suivant;
     }
 
-    return std::to_string(resultat, 10);
+    return std::to_fixed(resultat, 10);
 }

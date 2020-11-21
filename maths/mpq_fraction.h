@@ -4,7 +4,7 @@
 #include "mpz_nombre.h"
 
 class mpq_fraction {
-    mpq_t _data{};
+    mpq_ptr _data;
 
 public:
     mpq_fraction();
@@ -12,6 +12,8 @@ public:
     ~mpq_fraction();
 
     mpq_fraction(const mpq_fraction &op);
+
+    mpq_fraction(mpq_fraction &&op);
 
     mpq_fraction(const mpz_nombre &op);
 
@@ -224,9 +226,9 @@ public:
 
     bool operator>=(const mpz_nombre &op) const;
 
-    mpq_t &get_data();
+    mpq_ptr get_data();
 
-    const mpq_t &get_data() const;
+    mpq_srcptr get_data() const;
 
     mpz_nombre numerateur() const {
         mpz_nombre resultat;

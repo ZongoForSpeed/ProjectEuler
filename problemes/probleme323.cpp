@@ -31,5 +31,5 @@ ENREGISTRER_PROBLEME(323, "Bitwise-OR operations on random integers") {
         sum += n * p;
     }
 
-    return std::to_string(sum, 10);
+    return std::to_fixed(sum, 10);
 }

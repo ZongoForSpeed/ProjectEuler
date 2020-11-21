@@ -44,5 +44,5 @@ ENREGISTRER_PROBLEME(339, "Peredur fab Efrawg") {
         }
     }
 
-    return std::to_string(resultat, 6);
+    return std::to_fixed(resultat, 6);
 }

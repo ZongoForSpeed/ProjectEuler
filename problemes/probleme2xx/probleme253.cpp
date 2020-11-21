@@ -116,5 +116,5 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     numerateur /= denominateur;
     auto resultat = numerateur.get_double();
     resultat /= masque;
-    return std::to_string(resultat, 6);
+    return std::to_fixed(resultat, 6);
 }

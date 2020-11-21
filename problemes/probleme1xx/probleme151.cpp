@@ -63,5 +63,5 @@ ENREGISTRER_PROBLEME(151, "Paper sheets of standard sizes: an expected-value pro
     double resultat = 1;
     resultat *= f.numerator();
     resultat /= f.denominator();
-    return std::to_string(resultat, 6);
+    return std::to_fixed(resultat, 6);
 }

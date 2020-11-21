@@ -87,5 +87,5 @@ ENREGISTRER_PROBLEME(406, "Guessing Game") {
         resultat += C(limite, std::sqrt(k), std::sqrt(fibonacci[k]));
     }
 
-    return std::to_string(resultat, 8);
+    return std::to_fixed(resultat, 8);
 }

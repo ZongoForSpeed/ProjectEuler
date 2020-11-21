@@ -64,10 +64,10 @@ ENREGISTRER_PROBLEME(395, "Pythagorean tree") {
         std::swap(noeuds, suivants);
 
         std::cout << "nodes.size() = " << noeuds.size() << ", aire = "
-                  << std::to_string((xMax - xMin) * (yMax - yMin), 10) << std::endl;
+                  << std::to_fixed((xMax - xMin) * (yMax - yMin), 10) << std::endl;
     }
     std::cout << "xMax = " << xMax << ", yMax = " << yMax << ", xMin = " << xMin << ", yMin = " << yMin << std::endl;
 
     long double aire = (xMax - xMin) * (yMax - yMin);
-    return std::to_string(aire, 10);
+    return std::to_fixed(aire, 10);
 }

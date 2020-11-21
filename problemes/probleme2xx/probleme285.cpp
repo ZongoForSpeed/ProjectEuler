@@ -51,5 +51,5 @@ ENREGISTRER_PROBLEME(285, "Pythagorean odds") {
         resultat += k * p;
     }
 
-    return std::to_string(resultat, 5);
+    return std::to_fixed(resultat, 5);
 }

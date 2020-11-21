@@ -48,5 +48,5 @@ ENREGISTRER_PROBLEME(226, "A Scoop of Blancmange") {
             resultat += y * dx;
     }
 
-    return std::to_string(resultat, 8);
+    return std::to_fixed(resultat, 8);
 }

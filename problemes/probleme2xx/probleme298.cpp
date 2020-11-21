@@ -175,5 +175,5 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
             resultat += static_cast<long double>(std::abs(score)) * probabilite;
         }
 
-    return std::to_string(resultat, 8);
+    return std::to_fixed(resultat, 8);
 }

@@ -55,6 +55,6 @@ ENREGISTRER_PROBLEME(232, "The Race") {
     std::map<std::pair<nombre, nombre>, long double> cache;
     long double resultat = 0.5L * TheGame(cache, 100, 100) + 0.5L * TheGame(cache, 99, 100);
 
-    return std::to_string(resultat, 8);
+    return std::to_fixed(resultat, 8);
 }
 

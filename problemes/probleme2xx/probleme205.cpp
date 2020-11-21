@@ -65,5 +65,5 @@ ENREGISTRER_PROBLEME(205, "Dice Game") {
     long double resultat = somme
                            / puissance::puissance<long double>(4, 9u)
                            / puissance::puissance<long double>(6, 6u);
-    return std::to_string(resultat, 7);
+    return std::to_fixed(resultat, 7);
 }

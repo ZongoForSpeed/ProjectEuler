@@ -50,5 +50,5 @@ ENREGISTRER_PROBLEME(371, "Licence plates") {
         resultat += i*probabilite(i, 0, false);
     }
     
-    return std::to_string(resultat, 8);
+    return std::to_fixed(resultat, 8);
 }

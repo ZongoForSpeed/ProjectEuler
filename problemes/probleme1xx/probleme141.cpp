@@ -6,9 +6,6 @@
 #include <numeric>
 
 typedef unsigned long long nombre;
-typedef std::vector<nombre> vecteur;
-
-typedef boost::rational<nombre> fraction;
 
 ENREGISTRER_PROBLEME(141, "Investigating progressive numbers, n, which are also square") {
     // A positive integer, n, is divided by d and the quotient and remainder are q and r respectively. 
@@ -25,7 +22,6 @@ ENREGISTRER_PROBLEME(141, "Investigating progressive numbers, n, which are also 
     // Find the sum of all progressive perfect squares below one trillion (1012).
     nombre limite = 1000000000000ULL;
     std::set<nombre> solutions;
-
 
     // m^2 = v*t*(s^3*v+t);
     for (nombre t = 1; t * t * (1 + t * t) < limite; ++t) {

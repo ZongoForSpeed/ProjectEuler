@@ -37,5 +37,5 @@ ENREGISTRER_PROBLEME(235, "An Arithmetic Geometric sequence") {
         dr /= 2;
     }
 
-    return std::to_string(r, 12);
+    return std::to_fixed(r, 12);
 }

@@ -116,5 +116,5 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
     }
     double resultat = aire / perimetre;
 
-    return std::to_string(resultat, 8);
+    return std::to_fixed(resultat, 8);
 }

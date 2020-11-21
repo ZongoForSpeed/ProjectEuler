@@ -149,10 +149,10 @@ ENREGISTRER_PROBLEME(252, "Convex Holes") {
         auto max = std::max_element(polygones.begin(), polygones.end(),
                                     [](const polygone &p1, const polygone &p2) { return p1.aire < p2.aire; }
         );
-        std::cout << max->points << " = " << std::to_string(max->aire, 1) << std::endl;
+        std::cout << max->points << " = " << std::to_fixed(max->aire, 1) << std::endl;
         resultat = std::max(max->aire, resultat);
         polygones = algorithme(polygones, dictionnaire);
     }
 
-    return std::to_string(resultat, 1);
+    return std::to_fixed(resultat, 1);
 }

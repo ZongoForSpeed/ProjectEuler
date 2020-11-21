@@ -5,51 +5,68 @@
 #include "mpz_nombre.h"
 
 mpz_nombre::mpz_nombre() {
+    _data = new __mpz_struct();
     mpz_init(_data);
 }
 
 mpz_nombre::~mpz_nombre() {
-    mpz_clear(_data);
+    if (_data != nullptr) {
+        mpz_clear(_data);
+        delete _data;
+    }
 }
 
-mpz_nombre::mpz_nombre(const mpz_t &op) {
+mpz_nombre::mpz_nombre(mpz_srcptr op) {
+    _data = new __mpz_struct();
     mpz_init_set(_data, op);
 }
 
 mpz_nombre::mpz_nombre(const mpz_nombre &op) {
+    _data = new __mpz_struct();
     mpz_init_set(_data, op._data);
 }
 
+mpz_nombre::mpz_nombre(mpz_nombre &&op) : _data(std::exchange(op._data, nullptr)) {
+}
+
 mpz_nombre::mpz_nombre(unsigned int op) {
+    _data = new __mpz_struct();
     mpz_init_set_ui(_data, op);
 }
 
 mpz_nombre::mpz_nombre(signed int op) {
+    _data = new __mpz_struct();
     mpz_init_set_si(_data, op);
 }
 
 mpz_nombre::mpz_nombre(unsigned long op) {
+    _data = new __mpz_struct();
     mpz_init_set_ui(_data, op);
 }
 
 mpz_nombre::mpz_nombre(signed long op) {
+    _data = new __mpz_struct();
     mpz_init_set_si(_data, op);
 }
 
 mpz_nombre::mpz_nombre(double op) {
+    _data = new __mpz_struct();
     mpz_init_set_d(_data, op);
 }
 
 mpz_nombre::mpz_nombre(const std::string &op, int base) {
+    _data = new __mpz_struct();
     mpz_init_set_str(_data, op.c_str(), base);
 }
 
 mpz_nombre::mpz_nombre(unsigned long long op) {
+    _data = new __mpz_struct();
     mpz_init(_data);
     set(op);
 }
 
 mpz_nombre::mpz_nombre(signed long long op) {
+    _data = new __mpz_struct();
     mpz_init(_data);
     set(op);
 }
@@ -95,11 +112,13 @@ unsigned long long mpz_nombre::get_unsigned_long_long() const {
     return std::stoull(to_string());
 }
 #else
+
 unsigned long long mpz_nombre::get_unsigned_long_long() const {
     unsigned long long result = 0;
     mpz_export(&result, nullptr, -1, sizeof result, 0, 0, _data);
     return result;
 }
+
 #endif
 
 void mpz_nombre::swap(mpz_nombre &op) {

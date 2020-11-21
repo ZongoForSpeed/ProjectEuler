@@ -19,5 +19,5 @@ ENREGISTRER_PROBLEME(317, "Firecracker") {
     const long double g = 9.81L;
 
     long double resultat = M_PIl * (2 * g * v * h + v * v * v) * (2 * g * v * h + v * v * v) / (4 * g * g * g);
-    return std::to_string(resultat, 4);
+    return std::to_fixed(resultat, 4);
 }

@@ -1,39 +1,52 @@
 #include "mpq_fraction.h"
 
 mpq_fraction::mpq_fraction() {
+    _data = new __mpq_struct();
     mpq_init(_data);
 }
 
 mpq_fraction::~mpq_fraction() {
-    mpq_clear(_data);
+    if (_data != nullptr) {
+        mpq_clear(_data);
+        delete _data;
+    }
 }
 
 mpq_fraction::mpq_fraction(const mpq_fraction &op) {
+    _data = new __mpq_struct();
     mpq_set(_data, op._data);
     mpq_canonicalize(_data);
 }
 
+mpq_fraction::mpq_fraction(mpq_fraction &&op) : _data(std::exchange(op._data, nullptr)) {
+}
+
 mpq_fraction::mpq_fraction(const mpz_nombre &op) {
+    _data = new __mpq_struct();
     mpq_set_z(_data, op.get_data());
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(unsigned long op1, unsigned long op2) {
+    _data = new __mpq_struct();
     mpq_set_ui(_data, op1, op2);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(long op1, unsigned long op2) {
+    _data = new __mpq_struct();
     mpq_set_si(_data, op1, op2);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(const std::string &op, int base) {
+    _data = new __mpq_struct();
     mpq_set_str(_data, op.c_str(), base);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(double op) {
+    _data = new __mpq_struct();
     mpq_set_d(_data, op);
     mpq_canonicalize(_data);
 }
@@ -166,11 +179,11 @@ bool mpq_fraction::operator>=(const mpz_nombre &op) const {
     return compare(op) >= 0;
 }
 
-mpq_t &mpq_fraction::get_data() {
+mpq_ptr mpq_fraction::get_data() {
     return _data;
 }
 
-const mpq_t &mpq_fraction::get_data() const {
+mpq_srcptr mpq_fraction::get_data() const {
     return _data;
 }
 

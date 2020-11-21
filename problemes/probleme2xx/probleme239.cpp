@@ -28,5 +28,5 @@ ENREGISTRER_PROBLEME(239, "Infinite string tour") {
     numerateur /= denominateur;
 
     double resultat = numerateur.get_double() / masque;
-    return std::to_string(resultat, 12);
+    return std::to_fixed(resultat, 12);
 }

@@ -87,5 +87,5 @@ ENREGISTRER_PROBLEME(332, "Spherical triangles") {
         // std::cout << r << ' ' << points.size() << ": " << optimum << std::endl;
         resultat += optimum;
     }
-    return std::to_string(resultat, 6);
+    return std::to_fixed(resultat, 6);
 }

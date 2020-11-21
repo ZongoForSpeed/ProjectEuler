@@ -65,5 +65,5 @@ ENREGISTRER_PROBLEME(267, "Binary Circles") {
     resultat /= mpz_nombre::puissance(2, n);
     double solution = resultat.get_double() / masque;
 
-    return std::to_string(solution, 12);
+    return std::to_fixed(solution, 12);
 }

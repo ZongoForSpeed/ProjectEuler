@@ -29,5 +29,5 @@ ENREGISTRER_PROBLEME(197, "Investigating the behaviour of a recursively defined 
         u_n1 = u_n2;
     }
 
-    return std::to_string(resultat, 9);
+    return std::to_fixed(resultat, 9);
 }

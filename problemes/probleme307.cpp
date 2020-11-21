@@ -37,5 +37,5 @@ ENREGISTRER_PROBLEME(307, "Chip Defects") {
     }
 
     resultat = 1.0L - resultat;
-    return std::to_string(resultat, 10);
+    return std::to_fixed(resultat, 10);
 }

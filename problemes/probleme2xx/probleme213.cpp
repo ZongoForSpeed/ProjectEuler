@@ -46,5 +46,5 @@ ENREGISTRER_PROBLEME(213, "Flea Circus") {
         resultat += e;
     }
 
-    return std::to_string(resultat, 6);
+    return std::to_fixed(resultat, 6);
 }

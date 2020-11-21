@@ -87,5 +87,5 @@ ENREGISTRER_PROBLEME(262, "Mountain Range") {
     long double resultat = marche(xmin, fmin, 200, 200, -1.0L)
                            + marche(xmin, fmin, 1400, 1400, 1.0L);
 
-    return std::to_string(resultat, 3);
+    return std::to_fixed(resultat, 3);
 }

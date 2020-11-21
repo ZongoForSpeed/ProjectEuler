@@ -26,5 +26,5 @@ ENREGISTRER_PROBLEME(613, "Pythagorean Ant") {
     const long double beta2 = std::acos(0.8L);
 
     long double resultat = 1.0L / 4 + (integral(beta1) + integral(beta2)) / (2 * M_PIl);
-    return std::to_string(resultat, 10);
+    return std::to_fixed(resultat, 10);
 }

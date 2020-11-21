@@ -67,5 +67,5 @@ ENREGISTRER_PROBLEME(227, "The Chase") {
         esperance += tours * chase.front();
     }
 
-    return std::to_string(esperance, 6);
+    return std::to_fixed(esperance, 6);
 }

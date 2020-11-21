@@ -10,17 +10,19 @@
 #include <gmp.h>
 
 class mpz_nombre {
-    mpz_t _data;
+    mpz_ptr _data;
 
 public:
     // region Constructors
     mpz_nombre();
 
-    virtual ~mpz_nombre();
+    ~mpz_nombre();
 
-    mpz_nombre(const mpz_t &op);
+    mpz_nombre(mpz_srcptr op);
 
     mpz_nombre(const mpz_nombre &op);
+
+    mpz_nombre(mpz_nombre &&op);
 
     mpz_nombre(unsigned int op);
 
@@ -74,11 +76,11 @@ public:
         return get(T(0), std::is_signed<T>());
     }
 
-    mpz_t &get_data() {
+    mpz_ptr get_data() {
         return _data;
     }
 
-    const mpz_t &get_data() const {
+    mpz_srcptr get_data() const {
         return _data;
     }
     // endregion Getters
