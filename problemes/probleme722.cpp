@@ -37,7 +37,7 @@ namespace {
     }
 
     long double E(size_t k, mpf_nombre q) {
-        long double epsilon = std::numeric_limits<long double>::epsilon();
+        double epsilon = std::numeric_limits<double>::epsilon();
         mpf_nombre resultat = 0;
         mpf_nombre qm = 1;
         for (size_t m = 1;; ++m) {
