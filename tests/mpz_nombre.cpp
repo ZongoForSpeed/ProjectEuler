@@ -1,4 +1,5 @@
 #include <boost/test/unit_test.hpp>
+#include <random>
 
 #include "utilitaires.h"
 #include "mpz_nombre.h"
@@ -40,14 +41,32 @@ BOOST_AUTO_TEST_SUITE(test_mpz_nombre)
         n.set("228017634890", 10);
         BOOST_CHECK_EQUAL(n, 228017634890);
 
+    }
+
+    BOOST_AUTO_TEST_CASE(test_swap) {
+        mpz_nombre n(228017634890);
         mpz_nombre m(-22632576532575);
         std::swap(n, m);
-        BOOST_CHECK_EQUAL(m.to_string(), "228017634890");
-        BOOST_CHECK_EQUAL(n.to_string(), "-22632576532575");
+        BOOST_CHECK_EQUAL(m, 228017634890);
+        BOOST_CHECK_EQUAL(n, -22632576532575);
 
         n.swap(m);
-        BOOST_CHECK_EQUAL(m.to_string(), "-22632576532575");
-        BOOST_CHECK_EQUAL(n.to_string(), "228017634890");
+        BOOST_CHECK_EQUAL(m, -22632576532575);
+        BOOST_CHECK_EQUAL(n, 228017634890);
+
+        std::vector<mpz_nombre> v;
+        for (size_t k = 0; k <= 12; ++k) {
+            v.push_back(mpz_nombre::catalan(k));
+        }
+
+        std::random_device rd;
+        std::mt19937 g(rd());
+
+        std::shuffle(v.begin(), v.end(), g);
+
+        std::sort(v.begin(), v.end());
+
+        std::cout << v << std::endl;
     }
 
     BOOST_AUTO_TEST_CASE(test_addition) {
@@ -109,7 +128,7 @@ BOOST_AUTO_TEST_SUITE(test_mpz_nombre)
         mpz_nombre m = std::abs(n);
         BOOST_CHECK_EQUAL(m.get_unsigned_long_long(), 22632576532575);
 
-        n = mpz_nombre::abs(n);
+        mpz_nombre::abs(n, n);
         BOOST_CHECK_EQUAL(n.get_unsigned_long_long(), 22632576532575);
     }
 
@@ -259,11 +278,13 @@ BOOST_AUTO_TEST_SUITE(test_mpz_nombre)
         mpz_nombre n(63403380965376);
         BOOST_CHECK_EQUAL(mpz_nombre::carre_parfait(n), true);
 
-        mpz_nombre m = mpz_nombre::racine_carre(n);
+        mpz_nombre m;
+        mpz_nombre::racine_carre(m, n);
         BOOST_CHECK_EQUAL(m, 7962624);
         BOOST_CHECK_EQUAL(mpz_nombre::carre_parfait(m), false);
 
-        mpz_nombre p = mpz_nombre::racine(n, 10);
+        mpz_nombre p;
+        mpz_nombre::racine(p, n, 10);
         BOOST_CHECK_EQUAL(p, 24);
 
         mpz_nombre q = std::sqrt(n);
@@ -280,7 +301,8 @@ BOOST_AUTO_TEST_SUITE(test_mpz_nombre)
         n *= 10;
         BOOST_CHECK(!mpz_nombre::premier(n));
 
-        mpz_nombre m = mpz_nombre::premier_suivant(n);
+        mpz_nombre m;
+        mpz_nombre::premier_suivant(m, n);
         BOOST_CHECK_EQUAL(m, 228017634893);
         BOOST_CHECK(mpz_nombre::premier(m));
     }
@@ -306,7 +328,9 @@ BOOST_AUTO_TEST_SUITE(test_mpz_nombre)
     BOOST_AUTO_TEST_CASE(test_suivant) {
         mpz_nombre r("170141183460469231731687303715884105757");
         mpz_nombre q("170141183460469231731687303715884105727");
-        BOOST_CHECK_EQUAL(r, mpz_nombre::premier_suivant(q));
+        mpz_nombre p;
+        mpz_nombre::premier_suivant(p, q);
+        BOOST_CHECK_EQUAL(r, p);
         for (mpz_nombre i = q + 2; i < r; i += 2) {
             BOOST_CHECK_EQUAL(false, mpz_nombre::premier(i, 25));
         }
@@ -375,7 +399,7 @@ BOOST_AUTO_TEST_SUITE(test_mpz_nombre)
         auto ec = n.extraire_chiffres();
         BOOST_CHECK_EQUAL_COLLECTIONS(resultat.begin(), resultat.end(), ec.begin(), ec.end());
 
-        BOOST_CHECK_EQUAL(n.inverser_nombre(), "10000514931046106826962376305051113");
+        BOOST_CHECK_EQUAL(n.inverser_nombre().to_string(), "10000514931046106826962376305051113");
         BOOST_CHECK(!n.palindrome());
         mpz_nombre m("89123457675432198");
         BOOST_CHECK(m.palindrome());

@@ -52,7 +52,7 @@ ENREGISTRER_PROBLEME(267, "Binary Circles") {
 
     std::vector<mpz_nombre> C{1};
     for (size_t k = 1; k < n + 1; ++k) {
-        C.push_back(C.back() * (n - k + 1) / k);
+        C.emplace_back(C.back() * (n - k + 1) / k);
     }
 
     mpz_nombre resultat = 0;

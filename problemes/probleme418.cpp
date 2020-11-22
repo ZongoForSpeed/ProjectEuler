@@ -30,7 +30,7 @@ namespace {
              boost::rational<long long> ratio_limite = boost::rational<long long>(1, 2)) {
         double ratio_min = std::numeric_limits<double>::max();
         mpz_nombre abc = 0;
-        mpz_nombre limite = mpz_nombre::racine(n, 3);
+        mpz_nombre limite = std::cbrt(n);
         mpz_nombre limite_min =
                 ((ratio_limite.denominator() - ratio_limite.numerator()) * limite) / ratio_limite.denominator();
         mpz_nombre limite_max =

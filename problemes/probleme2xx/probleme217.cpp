@@ -15,7 +15,7 @@ ENREGISTRER_PROBLEME(217, "Balanced Numbers") {
     // Thus: T(1) = 45, T(2) = 540 and T(5) = 334795890.
     //
     // Find T(47) mod 3^15
-    mpz_nombre masque = mpz_nombre::puissance(3, 15);
+    mpz_nombre masque = puissance::puissance<size_t>(3, 15);
     size_t limite = 47;
 
     typedef std::map<mpz_nombre, std::map<mpz_nombre, mpz_nombre>> dictionnaire;

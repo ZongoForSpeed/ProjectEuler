@@ -23,8 +23,8 @@ ENREGISTRER_PROBLEME(80, "Square root digital expansion") {
     for (size_t n = 1; n < 100; ++n) {
         if (!polygonal::est_carre(n)) {
             mpz_nombre carre = gogol * gogol * n;
-            mpz_nombre s = mpz_nombre::racine_carre(carre);
-            oss << s.to_string().substr(0, 100);
+            mpz_nombre::racine_carre(carre, carre);
+            oss << carre.to_string().substr(0, 100);
         }
     }
 

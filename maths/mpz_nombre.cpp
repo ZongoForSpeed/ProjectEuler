@@ -5,24 +5,21 @@
 #include "mpz_nombre.h"
 
 mpz_nombre::mpz_nombre() {
-    _data = new __mpz_struct();
+    init();
     mpz_init(_data);
 }
 
 mpz_nombre::~mpz_nombre() {
-    if (_data != nullptr) {
-        mpz_clear(_data);
-        delete _data;
-    }
+    clear();
 }
 
 mpz_nombre::mpz_nombre(mpz_srcptr op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init_set(_data, op);
 }
 
 mpz_nombre::mpz_nombre(const mpz_nombre &op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init_set(_data, op._data);
 }
 
@@ -30,45 +27,72 @@ mpz_nombre::mpz_nombre(mpz_nombre &&op) : _data(std::exchange(op._data, nullptr)
 }
 
 mpz_nombre::mpz_nombre(unsigned int op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init_set_ui(_data, op);
 }
 
 mpz_nombre::mpz_nombre(signed int op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init_set_si(_data, op);
 }
 
 mpz_nombre::mpz_nombre(unsigned long op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init_set_ui(_data, op);
 }
 
 mpz_nombre::mpz_nombre(signed long op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init_set_si(_data, op);
 }
 
 mpz_nombre::mpz_nombre(double op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init_set_d(_data, op);
 }
 
 mpz_nombre::mpz_nombre(const std::string &op, int base) {
-    _data = new __mpz_struct();
+    init();
     mpz_init_set_str(_data, op.c_str(), base);
 }
 
 mpz_nombre::mpz_nombre(unsigned long long op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init(_data);
     set(op);
 }
 
 mpz_nombre::mpz_nombre(signed long long op) {
-    _data = new __mpz_struct();
+    init();
     mpz_init(_data);
     set(op);
+}
+
+void mpz_nombre::init() {
+    _data = new __mpz_struct();
+}
+
+void mpz_nombre::clear() {
+    if (_data != nullptr) {
+        mpz_clear(_data);
+        delete _data;
+        _data = nullptr;
+    }
+}
+
+mpz_nombre &mpz_nombre::operator=(const mpz_nombre &op) {
+    if (this != &op) {
+        set(op);
+    }
+    return *this;
+}
+
+mpz_nombre &mpz_nombre::operator=(mpz_nombre &&op) noexcept {
+    if (this != &op) {
+        clear();
+        _data = std::exchange(op._data, nullptr);
+    }
+    return *this;
 }
 
 void mpz_nombre::set(const mpz_t &op) {
@@ -122,7 +146,7 @@ unsigned long long mpz_nombre::get_unsigned_long_long() const {
 #endif
 
 void mpz_nombre::swap(mpz_nombre &op) {
-    mpz_swap(_data, op._data);
+    std::swap(_data, op._data);
 }
 
 std::string mpz_nombre::to_string(int base) const {
@@ -165,7 +189,7 @@ const mpz_nombre mpz_nombre::operator++(int) {
     return copie;
 }
 
-mpz_nombre mpz_nombre::operator--(int) {
+const mpz_nombre mpz_nombre::operator--(int) {
     mpz_nombre copie(_data);
     mpz_sub_ui(_data, _data, 1);
     return copie;
@@ -173,11 +197,6 @@ mpz_nombre mpz_nombre::operator--(int) {
 
 signed short mpz_nombre::signe() const {
     return mpz_sgn(_data);
-}
-
-mpz_nombre &mpz_nombre::operator=(const mpz_nombre &op) {
-    set(op);
-    return *this;
 }
 
 int mpz_nombre::compare(const mpz_nombre &op) const {
@@ -196,26 +215,20 @@ int mpz_nombre::compare(unsigned long int op) const {
     return mpz_cmp_ui(_data, op);
 }
 
-mpz_nombre mpz_nombre::abs(const mpz_nombre &op) {
-    mpz_nombre resultat;
-    mpz_abs(resultat._data, op._data);
-    return resultat;
+void mpz_nombre::abs(mpz_nombre &rop, const mpz_nombre &op) {
+    mpz_abs(rop._data, op._data);
 }
 
-mpz_nombre mpz_nombre::racine_carre(const mpz_nombre &op) {
-    mpz_nombre resultat;
-    mpz_sqrt(resultat._data, op._data);
-    return resultat;
+void mpz_nombre::racine_carre(mpz_nombre &rop, const mpz_nombre &op) {
+    mpz_sqrt(rop._data, op._data);
 }
 
 bool mpz_nombre::carre_parfait(const mpz_nombre &op) {
     return mpz_perfect_square_p(op._data) != 0;
 }
 
-mpz_nombre mpz_nombre::racine(const mpz_nombre &op, unsigned long int n) {
-    mpz_nombre resultat;
-    mpz_root(resultat._data, op._data, n);
-    return resultat;
+void mpz_nombre::racine(mpz_nombre &rop, const mpz_nombre &op, unsigned long int n) {
+    mpz_root(rop._data, op._data, n);
 }
 
 bool mpz_nombre::racine_parfaite(const mpz_nombre &op, unsigned long int n) {
@@ -245,10 +258,8 @@ bool mpz_nombre::premier(const mpz_nombre &op, int probabilite) {
     return mpz_probab_prime_p(op._data, probabilite) != 0;
 }
 
-mpz_nombre mpz_nombre::premier_suivant(const mpz_nombre &op) {
-    mpz_nombre resultat;
-    mpz_nextprime(resultat._data, op._data);
-    return resultat;
+void mpz_nombre::premier_suivant(mpz_nombre &rop, const mpz_nombre &op) {
+    mpz_nextprime(rop._data, op._data);
 }
 
 mpz_nombre mpz_nombre::PGCD(const mpz_nombre &op1, const mpz_nombre &op2) {
@@ -305,132 +316,12 @@ mpz_nombre mpz_nombre::catalan(unsigned long int n) {
     return coefficient_binomial(2 * n, n) / (n + 1);
 }
 
-mpz_nombre &mpz_nombre::operator+=(const mpz_nombre &op) {
-    mpz_add(_data, _data, op._data);
-    return *this;
-}
-
-mpz_nombre &mpz_nombre::operator+=(unsigned long int op) {
-    mpz_add_ui(_data, _data, op);
-    return *this;
-}
-
-mpz_nombre mpz_nombre::operator+(const mpz_nombre &op) const {
-    mpz_nombre resultat;
-    mpz_add(resultat._data, _data, op._data);
-    return resultat;
-}
-
-mpz_nombre mpz_nombre::operator+(unsigned long int op) const {
-    mpz_nombre resultat;
-    mpz_add_ui(resultat._data, _data, op);
-    return resultat;
-}
-
-mpz_nombre &mpz_nombre::operator-=(const mpz_nombre &op) {
-    mpz_sub(_data, _data, op._data);
-    return *this;
-}
-
-mpz_nombre &mpz_nombre::operator-=(unsigned long int op) {
-    mpz_sub_ui(_data, _data, op);
-    return *this;
-}
-
-mpz_nombre mpz_nombre::operator-(const mpz_nombre &op) const {
-    mpz_nombre resultat;
-    mpz_sub(resultat._data, _data, op._data);
-    return resultat;
-}
-
-mpz_nombre mpz_nombre::operator-(unsigned long int op) const {
-    mpz_nombre resultat;
-    mpz_sub_ui(resultat._data, _data, op);
-    return resultat;
-}
-
-mpz_nombre &mpz_nombre::operator*=(const mpz_nombre &op) {
-    mpz_mul(_data, _data, op._data);
-    return *this;
-}
-
-mpz_nombre &mpz_nombre::operator*=(long int op) {
-    mpz_mul_si(_data, _data, op);
-    return *this;
-}
-
-mpz_nombre &mpz_nombre::operator*=(unsigned long int op) {
-    mpz_mul_ui(_data, _data, op);
-    return *this;
-}
-
-mpz_nombre mpz_nombre::operator*(const mpz_nombre &op) const {
-    mpz_nombre resultat;
-    mpz_mul(resultat._data, _data, op._data);
-    return resultat;
-}
-
-mpz_nombre mpz_nombre::operator*(long int op) const {
-    mpz_nombre resultat;
-    mpz_mul_si(resultat._data, _data, op);
-    return resultat;
-}
-
-mpz_nombre mpz_nombre::operator*(unsigned long int op) const {
-    mpz_nombre resultat;
-    mpz_mul_ui(resultat._data, _data, op);
-    return resultat;
-}
-
-mpz_nombre &mpz_nombre::operator/=(const mpz_nombre &op) {
-    mpz_fdiv_q(_data, _data, op._data);
-    return *this;
-}
-
-mpz_nombre &mpz_nombre::operator/=(unsigned long int op) {
-    mpz_fdiv_q_ui(_data, _data, op);
-    return *this;
-}
-
-mpz_nombre mpz_nombre::operator/(const mpz_nombre &op) const {
-    mpz_nombre resultat;
-    mpz_fdiv_q(resultat._data, _data, op._data);
-    return resultat;
-}
-
-mpz_nombre mpz_nombre::operator/(unsigned long int op) const {
-    mpz_nombre resultat;
-    mpz_fdiv_q_ui(resultat._data, _data, op);
-    return resultat;
-}
-
 bool mpz_nombre::divisible(const mpz_nombre &op1, const mpz_nombre &op2) {
     return mpz_divisible_p(op1._data, op2._data) != 0;
 }
 
 bool mpz_nombre::divisible(const mpz_nombre &op1, unsigned long int op2) {
     return mpz_divisible_ui_p(op1._data, op2) != 0;
-}
-
-mpz_nombre &mpz_nombre::operator%=(const mpz_nombre &op) {
-    mpz_mod(_data, _data, op._data);
-    return *this;
-}
-
-mpz_nombre &mpz_nombre::operator%=(unsigned long int op) {
-    mpz_mod_ui(_data, _data, op);
-    return *this;
-}
-
-mpz_nombre mpz_nombre::operator%(const mpz_nombre &op) const {
-    mpz_nombre resultat;
-    mpz_mod(resultat._data, _data, op._data);
-    return resultat;
-}
-
-unsigned long int mpz_nombre::operator%(unsigned long int op) const {
-    mpz_nombre resultat;
-    return mpz_mod_ui(resultat._data, _data, op);
 }
 
 mpz_nombre &mpz_nombre::operator&=(const mpz_nombre &op) {
@@ -482,14 +373,11 @@ bool mpz_nombre::premier(int probabilite) const {
     return mpz_probab_prime_p(_data, probabilite) != 0;
 }
 
-mpz_nombre &mpz_nombre::premier_suivant() {
-    mpz_nextprime(_data, _data);
-    return *this;
-}
-
 namespace std {
     mpz_nombre abs(const mpz_nombre &op) {
-        return mpz_nombre::abs(op);
+        mpz_nombre rop;
+        mpz_nombre::abs(rop, op);
+        return rop;
     }
 
     void swap(mpz_nombre &op1, mpz_nombre &op2) {
@@ -497,11 +385,15 @@ namespace std {
     }
 
     mpz_nombre sqrt(const mpz_nombre &op) {
-        return mpz_nombre::racine_carre(op);
+        mpz_nombre rop;
+        mpz_nombre::racine_carre(rop, op);
+        return rop;
     }
 
     mpz_nombre cbrt(const mpz_nombre &op) {
-        return mpz_nombre::racine(op, 3);
+        mpz_nombre rop;
+        mpz_nombre::racine(rop, op, 3);
+        return rop;
     }
 
     std::ostream &operator<<(std::ostream &os, const mpz_nombre &op) {

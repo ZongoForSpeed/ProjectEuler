@@ -52,7 +52,7 @@ ENREGISTRER_PROBLEME(304, "Primonacci") {
     vecteur a(100000 + 1, a0);
     mpz_nombre resultat = 0;
     for (size_t n = 1; n < a.size(); ++n) {
-        a[n] = mpz_nombre::premier_suivant(a[n - 1]);
+        mpz_nombre::premier_suivant(a[n], a[n - 1]);
         resultat += fibonacci(a[n], modulo);
     }
 

@@ -37,7 +37,7 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients") {
         for (unsigned long p = 0; p <= n; ++p) {
             auto Cnp = mpz_nombre::coefficient_binomial(n, p);
             if (!arithmetique::facteur_carre(Cnp, premiers))
-                square_free.insert(Cnp);
+                square_free.insert(std::move(Cnp));
         }
 
     mpz_nombre resultat = std::reduce(square_free.begin(), square_free.end());

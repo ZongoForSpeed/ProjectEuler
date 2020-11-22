@@ -12,6 +12,10 @@
 class mpz_nombre {
     mpz_ptr _data;
 
+    void init();
+
+    void clear();
+
 public:
     // region Constructors
     mpz_nombre();
@@ -39,6 +43,16 @@ public:
     mpz_nombre(unsigned long long op);
 
     mpz_nombre(signed long long op);
+
+    template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, T>::type>
+    mpz_nombre(T x) {
+        init();
+        set(x);
+    }
+
+    mpz_nombre &operator=(const mpz_nombre &op);
+
+    mpz_nombre &operator=(mpz_nombre &&op) noexcept;
     // endregion Constructors
 
     // region Setters
@@ -99,13 +113,13 @@ public:
 
     mpz_nombre &operator--();
 
+    [[deprecated]]
     const mpz_nombre operator++(int);
 
-    mpz_nombre operator--(int);
+    [[deprecated]]
+    const mpz_nombre operator--(int);
 
     [[nodiscard]] signed short signe() const;
-
-    mpz_nombre &operator=(const mpz_nombre &op);
 
     template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mpz_nombre &operator=(const T &op) {
@@ -114,6 +128,21 @@ public:
     }
 
     // region Comparaison
+    template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, T>::type>
+    [[nodiscard]] int compare(const T &op) const {
+        return compare(op, std::is_signed<T>());
+    }
+
+    template<typename Type>
+    int compare(Type op, std::false_type /*is_signed*/) const {
+        return mpz_cmp_ui(_data, op);
+    }
+
+    template<typename Type>
+    int compare(Type op, std::true_type /*is_signed*/) const {
+        return mpz_cmp_si(_data, op);
+    }
+
     [[nodiscard]] int compare(const mpz_nombre &op) const;
 
     [[nodiscard]] int compare(double op) const;
@@ -122,11 +151,6 @@ public:
 
     [[nodiscard]] int compare(unsigned long int op) const;
 
-    template<typename T>
-    [[nodiscard]] int compare(const T &op) const {
-        mpz_nombre n(op);
-        return compare(n);
-    }
 
     template<typename T>
     bool operator==(const T &b) const { return compare(b) == 0; }
@@ -147,13 +171,13 @@ public:
     bool operator>=(const T &b) const { return compare(b) > -1; }
     // endregion Comparaison
 
-    static mpz_nombre abs(const mpz_nombre &op);
+    static void abs(mpz_nombre &rop, const mpz_nombre &op);
 
-    static mpz_nombre racine_carre(const mpz_nombre &op);
+    static void racine_carre(mpz_nombre &rop, const mpz_nombre &op);
 
     static bool carre_parfait(const mpz_nombre &op);
 
-    static mpz_nombre racine(const mpz_nombre &op, unsigned long int n);
+    static void racine(mpz_nombre &rop, const mpz_nombre &op, unsigned long int n);
 
     static bool racine_parfaite(const mpz_nombre &op, unsigned long int n);
 
@@ -176,9 +200,7 @@ public:
 
     static bool premier(const mpz_nombre &op, int probabilite = 25);
 
-    static mpz_nombre premier_suivant(const mpz_nombre &op);
-
-    mpz_nombre &premier_suivant();
+    static void premier_suivant(mpz_nombre &rop, const mpz_nombre &op);
 
     static mpz_nombre PGCD(const mpz_nombre &op1, const mpz_nombre &op2);
 
@@ -222,96 +244,182 @@ public:
     // endregion Arithmetiques
 
     // region Addition
-    mpz_nombre &operator+=(const mpz_nombre &op);
-
-    mpz_nombre &operator+=(unsigned long int op);
-
-    mpz_nombre operator+(const mpz_nombre &op) const;
-
-    mpz_nombre operator+(unsigned long int op) const;
-
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    mpz_nombre &operator+=(const T &op) {
-        mpz_nombre n(op);
-        return this->operator+=(n);
+    static void addition(mpz_nombre &rop, const mpz_nombre &op1, const mpz_nombre &op2) {
+        mpz_add(rop._data, op1._data, op2._data);
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    static void addition(mpz_nombre &rop, const mpz_nombre &op1, Type op2) {
+        addition(rop, op1, op2, std::is_signed<Type>());
+    }
+
+    template<typename Type>
+    static void addition(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::false_type /*is_signed*/) {
+        mpz_add_ui(rop._data, op1._data, op2);
+    }
+
+    template<typename Type>
+    static void addition(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::true_type /*is_signed*/) {
+        typedef typename std::make_unsigned<Type>::type unsigned_type;
+        bool negatif = op2 < 0;
+        auto unsignedOp2 = static_cast<unsigned_type>(negatif ? -op2 : op2);
+        if (negatif) {
+            mpz_sub_ui(rop._data, op1._data, unsignedOp2);
+        } else {
+            mpz_add_ui(rop._data, op1._data, unsignedOp2);
+        }
+    }
+
+    template<typename T>
+    mpz_nombre &operator+=(const T &op) {
+        addition(*this, *this, op);
+        return *this;
+    }
+
+    template<typename T>
     mpz_nombre operator+(const T &op) const {
-        mpz_nombre resultat;
-        mpz_nombre n(op);
-        mpz_add(resultat._data, _data, n._data);
-        return resultat;
+        mpz_nombre rop;
+        addition(rop, *this, op);
+        return rop;
     }
     // endregion Addition
 
     // region Soustraction
-    mpz_nombre &operator-=(const mpz_nombre &op);
+    static void soustraction(mpz_nombre &rop, const mpz_nombre &op1, const mpz_nombre &op2) {
+        mpz_sub(rop._data, op1._data, op2._data);
+    }
 
-    mpz_nombre &operator-=(unsigned long int op);
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    static void soustraction(mpz_nombre &rop, const mpz_nombre &op1, Type op2) {
+        soustraction(rop, op1, op2, std::is_signed<Type>());
+    }
 
-    mpz_nombre operator-(const mpz_nombre &op) const;
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    static void soustraction(mpz_nombre &rop, Type op1, const mpz_nombre &op2) {
+        soustraction(rop, op1, op2, std::is_signed<Type>());
+    }
 
-    mpz_nombre operator-(unsigned long int op) const;
+    template<typename Type>
+    static void soustraction(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::false_type /*is_signed*/) {
+        mpz_sub_ui(rop._data, op1._data, op2);
+    }
+
+    template<typename Type>
+    static void soustraction(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::true_type /*is_signed*/) {
+        typedef typename std::make_unsigned<Type>::type unsigned_type;
+        bool negatif = op2 < 0;
+        auto unsignedOp2 = static_cast<unsigned_type>(negatif ? -op2 : op2);
+        if (negatif) {
+            mpz_add_ui(rop._data, op1._data, unsignedOp2);
+        } else {
+            mpz_sub_ui(rop._data, op1._data, unsignedOp2);
+        }
+    }
+
+
+    template<typename Type>
+    static void soustraction(mpz_nombre &rop, Type op1, const mpz_nombre &op2, std::false_type /*is_signed*/) {
+        mpz_ui_sub(rop._data, op1, op2._data);
+    }
+
+    template<typename Type>
+    static void soustraction(mpz_nombre &rop, Type op1, const mpz_nombre &op2, std::true_type /*is_signed*/) {
+        typedef typename std::make_unsigned<Type>::type unsigned_type;
+        bool negatif = op1 < 0;
+        auto unsignedOp1 = static_cast<unsigned_type>(negatif ? -op1 : op1);
+        if (negatif) {
+            mpz_add_ui(rop._data, op2._data, unsignedOp1);
+            mpz_neg(rop._data, rop._data);
+        } else {
+            mpz_ui_sub(rop._data, unsignedOp1, op2._data);
+        }
+    }
 
     template<typename T>
     mpz_nombre &operator-=(const T &op) {
-        mpz_nombre n(op);
-        return this->operator-=(n);
+        soustraction(*this, *this, op);
+        return *this;
     }
 
     template<typename T>
     mpz_nombre operator-(const T &op) const {
-        mpz_nombre n(op);
-        return this->operator-(n);
+        mpz_nombre rop;
+        soustraction(rop, *this, op);
+        return rop;
     }
     // endregion Soustraction
 
     // region Multiplication
-    mpz_nombre &operator*=(const mpz_nombre &op);
+    static void multiplication(mpz_nombre &rop, const mpz_nombre &op1, const mpz_nombre &op2) {
+        mpz_mul(rop._data, op1._data, op2._data);
+    }
 
-    mpz_nombre &operator*=(long int op);
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    static void multiplication(mpz_nombre &rop, const mpz_nombre &op1, Type op2) {
+        multiplication(rop, op1, op2, std::is_signed<Type>());
+    }
 
-    mpz_nombre &operator*=(unsigned long int op);
+    template<typename Type>
+    static void multiplication(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::false_type /*is_signed*/) {
+        mpz_mul_ui(rop._data, op1._data, op2);
+    }
 
-    mpz_nombre operator*(const mpz_nombre &op) const;
-
-    mpz_nombre operator*(long int op) const;
-
-    mpz_nombre operator*(unsigned long int op) const;
+    template<typename Type>
+    static void multiplication(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::true_type /*is_signed*/) {
+        mpz_mul_si(rop._data, op1._data, op2);
+    }
 
     template<typename T>
     mpz_nombre &operator*=(const T &op) {
-        mpz_nombre n(op);
-        return this->operator*=(n);
+        multiplication(*this, *this, op);
+        return *this;
     }
 
     template<typename T>
     mpz_nombre operator*(const T &op) const {
-        mpz_nombre n(op);
-        return this->operator*(n);
+        mpz_nombre rop;
+        multiplication(rop, *this, op);
+        return rop;
     }
     // endregion Multiplication
 
     // region Division
-    mpz_nombre &operator/=(const mpz_nombre &op);
+    static void division(mpz_nombre &rop, const mpz_nombre &op1, const mpz_nombre &op2) {
+        mpz_fdiv_q(rop._data, op1._data, op2._data);
+    }
 
-    mpz_nombre &operator/=(unsigned long int op);
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    static void division(mpz_nombre &rop, const mpz_nombre &op1, Type op2) {
+        division(rop, op1, op2, std::is_signed<Type>());
+    }
 
-    mpz_nombre operator/(const mpz_nombre &op) const;
+    template<typename Type>
+    static void division(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::false_type /*is_signed*/) {
+        mpz_fdiv_q_ui(rop._data, op1._data, op2);
+    }
 
-    mpz_nombre operator/(unsigned long int op) const;
+    template<typename Type>
+    static void division(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::true_type /*is_signed*/) {
+        typedef typename std::make_unsigned<Type>::type unsigned_type;
+        bool negatif = op2 < 0;
+        auto unsignedOp2 = static_cast<unsigned_type>(negatif ? -op2 : op2);
+        mpz_fdiv_q_ui(rop._data, op1._data, unsignedOp2);
+        if (negatif) {
+            mpz_neg(rop._data, rop._data);
+        }
+    }
 
     template<typename T>
     mpz_nombre &operator/=(const T &op) {
-        mpz_nombre n(op);
-        return this->operator/=(n);
+        division(*this, *this, op);
+        return *this;
     }
 
     template<typename T>
     mpz_nombre operator/(const T &op) const {
-        mpz_nombre n(op);
-        return this->operator/(n);
+        mpz_nombre rop;
+        division(rop, *this, op);
+        return rop;
     }
 
     static bool divisible(const mpz_nombre &op1, const mpz_nombre &op2);
@@ -320,24 +428,61 @@ public:
     // endregion Division
 
     // region Modulo
-    mpz_nombre &operator%=(const mpz_nombre &op);
+    static void modulo(mpz_nombre &rop, const mpz_nombre &op1, const mpz_nombre &op2) {
+        mpz_mod(rop._data, op1._data, op2._data);
+    }
 
-    mpz_nombre &operator%=(unsigned long int op);
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    static void modulo(mpz_nombre &rop, const mpz_nombre &op1, Type op2) {
+        modulo(rop, op1, op2, std::is_signed<Type>());
+    }
 
-    mpz_nombre operator%(const mpz_nombre &op) const;
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    static void modulo(Type &rop, const mpz_nombre &op1, Type op2) {
+        modulo(rop, op1, op2, std::is_signed<Type>());
+    }
 
-    unsigned long int operator%(unsigned long int op) const;
+    template<typename Type>
+    static void modulo(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::false_type /*is_signed*/) {
+        mpz_mod_ui(rop._data, op1._data, op2);
+    }
 
-    template<typename T>
-    mpz_nombre &operator%=(const T &op) {
-        mpz_nombre n(op);
-        return this->operator%=(n);
+    template<typename Type>
+    static void modulo(mpz_nombre &rop, const mpz_nombre &op1, Type op2, std::true_type /*is_signed*/) {
+        typedef typename std::make_unsigned<Type>::type unsigned_type;
+        bool negatif = op2 < 0;
+        auto unsignedOp2 = static_cast<unsigned_type>(negatif ? -op2 : op2);
+        mpz_mod_ui(rop._data, op1._data, unsignedOp2);
+        if (negatif) {
+            mpz_neg(rop._data, rop._data);
+        }
+    }
+
+    template<typename Type>
+    static void modulo(Type &rop, const mpz_nombre &op1, Type op2, std::false_type /*is_signed*/) {
+        rop = mpz_fdiv_ui(op1._data, op2);
+    }
+
+    template<typename Type>
+    static void modulo(Type &rop, const mpz_nombre &op1, Type op2, std::true_type /*is_signed*/) {
+        typedef typename std::make_unsigned<Type>::type unsigned_type;
+        bool negatif = op2 < 0;
+        auto unsignedOp2 = static_cast<unsigned_type>(negatif ? -op2 : op2);
+        unsigned long unsignedRop = mpz_fdiv_ui(op1._data, unsignedOp2);
+        rop = static_cast<Type>(unsignedRop);
     }
 
     template<typename T>
-    mpz_nombre operator%(const T &op) const {
-        mpz_nombre n(op);
-        return this->operator%(n);
+    mpz_nombre &operator%=(const T &op) {
+        modulo(*this, *this, op);
+        return *this;
+    }
+
+    template<typename T>
+    T operator%(const T &op) const {
+        T rop;
+        modulo(rop, *this, op);
+        return rop;
     }
     // endregion Modulo
 
@@ -345,54 +490,18 @@ public:
     mpz_nombre &operator&=(const mpz_nombre &op);
 
     mpz_nombre operator&(const mpz_nombre &op) const;
-
-    template<typename T>
-    mpz_nombre &operator&=(const T &op) {
-        mpz_nombre n(op);
-        return this->operator&=(n);
-    }
-
-    template<typename T>
-    mpz_nombre operator&(const T &op) const {
-        mpz_nombre n(op);
-        return this->operator&(n);
-    }
     // endregion AND
 
     // region OR
     mpz_nombre &operator|=(const mpz_nombre &op);
 
     mpz_nombre operator|(const mpz_nombre &op) const;
-
-    template<typename T>
-    mpz_nombre &operator|=(const T &op) {
-        mpz_nombre n(op);
-        return this->operator|=(n);
-    }
-
-    template<typename T>
-    mpz_nombre operator|(const T &op) const {
-        mpz_nombre n(op);
-        return this->operator|(n);
-    }
     // endregion OR
 
     // region XOR
     mpz_nombre &operator^=(const mpz_nombre &op);
 
     mpz_nombre operator^(const mpz_nombre &op) const;
-
-    template<typename T>
-    mpz_nombre &operator^=(const T &op) {
-        mpz_nombre n(op);
-        return this->operator^=(n);
-    }
-
-    template<typename T>
-    mpz_nombre operator^(const T &op) const {
-        mpz_nombre n(op);
-        return this->operator^(n);
-    }
     // endregion XOR
 
     mpz_nombre operator<<(const unsigned long &b) const;
@@ -402,7 +511,7 @@ public:
     // region Chiffres
     void boucle_chiffre(const std::function<void(unsigned long int)> &op, unsigned long int base = 10) const {
         mpz_nombre n(_data);
-        while (n != 0) {
+        while (n != 0l) {
             unsigned long int r = mpz_fdiv_q_ui(n._data, n._data, base);
             op(r);
         }
@@ -441,6 +550,10 @@ public:
     }
     // endregion Chiffres
 
+    friend void swap(mpz_nombre &a, mpz_nombre &b) {
+        std::swap(a._data, b._data);
+    }
+
 private:
 
 #ifdef WIN32
@@ -458,7 +571,7 @@ private:
     template<typename Type>
     void set(Type op, std::true_type /*is_signed*/) {
         bool negatif = (op < 0);
-        op = std::abs(op);
+        op = negatif ? -op : op;
         mpz_import(_data, 1, -1, sizeof op, 0, 0, &op);
         if (negatif) negation();
     }
@@ -487,30 +600,39 @@ private:
 
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mpz_nombre operator+(const T &op1, const mpz_nombre &op2) {
-    return op2.operator+(op1);
+    mpz_nombre rop;
+    mpz_nombre::addition(rop, op2, op1);
+    return rop;
 }
 
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mpz_nombre operator-(const T &op1, const mpz_nombre &op2) {
-    mpz_nombre n(op1);
-    return n.operator-(op2);
+    mpz_nombre rop;
+    mpz_nombre::soustraction(rop, op1, op2);
+    return rop;
 }
 
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mpz_nombre operator*(const T &op1, const mpz_nombre &op2) {
-    return op2.operator*(op1);
+    mpz_nombre rop;
+    mpz_nombre::multiplication(rop, op2, op1);
+    return rop;
 }
 
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mpz_nombre operator/(const T &op1, const mpz_nombre &op2) {
     mpz_nombre n(op1);
-    return n.operator/(op2);
+    mpz_nombre rop;
+    mpz_nombre::division(rop, n, op2);
+    return rop;
 }
 
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 inline mpz_nombre operator%(const T &op1, const mpz_nombre &op2) {
     mpz_nombre n(op1);
-    return n.operator%(op2);
+    mpz_nombre rop;
+    mpz_nombre::modulo(rop, n, op2);
+    return rop;
 }
 
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>

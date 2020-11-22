@@ -16,8 +16,14 @@ class mpf_nombre {
     static mpf_nombre PHI;
 
     static mpf_nombre calcul_pi();
+
     static mpf_nombre calcul_e();
+
     static mpf_nombre calcul_phi();
+
+    void init();
+
+    void clear();
 
 public:
     static void setPrecision(long precision);
@@ -44,7 +50,7 @@ public:
 
     template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, T>::type>
     mpf_nombre(const T x) {
-        _data = new __mpfr_struct();
+        init();
         mpz_nombre tmp(x);
         mpfr_init_set_z(_data, tmp.get_data(), DEFAULT_ROUNDING);
     }
@@ -57,10 +63,18 @@ public:
 
     mpf_nombre &operator=(const mpf_nombre &op);
 
+    mpf_nombre &operator=(mpf_nombre &&op) noexcept ;
+
     template<typename T>
     mpf_nombre &operator=(const T &op) {
-        set(op);
+        if (this != &op) {
+            set(op);
+        }
         return *this;
+    }
+
+    friend void swap(mpf_nombre &a, mpf_nombre &b) {
+        std::swap(a._data, b._data);
     }
 
     void set(const mpf_nombre &op);
@@ -317,7 +331,7 @@ public:
         return compare(op) != 0;
     }
 
-    static void abs( mpf_nombre &rop, const mpf_nombre &op) {
+    static void abs(mpf_nombre &rop, const mpf_nombre &op) {
         mpfr_abs(rop._data, op._data, DEFAULT_ROUNDING);
     }
 
@@ -365,7 +379,7 @@ public:
         mpfr_expm1(rop._data, op._data, DEFAULT_ROUNDING);
     }
 
-    static  void puissance(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
+    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
         mpfr_pow(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
     }
 
@@ -397,7 +411,7 @@ public:
         mpfr_cos(rop._data, op._data, DEFAULT_ROUNDING);
     }
 
-    static  void tan(mpf_nombre &rop, const mpf_nombre &op) {
+    static void tan(mpf_nombre &rop, const mpf_nombre &op) {
         mpfr_tan(rop._data, op._data, DEFAULT_ROUNDING);
     }
 
@@ -416,22 +430,22 @@ public:
     static void arctan2(mpf_nombre &rop, const mpf_nombre &x, const mpf_nombre &y) {
         mpfr_atan2(rop._data, x._data, y._data, DEFAULT_ROUNDING);
     }
-    
+
     static const mpf_nombre &pi();
 
     static const mpf_nombre &e();
 
-    static const mpf_nombre & phi();
+    static const mpf_nombre &phi();
 
-    static void zeta(mpf_nombre& rop, const mpf_nombre& op) {
+    static void zeta(mpf_nombre &rop, const mpf_nombre &op) {
         mpfr_zeta(rop._data, op._data, DEFAULT_ROUNDING);
     }
 
-    static void zeta(mpf_nombre& rop, unsigned long op) {
+    static void zeta(mpf_nombre &rop, unsigned long op) {
         mpfr_zeta_ui(rop._data, op, DEFAULT_ROUNDING);
     }
 
-    static void factorielle(mpf_nombre& rop, unsigned long op) {
+    static void factorielle(mpf_nombre &rop, unsigned long op) {
         mpfr_fac_ui(rop._data, op, DEFAULT_ROUNDING);
     }
 

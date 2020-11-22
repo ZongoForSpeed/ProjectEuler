@@ -6,6 +6,10 @@
 class mpq_fraction {
     mpq_ptr _data;
 
+    void init();
+
+    void clear();
+
 public:
     mpq_fraction();
 
@@ -25,10 +29,9 @@ public:
 
     mpq_fraction(double op);
 
-    mpq_fraction &operator=(const mpq_fraction &op) {
-        set(op);
-        return *this;
-    }
+    mpq_fraction &operator=(const mpq_fraction &op);
+
+    mpq_fraction &operator=(mpq_fraction &&op) noexcept;
 
     template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     mpq_fraction &operator=(const T &op) {
@@ -79,6 +82,10 @@ public:
     // endregion Setters
 
     void swap(mpq_fraction &op);
+
+    friend void swap(mpq_fraction &a, mpq_fraction &b) {
+        std::swap(a._data, b._data);
+    }
 
     double get_double() const;
 

@@ -35,7 +35,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
                 mpz_nombre f = produit * n;
                 if (f >= limite)
                     break;
-                suivant.emplace_back(f);
+                suivant.push_back(std::move(f));
             }
         }
 
@@ -45,8 +45,10 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
         std::sort(suivant.begin(), suivant.end());
 
         for (const mpz_nombre &n: suivant) {
-            mpz_nombre m = mpz_nombre::premier_suivant(n + 1) - n;
-            pseudoFortunate.emplace(m);
+            mpz_nombre m;
+            mpz_nombre::premier_suivant(m, n + 1);
+            m -= n;
+            pseudoFortunate.insert(std::move(m));
         }
 
         std::swap(fortunate, suivant);

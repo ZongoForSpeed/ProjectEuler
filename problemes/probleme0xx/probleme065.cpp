@@ -29,9 +29,9 @@ ENREGISTRER_PROBLEME(65, "Convergents of e") {
     // Find the sum of digits in the numerator of the 100th convergent of the continued fraction for e.
     std::vector<mpz_nombre> fraction_continue;
     fraction_continue.emplace_back(2);
-    for (mpz_nombre n = 2; n < 101; n += 2) {
+    for (size_t n = 2; n < 101; n += 2) {
         fraction_continue.emplace_back(1);
-        fraction_continue.push_back(n);
+        fraction_continue.emplace_back(n);
         fraction_continue.emplace_back(1);
     }
     fraction_continue.resize(99);

@@ -111,18 +111,18 @@ BOOST_AUTO_TEST_SUITE(test_mpq_nombre)
 
     BOOST_AUTO_TEST_CASE(test_abs)
     {
-        mpz_nombre n(-22632576532575LL);
-        mpz_nombre m = std::abs(n);
-        BOOST_CHECK_EQUAL(m.get_unsigned_long_long(), 22632576532575);
+        mpq_fraction n(-22632576532575LL);
+        mpq_fraction m = std::abs(n);
+        BOOST_CHECK_EQUAL(m.get_double(), 22632576532575);
 
-        n = mpz_nombre::abs(n);
-        BOOST_CHECK_EQUAL(n.get_unsigned_long_long(), 22632576532575);
+        n = mpq_fraction::abs(n);
+        BOOST_CHECK_EQUAL(m.get_double(), 22632576532575);
     }
 
     BOOST_AUTO_TEST_CASE(test_soustraction)
     {
-        mpz_nombre n(22801763489LL);
-        mpz_nombre m(22632576532575LL);
+        mpq_fraction n(22801763489LL);
+        mpq_fraction m(22632576532575LL);
         n -= m;
 
         BOOST_CHECK_EQUAL(n, -22609774769086);
@@ -133,13 +133,13 @@ BOOST_AUTO_TEST_SUITE(test_mpq_nombre)
         n -= m;
         BOOST_CHECK_EQUAL(n, -45242351301761);
 
-        mpz_nombre p = n - m;
+        mpq_fraction p = n - m;
         BOOST_CHECK_EQUAL(p, -67874927834336);
 
-        mpz_nombre q = 42ul - m;
+        mpq_fraction q = 42ul - m;
         BOOST_CHECK_EQUAL(q, -22632576532533);
 
-        mpz_nombre r = n - 666ul;
+        mpq_fraction r = n - 666ul;
         BOOST_CHECK_EQUAL(r, -45242351302427);
 
         r -= 400000000000000ull;

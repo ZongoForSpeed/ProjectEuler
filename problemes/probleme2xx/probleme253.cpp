@@ -22,7 +22,7 @@ namespace {
             for (size_t n = 0; n < tailles.size(); ++n) {
                 if (tailles[n] == 0)
                     continue;
-                _tailles[n]--;
+                --_tailles[n];
                 if (n == 1) {
                     auto tmp = algorithme(_tailles, cache);
                     for (auto&[k, v]: tmp) {
@@ -34,8 +34,8 @@ namespace {
                 } else {
                     for (size_t m1 = 0; m1 < n; ++m1) {
                         size_t m2 = n - m1 - 1;
-                        if (m1 != 0) _tailles[m1]++;
-                        if (m2 != 0) _tailles[m2]++;
+                        if (m1 != 0) ++_tailles[m1];
+                        if (m2 != 0) ++_tailles[m2];
 
                         auto tmp = algorithme(_tailles, cache);
                         for (auto&[k, v]: tmp) {
@@ -45,12 +45,12 @@ namespace {
                                 resultat[k] += v * tailles[n];
                         }
 
-                        if (m1 != 0) _tailles[m1]--;
-                        if (m2 != 0) _tailles[m2]--;
+                        if (m1 != 0) --_tailles[m1];
+                        if (m2 != 0) --_tailles[m2];
                     }
                 }
 
-                _tailles[n]++;
+                ++_tailles[n];
             }
 
             cache.emplace(tailles, resultat);

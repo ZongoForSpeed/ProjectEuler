@@ -17,56 +17,62 @@ void mpf_nombre::setRounding(mpfr_rnd_t rounding) {
 }
 
 mpf_nombre::mpf_nombre() {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init2(_data, DEFAULT_PRECISION);
     mpfr_set_zero(_data, +1);
 }
 
 mpf_nombre::mpf_nombre(const mpf_nombre &op) {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init_set(_data, op._data, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(unsigned long op) {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init_set_ui(_data, op, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(long op) {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init_set_si(_data, op, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(double op) {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init_set_d(_data, op, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(long double op) {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init_set_ld(_data, op, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(const mpz_nombre &op) {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init_set_z(_data, op.get_data(), DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(const mpq_fraction &op) {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init_set_q(_data, op.get_data(), DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(const std::string &op, int base) {
-    _data = new __mpfr_struct();
+    init();
     mpfr_init_set_str(_data, op.c_str(), base, DEFAULT_ROUNDING);
 }
 
-mpf_nombre::~mpf_nombre() {
+void mpf_nombre::init() { _data = new __mpfr_struct(); }
+
+void mpf_nombre::clear() {
     if (_data != nullptr) {
         mpfr_clear(_data);
         delete _data;
     }
+}
+
+mpf_nombre::~mpf_nombre() {
+    clear();
 }
 
 void mpf_nombre::set(const mpf_nombre &op) {
@@ -313,7 +319,16 @@ mpf_nombre mpf_nombre::calcul_phi() {
 }
 
 mpf_nombre &mpf_nombre::operator=(const mpf_nombre &op) {
-    set(op);
+    if (this != &op) {
+        set(op);
+    }
+    return *this;
+}
+
+mpf_nombre &mpf_nombre::operator=(mpf_nombre &&op) noexcept {
+    if (this != &op) {
+        _data = std::exchange(op._data, nullptr);
+    }
     return *this;
 }
 
@@ -547,7 +562,7 @@ mpf_nombre std::sqrt(const mpf_nombre &op) {
 
 mpf_nombre std::cbrt(const mpf_nombre &op) {
     mpf_nombre rop;
-    mpf_nombre::racine_carre(rop, op);
+    mpf_nombre::racine_cubique(rop, op);
     return rop;
 
 }
