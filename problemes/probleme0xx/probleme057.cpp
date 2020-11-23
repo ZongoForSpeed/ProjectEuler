@@ -4,7 +4,6 @@
 #include "mpz_nombre.h"
 #include "mpq_fraction.h"
 
-
 ENREGISTRER_PROBLEME(57, "Square root convergents") {
     // It is possible to show that the square root of two can be expressed as an infinite continued fraction.
     //

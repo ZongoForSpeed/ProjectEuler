@@ -193,6 +193,12 @@ public:
         return resultat;
     }
 
+    template<typename T>
+    [[nodiscard]] int compare(const T &op) const {
+        mpz_nombre n(op);
+        return compare(n);
+    }
+
     int compare(const mpq_fraction &op) const;
 
     int compare(const mpz_nombre &op) const;
@@ -205,11 +211,6 @@ public:
 
     int compare(unsigned long int op) const;
 
-    template<typename T>
-    [[nodiscard]] int compare(const T &op) const {
-        mpz_nombre n(op);
-        return compare(n);
-    }
 
     bool egale(const mpq_fraction &op) const;
 
