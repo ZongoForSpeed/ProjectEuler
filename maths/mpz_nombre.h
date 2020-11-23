@@ -56,6 +56,12 @@ public:
     // endregion Constructors
 
     // region Setters
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    void set(T x) {
+        static_assert(std::is_integral<T>::value, "Integer required.");
+        set(x, std::is_signed<T>());
+    }
+
     void set(const mpz_t &op);
 
     void set(const mpz_nombre &op);
@@ -67,12 +73,6 @@ public:
     void set(double op);
 
     void set(const std::string &op, int base = 10);
-
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    void set(T x) {
-        static_assert(std::is_integral<T>::value, "Integer required.");
-        set(x, std::is_signed<T>());
-    }
     // endregion Setters
 
     // region Getters
@@ -206,31 +206,9 @@ public:
 
     static mpz_nombre PGCD(const mpz_nombre &op1, unsigned long int op2);
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    mpz_nombre PGCD(const mpz_nombre &op1, const T &op2) {
-        mpz_nombre n2(op2);
-        return PGCD(op1, n2);
-    }
-
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    mpz_nombre PGCD(const T &op1, const mpz_nombre &op2) {
-        return PGCD(op2, op1);
-    }
-
     static mpz_nombre PPCM(const mpz_nombre &op1, const mpz_nombre &op2);
 
     static mpz_nombre PPCM(const mpz_nombre &op1, unsigned long int op2);
-
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    mpz_nombre PPCM(const mpz_nombre &op1, const T &op2) {
-        mpz_nombre n2(op2);
-        return PPCM(op1, n2);
-    }
-
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    mpz_nombre PPCM(const T &op1, const mpz_nombre &op2) {
-        return PPCM(op2, op1);
-    }
 
     static std::optional<mpz_nombre> inverse_modulaire(const mpz_nombre &op, const mpz_nombre &modulo);
 
@@ -509,45 +487,17 @@ public:
     mpz_nombre operator>>(const unsigned long &b) const;
 
     // region Chiffres
-    void boucle_chiffre(const std::function<void(unsigned long int)> &op, unsigned long int base = 10) const {
-        mpz_nombre n(_data);
-        while (n != 0l) {
-            unsigned long int r = mpz_fdiv_q_ui(n._data, n._data, base);
-            op(r);
-        }
-    }
+    void boucle_chiffre(const std::function<void(unsigned long int)> &op, unsigned long int base = 10) const;
 
-    [[nodiscard]] size_t nombre_chiffres(unsigned long int base = 10) const {
-        size_t d = 0;
-        boucle_chiffre([&d](unsigned long int) { ++d; }, base);
-        return d;
-    }
+    size_t nombre_chiffres(unsigned long int base = 10) const;
 
-    [[nodiscard]] mpz_nombre somme_chiffres(unsigned long int base = 10) const {
-        mpz_nombre resultat = 0;
-        boucle_chiffre([&resultat](unsigned long int d) { resultat += d; }, base);
-        return resultat;
-    }
+    mpz_nombre somme_chiffres(unsigned long int base = 10) const;
 
-    [[nodiscard]] std::deque<unsigned long int> extraire_chiffres(unsigned long int base = 10) const {
-        std::deque<unsigned long int> resultat;
-        boucle_chiffre([&resultat](unsigned long int d) { resultat.push_front(d); }, base);
-        return resultat;
-    }
+    std::deque<unsigned long int> extraire_chiffres(unsigned long int base = 10) const;
 
-    [[nodiscard]] mpz_nombre inverser_nombre(unsigned long int base = 10) const {
-        mpz_nombre resultat = 0;
-        boucle_chiffre([&resultat, &base](unsigned long int d) {
-            resultat *= base;
-            resultat += d;
-        }, base);
-        return resultat;
-    }
+    mpz_nombre inverser_nombre(unsigned long int base = 10) const;
 
-    [[nodiscard]] bool palindrome(unsigned long int base = 10) const {
-        const auto chiffres = extraire_chiffres(base);
-        return std::equal(chiffres.begin(), chiffres.begin() + chiffres.size() / 2, chiffres.rbegin());
-    }
+    bool palindrome(unsigned long int base = 10) const;
     // endregion Chiffres
 
     friend void swap(mpz_nombre &a, mpz_nombre &b) {

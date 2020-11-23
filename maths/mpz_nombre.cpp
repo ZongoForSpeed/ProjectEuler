@@ -373,6 +373,46 @@ bool mpz_nombre::premier(int probabilite) const {
     return mpz_probab_prime_p(_data, probabilite) != 0;
 }
 
+void mpz_nombre::boucle_chiffre(const std::function<void(unsigned long)> &op, unsigned long base) const {
+    mpz_nombre n(_data);
+    while (n != 0l) {
+        unsigned long int r = mpz_fdiv_q_ui(n._data, n._data, base);
+        op(r);
+    }
+}
+
+size_t mpz_nombre::nombre_chiffres(unsigned long base) const {
+    size_t d = 0;
+    boucle_chiffre([&d](unsigned long int) { ++d; }, base);
+    return d;
+}
+
+mpz_nombre mpz_nombre::somme_chiffres(unsigned long base) const {
+    mpz_nombre resultat = 0;
+    boucle_chiffre([&resultat](unsigned long int d) { resultat += d; }, base);
+    return resultat;
+}
+
+std::deque<unsigned long int> mpz_nombre::extraire_chiffres(unsigned long base) const {
+    std::deque<unsigned long int> resultat;
+    boucle_chiffre([&resultat](unsigned long int d) { resultat.push_front(d); }, base);
+    return resultat;
+}
+
+mpz_nombre mpz_nombre::inverser_nombre(unsigned long base) const {
+    mpz_nombre resultat = 0;
+    boucle_chiffre([&resultat, &base](unsigned long int d) {
+        resultat *= base;
+        resultat += d;
+    }, base);
+    return resultat;
+}
+
+bool mpz_nombre::palindrome(unsigned long base) const {
+    const auto chiffres = extraire_chiffres(base);
+    return std::equal(chiffres.begin(), chiffres.begin() + chiffres.size() / 2, chiffres.rbegin());
+}
+
 namespace std {
     mpz_nombre abs(const mpz_nombre &op) {
         mpz_nombre rop;
