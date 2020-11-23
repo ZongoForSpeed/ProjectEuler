@@ -62,6 +62,10 @@ mpf_nombre::mpf_nombre(const std::string &op, int base) {
     mpfr_init_set_str(_data, op.c_str(), base, DEFAULT_ROUNDING);
 }
 
+mpf_nombre::mpf_nombre(mpf_nombre &&op) : _data(std::exchange(op._data, nullptr)) {
+
+}
+
 void mpf_nombre::init() { _data = new __mpfr_struct(); }
 
 void mpf_nombre::clear() {
@@ -242,6 +246,170 @@ int mpf_nombre::compare(const mpq_fraction &op) const {
 
 const mpf_nombre &mpf_nombre::phi() {
     return PHI;
+}
+
+void mpf_nombre::addition(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
+    mpfr_add(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::addition(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
+    mpfr_add_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::addition(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2) {
+    mpfr_add_q(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
+    mpfr_sub(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
+    mpfr_sub_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2) {
+    mpfr_sub_q(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
+    mpfr_mul(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
+    mpfr_mul_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2) {
+    mpfr_mul_q(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::division(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
+    mpfr_div(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::division(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
+    mpfr_div_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::division(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2) {
+    mpfr_div_q(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::abs(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_abs(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::racine_carre(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_sqrt(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::racine_cubique(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_cbrt(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::racine(mpf_nombre &rop, const mpf_nombre &op, unsigned long n) {
+    mpfr_rootn_ui(rop._data, op._data, n, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::hypothenuse(mpf_nombre &rop, const mpf_nombre &x, const mpf_nombre &y) {
+    mpfr_hypot(rop._data, x._data, y._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::log(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_log(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::log2(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_log2(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::log10(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_log10(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::exp(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_exp(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::exp2(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_exp2(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::exp10(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_exp10(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::expm1(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_expm1(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::puissance(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
+    mpfr_pow(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::puissance(mpf_nombre &rop, const mpf_nombre &op1, unsigned long op2) {
+    mpfr_pow_ui(rop._data, op1._data, op2, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::puissance(mpf_nombre &rop, const mpf_nombre &op1, long op2) {
+    mpfr_pow_si(rop._data, op1._data, op2, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::puissance(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
+    mpfr_pow_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::puissance(mpf_nombre &rop, unsigned long op1, unsigned long op2) {
+    mpfr_ui_pow_ui(rop._data, op1, op2, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::puissance(mpf_nombre &rop, unsigned long op1, const mpf_nombre &op2) {
+    mpfr_ui_pow(rop._data, op1, op2._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::sin(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_sin(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::cos(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_cos(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::tan(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_tan(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::arcsin(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_asin(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::arccos(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_acos(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::arctan(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_atan(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::arctan2(mpf_nombre &rop, const mpf_nombre &x, const mpf_nombre &y) {
+    mpfr_atan2(rop._data, x._data, y._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::zeta(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_zeta(rop._data, op._data, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::zeta(mpf_nombre &rop, unsigned long op) {
+    mpfr_zeta_ui(rop._data, op, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::factorielle(mpf_nombre &rop, unsigned long op) {
+    mpfr_fac_ui(rop._data, op, DEFAULT_ROUNDING);
+}
+
+void mpf_nombre::inverse(mpf_nombre &rop, const mpf_nombre &op) {
+    mpfr_ui_div(rop._data, 1, op._data, DEFAULT_ROUNDING);
 }
 
 void std::swap(mpf_nombre &op1, mpf_nombre &op2) {

@@ -25,6 +25,16 @@ class mpf_nombre {
 
     void clear();
 
+    template<typename Type>
+    void init_set(Type op, std::true_type/*is_signed*/) {
+        mpfr_init_set_si(_data, op, DEFAULT_ROUNDING);
+    }
+
+    template<typename Type>
+    void init_set(Type op, std::false_type/*is_signed*/) {
+        mpfr_init_set_ui(_data, op, DEFAULT_ROUNDING);
+    }
+
 public:
     static void setPrecision(long precision);
 
@@ -48,16 +58,13 @@ public:
 
     mpf_nombre(const std::string &op, int base = 10);
 
-    template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, T>::type>
-    mpf_nombre(const T x) {
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    mpf_nombre(const Type x) {
         init();
-        mpz_nombre tmp(x);
-        mpfr_init_set_z(_data, tmp.get_data(), DEFAULT_ROUNDING);
+        init_set(x, std::is_signed<Type>());
     }
 
-    mpf_nombre(mpf_nombre &&op) : _data(std::exchange(op._data, nullptr)) {
-
-    }
+    mpf_nombre(mpf_nombre &&op);
 
     ~mpf_nombre();
 
@@ -65,8 +72,8 @@ public:
 
     mpf_nombre &operator=(mpf_nombre &&op) noexcept;
 
-    template<typename T>
-    mpf_nombre &operator=(const T &op) {
+    template<typename Type>
+    mpf_nombre &operator=(const Type &op) {
         if (this != &op) {
             set(op);
         }
@@ -77,6 +84,9 @@ public:
         std::swap(a._data, b._data);
     }
 
+    void swap(mpf_nombre &op);
+
+    // region setters
     void set(const mpf_nombre &op);
 
     void set(unsigned long op);
@@ -95,14 +105,14 @@ public:
 
     void set(const std::string &op, int base = 10);
 
-    template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, T>::type>
-    void set(T x) {
+    template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
+    void set(Type x) {
         mpz_nombre tmp(x);
         set(tmp);
     }
+    // endregion setters
 
-    void swap(mpf_nombre &op);
-
+    // region getters
     mpfr_ptr get_data();
 
     mpfr_srcptr get_data() const;
@@ -120,27 +130,22 @@ public:
     mpz_nombre get_mpz_nombre();
 
     mpq_fraction get_mpq_fraction();
+    // endregion getters
 
     std::string to_string(size_t precision = 15) const;
 
-    static void negation(mpf_nombre& rop, const mpf_nombre& op) {
+    static void negation(mpf_nombre &rop, const mpf_nombre &op) {
         mpfr_neg(rop._data, op._data, DEFAULT_ROUNDING);
     }
 
     mpf_nombre operator-() const;
 
     // region addition
-    void static addition(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
-        mpfr_add(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
-    }
+    void static addition(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2);
 
-    void static addition(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
-        mpfr_add_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    void static addition(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2);
 
-    void static addition(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2) {
-        mpfr_add_q(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    void static addition(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2);
 
     template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
     void static addition(mpf_nombre &rop, const mpf_nombre &op1, Type op2) {
@@ -166,14 +171,14 @@ public:
         mpfr_add_ui(rop._data, op1._data, op2, DEFAULT_ROUNDING);
     }
 
-    template<typename T>
-    mpf_nombre &operator+=(T op) {
+    template<typename Type>
+    mpf_nombre &operator+=(Type op) {
         addition(*this, *this, op);
         return *this;
     }
 
-    template<typename T>
-    mpf_nombre operator+(T op) const {
+    template<typename Type>
+    mpf_nombre operator+(Type op) const {
         mpf_nombre rop;
         addition(rop, *this, op);
         return rop;
@@ -181,17 +186,11 @@ public:
     // endregion addition
 
     // region soustraction
-    void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
-        mpfr_sub(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
-    }
+    void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2);
 
-    void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
-        mpfr_sub_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2);
 
-    void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2) {
-        mpfr_sub_q(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2);
 
     template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
     void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, Type op2) {
@@ -200,19 +199,19 @@ public:
 
     template<typename Type>
     void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, Type op2, std::true_type /*is_floating_point*/,
-                         std::true_type /*is_signed*/) {
+                             std::true_type /*is_signed*/) {
         mpfr_sub_d(rop._data, op1._data, op2, DEFAULT_ROUNDING);
     }
 
     template<typename Type>
     void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, Type op2, std::false_type /*is_floating_point*/,
-                         std::true_type /*is_signed*/) {
+                             std::true_type /*is_signed*/) {
         mpfr_sub_si(rop._data, op1._data, op2, DEFAULT_ROUNDING);
     }
 
     template<typename Type>
     void static soustraction(mpf_nombre &rop, const mpf_nombre &op1, Type op2, std::false_type /*is_floating_point*/,
-                         std::false_type /*is_signed*/) {
+                             std::false_type /*is_signed*/) {
         mpfr_sub_ui(rop._data, op1._data, op2, DEFAULT_ROUNDING);
     }
 
@@ -227,36 +226,36 @@ public:
     }
 
     template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
-    void static soustraction(mpf_nombre &rop, Type op1, const mpf_nombre & op2) {
+    void static soustraction(mpf_nombre &rop, Type op1, const mpf_nombre &op2) {
         soustraction(rop, op1, op2, std::is_floating_point<Type>(), std::is_signed<Type>());
     }
 
     template<typename Type>
-    void static soustraction(mpf_nombre &rop, Type op1, const mpf_nombre & op2, std::true_type /*is_floating_point*/,
-                         std::true_type /*is_signed*/) {
+    void static soustraction(mpf_nombre &rop, Type op1, const mpf_nombre &op2, std::true_type /*is_floating_point*/,
+                             std::true_type /*is_signed*/) {
         mpfr_d_sub(rop._data, op1, op2._data, DEFAULT_ROUNDING);
     }
 
     template<typename Type>
-    void static soustraction(mpf_nombre &rop, Type op1, const mpf_nombre & op2, std::false_type /*is_floating_point*/,
-                         std::true_type /*is_signed*/) {
+    void static soustraction(mpf_nombre &rop, Type op1, const mpf_nombre &op2, std::false_type /*is_floating_point*/,
+                             std::true_type /*is_signed*/) {
         mpfr_si_sub(rop._data, op1, op2._data, DEFAULT_ROUNDING);
     }
 
     template<typename Type>
-    void static soustraction(mpf_nombre &rop, Type op1, const mpf_nombre & op2, std::false_type /*is_floating_point*/,
-                         std::false_type /*is_signed*/) {
+    void static soustraction(mpf_nombre &rop, Type op1, const mpf_nombre &op2, std::false_type /*is_floating_point*/,
+                             std::false_type /*is_signed*/) {
         mpfr_ui_sub(rop._data, op1, op2._data, DEFAULT_ROUNDING);
     }
 
-    template<typename T>
-    mpf_nombre &operator-=(T op) {
+    template<typename Type>
+    mpf_nombre &operator-=(Type op) {
         soustraction(*this, *this, op);
         return *this;
     }
 
-    template<typename T>
-    mpf_nombre operator-(T op) const {
+    template<typename Type>
+    mpf_nombre operator-(Type op) const {
         mpf_nombre rop;
         soustraction(rop, *this, op);
         return rop;
@@ -264,17 +263,11 @@ public:
     // endregion soustraction
 
     // region multiplication
-    void static multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
-        mpfr_mul(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
-    }
+    void static multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2);
 
-    void static multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
-        mpfr_mul_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    void static multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2);
 
-    void static multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2) {
-        mpfr_mul_q(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    void static multiplication(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2);
 
     template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
     void static multiplication(mpf_nombre &rop, const mpf_nombre &op1, Type op2) {
@@ -300,14 +293,14 @@ public:
         mpfr_mul_ui(rop._data, op1._data, op2, DEFAULT_ROUNDING);
     }
 
-    template<typename T>
-    mpf_nombre &operator*=(T op) {
+    template<typename Type>
+    mpf_nombre &operator*=(Type op) {
         multiplication(*this, *this, op);
         return *this;
     }
 
-    template<typename T>
-    mpf_nombre operator*(T op) const {
+    template<typename Type>
+    mpf_nombre operator*(Type op) const {
         mpf_nombre rop;
         multiplication(rop, *this, op);
         return rop;
@@ -315,17 +308,11 @@ public:
     // endregion multiplication
 
     // region division
-    void static division(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
-        mpfr_div(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
-    }
+    void static division(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2);
 
-    void static division(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
-        mpfr_div_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    void static division(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2);
 
-    void static division(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2) {
-        mpfr_div_q(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    void static division(mpf_nombre &rop, const mpf_nombre &op1, const mpq_fraction &op2);
 
     template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
     void static division(mpf_nombre &rop, const mpf_nombre &op1, Type op2) {
@@ -334,19 +321,19 @@ public:
 
     template<typename Type>
     void static division(mpf_nombre &rop, const mpf_nombre &op1, Type op2, std::true_type /*is_floating_point*/,
-                               std::true_type /*is_signed*/) {
+                         std::true_type /*is_signed*/) {
         mpfr_div_d(rop._data, op1._data, op2, DEFAULT_ROUNDING);
     }
 
     template<typename Type>
     void static division(mpf_nombre &rop, const mpf_nombre &op1, Type op2, std::false_type /*is_floating_point*/,
-                               std::true_type /*is_signed*/) {
+                         std::true_type /*is_signed*/) {
         mpfr_div_si(rop._data, op1._data, op2, DEFAULT_ROUNDING);
     }
 
     template<typename Type>
     void static division(mpf_nombre &rop, const mpf_nombre &op1, Type op2, std::false_type /*is_floating_point*/,
-                               std::false_type /*is_signed*/) {
+                         std::false_type /*is_signed*/) {
         mpfr_div_ui(rop._data, op1._data, op2, DEFAULT_ROUNDING);
     }
 
@@ -361,36 +348,36 @@ public:
     }
 
     template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
-    void static division(mpf_nombre &rop, Type op1, const mpf_nombre & op2) {
+    void static division(mpf_nombre &rop, Type op1, const mpf_nombre &op2) {
         division(rop, op1, op2, std::is_floating_point<Type>(), std::is_signed<Type>());
     }
 
     template<typename Type>
-    void static division(mpf_nombre &rop, Type op1, const mpf_nombre & op2, std::true_type /*is_floating_point*/,
+    void static division(mpf_nombre &rop, Type op1, const mpf_nombre &op2, std::true_type /*is_floating_point*/,
                          std::true_type /*is_signed*/) {
         mpfr_d_div(rop._data, op1, op2._data, DEFAULT_ROUNDING);
     }
 
     template<typename Type>
-    void static division(mpf_nombre &rop, Type op1, const mpf_nombre & op2, std::false_type /*is_floating_point*/,
+    void static division(mpf_nombre &rop, Type op1, const mpf_nombre &op2, std::false_type /*is_floating_point*/,
                          std::true_type /*is_signed*/) {
         mpfr_si_div(rop._data, op1, op2._data, DEFAULT_ROUNDING);
     }
 
     template<typename Type>
-    void static division(mpf_nombre &rop, Type op1, const mpf_nombre & op2, std::false_type /*is_floating_point*/,
+    void static division(mpf_nombre &rop, Type op1, const mpf_nombre &op2, std::false_type /*is_floating_point*/,
                          std::false_type /*is_signed*/) {
         mpfr_ui_div(rop._data, op1, op2._data, DEFAULT_ROUNDING);
     }
 
-    template<typename T>
-    mpf_nombre &operator/=(T op) {
+    template<typename Type>
+    mpf_nombre &operator/=(Type op) {
         division(*this, *this, op);
         return *this;
     }
 
-    template<typename T>
-    mpf_nombre operator/(T op) const {
+    template<typename Type>
+    mpf_nombre operator/(Type op) const {
         mpf_nombre rop;
         division(rop, *this, op);
         return rop;
@@ -427,136 +414,86 @@ public:
 
     int compare(const mpq_fraction &op) const;
 
-    template<typename T>
-    bool operator>(const T &op) const {
+    template<typename Type>
+    bool operator>(const Type &op) const {
         return compare(op) > 0;
     }
 
-    template<typename T>
-    bool operator>=(const T &op) const {
+    template<typename Type>
+    bool operator>=(const Type &op) const {
         return compare(op) >= 0;
     }
 
-    template<typename T>
-    bool operator<(const T &op) const {
+    template<typename Type>
+    bool operator<(const Type &op) const {
         return compare(op) < 0;
     }
 
-    template<typename T>
-    bool operator<=(const T &op) const {
+    template<typename Type>
+    bool operator<=(const Type &op) const {
         return compare(op) <= 0;
     }
 
-    template<typename T>
-    bool operator==(const T &op) const {
+    template<typename Type>
+    bool operator==(const Type &op) const {
         return compare(op) == 0;
     }
 
-    template<typename T>
-    bool operator!=(const T &op) const {
+    template<typename Type>
+    bool operator!=(const Type &op) const {
         return compare(op) != 0;
     }
     // endregion comparaison
 
-    static void abs(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_abs(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void abs(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void racine_carre(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_sqrt(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void racine_carre(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void racine_cubique(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_cbrt(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void racine_cubique(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void racine(mpf_nombre &rop, const mpf_nombre &op, unsigned long n) {
-        mpfr_rootn_ui(rop._data, op._data, n, DEFAULT_ROUNDING);
-    }
+    static void racine(mpf_nombre &rop, const mpf_nombre &op, unsigned long n);
 
-    static void hypothenuse(mpf_nombre &rop, const mpf_nombre &x, const mpf_nombre &y) {
-        mpfr_hypot(rop._data, x._data, y._data, DEFAULT_ROUNDING);
-    }
+    static void hypothenuse(mpf_nombre &rop, const mpf_nombre &x, const mpf_nombre &y);
 
-    static void log(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_log(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void log(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void log2(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_log2(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void log2(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void log10(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_log10(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void log10(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void exp(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_exp(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void exp(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void exp2(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_exp2(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void exp2(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void exp10(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_exp10(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void exp10(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void expm1(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_expm1(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void expm1(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
-        mpfr_pow(rop._data, op1._data, op2._data, DEFAULT_ROUNDING);
-    }
+    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2);
 
-    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, unsigned long op2) {
-        mpfr_pow_ui(rop._data, op1._data, op2, DEFAULT_ROUNDING);
-    }
+    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, unsigned long op2);
 
-    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, long op2) {
-        mpfr_pow_si(rop._data, op1._data, op2, DEFAULT_ROUNDING);
-    }
+    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, long op2);
 
-    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2) {
-        mpfr_pow_z(rop._data, op1._data, op2.get_data(), DEFAULT_ROUNDING);
-    }
+    static void puissance(mpf_nombre &rop, const mpf_nombre &op1, const mpz_nombre &op2);
 
-    static void puissance(mpf_nombre &rop, unsigned long op1, unsigned long op2) {
-        mpfr_ui_pow_ui(rop._data, op1, op2, DEFAULT_ROUNDING);
-    }
+    static void puissance(mpf_nombre &rop, unsigned long op1, unsigned long op2);
 
-    static void puissance(mpf_nombre &rop, unsigned long op1, const mpf_nombre &op2) {
-        mpfr_ui_pow(rop._data, op1, op2._data, DEFAULT_ROUNDING);
-    }
+    static void puissance(mpf_nombre &rop, unsigned long op1, const mpf_nombre &op2);
 
-    static void sin(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_sin(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void sin(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void cos(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_cos(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void cos(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void tan(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_tan(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void tan(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void arcsin(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_asin(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void arcsin(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void arccos(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_acos(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void arccos(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void arctan(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_atan(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void arctan(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void arctan2(mpf_nombre &rop, const mpf_nombre &x, const mpf_nombre &y) {
-        mpfr_atan2(rop._data, x._data, y._data, DEFAULT_ROUNDING);
-    }
+    static void arctan2(mpf_nombre &rop, const mpf_nombre &x, const mpf_nombre &y);
 
     static const mpf_nombre &pi();
 
@@ -564,22 +501,13 @@ public:
 
     static const mpf_nombre &phi();
 
-    static void zeta(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_zeta(rop._data, op._data, DEFAULT_ROUNDING);
-    }
+    static void zeta(mpf_nombre &rop, const mpf_nombre &op);
 
-    static void zeta(mpf_nombre &rop, unsigned long op) {
-        mpfr_zeta_ui(rop._data, op, DEFAULT_ROUNDING);
-    }
+    static void zeta(mpf_nombre &rop, unsigned long op);
 
-    static void factorielle(mpf_nombre &rop, unsigned long op) {
-        mpfr_fac_ui(rop._data, op, DEFAULT_ROUNDING);
-    }
+    static void factorielle(mpf_nombre &rop, unsigned long op);
 
-    static void inverse(mpf_nombre &rop, const mpf_nombre &op) {
-        mpfr_ui_div(rop._data, 1, op._data, DEFAULT_ROUNDING);
-    }
-
+    static void inverse(mpf_nombre &rop, const mpf_nombre &op);
 };
 
 template<typename Type, typename = typename std::enable_if<!std::is_same<Type, mpf_nombre>::value, Type>::type>
@@ -610,33 +538,33 @@ inline mpf_nombre operator/(const Type &op1, const mpf_nombre &op2) {
     return rop;
 }
 
-template<typename T>
-inline bool operator==(const T &a, const mpz_nombre &b) {
+template<typename Type>
+inline bool operator==(const Type &a, const mpz_nombre &b) {
     return b.compare(a) == 0;
 }
 
-template<typename T>
-inline bool operator!=(const T &a, const mpz_nombre &b) {
+template<typename Type>
+inline bool operator!=(const Type &a, const mpz_nombre &b) {
     return b.compare(a) != 0;
 }
 
-template<typename T>
-inline bool operator<(const T &a, const mpz_nombre &b) {
+template<typename Type>
+inline bool operator<(const Type &a, const mpz_nombre &b) {
     return b.compare(a) > 0;
 }
 
-template<typename T>
-inline bool operator>(const T &a, const mpz_nombre &b) {
+template<typename Type>
+inline bool operator>(const Type &a, const mpz_nombre &b) {
     return b.compare(a) < 0;
 }
 
-template<typename T>
-inline bool operator<=(const T &a, const mpz_nombre &b) {
+template<typename Type>
+inline bool operator<=(const Type &a, const mpz_nombre &b) {
     return b.compare(a) >= 0;
 }
 
-template<typename T>
-inline bool operator>=(const T &a, const mpz_nombre &b) {
+template<typename Type>
+inline bool operator>=(const Type &a, const mpz_nombre &b) {
     return b.compare(a) <= 0;
 }
 
