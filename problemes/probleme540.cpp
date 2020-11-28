@@ -1,5 +1,5 @@
 #include "problemes.h"
-#include "utilitaires.h"
+#include "timer.h"
 #include "pythagoricien.h"
 #include "racine.h"
 #include "premiers.h"
@@ -8,13 +8,17 @@
 namespace {
     size_t P(size_t limite) {
         size_t limite_crible = racine::racine_carre(limite + 1) + 1;
-        std::vector<size_t> premiers;
-        premiers::crible235<size_t>(limite_crible, std::back_inserter(premiers));
 
         std::vector<std::vector<size_t>> decomposition(limite_crible);
-        for (size_t p: premiers) {
-            for (size_t q = p; q < limite_crible; q += p) {
-                decomposition[q].push_back(p);
+        {
+            Timer t("Crible + décomposition");
+            std::vector<size_t> premiers;
+            premiers::crible235<size_t>(limite_crible, std::back_inserter(premiers));
+
+            for (size_t p: premiers) {
+                for (size_t q = p; q < limite_crible; q += p) {
+                    decomposition[q].push_back(p);
+                }
             }
         }
 
@@ -26,52 +30,43 @@ namespace {
             // m < sqrt(limite - n²) et m < n
             // m < min (sqrt(limite - n²), n)
             size_t m_max = std::min(n, racine::racine_carre(limite - n * n));
-            if (m_max == n) {
-                // Il faut juste calculer phi(n) / 2
-                size_t phi = n;
-                for (size_t p: d) {
-                    phi /= p;
-                    phi *= p - 1;
-                }
 
-                if (n % 2 == 1) {
-                    phi /= 2;
-                }
-
-                // std::cout << "Phi("<< n <<", "<< m_max <<") = " << phi << std::endl;
-                // std::cout << "    " << n << " => " << phi << std::endl;
-                resultat += phi;
-            } else {
-                // Il faut calculer m - m/pi - m/pj ... + m/pi.pj ...
-                size_t nb_facteur = d.size();
-                size_t L_max = 1u << nb_facteur;
-                size_t phi_m = (n % 2 == 0) ? m_max : m_max / 2;
-                for (size_t l = 1; l < L_max; ++l) {
-                    size_t L = l;
-                    size_t P = (n % 2 == 0) ? 1 : 2;
-                    size_t pos_d = 0;
-                    size_t compteur = 0;
-                    while (L > 0) {
-                        if (L % 2 == 1) {
-                            P *= d[pos_d];
-                            ++compteur;
-                        }
-                        ++pos_d;
-                        L >>= 1;
-                    }
-
-                    if (compteur % 2 == 1) {
-                        phi_m -= m_max / P;
-                    } else {
-                        phi_m += m_max / P;
-                    }
-                }
-
-                // std::cout << "Phi("<< n <<", "<< m_max <<") = " << phi_m << std::endl;
-                // std::cout << "    " << n << " => " << phi_m << std::endl;
-                resultat += phi_m;
+            if (n % 2 == 1) {
+                m_max /= 2;
             }
+
+            // Il faut calculer m - m/pi - m/pj ... + m/pi.pj ...
+            size_t nb_facteur = d.size();
+            size_t L_max = 1u << nb_facteur;
+            size_t phi_m = m_max;
+            for (size_t l = 1; l < L_max; ++l) {
+                size_t L = l;
+                size_t P = 1;
+                size_t pos_d = 0;
+                size_t compteur = 0;
+                while (L > 0) {
+                    if (L % 2 == 1) {
+                        P *= d[pos_d];
+                        ++compteur;
+                    }
+                    ++pos_d;
+                    L /= 2;
+                }
+
+                if (compteur % 2 == 1) {
+                    phi_m -= m_max / P;
+                } else {
+                    phi_m += m_max / P;
+                }
+            }
+
+            // std::cout << "Phi("<< n <<", "<< m_max <<") = " << phi_m << std::endl;
+            // std::cout << "    " << n << " => " << phi_m << std::endl;
+            resultat += phi_m;
+
         }
+
+        std::cout << "P(" << limite << ") = " << resultat << std::endl;
 
         return resultat;
     }
@@ -94,11 +89,10 @@ ENREGISTRER_PROBLEME(540, "Counting primitive Pythagorean triples") {
         ++compteur;
     }
     std::cout << "P(20) = " << compteur << std::endl;
-    std::cout << "P(20) = " << P(20) << std::endl;
-    std::cout << "P(1'000'000) = " << P(1'000'000) << std::endl;
 
+    P(20);
+    P(1'000'000);
     size_t solution = P(limite);
-    std::cout << "P(" << limite << ") = " << solution << std::endl;
 
     return std::to_string(solution);
 }
