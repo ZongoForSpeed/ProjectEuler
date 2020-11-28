@@ -219,6 +219,8 @@ public:
     static mpz_nombre factorielle(unsigned long int n);
 
     static mpz_nombre catalan(unsigned long int n);
+
+    static int jacobi(const mpz_nombre &a, const mpz_nombre &b);
     // endregion Arithmetiques
 
     // region Addition
@@ -248,13 +250,15 @@ public:
         }
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<
+            std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
     mpz_nombre &operator+=(const T &op) {
         addition(*this, *this, op);
         return *this;
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<
+            std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
     mpz_nombre operator+(const T &op) const {
         mpz_nombre rop;
         addition(rop, *this, op);
@@ -313,13 +317,15 @@ public:
         }
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<
+            std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
     mpz_nombre &operator-=(const T &op) {
         soustraction(*this, *this, op);
         return *this;
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<
+            std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
     mpz_nombre operator-(const T &op) const {
         mpz_nombre rop;
         soustraction(rop, *this, op);
@@ -347,13 +353,15 @@ public:
         mpz_mul_si(rop._data, op1._data, op2);
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<
+            std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
     mpz_nombre &operator*=(const T &op) {
         multiplication(*this, *this, op);
         return *this;
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<
+            std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
     mpz_nombre operator*(const T &op) const {
         mpz_nombre rop;
         multiplication(rop, *this, op);
@@ -387,13 +395,15 @@ public:
         }
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<
+            std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
     mpz_nombre &operator/=(const T &op) {
         division(*this, *this, op);
         return *this;
     }
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<
+            std::is_arithmetic<T>::value || std::is_same<T, mpz_nombre>::value, T>::type>
     mpz_nombre operator/(const T &op) const {
         mpz_nombre rop;
         division(rop, *this, op);

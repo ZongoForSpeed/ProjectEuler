@@ -2,9 +2,11 @@ set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/arithmetique.h
+        ${PROJECT_SOURCE_DIR}/arithmetique.cpp
         ${PROJECT_SOURCE_DIR}/arithmetique_modulaire.h
         ${PROJECT_SOURCE_DIR}/chiffres.h
         ${PROJECT_SOURCE_DIR}/combinatoire.h
+        ${PROJECT_SOURCE_DIR}/crible_quadratique.h
         ${PROJECT_SOURCE_DIR}/diophantienne.h
         ${PROJECT_SOURCE_DIR}/diophantienne.cpp
         ${PROJECT_SOURCE_DIR}/fenwick.h

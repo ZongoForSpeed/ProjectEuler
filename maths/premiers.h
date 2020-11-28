@@ -6,16 +6,17 @@
 #include <random>
 
 #include "puissance.h"
+#include "mpz_nombre.h"
 
 namespace premiers {
-    void algorithme_crible2(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie);
+    void algorithme_crible2(const std::size_t &taille, const std::function<void(const std::size_t &)> &sortie);
 
-    void algorithme_crible23(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie);
+    void algorithme_crible23(const std::size_t &taille, const std::function<void(const std::size_t &)> &sortie);
 
-    void algorithme_crible235(const std::size_t &taille, const std::function<void(const std::size_t &)>& sortie);
+    void algorithme_crible235(const std::size_t &taille, const std::function<void(const std::size_t &)> &sortie);
 
     void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue,
-                                 const std::function<void(const std::size_t &)>& sortie);
+                                 const std::function<void(const std::size_t &)> &sortie);
 
     template<typename Nombre, class OutputIterator>
     OutputIterator crible2(const std::size_t &taille, OutputIterator sortie) {
@@ -89,7 +90,7 @@ namespace premiers {
             return true;
         }
 
-        Nombre nm1 = n - 1u;
+        Nombre nm1 = n - 1;
 
         // Test de primalité de Fermet avec 210
         // https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_de_Fermat
@@ -114,6 +115,9 @@ namespace premiers {
         }
         return true;
     }
+
+    template<>
+    bool miller_rabin(const mpz_nombre &n, unsigned short reps);
 
     template<typename Nombre>
     Nombre suivant(Nombre n) {
@@ -189,13 +193,13 @@ namespace premiers {
 
     // https://en.wikipedia.org/wiki/Prime-counting_function#The_Meissel%E2%80%93Lehmer_algorithm
     class MeisselLehmer {
-        const std::vector<size_t>& premiers;
+        const std::vector<size_t> &premiers;
         std::vector<size_t> cachePi;
 
         size_t P2(size_t m, size_t n);
 
     public:
-        MeisselLehmer(const std::vector<size_t>& _premiers);
+        MeisselLehmer(const std::vector<size_t> &_premiers);
 
         size_t Phi(size_t m, size_t n);
 

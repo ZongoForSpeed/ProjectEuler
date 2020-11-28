@@ -9,15 +9,19 @@
 #include "puissance.h"
 #include "utilitaires.h"
 
+class mpz_nombre;
+
 namespace arithmetique {
     template<typename Nombre>
-    constexpr Nombre PGCD(Nombre a, Nombre b) {
+    constexpr Nombre PGCD(const Nombre &_a, const Nombre &_b) {
         static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
-        if (a == 0)
-            return b;
-        if (b == 0)
-            return a;
+        if (_a == 0)
+            return _b;
+        if (_b == 0)
+            return _a;
 
+        Nombre a = _a;
+        Nombre b = _b;
         Nombre pgcd;
         while (true) {
             pgcd = a % b;
@@ -30,6 +34,9 @@ namespace arithmetique {
         }
         return pgcd;
     }
+
+    template<>
+    mpz_nombre PGCD(const mpz_nombre &a, const mpz_nombre &b);
 
     template<typename Nombre>
     constexpr Nombre PGCD(Nombre a, Nombre b, Nombre c) {
@@ -60,7 +67,7 @@ namespace arithmetique {
         // std::cout << "quotients by the gcd:" << std::make_pair(t, s) << std::endl;
         x = old_s;
         y = old_t;
-        
+
         return old_r;
     }
 
@@ -207,6 +214,36 @@ namespace arithmetique {
         return (facteurs % 2 == 0) ? 1 : -1;
     }
 
+    template<typename Nombre>
+    int jacobi(const Nombre &_n, const Nombre &_k) {
+        Nombre n = _n;
+        Nombre k = _k;
+        k %= n;
+        int jacobi = 1;
+        while (k > 0) {
+            while (k % 2 == 0) {
+                k /= 2;
+                Nombre r = n % 8;
+                if (r == 3 || r == 5) {
+                    jacobi = -jacobi;
+                }
+            }
+
+            std::swap(n, k);
+            if (k % 4 == 3 && n % 4 == 3) {
+                jacobi = -jacobi;
+            }
+            k %= n;
+        }
+        if (n == 1) {
+            return jacobi;
+        }
+        return 0;
+    }
+
+    template<>
+    int jacobi(const mpz_nombre &n, const mpz_nombre &k);
+
     template<typename Nombre, typename Conteneur>
     bool facteur_carre(Nombre n, const Conteneur &premiers) {
         for (const auto &p: premiers) {
@@ -263,7 +300,7 @@ namespace arithmetique {
 
         return resultat;
     }
-    
+
     template<typename Nombre, typename Conteneur>
     Nombre derivee(Nombre n, const Conteneur &premiers) {
         Nombre resultat = 0;

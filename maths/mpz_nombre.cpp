@@ -413,6 +413,10 @@ bool mpz_nombre::palindrome(unsigned long base) const {
     return std::equal(chiffres.begin(), chiffres.begin() + chiffres.size() / 2, chiffres.rbegin());
 }
 
+int mpz_nombre::jacobi(const mpz_nombre &a, const mpz_nombre &b) {
+    return mpz_jacobi(a._data, b._data);
+}
+
 namespace std {
     mpz_nombre abs(const mpz_nombre &op) {
         mpz_nombre rop;

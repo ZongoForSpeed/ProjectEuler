@@ -299,6 +299,11 @@ namespace premiers {
         }
     }
 
+    template<>
+    bool miller_rabin(const mpz_nombre &n, unsigned short reps) {
+        return n.premier(reps);
+    }
+
     MeisselLehmer::MeisselLehmer(const std::vector<size_t> &_premiers) : premiers(_premiers) {
         std::size_t dernier = 0;
         std::size_t compteur = 0;

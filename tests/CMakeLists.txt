@@ -5,6 +5,7 @@ add_library (tests SHARED
         ${PROJECT_SOURCE_DIR}/arithmetique_modulaire.cpp
         ${PROJECT_SOURCE_DIR}/chiffres.cpp
         ${PROJECT_SOURCE_DIR}/combinatoire.cpp
+        ${PROJECT_SOURCE_DIR}/crible_quadratique.cpp
         ${PROJECT_SOURCE_DIR}/diophantienne.cpp
         ${PROJECT_SOURCE_DIR}/fenwick.cpp
         ${PROJECT_SOURCE_DIR}/matrice.cpp
