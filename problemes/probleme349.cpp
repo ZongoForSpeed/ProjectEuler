@@ -46,7 +46,6 @@ namespace {
     };
 }
 
-
 ENREGISTRER_PROBLEME(349, "Langton's ant") {
     // An ant moves on a regular grid of squares that are coloured either black or white.
     // The ant is always oriented in one of the cardinal directions (left, right, up or down) and moves from square to
