@@ -20,22 +20,23 @@ RegistreProbleme::ajout(const size_t numero, const std::string &nom, const std::
 void
 RegistreProbleme::executeProbleme(std::map<size_t, std::string> &solutions, size_t numero, const std::string &nom,
                                   const std::function<std::string()> &fonction) {
-    const std::string &solution = solutions[numero];
-    std::ostringstream oss;
-    oss << "problème " << numero << ": " << nom;
-    Timer t(oss.str());
-    const std::string resultat = fonction();
+    try {
+        const std::string &solution = solutions[numero];
+        std::ostringstream oss;
+        oss << "problème " << numero << ": " << nom;
+        Timer t(oss.str());
+        const std::string resultat = fonction();
 #ifndef WIN32
-    if (resultat == solution) {
-        std::cout << "\033[1;32m" << "Solution : " << resultat << "\033[0m" << std::endl;
-    } else {
-        std::cout << "\033[1;31m" << "ERREUR !" << std::endl;
-        std::cout << "Résultat : " << resultat << std::endl;
-        std::cout << "Solution : " << solution << std::endl;
-        std::cout << "\033[0m";
-    }
+        if (resultat == solution) {
+            std::cout << "\033[1;32m" << "Solution : " << resultat << "\033[0m" << std::endl;
+        } else {
+            std::cout << "\033[1;31m" << "ERREUR !" << std::endl;
+            std::cout << "Résultat : " << resultat << std::endl;
+            std::cout << "Solution : " << solution << std::endl;
+            std::cout << "\033[0m";
+        }
 #else
-    if (resultat == solution)
+        if (resultat == solution)
             {
                 std::cout << "Solution : " << resultat << std::endl;
             }
@@ -46,8 +47,13 @@ RegistreProbleme::executeProbleme(std::map<size_t, std::string> &solutions, size
                 std::cout << "Solution : " << solution << std::endl;
             }
 #endif
-    if (t.timestamp() > 60.0) {
-        std::cout << "\033[1;31m" << "ERREUR RESOLUTION TROP LONGUE !" << "\033[0m" << std::endl;
+        if (t.timestamp() > 60.0) {
+            std::cout << "\033[1;31m" << "ERREUR RESOLUTION TROP LONGUE !" << "\033[0m" << std::endl;
+        }
+    } catch (std::exception& e) {
+        std::cout<< "Exception : " << e.what() << std::endl;
+    } catch (...) {
+        std::cout<< "Exception : ..." << std::endl;
     }
 }
 

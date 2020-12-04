@@ -3,6 +3,8 @@
 #include <limits>
 #include <set>
 #include <optional>
+#include <deque>
+#include <queue>
 
 namespace graphe {
     typedef unsigned long long nombre;
@@ -63,4 +65,49 @@ namespace graphe {
     private:
         aretes A;
     };
+
+    template<typename E>
+    struct Noeud {
+        Noeud(E _noeud, double _cout, double _heuristic) :
+                noeud(_noeud), cout(_cout), heuristic(_heuristic) {}
+
+        E noeud;
+        double cout;
+        double heuristic;
+
+        bool operator<(const Noeud &n) const {
+            return noeud < n.noeud;
+        }
+    };
+
+    template<typename E, typename G, typename D>
+    double algorithme_a_star(const E &start, const E &end, const G &graph, const D &distance) {
+        std::set<E> closedList;
+        auto compare = [](const Noeud<E> &a, const Noeud<E> &b) {
+            return a.cout > b.cout;
+        };
+        std::priority_queue<Noeud<E>, std::deque<Noeud<E>>, decltype(compare)> queue;
+        queue.emplace(start, 0.0, 0.0);
+        while (!queue.empty()) {
+            Noeud<E> courant = queue.top();
+            queue.pop();
+
+            if (courant.noeud == end) {
+                return courant.cout;
+            }
+
+            if (auto it = closedList.insert(courant.noeud);it.second) {
+                auto moves = graph(courant.noeud);
+                for (auto move: moves) {
+                    if (!closedList.contains(move)) {
+                        double d1 = distance(courant.noeud, move);
+                        double d2 = distance(move, end);
+                        queue.emplace(move, courant.cout + d1, courant.cout + d1 + d2);
+                    }
+                }
+            }
+        }
+
+        return std::numeric_limits<double>::max();
+    }
 }
