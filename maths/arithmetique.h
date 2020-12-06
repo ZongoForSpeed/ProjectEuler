@@ -44,6 +44,11 @@ namespace arithmetique {
     }
 
     template<typename Nombre>
+    constexpr Nombre PGCD(Nombre a, Nombre b, Nombre c, Nombre d) {
+        return PGCD(PGCD(a, b), PGCD(c, d));
+    }
+
+    template<typename Nombre>
     constexpr Nombre PPCM(Nombre a, Nombre b) {
         return (a * b) / PGCD(a, b);
     }
