@@ -44,7 +44,7 @@ ENREGISTRER_PROBLEME(710, "One Million Members") {
         T[n] = S[n - 1] + nombre_modulaire::puissance(deux, n - 2) - T[n - 2];
         S[n] = S[n - 1] + T[n];
         if (T[n].value() == 0) {
-            resultat = 2*n;
+            resultat = 2 * n;
             break;
         }
     }
