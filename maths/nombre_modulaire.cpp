@@ -1,4 +1,7 @@
 #include "nombre_modulaire.h"
+#include "numerique.h"
+
+#include <boost/multiprecision/integer.hpp>
 
 std::ostream &operator<<(std::ostream &os, const nombre_modulaire &a) {
     os << a.value() << "[" << a.modulo() << "]";
@@ -76,9 +79,10 @@ nombre_modulaire &nombre_modulaire::operator-=(const nombre_modulaire &op) {
 nombre_modulaire &nombre_modulaire::operator*=(const nombre_modulaire &op) {
     meme_mod(op);
 
-    size_t c = _value;
-    c *= op._value;
-    _value = c % _modulo;
+    uint128_t c = 0;
+    boost::multiprecision::multiply(c, _value, op._value);
+    _value = boost::multiprecision::integer_modulus(c, _modulo);
+
     return *this;
 }
 
