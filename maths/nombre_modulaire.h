@@ -46,6 +46,8 @@ public:
 
     static nombre_modulaire puissance(nombre_modulaire a, size_t n);
 
+    static nombre_modulaire puissance(size_t a, size_t n, size_t modulo);
+
     [[nodiscard]] unsigned long long value() const;
 
     [[nodiscard]] size_t modulo() const;
@@ -149,7 +151,7 @@ inline nombre_modulaire operator*(const T &op1, const nombre_modulaire &op2) {
 
 template<typename T>
 inline nombre_modulaire operator/(const T &op1, const nombre_modulaire &op2) {
-    nombre_modulaire n(op1);
+    nombre_modulaire n(op2.modulo(), op1);
     return n.operator/(op2);
 }
 

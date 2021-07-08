@@ -46,6 +46,19 @@ nombre_modulaire nombre_modulaire::puissance(nombre_modulaire a, size_t n) {
     return result;
 }
 
+nombre_modulaire nombre_modulaire::puissance(size_t a, size_t n, size_t modulo) {
+    nombre_modulaire result(modulo, 1);
+    nombre_modulaire p(modulo, a);
+    while (n > 0) {
+        if (n % 2)
+            result *= p;
+        p *= a;
+        n /= 2;
+    }
+    return result;
+}
+
+
 unsigned long long nombre_modulaire::value() const { return _value; }
 
 size_t nombre_modulaire::modulo() const { return _modulo; }
@@ -55,8 +68,9 @@ nombre_modulaire nombre_modulaire::operator-() const {
 }
 
 nombre_modulaire &nombre_modulaire::operator=(const nombre_modulaire &op) {
-    meme_mod(op);
+    // meme_mod(op);
 
+    _modulo = op._modulo;
     _value = op._value;
     return *this;
 }
