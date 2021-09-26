@@ -8,6 +8,7 @@ ENREGISTRER_PROBLEME(5, "Smallest multiple") {
     // 
     // What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
     nombre solution = 2;
+#pragma unroll
     for (nombre d = 3; d < 21; ++d) {
         solution = arithmetique::PPCM(d, solution);
     }

@@ -45,8 +45,7 @@ namespace {
             }
         }
 
-        size_t Q = square_free_p - square_free_n;
-        return Q;
+        return square_free_p - square_free_n;
     }
 
 }

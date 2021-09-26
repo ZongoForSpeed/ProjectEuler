@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "utilitaires.h"
 #include "mpz_nombre.h"
 
 ENREGISTRER_PROBLEME(16, "Power digit sum") {

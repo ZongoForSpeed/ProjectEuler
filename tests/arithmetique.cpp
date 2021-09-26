@@ -133,4 +133,14 @@ BOOST_AUTO_TEST_SUITE(test_arithmetique)
         BOOST_CHECK_EQUAL(28000ULL, arithmetique::derivee(10000ULL, premiers));
     }
 
+    BOOST_FIXTURE_TEST_CASE(jacobi, fixure_arithmetiques) {
+        BOOST_CHECK_EQUAL(1, arithmetique::jacobi(20ULL, 16ULL));
+        BOOST_CHECK_EQUAL(1, arithmetique::jacobi(64ULL, 13ULL));
+        BOOST_CHECK_EQUAL(-1, arithmetique::jacobi(67ULL, 7ULL));
+        BOOST_CHECK_EQUAL(0, arithmetique::jacobi(1080ULL, 3ULL));
+        BOOST_CHECK_EQUAL(1, arithmetique::jacobi(4399ULL, 9ULL));
+        BOOST_CHECK_EQUAL(-1, arithmetique::jacobi(8320ULL, 32156ULL));
+        BOOST_CHECK_EQUAL(1, arithmetique::jacobi(10000ULL, 77777ULL));
+    }
+
 BOOST_AUTO_TEST_SUITE_END()

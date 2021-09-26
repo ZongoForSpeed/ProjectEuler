@@ -1,11 +1,11 @@
 #include "problemes.h"
-#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 
 namespace {
     nombre Pythagorean(nombre limite) {
         for (nombre a = 1; a < limite / 3; ++a) {
+#pragma unroll 2
             for (nombre b = a + 1; b < limite / 2; ++b) {
                 if (nombre c = limite - a - b;a * a + b * b == c * c)
                     return a * b * c;

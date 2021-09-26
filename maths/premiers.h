@@ -15,7 +15,7 @@ namespace premiers {
 
     void algorithme_crible235(const std::size_t &taille, const std::function<void(const std::size_t &)> &sortie);
 
-    void algorithme_super_crible(const std::size_t taille, const std::vector<std::size_t> &roue,
+    void algorithme_super_crible(std::size_t taille, const std::vector<std::size_t> &roue,
                                  const std::function<void(const std::size_t &)> &sortie);
 
     template<typename Nombre, class OutputIterator>

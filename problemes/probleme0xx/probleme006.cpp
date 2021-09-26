@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "arithmetique.h"
 
 typedef unsigned long long nombre;
 
@@ -13,6 +12,7 @@ ENREGISTRER_PROBLEME(6, "Sum square difference") {
     // and the square of the sum.
     nombre somme = 0;
     nombre somme_carre = 0;
+#pragma unroll
     for (nombre n = 1; n < 101; ++n) {
         somme += n;
         somme_carre += n * n;

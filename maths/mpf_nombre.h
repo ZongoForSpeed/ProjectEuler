@@ -508,6 +508,10 @@ public:
     static void factorielle(mpf_nombre &rop, unsigned long op);
 
     static void inverse(mpf_nombre &rop, const mpf_nombre &op);
+
+    mpf_nombre floor() const;
+
+    mpf_nombre ceil() const;
 };
 
 template<typename Type, typename = typename std::enable_if<!std::is_same<Type, mpf_nombre>::value, Type>::type>

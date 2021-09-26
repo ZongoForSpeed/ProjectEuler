@@ -412,6 +412,18 @@ void mpf_nombre::inverse(mpf_nombre &rop, const mpf_nombre &op) {
     mpfr_ui_div(rop._data, 1, op._data, DEFAULT_ROUNDING);
 }
 
+mpf_nombre mpf_nombre::floor() const {
+    mpf_nombre rop;
+    mpfr_floor(rop.get_data(), get_data());
+    return rop;
+}
+
+mpf_nombre mpf_nombre::ceil() const {
+    mpf_nombre rop;
+    mpfr_ceil(rop.get_data(), get_data());
+    return rop;
+}
+
 void std::swap(mpf_nombre &op1, mpf_nombre &op2) {
     op1.swap(op2);
 }
