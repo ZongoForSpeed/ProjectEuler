@@ -5,8 +5,7 @@
 typedef long long int nombre;
 
 namespace {
-    std::pair<size_t, size_t> min_compteur_cost(size_t n) {
-        static std::map<size_t, std::pair<size_t, size_t>> cache;
+    std::pair<size_t, size_t> min_compteur_cost(std::map<size_t, std::pair<size_t, size_t>> cache, size_t n) {
         if (n < 2)
             return std::make_pair(0, 0);
 
@@ -18,8 +17,8 @@ namespace {
         size_t min_compteur = std::numeric_limits<size_t>::max();
         size_t min_cost = std::numeric_limits<size_t>::max();
         for (size_t i = 1; i <= n; i++) {
-            auto c1 = min_compteur_cost(i - 1);
-            auto c2_ = min_compteur_cost(n - i);
+            auto c1 = min_compteur_cost(cache, i - 1);
+            auto c2_ = min_compteur_cost(cache, n - i);
             auto c2 = std::make_pair(c2_.first, c2_.second + c2_.first * i);
             size_t compteur;
             size_t cost;
@@ -49,8 +48,9 @@ namespace {
         return resultat;
     }
 
-    size_t cost(const std::vector<size_t> &costs, size_t n, size_t d) {
-        auto mmc = min_compteur_cost(n - d);
+    size_t
+    cost(std::map<size_t, std::pair<size_t, size_t>> &cache, const std::vector<size_t> &costs, size_t n, size_t d) {
+        auto mmc = min_compteur_cost(cache, n - d);
         size_t c = d * mmc.first + mmc.second;
         return d + std::max(costs[d - 1], c);
     }
@@ -94,17 +94,19 @@ ENREGISTRER_PROBLEME(328, "Lowest-cost Search") {
 
     std::vector<size_t> costs(T + 1, 0);
 
+    std::map<size_t, std::pair<size_t, size_t>> cache;
+
     size_t resultat = 0;
     size_t divider = 1;
     size_t div_offset = 1;
     for (size_t i = 2; i <= T; ++i) {
-        size_t c = cost(costs, i, divider);
+        size_t c = cost(cache, costs, i, divider);
         for (size_t off = 1; off <= 2 * div_offset; off <<= 1) {
             if (off > divider) {
                 break;
             }
             size_t d = divider - off;
-            size_t c2 = cost(costs, i, d);
+            size_t c2 = cost(cache, costs, i, d);
             if (c2 <= c) {
                 c = c2;
                 divider = d;

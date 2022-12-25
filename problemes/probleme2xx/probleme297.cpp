@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "timer.h"
+#include "fibonacci.h"
 
 #include <boost/range/adaptor/reversed.hpp>
 
@@ -17,18 +18,16 @@ namespace {
         return fibonacci.back();
     }
 
-    nombre Zeckendorf(const vecteur &fibonacci, const nombre n) {
+    nombre Zeckendorf(std::map<nombre, nombre> &cache, const vecteur &fibonacci, const nombre n) {
         if (n < 2)
             return 0;
-
-        static std::map<nombre, nombre> cache;
 
         if (auto it = cache.find(n);it != cache.end())
             return it->second;
 
         nombre m = maximum(fibonacci, n);
 
-        nombre resultat = n - m + Zeckendorf(fibonacci, m) + Zeckendorf(fibonacci, n - m);
+        nombre resultat = n - m + Zeckendorf(cache, fibonacci, m) + Zeckendorf(cache, fibonacci, n - m);
 
         cache[n] = resultat;
         return resultat;
@@ -48,11 +47,12 @@ ENREGISTRER_PROBLEME(297, "Zeckendorf Representation") {
     //
     // Find ∑ z(n) for 0<n<10**17.
     const auto limite = puissance::puissance<nombre, unsigned>(10, 17);
-    vecteur fibonacci{1, 1};
-    while (fibonacci.back() < limite) {
-        fibonacci.push_back(fibonacci.back() + fibonacci.at(fibonacci.size() - 2));
+    vecteur fibonacci;
+    Fibonacci<nombre> fibo(limite);
+    for (auto f: fibo) {
+        fibonacci.push_back(f);
     }
-
-    nombre resultat = Zeckendorf(fibonacci, limite);
+    std::map<nombre, nombre> cache;
+    nombre resultat = Zeckendorf(cache, fibonacci, limite);
     return std::to_string(resultat);
 }

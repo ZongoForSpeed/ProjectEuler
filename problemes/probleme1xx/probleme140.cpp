@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "fibonacci.h"
 
 #include <fstream>
 
@@ -27,9 +28,14 @@ ENREGISTRER_PROBLEME(140, "Modified Fibonacci golden nuggets") {
     // 20th golden nugget is 211345365.
     //
     // Find the sum of the first thirty golden nuggets.
-    vecteur fibonacci{0, 1, 1};
-    for (size_t n = 3; n < 80; ++n)
-        fibonacci.push_back(fibonacci.back() + fibonacci.at(n - 2));
+    vecteur fibonacci{0};
+    Fibonacci<nombre> fibo;
+    for (auto f: fibo) {
+        fibonacci.push_back(static_cast<long long int>(f));
+        if (fibonacci.size() > 80) {
+            break;
+        }
+    }
 
     auto nugget = [](fraction x) -> nombre {
         x = (1 + 3 * x) * x / (1 - x - x * x);

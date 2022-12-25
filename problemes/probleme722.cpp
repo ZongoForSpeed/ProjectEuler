@@ -8,8 +8,7 @@ namespace {
         return n % 2 == 0 ? 1 : -1;
     }
 
-    mpz_nombre Stirling(size_t n, size_t k) {
-        static std::map<std::pair<size_t,size_t>, mpz_nombre> cache;
+    mpz_nombre Stirling(std::map<std::pair<size_t, size_t>, mpz_nombre> &cache, size_t n, size_t k) {
         if (auto it = cache.find(std::make_pair(n, k)); it != cache.end()) {
             return it->second;
         }
@@ -24,25 +23,25 @@ namespace {
         return cache[std::make_pair(n, k)] = resultat;
     }
 
-    mpf_nombre Polylogarithm(size_t n, mpf_nombre z) {
+    mpf_nombre Polylogarithm(std::map<std::pair<size_t, size_t>, mpz_nombre> &cache, size_t n, mpf_nombre z) {
         // https://en.wikipedia.org/wiki/Polylogarithm#Particular_values
         const mpf_nombre q = z / (1 - z);
         mpf_nombre resultat = 0;
         for (size_t k = 0; k <= n; ++k) {
-            mpz_nombre ak = mpz_nombre::factorielle(k) * Stirling(n + 1, k + 1);
+            mpz_nombre ak = mpz_nombre::factorielle(k) * Stirling(cache, n + 1, k + 1);
             resultat += ak * std::pow(q, k + 1);
         }
 
         return resultat;
     }
 
-    long double E(size_t k, mpf_nombre q) {
+    long double E(std::map<std::pair<size_t, size_t>, mpz_nombre> &cache, size_t k, mpf_nombre q) {
         double epsilon = std::numeric_limits<double>::epsilon();
         mpf_nombre resultat = 0;
         mpf_nombre qm = 1;
         for (size_t m = 1;; ++m) {
             qm *= q;
-            mpf_nombre f = Polylogarithm(k, qm);
+            mpf_nombre f = Polylogarithm(cache, k, qm);
             if (resultat * epsilon > f) {
                 break;
             }
@@ -78,19 +77,21 @@ ENREGISTRER_PROBLEME(722, "Slowly converging series") {
     // Give the answer in scientific notation rounded to twelve digits after the decimal point.
     mpf_nombre::setPrecision(256);
 
+    std::map<std::pair<size_t, size_t>, mpz_nombre> cache;
+
     for (size_t n = 0; n <= 10; ++n) {
         std::cout << n << '\t';
         for (size_t k = 0; k <= n; ++k) {
-            std::cout << Stirling(n, k) << '\t';
+            std::cout << Stirling(cache, n, k) << '\t';
         }
         std::cout << std::endl;
     }
 
-    std::cout << Polylogarithm(3, 0.99609375) << std::endl;
-    E(1, 1.0L - std::pow(0.5L, 4.0L));
-    E(3, 1.0L - std::pow(0.5L, 8.0L));
-    E(7, 1.0L - std::pow(0.5L, 15.0L));
+    std::cout << Polylogarithm(cache, 3, 0.99609375) << std::endl;
+    E(cache, 1, 1.0L - std::pow(0.5L, 4.0L));
+    E(cache, 3, 1.0L - std::pow(0.5L, 8.0L));
+    E(cache, 7, 1.0L - std::pow(0.5L, 15.0L));
 
-    long double resultat = E(15, 1.0L - std::pow(0.5L, 25.0L));
+    long double resultat = E(cache, 15, 1.0L - std::pow(0.5L, 25.0L));
     return std::to_scientific(resultat, 12);
 }

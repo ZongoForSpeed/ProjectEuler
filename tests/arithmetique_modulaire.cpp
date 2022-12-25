@@ -2,6 +2,10 @@
 
 #include "arithmetique_modulaire.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_arithmetique_modulaire)
 
     struct fixure_arithmetiques {
@@ -65,3 +69,5 @@ BOOST_AUTO_TEST_SUITE(test_arithmetique_modulaire)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

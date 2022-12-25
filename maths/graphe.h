@@ -11,14 +11,21 @@ namespace graphe {
     typedef std::vector<nombre> vecteur;
 
     class Tarjan {
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+
         struct Sommet {
             nombre n;
             nombre lowlink;
             bool onStack;
+
             std::optional<nombre> index;
 
             explicit Sommet(nombre _n) : n(_n), lowlink(std::numeric_limits<nombre>::max()), onStack(false) {}
         };
+
+#pragma clang diagnostic pop
 
         void strongconnect(Sommet &v);
 

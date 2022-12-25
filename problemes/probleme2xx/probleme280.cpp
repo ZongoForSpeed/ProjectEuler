@@ -8,8 +8,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace {
-    long double algorithme(size_t sx, size_t sy, const std::bitset<5> &haut, const std::bitset<5> &bas) {
-        static std::map<std::tuple<size_t, size_t, size_t, size_t>, long double> cache;
+    long double algorithme(std::map<std::tuple<size_t, size_t, size_t, size_t>, long double> &cache, size_t sx, size_t sy, const std::bitset<5> &haut, const std::bitset<5> &bas) {
         auto clef = std::make_tuple(sx, sy, haut.to_ulong(), bas.to_ulong());
 
         if (auto it = cache.find(clef);it != cache.end())
@@ -28,7 +27,7 @@ namespace {
                         continue;
                     auto _bas = bas;
                     _bas.reset(x);
-                    b(p) = algorithme(x, 4 - y, _bas, haut);
+                    b(p) = algorithme(cache, x, 4 - y, _bas, haut);
                     continue;
                 }
 
@@ -71,7 +70,8 @@ ENREGISTRER_PROBLEME(280, "Ant and seeds") {
     // What's the expected number of steps until all seeds have been dropped in the top row?
     // 
     // Give your answer rounded to 6 decimal places.
-    long double resultat = algorithme(2, 2, 31, 31);
+    std::map<std::tuple<size_t, size_t, size_t, size_t>, long double> cache;
+    long double resultat = algorithme(cache, 2, 2, 31, 31);
 
     return std::to_fixed(resultat, 6);
 }

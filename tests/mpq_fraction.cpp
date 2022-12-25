@@ -2,6 +2,10 @@
 
 #include "mpq_fraction.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_mpq_nombre)
 
     BOOST_AUTO_TEST_CASE(test_constructeur)
@@ -91,8 +95,8 @@ BOOST_AUTO_TEST_SUITE(test_mpq_nombre)
 
     BOOST_AUTO_TEST_CASE(test_comparaison)
     {
-        mpz_nombre n (25413164);
-        mpz_nombre m (22632576532575);
+        mpz_nombre n(25413164);
+        mpz_nombre m(22632576532575);
 
         BOOST_CHECK(n == 25413164);
         BOOST_CHECK(n != 2543164);
@@ -186,7 +190,7 @@ BOOST_AUTO_TEST_SUITE(test_mpq_nombre)
         BOOST_CHECK_EQUAL(n.numerateur(), 228017639);
         BOOST_CHECK_EQUAL(n.denominateur(), 2750);
 
-        n/=m;
+        n /= m;
         BOOST_CHECK_EQUAL(n.numerateur(), 228017639);
         BOOST_CHECK_EQUAL(n.denominateur(), 756250);
 
@@ -223,3 +227,5 @@ BOOST_AUTO_TEST_SUITE(test_mpq_nombre)
 
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

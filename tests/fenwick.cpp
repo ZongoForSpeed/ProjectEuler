@@ -4,6 +4,10 @@
 #include "fenwick.h"
 #include "utilitaires.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_fenwick)
 
     // BOOST_AUTO_TEST_CASE(test_fenwick, random_fenwick) {
@@ -125,3 +129,5 @@ BOOST_AUTO_TEST_SUITE(test_fenwick)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

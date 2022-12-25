@@ -14,50 +14,51 @@ namespace {
         auto &[xa, ya, za] = a;
         auto &[xb, yb, zb] = b;
 
-        double C = std::hypot(xa - xb, ya - yb, za - zb) / r;
+        double const C = std::hypot(xa - xb, ya - yb, za - zb) / static_cast<double>(r);
 
-        return 2 * r * std::asin(C / 2);
+        return static_cast<double>(2 * r) * std::asin(C / 2);
     }
 
     double cout(const std::tuple<long, long, long> &a, const std::tuple<long, long, long> &b, long r) {
         double d = distance(a, b, r);
-        d /= M_PI * r;
+        d /= M_PI * static_cast<double>(r);
         return d * d;
     }
 
     void permutation(std::set<std::tuple<long, long, long>> &bases, long x, long y, long z) {
-        static const std::vector<std::tuple<short, short, short>> signes{
-                {1, 1, 1},
-                {1, 1, -1}/*,
-                {1,  -1, 1},
-                {1,  -1, -1},
-                {-1, 1,  1},
-                {-1, 1,  -1},
-                {-1, -1, 1},
-                {-1, -1, -1}*/
-        };
+        // x, y, z
+        bases.emplace(x, y, z);
+        // z, x, y
+        bases.emplace(z, x, y);
+        // y, z, x
+        bases.emplace(y, z, x);
 
-        for (auto[s1, s2, s3]: signes) {
-            // x, y, z
-            bases.emplace(s1 * x, s2 * y, s3 * z);
-            // z, x, y
-            bases.emplace(s1 * z, s2 * x, s3 * y);
-            // y, z, x
-            bases.emplace(s1 * y, s2 * z, s3 * x);
+        // x, z, y
+        bases.emplace(x, z, y);
+        // y, x, z
+        bases.emplace(y, x, z);
+        // z, y, x
+        bases.emplace(z, y, x);
 
-            // x, z, y
-            bases.emplace(s1 * x, s2 * z, s3 * y);
-            // y, x, z
-            bases.emplace(s1 * y, s2 * x, s3 * z);
-            // z, y, x
-            bases.emplace(s1 * z, s2 * y, s3 * x);
-        }
+        // x, y, -z
+        bases.emplace(x, y, -z);
+        // z, x, -y
+        bases.emplace(z, x, -y);
+        // y, z, -x
+        bases.emplace(y, z, -x);
+
+        // x, z, -y
+        bases.emplace(x, z, -y);
+        // y, x, -z
+        bases.emplace(y, x, -z);
+        // z, y, -x
+        bases.emplace(z, y, -x);
     }
 
     double
     algorithme_dijkstra(const std::vector<std::tuple<long, long, long>> &noeuds, size_t debut, size_t fin, long r) {
         std::vector<double> distance(noeuds.size(), std::numeric_limits<double>::max());
-        std::vector<double> precedent(noeuds.size(), debut);
+        std::vector<double> precedent(noeuds.size(), static_cast<double>(debut));
 
         distance[debut] = 0;
         std::set<size_t> Q;
@@ -68,7 +69,7 @@ namespace {
         while (!Q.empty()) {
             size_t suivant = 0;
             double minimum = std::numeric_limits<double>::max();
-            for (size_t n: Q) {
+            for (const size_t n: Q) {
                 if (distance[n] < minimum) {
                     suivant = n;
                     minimum = distance[n];
@@ -81,11 +82,11 @@ namespace {
 
             Q.erase(suivant);
             auto &courant = noeuds[suivant];
-            for (size_t n: Q) {
-                double C = distance[suivant] + cout(courant, noeuds[n], r);
+            for (const size_t n: Q) {
+                const double C = distance[suivant] + cout(courant, noeuds[n], r);
                 if (distance[n] > C) {
                     distance[n] = C;
-                    precedent[n] = suivant;
+                    precedent[n] = static_cast<double>(suivant);
                 }
             }
         }
@@ -107,16 +108,16 @@ namespace {
         std::set<std::tuple<long, long, long>> bases;
         for (long x = 0; x <= r; ++x) {
             for (long y = x; y <= r; ++y) {
-                long Z = r * r - x * x - y * y;
+                long const Z = r * r - x * x - y * y;
                 if (auto dz = racine::carre_parfait(Z)) {
-                    long z = dz.value();
+                    long const z = dz.value();
                     permutation(bases, x, y, z);
                 }
             }
         }
 
-        std::tuple<long, long, long> NorthPole{0, 0, r};
-        std::tuple<long, long, long> SouthPole{0, 0, -r};
+        std::tuple<long, long, long> const NorthPole{0, 0, r};
+        std::tuple<long, long, long> const SouthPole{0, 0, -r};
 
         std::cout << bases.size() << std::endl;
         std::cout << "NorthPole = " << NorthPole << std::endl;

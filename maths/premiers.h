@@ -1,3 +1,5 @@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
 #pragma once
 
 #include <functional>
@@ -209,3 +211,5 @@ namespace premiers {
     };
 
 }
+
+#pragma clang diagnostic pop

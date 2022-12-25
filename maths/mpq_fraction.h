@@ -23,11 +23,25 @@ public:
 
     mpq_fraction(unsigned long int op1, unsigned long int op2);
 
+    explicit mpq_fraction(unsigned long int op);
+
     mpq_fraction(signed long int op1, unsigned long int op2);
+
+    explicit mpq_fraction(signed long int op);
 
     mpq_fraction(const std::string &op, int base = 10);
 
-    mpq_fraction(double op);
+    explicit mpq_fraction(double op);
+
+    explicit mpq_fraction(unsigned int op);
+
+    explicit mpq_fraction(signed int op);
+
+    template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, T>::type>
+    mpq_fraction(T x) {
+        init();
+        set(mpz_nombre(x));
+    }
 
     mpq_fraction &operator=(const mpq_fraction &op);
 
@@ -38,6 +52,16 @@ public:
         set(op);
         return *this;
     }
+
+    mpq_fraction &operator++();
+
+    mpq_fraction &operator--();
+
+    [[deprecated]]
+    const mpq_fraction operator++(int);
+
+    [[deprecated]]
+    const mpq_fraction operator--(int);
 
     // region Setters
     void set(const mpq_t &op) {
@@ -89,6 +113,8 @@ public:
 
     double get_double() const;
 
+    static const mpq_fraction& one();
+
     std::string to_string(int base = 10) const;
 
     mpq_fraction &negation() {
@@ -116,6 +142,8 @@ public:
     signed short signe() const {
         return mpq_sgn(_data);
     }
+
+    mpq_fraction &operator+=(const mpq_fraction &op);
 
     mpq_fraction &operator+=(mpq_fraction &op);
 

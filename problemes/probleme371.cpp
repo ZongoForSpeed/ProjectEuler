@@ -5,30 +5,28 @@ typedef long nombre;
 typedef std::pair<nombre, nombre> paire;
 
 namespace {
-    long double probabilite(nombre m, nombre n, bool f) {
-        typedef std::tuple<nombre, nombre, bool> key_type;
-        static std::map<key_type, long double> cache;
-        
+    long double
+    probabilite(std::map<std::tuple<nombre, nombre, bool>, long double> &cache, nombre m, nombre n, bool f) {
         auto key = std::make_tuple(m, n, f);
         auto it = cache.find(key);
         if (it != cache.end()) {
             return it->second;
         }
-        
+
         long double resultat = 0;
         if (m == 1) {
             resultat = n;
         } else {
-            resultat = probabilite(m-1, n, f) * (n + 1 - f);
-            
-            resultat += probabilite(m-1, n+1, f) 
-                * (f * std::max(0l, 999 - 2 * n + 1) + (1 - f) * std::max(0l, 999 - 2 * n - 1));
-            
-            resultat += probabilite(m-1, n+1, true) * (1 - f);
+            resultat = probabilite(cache, m - 1, n, f) * (n + 1 - f);
+
+            resultat += probabilite(cache, m - 1, n + 1, f)
+                        * (f * std::max(0l, 999 - 2 * n + 1) + (1 - f) * std::max(0l, 999 - 2 * n - 1));
+
+            resultat += probabilite(cache, m - 1, n + 1, true) * (1 - f);
         }
-        
+
         resultat /= 1000.0l;
-        
+
         cache.emplace(key, resultat);
         return resultat;
     }
@@ -46,9 +44,10 @@ ENREGISTRER_PROBLEME(371, "Licence plates") {
     //
     // Note: We assume that each licence plate seen is equally likely to have any three digit number on it.
     long double resultat = 0;
+    std::map<std::tuple<nombre, nombre, bool>, long double> cache;
     for (long i = 1; i < 300; ++i) {
-        resultat += i*probabilite(i, 0, false);
+        resultat += i * probabilite(cache, i, 0, false);
     }
-    
+
     return std::to_fixed(resultat, 8);
 }

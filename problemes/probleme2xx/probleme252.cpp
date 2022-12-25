@@ -1,15 +1,22 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> point;
 
 namespace {
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+
     struct polygone {
         std::vector<point> points;
         long double aire;
     };
+
+#pragma clang diagnostic pop
 
     long double aire(const point &A, const point &B, const point &C) {
         nombre determinant = (B.first - A.first) * (C.second - A.second)

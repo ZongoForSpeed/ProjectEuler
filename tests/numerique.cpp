@@ -3,6 +3,10 @@
 #include "numerique.h"
 #include "combinatoire.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_numerique)
 
     BOOST_AUTO_TEST_CASE(ostringstream_signed) {
@@ -54,4 +58,7 @@ BOOST_AUTO_TEST_SUITE(test_numerique)
         BOOST_CHECK_EQUAL(0,
                           std::numeric_limits<uint128_t>::min());
     }
+
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

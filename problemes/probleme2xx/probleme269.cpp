@@ -5,9 +5,7 @@ typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace {
-    nombre algorithme(const vecteur &residue, nombre nbChiffres) {
-        static std::map<std::pair<vecteur, nombre>, nombre> cache;
-
+    nombre algorithme(std::map<std::pair<vecteur, nombre>, nombre> &cache, const vecteur &residue, nombre nbChiffres) {
         auto key = std::make_pair(residue, nbChiffres);
 
         if (auto it = cache.find(key);it != cache.end())
@@ -26,7 +24,7 @@ namespace {
                     if (i > 1 && (8 < residue_max || residue_max < -9 * i))
                         _residue[i] = std::numeric_limits<unsigned short>::max();
                 }
-                resultat += algorithme(_residue, nbChiffres - 1);
+                resultat += algorithme(cache, _residue, nbChiffres - 1);
             }
 
         return cache[key] = resultat;
@@ -51,6 +49,7 @@ ENREGISTRER_PROBLEME(269, "Polynomials with at least one integer root") {
     //
     // What is Z(10**16)?
     vecteur residue(10, 0);
-    nombre resultat = algorithme(residue, 16);
+    std::map<std::pair<vecteur, nombre>, nombre> cache;
+    nombre resultat = algorithme(cache, residue, 16);
     return std::to_string(resultat);
 }

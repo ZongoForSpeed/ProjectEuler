@@ -4,6 +4,10 @@
 #include <boost/numeric/ublas/assignment.hpp>
 #include <boost/rational.hpp>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_matrice)
 
     BOOST_AUTO_TEST_CASE(puissance) {
@@ -177,3 +181,5 @@ BOOST_AUTO_TEST_SUITE(test_matrice)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

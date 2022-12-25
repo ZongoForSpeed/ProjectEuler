@@ -7,8 +7,7 @@ typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace {
-    nombre Mertens(nombre n, const vecteur &mertens) {
-        static std::map<nombre, nombre> f;
+    nombre Mertens(std::map<nombre, nombre> &f, nombre n, const vecteur &mertens) {
         const auto m = static_cast<size_t>(n);
         if (m < mertens.size())
             return mertens[m];
@@ -19,7 +18,7 @@ namespace {
         ret = 1;
         for (nombre i = 2, j; i <= n; i = j) {
             j = n / (n / i) + 1;
-            ret += (i - j) * Mertens(n / i, mertens);
+            ret += (i - j) * Mertens(f, n / i, mertens);
         }
         return ret;
     }
@@ -79,10 +78,12 @@ ENREGISTRER_PROBLEME(319, "Bounded Sequences") {
         mertens[i + 1] %= modulo;
     }
 
+    std::map<nombre, nombre> f;
+
     nombre resultat = 0, lx = 0;
     for (nombre i = 1, j; i <= N; i = j) {
         j = N / (N / i) + 1;
-        nombre t = Mertens(j - 1, mertens) % modulo;
+        nombre t = Mertens(f, j - 1, mertens) % modulo;
         resultat += (t - lx + modulo) * g(N / i, modulo) % modulo;
         lx = t;
     }

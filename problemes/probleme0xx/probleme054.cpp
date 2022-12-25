@@ -7,6 +7,10 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 namespace {
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+
     struct Carte {
         unsigned short valeur;
         char couleur;
@@ -65,6 +69,8 @@ namespace {
             return couleur < c.couleur;
         }
     };
+
+#pragma clang diagnostic pop
 
     struct Main {
         std::vector<Carte> cartes;

@@ -3,6 +3,10 @@
 #include "utilitaires.h"
 #include "permutation.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_permutation)
 
     BOOST_AUTO_TEST_CASE(permutation_simple) {
@@ -110,7 +114,7 @@ BOOST_AUTO_TEST_SUITE(test_permutation)
 
         size_t index = 0;
         std::vector<int> iterable{1, 2, 3, 4};
-        for (auto i : permutation::Combinaisons<int>(iterable, 3)) {
+        for (auto i: permutation::Combinaisons<int>(iterable, 3)) {
             BOOST_CHECK_EQUAL_COLLECTIONS(i.begin(), i.end(),
                                           resultat[index].begin(), resultat[index].end());
             ++index;
@@ -122,7 +126,7 @@ BOOST_AUTO_TEST_SUITE(test_permutation)
 
         size_t index = 0;
         std::vector<char> iterable{'A', 'B', 'C', 'D'};
-        for (auto i : permutation::Combinaisons<char>(iterable, 2)) {
+        for (auto i: permutation::Combinaisons<char>(iterable, 2)) {
             BOOST_CHECK_EQUAL_COLLECTIONS(i.begin(), i.end(),
                                           resultat[index].begin(), resultat[index].end());
             ++index;
@@ -130,3 +134,5 @@ BOOST_AUTO_TEST_SUITE(test_permutation)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

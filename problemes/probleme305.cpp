@@ -38,12 +38,11 @@ namespace {
     }
 
     std::deque<std::string> enumeration(size_t n) {
-        static const std::string chiffres("0123456789");
         std::deque<std::string> resultat{""};
         for (size_t d = 0; d < n; ++d) {
             std::deque<std::string> r;
             for (const auto &x: resultat) {
-                for (const auto &y: chiffres) {
+                for (char y = '0'; y <= '9'; ++y) {
                     r.push_back(x);
                     r.back().push_back(y);
                 }

@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "mpq_fraction.h"
 
 #include <fstream>
 
@@ -8,18 +9,17 @@ typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
 
 typedef std::vector<unsigned short> envelope;
-typedef boost::rational<nombre> fraction;
 
 namespace {
-    fraction calculEsperance(std::map<envelope, fraction> &cache, const envelope &e) {
+    mpq_fraction calculEsperance(std::map<envelope, mpq_fraction> &cache, const envelope &e) {
         if (auto it = cache.find(e);it != cache.end())
             return it->second;
 
-        fraction resultat(0, 1);
+        mpq_fraction resultat(0ul, 1ul);
         if (!e.empty()) {
             for (size_t i = 0; i < e.size(); i++) {
                 envelope nouvelleEnvelope(e);
-                unsigned short sheet = e[i];
+                const unsigned short sheet = e[i];
                 nouvelleEnvelope.erase(std::next(nouvelleEnvelope.begin(), i));
                 for (unsigned short j = sheet + 1; j <= 5; j++)
                     nouvelleEnvelope.push_back(j);
@@ -29,7 +29,7 @@ namespace {
 
             resultat /= e.size();
             if (e.size() == 1)
-                resultat++;
+                ++resultat;
         }
 
         cache[e] = resultat;
@@ -57,11 +57,8 @@ ENREGISTRER_PROBLEME(151, "Paper sheets of standard sizes: an expected-value pro
     // foreman finds a single sheet of paper in the envelope.
     //
     // Give your answer rounded to six decimal places using the format x.xxxxxx .
-    std::map<envelope, fraction> cache;
-    envelope e{1};
-    fraction f = calculEsperance(cache, e) - fraction(2);
-    double resultat = 1;
-    resultat *= f.numerator();
-    resultat /= f.denominator();
-    return std::to_fixed(resultat, 6);
+    std::map<envelope, mpq_fraction> cache;
+    const envelope e{1};
+    mpq_fraction f = calculEsperance(cache, e) - 2;
+    return std::to_fixed(f.get_double(), 6);
 }

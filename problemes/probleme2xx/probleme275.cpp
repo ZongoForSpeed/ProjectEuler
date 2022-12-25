@@ -9,7 +9,7 @@ namespace {
     typedef std::set<Point> Points;
 
     bool symetrique(const Points &P) {
-        for (const auto&[x, y] : P) {
+        for (const auto &[x, y]: P) {
             if (P.find(std::make_pair(-x, y)) == P.end())
                 return false;
         }
@@ -19,12 +19,15 @@ namespace {
 
     nombre somme_x(const Points &P) {
         nombre resultat = 0;
-        for (const auto &[x, y] : P) {
+        for (const auto &[x, y]: P) {
             resultat += x;
         }
 
         return resultat;
     }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
 
     nombre algorithme(nombre n, Points &P, Points &F, Points &R, nombre x, nombre minimum_x, nombre maximum_x) {
         nombre min_change = n * (2 * minimum_x - n - 1) / 2;
@@ -67,7 +70,7 @@ namespace {
 
         std::vector<Point> NEW;
         for (const auto &[dx, dy]: dp) {
-            Point next(f0.first + dx, f0.second + dy);
+            Point const next(f0.first + dx, f0.second + dy);
             if (next.second <= 0 || F.find(next) != F.end()
                 || R.find(next) != R.end() || P.find(next) != P.end())
                 continue;
@@ -82,11 +85,13 @@ namespace {
 
         resultat += algorithme(n - 1, P, F, R, x, minimum_x, maximum_x);
         P.erase(f0);
-        for (const Point &p : NEW)
+        for (const Point &p: NEW)
             F.erase(p);
         F.insert(f0);
         return resultat;
     }
+
+#pragma clang diagnostic pop
 }
 
 ENREGISTRER_PROBLEME(275, "Balanced Sculptures") {

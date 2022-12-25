@@ -2,6 +2,10 @@
 
 #include "diophantienne.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_diophantienne)
 
     BOOST_AUTO_TEST_CASE(pqa1) {
@@ -185,7 +189,7 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
         // 10x + 84y + 16 = 0
         long long int A = 10, B = 84, C = 16;
         size_t compteur = 0;
-        for (auto s : diophantienne::equation_lineaire(A, B, C)) {
+        for (auto s: diophantienne::equation_lineaire(A, B, C)) {
             ++compteur;
             if (compteur > 10) {
                 break;
@@ -198,7 +202,7 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
         // 10x + 84y - 16 = 0
         long long int A = 10, B = 84, C = -16;
         size_t compteur = 0;
-        for (auto s : diophantienne::equation_lineaire(A, B, C)) {
+        for (auto s: diophantienne::equation_lineaire(A, B, C)) {
             ++compteur;
             if (compteur > 10) {
                 break;
@@ -208,3 +212,5 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

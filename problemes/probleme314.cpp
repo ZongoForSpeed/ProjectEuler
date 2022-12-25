@@ -9,7 +9,8 @@ typedef std::map<point, std::pair<double, point>> graphe;
 
 namespace {
     double distance(const point &p1, const point &p2) {
-        return std::hypot(1.0 * p1.first - p2.first, 1.0 * p1.second - p2.second);
+        return std::hypot(static_cast<double>(p1.first) - static_cast<double>(p2.first),
+                          static_cast<double>(p1.second) - static_cast<double>(p2.second));
     }
 
     double aire_triangle(const point &p1, const point &p2, const point &p3) {

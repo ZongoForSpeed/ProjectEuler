@@ -23,14 +23,18 @@ namespace {
     //     }
     // }
 
+    void set_test(std::vector<bool> &test, size_t start, size_t end, size_t p) {
+        for (size_t t = start; t < end; t += p) {
+            test[t] = false;
+        }
+    }
+
     void internal_crible2(const std::size_t &taille, std::vector<bool> &test) {
         test.assign(taille, true);
         test.at(0) = false;
         for (std::size_t p = 1; p * p < taille / 2; ++p) {
             if (test.at(p)) {
-#pragma unroll 2
-                for (std::size_t k = 2 * (p * p + p); k < taille; k += 2 * p + 1)
-                    test.at(k) = false;
+                set_test(test, 2 * (p * p + p), taille, 2 * p + 1);
             }
         }
     }
@@ -43,22 +47,14 @@ namespace {
             // Cas p = 6*k + 1
             if (test1.at(k)) {
                 const std::size_t p = 6 * k + 1;
-#pragma unroll 2
-                for (std::size_t l = 6 * k * k + 2 * k; l < taille; l += p)
-                    test1.at(l) = false;
-#pragma unroll 2
-                for (std::size_t l = 6 * k * k + 6 * k; l < taille; l += p)
-                    test5.at(l) = false;
+                set_test(test1, 6 * k * k + 2 * k, taille, p);
+                set_test(test5, 6 * k * k + 6 * k, taille, p);
             }
             // Cas p = 6*k + 5
             if (test5.at(k)) {
                 const std::size_t p = 6 * k + 5;
-#pragma unroll 2
-                for (std::size_t l = 6 * k * k + 10 * k + 4; l < taille; l += p)
-                    test1.at(l) = false;
-#pragma unroll 2
-                for (std::size_t l = 6 * k * k + 12 * k + 5; l < taille; l += p)
-                    test5.at(l) = false;
+                set_test(test1, 6 * k * k + 10 * k + 4, taille, p);
+                set_test(test5, 6 * k * k + 12 * k + 5, taille, p);
             }
         }
     }
@@ -78,92 +74,92 @@ namespace {
         for (std::size_t k = 0; 30 * k * k < taille; ++k) {
             if (test1.at(k)) {
                 const std::size_t p = 30 * k + 1;
-                for (std::size_t l = 30 * k * k + 2 * k + 0; l < taille; l += p) test1.at(l) = false;
-                for (std::size_t l = 30 * k * k + 8 * k + 0; l < taille; l += p) test7.at(l) = false;
-                for (std::size_t l = 30 * k * k + 12 * k + 0; l < taille; l += p) test11.at(l) = false;
-                for (std::size_t l = 30 * k * k + 14 * k + 0; l < taille; l += p) test13.at(l) = false;
-                for (std::size_t l = 30 * k * k + 18 * k + 0; l < taille; l += p) test17.at(l) = false;
-                for (std::size_t l = 30 * k * k + 20 * k + 0; l < taille; l += p) test19.at(l) = false;
-                for (std::size_t l = 30 * k * k + 24 * k + 0; l < taille; l += p) test23.at(l) = false;
-                for (std::size_t l = 30 * k * k + 30 * k + 0; l < taille; l += p) test29.at(l) = false;
+                set_test(test1, 30 * k * k + 2 * k + 0, taille, p);
+                set_test(test7, 30 * k * k + 8 * k + 0, taille, p);
+                set_test(test11, 30 * k * k + 12 * k + 0, taille, p);
+                set_test(test13, 30 * k * k + 14 * k + 0, taille, p);
+                set_test(test17, 30 * k * k + 18 * k + 0, taille, p);
+                set_test(test19, 30 * k * k + 20 * k + 0, taille, p);
+                set_test(test23, 30 * k * k + 24 * k + 0, taille, p);
+                set_test(test29, 30 * k * k + 30 * k + 0, taille, p);
             }
             if (test7.at(k)) {
                 const std::size_t p = 30 * k + 7;
-                for (std::size_t l = 30 * k * k + 14 * k + 1; l < taille; l += p) test19.at(l) = false;
-                for (std::size_t l = 30 * k * k + 18 * k + 2; l < taille; l += p) test17.at(l) = false;
-                for (std::size_t l = 30 * k * k + 20 * k + 3; l < taille; l += p) test1.at(l) = false;
-                for (std::size_t l = 30 * k * k + 24 * k + 3; l < taille; l += p) test29.at(l) = false;
-                for (std::size_t l = 30 * k * k + 26 * k + 4; l < taille; l += p) test13.at(l) = false;
-                for (std::size_t l = 30 * k * k + 30 * k + 5; l < taille; l += p) test11.at(l) = false;
-                for (std::size_t l = 30 * k * k + 36 * k + 6; l < taille; l += p) test23.at(l) = false;
-                for (std::size_t l = 30 * k * k + 38 * k + 7; l < taille; l += p) test7.at(l) = false;
+                set_test(test19, 30 * k * k + 14 * k + 1, taille, p);
+                set_test(test17, 30 * k * k + 18 * k + 2, taille, p);
+                set_test(test1, 30 * k * k + 20 * k + 3, taille, p);
+                set_test(test29, 30 * k * k + 24 * k + 3, taille, p);
+                set_test(test13, 30 * k * k + 26 * k + 4, taille, p);
+                set_test(test11, 30 * k * k + 30 * k + 5, taille, p);
+                set_test(test23, 30 * k * k + 36 * k + 6, taille, p);
+                set_test(test7, 30 * k * k + 38 * k + 7, taille, p);
             }
             if (test11.at(k)) {
                 const std::size_t p = 30 * k + 11;
-                for (std::size_t l = 30 * k * k + 22 * k + 4; l < taille; l += p) test1.at(l) = false;
-                for (std::size_t l = 30 * k * k + 24 * k + 4; l < taille; l += p) test23.at(l) = false;
-                for (std::size_t l = 30 * k * k + 28 * k + 6; l < taille; l += p) test7.at(l) = false;
-                for (std::size_t l = 30 * k * k + 30 * k + 6; l < taille; l += p) test29.at(l) = false;
-                for (std::size_t l = 30 * k * k + 34 * k + 8; l < taille; l += p) test13.at(l) = false;
-                for (std::size_t l = 30 * k * k + 40 * k + 10; l < taille; l += p) test19.at(l) = false;
-                for (std::size_t l = 30 * k * k + 42 * k + 11; l < taille; l += p) test11.at(l) = false;
-                for (std::size_t l = 30 * k * k + 48 * k + 13; l < taille; l += p) test17.at(l) = false;
+                set_test(test1, 30 * k * k + 22 * k + 4, taille, p);
+                set_test(test23, 30 * k * k + 24 * k + 4, taille, p);
+                set_test(test7, 30 * k * k + 28 * k + 6, taille, p);
+                set_test(test29, 30 * k * k + 30 * k + 6, taille, p);
+                set_test(test13, 30 * k * k + 34 * k + 8, taille, p);
+                set_test(test19, 30 * k * k + 40 * k + 10, taille, p);
+                set_test(test11, 30 * k * k + 42 * k + 11, taille, p);
+                set_test(test17, 30 * k * k + 48 * k + 13, taille, p);
             }
             if (test13.at(k)) {
                 const std::size_t p = 30 * k + 13;
-                for (std::size_t l = 30 * k * k + 26 * k + 5; l < taille; l += p) test19.at(l) = false;
-                for (std::size_t l = 30 * k * k + 30 * k + 7; l < taille; l += p) test11.at(l) = false;
-                for (std::size_t l = 30 * k * k + 32 * k + 8; l < taille; l += p) test7.at(l) = false;
-                for (std::size_t l = 30 * k * k + 36 * k + 9; l < taille; l += p) test29.at(l) = false;
-                for (std::size_t l = 30 * k * k + 42 * k + 12; l < taille; l += p) test17.at(l) = false;
-                for (std::size_t l = 30 * k * k + 44 * k + 13; l < taille; l += p) test13.at(l) = false;
-                for (std::size_t l = 30 * k * k + 50 * k + 16; l < taille; l += p) test1.at(l) = false;
-                for (std::size_t l = 30 * k * k + 54 * k + 17; l < taille; l += p) test23.at(l) = false;
+                set_test(test19, 30 * k * k + 26 * k + 5, taille, p);
+                set_test(test11, 30 * k * k + 30 * k + 7, taille, p);
+                set_test(test7, 30 * k * k + 32 * k + 8, taille, p);
+                set_test(test29, 30 * k * k + 36 * k + 9, taille, p);
+                set_test(test17, 30 * k * k + 42 * k + 12, taille, p);
+                set_test(test13, 30 * k * k + 44 * k + 13, taille, p);
+                set_test(test1, 30 * k * k + 50 * k + 16, taille, p);
+                set_test(test23, 30 * k * k + 54 * k + 17, taille, p);
             }
             if (test17.at(k)) {
                 const std::size_t p = 30 * k + 17;
-                for (std::size_t l = 30 * k * k + 34 * k + 9; l < taille; l += p) test19.at(l) = false;
-                for (std::size_t l = 30 * k * k + 36 * k + 10; l < taille; l += p) test23.at(l) = false;
-                for (std::size_t l = 30 * k * k + 40 * k + 13; l < taille; l += p) test1.at(l) = false;
-                for (std::size_t l = 30 * k * k + 46 * k + 16; l < taille; l += p) test13.at(l) = false;
-                for (std::size_t l = 30 * k * k + 48 * k + 17; l < taille; l += p) test17.at(l) = false;
-                for (std::size_t l = 30 * k * k + 54 * k + 20; l < taille; l += p) test29.at(l) = false;
-                for (std::size_t l = 30 * k * k + 58 * k + 23; l < taille; l += p) test7.at(l) = false;
-                for (std::size_t l = 30 * k * k + 60 * k + 24; l < taille; l += p) test11.at(l) = false;
+                set_test(test19, 30 * k * k + 34 * k + 9, taille, p);
+                set_test(test23, 30 * k * k + 36 * k + 10, taille, p);
+                set_test(test1, 30 * k * k + 40 * k + 13, taille, p);
+                set_test(test13, 30 * k * k + 46 * k + 16, taille, p);
+                set_test(test17, 30 * k * k + 48 * k + 17, taille, p);
+                set_test(test29, 30 * k * k + 54 * k + 20, taille, p);
+                set_test(test7, 30 * k * k + 58 * k + 23, taille, p);
+                set_test(test11, 30 * k * k + 60 * k + 24, taille, p);
             }
             if (test19.at(k)) {
                 const std::size_t p = 30 * k + 19;
-                for (std::size_t l = 30 * k * k + 38 * k + 12; l < taille; l += p) test1.at(l) = false;
-                for (std::size_t l = 30 * k * k + 42 * k + 14; l < taille; l += p) test17.at(l) = false;
-                for (std::size_t l = 30 * k * k + 48 * k + 18; l < taille; l += p) test11.at(l) = false;
-                for (std::size_t l = 30 * k * k + 50 * k + 19; l < taille; l += p) test19.at(l) = false;
-                for (std::size_t l = 30 * k * k + 56 * k + 23; l < taille; l += p) test13.at(l) = false;
-                for (std::size_t l = 30 * k * k + 60 * k + 25; l < taille; l += p) test29.at(l) = false;
-                for (std::size_t l = 30 * k * k + 62 * k + 27; l < taille; l += p) test7.at(l) = false;
-                for (std::size_t l = 30 * k * k + 66 * k + 29; l < taille; l += p) test23.at(l) = false;
+                set_test(test1, 30 * k * k + 38 * k + 12, taille, p);
+                set_test(test17, 30 * k * k + 42 * k + 14, taille, p);
+                set_test(test11, 30 * k * k + 48 * k + 18, taille, p);
+                set_test(test19, 30 * k * k + 50 * k + 19, taille, p);
+                set_test(test13, 30 * k * k + 56 * k + 23, taille, p);
+                set_test(test29, 30 * k * k + 60 * k + 25, taille, p);
+                set_test(test7, 30 * k * k + 62 * k + 27, taille, p);
+                set_test(test23, 30 * k * k + 66 * k + 29, taille, p);
             }
             if (test23.at(k)) {
                 const std::size_t p = 30 * k + 23;
-                for (std::size_t l = 30 * k * k + 46 * k + 17; l < taille; l += p) test19.at(l) = false;
-                for (std::size_t l = 30 * k * k + 52 * k + 22; l < taille; l += p) test7.at(l) = false;
-                for (std::size_t l = 30 * k * k + 54 * k + 23; l < taille; l += p) test23.at(l) = false;
-                for (std::size_t l = 30 * k * k + 60 * k + 28; l < taille; l += p) test11.at(l) = false;
-                for (std::size_t l = 30 * k * k + 64 * k + 31; l < taille; l += p) test13.at(l) = false;
-                for (std::size_t l = 30 * k * k + 66 * k + 32; l < taille; l += p) test29.at(l) = false;
-                for (std::size_t l = 30 * k * k + 70 * k + 36; l < taille; l += p) test1.at(l) = false;
-                for (std::size_t l = 30 * k * k + 72 * k + 37; l < taille; l += p) test17.at(l) = false;
+                set_test(test19, 30 * k * k + 46 * k + 17, taille, p);
+                set_test(test7, 30 * k * k + 52 * k + 22, taille, p);
+                set_test(test23, 30 * k * k + 54 * k + 23, taille, p);
+                set_test(test11, 30 * k * k + 60 * k + 28, taille, p);
+                set_test(test13, 30 * k * k + 64 * k + 31, taille, p);
+                set_test(test29, 30 * k * k + 66 * k + 32, taille, p);
+                set_test(test1, 30 * k * k + 70 * k + 36, taille, p);
+                set_test(test17, 30 * k * k + 72 * k + 37, taille, p);
             }
             if (test29.at(k)) {
                 const std::size_t p = 30 * k + 29;
-                for (std::size_t l = 30 * k * k + 58 * k + 28; l < taille; l += p) test1.at(l) = false;
-                for (std::size_t l = 30 * k * k + 60 * k + 29; l < taille; l += p) test29.at(l) = false;
-                for (std::size_t l = 30 * k * k + 66 * k + 35; l < taille; l += p) test23.at(l) = false;
-                for (std::size_t l = 30 * k * k + 70 * k + 39; l < taille; l += p) test19.at(l) = false;
-                for (std::size_t l = 30 * k * k + 72 * k + 41; l < taille; l += p) test17.at(l) = false;
-                for (std::size_t l = 30 * k * k + 76 * k + 45; l < taille; l += p) test13.at(l) = false;
-                for (std::size_t l = 30 * k * k + 78 * k + 47; l < taille; l += p) test11.at(l) = false;
-                for (std::size_t l = 30 * k * k + 82 * k + 51; l < taille; l += p) test7.at(l) = false;
-                for (std::size_t l = 30 * k * k + 88 * k + 57; l < taille; l += p) test1.at(l) = false;
+                set_test(test1, 30 * k * k + 58 * k + 28, taille, p);
+                set_test(test29, 30 * k * k + 60 * k + 29, taille, p);
+                set_test(test23, 30 * k * k + 66 * k + 35, taille, p);
+                set_test(test19, 30 * k * k + 70 * k + 39, taille, p);
+                set_test(test17, 30 * k * k + 72 * k + 41, taille, p);
+                set_test(test13, 30 * k * k + 76 * k + 45, taille, p);
+                set_test(test11, 30 * k * k + 78 * k + 47, taille, p);
+                set_test(test7, 30 * k * k + 82 * k + 51, taille, p);
+                set_test(test1, 30 * k * k + 88 * k + 57, taille, p);
             }
         }
     }

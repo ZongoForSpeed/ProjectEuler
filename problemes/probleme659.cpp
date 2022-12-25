@@ -1,11 +1,12 @@
 #include <maths/arithmetique_modulaire.h>
 #include "problemes.h"
 #include "premiers.h"
+#include "random.h"
 
 namespace {
+
     size_t calcul_racine(size_t p) {
-        static std::random_device rd;   // Will be used to obtain a seed for the random number engine
-        static std::mt19937 mt(rd());   // Standard mersenne_twister_engine seeded with rd()
+        std::mt19937& mt = utilitaires::generator();
         std::uniform_int_distribution<size_t> distribution(1, p - 2);
         size_t exp = p - 1;
         while (exp % 2 == 0) {
@@ -16,7 +17,7 @@ namespace {
             i = puissance::puissance_modulaire(distribution(mt), exp, p);
         }
         while (true) {
-            size_t r = puissance::puissance_modulaire(i, 2, p);
+            size_t const r = puissance::puissance_modulaire(i, 2, p);
             if (r == p - 1) {
                 return i;
             }
@@ -24,6 +25,7 @@ namespace {
         }
 
     }
+
 }
 
 ENREGISTRER_PROBLEME(659, "Largest prime") {

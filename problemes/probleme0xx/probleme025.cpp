@@ -2,6 +2,7 @@
 #include "chiffres.h"
 #include "utilitaires.h"
 #include "mpz_nombre.h"
+#include "fibonacci.h"
 
 ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number") {
     // The Fibonacci sequence is defined by the recurrence relation:
@@ -24,14 +25,13 @@ ENREGISTRER_PROBLEME(25, "1000-digit Fibonacci number") {
     // The 12th term, F12, is the first term to contain three digits.
     // 
     // What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
-    size_t n = 1;
-    mpz_nombre a = 0;
-    mpz_nombre b = 1;
-    while (b.nombre_chiffres() < 1000) {
-        mpz_nombre tmp = a;
-        a = b;
-        b += tmp;
-        ++n;
+    Fibonacci<mpz_nombre> fibonacci;
+    size_t n = 0;
+    for (auto f: fibonacci) {
+        n++;
+        if (f.nombre_chiffres() >= 1000) {
+            break;
+        }
     }
     return std::to_string(n);
 }

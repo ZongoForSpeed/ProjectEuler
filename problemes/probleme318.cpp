@@ -34,7 +34,7 @@ ENREGISTRER_PROBLEME(318, "2011 nines") {
     nombre resultat = 0;
     for (nombre p = 1; p <= n; ++p) {
         for (nombre q = p + 1; p + q <= n; ++q) {
-            double k = p + q - 2.0 * std::sqrt(p * q);
+            double k = static_cast<double>(p + q) - 2.0 * std::sqrt(p * q);
             if (k >= 1) break;
             auto t = static_cast<size_t>(std::ceil(v / std::log(k)));
             resultat += t;

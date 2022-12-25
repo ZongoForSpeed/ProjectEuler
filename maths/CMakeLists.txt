@@ -10,6 +10,7 @@ add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/diophantienne.h
         ${PROJECT_SOURCE_DIR}/diophantienne.cpp
         ${PROJECT_SOURCE_DIR}/fenwick.h
+        ${PROJECT_SOURCE_DIR}/fibonacci.h
         ${PROJECT_SOURCE_DIR}/graphe.h
         ${PROJECT_SOURCE_DIR}/graphe.cpp
         ${PROJECT_SOURCE_DIR}/matrice.h
@@ -33,6 +34,8 @@ add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/pythagoricien.h
         ${PROJECT_SOURCE_DIR}/pythagoricien.cpp
         ${PROJECT_SOURCE_DIR}/racine.h
+        ${PROJECT_SOURCE_DIR}/random.h
+        ${PROJECT_SOURCE_DIR}/random.cpp
         ${PROJECT_SOURCE_DIR}/timer.h
         ${PROJECT_SOURCE_DIR}/timer.cpp
         ${PROJECT_SOURCE_DIR}/utilitaires.h

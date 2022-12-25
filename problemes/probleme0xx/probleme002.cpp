@@ -1,6 +1,6 @@
 #include <numeric>
 #include "problemes.h"
-#include "arithmetique.h"
+#include "fibonacci.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -10,19 +10,14 @@ ENREGISTRER_PROBLEME(2, "Even Fibonacci numbers") {
     // By starting with 1 and 2, the first 10 terms will be: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
     // 
     // By considering the terms in the Fibonacci sequence whose values do not exceed four million, 
-    // find the sum of the even-valued terms.    
-    vecteur fibonacci;
-    fibonacci.push_back(1);
-    fibonacci.push_back(2);
-
-    while (fibonacci.back() < 4000000L) {
-        fibonacci.push_back(fibonacci.back() + fibonacci.at(fibonacci.size() - 2));
+    // find the sum of the even-valued terms.
+    Fibonacci<nombre> fibonacci(4000000L);
+    nombre solution = 0;
+    for (auto t: fibonacci) {
+        if (t % 2 == 0) {
+            solution += t;
+        }
     }
-    fibonacci.pop_back();
 
-    nombre solution = std::accumulate(fibonacci.begin(), fibonacci.end(), 0ULL,
-                                      [](const nombre &somme, const nombre &f) {
-                                          return (f % 2 == 0) ? somme + f : somme;
-                                      });
     return std::to_string(solution);
 }

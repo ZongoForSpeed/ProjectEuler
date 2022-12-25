@@ -7,11 +7,12 @@ typedef std::vector<nombre> vecteur;
 namespace {
     long double f(nombre xa, nombre xb) {
         // Wolfram alpha
-        return static_cast<long double>(-std::sqrt((-(xa * xa) + 2 * std::sqrt(
+        return static_cast<long double>(-std::sqrt((static_cast<double>(-(xa * xa)) + 2 * std::sqrt(
                 xa * xa * xa * xa + 2 * xa * xa * xa * xb - 10 * xa * xa * xa + 3 * xa * xa * xb * xb
                 - 50 * xa * xa * xb + 125 * xa * xa + 2 * xa * xb * xb * xb - 50 * xa * xb * xb
                 + 300 * xa * xb - 500 * xa + xb * xb * xb * xb - 10 * xb * xb * xb
-                + 125 * xb * xb - 500 * xb + 625) + 2 * xa * xb - 10 * xa + 2 * xb * xb - 10 * xb + 25) / 3));
+                + 125 * xb * xb - 500 * xb + 625) + static_cast<double>(2 * xa * xb) - static_cast<double>(10 * xa) +
+                                                    static_cast<double>(2 * xb * xb) - static_cast<double>(10 * xb) + 25) / 3));
     }
 
     template<typename N>

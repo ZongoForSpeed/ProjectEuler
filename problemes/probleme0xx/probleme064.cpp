@@ -35,7 +35,8 @@ ENREGISTRER_PROBLEME(64, "Odd period square roots") {
         nombre n = 1;
         while (true) {
             q = (r - (p * p)) / q;
-            nombre f = static_cast<nombre>(floor((racine::racine_carre(r) + p) / (1.0 * q)));
+            nombre f = static_cast<nombre>(floor(
+                    (static_cast<double>(racine::racine_carre(r) + p)) / (static_cast<double>(q))));
             p = -(p - (f * q));
             auto it = restes.find(std::make_pair(p, q));
             if (it != restes.end())

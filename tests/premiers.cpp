@@ -4,6 +4,10 @@
 #include "numerique.h"
 #include "premiers.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_premiers)
 
     BOOST_AUTO_TEST_CASE(crible) {
@@ -89,7 +93,7 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
         }
 
         std::vector<size_t> suivants{4, 8, 15, 16, 23, 42, 69, 666, 8283, 98084, 730210, 2691418, 80314325, 620283078};
-        for (auto &s : suivants) {
+        for (auto &s: suivants) {
             s = premiers::suivant(s);
         }
 
@@ -116,3 +120,5 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

@@ -35,17 +35,11 @@ ELSE ()
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
     add_compile_options(-std=c++20)
 
-
     add_compile_options(-Werror -Wall -Wextra -Wpedantic -Weverything
             -Wno-c++98-compat
             -Wno-c++98-compat-pedantic
-            -Wno-padded
             -Wno-global-constructors
-            -Wno-disabled-macro-expansion
-            -Wno-exit-time-destructors
-            -Wno-unused-macros
-            -Wno-implicit-int-float-conversion
-            -Wno-used-but-marked-unused)
+            )
 ENDIF ()
 
 add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})

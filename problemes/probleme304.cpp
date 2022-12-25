@@ -5,16 +5,17 @@
 typedef std::vector<mpz_nombre> vecteur;
 
 namespace {
-    std::pair<mpz_nombre, mpz_nombre> fibonacci_(const mpz_nombre &n, const mpz_nombre &modulo) {
+    std::pair<mpz_nombre, mpz_nombre>
+    fibonacci_(std::map<mpz_nombre, std::pair<mpz_nombre, mpz_nombre>> &cache, const mpz_nombre &n,
+               const mpz_nombre &modulo) {
         if (n == 0)
             return std::make_pair(1, 0);
 
-        static std::map<mpz_nombre, std::pair<mpz_nombre, mpz_nombre>> cache;
         auto it = cache.find(n);
         if (it != cache.end())
             return it->second;
 
-        std::pair<mpz_nombre, mpz_nombre> p = fibonacci_(n / 2, modulo);
+        std::pair<mpz_nombre, mpz_nombre> p = fibonacci_(cache, n / 2, modulo);
         mpz_nombre fk = p.second;
         mpz_nombre fk_1 = p.first;
 
@@ -32,8 +33,9 @@ namespace {
         return resultat;
     }
 
-    mpz_nombre fibonacci(const mpz_nombre &n, const mpz_nombre &modulo) {
-        return fibonacci_(n, modulo).second;
+    mpz_nombre fibonacci(std::map<mpz_nombre, std::pair<mpz_nombre, mpz_nombre>> &cache, const mpz_nombre &n,
+                         const mpz_nombre &modulo) {
+        return fibonacci_(cache, n, modulo).second;
     }
 }
 
@@ -47,13 +49,14 @@ ENREGISTRER_PROBLEME(304, "Primonacci") {
     // The sequence b(n) is defined as f(a(n)).
     //
     // Find ∑b(n) for 1≤n≤100 000. Give your answer mod 1234567891011.
+    std::map<mpz_nombre, std::pair<mpz_nombre, mpz_nombre>> cache;
     const mpz_nombre modulo = 1234567891011ULL;
     const mpz_nombre a0 = mpz_nombre::puissance(10, 14);
     vecteur a(100000 + 1, a0);
     mpz_nombre resultat = 0;
     for (size_t n = 1; n < a.size(); ++n) {
         mpz_nombre::premier_suivant(a[n], a[n - 1]);
-        resultat += fibonacci(a[n], modulo);
+        resultat += fibonacci(cache, a[n], modulo);
     }
 
     resultat %= modulo;

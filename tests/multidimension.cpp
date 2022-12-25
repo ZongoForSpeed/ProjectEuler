@@ -2,6 +2,10 @@
 
 #include "multidimension.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 BOOST_AUTO_TEST_SUITE(test_multidimension)
 
     BOOST_AUTO_TEST_CASE(multidimension_2) {
@@ -49,3 +53,5 @@ BOOST_AUTO_TEST_SUITE(test_multidimension)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

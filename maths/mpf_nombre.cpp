@@ -1,10 +1,9 @@
 #include "mpf_nombre.h"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
 
 long mpf_nombre::DEFAULT_PRECISION = 128;
 mpfr_rnd_t mpf_nombre::DEFAULT_ROUNDING = MPFR_RNDN;
-mpf_nombre mpf_nombre::PI = calcul_pi();
-mpf_nombre mpf_nombre::E = calcul_e();
-mpf_nombre mpf_nombre::PHI = calcul_phi();
 
 void mpf_nombre::setPrecision(long precision) {
     mpfr_set_default_prec(precision);
@@ -175,11 +174,13 @@ mpf_nombre mpf_nombre::operator-() const {
 }
 
 const mpf_nombre &mpf_nombre::pi() {
-    return PI;
+    static mpf_nombre sPi = calcul_pi();
+    return sPi;
 }
 
 const mpf_nombre &mpf_nombre::e() {
-    return E;
+    static mpf_nombre sE = calcul_e();
+    return sE;
 }
 
 mpf_nombre mpf_nombre::calcul_pi() {
@@ -245,7 +246,8 @@ int mpf_nombre::compare(const mpq_fraction &op) const {
 }
 
 const mpf_nombre &mpf_nombre::phi() {
-    return PHI;
+    static mpf_nombre sPhi = calcul_phi();
+    return sPhi;
 }
 
 void mpf_nombre::addition(mpf_nombre &rop, const mpf_nombre &op1, const mpf_nombre &op2) {
@@ -580,3 +582,4 @@ mpf_nombre std::atan2(const mpf_nombre &x, const mpf_nombre &y) {
     mpf_nombre::arctan2(rop, x, y);
     return rop;
 }
+#pragma clang diagnostic pop

@@ -26,11 +26,11 @@ Pythagoricien::Pythagoricien() : limite(std::nullopt) {}
 Pythagoricien::Pythagoricien(const size_t l) : limite(l) {}
 
 IterateurPythagoricien Pythagoricien::begin() const {
-    return IterateurPythagoricien(*this, 2, 1);
+    return {*this, 2, 1};
 }
 
 IterateurPythagoricien Pythagoricien::end() const {
-    return IterateurPythagoricien(*this, 0, 0);
+    return {*this, 0, 0};
 }
 
 void Pythagoricien::suivant(IterateurPythagoricien &it) const {

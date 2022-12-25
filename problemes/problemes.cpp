@@ -7,10 +7,15 @@
 
 RegistreProbleme::RegistreProbleme() = default;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
+
 RegistreProbleme &RegistreProbleme::instance() {
     static RegistreProbleme _instance_;
     return _instance_;
 }
+
+#pragma clang diagnostic pop
 
 void
 RegistreProbleme::ajout(const size_t numero, const std::string &nom, const std::function<std::string()> &fonction) {
@@ -50,10 +55,10 @@ RegistreProbleme::executeProbleme(std::map<size_t, std::string> &solutions, size
         if (t.timestamp() > 60.0) {
             std::cout << "\033[1;31m" << "ERREUR RESOLUTION TROP LONGUE !" << "\033[0m" << std::endl;
         }
-    } catch (std::exception& e) {
-        std::cout<< "Exception : " << e.what() << std::endl;
+    } catch (std::exception &e) {
+        std::cout << "Exception : " << e.what() << std::endl;
     } catch (...) {
-        std::cout<< "Exception : ..." << std::endl;
+        std::cout << "Exception : ..." << std::endl;
     }
 }
 

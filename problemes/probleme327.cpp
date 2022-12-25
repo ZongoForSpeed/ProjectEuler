@@ -5,8 +5,7 @@
 typedef long long int nombre;
 
 namespace {
-    nombre M(nombre c, nombre r) {
-        static std::map<std::pair<nombre, nombre>, nombre> cache;
+    nombre M(std::map<std::pair<nombre, nombre>, nombre> &cache, nombre c, nombre r) {
         if (r < c) {
             return r + 1;
         }
@@ -16,7 +15,7 @@ namespace {
             return it->second;
         }
 
-        nombre x = M(c, r - 1);
+        nombre x = M(cache, c, r - 1);
         nombre resultat = 0;
         nombre p = (x - 2) / (c - 2);
         resultat += p * c + x - p * (c - 2) + 1;
@@ -64,8 +63,9 @@ ENREGISTRER_PROBLEME(327, "Rooms of Doom") {
     //
     // Find ΣM(C,30) for 3 ≤ C ≤ 40.
     nombre resultat = 0;
+    std::map<std::pair<nombre, nombre>, nombre> cache;
     for (nombre c = 3; c < 41; ++c) {
-        resultat += M(c, 30);
+        resultat += M(cache, c, 30);
     }
     return std::to_string(resultat);
 }

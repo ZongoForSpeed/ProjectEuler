@@ -11,9 +11,6 @@ class mpf_nombre {
 
     static long DEFAULT_PRECISION;
     static mpfr_rnd_t DEFAULT_ROUNDING;
-    static mpf_nombre PI;
-    static mpf_nombre E;
-    static mpf_nombre PHI;
 
     static mpf_nombre calcul_pi();
 

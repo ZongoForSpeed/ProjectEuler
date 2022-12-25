@@ -3,6 +3,10 @@
 #include "utilitaires.h"
 #include "mpf_nombre.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdisabled-macro-expansion"
+
 #define EPSILON 0.000000001l
 
 BOOST_AUTO_TEST_SUITE(test_mpf_nombre)
@@ -212,3 +216,5 @@ BOOST_AUTO_TEST_SUITE(test_mpf_nombre)
     }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+#pragma clang diagnostic pop

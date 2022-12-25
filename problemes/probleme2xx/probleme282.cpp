@@ -3,6 +3,9 @@
 #include "arithmetique_modulaire.h"
 #include "premiers.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -89,3 +92,5 @@ ENREGISTRER_PROBLEME(282, "The Ackermann function") {
 
     return std::to_string(resultat);
 }
+
+#pragma clang diagnostic pop

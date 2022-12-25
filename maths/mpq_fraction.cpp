@@ -33,9 +33,21 @@ mpq_fraction::mpq_fraction(unsigned long op1, unsigned long op2) {
     mpq_canonicalize(_data);
 }
 
+mpq_fraction::mpq_fraction(unsigned long op) {
+    init();
+    mpq_set_ui(_data, op, 1ul);
+    mpq_canonicalize(_data);
+}
+
 mpq_fraction::mpq_fraction(long op1, unsigned long op2) {
     init();
     mpq_set_si(_data, op1, op2);
+    mpq_canonicalize(_data);
+}
+
+mpq_fraction::mpq_fraction(long op) {
+    init();
+    mpq_set_si(_data, op, 1l);
     mpq_canonicalize(_data);
 }
 
@@ -48,6 +60,18 @@ mpq_fraction::mpq_fraction(const std::string &op, int base) {
 mpq_fraction::mpq_fraction(double op) {
     init();
     mpq_set_d(_data, op);
+    mpq_canonicalize(_data);
+}
+
+mpq_fraction::mpq_fraction(unsigned int op) {
+    init();
+    mpq_set_ui(_data, op, 1ul);
+    mpq_canonicalize(_data);
+}
+
+mpq_fraction::mpq_fraction(signed int op) {
+    init();
+    mpq_set_si(_data, op, 1l);
     mpq_canonicalize(_data);
 }
 
@@ -77,6 +101,42 @@ std::string mpq_fraction::to_string(int base) const {
     std::string resultat(str);
     free(str);
     return resultat;
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
+const mpq_fraction& mpq_fraction::one() {
+    static mpq_fraction const n(1);
+    return n;
+}
+#pragma clang diagnostic pop
+
+mpq_fraction &mpq_fraction::operator++() {
+    mpq_add(_data, _data, one().get_data());
+    return *this;
+}
+
+mpq_fraction &mpq_fraction::operator--() {
+    mpq_sub(_data, _data, one().get_data());
+    return *this;
+}
+
+[[deprecated]]
+const mpq_fraction mpq_fraction::operator++(int) {
+    mpq_add(_data, _data, one().get_data());
+    return *this;
+}
+
+[[deprecated]]
+const mpq_fraction mpq_fraction::operator--(int) {
+    mpq_sub(_data, _data, one().get_data());
+    return *this;
+}
+
+mpq_fraction &mpq_fraction::operator+=(const mpq_fraction &op) {
+    mpq_add(_data, _data, op._data);
+    mpq_canonicalize(_data);
+    return *this;
 }
 
 mpq_fraction &mpq_fraction::operator+=(mpq_fraction &op) {

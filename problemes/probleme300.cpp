@@ -8,8 +8,7 @@ typedef std::pair<signed char, signed char> Point;
 typedef std::vector<Point> Chemin;
 
 namespace {
-    void generer(const Point &p, const Chemin &chemin, std::set<Chemin> &resultat, size_t profondeur) {
-        static std::set<std::pair<Point, Chemin>> cache;
+    void generer(std::set<std::pair<Point, Chemin>> &cache, const Point &p, const Chemin &chemin, std::set<Chemin> &resultat, size_t profondeur) {
         if (cache.find(std::make_pair(p, chemin)) != cache.end())
             return;
 
@@ -26,7 +25,7 @@ namespace {
             if (std::find(chemin.rbegin(), chemin.rend(), suivant) == chemin.rend()) {
                 Chemin c = chemin;
                 c.push_back(suivant);
-                generer(suivant, c, resultat, profondeur);
+                generer(cache, suivant, c, resultat, profondeur);
             }
         }
     }
@@ -76,7 +75,9 @@ ENREGISTRER_PROBLEME(300, "Protein folding") {
         const Point debut(0, 0);
         const Chemin c{debut};
 
-        generer(debut, c, chemins, longueur);
+        std::set<std::pair<Point, Chemin>> cache;
+
+        generer(cache, debut, c, chemins, longueur);
     }
 
     std::set<std::vector<size_t>> voisinages;
