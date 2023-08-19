@@ -1,6 +1,7 @@
 #pragma once
 
 #include "utilitaires.h"
+#include "numerique.h"
 
 #include <boost/range/join.hpp>
 #include <boost/iterator/iterator_facade.hpp>

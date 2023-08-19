@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <boost/rational.hpp>
+
 typedef long long nombre;
 typedef boost::rational<nombre> fraction;
 typedef std::vector<fraction> vecteur;

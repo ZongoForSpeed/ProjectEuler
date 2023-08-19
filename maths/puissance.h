@@ -1,6 +1,6 @@
 #pragma once
 
-#include <type_traits>
+#include "numerique.h"
 #include <boost/multiprecision/integer.hpp>
 #include "utilitaires.h"
 

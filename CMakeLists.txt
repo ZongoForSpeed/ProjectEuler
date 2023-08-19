@@ -1,8 +1,7 @@
+cmake_minimum_required(VERSION 3.9)
+
 project(ProjectEuler)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/install/")
-
-
-message("Boost_DIR = " ${Boost_DIR})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/install/")
 set(Boost_USE_STATIC_LIBS ON) # only find static libs
@@ -10,15 +9,14 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME ON)
 set(Boost_DEBUG ON)
 
-cmake_minimum_required(VERSION 3.9)
-find_package(Boost 1.58.0 REQUIRED)
+find_package(Boost 1.80.0 REQUIRED)
 find_package(GMP 2.6 REQUIRED)
 find_package(MPFR 4.0 REQUIRED)
 
 # find_package(Gperftools)
 
 # Check for standard to use
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -27,18 +25,19 @@ IF (WIN32)
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/O2 /Zi")
     set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ox")
     set(CMAKE_CXX_FLAGS_DEBUG "/Od /Zi")
-    add_compile_options(/std:c++20)
+    add_compile_options(/std:c++17)
 ELSE ()
     # set stuff for other systems
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-    add_compile_options(-std=c++20)
+    add_compile_options(-std=c++17)
 
     add_compile_options(-Werror -Wall -Wextra -Wpedantic -Weverything
             -Wno-c++98-compat
             -Wno-c++98-compat-pedantic
             -Wno-global-constructors
+            -Wno-unused-but-set-variable
             )
 ENDIF ()
 

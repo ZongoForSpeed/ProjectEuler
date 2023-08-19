@@ -3,6 +3,8 @@
 #include "utilitaires.h"
 #include "premiers.h"
 
+#include <boost/rational.hpp>
+
 typedef unsigned long long int nombre;
 typedef boost::rational<int128_t> fraction;
 

@@ -20,7 +20,7 @@ namespace {
     }
 
     nombre g2(std::map<nombre, nombre> &cache, const std::set<nombre> &premiers, nombre n) {
-        if (premiers.contains(n)) {
+        if (premiers.find(n) != premiers.end()) {
             return 2 * n - 1;
         }
 
@@ -46,7 +46,7 @@ namespace {
             return -n;
         }
 
-        if (premiers.contains(n >> 1)) {
+        if (premiers.find(n >> 1) != premiers.end()) {
             return n - 1;
         }
 

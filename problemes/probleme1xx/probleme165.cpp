@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <fstream>
+#include <boost/rational.hpp>
 
 typedef long long nombre;
 typedef boost::rational<nombre> fraction;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "numerique.h"
+
 #include <mpfr.h>
 #include <sstream>
 

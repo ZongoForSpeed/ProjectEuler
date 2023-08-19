@@ -2,6 +2,8 @@
 #include "arithmetique.h"
 #include "polynome.h"
 
+#include <boost/rational.hpp>
+
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;

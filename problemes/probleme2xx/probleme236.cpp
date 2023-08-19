@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <boost/rational.hpp>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 

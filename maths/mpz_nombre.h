@@ -1,9 +1,10 @@
 #pragma once
 
+#include "numerique.h"
+
 #include <deque>
 #include <iostream>
 #include <limits>
-#include <type_traits>
 #include <optional>
 #include <functional>
 

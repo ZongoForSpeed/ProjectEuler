@@ -3,6 +3,8 @@
 #include "polygonal.h"
 #include "mpz_nombre.h"
 
+#include <boost/rational.hpp>
+
 typedef std::vector<size_t> vecteur;
 typedef std::vector<vecteur> matrice;
 typedef boost::rational<size_t> fraction;

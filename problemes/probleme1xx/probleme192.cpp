@@ -2,6 +2,8 @@
 #include "numerique.h"
 #include "polygonal.h"
 
+#include <boost/rational.hpp>
+
 typedef boost::rational<int128_t> fraction;
 typedef std::vector<int128_t> vecteur;
 

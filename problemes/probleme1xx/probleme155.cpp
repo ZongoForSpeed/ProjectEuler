@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <fstream>
+#include <boost/rational.hpp>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

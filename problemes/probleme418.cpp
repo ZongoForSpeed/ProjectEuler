@@ -5,6 +5,8 @@
 #include "premiers.h"
 #include "mpz_nombre.h"
 
+#include <boost/rational.hpp>
+
 namespace {
 
     template<typename Nombre, typename Iterator, class OutputIterator>

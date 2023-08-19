@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <boost/rational.hpp>
+
 typedef unsigned short nombre;
 typedef boost::rational<nombre> fraction;
 

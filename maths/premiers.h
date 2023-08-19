@@ -2,6 +2,8 @@
 #pragma clang diagnostic ignored "-Wexit-time-destructors"
 #pragma once
 
+#include "numerique.h"
+
 #include <functional>
 #include <vector>
 

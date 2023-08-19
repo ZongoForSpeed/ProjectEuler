@@ -1,12 +1,13 @@
 #pragma once
 
+#include "utilitaires.h"
+#include "numerique.h"
+
 #include <vector>
 #include <initializer_list>
 
 #include <boost/range/adaptor/reversed.hpp>
 #include <iostream>
-
-#include "utilitaires.h"
 
 template<typename Nombre>
 class Polynome {

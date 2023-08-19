@@ -1,5 +1,7 @@
 #pragma once
 
+#include "numerique.h"
+
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -12,7 +14,6 @@
 #include <tuple>
 #include <cmath>
 #include <iomanip>
-#include <type_traits>
 
 #include <optional>
 
@@ -148,7 +149,10 @@ namespace std {
         std::ostringstream oss;
         oss << std::scientific << std::setprecision(p) << n;
         std::string str = oss.str();
-        str.erase(std::remove(str.begin(), str.end(), '+'), str.end());
+        // str.erase(std::remove(str.begin(), str.end(), '+'), str.end());
+        if (str[0] == '+') {
+            return str.substr(1);
+        }
         return str;
     }
 
@@ -164,6 +168,22 @@ namespace std {
     unsigned long popcount(unsigned long S);
 
     unsigned long long popcount(unsigned long long S);
+
+    ostream &operator<<(ostream &os, uint128_t i);
+
+    ostream &operator<<(ostream &os, int128_t i);
+
+    istream &operator>>(istream &is, uint128_t &i);
+
+    istream &operator>>(istream &is, int128_t &i);
+
+    string to_string(int128_t n);
+
+    string to_string(uint128_t n);
+
+    int128_t sqrt(int128_t n);
+
+    uint128_t sqrt(uint128_t n);
 }
 
 namespace utilitaires {

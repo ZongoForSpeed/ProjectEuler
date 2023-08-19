@@ -3,6 +3,7 @@
 #include "fibonacci.h"
 
 #include <fstream>
+#include <boost/rational.hpp>
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;

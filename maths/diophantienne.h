@@ -1,5 +1,6 @@
 #pragma once
 
+#include "numerique.h"
 #include "arithmetique.h"
 #include "polygonal.h"
 

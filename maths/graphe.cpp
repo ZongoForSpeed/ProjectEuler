@@ -53,7 +53,7 @@ namespace graphe {
         }
     }
 
-    Dijkstra::Dijkstra(graphe _G, const nombre _debut, const nombre _fin) : G(std::move(_G)), debut(_debut), fin(_fin) {}
+    Dijkstra::Dijkstra(graphe g, const nombre debut_, const nombre fin_) : G(std::move(g)), debut(debut_), fin(fin_) {}
 
     nombre Dijkstra::algorithme() {
         const nombre taille = G.size();
@@ -96,7 +96,7 @@ namespace graphe {
         return distance[fin];
     }
 
-    Kruskal::Kruskal(aretes _A) : A(std::move(_A)) {
+    Kruskal::Kruskal(aretes A_) : A(std::move(A_)) {
         std::sort(A.begin(), A.end(),
                   [](const arete &a, const arete &b) { return std::get<2>(a) < std::get<2>(b); });
     }

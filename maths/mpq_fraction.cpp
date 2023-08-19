@@ -87,6 +87,46 @@ void mpq_fraction::clear() {
     }
 }
 
+void mpq_fraction::set(const mpq_t &op) {
+    mpq_set(_data, op);
+}
+
+void mpq_fraction::set(const mpq_fraction &op) {
+    mpq_set(_data, op._data);
+}
+
+void mpq_fraction::set(const mpz_t &op) {
+    mpq_set_z(_data, op);
+}
+
+void mpq_fraction::set(const mpz_nombre &op) {
+    mpq_set_z(_data, op.get_data());
+}
+
+void mpq_fraction::set(unsigned long int op) {
+    mpq_set_ui(_data, op, 1ul);
+}
+
+void mpq_fraction::set(unsigned long int op1, unsigned long int op2) {
+    mpq_set_ui(_data, op1, op2);
+}
+
+void mpq_fraction::set(signed long int op) {
+    mpq_set_si(_data, op, 1ul);
+}
+
+void mpq_fraction::set(signed long int op1, unsigned long int op2) {
+    mpq_set_si(_data, op1, op2);
+}
+
+void mpq_fraction::set(double op) {
+    mpq_set_d(_data, op);
+}
+
+void mpq_fraction::set(const std::string &op, int base) {
+    mpq_set_str(_data, op.c_str(), base);
+}
+
 void mpq_fraction::swap(mpq_fraction &op) {
     mpq_swap(_data, op._data);
     mpq_canonicalize(_data);
@@ -131,6 +171,32 @@ const mpq_fraction mpq_fraction::operator++(int) {
 const mpq_fraction mpq_fraction::operator--(int) {
     mpq_sub(_data, _data, one().get_data());
     return *this;
+}
+
+mpq_fraction &mpq_fraction::negation() {
+    mpq_neg(_data, _data);
+    return *this;
+}
+
+mpq_fraction mpq_fraction::operator-() const {
+    mpq_fraction resultat;
+    mpq_neg(resultat._data, _data);
+    return resultat;
+}
+
+mpq_fraction mpq_fraction::abs(const mpq_fraction &op) {
+    mpq_fraction resultat;
+    mpq_abs(resultat._data, op._data);
+    return resultat;
+}
+
+mpq_fraction &mpq_fraction::inverse() {
+    mpq_inv(_data, _data);
+    return *this;
+}
+
+signed short mpq_fraction::signe() const {
+    return mpq_sgn(_data);
 }
 
 mpq_fraction &mpq_fraction::operator+=(const mpq_fraction &op) {
@@ -257,6 +323,18 @@ mpq_ptr mpq_fraction::get_data() {
 
 mpq_srcptr mpq_fraction::get_data() const {
     return _data;
+}
+
+mpz_nombre mpq_fraction::numerateur() const {
+    mpz_nombre resultat;
+    mpq_get_num(resultat.get_data(), _data);
+    return resultat;
+}
+
+mpz_nombre mpq_fraction::denominateur() const {
+    mpz_nombre resultat;
+    mpq_get_den(resultat.get_data(), _data);
+    return resultat;
 }
 
 int mpq_fraction::compare(long op) const {

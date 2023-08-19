@@ -2,6 +2,8 @@
 #include "arithmetique.h"
 #include "premiers.h"
 
+#include <boost/rational.hpp>
+
 typedef unsigned long long nombre;
 typedef boost::rational<nombre> fraction;
 typedef std::vector<nombre> vecteur;

@@ -1,5 +1,5 @@
-#include "nombre_modulaire.h"
 #include "numerique.h"
+#include "nombre_modulaire.h"
 
 #include <boost/multiprecision/integer.hpp>
 

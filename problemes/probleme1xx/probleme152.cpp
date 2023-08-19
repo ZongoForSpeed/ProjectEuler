@@ -2,6 +2,8 @@
 #include "numerique.h"
 #include "premiers.h"
 
+#include <boost/rational.hpp>
+
 typedef std::vector<size_t> vecteur;
 typedef boost::rational<uint128_t> fraction;
 

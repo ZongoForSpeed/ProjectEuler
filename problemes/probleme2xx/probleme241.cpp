@@ -4,6 +4,8 @@
 #include "arithmetique.h"
 #include "premiers.h"
 
+#include <boost/rational.hpp>
+
 typedef boost::rational<uint128_t> fraction;
 typedef std::vector<uint128_t> vecteur;
 

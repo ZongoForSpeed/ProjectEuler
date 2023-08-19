@@ -1,5 +1,7 @@
 #pragma once
 
+#include "numerique.h"
+
 #include <gmp.h>
 #include "mpz_nombre.h"
 
@@ -64,45 +66,25 @@ public:
     const mpq_fraction operator--(int);
 
     // region Setters
-    void set(const mpq_t &op) {
-        mpq_set(_data, op);
-    }
+    void set(const mpq_t &op);
 
-    void set(const mpq_fraction &op) {
-        mpq_set(_data, op._data);
-    }
+    void set(const mpq_fraction &op);
 
-    void set(const mpz_t &op) {
-        mpq_set_z(_data, op);
-    }
+    void set(const mpz_t &op);
 
-    void set(const mpz_nombre &op) {
-        mpq_set_z(_data, op.get_data());
-    }
+    void set(const mpz_nombre &op);
 
-    void set(unsigned long int op) {
-        mpq_set_ui(_data, op, 1ul);
-    }
+    void set(unsigned long int op);
 
-    void set(unsigned long int op1, unsigned long int op2) {
-        mpq_set_ui(_data, op1, op2);
-    }
+    void set(unsigned long int op1, unsigned long int op2);
 
-    void set(signed long int op) {
-        mpq_set_si(_data, op, 1ul);
-    }
+    void set(signed long int op);
 
-    void set(signed long int op1, unsigned long int op2) {
-        mpq_set_si(_data, op1, op2);
-    }
+    void set(signed long int op1, unsigned long int op2);
 
-    void set(double op) {
-        mpq_set_d(_data, op);
-    }
+    void set(double op);
 
-    void set(const std::string &op, int base = 10) {
-        mpq_set_str(_data, op.c_str(), base);
-    }
+    void set(const std::string &op, int base = 10);
     // endregion Setters
 
     void swap(mpq_fraction &op);
@@ -113,35 +95,19 @@ public:
 
     double get_double() const;
 
-    static const mpq_fraction& one();
+    static const mpq_fraction &one();
 
     std::string to_string(int base = 10) const;
 
-    mpq_fraction &negation() {
-        mpq_neg(_data, _data);
-        return *this;
-    }
+    mpq_fraction &negation();
 
-    mpq_fraction operator-() const {
-        mpq_fraction resultat;
-        mpq_neg(resultat._data, _data);
-        return resultat;
-    }
+    mpq_fraction operator-() const;
 
-    static mpq_fraction abs(const mpq_fraction &op) {
-        mpq_fraction resultat;
-        mpq_abs(resultat._data, op._data);
-        return resultat;
-    }
+    static mpq_fraction abs(const mpq_fraction &op);
 
-    mpq_fraction &inverse() {
-        mpq_inv(_data, _data);
-        return *this;
-    }
+    mpq_fraction &inverse();
 
-    signed short signe() const {
-        return mpq_sgn(_data);
-    }
+    signed short signe() const;
 
     mpq_fraction &operator+=(const mpq_fraction &op);
 
@@ -239,44 +205,60 @@ public:
 
     int compare(unsigned long int op) const;
 
-
     bool egale(const mpq_fraction &op) const;
 
     bool operator==(const mpq_fraction &op) const;
 
     bool operator==(const mpz_nombre &op) const;
 
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    bool operator==(const T &a) const {
+        return compare(a) == 0;
+    }
+
     bool operator<(const mpq_fraction &op) const;
 
     bool operator<(const mpz_nombre &op) const;
+
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    bool operator<(const T &a) const {
+        return compare(a) < 0;
+    }
 
     bool operator<=(const mpq_fraction &op) const;
 
     bool operator<=(const mpz_nombre &op) const;
 
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    bool operator<=(const T &a) const {
+        return compare(a) <= 0;
+    }
+
     bool operator>(const mpq_fraction &op) const;
 
     bool operator>(const mpz_nombre &op) const;
+
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    bool operator>(const T &a) const {
+        return compare(a) > 0;
+    }
 
     bool operator>=(const mpq_fraction &op) const;
 
     bool operator>=(const mpz_nombre &op) const;
 
+    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    bool operator>=(const T &a) const {
+        return compare(a) >= 0;
+    }
+
     mpq_ptr get_data();
 
     mpq_srcptr get_data() const;
 
-    mpz_nombre numerateur() const {
-        mpz_nombre resultat;
-        mpq_get_num(resultat.get_data(), _data);
-        return resultat;
-    }
+    mpz_nombre numerateur() const;
 
-    mpz_nombre denominateur() const {
-        mpz_nombre resultat;
-        mpq_get_den(resultat.get_data(), _data);
-        return resultat;
-    }
+    mpz_nombre denominateur() const;
 
 };
 

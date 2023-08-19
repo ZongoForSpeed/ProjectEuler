@@ -75,6 +75,8 @@ ENREGISTRER_PROBLEME(222, "Sphere Packing") {
             break;
     }
 
+    std::cout << "Retour = " << retour << std::endl;
+
     auto resultat = static_cast<nombre>(optimum * R * 1000);
     return std::to_string(resultat);
 }

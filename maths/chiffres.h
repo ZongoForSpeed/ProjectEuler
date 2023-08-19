@@ -1,5 +1,7 @@
 #pragma once
 
+#include "numerique.h"
+
 #include <algorithm>
 #include <deque>
 #include <numeric>
