@@ -1,7 +1,9 @@
 #include <numeric>
-#include "premiers.h"
-#include "timer.h"
+#include <functional>
+#include <future>
 #include "racine.h"
+#include "executor.h"
+#include "premiers.h"
 
 namespace {
     // template<typename Nombre, class OutputIterator>
@@ -40,6 +42,7 @@ namespace {
     }
 
     void internal_crible23(const std::size_t &taille, std::vector<bool> &test1, std::vector<bool> &test5) {
+        executor::thread_pool threadPool(2);
         test1.assign(taille, true);
         test1.at(0) = false;
         test5.assign(taille, true);
@@ -47,14 +50,20 @@ namespace {
             // Cas p = 6*k + 1
             if (test1.at(k)) {
                 const std::size_t p = 6 * k + 1;
-                set_test(test1, 6 * k * k + 2 * k, taille, p);
-                set_test(test5, 6 * k * k + 6 * k, taille, p);
+                auto future1 = threadPool.queueJob(std::bind(set_test, std::ref(test1), 6 * k * k + 2 * k, taille, p));
+                auto future2 = threadPool.queueJob(std::bind(set_test, std::ref(test5), 6 * k * k + 6 * k, taille, p));
+                future1.wait();
+                future2.wait();
             }
             // Cas p = 6*k + 5
             if (test5.at(k)) {
                 const std::size_t p = 6 * k + 5;
-                set_test(test1, 6 * k * k + 10 * k + 4, taille, p);
-                set_test(test5, 6 * k * k + 12 * k + 5, taille, p);
+                auto future1 = threadPool.queueJob(
+                        std::bind(set_test, std::ref(test1), 6 * k * k + 10 * k + 4, taille, p));
+                auto future2 = threadPool.queueJob(
+                        std::bind(set_test, std::ref(test5), 6 * k * k + 12 * k + 5, taille, p));
+                future1.wait();
+                future2.wait();
             }
         }
     }
@@ -62,6 +71,7 @@ namespace {
     void internal_crible235(const std::size_t &taille, std::vector<bool> &test1, std::vector<bool> &test7,
                             std::vector<bool> &test11, std::vector<bool> &test13, std::vector<bool> &test17,
                             std::vector<bool> &test19, std::vector<bool> &test23, std::vector<bool> &test29) {
+        executor::thread_pool threadPool(8);
         test1.assign(taille, true);
         test1.at(0) = false;
         test7.assign(taille, true);
@@ -74,91 +84,109 @@ namespace {
         for (std::size_t k = 0; 30 * k * k < taille; ++k) {
             if (test1.at(k)) {
                 const std::size_t p = 30 * k + 1;
-                set_test(test1, 30 * k * k + 2 * k + 0, taille, p);
-                set_test(test7, 30 * k * k + 8 * k + 0, taille, p);
-                set_test(test11, 30 * k * k + 12 * k + 0, taille, p);
-                set_test(test13, 30 * k * k + 14 * k + 0, taille, p);
-                set_test(test17, 30 * k * k + 18 * k + 0, taille, p);
-                set_test(test19, 30 * k * k + 20 * k + 0, taille, p);
-                set_test(test23, 30 * k * k + 24 * k + 0, taille, p);
-                set_test(test29, 30 * k * k + 30 * k + 0, taille, p);
+                threadPool.invoke({
+                                          [&]() { set_test(test1, 30 * k * k + 2 * k + 0, taille, p); },
+                                          [&]() { set_test(test7, 30 * k * k + 8 * k + 0, taille, p); },
+                                          [&]() { set_test(test11, 30 * k * k + 12 * k + 0, taille, p); },
+                                          [&]() { set_test(test13, 30 * k * k + 14 * k + 0, taille, p); },
+                                          [&]() { set_test(test17, 30 * k * k + 18 * k + 0, taille, p); },
+                                          [&]() { set_test(test19, 30 * k * k + 20 * k + 0, taille, p); },
+                                          [&]() { set_test(test23, 30 * k * k + 24 * k + 0, taille, p); },
+                                          [&]() { set_test(test29, 30 * k * k + 30 * k + 0, taille, p); }
+                                  });
             }
             if (test7.at(k)) {
                 const std::size_t p = 30 * k + 7;
-                set_test(test19, 30 * k * k + 14 * k + 1, taille, p);
-                set_test(test17, 30 * k * k + 18 * k + 2, taille, p);
-                set_test(test1, 30 * k * k + 20 * k + 3, taille, p);
-                set_test(test29, 30 * k * k + 24 * k + 3, taille, p);
-                set_test(test13, 30 * k * k + 26 * k + 4, taille, p);
-                set_test(test11, 30 * k * k + 30 * k + 5, taille, p);
-                set_test(test23, 30 * k * k + 36 * k + 6, taille, p);
-                set_test(test7, 30 * k * k + 38 * k + 7, taille, p);
+                threadPool.invoke({
+                                          [&]() { set_test(test19, 30 * k * k + 14 * k + 1, taille, p); },
+                                          [&]() { set_test(test17, 30 * k * k + 18 * k + 2, taille, p); },
+                                          [&]() { set_test(test1, 30 * k * k + 20 * k + 3, taille, p); },
+                                          [&]() { set_test(test29, 30 * k * k + 24 * k + 3, taille, p); },
+                                          [&]() { set_test(test13, 30 * k * k + 26 * k + 4, taille, p); },
+                                          [&]() { set_test(test11, 30 * k * k + 30 * k + 5, taille, p); },
+                                          [&]() { set_test(test23, 30 * k * k + 36 * k + 6, taille, p); },
+                                          [&]() { set_test(test7, 30 * k * k + 38 * k + 7, taille, p); },
+                                  });
             }
             if (test11.at(k)) {
                 const std::size_t p = 30 * k + 11;
-                set_test(test1, 30 * k * k + 22 * k + 4, taille, p);
-                set_test(test23, 30 * k * k + 24 * k + 4, taille, p);
-                set_test(test7, 30 * k * k + 28 * k + 6, taille, p);
-                set_test(test29, 30 * k * k + 30 * k + 6, taille, p);
-                set_test(test13, 30 * k * k + 34 * k + 8, taille, p);
-                set_test(test19, 30 * k * k + 40 * k + 10, taille, p);
-                set_test(test11, 30 * k * k + 42 * k + 11, taille, p);
-                set_test(test17, 30 * k * k + 48 * k + 13, taille, p);
+                threadPool.invoke({
+                                          [&]() { set_test(test1, 30 * k * k + 22 * k + 4, taille, p); },
+                                          [&]() { set_test(test23, 30 * k * k + 24 * k + 4, taille, p); },
+                                          [&]() { set_test(test7, 30 * k * k + 28 * k + 6, taille, p); },
+                                          [&]() { set_test(test29, 30 * k * k + 30 * k + 6, taille, p); },
+                                          [&]() { set_test(test13, 30 * k * k + 34 * k + 8, taille, p); },
+                                          [&]() { set_test(test19, 30 * k * k + 40 * k + 10, taille, p); },
+                                          [&]() { set_test(test11, 30 * k * k + 42 * k + 11, taille, p); },
+                                          [&]() { set_test(test17, 30 * k * k + 48 * k + 13, taille, p); },
+                                  });
             }
             if (test13.at(k)) {
                 const std::size_t p = 30 * k + 13;
-                set_test(test19, 30 * k * k + 26 * k + 5, taille, p);
-                set_test(test11, 30 * k * k + 30 * k + 7, taille, p);
-                set_test(test7, 30 * k * k + 32 * k + 8, taille, p);
-                set_test(test29, 30 * k * k + 36 * k + 9, taille, p);
-                set_test(test17, 30 * k * k + 42 * k + 12, taille, p);
-                set_test(test13, 30 * k * k + 44 * k + 13, taille, p);
-                set_test(test1, 30 * k * k + 50 * k + 16, taille, p);
-                set_test(test23, 30 * k * k + 54 * k + 17, taille, p);
+                threadPool.invoke({
+                                          [&]() { set_test(test19, 30 * k * k + 26 * k + 5, taille, p); },
+                                          [&]() { set_test(test11, 30 * k * k + 30 * k + 7, taille, p); },
+                                          [&]() { set_test(test7, 30 * k * k + 32 * k + 8, taille, p); },
+                                          [&]() { set_test(test29, 30 * k * k + 36 * k + 9, taille, p); },
+                                          [&]() { set_test(test17, 30 * k * k + 42 * k + 12, taille, p); },
+                                          [&]() { set_test(test13, 30 * k * k + 44 * k + 13, taille, p); },
+                                          [&]() { set_test(test1, 30 * k * k + 50 * k + 16, taille, p); },
+                                          [&]() { set_test(test23, 30 * k * k + 54 * k + 17, taille, p); },
+                                  });
             }
             if (test17.at(k)) {
                 const std::size_t p = 30 * k + 17;
-                set_test(test19, 30 * k * k + 34 * k + 9, taille, p);
-                set_test(test23, 30 * k * k + 36 * k + 10, taille, p);
-                set_test(test1, 30 * k * k + 40 * k + 13, taille, p);
-                set_test(test13, 30 * k * k + 46 * k + 16, taille, p);
-                set_test(test17, 30 * k * k + 48 * k + 17, taille, p);
-                set_test(test29, 30 * k * k + 54 * k + 20, taille, p);
-                set_test(test7, 30 * k * k + 58 * k + 23, taille, p);
-                set_test(test11, 30 * k * k + 60 * k + 24, taille, p);
+
+
+                threadPool.invoke({
+                                          [&]() { set_test(test19, 30 * k * k + 34 * k + 9, taille, p); },
+                                          [&]() { set_test(test23, 30 * k * k + 36 * k + 10, taille, p); },
+                                          [&]() { set_test(test1, 30 * k * k + 40 * k + 13, taille, p); },
+                                          [&]() { set_test(test13, 30 * k * k + 46 * k + 16, taille, p); },
+                                          [&]() { set_test(test17, 30 * k * k + 48 * k + 17, taille, p); },
+                                          [&]() { set_test(test29, 30 * k * k + 54 * k + 20, taille, p); },
+                                          [&]() { set_test(test7, 30 * k * k + 58 * k + 23, taille, p); },
+                                          [&]() { set_test(test11, 30 * k * k + 60 * k + 24, taille, p); },
+                                  });
             }
             if (test19.at(k)) {
                 const std::size_t p = 30 * k + 19;
-                set_test(test1, 30 * k * k + 38 * k + 12, taille, p);
-                set_test(test17, 30 * k * k + 42 * k + 14, taille, p);
-                set_test(test11, 30 * k * k + 48 * k + 18, taille, p);
-                set_test(test19, 30 * k * k + 50 * k + 19, taille, p);
-                set_test(test13, 30 * k * k + 56 * k + 23, taille, p);
-                set_test(test29, 30 * k * k + 60 * k + 25, taille, p);
-                set_test(test7, 30 * k * k + 62 * k + 27, taille, p);
-                set_test(test23, 30 * k * k + 66 * k + 29, taille, p);
+                threadPool.invoke({
+                                          [&]() { set_test(test1, 30 * k * k + 38 * k + 12, taille, p); },
+                                          [&]() { set_test(test17, 30 * k * k + 42 * k + 14, taille, p); },
+                                          [&]() { set_test(test11, 30 * k * k + 48 * k + 18, taille, p); },
+                                          [&]() { set_test(test19, 30 * k * k + 50 * k + 19, taille, p); },
+                                          [&]() { set_test(test13, 30 * k * k + 56 * k + 23, taille, p); },
+                                          [&]() { set_test(test29, 30 * k * k + 60 * k + 25, taille, p); },
+                                          [&]() { set_test(test7, 30 * k * k + 62 * k + 27, taille, p); },
+                                          [&]() { set_test(test23, 30 * k * k + 66 * k + 29, taille, p); },
+                                  });
             }
             if (test23.at(k)) {
                 const std::size_t p = 30 * k + 23;
-                set_test(test19, 30 * k * k + 46 * k + 17, taille, p);
-                set_test(test7, 30 * k * k + 52 * k + 22, taille, p);
-                set_test(test23, 30 * k * k + 54 * k + 23, taille, p);
-                set_test(test11, 30 * k * k + 60 * k + 28, taille, p);
-                set_test(test13, 30 * k * k + 64 * k + 31, taille, p);
-                set_test(test29, 30 * k * k + 66 * k + 32, taille, p);
-                set_test(test1, 30 * k * k + 70 * k + 36, taille, p);
-                set_test(test17, 30 * k * k + 72 * k + 37, taille, p);
+                threadPool.invoke({
+                                          [&]() { set_test(test19, 30 * k * k + 46 * k + 17, taille, p); },
+                                          [&]() { set_test(test7, 30 * k * k + 52 * k + 22, taille, p); },
+                                          [&]() { set_test(test23, 30 * k * k + 54 * k + 23, taille, p); },
+                                          [&]() { set_test(test11, 30 * k * k + 60 * k + 28, taille, p); },
+                                          [&]() { set_test(test13, 30 * k * k + 64 * k + 31, taille, p); },
+                                          [&]() { set_test(test29, 30 * k * k + 66 * k + 32, taille, p); },
+                                          [&]() { set_test(test1, 30 * k * k + 70 * k + 36, taille, p); },
+                                          [&]() { set_test(test17, 30 * k * k + 72 * k + 37, taille, p); },
+                                  });
             }
             if (test29.at(k)) {
                 const std::size_t p = 30 * k + 29;
-                set_test(test1, 30 * k * k + 58 * k + 28, taille, p);
-                set_test(test29, 30 * k * k + 60 * k + 29, taille, p);
-                set_test(test23, 30 * k * k + 66 * k + 35, taille, p);
-                set_test(test19, 30 * k * k + 70 * k + 39, taille, p);
-                set_test(test17, 30 * k * k + 72 * k + 41, taille, p);
-                set_test(test13, 30 * k * k + 76 * k + 45, taille, p);
-                set_test(test11, 30 * k * k + 78 * k + 47, taille, p);
-                set_test(test7, 30 * k * k + 82 * k + 51, taille, p);
+                threadPool.invoke({
+                                          [&]() { set_test(test1, 30 * k * k + 58 * k + 28, taille, p); },
+                                          [&]() { set_test(test29, 30 * k * k + 60 * k + 29, taille, p); },
+                                          [&]() { set_test(test23, 30 * k * k + 66 * k + 35, taille, p); },
+                                          [&]() { set_test(test19, 30 * k * k + 70 * k + 39, taille, p); },
+                                          [&]() { set_test(test17, 30 * k * k + 72 * k + 41, taille, p); },
+                                          [&]() { set_test(test13, 30 * k * k + 76 * k + 45, taille, p); },
+                                          [&]() { set_test(test11, 30 * k * k + 78 * k + 47, taille, p); },
+                                          [&]() { set_test(test7, 30 * k * k + 82 * k + 51, taille, p); },
+                                  });
                 set_test(test1, 30 * k * k + 88 * k + 57, taille, p);
             }
         }

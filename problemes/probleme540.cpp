@@ -43,7 +43,7 @@ namespace {
                 size_t L = l;
                 size_t P = 1;
                 size_t pos_d = 0;
-                size_t compteur = std::popcount(L);
+                int compteur = std::popcount(L);
                 while (L > 0) {
                     if ((L & 1u) == 1u) {
                         P *= d[pos_d];

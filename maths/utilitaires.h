@@ -163,12 +163,6 @@ namespace std {
         return oss.str();
     }
 
-    unsigned short popcount(unsigned short S);
-
-    unsigned long popcount(unsigned long S);
-
-    unsigned long long popcount(unsigned long long S);
-
     ostream &operator<<(ostream &os, uint128_t i);
 
     ostream &operator<<(ostream &os, int128_t i);
