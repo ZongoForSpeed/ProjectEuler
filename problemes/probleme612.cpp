@@ -1,7 +1,7 @@
-#include <maths/premiers.h>
-#include <maths/puissance.h>
-#include <maths/combinatoire.h>
-#include <maths/multidimension.h>
+#include "premiers.h"
+#include "puissance.h"
+#include "combinatoire.h"
+#include "multidimension.h"
 
 #include "problemes.h"
 #include "utilitaires.h"

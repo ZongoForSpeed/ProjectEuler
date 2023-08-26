@@ -9,6 +9,8 @@ add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/crible_quadratique.h
         ${PROJECT_SOURCE_DIR}/diophantienne.h
         ${PROJECT_SOURCE_DIR}/diophantienne.cpp
+        ${PROJECT_SOURCE_DIR}/distribution.h
+        ${PROJECT_SOURCE_DIR}/distribution.cpp
         ${PROJECT_SOURCE_DIR}/fenwick.h
         ${PROJECT_SOURCE_DIR}/fibonacci.h
         ${PROJECT_SOURCE_DIR}/graphe.h
@@ -34,13 +36,12 @@ add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/pythagoricien.h
         ${PROJECT_SOURCE_DIR}/pythagoricien.cpp
         ${PROJECT_SOURCE_DIR}/racine.h
-        ${PROJECT_SOURCE_DIR}/random.h
-        ${PROJECT_SOURCE_DIR}/random.cpp
         ${PROJECT_SOURCE_DIR}/timer.h
         ${PROJECT_SOURCE_DIR}/timer.cpp
         ${PROJECT_SOURCE_DIR}/utilitaires.h
         ${PROJECT_SOURCE_DIR}/utilitaires.cpp
-        )
+        distribution.h
+)
 
 include_directories(${PROJECT_SOURCE_DIR})
 

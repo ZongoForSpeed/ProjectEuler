@@ -1,4 +1,4 @@
-#include <maths/premiers.h>
+#include "premiers.h"
 #include <boost/math/constants/constants.hpp>
 
 #include "problemes.h"

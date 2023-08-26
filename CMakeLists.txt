@@ -16,7 +16,7 @@ find_package(MPFR 4.0 REQUIRED)
 # find_package(Gperftools)
 
 # Check for standard to use
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -25,20 +25,27 @@ IF (WIN32)
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/O2 /Zi")
     set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ox")
     set(CMAKE_CXX_FLAGS_DEBUG "/Od /Zi")
-    add_compile_options(/std:c++17)
+    add_compile_options(/std:c++20)
 ELSE ()
     # set stuff for other systems
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-    add_compile_options(-std=c++17)
+    add_compile_options(-std=c++20)
 
     add_compile_options(-Werror -Wall -Wextra -Wpedantic -Weverything
             -Wno-c++98-compat
             -Wno-c++98-compat-pedantic
             -Wno-global-constructors
             -Wno-unused-but-set-variable
-            )
+    )
+
+    add_compile_definitions(__GLIBCXX_TYPE_INT_N_0=__int128)
+    add_compile_definitions(__GLIBCXX_BITSIZE_INT_N_0=128)
+
+    #add_compile_definitions(__GLIBCXX_TYPE_INT_N_1=__uint128)
+    #add_compile_definitions(__GLIBCXX_BITSIZE_INT_N_1=128)
+
 ENDIF ()
 
 add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})

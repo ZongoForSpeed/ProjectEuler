@@ -75,14 +75,14 @@ ENREGISTRER_PROBLEME(84, "Monopoly odds") {
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<nombre> distrib_de(1, 4);
-    std::uniform_int_distribution<nombre> distrib_carte(1, 16);
+    std::uniform_int_distribution<size_t> distrib_de(1, 4);
+    std::uniform_int_distribution<size_t> distrib_carte(1, 16);
 
     nombre position = 0;
     nombre double_de = 0;
     for (nombre c = 0; c < 10000000; ++c) {
-        nombre d1 = distrib_de(gen);
-        nombre d2 = distrib_de(gen);
+        size_t d1 = distrib_de(gen);
+        size_t d2 = distrib_de(gen);
 
         position += (d1 + d2);
         if (position > 39) position -= 40;

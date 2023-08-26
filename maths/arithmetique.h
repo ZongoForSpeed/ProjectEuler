@@ -16,7 +16,7 @@ class mpz_nombre;
 namespace arithmetique {
     template<typename Nombre>
     constexpr Nombre PGCD(const Nombre &_a, const Nombre &_b) {
-        static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
+        static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un type arithmetique.");
         if (_a == 0)
             return _b;
         if (_b == 0)
@@ -57,7 +57,7 @@ namespace arithmetique {
 
     template<typename Nombre>
     Nombre Bezout(Nombre a, Nombre b, Nombre &x, Nombre &y) {
-        // static_assert(std::is_arithmetic<Nombre>::value, "Nombre doit être un type arithmetique.");
+        static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un type arithmetique.");
         // https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm#Pseudocode
         Nombre s = 0, old_s = 1;
         Nombre t = 1, old_t = 0;
@@ -84,8 +84,7 @@ namespace arithmetique {
     }
 
     template<typename Nombre>
-    constexpr Nombre plafond(Nombre n, Nombre d) // ceil
-    {
+    constexpr Nombre plafond(Nombre n, Nombre d) { // ceil
         return (n + d - 1) / d;
     }
 

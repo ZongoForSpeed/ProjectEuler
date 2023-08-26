@@ -4,7 +4,7 @@
 
 #include "arithmetique.h"
 #include "premiers.h"
-#include "random.h"
+#include "distribution.h"
 
 namespace crible {
     template<typename Nombre>
@@ -50,7 +50,7 @@ namespace crible {
 
     template<typename Nombre>
     std::optional<Nombre> pollard_brent(Nombre n) {
-        std::mt19937 &mt = utilitaires::generator();
+        std::mt19937 &mt = distribution::generator();
 
         std::uniform_int_distribution<Nombre> distribution(1, n - 1);
 

@@ -1,12 +1,12 @@
-#include <maths/arithmetique_modulaire.h>
+#include "arithmetique_modulaire.h"
 #include "problemes.h"
 #include "premiers.h"
-#include "random.h"
+#include "distribution.h"
 
 namespace {
 
     size_t calcul_racine(size_t p) {
-        std::mt19937& mt = utilitaires::generator();
+        std::mt19937& mt = distribution::generator();
         std::uniform_int_distribution<size_t> distribution(1, p - 2);
         size_t exp = p - 1;
         while (exp % 2 == 0) {

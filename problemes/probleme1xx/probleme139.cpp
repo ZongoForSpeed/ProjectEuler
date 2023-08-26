@@ -2,7 +2,7 @@
 #include "arithmetique.h"
 
 #include <fstream>
-#include <pythagoricien.h>
+#include "pythagoricien.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

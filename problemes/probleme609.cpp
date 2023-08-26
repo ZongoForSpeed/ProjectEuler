@@ -1,4 +1,4 @@
-#include <maths/premiers.h>
+#include "premiers.h"
 #include "problemes.h"
 #include "utilitaires.h"
 

@@ -1,7 +1,8 @@
 #pragma once
 
 #include <random>
+#include "numerique.h"
 
-namespace utilitaires {
+namespace distribution {
     std::mt19937& generator();
 }

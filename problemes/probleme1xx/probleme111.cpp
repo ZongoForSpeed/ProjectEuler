@@ -5,7 +5,7 @@
 #include "utilitaires.h"
 
 #include <fstream>
-#include <maths/timer.h>
+#include "timer.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

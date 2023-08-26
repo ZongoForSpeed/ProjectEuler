@@ -11,7 +11,7 @@
 namespace chiffres {
     template<typename Nombre, class Operation>
     void boucle_chiffre(Nombre n, Operation op, unsigned short base = 10) {
-        static_assert(std::is_integral<Nombre>::value, "Nombre doit être un entier.");
+        static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un entier.");
         while (n != 0) {
             op(n % base);
             n /= base;
