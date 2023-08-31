@@ -19,8 +19,6 @@ class nombre_modulaire {
         }
     }
 
-    static std::pair<size_t, nombre_modulaire> factoriel2(size_t modulo, size_t n);
-
     static void meme_mod(const nombre_modulaire &n1, const nombre_modulaire &n2);
 
     void meme_mod(const nombre_modulaire &n) const;
@@ -125,6 +123,8 @@ public:
         nombre_modulaire n(_modulo, op);
         return this->operator/(n);
     }
+
+    static std::pair<size_t, nombre_modulaire> factoriel2(size_t modulo, size_t n);
 
     static nombre_modulaire factoriel(size_t modulo, size_t n);
 
