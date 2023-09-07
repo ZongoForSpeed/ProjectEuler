@@ -5,6 +5,7 @@
 #include "timer.h"
 
 #include <fstream>
+#include <execution>
 
 typedef std::vector<uint128_t> vecteur;
 
@@ -35,7 +36,7 @@ ENREGISTRER_PROBLEME(221, "Alexandrian Integers") {
         }
     }
 
-    std::sort(Alexandrian.begin(), Alexandrian.end());
+    std::sort(std::execution::par, Alexandrian.begin(), Alexandrian.end());
 
     uint128_t resultat = Alexandrian[limite - 1];
     return std::to_string(resultat);

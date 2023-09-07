@@ -4,6 +4,8 @@
 #include "premiers.h"
 #include "mpz_nombre.h"
 
+#include <execution>
+
 typedef std::vector<mpz_nombre> vecteur;
 typedef std::pair<mpz_nombre, mpz_nombre> paire;
 
@@ -40,6 +42,6 @@ ENREGISTRER_PROBLEME(203, "Squarefree Binomial Coefficients") {
                 square_free.insert(std::move(Cnp));
         }
 
-    mpz_nombre resultat = std::reduce(square_free.begin(), square_free.end());
+    mpz_nombre resultat = std::reduce(std::execution::par, square_free.begin(), square_free.end());
     return resultat.to_string();
 }

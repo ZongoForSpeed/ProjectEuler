@@ -12,7 +12,6 @@ add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/distribution.h
         ${PROJECT_SOURCE_DIR}/distribution.cpp
         ${PROJECT_SOURCE_DIR}/executor.h
-        ${PROJECT_SOURCE_DIR}/executor.cpp
         ${PROJECT_SOURCE_DIR}/fenwick.h
         ${PROJECT_SOURCE_DIR}/fibonacci.h
         ${PROJECT_SOURCE_DIR}/graphe.h
@@ -44,7 +43,6 @@ add_library(maths SHARED
         ${PROJECT_SOURCE_DIR}/utilitaires.cpp
         distribution.h
         executor.h
-        executor.cpp
 )
 
 include_directories(${PROJECT_SOURCE_DIR})

@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -36,7 +38,7 @@ namespace {
                 }
         }
 
-        std::sort(e_min.begin(), e_min.end());
+        std::sort(std::execution::par, e_min.begin(), e_min.end());
         e_min.erase(std::unique(e_min.begin(), e_min.end()), e_min.end());
 
         it = cache.emplace_hint(it, n, e_min);

@@ -5,6 +5,7 @@
 #include <optional>
 #include <deque>
 #include <queue>
+#include <functional>
 
 namespace graphe {
     typedef unsigned long long nombre;
@@ -117,4 +118,60 @@ namespace graphe {
 
         return std::numeric_limits<double>::max();
     }
+
+    template<typename T>
+    class SegmentTree {
+
+        size_t size_;
+        std::vector<T> storage_;
+        std::function<T(T, T)> op_;
+    public:
+        SegmentTree(size_t n, std::function<T(T, T)> op)
+                : op_(std::move(op)) {
+            size_ = 1;
+            while (size_ < n) {
+                size_ <<= 1;
+            }
+            storage_.resize(2 * size_);
+        }
+
+        SegmentTree(const std::vector<T> &data, std::function<T(T, T)> op)
+                : SegmentTree(data.size(), op) {
+            for (size_t i = 0; i < data.size(); ++i) {
+                set(i, data[i]);
+            }
+        }
+
+        void set(size_t index, const T &value) {
+            index += size_;
+            while (index) {
+                storage_[index] = op_(storage_[index], value);
+                index >>= 1;
+            }
+        }
+
+        T get(size_t index) const {
+            return storage_[index + size_];
+        }
+
+        T get(size_t left, size_t right) const {
+            T result = 0;
+            left += size_;
+            right += size_;
+            while (left < right) {
+                if (left & 1) {
+                    result = op_(result, storage_[left]);
+                    ++left;
+                }
+                if (right & 1) {
+                    --right;
+                    result = op_(result, storage_[right]);
+                }
+                left >>= 1;
+                right >>= 1;
+            }
+            return result;
+        }
+    };
+
 }

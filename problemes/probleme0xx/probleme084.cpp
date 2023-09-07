@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <random>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -153,10 +154,10 @@ ENREGISTRER_PROBLEME(84, "Monopoly odds") {
 
     vecteur_paire resultat;
     for (nombre i = 0; i < plateau.size(); i++) {
-        resultat.push_back(std::make_pair(i, plateau[i]));
+        resultat.emplace_back(i, plateau[i]);
     }
 
-    std::sort(resultat.begin(), resultat.end(),
+    std::sort(std::execution::par, resultat.begin(), resultat.end(),
               [](const paire &a, const paire &b) { return a.second > b.second; });
 
     return utilitaires::concatener(resultat[0].first, resultat[1].first, resultat[2].first);

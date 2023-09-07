@@ -6,6 +6,8 @@
 #include <boost/algorithm/string.hpp>
 #include <numeric>
 
+#include <execution>
+
 typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(59, "XOR decryption") {
@@ -60,7 +62,7 @@ ENREGISTRER_PROBLEME(59, "XOR decryption") {
                 std::string key = {key1, key2, key3};
                 std::string decode;
                 for (size_t n = 0; n < data.size(); ++n) {
-                    const char c = data[n] ^key[n % 3];
+                    const char c = data[n] ^ key[n % 3];
                     if (lettres.find(c) == lettres.end())
                         break;
                     decode.push_back(c);
@@ -73,8 +75,9 @@ ENREGISTRER_PROBLEME(59, "XOR decryption") {
         }
     }
 
-    nombre resultat = std::accumulate(message.begin(), message.end(), 0ULL,
-                                      [](const nombre r, const char c) { return r + static_cast<nombre>(c); }
+    nombre resultat = std::transform_reduce(std::execution::par, message.begin(), message.end(),
+                                            0ULL, std::plus<nombre>{},
+                                            [](const char c) { return static_cast<nombre>(c); }
     );
     return std::to_string(resultat);
 }

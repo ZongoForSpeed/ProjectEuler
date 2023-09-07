@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <numeric>
+#include <execution>
 
 typedef unsigned long long nombre;
 
@@ -36,7 +37,7 @@ ENREGISTRER_PROBLEME(141, "Investigating progressive numbers, n, which are also 
             }
     }
 
-    nombre resultat = std::reduce(solutions.begin(), solutions.end());
+    nombre resultat = std::reduce(std::execution::par, solutions.begin(), solutions.end());
     return std::to_string(resultat);
 }
 

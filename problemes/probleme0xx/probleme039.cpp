@@ -2,6 +2,8 @@
 #include "arithmetique.h"
 #include "pythagoricien.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(39, "Integer right triangles") {
@@ -22,6 +24,6 @@ ENREGISTRER_PROBLEME(39, "Integer right triangles") {
     	}
     }
 
-    auto it = std::max_element(solutions.begin(), solutions.end());
+    auto it = std::max_element(std::execution::par, solutions.begin(), solutions.end());
 	return std::to_string(std::distance(solutions.begin(), it));
 }

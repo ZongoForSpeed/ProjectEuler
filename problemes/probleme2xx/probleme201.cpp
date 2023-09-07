@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <numeric>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -48,8 +49,8 @@ ENREGISTRER_PROBLEME(201, "Subsets with a unique sum") {
         carres.push_back(n * n);
 
     const nombre K = 50;
-    nombre minimum = std::reduce(carres.begin(), carres.begin() + K);
-    nombre maximum = std::reduce(carres.begin() + K, carres.end());
+    nombre minimum = std::reduce(std::execution::par, carres.begin(), carres.begin() + K);
+    nombre maximum = std::reduce(std::execution::par, carres.begin() + K, carres.end());
 
     multidimension<nombre, 2> somme(K + 1, maximum + 1, 0UL);
     somme[0][0] = 1;

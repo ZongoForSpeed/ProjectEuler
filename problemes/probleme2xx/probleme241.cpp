@@ -4,6 +4,7 @@
 #include "arithmetique.h"
 #include "premiers.h"
 
+#include <execution>
 #include <boost/rational.hpp>
 
 typedef boost::rational<uint128_t> fraction;
@@ -61,6 +62,6 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients") {
     std::sort(resultats.begin(), resultats.end());
     std::cout << resultats << std::endl;
 
-    uint128_t resultat = std::reduce(resultats.begin(), resultats.end());
+    uint128_t resultat = std::reduce(std::execution::par, resultats.begin(), resultats.end());
     return std::to_string(resultat);
 }

@@ -3,6 +3,7 @@
 #include "mpq_fraction.h"
 
 #include <fstream>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -23,7 +24,7 @@ namespace {
                 nouvelleEnvelope.erase(std::next(nouvelleEnvelope.begin(), i));
                 for (unsigned short j = sheet + 1; j <= 5; j++)
                     nouvelleEnvelope.push_back(j);
-                std::sort(nouvelleEnvelope.begin(), nouvelleEnvelope.end());
+                std::sort(std::execution::par, nouvelleEnvelope.begin(), nouvelleEnvelope.end());
                 resultat += calculEsperance(cache, nouvelleEnvelope);
             }
 

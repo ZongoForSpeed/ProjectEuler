@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <fstream>
+#include <execution>
 
 #include <boost/algorithm/string.hpp>
 #include <numeric>
@@ -27,12 +28,16 @@ ENREGISTRER_PROBLEME(22, "Names scores") {
     std::sort(names.begin(), names.end());
     nombre compteur = 0;
     nombre resultat = 0;
+
+    auto conversion = [] (char c) -> nombre {
+        if (c != '"')
+            return 1 + static_cast<nombre>(c - 'A');
+        return 0;
+    };
+
     for (const auto &name: names) {
-        nombre score = std::accumulate(name.begin(), name.end(), 0ULL, [](const nombre &n, char c) {
-            if (c != '"')
-                return n + 1 + static_cast<nombre>(c - 'A');
-            return n;
-        });
+        nombre score = std::transform_reduce(std::execution::par, name.begin(), name.end(),
+                                       0ULL, std::plus<nombre>{}, conversion);
         resultat += (++compteur * score);
     }
     return std::to_string(resultat);

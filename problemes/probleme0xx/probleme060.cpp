@@ -3,6 +3,8 @@
 #include "premiers.h"
 #include "utilitaires.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -67,6 +69,6 @@ ENREGISTRER_PROBLEME(60, "Prime pair sets") {
         solution.insert(solution.end(), suivant.begin()->second.begin(), suivant.begin()->second.end());
     }
 
-    nombre resultat = std::reduce(solution.begin(), solution.end());
+    nombre resultat = std::reduce(std::execution::par,solution.begin(), solution.end());
     return std::to_string(resultat);
 }

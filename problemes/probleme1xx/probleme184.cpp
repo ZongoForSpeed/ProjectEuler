@@ -2,6 +2,8 @@
 #include "arithmetique.h"
 #include "racine.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -42,7 +44,7 @@ ENREGISTRER_PROBLEME(184, "Triangles containing the origin") {
                 points.emplace_back(Point(x, y), racine::racine_carre((limite * limite - 1) / r2));
         }
 
-    std::sort(points.begin(), points.end());
+    std::sort(std::execution::par, points.begin(), points.end());
 
     nombre resultat = 0;
     size_t longueur = points.size();

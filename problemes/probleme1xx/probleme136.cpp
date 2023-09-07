@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <fstream>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -27,6 +28,6 @@ ENREGISTRER_PROBLEME(136, "Singleton difference") {
         }
     }
 
-    auto resultat = std::count(compteur.begin(), compteur.end(), 1);
+    auto resultat = std::count(std::execution::par, compteur.begin(), compteur.end(), 1);
     return std::to_string(resultat);
 }

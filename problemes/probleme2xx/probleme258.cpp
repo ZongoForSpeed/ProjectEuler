@@ -2,6 +2,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -48,7 +50,7 @@ ENREGISTRER_PROBLEME(258, "A lagged Fibonacci sequence") {
     m[1] = 1;
 
     vecteur g = puissance_vecteur(m, k, masque);
-    nombre resultat = std::reduce(g.begin(), g.end()) % masque;
+    nombre resultat = std::reduce(std::execution::par, g.begin(), g.end()) % masque;
 
     return std::to_string(resultat);
 }

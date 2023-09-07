@@ -6,6 +6,8 @@
 #include <boost/algorithm/string.hpp>
 #include <numeric>
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -54,9 +56,9 @@ ENREGISTRER_PROBLEME(107, "Minimal network") {
     graphe::Kruskal kruskal(A);
     auto arbre_mini = kruskal.algorithme();
 
-    auto somme_poids = [](const nombre &r, const graphe::Kruskal::arete &a) { return r + std::get<2>(a); };
+    auto poids = [](const graphe::Kruskal::arete &a) { return std::get<2>(a); };
 
-    nombre resultat = std::accumulate(A.begin(), A.end(), 0ull, somme_poids) -
-                      std::accumulate(arbre_mini.begin(), arbre_mini.end(), 0ull, somme_poids);
+    nombre resultat = std::transform_reduce(std::execution::par, A.begin(), A.end(), 0ull, std::plus<nombre>{}, poids) -
+                      std::transform_reduce(std::execution::par, arbre_mini.begin(), arbre_mini.end(), 0ull, std::plus<nombre>{}, poids);
     return std::to_string(resultat);
 }

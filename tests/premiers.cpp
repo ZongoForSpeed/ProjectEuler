@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
             BOOST_CHECK(crible[p]);
         }
 
-        size_t compteur = std::accumulate(crible.begin(), crible.end(), 0ul);
+        size_t compteur = std::reduce(crible.begin(), crible.end());
         BOOST_CHECK_EQUAL(25, compteur);
     }
 

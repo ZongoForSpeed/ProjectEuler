@@ -5,6 +5,8 @@
 #include <boost/algorithm/string.hpp>
 #include <numeric>
 
+#include <execution>
+
 typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(42, "Coded triangle numbers") {
@@ -27,13 +29,16 @@ ENREGISTRER_PROBLEME(42, "Coded triangle numbers") {
     for (nombre n = 1; n < 50; ++n)
         triangle.insert(n * (n + 1) / 2);
 
+    auto conversion = [] (char c) -> nombre {
+        if (c != '"')
+            return 1 + static_cast<nombre>(c - 'A');
+        return 0;
+    };
+
     nombre resultat = 0;
     for (const auto &name: names) {
-        nombre score = std::accumulate(name.begin(), name.end(), 0ULL, [](const nombre &n, char c) {
-            if (c != '"')
-                return n + 1 + static_cast<nombre>(c - 'A');
-            return n;
-        });
+        nombre score = std::transform_reduce(std::execution::par, name.begin(), name.end(),
+                                             0ULL,std::plus<nombre>{},conversion);
         if (triangle.find(score) != triangle.end())
             ++resultat;
     }

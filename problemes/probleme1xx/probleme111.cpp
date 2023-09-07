@@ -7,6 +7,8 @@
 #include <fstream>
 #include "timer.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef boost::rational<nombre> fraction;
@@ -65,7 +67,7 @@ ENREGISTRER_PROBLEME(111, "Primes with runs") {
     nombre resultat = 0;
     for (const auto &e: ensemble) {
         const std::pair<nombre, vecteur> &p = *e.second.rbegin();
-        nombre somme = std::reduce(p.second.begin(), p.second.end());
+        nombre somme = std::reduce(std::execution::par, p.second.begin(), p.second.end());
         resultat += somme;
         std::cout << e.first << "\t" << p.first << "\t" << p.second.size() << "\t" << somme << std::endl;
     }

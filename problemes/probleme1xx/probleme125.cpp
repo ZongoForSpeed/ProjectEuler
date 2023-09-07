@@ -4,6 +4,7 @@
 #include "utilitaires.h"
 
 #include <fstream>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -35,5 +36,5 @@ ENREGISTRER_PROBLEME(125, "Palindromic sums") {
         }
     }
 
-    return std::to_string(std::reduce(resultat.begin(), resultat.end()));
+    return std::to_string(std::reduce(std::execution::par, resultat.begin(), resultat.end()));
 }

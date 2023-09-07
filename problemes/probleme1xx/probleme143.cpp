@@ -2,6 +2,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
@@ -63,6 +65,6 @@ ENREGISTRER_PROBLEME(143, "Investigating the Torricelli point of a triangle") {
         }
     }
 
-    nombre resultat = std::reduce(triplets.begin(), triplets.end());
+    nombre resultat = std::reduce(std::execution::par, triplets.begin(), triplets.end());
     return std::to_string(resultat);
 }

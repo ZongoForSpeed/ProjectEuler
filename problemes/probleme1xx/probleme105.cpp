@@ -5,6 +5,8 @@
 #include <boost/algorithm/string.hpp>
 #include <numeric>
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -164,9 +166,9 @@ ENREGISTRER_PROBLEME(105, "Special subset sums: testing") {
         vecteur set;
         for (auto &s: v) set.push_back(std::stoull(s));
 
-        std::sort(set.begin(), set.end());
+        std::sort(std::execution::par, set.begin(), set.end());
         if (verifier(set))
-            resultat += std::reduce(set.begin(), set.end());
+            resultat += std::reduce(std::execution::par, set.begin(), set.end());
     }
 
     return std::to_string(resultat);

@@ -40,6 +40,7 @@ ELSE ()
             -Wno-unused-but-set-variable
     )
 
+    add_compile_definitions(PARALLEL)
     add_compile_definitions(__GLIBCXX_TYPE_INT_N_0=__int128)
     add_compile_definitions(__GLIBCXX_BITSIZE_INT_N_0=128)
 

@@ -42,7 +42,7 @@ namespace {
     }
 
     void internal_crible23(const std::size_t &taille, std::vector<bool> &test1, std::vector<bool> &test5) {
-        executor::thread_pool threadPool(2);
+        executor::thread_pool<void> threadPool(2);
         test1.assign(taille, true);
         test1.at(0) = false;
         test5.assign(taille, true);
@@ -71,7 +71,7 @@ namespace {
     void internal_crible235(const std::size_t &taille, std::vector<bool> &test1, std::vector<bool> &test7,
                             std::vector<bool> &test11, std::vector<bool> &test13, std::vector<bool> &test17,
                             std::vector<bool> &test19, std::vector<bool> &test23, std::vector<bool> &test29) {
-        executor::thread_pool threadPool(8);
+        executor::thread_pool<void> threadPool(8);
         test1.assign(taille, true);
         test1.at(0) = false;
         test7.assign(taille, true);

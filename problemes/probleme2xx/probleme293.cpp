@@ -3,6 +3,8 @@
 #include "premiers.h"
 #include "mpz_nombre.h"
 
+#include <execution>
+
 typedef std::vector<mpz_nombre> vecteur;
 
 ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
@@ -54,7 +56,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
         std::swap(fortunate, suivant);
     }
 
-    mpz_nombre resultat = std::reduce(pseudoFortunate.begin(), pseudoFortunate.end());
+    mpz_nombre resultat = std::reduce(std::execution::par, pseudoFortunate.begin(), pseudoFortunate.end());
 
     return resultat.to_string();
 }

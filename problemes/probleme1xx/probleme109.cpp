@@ -4,6 +4,8 @@
 #include <fstream>
 #include <boost/algorithm/string.hpp>
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -18,7 +20,7 @@ namespace {
                 auto c = r.second;
                 for (auto f: c) {
                     f.push_back(s);
-                    std::sort(f.begin(), f.end());
+                    std::sort(std::execution::par, f.begin(), f.end());
                     suivant[s.second + r.first].insert(f);
                 }
             }

@@ -2,6 +2,7 @@
 #include "chiffres.h"
 
 #include <set>
+#include <execution>
 
 typedef unsigned long long nombre;
 
@@ -31,6 +32,6 @@ ENREGISTRER_PROBLEME(32, "Pandigital products") {
             }
         }
     } while (std::next_permutation(v.begin(), v.end()));
-    nombre solution = std::reduce(resultat.begin(), resultat.end());
+    nombre solution = std::reduce(std::execution::par, resultat.begin(), resultat.end());
     return std::to_string(solution);
 }

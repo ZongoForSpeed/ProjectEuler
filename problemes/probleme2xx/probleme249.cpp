@@ -3,6 +3,8 @@
 #include "arithmetique.h"
 #include "premiers.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -16,7 +18,7 @@ ENREGISTRER_PROBLEME(249, "Prime Subset Sums") {
     vecteur premiers;
     premiers::crible2<nombre>(5000, std::back_inserter(premiers));
 
-    nombre somme = std::reduce(premiers.begin(), premiers.end());
+    nombre somme = std::reduce(std::execution::par, premiers.begin(), premiers.end());
     vecteur t(somme + 1, 0);
     t[0] = 1;
 

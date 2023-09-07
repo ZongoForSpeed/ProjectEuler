@@ -4,6 +4,8 @@
 #include "combinatoire.h"
 #include "racine.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -66,7 +68,7 @@ ENREGISTRER_PROBLEME(248, "Numbers for which Euler’s totient function equals 1
 
     vecteur resultat;
     enumerate(1, phi, facteurs.begin(), facteurs.end(), resultat);
-    std::sort(resultat.begin(), resultat.end());
+    std::sort(std::execution::par, resultat.begin(), resultat.end());
 
     return std::to_string(resultat[150000 - 1]);
 }

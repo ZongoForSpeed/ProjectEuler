@@ -3,6 +3,7 @@
 #include "utilitaires.h"
 
 #include <fstream>
+#include <execution>
 
 typedef unsigned long long nombre;
 
@@ -53,7 +54,7 @@ ENREGISTRER_PROBLEME(238, "Infinite string tour") {
         sn = (sn * sn) % modulo;
     } while (sn != s0);
 
-    const nombre somme = std::reduce(w.begin(), w.end(), 0ULL);
+    const nombre somme = std::reduce(std::execution::par, w.begin(), w.end(), 0ULL);
 
     vecteur p(somme, 0);
     nombre compteur = 0;

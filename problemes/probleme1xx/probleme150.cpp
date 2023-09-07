@@ -2,6 +2,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <execution>
+
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
@@ -64,7 +66,7 @@ ENREGISTRER_PROBLEME(150, "Searching a triangular array for a sub-triangle havin
             nombre somme = 0;
             for (size_t k = i; k < m.size(); ++k) {
                 const vecteur &l = m[k];
-                somme += std::reduce(std::next(l.begin(), j), std::next(l.begin(), k - i + j + 1));
+                somme += std::reduce(std::execution::par, std::next(l.begin(), j), std::next(l.begin(), k - i + j + 1));
                 resultat = std::min(resultat, somme);
             }
         }

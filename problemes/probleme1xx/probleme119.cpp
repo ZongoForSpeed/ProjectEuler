@@ -4,6 +4,7 @@
 #include "utilitaires.h"
 
 #include <fstream>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -29,7 +30,7 @@ ENREGISTRER_PROBLEME(119, "Digit power sum") {
         }
     }
 
-    std::sort(resultat.begin(), resultat.end());
+    std::sort(std::execution::par, resultat.begin(), resultat.end());
 
     return std::to_string(resultat[29]);
 }

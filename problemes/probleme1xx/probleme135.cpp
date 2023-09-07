@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <fstream>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -27,6 +28,6 @@ ENREGISTRER_PROBLEME(135, "Same differences") {
         }
     }
 
-    auto resultat = std::count(compteur.begin(), compteur.end(), 10);
+    auto resultat = std::count(std::execution::par, compteur.begin(), compteur.end(), 10);
     return std::to_string(resultat);
 }

@@ -4,6 +4,7 @@
 
 #include <set>
 #include <iterator>
+#include <execution>
 
 typedef std::vector<size_t> vecteur;
 typedef std::pair<size_t, size_t> paire;
@@ -66,7 +67,7 @@ ENREGISTRER_PROBLEME(200, "Find the 200th prime-proof sqube containing the conti
                         squbes.back() = sqube;
                     else
                         squbes.push_back(sqube);
-                    std::sort(squbes.begin(), squbes.end());
+                    std::sort(std::execution::par, squbes.begin(), squbes.end());
                 }
             }
         }

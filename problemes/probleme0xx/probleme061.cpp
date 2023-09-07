@@ -3,6 +3,7 @@
 
 #include <list>
 #include <numeric>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -49,7 +50,7 @@ ENREGISTRER_PROBLEME(61, "Cyclical figurate numbers") {
                                                     vecteur s = {n1, n1 % 100 * 100 + n2, n2 % 100 * 100 + n3,
                                                                  n3 % 100 * 100 + n4, n4 % 100 * 100 + n5,
                                                                  n5 % 100 * 100 + n6};
-                                                    std::sort(s.begin(), s.end());
+                                                    std::sort(std::execution::par, s.begin(), s.end());
                                                     solution = s;
                                                 }
                                             }

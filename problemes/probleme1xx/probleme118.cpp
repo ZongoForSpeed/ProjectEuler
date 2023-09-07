@@ -4,6 +4,7 @@
 #include "utilitaires.h"
 
 #include <fstream>
+#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -21,7 +22,7 @@ namespace {
                 if (std::set<vecteur> s = test(premiers, it, fin); !s.empty()) {
                     for (vecteur v: s) {
                         v.push_back(p);
-                        std::sort(v.begin(), v.end());
+                        std::sort(std::execution::par, v.begin(), v.end());
                         resultat.insert(v);
                     }
                 }

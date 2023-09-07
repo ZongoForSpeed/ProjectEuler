@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <execution>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
@@ -53,6 +55,6 @@ ENREGISTRER_PROBLEME(18, "Maximum path sum I") {
             }
         resultat.push_back(std::move(ligne));
     }
-    const auto it = std::max_element(resultat.back().begin(), resultat.back().end());
+    const auto it = std::max_element(std::execution::par, resultat.back().begin(), resultat.back().end());
     return std::to_string(*it);
 }

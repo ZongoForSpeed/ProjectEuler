@@ -2,6 +2,8 @@
 #include "arithmetique.h"
 #include "racine.h"
 
+#include <execution>
+
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -77,7 +79,7 @@ ENREGISTRER_PROBLEME(292, "Pythagorean Polygons") {
 
     std::vector<triplet> triplets;
     generer_triplets(perimetre, triplets);
-    std::sort(triplets.begin(), triplets.end(),
+    std::sort(std::execution::par, triplets.begin(), triplets.end(),
               [](const triplet &t1, const triplet &t2) {
                   return angle(t1) < angle(t2);
               });

@@ -31,10 +31,11 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series") {
     // What is the value of this product?
     auto produit = [&big_number](const size_t &debut, const size_t &fin) -> int128_t {
         if (debut < fin && fin < big_number.size())
-            return std::accumulate(std::next(big_number.begin(), debut),
-                                   std::next(big_number.begin(), fin),
-                                   int128_t(1),
-                                   [](const int128_t &p, char c) -> int128_t { return p * (c - '0'); }
+            return std::transform_reduce(std::next(big_number.begin(), debut),
+                                         std::next(big_number.begin(), fin),
+                                         int128_t(1),
+                                         std::multiplies<int128_t>{},
+                                         [](char c) -> int128_t { return c - '0'; }
             );
         else
             return 0;
