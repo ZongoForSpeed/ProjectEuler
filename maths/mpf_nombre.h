@@ -541,33 +541,33 @@ inline mpf_nombre operator/(const Type &op1, const mpf_nombre &op2) {
     return rop;
 }
 
-template<typename Type>
-inline bool operator==(const Type &a, const mpz_nombre &b) {
+template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
+inline bool operator==(const Type &a, const mpf_nombre &b) {
     return b.compare(a) == 0;
 }
 
-template<typename Type>
-inline bool operator!=(const Type &a, const mpz_nombre &b) {
+template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
+inline bool operator!=(const Type &a, const mpf_nombre &b) {
     return b.compare(a) != 0;
 }
 
-template<typename Type>
-inline bool operator<(const Type &a, const mpz_nombre &b) {
+template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
+inline bool operator<(const Type &a, const mpf_nombre &b) {
     return b.compare(a) > 0;
 }
 
-template<typename Type>
-inline bool operator>(const Type &a, const mpz_nombre &b) {
+template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
+inline bool operator>(const Type &a, const mpf_nombre &b) {
     return b.compare(a) < 0;
 }
 
-template<typename Type>
-inline bool operator<=(const Type &a, const mpz_nombre &b) {
+template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
+inline bool operator<=(const Type &a, const mpf_nombre &b) {
     return b.compare(a) >= 0;
 }
 
-template<typename Type>
-inline bool operator>=(const Type &a, const mpz_nombre &b) {
+template<typename Type, typename = typename std::enable_if<std::is_arithmetic<Type>::value, Type>::type>
+inline bool operator>=(const Type &a, const mpf_nombre &b) {
     return b.compare(a) <= 0;
 }
 
