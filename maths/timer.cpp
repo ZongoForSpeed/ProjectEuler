@@ -3,9 +3,8 @@
 
 #include "timer.h"
 
-Timer::Timer(std::string t) : _titre(std::move(t)) {
+Timer::Timer(std::string t) : _debut(std::chrono::high_resolution_clock::now()), _titre(std::move(t)) {
     std::cout << "Début " << _titre << " ..." << std::endl;
-    _debut = std::chrono::high_resolution_clock::now();
 }
 
 Timer::~Timer() {

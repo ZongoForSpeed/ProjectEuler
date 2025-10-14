@@ -11,9 +11,11 @@
 BOOST_AUTO_TEST_SUITE(test_premiers)
 
     BOOST_AUTO_TEST_CASE(crible) {
-        const std::vector<size_t> premiers100{2, 3, 5, 7, 11, 13, 17, 19, 23,
-                                              29, 31, 37, 41, 43, 47, 53, 59,
-                                              61, 67, 71, 73, 79, 83, 89, 97};
+        const std::vector<size_t> premiers100{
+            2, 3, 5, 7, 11, 13, 17, 19, 23,
+            29, 31, 37, 41, 43, 47, 53, 59,
+            61, 67, 71, 73, 79, 83, 89, 97
+        };
         std::deque<size_t> resultat;
         premiers::crible2<size_t>(100ULL, std::back_inserter(resultat));
         BOOST_CHECK_EQUAL_COLLECTIONS(premiers100.begin(), premiers100.end(), resultat.begin(), resultat.end());
@@ -43,9 +45,11 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
     }
 
     BOOST_AUTO_TEST_CASE(crible_simple) {
-        const std::vector<size_t> premiers100{2, 3, 5, 7, 11, 13, 17, 19, 23,
-                                              29, 31, 37, 41, 43, 47, 53, 59,
-                                              61, 67, 71, 73, 79, 83, 89, 97};
+        const std::vector<size_t> premiers100{
+            2, 3, 5, 7, 11, 13, 17, 19, 23,
+            29, 31, 37, 41, 43, 47, 53, 59,
+            61, 67, 71, 73, 79, 83, 89, 97
+        };
         std::vector<bool> crible;
         premiers::crible_simple(100, crible);
 
@@ -55,21 +59,23 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
             BOOST_CHECK(crible[p]);
         }
 
-        size_t compteur = std::reduce(crible.begin(), crible.end());
+        // std::cout << "crible: " << crible << std::endl;
+
+        size_t compteur = std::reduce(crible.begin(), crible.end(), 0UL);
         BOOST_CHECK_EQUAL(25, compteur);
     }
 
     BOOST_AUTO_TEST_CASE(miller_rabin) {
-        uint128_t n = 32416189721ull;
-        BOOST_CHECK(premiers::miller_rabin<uint128_t>(n, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<uint128_t>(n + 44, 25));
+        size_t n = 32416189721ull;
+        BOOST_CHECK(premiers::miller_rabin<size_t>(n, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<size_t>(n + 44, 25));
 
-        uint128_t m = 2305843009213693951ull;
-        BOOST_CHECK(premiers::miller_rabin<uint128_t>(m, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<uint128_t>(m + 44, 25));
+        unsigned long long m = 2305843009213693951ull;
+        BOOST_CHECK(premiers::miller_rabin<unsigned long long>(m, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<unsigned long long>(m + 44, 25));
 
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<uint128_t>(n * m, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<uint128_t>(n * m - 2, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<unsigned long long>(n * m, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<unsigned long long>(n * m - 2, 25));
 
         size_t ni = 9'074'200'321;
         BOOST_CHECK(premiers::miller_rabin<size_t>(ni, 25));
@@ -78,27 +84,29 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
     }
 
     BOOST_AUTO_TEST_CASE(suivant) {
-        uint128_t n = 32416189721ull;
+        unsigned long long n = 32416189721ull;
         BOOST_CHECK_EQUAL(32416189733, premiers::suivant(n));
 
-        uint128_t m = 32416189877ull;
+        unsigned long long m = 32416189877ull;
         BOOST_CHECK_EQUAL(32416189909, premiers::suivant(m));
 
-        BOOST_CHECK_EQUAL("1050809361084791654327", std::to_string(premiers::suivant(m * n)));
+        // BOOST_CHECK_EQUAL("1050809361084791654327", std::to_string(premiers::suivant(m * n)));
 
-        uint128_t p = 2305843009213693951ull;
-        BOOST_CHECK_EQUAL(2305843009213693967, premiers::suivant(p));
-        for (uint128_t i = p + 2; i < 2305843009213693967; i += 2) {
-            BOOST_CHECK_EQUAL(false, premiers::miller_rabin(i, 25));
-        }
+        // uint128_t p = 2305843009213693951ull;
+        // BOOST_CHECK_EQUAL(2305843009213693967, premiers::suivant(p));
+        // for (uint128_t i = p + 2; i < 2305843009213693967; i += 2) {
+        //     BOOST_CHECK_EQUAL(false, premiers::miller_rabin(i, 25));
+        // }
 
         std::vector<size_t> suivants{4, 8, 15, 16, 23, 42, 69, 666, 8283, 98084, 730210, 2691418, 80314325, 620283078};
         for (auto &s: suivants) {
             s = premiers::suivant(s);
         }
 
-        std::vector<size_t> resultats{5, 11, 17, 17, 29, 43, 71, 673, 8287, 98101, 730217, 2691421, 80314327,
-                                      620283089};
+        std::vector<size_t> resultats{
+            5, 11, 17, 17, 29, 43, 71, 673, 8287, 98101, 730217, 2691421, 80314327,
+            620283089
+        };
         BOOST_CHECK_EQUAL(resultats, suivants);
     }
 

@@ -3,6 +3,7 @@
 #include "graphe.h"
 
 #include <execution>
+#include <iostream>
 
 typedef size_t nombre;
 

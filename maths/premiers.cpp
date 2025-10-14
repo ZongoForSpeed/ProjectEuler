@@ -333,6 +333,13 @@ namespace premiers {
         return n.premier(reps);
     }
 
+    template<>
+    mpz_nombre suivant(const mpz_nombre &n) {
+        mpz_nombre resultat;
+        mpz_nombre::premier_suivant(resultat, n);
+        return resultat;
+    }
+
     MeisselLehmer::MeisselLehmer(const std::vector<size_t> &_premiers) : premiers(_premiers) {
         std::size_t dernier = 0;
         std::size_t compteur = 0;

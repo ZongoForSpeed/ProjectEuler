@@ -1,5 +1,7 @@
 #include "problemes.h"
+
 #include "numerique.h"
+
 #include "premiers.h"
 
 ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ") {
@@ -10,9 +12,9 @@ ENREGISTRER_PROBLEME(146, "Investigating a Prime Pattern ") {
     size_t limite = 150000000ULL;
     size_t resultat = 0;
     for (size_t n = 10; n < limite; n += 10) {
-        if (size_t reste = n % 210;reste == 10 || reste == 80 || reste == 130 || reste == 200) {
-            uint128_t n2 = n * n;
-            uint128_t p = (n2 + 1);
+        if (size_t reste = n % 210; reste == 10 || reste == 80 || reste == 130 || reste == 200) {
+            mpz_nombre n2 = n * n;
+            mpz_nombre p = (n2 + 1);
             if (!premiers::miller_rabin(p))
                 continue;
 

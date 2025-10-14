@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "problemes.h"
 #include "utilitaires.h"
 

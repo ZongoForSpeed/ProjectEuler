@@ -1,4 +1,7 @@
 #include "utilitaires.h"
+
+#include <span>
+
 #include "numerique.h"
 
 #include "chiffres.h"
@@ -38,9 +41,9 @@ namespace std {
                 os << '0';
                 return os;
             }
-            const char *bases = "0123456789abcdef";
-            for (auto c: chiffres::extraire_chiffres(i, base)) {
-                os << bases[c];
+            std::span<char const> bases {"0123456789abcdef", 17};
+            for (const auto c: chiffres::extraire_chiffres(i, base)) {
+                os << bases[static_cast<unsigned int>(c)];
             }
         }
         return os;

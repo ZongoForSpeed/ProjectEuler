@@ -4,8 +4,8 @@
 #include <chrono>
 
 class Timer {
-    std::chrono::high_resolution_clock::time_point _debut;
-    std::string _titre;
+    const std::chrono::high_resolution_clock::time_point _debut;
+    const std::string _titre;
 
 public:
     explicit Timer(std::string t);

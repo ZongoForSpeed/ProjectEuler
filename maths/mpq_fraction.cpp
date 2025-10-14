@@ -1,5 +1,7 @@
 #include "mpq_fraction.h"
 
+#include <utility>
+
 mpq_fraction::mpq_fraction() {
     init();
     mpq_init(_data);

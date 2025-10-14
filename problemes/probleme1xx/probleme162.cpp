@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "numerique.h"
+#include "utilitaires.h"
 #include "puissance.h"
 
 #include <boost/algorithm/string.hpp>

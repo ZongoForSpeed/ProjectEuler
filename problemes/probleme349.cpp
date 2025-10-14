@@ -2,6 +2,8 @@
 #include "numerique.h"
 #include "multidimension.h"
 
+#pragma clang diagnostic ignored "-Wswitch-default"
+
 namespace {
     enum Direction {
         NORD,
@@ -84,7 +86,7 @@ ENREGISTRER_PROBLEME(349, "Langton's ant") {
 
             if (deltas.size() >= etatStable) {
                 // Recherche d'un état stable dans les derniers deltas ?
-                auto it = std::find_if_not(deltas.rbegin(), deltas.rend(),
+                const auto it = std::ranges::find_if_not(deltas.rbegin(), deltas.rend(),
                                            [&delta](const int &d) { return d == delta; });
 
                 if (std::distance(deltas.rbegin(), it) >= etatStable) {

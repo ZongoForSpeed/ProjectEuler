@@ -4,6 +4,8 @@
 
 #include "mpz_nombre.h"
 
+#include <utility>
+
 mpz_nombre::mpz_nombre() {
     init();
     mpz_init(_data);

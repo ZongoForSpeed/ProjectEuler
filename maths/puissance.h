@@ -2,7 +2,6 @@
 
 #include "numerique.h"
 #include <boost/multiprecision/integer.hpp>
-#include "utilitaires.h"
 
 namespace puissance {
     template<typename Base, typename Exposant>

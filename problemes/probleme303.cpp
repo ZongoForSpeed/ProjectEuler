@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "problemes.h"
 #include "utilitaires.h"
 
@@ -29,7 +31,7 @@ namespace {
                 }
             }
             base *= 10;
-            std::sort(tmp.begin(), tmp.end());
+            std::ranges::sort(tmp);
             std::swap(tmp, v);
         }
     }

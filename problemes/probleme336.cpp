@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "problemes.h"
 #include "utilitaires.h"
 
@@ -80,7 +82,7 @@ ENREGISTRER_PROBLEME(336, "Maximix Arrangements") {
                 resultat = affiche(train);
             }
         }
-    } while (std::next_permutation(train.begin(), train.end()));
+    } while (std::ranges::next_permutation(train).found);
 
     return resultat;
 }

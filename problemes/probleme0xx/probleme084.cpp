@@ -144,7 +144,12 @@ ENREGISTRER_PROBLEME(84, "Monopoly odds") {
                     case 10:
                         position -= 3;
                         break;
+                    default:
+                        break;
                 }
+                break;
+            default:
+                break;
         }
 
         if (position == 30 || double_de == 3) position = 10;

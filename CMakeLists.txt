@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.9)
 
 project(ProjectEuler)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/install/")
+
+if(POLICY CMP0167)
+    cmake_policy(SET CMP0167 NEW)
+endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/install/")
 set(Boost_USE_STATIC_LIBS ON) # only find static libs
@@ -12,6 +17,7 @@ set(Boost_DEBUG ON)
 find_package(Boost 1.80.0 REQUIRED)
 find_package(GMP 2.6 REQUIRED)
 find_package(MPFR 4.0 REQUIRED)
+# find_package(LLVM 20.1.2 REQUIRED CONFIG)
 
 # find_package(Gperftools)
 
@@ -19,6 +25,9 @@ find_package(MPFR 4.0 REQUIRED)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_C_COMPILER clang-20)
+set(CMAKE_CXX_COMPILER clang++-20)
 
 IF (WIN32)
     # set stuff for windows
@@ -38,23 +47,27 @@ ELSE ()
             -Wno-c++98-compat-pedantic
             -Wno-global-constructors
             -Wno-unused-but-set-variable
+            -Wno-unsafe-buffer-usage
+            -Wno-deprecated-declarations
     )
 
     add_compile_definitions(PARALLEL)
-    add_compile_definitions(__GLIBCXX_TYPE_INT_N_0=__int128)
-    add_compile_definitions(__GLIBCXX_BITSIZE_INT_N_0=128)
 
-    #add_compile_definitions(__GLIBCXX_TYPE_INT_N_1=__uint128)
+    #add_compile_definitions(__GLIBCXX_BITSIZE_INT_N_0=128)
+    #add_compile_definitions(__GLIBCXX_TYPE_INT_N_0=__int128)
     #add_compile_definitions(__GLIBCXX_BITSIZE_INT_N_1=128)
+    #add_compile_definitions(__GLIBCXX_TYPE_INT_N_1=__uint128)
 
 ENDIF ()
 
 add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})
+# add_definitions(${LLVM_DEFINITIONS})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${GMP_INCLUDE_DIR})
 include_directories(${MPFR_INCLUDES})
 include_directories(${Boost_INCLUDE_DIR})
+# include_directories(${LLVM_INCLUDE_DIRS})
 # include_directories(${GPERFTOOLS_INCLUDE_DIR})
 
 include(CheckCXXCompilerFlag)

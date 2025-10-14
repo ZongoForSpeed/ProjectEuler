@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "numerique.h"
+#include "utilitaires.h"
 #include "puissance.h"
 
 ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime") {

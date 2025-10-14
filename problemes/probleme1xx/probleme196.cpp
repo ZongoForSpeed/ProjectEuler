@@ -4,7 +4,7 @@
 #include "polygonal.h"
 #include "premiers.h"
 
-typedef int128_t nombre;
+typedef mpz_nombre nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;
 
