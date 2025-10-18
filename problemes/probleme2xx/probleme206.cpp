@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "utilitaires.h"
 #include "arithmetique.h"
 #include "racine.h"
 #include "mpz_nombre.h"

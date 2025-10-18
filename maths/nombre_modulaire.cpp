@@ -93,7 +93,7 @@ nombre_modulaire &nombre_modulaire::operator-=(const nombre_modulaire &op) {
 nombre_modulaire &nombre_modulaire::operator*=(const nombre_modulaire &op) {
     meme_mod(op);
 
-    uint128_t c = 0;
+    __uint128_t c = 0;
     boost::multiprecision::multiply(c, _value, op._value);
     _value = boost::multiprecision::integer_modulus(c, _modulo);
 

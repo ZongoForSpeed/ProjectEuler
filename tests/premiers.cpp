@@ -1,7 +1,8 @@
+#include <numeric>
 #include <boost/test/unit_test.hpp>
 #include <deque>
 
-#include "numerique.h"
+#include "utilitaires.h"
 #include "premiers.h"
 
 #pragma clang diagnostic push
@@ -66,21 +67,21 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
     }
 
     BOOST_AUTO_TEST_CASE(miller_rabin) {
-        size_t n = 32416189721ull;
-        BOOST_CHECK(premiers::miller_rabin<size_t>(n, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<size_t>(n + 44, 25));
+        unsigned long n = 32416189721ull;
+        BOOST_CHECK(premiers::miller_rabin(n, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin(n + 44, 25));
 
         unsigned long long m = 2305843009213693951ull;
-        BOOST_CHECK(premiers::miller_rabin<unsigned long long>(m, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<unsigned long long>(m + 44, 25));
+        BOOST_CHECK(premiers::miller_rabin(m, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin(m + 44, 25));
 
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<unsigned long long>(n * m, 25));
-        BOOST_CHECK_EQUAL(false, premiers::miller_rabin<unsigned long long>(n * m - 2, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin(n * m, 25));
+        BOOST_CHECK_EQUAL(false, premiers::miller_rabin(n * m - 2, 25));
 
-        size_t ni = 9'074'200'321;
-        BOOST_CHECK(premiers::miller_rabin<size_t>(ni, 25));
+        unsigned long ni = 9'074'200'321;
+        BOOST_CHECK(premiers::miller_rabin(ni, 25));
 
-        BOOST_CHECK(premiers::miller_rabin<size_t>(7, 25));
+        BOOST_CHECK(premiers::miller_rabin(7ul, 25));
     }
 
     BOOST_AUTO_TEST_CASE(suivant) {
@@ -90,13 +91,11 @@ BOOST_AUTO_TEST_SUITE(test_premiers)
         unsigned long long m = 32416189877ull;
         BOOST_CHECK_EQUAL(32416189909, premiers::suivant(m));
 
-        // BOOST_CHECK_EQUAL("1050809361084791654327", std::to_string(premiers::suivant(m * n)));
-
-        // uint128_t p = 2305843009213693951ull;
-        // BOOST_CHECK_EQUAL(2305843009213693967, premiers::suivant(p));
-        // for (uint128_t i = p + 2; i < 2305843009213693967; i += 2) {
-        //     BOOST_CHECK_EQUAL(false, premiers::miller_rabin(i, 25));
-        // }
+        unsigned long long p = 2305843009213693951ull;
+        BOOST_CHECK_EQUAL(2305843009213693967, premiers::suivant(p));
+        for (unsigned long long i = p + 2; i < 2305843009213693967; i += 2) {
+            BOOST_CHECK_EQUAL(false, premiers::miller_rabin(i, 25));
+        }
 
         std::vector<size_t> suivants{4, 8, 15, 16, 23, 42, 69, 666, 8283, 98084, 730210, 2691418, 80314325, 620283078};
         for (auto &s: suivants) {

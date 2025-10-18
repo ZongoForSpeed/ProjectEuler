@@ -1,20 +1,21 @@
 #include "problemes.h"
 #include "numerique.h"
 #include "polygonal.h"
+#include "mpq_fraction.h"
+#include "mpz_nombre.h"
 
-#include <boost/rational.hpp>
+#include <vector>
 
-typedef boost::rational<int128_t> fraction;
-typedef std::vector<int128_t> vecteur;
+typedef std::vector<mpz_nombre> vecteur;
 
-typedef std::pair<int128_t, int128_t> paire;
+typedef std::pair<mpz_nombre, mpz_nombre> paire;
 
 namespace {
-    bool evaluer(const int128_t &a, const int128_t &b, const int128_t &s) {
+    bool evaluer(const mpz_nombre &a, const mpz_nombre &b, const mpz_nombre &s) {
         return a * a < b * b * s;
     }
 
-    fraction fraction_continue(size_t S, const int128_t &bound) {
+    mpq_fraction mpq_fraction_continue(size_t S, const mpz_nombre &bound) {
         paire a(racine::racine_carre(S), 1);
         paire b(a.first + 1, 1);
 
@@ -27,9 +28,9 @@ namespace {
         }
 
         if (evaluer(a.first * b.second + b.first * a.second, 2 * a.second * b.second, S))
-            return fraction(b.first, b.second);
+            return mpq_fraction(b.first, b.second);
         else
-            return fraction(a.first, a.second);
+            return mpq_fraction(a.first, a.second);
     }
 }
 
@@ -45,12 +46,12 @@ ENREGISTRER_PROBLEME(192, "Best Approximations") {
     //
     // Find the sum of all denominators of the best approximations to √n for the denominator bound 10^12, where n is not
     // a perfect square and 1 < n ≤ 100000.
-    int128_t bound = 1000000000000ULL;
-    int128_t resultat = 0;
+    size_t bound = 1000000000000ULL;
+    mpz_nombre resultat = 0;
     for (size_t n = 1; n <= 100000; ++n) {
         if (!polygonal::est_carre(n)) {
-            fraction f = fraction_continue(n, bound);
-            resultat += f.denominator();
+            mpq_fraction f = mpq_fraction_continue(n, bound);
+            resultat += f.denominateur();
         }
     }
 

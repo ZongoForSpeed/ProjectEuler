@@ -2,10 +2,11 @@
 #include "numerique.h"
 #include "arithmetique.h"
 #include "multidimension.h"
+#include "mpz_nombre.h"
 
 typedef multidimension<bool, 2> matrice;
 typedef std::pair<size_t, size_t> paire;
-typedef int128_t nombre;
+typedef mpz_nombre nombre;
 typedef std::unordered_map<matrice, nombre> cache_map;
 
 namespace {

@@ -3,6 +3,8 @@
 
 #include <fstream>
 
+#include "utilitaires.h"
+
 typedef unsigned long long nombre;
 typedef std::vector<long double> vecteur;
 

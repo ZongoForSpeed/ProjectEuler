@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "utilitaires.h"
 #include "mpz_nombre.h"
 
 namespace {

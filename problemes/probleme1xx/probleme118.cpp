@@ -1,10 +1,11 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
-#include <fstream>
 #include <execution>
+#include <fstream>
+#include <set>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -49,7 +50,7 @@ ENREGISTRER_PROBLEME(118, "Pandigital prime sets") {
     do {
         auto s = test(premiers, chiffres.begin(), chiffres.end());
         resultat.insert(s.begin(), s.end());
-    } while (std::next_permutation(chiffres.begin(), chiffres.end()));
+    } while (std::ranges::next_permutation(chiffres).found);
 
     return std::to_string(resultat.size());
 }

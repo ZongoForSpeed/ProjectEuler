@@ -3,40 +3,43 @@
 #include "numerique.h"
 #include "arithmetique.h"
 #include "premiers.h"
+#include "utilitaires.h"
 
 #include <execution>
 #include <boost/rational.hpp>
 
-typedef boost::rational<uint128_t> fraction;
-typedef std::vector<uint128_t> vecteur;
+#include "mpq_fraction.h"
+
+typedef std::vector<mpz_nombre> vecteur;
 
 namespace {
-    void solution(const vecteur &premiers,
-                  const uint128_t &limite,
-                  const uint128_t &n,
-                  const fraction &sigma,
-                  vecteur &resultat) {
-        std::map<uint128_t, unsigned long> decomposition;
-        arithmetique::decomposition(sigma.numerator(), premiers, decomposition);
 
-        uint128_t p = decomposition.begin()->first;
+    void solution(const std::vector<unsigned long long> &premiers,
+                  const mpz_nombre &limite,
+                  const mpz_nombre &n,
+                  const mpq_fraction &sigma,
+                  vecteur &resultat) {
+        std::map<mpz_nombre, unsigned long> decomposition;
+        arithmetique::decomposition(sigma.numerateur(), premiers, decomposition);
+
+        mpz_nombre p = decomposition.begin()->first;
         unsigned long exposant = decomposition.begin()->second;
 
         if (n % p == 0)
             return;
 
         for (unsigned long a = exposant;; ++a) {
-            uint128_t m = n * puissance::puissance<uint128_t>(p, a);
+            mpz_nombre m = n * mpz_nombre::puissance(p, a);
             if (m > limite)
                 break;
 
-            fraction sigma2 = fraction(puissance::puissance<uint128_t>(p, a + 1) - 1,
-                                       puissance::puissance<uint128_t>(p, a) * (p - 1)) * sigma;
+            mpq_fraction sigma2 = mpq_fraction(mpz_nombre::puissance(p, a + 1) - 1,
+                                               mpz_nombre::puissance(p, a) * (p - 1)) * sigma;
 
             if (sigma2 == 1) {
                 resultat.push_back(m);
                 // std::cout << m << std::endl;
-            } else if (sigma2.numerator() > 1 && sigma2.denominator() > 1) {
+            } else if (sigma2.numerateur() > 1 && sigma2.denominateur() > 1) {
                 solution(premiers, limite, m, sigma2, resultat);
             }
         }
@@ -51,17 +54,17 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients") {
     // Let us define the perfection quotient of a positive integer as p(n) = σ(n)/n
     //
     // Find the sum of all positive integers n ≤ 1018 for which p(n) has the form k + 1/2, where k is an integer.
-    auto limite = puissance::puissance<uint128_t>(10, 18u);
-    vecteur premiers;
-    premiers::crible235<uint128_t>(1000, std::back_inserter(premiers));
+    auto limite = puissance::puissance<unsigned long long>(10, 18u);
+    std::vector<unsigned long long> premiers;
+    premiers::crible235<unsigned long long>(1000, std::back_inserter(premiers));
 
     vecteur resultats;
-    for (uint128_t k = 1; k < 6; ++k)
-        solution(premiers, limite, 1, fraction(2, 2 * k + 1), resultats);
+    for (size_t k = 1; k < 6; ++k)
+        solution(premiers, limite, 1, mpq_fraction(2ul, 2u * k + 1u), resultats);
 
     std::sort(resultats.begin(), resultats.end());
     std::cout << resultats << std::endl;
 
-    uint128_t resultat = std::reduce(std::execution::par, resultats.begin(), resultats.end());
-    return std::to_string(resultat);
+    mpz_nombre resultat = std::reduce(std::execution::par, resultats.begin(), resultats.end());
+    return resultat.to_string();
 }

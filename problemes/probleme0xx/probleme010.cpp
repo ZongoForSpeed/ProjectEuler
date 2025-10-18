@@ -2,7 +2,6 @@
 #include "numerique.h"
 #include "problemes.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
 #include <execution>
 

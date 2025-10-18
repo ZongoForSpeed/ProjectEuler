@@ -1,9 +1,11 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "mpq_fraction.h"
+#include "utilitaires.h"
 
-#include <fstream>
 #include <execution>
+#include <fstream>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

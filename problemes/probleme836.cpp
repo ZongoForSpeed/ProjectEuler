@@ -1,5 +1,6 @@
 #include "problemes.h"
-#include "utilitaires.h"
+
+#include <string>
 
 ENREGISTRER_PROBLEME(836, "A Bold Proposition") {
     // Let $A$ be an <b>affine plane</b> over a <b>radically integral local field</b> $F$ with
@@ -12,5 +13,5 @@ ENREGISTRER_PROBLEME(836, "A Bold Proposition") {
     // to the <b>orthogonal kernel embedding</b> of $U$ into $A$.
     //
     // Find $f(20230401, 57)$. Give as your answer the concatenation of the first letters of each bolded word.</p>
-    return std::to_string("aprilfoolsjoke");
+    return std::string("aprilfoolsjoke");
 }

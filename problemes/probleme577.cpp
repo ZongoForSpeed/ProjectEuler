@@ -1,5 +1,6 @@
 #include "problemes.h"
-#include "utilitaires.h"
+
+#include <iostream>
 
 typedef unsigned long long nombre;
 

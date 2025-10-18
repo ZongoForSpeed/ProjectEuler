@@ -1,10 +1,11 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
-#include <fstream>
-
 #include <boost/range/adaptor/reversed.hpp>
 #include <boost/math/constants/constants.hpp>
+#include <fstream>
+#include <set>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

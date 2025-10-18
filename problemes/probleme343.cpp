@@ -1,7 +1,9 @@
-#include <maths/racine.h>
 #include "problemes.h"
 #include "premiers.h"
 #include "puissance.h"
+
+#include <maths/racine.h>
+#include <set>
 
 typedef unsigned long long nombre;
 

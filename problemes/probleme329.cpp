@@ -1,12 +1,11 @@
 #include "problemes.h"
-#include "numerique.h"
-#include "utilitaires.h"
 #include "premiers.h"
+#include "mpq_fraction.h"
 
-#include <boost/rational.hpp>
+#include <set>
 
 typedef unsigned long long int nombre;
-typedef boost::rational<int128_t> fraction;
+typedef mpq_fraction fraction;
 
 namespace {
     fraction probabilite(std::map<std::pair<nombre, std::string>, fraction> &d, nombre i, const std::string &s) {
@@ -56,20 +55,20 @@ ENREGISTRER_PROBLEME(329, "Prime Frog") {
     std::map<std::pair<nombre, std::string>, fraction> d;
     for (nombre i = 1; i < 501; ++i) {
         if (premiers.find(i) != premiers.end()) {
-            d.emplace(std::make_pair(i, "P"), fraction(2, 3));
-            d.emplace(std::make_pair(i, "N"), fraction(1, 3));
+            d.emplace(std::make_pair(i, "P"), fraction(2l, 3ul));
+            d.emplace(std::make_pair(i, "N"), fraction(1l, 3ul));
         } else {
-            d.emplace(std::make_pair(i, "N"), fraction(2, 3));
-            d.emplace(std::make_pair(i, "P"), fraction(1, 3));
+            d.emplace(std::make_pair(i, "N"), fraction(2l, 3ul));
+            d.emplace(std::make_pair(i, "P"), fraction(1l, 3ul));
         }
     }
     // std::cout << d << std::endl;
 
-    fraction resultat(0, 1);
+    fraction resultat(0l, 1ul);
     for (nombre i = 1; i < 501; ++i) {
         resultat += probabilite(d, i, pattern);
     }
 
     resultat /= 500;
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

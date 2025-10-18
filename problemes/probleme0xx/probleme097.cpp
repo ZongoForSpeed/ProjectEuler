@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "numerique.h"
-#include "utilitaires.h"
 #include "puissance.h"
 
 ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime") {
@@ -11,8 +10,8 @@ ENREGISTRER_PROBLEME(97, "Large non-Mersenne prime") {
     // However, in 2004 there was found a massive non-Mersenne prime which contains 2,357,207 digits: 28433×2^7830457+1.
     // 
     // Find the last ten digits of this prime number.
-    uint128_t masque = puissance::puissance<uint128_t>(10, 10u);
-    uint128_t mersenne = puissance::puissance_modulaire<uint128_t>(2, 7830457u, masque);
+    auto masque = puissance::puissance<unsigned long long>(10, 10u);
+    auto mersenne = puissance::puissance_modulaire<unsigned long long>(2, 7830457u, masque);
     mersenne = (mersenne * 28433 + 1) % masque;
     return std::to_string(mersenne);
 }

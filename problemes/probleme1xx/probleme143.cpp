@@ -3,6 +3,9 @@
 #include "arithmetique.h"
 
 #include <execution>
+#include <map>
+#include <set>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -47,7 +50,7 @@ ENREGISTRER_PROBLEME(143, "Investigating the Torricelli point of a triangle") {
         }
     }
 
-    for (auto &[k, v]: dictionnaire) std::sort(v.begin(), v.end());
+    for (auto &[k, v]: dictionnaire) std::ranges::sort(v);
 
     ensemble triplets;
     for (auto &[a, bs]: dictionnaire) {

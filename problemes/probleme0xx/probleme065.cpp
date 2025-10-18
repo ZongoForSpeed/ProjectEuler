@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "utilitaires.h"
 #include "mpz_nombre.h"
 #include "mpq_fraction.h"
 

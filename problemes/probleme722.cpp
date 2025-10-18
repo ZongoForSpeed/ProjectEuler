@@ -1,7 +1,7 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "timer.h"
 #include "mpf_nombre.h"
+#include "utilitaires.h"
 
 namespace {
     short parite(size_t n) {

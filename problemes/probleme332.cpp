@@ -1,7 +1,7 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "arithmetique.h"
 #include "racine.h"
+#include "utilitaires.h"
 
 namespace {
     typedef std::tuple<long, long, long> point;

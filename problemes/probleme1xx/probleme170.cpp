@@ -1,8 +1,9 @@
 #include "problemes.h"
-#include "chiffres.h"
 #include "utilitaires.h"
+#include "chiffres.h"
 
 #include <fstream>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -69,7 +70,7 @@ ENREGISTRER_PROBLEME(170, "Find the largest 0 to 9 pandigital that can be formed
                     resultat = std::max(resultat, n);
             }
         }
-    } while (std::next_permutation(chiffres.begin(), chiffres.end()));
+    } while (std::ranges::next_permutation(chiffres).found);
 
     return std::to_string(resultat);
 }

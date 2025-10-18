@@ -3,6 +3,7 @@
 #include "mpz_nombre.h"
 #include "timer.h"
 #include "premiers.h"
+#include "utilitaires.h"
 
 #include <execution>
 
@@ -17,7 +18,7 @@ namespace {
             mpz_nombre front = list.front();
             list.pop_front();
             list.push_back((front * front));
-            std::sort(list.begin(), list.end());
+            std::ranges::sort(list);
             // std::cout << "After " << r << ": " << list << std::endl;
         }
 
@@ -50,7 +51,7 @@ namespace {
 
             list.pop_front();
             list.push_back((front * front));
-            std::sort(list.begin(), list.end());
+            std::ranges::sort(list);
             // std::cout << "After " << r << ": " << list << std::endl;
 
             ++tour;

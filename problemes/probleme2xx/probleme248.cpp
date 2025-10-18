@@ -5,6 +5,7 @@
 #include "racine.h"
 
 #include <execution>
+#include <set>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -54,7 +55,7 @@ ENREGISTRER_PROBLEME(248, "Numbers for which Euler’s totient function equals 1
     // The first number n for which φ(n)=13! is 6227180929.
     //
     // Find the 150,000th such number.
-    const nombre phi = combinatoire::factorielle(13ULL);
+    const nombre phi = combinatoire::factorielle_ull(13ULL);
 
     std::set<nombre> premiers;
     premiers::crible235<nombre>(racine::racine_carre(phi), std::inserter(premiers, premiers.begin()));

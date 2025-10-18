@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "puissance.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
 #include <fstream>
 

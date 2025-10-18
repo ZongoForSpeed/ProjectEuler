@@ -2,6 +2,11 @@
 #include "arithmetique.h"
 #include "chiffres.h"
 
+#include <queue>
+#include <set>
+#include <tuple>
+#include <vector>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> paire;

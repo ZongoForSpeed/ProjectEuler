@@ -3,6 +3,7 @@
 #include "premiers.h"
 #include "chiffres.h"
 
+#include <queue>
 #include <unordered_map>
 
 typedef std::priority_queue<std::pair<size_t, size_t>> queue;

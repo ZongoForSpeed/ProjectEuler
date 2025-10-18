@@ -1,9 +1,10 @@
-#include <numeric>
 #include "problemes.h"
 #include "arithmetique.h"
 #include "mpz_nombre.h"
+#include "utilitaires.h"
 
 #include <execution>
+#include <numeric>
 
 typedef std::vector<mpz_nombre> vecteur;
 typedef std::map<mpz_nombre, mpz_nombre> dictionnaire;

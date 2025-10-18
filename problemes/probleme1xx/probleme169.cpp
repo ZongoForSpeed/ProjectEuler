@@ -1,9 +1,9 @@
 #include "problemes.h"
-#include "numerique.h"
 #include "arithmetique.h"
+#include "mpz_nombre.h"
 
 namespace {
-    size_t f(std::map<uint128_t, size_t> &cache, uint128_t n) {
+    size_t f(std::map<mpz_nombre, size_t> &cache, const mpz_nombre &n) {
         auto it = cache.find(n);
         if (it != cache.end())
             return it->second;
@@ -36,8 +36,8 @@ ENREGISTRER_PROBLEME(169, "Exploring the number of different ways a number can b
     // 2 + 8
     // 
     // What is f(10^25)?
-    uint128_t n = puissance::puissance<uint128_t>(10, 25);
-    std::map<uint128_t, size_t> cache;
+    mpz_nombre n = mpz_nombre::puissance(10, 25);
+    std::map<mpz_nombre, size_t> cache;
     size_t resultat = f(cache, n);
     return std::to_string(resultat);
 }

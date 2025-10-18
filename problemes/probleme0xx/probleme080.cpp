@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "polygonal.h"
 #include "mpz_nombre.h"
 

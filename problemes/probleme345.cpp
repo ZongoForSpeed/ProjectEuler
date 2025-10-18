@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "multidimension.h"
 
 typedef unsigned long long nombre;

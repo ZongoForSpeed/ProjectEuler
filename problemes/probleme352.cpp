@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
 
+#include <iostream>
 #include <numeric>
 
 namespace {

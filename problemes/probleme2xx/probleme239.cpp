@@ -1,8 +1,8 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "puissance.h"
 #include "combinatoire.h"
 #include "mpz_nombre.h"
+#include "utilitaires.h"
 
 ENREGISTRER_PROBLEME(239, "Infinite string tour") {
     // A set of disks numbered 1 through 100 are placed in a line in random order.

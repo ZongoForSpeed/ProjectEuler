@@ -54,7 +54,7 @@ ENREGISTRER_PROBLEME(61, "Cyclical figurate numbers") {
                                                     solution = s;
                                                 }
                                             }
-    } while (std::next_permutation(t_polygonal.begin(), t_polygonal.end()) && solution.empty());
+    } while (std::ranges::next_permutation(t_polygonal).found && solution.empty());
 
     nombre resultat = std::reduce(solution.begin(), solution.end());
     return std::to_string(resultat);

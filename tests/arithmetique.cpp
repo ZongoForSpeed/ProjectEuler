@@ -1,6 +1,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "arithmetique.h"
+#include "utilitaires.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"

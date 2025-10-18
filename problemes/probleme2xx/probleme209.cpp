@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "combinatoire.h"
-#include "utilitaires.h"
 #include "graphe.h"
 
 #include <fstream>
@@ -15,7 +14,7 @@ namespace {
             if (k == 0)
                 ++resultat;
             else {
-                resultat += n * combinatoire::coefficient_binomial(n - k - 1, k - 1) / k;
+                resultat += n * combinatoire::coefficient_binomial_ull(n - k - 1, k - 1) / k;
             }
         }
 

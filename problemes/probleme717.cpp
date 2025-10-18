@@ -1,10 +1,7 @@
 #include "problemes.h"
-#include "numerique.h"
-#include "utilitaires.h"
 #include "premiers.h"
+#include "puissance.h"
 #include "timer.h"
-
-typedef uint128_t nombre;
 
 namespace {
     // ⌊ 2^2^p / p ⌋ mod 2^p = ?
@@ -20,31 +17,31 @@ namespace {
     //      = ⌊ [(2^R mod p) * 2^p] / p ⌋ / p
     //      = ⌊ [(2^R mod p) * 2^p] % p² ⌋ / p
     //      = { [(2^R mod p) * 2^p] % p² } / p
-    nombre R(size_t p) {
+    unsigned long long R(size_t p) {
         // 2^p - 1 ≡ R mod p-1
-        auto R = puissance::puissance_modulaire<nombre>(2u, p, p - 1);
+        auto R = puissance::puissance_modulaire<unsigned long long>(2u, p, p - 1);
         R += p - 2;
         R %= p - 1;
         // 2^R mod p
-        return puissance::puissance_modulaire<nombre>(2u, R, p);
+        return puissance::puissance_modulaire<unsigned long long>(2u, R, p);
     }
 
-    nombre f(size_t p) {
-        nombre deux_p = nombre(2) << p;
+    mpz_nombre f(size_t p) {
+        mpz_nombre deux_p = mpz_nombre(2) << p;
         return (R(p) * deux_p) / p;
     }
 
-    nombre g(size_t p) {
-        nombre resultat = R(p);
-        resultat *= puissance::puissance_modulaire<nombre>(2u, p, p * p);
+    mpz_nombre g(size_t p) {
+        mpz_nombre resultat = R(p);
+        resultat *= puissance::puissance_modulaire<unsigned long long>(2u, p, p * p);
         resultat %= p * p;
         resultat /= p;
         return resultat;
     }
 
-    nombre G(size_t N, const std::vector<size_t> &premiers) {
-        nombre resultat = 0;
-        auto en = std::lower_bound(premiers.begin(), premiers.end(), N);
+    mpz_nombre G(size_t N, const std::vector<size_t> &premiers) {
+        mpz_nombre resultat = 0;
+        const auto en = std::ranges::lower_bound(premiers, N);
         for (auto it = std::next(premiers.begin()); it != en; ++it) {
             resultat += g(*it);
         }
@@ -74,7 +71,7 @@ ENREGISTRER_PROBLEME(717, "Summation of a Modular Formula") {
     std::cout << "G(100) = " << G(100, premiers) << std::endl;
     std::cout << "G(10'000) = " << G(10'000, premiers) << std::endl;
 
-    nombre resultat = G(limite, premiers);
+    mpz_nombre resultat = G(limite, premiers);
     std::cout << "G(10'000'000) = " << resultat << std::endl;
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

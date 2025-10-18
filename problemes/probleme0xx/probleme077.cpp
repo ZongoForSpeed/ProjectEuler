@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "utilitaires.h"
+
+#include <algorithm>
+#include <set>
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -18,7 +20,7 @@ ENREGISTRER_PROBLEME(77, "Prime summations") {
     std::set<nombre> premiers;
     premiers::crible23<nombre>(1000000, std::inserter(premiers, premiers.begin()));
     nombre n = 4;
-    std::map<nombre, std::set<vecteur>> solutions;
+    std::map<nombre, std::set<vecteur> > solutions;
     while (true) {
         std::set<vecteur> solutions_n;
         for (const auto p: premiers) {
@@ -27,14 +29,14 @@ ENREGISTRER_PROBLEME(77, "Prime summations") {
 
             if (premiers.find(n - p) != premiers.end()) {
                 vecteur s = {n - p, p};
-                std::sort(s.begin(), s.end());
+                std::ranges::sort(s);
                 solutions_n.insert(std::move(s));
             }
 
             if (auto it = solutions.find(n - p); it != solutions.end()) {
                 for (auto s: it->second) {
                     s.push_back(p);
-                    std::sort(s.begin(), s.end());
+                    std::ranges::sort(s);
                     solutions_n.insert(s);
                 }
             }

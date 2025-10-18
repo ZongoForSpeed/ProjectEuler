@@ -189,6 +189,8 @@ public:
 
     static mpz_nombre puissance_modulaire(const mpz_nombre &base, unsigned long exposant, const mpz_nombre &modulo);
 
+    static mpz_nombre puissance_modulaire(const mpz_nombre &base, const mpz_nombre &exposant, const mpz_nombre &modulo);
+
     template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     static mpz_nombre puissance_modulaire(const mpz_nombre &base, unsigned long exposant, const T &modulo) {
         mpz_nombre tmp_modulo(modulo);

@@ -2,6 +2,8 @@
 #include "arithmetique.h"
 
 #include <execution>
+#include <set>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -26,7 +28,7 @@ namespace {
             for (const auto &s1: e1)
                 for (const auto &s2: e2) {
                     std::set<nombre> s;
-                    std::set_union(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(s, s.begin()));
+                    std::ranges::set_union(s1, s2, std::inserter(s, s.begin()));
                     s.insert(n);
                     if (s.size() == longueur_min)
                         e_min.push_back(s);

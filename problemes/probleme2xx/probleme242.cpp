@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
-#include "utilitaires.h"
 
 #include <fstream>
 

@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <boost/numeric/ublas/matrix.hpp>
+#include <set>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -40,7 +41,7 @@ ENREGISTRER_PROBLEME(215, "Crack-free Walls") {
                 }
                 set_mur.erase(set_mur.begin());
                 murs.push_back(set_mur);
-            } while (std::next_permutation(mur.begin(), mur.end()));
+            } while (std::ranges::next_permutation(mur).found);
         }
     }
 

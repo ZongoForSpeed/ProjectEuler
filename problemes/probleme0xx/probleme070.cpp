@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
 #include <boost/rational.hpp>
 

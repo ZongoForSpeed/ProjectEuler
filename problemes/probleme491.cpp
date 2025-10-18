@@ -1,6 +1,5 @@
 #include <numeric>
 #include "problemes.h"
-#include "utilitaires.h"
 #include "puissance.h"
 #include "combinatoire.h"
 #include "permutation.h"
@@ -20,7 +19,7 @@ ENREGISTRER_PROBLEME(491, "Double pandigital number divisible by 11") {
 
     nombre somme = (2 * std::reduce(pandigital.begin(), pandigital.end())) % 11;
     nombre longueur = pandigital.size();
-    nombre produit_fact = combinatoire::factorielle(longueur) * combinatoire::factorielle(longueur - 1);
+    nombre produit_fact = combinatoire::factorielle_ull(longueur) * combinatoire::factorielle_ull(longueur - 1);
 
     // std::cout << "produit_fact = " << produit_fact << std::endl;
     nombre resultat = 0;

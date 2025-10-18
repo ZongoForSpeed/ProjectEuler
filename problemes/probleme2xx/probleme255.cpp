@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "utilitaires.h"
 
 #include <fstream>
 

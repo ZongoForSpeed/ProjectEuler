@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "utilitaires.h"
-#include "combinatoire.h"
+
+#include <iostream>
 
 namespace {
     struct noeud {

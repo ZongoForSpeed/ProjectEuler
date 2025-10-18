@@ -1,15 +1,15 @@
 #include "problemes.h"
-#include "numerique.h"
 #include "premiers.h"
 
 #include <boost/rational.hpp>
 
+#include "mpq_fraction.h"
+
 typedef std::vector<size_t> vecteur;
-typedef boost::rational<uint128_t> fraction;
 
 namespace {
-    size_t generer(const vecteur &premiers, const size_t premier, fraction f = fraction(0), size_t a = 0) {
-        fraction objectif(1, 2);
+    size_t generer(const vecteur &premiers, const size_t premier, const mpq_fraction& f = mpq_fraction(0), size_t a = 0) {
+        mpq_fraction objectif(1ul, 2ul);
         size_t resultat = 0;
         for (size_t m = a + 1; m * premier < 80 + 1; ++m) {
             size_t q = m;
@@ -23,11 +23,11 @@ namespace {
 
             // m has factors f<=p only
             if (q == 1) {
-                fraction f1 = f + fraction(1, m * m * premier * premier);
+                mpq_fraction f1 = f + mpq_fraction(1ul, m * m * premier * premier);
                 if (f1 == objectif)
                     ++resultat;
                 else {
-                    if (f1.denominator() % premier != 0)
+                    if (f1.denominateur() % premier != 0)
                         for (size_t pp: premiers)
                             if (pp < premier) resultat += generer(premiers, pp, f1);
                     resultat += generer(premiers, premier, f1, m);
@@ -53,9 +53,9 @@ ENREGISTRER_PROBLEME(152, "Writing 1/2 as a sum of inverse squares") {
     vecteur premiers;
     premiers::crible2<size_t>(40, std::back_inserter(premiers));
 
-    uint128_t resultat = 0;
+    mpz_nombre resultat = 0;
     for (size_t p: premiers)
         resultat += generer(premiers, p);
 
-    return std::to_string(resultat);
+    return resultat.to_string();
 }

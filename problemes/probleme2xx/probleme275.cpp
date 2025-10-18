@@ -1,6 +1,9 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <set>
+#include <vector>
+
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 

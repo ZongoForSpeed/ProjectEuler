@@ -117,7 +117,7 @@ namespace std {
 
     template<class Iterator>
     constexpr Iterator next(Iterator it, size_t n) {
-        advance(it, static_cast<typename std::iterator_traits<Iterator>::difference_type>(n));
+        advance(it, static_cast<std::iterator_traits<Iterator>::difference_type>(n));
         return it;
     }
 
@@ -162,22 +162,6 @@ namespace std {
         oss << n;
         return oss.str();
     }
-
-    ostream &operator<<(ostream &os, uint128_t i);
-
-    ostream &operator<<(ostream &os, int128_t i);
-
-    istream &operator>>(istream &is, uint128_t &i);
-
-    istream &operator>>(istream &is, int128_t &i);
-
-    string to_string(int128_t n);
-
-    string to_string(uint128_t n);
-
-    int128_t sqrt(int128_t n);
-
-    uint128_t sqrt(uint128_t n);
 }
 
 namespace utilitaires {

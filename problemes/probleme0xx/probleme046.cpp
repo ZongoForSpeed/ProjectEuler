@@ -2,6 +2,8 @@
 #include "premiers.h"
 #include "polygonal.h"
 
+#include <set>
+
 typedef unsigned long long nombre;
 
 ENREGISTRER_PROBLEME(46, "Goldbach's other conjecture") {

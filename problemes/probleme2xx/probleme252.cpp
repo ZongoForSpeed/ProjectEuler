@@ -1,7 +1,9 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "utilitaires.h"
 
 #include <execution>
+#include <vector>
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;

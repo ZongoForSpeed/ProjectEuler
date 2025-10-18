@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "arithmetique.h"
 #include "premiers.h"
 #include "combinatoire.h"
@@ -53,7 +52,7 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer") {
     mpz_nombre resultat = 0;
 
     std::map<nombre, size_t> decomposition;
-    arithmetique::decomposition(combinatoire::factorielle<nombre>(9), premiers, decomposition);
+    arithmetique::decomposition(combinatoire::factorielle_ull(9), premiers, decomposition);
 
     nombre N = 0;
     for (nombre i = 10; i < limite + 1; ++i) {

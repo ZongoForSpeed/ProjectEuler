@@ -1,13 +1,12 @@
 #include "problemes.h"
-#include "numerique.h"
 #include "arithmetique.h"
 #include "arithmetique_modulaire.h"
 
-typedef uint128_t nombre;
+#include "mpz_nombre.h"
 
 namespace {
 
-    std::pair<nombre, nombre> fibonacci_(std::map<nombre, std::pair<nombre, nombre>> & cache, const nombre &n, const nombre &modulo) {
+    std::pair<mpz_nombre, mpz_nombre> fibonacci_(std::map<mpz_nombre, std::pair<mpz_nombre, mpz_nombre>> & cache, const mpz_nombre &n, const mpz_nombre &modulo) {
         if (n == 0)
             return std::make_pair(1, 0);
 
@@ -15,11 +14,11 @@ namespace {
         if (it != cache.end())
             return it->second;
 
-        std::pair<nombre, nombre> p = fibonacci_(cache, n / 2, modulo);
-        nombre fk = p.second;
-        nombre fk_1 = p.first;
+        std::pair<mpz_nombre, mpz_nombre> p = fibonacci_(cache, n / 2, modulo);
+        mpz_nombre fk = p.second;
+        mpz_nombre fk_1 = p.first;
 
-        std::pair<nombre, nombre> resultat;
+        std::pair<mpz_nombre, mpz_nombre> resultat;
 
         if (n % 2 == 0)
             resultat = std::make_pair(fk * fk + fk_1 * fk_1, fk * (2 * fk_1 + fk));
@@ -33,20 +32,20 @@ namespace {
         return resultat;
     }
 
-    nombre fibonacci(const nombre &n, const nombre &modulo) {
-        std::map<nombre, std::pair<nombre, nombre>> cache;
+    mpz_nombre fibonacci(const mpz_nombre &n, const mpz_nombre &modulo) {
+        std::map<mpz_nombre, std::pair<mpz_nombre, mpz_nombre>> cache;
         return fibonacci_(cache, n, modulo).second;
     }
 
-    nombre F(nombre n, nombre x, nombre modulo) {
+    mpz_nombre F(const unsigned long long n, const unsigned x, const unsigned long long modulo) {
         // F_n(x)=(f_n*x^(n+2)+f_n+1*x^(n+1) − x) / (x²+x−1)
-        nombre x2 = x*x + x - 1;
-        nombre m2 = modulo * x2;
-        nombre fn = fibonacci(n, m2);
-        nombre fn1 = fibonacci(n + 1, m2);
-        fn *= puissance::puissance_modulaire(x, n + 2, m2);
+        mpz_nombre x2 = x*x + x - 1;
+        mpz_nombre m2 = modulo * x2;
+        mpz_nombre fn = fibonacci(n, m2);
+        mpz_nombre fn1 = fibonacci(n + 1, m2);
+        fn *= mpz_nombre::puissance_modulaire(x, n + 2, m2);
         fn %= m2;
-        fn1 *= puissance::puissance_modulaire(x, n + 1, m2);
+        fn1 *= mpz_nombre::puissance_modulaire(x, n + 1, m2);
         fn1 %= m2;
 
         return ((fn + fn1 + m2 - x)%m2) / x2;
@@ -62,11 +61,11 @@ ENREGISTRER_PROBLEME(435, "Polynomials of Fibonacci numbers") {
     // For example, F7(x) = x + x^2 + 2x^3 + 3x^4 + 5x^5 + 8x^6 + 13x^7, and F7(11) = 268357683.
     //
     // Let n = 1015. Find the sum [∑0≤x≤100 Fn(x)] mod 1307674368000 (= 15!).
-    nombre n = puissance::puissance<nombre>(10, 15);
-    nombre modulo = 1307674368000; // (= 15!)
+    auto n = puissance::puissance<unsigned long long>(10, 15);
+    unsigned long long modulo = 1307674368000;
 
-    nombre resultat = 0;
-    for (nombre x = 1; x <= 100; ++x) {
+    mpz_nombre resultat = 0;
+    for (unsigned x = 1; x <= 100; ++x) {
         resultat += F(n, x, modulo);
         resultat %= modulo;
     }

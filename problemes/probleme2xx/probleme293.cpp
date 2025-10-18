@@ -4,6 +4,8 @@
 #include "mpz_nombre.h"
 
 #include <execution>
+#include <set>
+#include <vector>
 
 typedef std::vector<mpz_nombre> vecteur;
 

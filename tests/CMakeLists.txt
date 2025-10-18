@@ -16,7 +16,6 @@ add_library (tests SHARED
         ${PROJECT_SOURCE_DIR}/mpq_fraction.cpp
         ${PROJECT_SOURCE_DIR}/mpz_nombre.cpp
         ${PROJECT_SOURCE_DIR}/nombre_modulaire.cpp
-        ${PROJECT_SOURCE_DIR}/numerique.cpp
         ${PROJECT_SOURCE_DIR}/permutation.cpp
         ${PROJECT_SOURCE_DIR}/polygonal.cpp
         ${PROJECT_SOURCE_DIR}/polynome.cpp

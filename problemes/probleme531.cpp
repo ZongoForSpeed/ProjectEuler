@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "arithmetique.h"
 
 #include "premiers.h"

@@ -1,8 +1,9 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
-#include <fstream>
 #include <boost/rational.hpp>
+#include <set>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

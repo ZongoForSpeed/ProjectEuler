@@ -1,8 +1,5 @@
 #include "problemes.h"
-#include "numerique.h"
-#include "utilitaires.h"
-#include "arithmetique.h"
-#include "timer.h"
+#include "mpz_nombre.h"
 
 ENREGISTRER_PROBLEME(692, "Siegbert and Jo") {
     // Siegbert and Jo take turns playing a game with a heap of N pebbles:
@@ -26,16 +23,16 @@ ENREGISTRER_PROBLEME(692, "Siegbert and Jo") {
     // G(13) = 43.
     //
     // Find G(23416728348467685).
-    std::vector<uint128_t> F{1, 1};
-    std::vector<uint128_t> G{1, 1};
+    std::vector<mpz_nombre> F{1, 1};
+    std::vector<mpz_nombre> G{1, 1};
 
     for (size_t i = 2; i < 80; ++i) {
-        F.push_back(F[i - 1] + F[i - 2]);
-        G.push_back(G[i - 1] + G[i - 2] + F[i - 1]);
+        F.emplace_back(F[i - 1] + F[i - 2]);
+        G.emplace_back(G[i - 1] + G[i - 2] + F[i - 1]);
     }
 
     std::cout << "F(" << 80 << ") = " << F.back() << std::endl;
     std::cout << "G(" << F.back() << ") = " << G.back() << std::endl;
 
-    return std::to_string(G.back());
+    return G.back().to_string();
 }

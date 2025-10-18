@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "utilitaires.h"
 
 #include <fstream>
 #include <execution>

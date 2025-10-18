@@ -31,7 +31,7 @@ namespace {
                 if (c != a) {
                     chiffres[i] = a;
                     size_t convertion = chiffres::conversion_nombre<size_t>(chiffres.begin(), chiffres.end());
-                    if (premiers::miller_rabin<>(convertion, 25))
+                    if (premiers::miller_rabin(convertion, 25))
                         return false;
                 }
             }

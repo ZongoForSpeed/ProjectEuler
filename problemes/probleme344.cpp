@@ -16,7 +16,7 @@ namespace {
 
         size_t coefficient_binomial(size_t n, size_t k) {
             if (cache_binomial[(k / 2)][n] == std::numeric_limits<size_t>::max()) {
-                cache_binomial[(k / 2)][n] = combinatoire::coefficient_binomial(n, k, modulo);
+                cache_binomial[(k / 2)][n] = combinatoire::coefficient_binomial_ul(n, k, modulo);
             }
             return cache_binomial[(k / 2)][n];
         }
@@ -48,7 +48,7 @@ namespace {
 
         size_t W() {
             // total
-            size_t total = (pennies + 1) * combinatoire::coefficient_binomial(length, pennies + 1, modulo);
+            size_t total = (pennies + 1) * combinatoire::coefficient_binomial_ul(length, pennies + 1, modulo);
 
             multidimension<size_t, 2> cache(20u, length, 0u);
 

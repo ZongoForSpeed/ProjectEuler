@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(22, "Names scores") {
     ifs >> entree;
     std::vector<std::string> names;
     boost::split(names, entree, boost::is_any_of(","));
-    std::sort(names.begin(), names.end());
+    std::ranges::sort(names);
     nombre compteur = 0;
     nombre resultat = 0;
 

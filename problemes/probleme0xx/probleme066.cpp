@@ -2,6 +2,8 @@
 #include "numerique.h"
 #include "polygonal.h"
 
+#include "mpz_nombre.h"
+
 typedef std::vector<size_t> vecteur;
 
 namespace {
@@ -19,16 +21,16 @@ namespace {
         return resultat;
     }
 
-    int128_t equation_pell(size_t d) {
+    mpz_nombre equation_pell(size_t d) {
         const auto c = fraction_continue(d);
         size_t l = c.size() - 1;
         size_t per = l % 2 == 0 ? l - 1 : 2 * l - 1;
-        int128_t a = c[0];
-        int128_t a1 = 1;
-        int128_t b = a;
-        int128_t b1 = 0;
+        mpz_nombre a = c[0];
+        mpz_nombre a1 = 1;
+        mpz_nombre b = a;
+        mpz_nombre b1 = 0;
         for (size_t i = 1; i <= per; i++) {
-            int128_t t = a;
+            mpz_nombre t = a;
             a = a * c[(i - 1) % l + 1] + a1;
             a1 = t;
             t = b;
@@ -59,11 +61,11 @@ ENREGISTRER_PROBLEME(66, "Diophantine equation") {
     // Hence, by considering minimal solutions in x for D ≤ 7, the largest x is obtained when D=5.
     //
     // Find the value of D ≤ 1000 in minimal solutions of x for which the largest value of x is obtained.
-    int128_t maximum = 0;
+    mpz_nombre maximum = 0;
     size_t resultat = 0;
     for (size_t d = 2; d <= 1000; ++d) {
         if (!polygonal::est_carre(d)) {
-            int128_t x = equation_pell(d);
+            mpz_nombre x = equation_pell(d);
             if (x > maximum) {
                 maximum = x;
                 resultat = d;

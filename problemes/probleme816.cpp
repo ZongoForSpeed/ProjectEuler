@@ -3,6 +3,7 @@
 
 #include "numerique.h"
 #include "arithmetique.h"
+#include "utilitaires.h"
 
 typedef int64_t nombre;
 
@@ -27,7 +28,7 @@ namespace {
             P.emplace_back(s[2 * n], s[2 * n + 1]);
         }
 
-        std::sort(P.begin(), P.end(), [](const std::pair<nombre, nombre> &a, const std::pair<nombre, nombre> &b) {
+        std::ranges::sort(P, [](const std::pair<nombre, nombre> &a, const std::pair<nombre, nombre> &b) {
             if (a.first < b.first) {
                 return true;
             } else if (a.first > b.first) {

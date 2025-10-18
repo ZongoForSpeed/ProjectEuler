@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "premiers.h"
-#include "utilitaires.h"
 #include "arithmetique.h"
 
 #include <memory>
+#include <set>
 #include <utility>
 
 typedef long long nombre;

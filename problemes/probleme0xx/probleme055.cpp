@@ -1,7 +1,5 @@
 #include "problemes.h"
-#include "numerique.h"
-#include "chiffres.h"
-#include "utilitaires.h"
+#include "mpf_nombre.h"
 
 ENREGISTRER_PROBLEME(55, "Lychrel numbers") {
     // If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.
@@ -31,10 +29,10 @@ ENREGISTRER_PROBLEME(55, "Lychrel numbers") {
     size_t compteur = 0;
     for (size_t n = 1; n < 10000; ++n) {
         bool lychrel = false;
-        uint128_t m = n;
-        for (uint128_t i = 0; i < 50; ++i) {
-            m = chiffres::inverser_nombre(m) + m;
-            if (chiffres::palindrome(m)) {
+        mpz_nombre m = n;
+        for (size_t i = 0; i < 50; ++i) {
+            m = m.inverser_nombre() + m;
+            if (m.palindrome()) {
                 lychrel = true;
                 break;
             }
@@ -42,7 +40,6 @@ ENREGISTRER_PROBLEME(55, "Lychrel numbers") {
         if (!lychrel) {
             ++compteur;
         }
-
     }
     return std::to_string(compteur);
 }

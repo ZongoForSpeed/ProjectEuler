@@ -4,13 +4,12 @@
 #include "multidimension.h"
 
 #include "problemes.h"
-#include "utilitaires.h"
 
 typedef unsigned long long nombre;
 
 namespace {
     nombre P(nombre n, nombre k) {
-        return k > n ? 0 : combinatoire::factorielle(n) / combinatoire::factorielle(n - k);
+        return k > n ? 0 : combinatoire::factorielle_ull(n) / combinatoire::factorielle_ull(n - k);
     }
 }
 

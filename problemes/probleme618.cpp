@@ -1,6 +1,5 @@
 #include "premiers.h"
 #include "problemes.h"
-#include "utilitaires.h"
 
 ENREGISTRER_PROBLEME(618, "Numbers with a given prime factor sum") {
     // Consider the numbers 15, 16 and 18:

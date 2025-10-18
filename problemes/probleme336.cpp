@@ -1,8 +1,7 @@
-#include <algorithm>
-
 #include "problemes.h"
 #include "utilitaires.h"
 
+#include <algorithm>
 #include <numeric>
 
 namespace {

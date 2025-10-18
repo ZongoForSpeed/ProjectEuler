@@ -3,6 +3,9 @@
 #include "timer.h"
 #include "racine.h"
 
+#include <set>
+#include <vector>
+
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
 

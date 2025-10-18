@@ -6,6 +6,9 @@
 #include "premiers.h"
 #include "chiffres.h"
 #include "racine.h"
+#include "utilitaires.h"
+
+#include <set>
 
 typedef size_t nombre;
 

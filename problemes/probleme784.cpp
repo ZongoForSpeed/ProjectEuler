@@ -5,6 +5,8 @@
 #include "arithmetique.h"
 #include "premiers.h"
 
+#include <set>
+
 typedef size_t nombre;
 
 namespace {

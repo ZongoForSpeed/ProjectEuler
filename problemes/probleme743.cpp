@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "numerique.h"
 #include "premiers.h"
+#include "puissance.h"
 #include "timer.h"
 
 namespace {

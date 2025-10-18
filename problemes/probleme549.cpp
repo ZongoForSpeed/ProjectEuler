@@ -1,6 +1,5 @@
 #include <numeric>
 #include "problemes.h"
-#include "utilitaires.h"
 
 ENREGISTRER_PROBLEME(549, "Divisibility of factorials") {
     // The smallest number m such that 10 divides m! is m=5.

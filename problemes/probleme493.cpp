@@ -1,7 +1,6 @@
 #include "problemes.h"
-#include "utilitaires.h"
-#include "combinatoire.h"
 #include "mpz_nombre.h"
+#include "utilitaires.h"
 
 ENREGISTRER_PROBLEME(493, "Under The Rainbow") {
     // 70 colored balls are placed in an urn, 10 for each of the seven rainbow colors.

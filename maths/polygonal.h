@@ -1,6 +1,5 @@
 #pragma once
 
-#include "utilitaires.h"
 #include "arithmetique.h"
 #include "racine.h"
 

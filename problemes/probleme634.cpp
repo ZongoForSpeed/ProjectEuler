@@ -1,9 +1,10 @@
 #include "problemes.h"
 #include "numerique.h"
-#include "utilitaires.h"
 #include "arithmetique.h"
 #include "racine.h"
 #include "premiers.h"
+
+#include <set>
 
 namespace {
     size_t facteurs_non_cube(size_t n, std::set<size_t>::const_iterator it, std::set<size_t>::const_iterator en) {

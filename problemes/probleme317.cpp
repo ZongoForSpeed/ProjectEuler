@@ -2,6 +2,7 @@
 #include "utilitaires.h"
 
 #include <boost/math/constants/constants.hpp>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

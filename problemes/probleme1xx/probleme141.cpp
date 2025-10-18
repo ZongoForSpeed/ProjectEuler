@@ -2,9 +2,10 @@
 #include "arithmetique.h"
 #include "polygonal.h"
 
+#include <execution>
 #include <fstream>
 #include <numeric>
-#include <execution>
+#include <set>
 
 typedef unsigned long long nombre;
 

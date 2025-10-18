@@ -3,6 +3,7 @@
 #include "pythagoricien.h"
 
 #include <execution>
+#include <set>
 
 typedef unsigned long long nombre;
 

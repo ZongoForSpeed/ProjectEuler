@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <boost/math/constants/constants.hpp>
+#include <set>
 
 typedef unsigned long long nombre;
 typedef std::pair<long double, long double> coordonnee;
@@ -15,7 +16,7 @@ namespace {
         if (v.empty())
             return v;
 
-        std::vector<coordonnee> resultat{
+        std::vector resultat{
                 std::make_pair(v.front().first - v.back().first, v.front().second - v.back().second)};
         for (size_t k = 1; k < v.size(); ++k) {
             auto p = std::make_pair(v.at(k).first - v.at(k - 1).first, v.at(k).second - v.at(k - 1).second);

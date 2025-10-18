@@ -2,7 +2,6 @@
 #include "chiffres.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "utilitaires.h"
 
 #include <fstream>
 

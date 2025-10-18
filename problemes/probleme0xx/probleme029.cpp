@@ -2,6 +2,8 @@
 #include "arithmetique.h"
 #include "mpz_nombre.h"
 
+#include <set>
+
 ENREGISTRER_PROBLEME(29, "Distinct powers") {
     // Consider all integer combinations of ab for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:
     //

@@ -4,22 +4,23 @@
 #include "numerique.h"
 #include "arithmetique.h"
 #include "premiers.h"
+#include "mpz_nombre.h"
 
-typedef int128_t nombre;
+#include <set>
 
 namespace {
-    nombre f(const std::set<nombre> &premiers, nombre n) {
-        std::map<nombre, size_t> d;
+    mpz_nombre f(const std::set<mpz_nombre> &premiers, const mpz_nombre &n) {
+        std::map<mpz_nombre, size_t> d;
         arithmetique::decomposition(n, premiers, d);
 
-        nombre resultat = 1;
+        mpz_nombre resultat = 1;
         for (auto &e: d) {
             resultat *= puissance::puissance(e.first, e.second / 2);
         }
         return resultat;
     }
 
-    nombre g2(std::map<nombre, nombre> &cache, const std::set<nombre> &premiers, nombre n) {
+    mpz_nombre g2(std::map<mpz_nombre, mpz_nombre> &cache, const std::set<mpz_nombre> &premiers, mpz_nombre n) {
         if (premiers.find(n) != premiers.end()) {
             return 2 * n - 1;
         }
@@ -27,10 +28,10 @@ namespace {
         if (auto it = cache.find(n);it != cache.end())
             return it->second;
 
-        nombre sum = 0;
+        mpz_nombre sum = 0;
 
         auto diviseurs = arithmetique::diviseurs(n, premiers);
-        for (nombre d: diviseurs) {
+        for (mpz_nombre d: diviseurs) {
             sum += d * arithmetique::phi(n / d, premiers) * f(premiers, n / d);
         }
 
@@ -38,7 +39,7 @@ namespace {
         return sum;
     }
 
-    nombre g(std::map<nombre, nombre> &cache, const std::set<nombre> &premiers, nombre n) {
+    mpz_nombre g(std::map<mpz_nombre, mpz_nombre> &cache, const std::set<mpz_nombre> &premiers, mpz_nombre n) {
         if (n == 4) {
             return 6;
         }
@@ -50,15 +51,15 @@ namespace {
             return n - 1;
         }
 
-        nombre v = arithmetique::nombre_facteur(n, 2);
-        nombre t = n >> v;
+        size_t v = arithmetique::nombre_facteur(n, 2);
+        mpz_nombre t = n >> v;
 
-        nombre w = g2(cache, premiers, 1 << v) - (1 << v);
+        mpz_nombre w = g2(cache, premiers, 1 << v) - (1 << v);
         if (t == 1) {
             return w;
         }
 
-        std::map<nombre, size_t> d;
+        std::map<mpz_nombre, size_t> d;
         arithmetique::decomposition(t, premiers, d);
         for (auto &e: d) {
             w *= g2(cache, premiers, puissance::puissance(e.first, e.second));
@@ -67,9 +68,9 @@ namespace {
         return w;
     }
 
-    nombre G(std::map<nombre, nombre> &cache, const std::set<nombre> &premiers, nombre n) {
-        nombre sum = 0;
-        for (nombre k = 1; k <= n; ++k) {
+    mpz_nombre G(std::map<mpz_nombre, mpz_nombre> &cache, const std::set<mpz_nombre> &premiers, size_t n) {
+        mpz_nombre sum = 0;
+        for (size_t k = 1; k <= n; ++k) {
             sum += g(cache, premiers, k);
         }
 
@@ -88,10 +89,10 @@ ENREGISTRER_PROBLEME(795, "Alternating GCD Sum") {
     // Let $G(N) = sum_{n=1}^N g(n). You are given G(1234) = 2194708.
     //
     // Find G(12345678).
-    std::set<nombre> premiers;
-    premiers::crible235<nombre>(12345678, std::inserter(premiers, premiers.end()));
+    std::set<mpz_nombre> premiers;
+    premiers::crible235<mpz_nombre>(12345678, std::inserter(premiers, premiers.end()));
 
-    std::map<nombre, nombre> cache;
+    std::map<mpz_nombre, mpz_nombre> cache;
 
     std::cout << "g(4) = " << g(cache, premiers, 4) << std::endl;
     std::cout << "g(2 * 47) = " << g(cache, premiers, 2 * 47) << std::endl;

@@ -3,6 +3,9 @@
 #include "utilitaires.h"
 #include "mpz_nombre.h"
 
+#include <set>
+#include <vector>
+
 typedef std::vector<size_t> vecteur;
 typedef std::set<size_t> ensemble;
 

@@ -3,6 +3,9 @@
 #include "arithmetique.h"
 #include "multidimension.h"
 
+#include <set>
+#include <tuple>
+
 namespace {
     long S(long limite) {
         long total = 0;

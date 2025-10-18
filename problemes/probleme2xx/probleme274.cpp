@@ -2,6 +2,8 @@
 #include "arithmetique.h"
 #include "premiers.h"
 
+#include <set>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 

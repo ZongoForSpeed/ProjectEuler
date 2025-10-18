@@ -4,6 +4,8 @@
 #include "mpz_nombre.h"
 
 #include <boost/rational.hpp>
+#include <set>
+#include <vector>
 
 typedef std::vector<size_t> vecteur;
 typedef std::vector<vecteur> matrice;

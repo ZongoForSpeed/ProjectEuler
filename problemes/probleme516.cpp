@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "problemes.h"
 #include "premiers.h"
 
@@ -23,7 +25,7 @@ ENREGISTRER_PROBLEME(516, "5-smooth totients") {
         }
     }
 
-    std::sort(premiersHamming.begin(), premiersHamming.end());
+    std::ranges::sort(premiersHamming);
     // On retire 2, 3, 5 de la liste des nombre premiers
     premiersHamming.erase(premiersHamming.begin(), premiersHamming.begin() + 3);
 
@@ -40,7 +42,7 @@ ENREGISTRER_PROBLEME(516, "5-smooth totients") {
         }
 
         std::vector<nombre> f2;
-        std::merge(facteurs.begin(), facteurs.end(), f1.begin(), f1.end(), std::back_inserter(f2));
+        std::ranges::merge(facteurs, f1, std::back_inserter(f2));
         std::swap(f2, facteurs);
     }
 

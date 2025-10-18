@@ -1,7 +1,6 @@
 #include <algorithm>
 
 #include "problemes.h"
-#include "utilitaires.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

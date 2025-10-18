@@ -1,6 +1,5 @@
 #include "premiers.h"
 #include "problemes.h"
-#include "utilitaires.h"
 
 ENREGISTRER_PROBLEME(609, "π sequences") {
     // For every n≥1 the prime-counting function π(n) is equal to the number of primes not exceeding n.

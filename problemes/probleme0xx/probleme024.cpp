@@ -11,7 +11,7 @@ ENREGISTRER_PROBLEME(24, "Lexicographic permutations") {
     // What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
     std::vector<unsigned short> v{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     for (size_t n = 1; n < 1000000; ++n)
-        std::next_permutation(v.begin(), v.end());
+        std::ranges::next_permutation(v);
 
     std::ostringstream oss;
     for (const auto n : v)

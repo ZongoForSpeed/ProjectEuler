@@ -1,6 +1,10 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <queue>
+#include <tuple>
+#include <vector>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::tuple<nombre, nombre, nombre> triplet;

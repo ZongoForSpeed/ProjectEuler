@@ -256,6 +256,13 @@ mpz_nombre mpz_nombre::puissance_modulaire(const mpz_nombre &base, unsigned long
     return resultat;
 }
 
+mpz_nombre mpz_nombre::puissance_modulaire(const mpz_nombre &base, const mpz_nombre &exposant, const mpz_nombre &modulo) {
+    mpz_nombre resultat;
+    mpz_powm(resultat._data, base._data, exposant._data, modulo._data);
+    return resultat;
+}
+
+
 bool mpz_nombre::premier(const mpz_nombre &op, int probabilite) {
     return mpz_probab_prime_p(op._data, probabilite) != 0;
 }

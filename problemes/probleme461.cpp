@@ -1,8 +1,8 @@
 #include "problemes.h"
-#include <cmath>
 #include "timer.h"
-#include "nombre_modulaire.h"
 #include "utilitaires.h"
+
+#include <cmath>
 
 typedef std::tuple<long double/*value*/, size_t /*a*/, size_t /*b*/> valeur;
 

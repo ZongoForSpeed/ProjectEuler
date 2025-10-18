@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "puissance.h"
 #include "mpz_nombre.h"
 #include "mpf_nombre.h"

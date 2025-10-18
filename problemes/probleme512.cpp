@@ -1,6 +1,5 @@
 #include <numeric>
 #include "problemes.h"
-#include "utilitaires.h"
 #include "premiers.h"
 #include "arithmetique.h"
 #include "timer.h"

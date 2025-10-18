@@ -1,11 +1,12 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
-#include <fstream>
 #include <boost/algorithm/string.hpp>
-#include <numeric>
 
 #include <execution>
+#include <fstream>
+#include <numeric>
+#include <set>
 
 typedef unsigned long long nombre;
 

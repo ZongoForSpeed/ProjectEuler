@@ -9,20 +9,20 @@
 BOOST_AUTO_TEST_SUITE(test_combinatoire)
 
     BOOST_AUTO_TEST_CASE(coefficient_binomial) {
-        BOOST_CHECK_EQUAL(35, combinatoire::coefficient_binomial(7, 3));
-        BOOST_CHECK_EQUAL(70, combinatoire::coefficient_binomial(8, 4));
-        BOOST_CHECK_EQUAL(1, combinatoire::coefficient_binomial(40, 0));
+        BOOST_CHECK_EQUAL(35, combinatoire::coefficient_binomial_u(7u, 3u));
+        BOOST_CHECK_EQUAL(70, combinatoire::coefficient_binomial_u(8u, 4u));
+        BOOST_CHECK_EQUAL(1, combinatoire::coefficient_binomial_u(40u, 0u));
     }
 
     BOOST_AUTO_TEST_CASE(catalan) {
-        BOOST_CHECK_EQUAL(1, combinatoire::catalan(0));
-        BOOST_CHECK_EQUAL(1, combinatoire::catalan(1));
-        BOOST_CHECK_EQUAL(16796, combinatoire::catalan<unsigned long long>(10));
+        BOOST_CHECK_EQUAL(1, combinatoire::catalan_u(0u));
+        BOOST_CHECK_EQUAL(1, combinatoire::catalan_u(1u));
+        BOOST_CHECK_EQUAL(16796, combinatoire::catalan_ull(10ull));
     }
 
     BOOST_AUTO_TEST_CASE(factorielle) {
-        BOOST_CHECK_EQUAL(120, combinatoire::factorielle(5));
-        BOOST_CHECK_EQUAL(720, combinatoire::factorielle(6));
+        BOOST_CHECK_EQUAL(120, combinatoire::factorielle_u(5u));
+        BOOST_CHECK_EQUAL(720, combinatoire::factorielle_u(6u));
     }
 
 BOOST_AUTO_TEST_SUITE_END()

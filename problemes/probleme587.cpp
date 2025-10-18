@@ -1,5 +1,6 @@
 #include "problemes.h"
-#include "utilitaires.h"
+
+#include <cmath>
 
 namespace {
     long double calcul_intersection(long double m) {

@@ -1,14 +1,14 @@
 #include "problemes.h"
 #include "combinatoire.h"
-#include "utilitaires.h"
 #include "chiffres.h"
+#include "puissance.h"
 #include "timer.h"
 
 typedef unsigned long long nombre;
 
 namespace {
     nombre g(nombre n, nombre m) {
-        nombre c = combinatoire::coefficient_binomial(n, m);
+        nombre c = combinatoire::coefficient_binomial_ull(n, m);
         nombre k = 0;
         while (c % 2 == 0) {
             ++k;

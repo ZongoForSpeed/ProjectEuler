@@ -1,10 +1,11 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "puissance.h"
-#include "utilitaires.h"
 
-#include <fstream>
 #include <execution>
+#include <fstream>
+#include <set>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

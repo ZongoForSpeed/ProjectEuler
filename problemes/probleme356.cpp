@@ -3,12 +3,14 @@
 #include "premiers.h"
 #include "matrice.h"
 
+#include "mpz_nombre.h"
+
 namespace {
-    int128_t calcul_solution(int128_t p, int128_t q, unsigned long exposant, int128_t modulo) {
-        matrice::vecteur<int128_t> init(3);
+    mpz_nombre calcul_solution(const mpz_nombre &p, const mpz_nombre &q, const unsigned long exposant, const mpz_nombre &modulo) {
+        matrice::vecteur<mpz_nombre> init(3);
         init <<= 3, p, (p * p) % modulo;
 
-        matrice::matrice<int128_t> m(3, 3);
+        matrice::matrice<mpz_nombre> m(3, 3);
         m <<= 0, 0, modulo - (q % modulo),
               1, 0, 0,
               0, 1, p % modulo;
@@ -28,9 +30,9 @@ ENREGISTRER_PROBLEME(356, "Largest roots of cubic polynomials") {
     //Find the last eight digits of Sum i=1..30 |a_i^987654321|.
     //
     //Note: |a| represents the floor function.
-    int128_t modulo = 100'000'000;
+    mpz_nombre modulo = 100'000'000;
     unsigned long exposant = 987'654'321;
-    int128_t resultat = 0;
+    mpz_nombre resultat = 0;
     for (long i = 1; i <= 30; ++i) {
         resultat += calcul_solution(1u << i, i, exposant, modulo) - 1;
         resultat %= modulo;

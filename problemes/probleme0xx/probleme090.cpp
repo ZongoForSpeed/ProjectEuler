@@ -1,6 +1,9 @@
 #include "problemes.h"
 #include "arithmetique.h"
 
+#include <set>
+#include <vector>
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -33,9 +36,9 @@ ENREGISTRER_PROBLEME(90, "Cube digit pairs") {
     vecteur de = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     do {
         vecteur v(de.begin(), de.begin() + 6);
-        std::sort(v.begin(), v.end());
+        std::ranges::sort(v);
         des.insert(v);
-    } while (std::next_permutation(de.begin(), de.end()));
+    } while (std::ranges::next_permutation(de).found);
 
     auto test = [](const vecteur &de1, const vecteur &de2, nombre c1, nombre c2) {
         return ((std::find(de1.begin(), de1.end(), c1) != de1.end() &&

@@ -1,65 +1,35 @@
 #pragma once
 
-#include "utilitaires.h"
-#include "puissance.h"
-
 namespace combinatoire {
-    template<typename Nombre>
-    constexpr Nombre coefficient_binomial(Nombre n, Nombre p) {
-        static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un type arithmetique.");
-        if (p < 1 || n < p)
-            return Nombre(1);
-        if (p > n / 2)
-            p = n - p;
-        Nombre numerateur = 1;
-        Nombre denominateur = 1;
-        for (Nombre k = 0; k < p; ++k) {
-            numerateur *= (n - k);
-            denominateur *= (k + 1);
-        }
+    unsigned int coefficient_binomial_u(unsigned int n, unsigned int p);
 
-        return numerateur / denominateur;
-    }
+    unsigned long coefficient_binomial_ul(unsigned long n, unsigned long p);
 
-    template<typename Nombre>
-    constexpr Nombre coefficient_binomial(Nombre n, Nombre p, Nombre modulo) {
-        static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un type arithmetique.");
-        if (p < 1 || n < p)
-            return Nombre(1);
-        if (p > n / 2)
-            p = n - p;
+    unsigned long long coefficient_binomial_ull(unsigned long long n, unsigned long long p);
 
-        size_t numerateur = 1;
-        size_t denominateur = 1;
-        for (size_t i = 0; i < p; ++i) {
-            numerateur = numerateur * (n - i) % modulo;
-            denominateur = denominateur * (i + 1) % modulo;
-        }
-        return numerateur * puissance::puissance_modulaire<size_t>(denominateur, modulo - 2, modulo) % modulo;
-    }
+    unsigned int coefficient_binomial_u(unsigned int n, unsigned int p, unsigned int modulo);
 
-    template<typename Nombre>
-    constexpr Nombre arrangement(Nombre n, Nombre p) {
-        static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un type arithmetique.");
-        Nombre resultat = 1;
-        for (Nombre k = n - p + 1; k < n + 1; ++k) {
-            resultat *= k;
-        }
+    unsigned long coefficient_binomial_ul(unsigned long n, unsigned long p, unsigned long modulo);
 
-        return resultat;
-    }
+    unsigned long long coefficient_binomial_ull(unsigned long long n, unsigned long long p,
+                                                      unsigned long long modulo);
 
-    template<typename Nombre>
-    constexpr Nombre catalan(Nombre n) {
-        static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un type arithmetique.");
-        return coefficient_binomial<Nombre>(2 * n, n) / (n + 1);
-    }
+    unsigned int arrangement_u(unsigned int n, unsigned int p);
 
-    template<typename Nombre>
-    constexpr Nombre factorielle(Nombre n) {
-        static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un type arithmetique.");
-        Nombre resultat = 1;
-        for (Nombre k = 2; k <= n; ++k) resultat *= k;
-        return resultat;
-    }
+    unsigned long arrangement_ul(unsigned long n, unsigned long p);
+
+    unsigned long long arrangement_ull(unsigned long long n, unsigned long long p);
+
+    unsigned int catalan_u(unsigned int n);
+
+    unsigned long catalan_ul(unsigned long n);
+
+    unsigned long long catalan_ull(unsigned long long n);
+
+    unsigned int factorielle_u(unsigned int n);
+
+    unsigned long factorielle_ul(unsigned long n);
+
+    unsigned long long factorielle_ull(unsigned long long n);
+
 }

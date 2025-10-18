@@ -31,6 +31,6 @@ ENREGISTRER_PROBLEME(43, "Sub-string divisibility") {
                 ) {
             resultat += chiffres::conversion_nombre<nombre>(pandigital.begin(), pandigital.end());
         }
-    } while (std::next_permutation(pandigital.begin(), pandigital.end()));
+    } while (std::ranges::next_permutation(pandigital).found);
     return std::to_string(resultat);
 }

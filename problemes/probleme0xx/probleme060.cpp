@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "premiers.h"
-#include "utilitaires.h"
 
 #include <execution>
+#include <set>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

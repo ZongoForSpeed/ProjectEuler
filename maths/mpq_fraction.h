@@ -19,15 +19,17 @@ public:
 
     mpq_fraction(const mpq_fraction &op);
 
-    mpq_fraction(mpq_fraction &&op);
+    mpq_fraction(mpq_fraction &&op) noexcept ;
 
-    mpq_fraction(const mpz_nombre &op);
+    explicit mpq_fraction(const mpz_nombre &op);
 
     mpq_fraction(unsigned long int op1, unsigned long int op2);
 
     explicit mpq_fraction(unsigned long int op);
 
     mpq_fraction(signed long int op1, unsigned long int op2);
+
+    mpq_fraction(const mpz_nombre &n, const mpz_nombre &d);
 
     explicit mpq_fraction(signed long int op);
 
@@ -39,7 +41,7 @@ public:
 
     explicit mpq_fraction(signed int op);
 
-    template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_integral<T>::value, T>::type>
     mpq_fraction(T x) {
         init();
         set(mpz_nombre(x));
@@ -49,7 +51,7 @@ public:
 
     mpq_fraction &operator=(mpq_fraction &&op) noexcept;
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction &operator=(const T &op) {
         set(op);
         return *this;
@@ -113,7 +115,7 @@ public:
 
     mpq_fraction &operator+=(mpq_fraction &op);
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction &operator+=(const T &op) {
         mpq_fraction n(op);
         return this->operator+=(n);
@@ -121,7 +123,7 @@ public:
 
     mpq_fraction operator+(const mpq_fraction &op) const;
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction operator+(const T &op) const {
         mpq_fraction resultat;
         mpq_fraction n(op);
@@ -132,7 +134,7 @@ public:
 
     mpq_fraction &operator-=(mpq_fraction &op);
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction &operator-=(const T &op) {
         mpq_fraction n(op);
         return this->operator-=(n);
@@ -140,7 +142,7 @@ public:
 
     mpq_fraction operator-(const mpq_fraction &op) const;
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction operator-(const T &op) const {
         mpq_fraction resultat;
         mpq_fraction n(op);
@@ -149,9 +151,9 @@ public:
         return resultat;
     }
 
-    mpq_fraction &operator*=(mpq_fraction &op);
+    mpq_fraction &operator*=(const mpq_fraction &op);
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction &operator*=(const T &op) {
         mpq_fraction n(op);
         return this->operator*=(n);
@@ -159,7 +161,7 @@ public:
 
     mpq_fraction operator*(const mpq_fraction &op) const;
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction operator*(const T &op) const {
         mpq_fraction resultat;
         mpq_fraction n(op);
@@ -170,7 +172,7 @@ public:
 
     mpq_fraction &operator/=(mpq_fraction &op);
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction &operator/=(const T &op) {
         mpq_fraction n(op);
         return this->operator/=(n);
@@ -178,7 +180,7 @@ public:
 
     mpq_fraction operator/(const mpq_fraction &op) const;
 
-    template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    template<typename T, typename = typename std::enable_if<numeric::is_arithmetic<T>::value, T>::type>
     mpq_fraction operator/(const T &op) const {
         mpq_fraction resultat;
         mpq_fraction n(op);

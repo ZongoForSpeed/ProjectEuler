@@ -1,20 +1,21 @@
 #include "problemes.h"
-#include "numerique.h"
 #include "arithmetique.h"
 #include "premiers.h"
 
+#include "mpz_nombre.h"
+
 namespace {
-    uint128_t compteur_solution(size_t i, uint128_t n, uint128_t modulo, const std::vector<size_t> &premiers) {
+    mpz_nombre compteur_solution(size_t i, const mpz_nombre &n, size_t modulo, const std::vector<size_t> &premiers) {
         std::map<size_t, size_t> factorization;
         arithmetique::decomposition(i, premiers, factorization);
 
-        uint128_t resultat = 1;
+        mpz_nombre resultat = 1;
         for (auto[p, e]: factorization) {
-            uint128_t g =
-                    puissance::puissance_modulaire<uint128_t>(e + 1, n, modulo)
-                    + puissance::puissance_modulaire<uint128_t>(e - 1, n, modulo)
+            mpz_nombre g =
+                    mpz_nombre::puissance_modulaire(e + 1, n, modulo)
+                    + mpz_nombre::puissance_modulaire(e - 1, n, modulo)
                     + 2 * modulo
-                    - 2 * puissance::puissance_modulaire<uint128_t>(e, n, modulo);
+                    - 2 * mpz_nombre::puissance_modulaire(e, n, modulo);
             resultat *= g;
             resultat %= modulo;
         }
@@ -22,9 +23,9 @@ namespace {
         return resultat;
     }
 
-    uint128_t f(size_t G, size_t L, uint128_t N, uint128_t modulo, const std::vector<size_t> &premiers) {
+    mpz_nombre f(size_t G, size_t L, const mpz_nombre &N, const size_t modulo, const std::vector<size_t> &premiers) {
         size_t c = L / G;
-        uint128_t resultat = 0;
+        mpz_nombre resultat = 0;
         for (size_t i = 1; i <= c; ++i) {
             resultat += compteur_solution(i, N, modulo, premiers) * (L / i - G + 1);
             resultat %= modulo;
@@ -62,6 +63,6 @@ ENREGISTRER_PROBLEME(350, "Constraining the least greatest and the greatest leas
     f(10, 100, 3, modulo, premiers);
     f(10, 100, 1000, modulo, premiers);
 
-    uint128_t solution = f(1'000'000, 1'000'000'000'000, 1'000'000'000'000'000'000, modulo, premiers);
+    mpz_nombre solution = f(1'000'000, 1'000'000'000'000, 1'000'000'000'000'000'000, modulo, premiers);
     return std::to_string(solution);
 }

@@ -1,7 +1,9 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "utilitaires.h"
 
 #include <boost/rational.hpp>
+#include <set>
 
 typedef long long nombre;
 typedef boost::rational<nombre> fraction;

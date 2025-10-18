@@ -2,7 +2,6 @@
 #include "chiffres.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "utilitaires.h"
 
 #include <fstream>
 #include "timer.h"
@@ -48,7 +47,7 @@ ENREGISTRER_PROBLEME(111, "Primes with runs") {
     vecteur premiers;
     {
         Timer t("Crible");
-        premiers::crible23<nombre>(limite, std::back_inserter(premiers));
+        premiers::crible235<nombre>(limite, std::back_inserter(premiers));
     }
 
     std::map<unsigned short, std::map<nombre, vecteur>> ensemble;

@@ -3,8 +3,9 @@
 #include "premiers.h"
 #include "racine.h"
 
-#include <optional>
 #include <bitset>
+#include <optional>
+#include <set>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

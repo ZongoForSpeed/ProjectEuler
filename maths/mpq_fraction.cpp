@@ -20,7 +20,7 @@ mpq_fraction::mpq_fraction(const mpq_fraction &op) {
     mpq_canonicalize(_data);
 }
 
-mpq_fraction::mpq_fraction(mpq_fraction &&op) : _data(std::exchange(op._data, nullptr)) {
+mpq_fraction::mpq_fraction(mpq_fraction &&op) noexcept : _data(std::exchange(op._data, nullptr)) {
 }
 
 mpq_fraction::mpq_fraction(const mpz_nombre &op) {
@@ -44,6 +44,13 @@ mpq_fraction::mpq_fraction(unsigned long op) {
 mpq_fraction::mpq_fraction(long op1, unsigned long op2) {
     init();
     mpq_set_si(_data, op1, op2);
+    mpq_canonicalize(_data);
+}
+
+mpq_fraction::mpq_fraction(const mpz_nombre &n, const mpz_nombre &d) {
+    init();
+    mpq_set_num(_data, n.get_data());
+    mpq_set_den(_data, d.get_data());
     mpq_canonicalize(_data);
 }
 
@@ -233,7 +240,7 @@ mpq_fraction mpq_fraction::operator-(const mpq_fraction &op) const {
     return resultat;
 }
 
-mpq_fraction &mpq_fraction::operator*=(mpq_fraction &op) {
+mpq_fraction &mpq_fraction::operator*=(const mpq_fraction &op) {
     mpq_mul(_data, _data, op._data);
     mpq_canonicalize(_data);
     return *this;

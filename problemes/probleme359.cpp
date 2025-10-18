@@ -1,9 +1,10 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "mpz_nombre.h"
 
 namespace {
 
-    int128_t P(int128_t f, int128_t r) {
+    mpz_nombre P(const mpz_nombre &f, const mpz_nombre &r) {
         // https://oeis.org/A083362
         if (f == 1) {
             return r * (r + 1) / 2;
@@ -55,7 +56,7 @@ ENREGISTRER_PROBLEME(359, "Hilbert's New Hotel") {
     std::vector<int64_t> premiers{2, 3, 5, 7};
     auto diviseurs = arithmetique::diviseurs(n, premiers);
 
-    int128_t resultat = 0;
+    mpz_nombre resultat = 0;
     for (auto f: diviseurs) {
         auto r = n / f;
         resultat += P(f, r);

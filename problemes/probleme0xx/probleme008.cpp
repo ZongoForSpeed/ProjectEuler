@@ -1,7 +1,9 @@
 #include <numeric>
-#include "numerique.h"
+
+#include "utilitaires.h"
 #include "problemes.h"
 #include "arithmetique.h"
+#include "mpz_nombre.h"
 
 ENREGISTRER_PROBLEME(8, "Largest product in a series") {
     // The four adjacent digits in the 1000-digit number that have the greatest 
@@ -29,19 +31,19 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series") {
     // Find the thirteen adjacent digits in the 1000-digit number that have the
     // greatest product. 
     // What is the value of this product?
-    auto produit = [&big_number](const size_t &debut, const size_t &fin) -> int128_t {
+    auto produit = [&big_number](const size_t &debut, const size_t &fin) -> mpz_nombre {
         if (debut < fin && fin < big_number.size())
             return std::transform_reduce(std::next(big_number.begin(), debut),
                                          std::next(big_number.begin(), fin),
-                                         int128_t(1),
-                                         std::multiplies<int128_t>{},
-                                         [](char c) -> int128_t { return c - '0'; }
+                                         mpz_nombre(1),
+                                         std::multiplies<mpz_nombre>{},
+                                         [](char c) -> mpz_nombre { return c - '0'; }
             );
         else
             return 0;
     };
-    int128_t solution = 0;
+    mpz_nombre solution = 0;
     for (size_t n = 13; n < big_number.size(); ++n)
         solution = std::max(solution, produit(n - 13, n));
-    return std::to_string(solution);
+    return solution.to_string();
 }

@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "utilitaires.h"
 #include "combinatoire.h"
 #include "mpz_nombre.h"
 

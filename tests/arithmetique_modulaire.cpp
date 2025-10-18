@@ -1,5 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
+#include "utilitaires.h"
 #include "arithmetique_modulaire.h"
 
 #pragma clang diagnostic push

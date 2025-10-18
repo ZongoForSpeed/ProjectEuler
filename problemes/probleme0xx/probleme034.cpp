@@ -14,7 +14,7 @@ ENREGISTRER_PROBLEME(34, "Digit factorials") {
     nombre solution = 0;
     for (nombre n = 10; n < borne; ++n) {
         nombre s = 0;
-        chiffres::boucle_chiffre(n, [&s](nombre d) { s += combinatoire::factorielle(d); });
+        chiffres::boucle_chiffre(n, [&s](nombre d) { s += combinatoire::factorielle_ull(d); });
         if (s == n) solution += n;
     }
     return std::to_string(solution);

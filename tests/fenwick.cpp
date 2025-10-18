@@ -2,7 +2,6 @@
 #include <numeric>
 
 #include "fenwick.h"
-#include "utilitaires.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"

@@ -3,6 +3,8 @@
 #include "pythagoricien.h"
 #include "utilitaires.h"
 
+#include <set>
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"
 #pragma clang diagnostic ignored "-Wdisabled-macro-expansion"

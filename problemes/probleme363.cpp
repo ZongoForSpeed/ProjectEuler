@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "utilitaires.h"
 
 namespace {
     // long double x(long double t, long double v) {

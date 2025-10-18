@@ -1,6 +1,5 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "utilitaires.h"
 
 #include <boost/rational.hpp>
 #include <fstream>

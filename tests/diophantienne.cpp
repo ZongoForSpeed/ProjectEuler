@@ -1,5 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
+#include "utilitaires.h"
 #include "diophantienne.h"
 
 #pragma clang diagnostic push

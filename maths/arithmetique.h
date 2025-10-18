@@ -7,9 +7,9 @@
 #include <algorithm>
 #include <deque>
 #include <map>
+#include <optional>
 
 #include "puissance.h"
-#include "utilitaires.h"
 
 class mpz_nombre;
 
@@ -168,8 +168,8 @@ namespace arithmetique {
     }
 
     template<typename Nombre1, typename Nombre2>
-    Nombre1 nombre_facteur(Nombre1 n, Nombre2 d) {
-        Nombre1 i = 0;
+    size_t nombre_facteur(Nombre1 n, Nombre2 d) {
+        size_t i = 0;
         while (n % d == 0) {
             n /= d;
             ++i;

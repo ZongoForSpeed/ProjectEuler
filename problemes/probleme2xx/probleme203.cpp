@@ -5,6 +5,7 @@
 #include "mpz_nombre.h"
 
 #include <execution>
+#include <set>
 
 typedef std::vector<mpz_nombre> vecteur;
 typedef std::pair<mpz_nombre, mpz_nombre> paire;

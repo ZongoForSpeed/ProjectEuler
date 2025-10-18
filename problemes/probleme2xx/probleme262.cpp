@@ -1,4 +1,8 @@
 #include "problemes.h"
+
+#include <cmath>
+#include <optional>
+
 #include "utilitaires.h"
 
 typedef unsigned long long nombre;

@@ -5,8 +5,7 @@
 #include <functional>
 #include <boost/noncopyable.hpp>
 
-class RegistreProbleme : private boost::noncopyable {
-private:
+class RegistreProbleme : boost::noncopyable {
     RegistreProbleme();
 
 public:

@@ -3,6 +3,11 @@
 #include "racine.h"
 #include "timer.h"
 #include "multidimension.h"
+#include "utilitaires.h"
+
+#include <set>
+#include <tuple>
+
 
 namespace {
     double distance(const std::tuple<long, long, long> &a, const std::tuple<long, long, long> &b, long r) {

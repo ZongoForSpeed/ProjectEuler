@@ -1,7 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
 #include "racine.h"
-#include "utilitaires.h"
 #include "timer.h"
 
 typedef unsigned long long nombre;
