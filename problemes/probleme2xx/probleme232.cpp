@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
+#include "utilitaires.h"
 
 #include <fstream>
-
-#include "utilitaires.h"
 
 typedef long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -57,6 +57,6 @@ ENREGISTRER_PROBLEME(232, "The Race") {
     std::map<std::pair<nombre, nombre>, long double> cache;
     long double resultat = 0.5L * TheGame(cache, 100, 100) + 0.5L * TheGame(cache, 99, 100);
 
-    return std::to_fixed(resultat, 8);
+    return format::to_fixed(resultat, 8);
 }
 

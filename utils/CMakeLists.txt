@@ -2,6 +2,7 @@ set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(utils SHARED
         ${PROJECT_SOURCE_DIR}/executor.h
+        ${PROJECT_SOURCE_DIR}/format.h
         ${PROJECT_SOURCE_DIR}/iterator.h
         ${PROJECT_SOURCE_DIR}/mpf_nombre.cpp
         ${PROJECT_SOURCE_DIR}/mpf_nombre.h

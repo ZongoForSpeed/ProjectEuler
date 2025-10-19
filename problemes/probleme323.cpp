@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 typedef long long int nombre;
@@ -31,5 +32,5 @@ ENREGISTRER_PROBLEME(323, "Bitwise-OR operations on random integers") {
         sum += n * p;
     }
 
-    return std::to_fixed(sum, 10);
+    return format::to_fixed(sum, 10);
 }

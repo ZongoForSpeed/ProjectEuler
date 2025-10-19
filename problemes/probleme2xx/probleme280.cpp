@@ -1,10 +1,10 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "matrice.h"
+#include "utilitaires.h"
 
 #include <bitset>
-
-#include "utilitaires.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -75,5 +75,5 @@ ENREGISTRER_PROBLEME(280, "Ant and seeds") {
     std::map<std::tuple<size_t, size_t, size_t, size_t>, long double> cache;
     long double resultat = algorithme(cache, 2, 2, 31, 31);
 
-    return std::to_fixed(resultat, 6);
+    return format::to_fixed(resultat, 6);
 }

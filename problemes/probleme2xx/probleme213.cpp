@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "matrice.h"
 #include "timer.h"
 #include "utilitaires.h"
@@ -56,5 +57,5 @@ ENREGISTRER_PROBLEME(213, "Flea Circus") {
         }
     }
 
-    return std::to_fixed(resultat, 6);
+    return format::to_fixed(resultat, 6);
 }

@@ -3,6 +3,9 @@
 #include "utilitaires.h"
 
 #include <fstream>
+#include <boost/test/results_reporter.hpp>
+
+#include "format.h"
 
 typedef unsigned long long nombre;
 
@@ -31,5 +34,5 @@ ENREGISTRER_PROBLEME(197, "Investigating the behaviour of a recursively defined 
         u_n1 = u_n2;
     }
 
-    return std::to_fixed(resultat, 9);
+    return format::to_fixed(resultat, 9);
 }

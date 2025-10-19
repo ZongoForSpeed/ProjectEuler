@@ -1,7 +1,8 @@
 #include "problemes.h"
+#include "format.h"
 #include "puissance.h"
-#include "utilitaires.h"
 #include "mpz_nombre.h"
+#include "utilitaires.h"
 
 #include <set>
 #include <vector>
@@ -68,5 +69,5 @@ ENREGISTRER_PROBLEME(267, "Binary Circles") {
     resultat /= mpz_nombre::puissance(2, n);
     double solution = resultat.get_double() / static_cast<double>(masque);
 
-    return std::to_fixed(solution, 12);
+    return format::to_fixed(solution, 12);
 }

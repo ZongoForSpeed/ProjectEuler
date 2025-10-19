@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 #include <fstream>
@@ -49,5 +50,5 @@ ENREGISTRER_PROBLEME(226, "A Scoop of Blancmange") {
             resultat += y * dx;
     }
 
-    return std::to_fixed(resultat, 8);
+    return format::to_fixed(resultat, 8);
 }

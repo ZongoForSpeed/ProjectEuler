@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 #include <queue>
@@ -91,5 +92,5 @@ ENREGISTRER_PROBLEME(406, "Guessing Game") {
         resultat += C(limite, std::sqrt(k), std::sqrt(fibonacci[k]));
     }
 
-    return std::to_fixed(resultat, 8);
+    return format::to_fixed(resultat, 8);
 }

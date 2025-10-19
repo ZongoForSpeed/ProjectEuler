@@ -1,7 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
-#include "polynome.h"
+#include "format.h"
 #include "mpf_nombre.h"
+#include "polynome.h"
 
 namespace {
 
@@ -72,5 +73,5 @@ ENREGISTRER_PROBLEME(286, "Scoring probabilities") {
         }
     }
 
-    return std::to_fixed(q2, 10);
+    return format::to_fixed(q2, 10);
 }

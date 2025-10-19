@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "mpz_nombre.h"
 #include "utilitaires.h"
 
@@ -119,5 +120,5 @@ ENREGISTRER_PROBLEME(253, "Tidying up") {
     numerateur /= denominateur;
     auto resultat = numerateur.get_double();
     resultat /= masque;
-    return std::to_fixed(resultat, 6);
+    return format::to_fixed(resultat, 6);
 }

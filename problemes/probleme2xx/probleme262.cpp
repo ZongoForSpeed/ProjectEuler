@@ -1,9 +1,9 @@
 #include "problemes.h"
+#include "format.h"
+#include "utilitaires.h"
 
 #include <cmath>
 #include <optional>
-
-#include "utilitaires.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -91,5 +91,5 @@ ENREGISTRER_PROBLEME(262, "Mountain Range") {
     long double resultat = marche(xmin, fmin, 200, 200, -1.0L)
                            + marche(xmin, fmin, 1400, 1400, 1.0L);
 
-    return std::to_fixed(resultat, 3);
+    return format::to_fixed(resultat, 3);
 }

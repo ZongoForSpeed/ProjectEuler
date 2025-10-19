@@ -1,6 +1,7 @@
 #include "problemes.h"
-#include "timer.h"
+#include "format.h"
 #include "mpf_nombre.h"
+#include "timer.h"
 #include "utilitaires.h"
 
 namespace {
@@ -50,7 +51,7 @@ namespace {
         }
 
         long double ldResultat = resultat.get_long_double();
-        std::cout << "E(" << k << ", " << q << ") = " << std::to_scientific(ldResultat, 12) << std::endl;
+        std::cout << "E(" << k << ", " << q << ") = " << format::to_scientific(ldResultat, 12) << std::endl;
 
         return ldResultat;
     }
@@ -93,5 +94,5 @@ ENREGISTRER_PROBLEME(722, "Slowly converging series") {
     E(cache, 7, 1.0L - std::pow(0.5L, 15.0L));
 
     long double resultat = E(cache, 15, 1.0L - std::pow(0.5L, 25.0L));
-    return std::to_scientific(resultat, 12);
+    return format::to_scientific(resultat, 12);
 }

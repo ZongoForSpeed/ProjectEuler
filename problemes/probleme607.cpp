@@ -1,5 +1,6 @@
 #include "premiers.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "problemes.h"
 #include "utilitaires.h"
 
@@ -72,5 +73,5 @@ ENREGISTRER_PROBLEME(607, "Divisibility streaks") {
         angle_courant = angle_suivant;
     }
 
-    return std::to_fixed(resultat, 10);
+    return format::to_fixed(resultat, 10);
 }

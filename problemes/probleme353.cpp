@@ -1,8 +1,9 @@
 #include "problemes.h"
+#include "format.h"
+#include "multidimension.h"
 #include "premiers.h"
 #include "racine.h"
 #include "timer.h"
-#include "multidimension.h"
 #include "utilitaires.h"
 
 #include <set>
@@ -136,7 +137,7 @@ namespace {
         size_t indiceSP = static_cast<size_t>(std::distance(bases.begin(), bases.find(SouthPole)));
 
         double distance_min = algorithme_dijkstra(noeuds, indiceNP, indiceSP, r);
-        std::cout << "M(" << r << ") = " << std::to_fixed(distance_min, 10) << std::endl;
+        std::cout << "M(" << r << ") = " << format::to_fixed(distance_min, 10) << std::endl;
         return distance_min;
     }
 }
@@ -170,5 +171,5 @@ ENREGISTRER_PROBLEME(353, "Risky moon") {
     for (size_t n = 1; n <= 15; ++n) {
         resultat += M((1u << n) - 1u);
     }
-    return std::to_fixed(resultat, 10);
+    return format::to_fixed(resultat, 10);
 }

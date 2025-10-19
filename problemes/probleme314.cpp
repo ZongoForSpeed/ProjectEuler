@@ -1,5 +1,6 @@
-#include "utilitaires.h"
 #include "problemes.h"
+#include "format.h"
+#include "utilitaires.h"
 
 #include <algorithm>
 #include <cmath>
@@ -121,5 +122,5 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
     }
     double resultat = aire / perimetre;
 
-    return std::to_fixed(resultat, 8);
+    return format::to_fixed(resultat, 8);
 }

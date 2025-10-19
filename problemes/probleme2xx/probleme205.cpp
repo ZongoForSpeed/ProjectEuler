@@ -3,6 +3,7 @@
 
 #include <fstream>
 
+#include "format.h"
 #include "utilitaires.h"
 
 typedef unsigned long long nombre;
@@ -67,5 +68,5 @@ ENREGISTRER_PROBLEME(205, "Dice Game") {
     long double resultat = somme
                            / puissance::puissance<long double>(4, 9u)
                            / puissance::puissance<long double>(6, 6u);
-    return std::to_fixed(resultat, 7);
+    return format::to_fixed(resultat, 7);
 }

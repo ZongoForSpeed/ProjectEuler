@@ -8,6 +8,8 @@
 #include <fstream>
 #include <vector>
 
+#include "format.h"
+
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 typedef std::vector<vecteur> matrice;
@@ -64,5 +66,5 @@ ENREGISTRER_PROBLEME(151, "Paper sheets of standard sizes: an expected-value pro
     std::map<envelope, mpq_fraction> cache;
     const envelope e{1};
     mpq_fraction f = calculEsperance(cache, e) - 2;
-    return std::to_fixed(f.get_double(), 6);
+    return format::to_fixed(f.get_double(), 6);
 }

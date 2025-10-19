@@ -1,9 +1,9 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
+#include "utilitaires.h"
 
 #include <fstream>
-
-#include "utilitaires.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<long double> vecteur;
@@ -69,5 +69,5 @@ ENREGISTRER_PROBLEME(227, "The Chase") {
         esperance += tours * chase.front();
     }
 
-    return std::to_fixed(esperance, 6);
+    return format::to_fixed(esperance, 6);
 }

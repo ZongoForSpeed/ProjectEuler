@@ -1,10 +1,10 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
+#include "utilitaires.h"
 
 #include <set>
 #include <vector>
-
-#include "utilitaires.h"
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -115,7 +115,7 @@ ENREGISTRER_PROBLEME(300, "Protein folding") {
     }
 
     long double resultat = static_cast<long double>(somme) / nombre_proteines;
-    std::cout << "Solution: " << somme << " / " << nombre_proteines << " = " << std::to_fixed(resultat, 20) << std::endl;
+    std::cout << "Solution: " << somme << " / " << nombre_proteines << " = " << format::to_fixed(resultat, 20) << std::endl;
 
-    return std::to_fixed(resultat, 13);
+    return format::to_fixed(resultat, 13);
 }

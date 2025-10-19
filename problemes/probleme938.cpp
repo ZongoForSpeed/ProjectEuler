@@ -1,6 +1,6 @@
 #include "problemes.h"
+#include "format.h"
 #include "multidimension.h"
-#include "utilitaires.h"
 
 #include <iomanip>
 #include <iostream>
@@ -85,5 +85,5 @@ ENREGISTRER_PROBLEME(938, "Exhausting a Colour") {
     long double result = p(cache, 24690, 12345);
     std::cout << "P(24690,12345) = " << result << std::endl;
 
-    return std::to_fixed(result, 10);
+    return format::to_fixed(result, 10);
 }

@@ -1,8 +1,7 @@
 #include "problemes.h"
-#include "timer.h"
-
-#include "numerique.h"
 #include "arithmetique.h"
+#include "format.h"
+#include "timer.h"
 #include "utilitaires.h"
 
 typedef int64_t nombre;
@@ -76,5 +75,5 @@ ENREGISTRER_PROBLEME(816, "Shortest Distance Among Points") {
     // Find d(2000000). Give your answer rounded to 9 places after the decimal point.
     //
     d(14);
-    return std::to_fixed(d(2'000'000), 9);
+    return format::to_fixed(d(2'000'000), 9);
 }

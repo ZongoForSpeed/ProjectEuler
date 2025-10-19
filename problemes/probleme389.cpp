@@ -1,7 +1,7 @@
 #include "problemes.h"
+#include "format.h"
 #include "premiers.h"
 #include "puissance.h"
-#include "utilitaires.h"
 
 // namespace {
 //     size_t dp(size_t n, size_t d, std::vector<long double> & probabilites) {
@@ -38,7 +38,7 @@ ENREGISTRER_PROBLEME(389, "Platonic Dice") {
     }
     
     long double variance = e * (e-1) / 3;
-    return std::to_fixed(variance, 4);
+    return format::to_fixed(variance, 4);
     // std::cout << std::to_string(variance, 4) << std::endl;
     
     // std::vector<long double> probabilites {0, 1};

@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 typedef unsigned long long nombre;
@@ -52,5 +53,5 @@ ENREGISTRER_PROBLEME(285, "Pythagorean odds") {
         resultat += k * p;
     }
 
-    return std::to_fixed(resultat, 5);
+    return format::to_fixed(resultat, 5);
 }

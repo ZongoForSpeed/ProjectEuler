@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 typedef long long nombre;
@@ -38,5 +39,5 @@ ENREGISTRER_PROBLEME(235, "An Arithmetic Geometric sequence") {
         dr /= 2;
     }
 
-    return std::to_fixed(r, 12);
+    return format::to_fixed(r, 12);
 }

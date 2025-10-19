@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 namespace {
@@ -85,10 +86,10 @@ ENREGISTRER_PROBLEME(363, "Bézier Curves") {
     // That is, if L is the length of the curve, calculate 100 * \dfrac{L - Pi/2}{\frac{\pi}{2}}<br />
     // Give your answer rounded to 10 digits behind the decimal point.
     long double V = findV(std::pow(0.1L, 15));
-    std::cout << "V = " << std::to_fixed(V, 12) << std::endl;
+    std::cout << "V = " << format::to_fixed(V, 12) << std::endl;
     long double L = longueur(V, 0.00000001L);
-    std::cout << "L = " << std::to_fixed(L, 12) << std::endl;
+    std::cout << "L = " << format::to_fixed(L, 12) << std::endl;
     long double error = 100 * (L - M_PI_2l) / M_PI_2l;
 
-    return std::to_fixed(error, 10);
+    return format::to_fixed(error, 10);
 }

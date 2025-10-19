@@ -1,4 +1,5 @@
 #include "problemes.h"
+#include "format.h"
 #include "utilitaires.h"
 
 #include <deque>
@@ -44,5 +45,5 @@ ENREGISTRER_PROBLEME(339, "Peredur fab Efrawg") {
         }
     }
 
-    return std::to_fixed(resultat, 6);
+    return format::to_fixed(resultat, 6);
 }

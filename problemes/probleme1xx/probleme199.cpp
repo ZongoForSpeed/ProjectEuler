@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 #include <boost/math/constants/constants.hpp>
@@ -67,5 +68,5 @@ ENREGISTRER_PROBLEME(199, "Iterative Circle Packing") {
     }
 
     long double resultat = 1.0L - A / a0;
-    return std::to_fixed(resultat, 8);
+    return format::to_fixed(resultat, 8);
 }

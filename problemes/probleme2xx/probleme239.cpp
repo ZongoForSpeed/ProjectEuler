@@ -1,8 +1,7 @@
 #include "problemes.h"
 #include "puissance.h"
-#include "combinatoire.h"
+#include "format.h"
 #include "mpz_nombre.h"
-#include "utilitaires.h"
 
 ENREGISTRER_PROBLEME(239, "Infinite string tour") {
     // A set of disks numbered 1 through 100 are placed in a line in random order.
@@ -28,5 +27,5 @@ ENREGISTRER_PROBLEME(239, "Infinite string tour") {
     numerateur /= denominateur;
 
     double resultat = numerateur.get_double() / masque;
-    return std::to_fixed(resultat, 12);
+    return format::to_fixed(resultat, 12);
 }

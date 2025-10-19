@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 typedef unsigned long nombre;
@@ -38,5 +39,5 @@ ENREGISTRER_PROBLEME(307, "Chip Defects") {
     }
 
     resultat = 1.0L - resultat;
-    return std::to_fixed(resultat, 10);
+    return format::to_fixed(resultat, 10);
 }

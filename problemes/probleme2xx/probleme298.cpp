@@ -1,12 +1,12 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "timer.h"
 #include "utilitaires.h"
 
 #include <boost/bimap.hpp>
 #include <boost/foreach.hpp>
 #include <set>
-
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -178,5 +178,5 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
             resultat += static_cast<long double>(std::abs(score)) * probabilite;
         }
 
-    return std::to_fixed(resultat, 8);
+    return format::to_fixed(resultat, 8);
 }

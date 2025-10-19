@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "mpz_nombre.h"
+#include "format.h"
 #include "utilitaires.h"
 
 ENREGISTRER_PROBLEME(493, "Under The Rainbow") {
@@ -10,5 +11,5 @@ ENREGISTRER_PROBLEME(493, "Under The Rainbow") {
     // Give your answer with nine digits after the decimal point (a.bcdefghij).
     double resultat = 7 * (1.0 - mpz_nombre::coefficient_binomial(60, 20).get_double()
                                  / mpz_nombre::coefficient_binomial(70, 20).get_double());
-    return std::to_fixed(resultat, 9);
+    return format::to_fixed(resultat, 9);
 }

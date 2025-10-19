@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 #include <fstream>
@@ -81,5 +82,5 @@ ENREGISTRER_PROBLEME(255, "Rounded Square Roots") {
     // Note: The symbols ⌊x⌋ and ⌈x⌉ represent the floor function and ceiling function respectively.
     long double resultat = algorithme(10000000000000LL, 99999999999999LL, 7000000);
 
-    return std::to_fixed(resultat, 10);
+    return format::to_fixed(resultat, 10);
 }

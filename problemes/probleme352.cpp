@@ -1,4 +1,5 @@
 #include "problemes.h"
+#include "format.h"
 #include "utilitaires.h"
 
 #include <iostream>
@@ -30,7 +31,7 @@ namespace {
                 f[i] = std::min(f[i], 1 + p_pos * (g[k] + f[i - k]) + (1 - p_pos) * f[i - k]);
             }
         }
-        std::cout << "T(" << s << ", " << p << ") = " << std::to_fixed(f[s], 6) << std::endl;
+        std::cout << "T(" << s << ", " << p << ") = " << format::to_fixed(f[s], 6) << std::endl;
         return f[s];
     }
 }
@@ -76,13 +77,13 @@ ENREGISTRER_PROBLEME(352, "Hexagonal orchards") {
     const unsigned int n = 10000;
 
     // std::cout << std::fixed << std::setprecision(6);
-    std::cout << "T(25, 0.02) = " << std::to_fixed(T(25, 0.02), 6) << std::endl;
-    std::cout << "T(25, 0.10) = " << std::to_fixed(T(25, 0.10), 6) << std::endl;
+    std::cout << "T(25, 0.02) = " << format::to_fixed(T(25, 0.02), 6) << std::endl;
+    std::cout << "T(25, 0.10) = " << format::to_fixed(T(25, 0.10), 6) << std::endl;
 
     double resultat = 0;
     for (unsigned int p = 1; p <= 50; ++p) {
         resultat += T(n, p / 100.0);
     }
 
-    return std::to_fixed(resultat, 6);
+    return format::to_fixed(resultat, 6);
 }

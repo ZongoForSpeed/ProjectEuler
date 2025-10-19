@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 typedef long nombre;
@@ -50,5 +51,5 @@ ENREGISTRER_PROBLEME(371, "Licence plates") {
         resultat += i * probabilite(cache, i, 0, false);
     }
 
-    return std::to_fixed(resultat, 8);
+    return format::to_fixed(resultat, 8);
 }

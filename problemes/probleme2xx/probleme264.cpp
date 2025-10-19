@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format.h"
 #include "utilitaires.h"
 
 typedef long long nombre;
@@ -80,5 +81,5 @@ ENREGISTRER_PROBLEME(264, "Triangle Centres") {
             }
         }
 
-    return std::to_fixed(resultat, 4);
+    return format::to_fixed(resultat, 4);
 }
