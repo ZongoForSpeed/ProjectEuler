@@ -1,7 +1,7 @@
 #pragma once
 
 #include "utilitaires.h"
-#include "numerique.h"
+#include "iterator.h"
 
 #include <boost/range/join.hpp>
 #include <boost/iterator/iterator_facade.hpp>
@@ -13,7 +13,7 @@ namespace permutation {
     bool arrangement_suivant(const std::vector<T> &source, std::vector<bool> &indices, std::vector<T> &subSource) {
         while (std::prev_permutation(indices.begin(), indices.end())) {
             std::vector<T> resultat;
-            std::for_each2(source.begin(), source.end(), indices.begin(),
+            iterator::for_each2(source.begin(), source.end(), indices.begin(),
                            [&resultat](T value, bool test) {
                                if (test) {
                                    resultat.push_back(value);
@@ -97,13 +97,13 @@ namespace permutation {
             std::vector<T> _courant;
         public:
             Iterateur(const std::vector<T> &s, size_t t, size_t index) : _source(s), _taille(t), _index(index) {
-                size_t n = utilitaires::distance(_source.begin(), _source.end());
+                size_t n = iterator::distance(_source.begin(), _source.end());
                 _indices.assign(n, false);
                 for (size_t i = 0; i < t; ++i) {
                     _indices[i] = true;
                 }
 
-                _courant.assign(_source.begin(), std::next(_source.begin(), _taille));
+                _courant.assign(_source.begin(), iterator::next(_source.begin(), _taille));
             }
 
         private:
@@ -163,13 +163,13 @@ namespace permutation {
             std::vector<T> _courant;
         public:
             Iterateur(const std::vector<T> &s, size_t t, size_t index) : _source(s), _taille(t), _index(index) {
-                size_t n = utilitaires::distance(_source.begin(), _source.end());
+                size_t n = iterator::distance(_source.begin(), _source.end());
                 _indices.assign(n, false);
                 for (size_t i = 0; i < t; ++i) {
                     _indices[i] = true;
                 }
 
-                _courant.assign(_source.begin(), std::next(_source.begin(), _taille));
+                _courant.assign(_source.begin(), iterator::next(_source.begin(), _taille));
             }
 
         private:

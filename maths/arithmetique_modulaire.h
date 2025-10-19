@@ -4,6 +4,7 @@
 #include <utility>
 
 #include "arithmetique.h"
+#include "iterator.h"
 #include "puissance.h"
 #include "utilitaires.h"
 
@@ -41,7 +42,7 @@ namespace arithmetique_modulaire {
 
         Nombre resultat = 0;
 
-        std::for_each2(modulos.begin(), modulos.end(), restes.begin(),
+        iterator::for_each2(modulos.begin(), modulos.end(), restes.begin(),
                        [&resultat, &premiers, &n](const Nombre &modulo, const Nombre &reste) {
                            Nombre r = n / modulo;
                            resultat += r * inverse_modulaire(r, modulo, premiers) * reste;
@@ -62,7 +63,7 @@ namespace arithmetique_modulaire {
 
         Nombre resultat = 0;
 
-        std::for_each2(modulos.begin(), modulos.end(), restes.begin(),
+        iterator::for_each2(modulos.begin(), modulos.end(), restes.begin(),
                        [&resultat, &n](const Nombre &modulo, const Nombre &reste) {
                            Nombre r = n / modulo;
                            resultat += r * inverse_modulaire(r, modulo) * reste;

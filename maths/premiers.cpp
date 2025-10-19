@@ -8,8 +8,9 @@
 #include <set>
 #include <boost/random/uniform_int.hpp>
 
-#include "utilitaires.h"
 #include "distribution.h"
+#include "iterator.h"
+#include "utilitaires.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wexit-time-destructors"
@@ -334,7 +335,7 @@ namespace {
         }
 
         Nombre i = nn + indices[m] - x;
-        auto it = std::next(offsets.begin(), m);
+        auto it = iterator::next(offsets.begin(), m);
         while (true) {
             if (it == offsets.end()) {
                 it = offsets.begin();
@@ -452,7 +453,7 @@ namespace premiers {
                 if (it != restes.end()) {
                     // std::cout << "n = " << n << "\t";
                     // std::cout << produit << ".[ " << produit << ".k² + " << 2*reste + n << ".k + " << rrnr/produit << " ] + " << rrnr%produit << std::endl;
-                    matrice[i][utilitaires::distance(restes.begin(), it)] = std::make_pair(2 * reste + n,
+                    matrice[i][iterator::distance(restes.begin(), it)] = std::make_pair(2 * reste + n,
                                                                                            rrnr / produit);
                 }
             }

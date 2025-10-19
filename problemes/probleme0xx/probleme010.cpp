@@ -1,5 +1,5 @@
 #include <numeric>
-#include "numerique.h"
+
 #include "problemes.h"
 #include "premiers.h"
 

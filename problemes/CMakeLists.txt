@@ -15,5 +15,5 @@ add_library (problemes SHARED
 
 include_directories(${PROJECT_SOURCE_DIR})
 
-target_link_libraries(problemes maths)
+target_link_libraries(problemes maths utils)
 target_include_directories (problemes PUBLIC ${PROJECT_SOURCE_DIR})

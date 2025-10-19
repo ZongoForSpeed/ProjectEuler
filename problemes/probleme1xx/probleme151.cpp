@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 #include "mpq_fraction.h"
 #include "utilitaires.h"
+#include "iterator.h"
 
 #include <execution>
 #include <fstream>
@@ -23,7 +24,7 @@ namespace {
             for (size_t i = 0; i < e.size(); i++) {
                 envelope nouvelleEnvelope(e);
                 const unsigned short sheet = e[i];
-                nouvelleEnvelope.erase(std::next(nouvelleEnvelope.begin(), i));
+                nouvelleEnvelope.erase(iterator::next(nouvelleEnvelope.begin(), i));
                 for (unsigned short j = sheet + 1; j <= 5; j++)
                     nouvelleEnvelope.push_back(j);
                 std::sort(std::execution::par, nouvelleEnvelope.begin(), nouvelleEnvelope.end());

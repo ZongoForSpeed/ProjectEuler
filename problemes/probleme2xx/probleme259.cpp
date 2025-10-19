@@ -1,6 +1,7 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "utilitaires.h"
+#include "iterator.h"
 
 #include <boost/rational.hpp>
 #include <set>
@@ -21,8 +22,8 @@ namespace {
         resultat.insert(f);
 
         for (size_t n = 1; n < e.size(); ++n) {
-            auto gauche = algorithme(vecteur(e.begin(), std::next(e.begin(), n)), cache);
-            auto droite = algorithme(vecteur(std::next(e.begin(), n), e.end()), cache);
+            auto gauche = algorithme(vecteur(e.begin(), iterator::next(e.begin(), n)), cache);
+            auto droite = algorithme(vecteur(iterator::next(e.begin(), n), e.end()), cache);
 
             for (auto a: gauche)
                 for (auto b: droite) {

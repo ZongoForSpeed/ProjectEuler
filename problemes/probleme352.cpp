@@ -4,6 +4,8 @@
 #include <iostream>
 #include <numeric>
 
+#include "string.h"
+
 namespace {
     double T(unsigned int s, double p) {
         std::vector<double> f(s + 1, 0.0);

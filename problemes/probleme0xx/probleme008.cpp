@@ -1,6 +1,6 @@
 #include <numeric>
 
-#include "utilitaires.h"
+#include "iterator.h"
 #include "problemes.h"
 #include "arithmetique.h"
 #include "mpz_nombre.h"
@@ -33,8 +33,8 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series") {
     // What is the value of this product?
     auto produit = [&big_number](const size_t &debut, const size_t &fin) -> mpz_nombre {
         if (debut < fin && fin < big_number.size())
-            return std::transform_reduce(std::next(big_number.begin(), debut),
-                                         std::next(big_number.begin(), fin),
+            return std::transform_reduce(iterator::next(big_number.begin(), debut),
+                                         iterator::next(big_number.begin(), fin),
                                          mpz_nombre(1),
                                          std::multiplies<mpz_nombre>{},
                                          [](char c) -> mpz_nombre { return c - '0'; }

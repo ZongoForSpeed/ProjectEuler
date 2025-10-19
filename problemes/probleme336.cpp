@@ -1,12 +1,13 @@
 #include "problemes.h"
 #include "utilitaires.h"
+#include "iterator.h"
 
 #include <algorithm>
 #include <numeric>
 
 namespace {
     void reverse(std::vector<size_t> &train, size_t i) {
-        std::reverse(std::next(train.begin(), i), train.end());
+        std::reverse(iterator::next(train.begin(), i), train.end());
     }
 
     int compte_maximix(std::vector<size_t> &train) {

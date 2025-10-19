@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "premiers.h"
+#include "iterator.h"
 
 #include <algorithm>
 #include <set>
@@ -28,7 +29,7 @@ ENREGISTRER_PROBLEME(50, "Consecutive prime sum") {
     for (auto it1 = premiers.begin(), en = premiers.end(); it1 != en; ++it1) {
         nombre s = *it1;
         nombre l = 1;
-        for (auto it2 = std::next(it1, 1); it2 != en; ++it2) {
+        for (auto it2 = iterator::next(it1, 1); it2 != en; ++it2) {
             s += *it2;
             ++l;
             if (s > limite)

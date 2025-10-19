@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
-#include "utilitaires.h"
+#include "iterator.h"
 
 #include <fstream>
 #include <vector>
@@ -43,6 +43,6 @@ ENREGISTRER_PROBLEME(126, "Cuboid layers") {
 
     auto it = std::find(couche.begin(), couche.end(), 1000);
 
-    nombre resultat = utilitaires::distance(couche.begin(), it);
+    nombre resultat = iterator::distance(couche.begin(), it);
     return std::to_string(resultat);
 }

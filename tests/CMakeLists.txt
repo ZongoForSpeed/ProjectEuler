@@ -28,5 +28,5 @@ add_library (tests SHARED
 
 include_directories(${PROJECT_SOURCE_DIR})
 
-target_link_libraries(tests maths)
+target_link_libraries(tests utils maths)
 target_include_directories (tests PUBLIC ${PROJECT_SOURCE_DIR})

@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "chiffres.h"
-#include "utilitaires.h"
+#include "iterator.h"
 
 #include <set>
 #include <boost/rational.hpp>
@@ -21,7 +21,7 @@ namespace {
                 fraction a = n[i];
                 fraction b = n[j];
                 auto m = n;
-                m.erase(std::next(m.begin(), j));
+                m.erase(iterator::next(m.begin(), j));
                 m[i] = a + b;
                 test(m, p);
                 m[i] = a * b;

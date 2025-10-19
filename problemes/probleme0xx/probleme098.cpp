@@ -29,8 +29,8 @@ ENREGISTRER_PROBLEME(98, "Anagramic squares") {
         if (permutation.front() != 0) {
             for (unsigned short i = 1; i < 10; ++i) {
                 if (polygonal::est_carre(
-                        chiffres::conversion_nombre<nombre>(permutation.begin(), std::next(permutation.begin(), i))))
-                    anagrammes[i].emplace(permutation.begin(), std::next(permutation.begin(), i));
+                        chiffres::conversion_nombre<nombre>(permutation.begin(), iterator::next(permutation.begin(), i))))
+                    anagrammes[i].emplace(permutation.begin(), iterator::next(permutation.begin(), i));
             }
             if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(permutation.begin(), permutation.end())))
                 anagrammes[10].insert(permutation);

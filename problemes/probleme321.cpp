@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "utilitaires.h"
+#include "iterator.h"
 
 #include <algorithm>
 #include <numeric>
@@ -69,6 +70,6 @@ ENREGISTRER_PROBLEME(321, "Swapping Counters") {
     std::ranges::sort(solutions);
     // std::cout << solutions << std::endl;
 
-    nombre resultat = std::reduce(solutions.begin(), std::next(solutions.begin(), limite));
+    nombre resultat = std::reduce(solutions.begin(), iterator::next(solutions.begin(), limite));
     return std::to_string(resultat);
 }
