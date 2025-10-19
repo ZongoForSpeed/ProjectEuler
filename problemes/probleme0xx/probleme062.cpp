@@ -1,6 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
-
+#include "format/vector.h"
 #include "utilitaires.h"
 
 typedef unsigned long long nombre;

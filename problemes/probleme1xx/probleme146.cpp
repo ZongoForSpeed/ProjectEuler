@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "problemes.h"
 
 #include "numerique.h"

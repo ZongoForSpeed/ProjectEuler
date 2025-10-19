@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "format.h"
+#include "format/tuple.h"
 #include "multidimension.h"
 #include "premiers.h"
 #include "racine.h"

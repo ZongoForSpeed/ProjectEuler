@@ -3,17 +3,15 @@
 #include "numerique.h"
 
 #include <deque>
-#include <iostream>
+#include <functional>
 #include <limits>
 #include <optional>
-#include <functional>
+#include <string>
 
 #include <gmp.h>
 
 class mpz_nombre {
     mpz_ptr _data;
-
-    void init();
 
     void clear();
 
@@ -47,7 +45,7 @@ public:
 
     template<typename T, typename = typename std::enable_if<std::is_integral<T>::value, T>::type>
     mpz_nombre(T x) {
-        init();
+        _data = new __mpz_struct();
         set(x);
     }
 

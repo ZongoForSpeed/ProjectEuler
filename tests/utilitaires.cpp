@@ -1,5 +1,9 @@
 #include <boost/test/unit_test.hpp>
 
+#include "format/deque.h"
+#include "format/map.h"
+#include "format/set.h"
+#include "format/vector.h"
 #include "utilitaires.h"
 
 #pragma clang diagnostic push

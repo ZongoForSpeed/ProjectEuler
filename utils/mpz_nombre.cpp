@@ -7,7 +7,7 @@
 #include <utility>
 
 mpz_nombre::mpz_nombre() {
-    init();
+    _data = new __mpz_struct();
     mpz_init(_data);
 }
 
@@ -16,12 +16,12 @@ mpz_nombre::~mpz_nombre() {
 }
 
 mpz_nombre::mpz_nombre(mpz_srcptr op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init_set(_data, op);
 }
 
 mpz_nombre::mpz_nombre(const mpz_nombre &op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init_set(_data, op._data);
 }
 
@@ -29,49 +29,45 @@ mpz_nombre::mpz_nombre(mpz_nombre &&op) : _data(std::exchange(op._data, nullptr)
 }
 
 mpz_nombre::mpz_nombre(unsigned int op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init_set_ui(_data, op);
 }
 
 mpz_nombre::mpz_nombre(signed int op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init_set_si(_data, op);
 }
 
 mpz_nombre::mpz_nombre(unsigned long op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init_set_ui(_data, op);
 }
 
 mpz_nombre::mpz_nombre(signed long op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init_set_si(_data, op);
 }
 
 mpz_nombre::mpz_nombre(double op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init_set_d(_data, op);
 }
 
 mpz_nombre::mpz_nombre(const std::string &op, int base) {
-    init();
+    _data = new __mpz_struct();
     mpz_init_set_str(_data, op.c_str(), base);
 }
 
 mpz_nombre::mpz_nombre(unsigned long long op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init(_data);
     set(op);
 }
 
 mpz_nombre::mpz_nombre(signed long long op) {
-    init();
+    _data = new __mpz_struct();
     mpz_init(_data);
     set(op);
-}
-
-void mpz_nombre::init() {
-    _data = new __mpz_struct();
 }
 
 void mpz_nombre::clear() {

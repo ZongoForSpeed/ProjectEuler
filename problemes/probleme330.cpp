@@ -1,8 +1,10 @@
 #include "problemes.h"
-#include "premiers.h"
 #include "arithmetique.h"
-#include "multidimension.h"
 #include "arithmetique_modulaire.h"
+#include "format/deque.h"
+#include "format/vector.h"
+#include "premiers.h"
+#include "multidimension.h"
 
 typedef long long int nombre;
 typedef std::vector<nombre> vecteur;

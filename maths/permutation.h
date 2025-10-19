@@ -1,12 +1,11 @@
 #pragma once
 
-#include "utilitaires.h"
 #include "iterator.h"
 
+#include <algorithm>
 #include <boost/range/join.hpp>
 #include <boost/iterator/iterator_facade.hpp>
-
-#include <algorithm>
+#include <vector>
 
 namespace permutation {
     template<typename T>

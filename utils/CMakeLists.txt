@@ -3,6 +3,12 @@ set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 add_library(utils SHARED
         ${PROJECT_SOURCE_DIR}/executor.h
         ${PROJECT_SOURCE_DIR}/format.h
+        ${PROJECT_SOURCE_DIR}/format/deque.h
+        ${PROJECT_SOURCE_DIR}/format/map.h
+        ${PROJECT_SOURCE_DIR}/format/optional.h
+        ${PROJECT_SOURCE_DIR}/format/set.h
+        ${PROJECT_SOURCE_DIR}/format/tuple.h
+        ${PROJECT_SOURCE_DIR}/format/vector.h
         ${PROJECT_SOURCE_DIR}/iterator.h
         ${PROJECT_SOURCE_DIR}/mpf_nombre.cpp
         ${PROJECT_SOURCE_DIR}/mpf_nombre.h

@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "format.h"
+#include "format/tuple.h"
+#include "format/vector.h"
 #include "utilitaires.h"
 
 #include <execution>

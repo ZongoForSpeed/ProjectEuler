@@ -2,7 +2,9 @@
 #include "format.h"
 #include "mpf_nombre.h"
 #include "timer.h"
-#include "utilitaires.h"
+
+#include <cmath>
+#include <iostream>
 
 namespace {
     short parite(size_t n) {

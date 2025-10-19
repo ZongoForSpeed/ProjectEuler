@@ -1,5 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
+#include "format/tuple.h"
 #include "pythagoricien.h"
 #include "utilitaires.h"
 

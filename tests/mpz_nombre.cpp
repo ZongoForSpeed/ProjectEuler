@@ -1,6 +1,7 @@
 #include <boost/test/unit_test.hpp>
 #include <random>
 
+#include "format/vector.h"
 #include "utilitaires.h"
 #include "mpz_nombre.h"
 

@@ -3,6 +3,8 @@
 #include "utilitaires.h"
 #include "mpf_nombre.h"
 
+#include <math.h>
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"
 #pragma clang diagnostic ignored "-Wdisabled-macro-expansion"

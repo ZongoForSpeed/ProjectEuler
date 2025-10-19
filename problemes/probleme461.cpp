@@ -1,8 +1,10 @@
 #include "problemes.h"
+#include "format/tuple.h"
 #include "timer.h"
 #include "utilitaires.h"
 
 #include <cmath>
+#include <iostream>
 
 typedef std::tuple<long double/*value*/, size_t /*a*/, size_t /*b*/> valeur;
 

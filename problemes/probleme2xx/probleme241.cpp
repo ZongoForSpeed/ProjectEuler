@@ -2,6 +2,7 @@
 #include "problemes.h"
 #include "numerique.h"
 #include "arithmetique.h"
+#include "format/vector.h"
 #include "premiers.h"
 #include "utilitaires.h"
 

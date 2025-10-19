@@ -1,9 +1,11 @@
 #include "problemes.h"
 #include "arithmetique.h"
 #include "arithmetique_modulaire.h"
-#include "premiers.h"
+#include "format/vector.h"
 #include "mpz_nombre.h"
+#include "premiers.h"
 
+#include <set>
 #include <boost/rational.hpp>
 
 namespace {

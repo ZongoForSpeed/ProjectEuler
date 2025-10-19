@@ -20,8 +20,6 @@ class mpf_nombre {
 
     static mpf_nombre calcul_phi();
 
-    void init();
-
     void clear();
 
     template<typename Type>
@@ -59,11 +57,11 @@ public:
 
     template<typename Type, typename = typename std::enable_if<std::is_integral<Type>::value, Type>::type>
     mpf_nombre(const Type x) {
-        init();
+        _data = new __mpfr_struct();
         init_set(x, std::is_signed<Type>());
     }
 
-    mpf_nombre(mpf_nombre &&op);
+    mpf_nombre(mpf_nombre &&op) noexcept;
 
     ~mpf_nombre();
 
@@ -109,6 +107,7 @@ public:
         mpz_nombre tmp(x);
         set(tmp);
     }
+
     // endregion setters
 
     // region getters
@@ -129,6 +128,7 @@ public:
     mpz_nombre get_mpz_nombre();
 
     mpq_fraction get_mpq_fraction();
+
     // endregion getters
 
     std::string to_string(size_t precision = 15) const;
@@ -182,6 +182,7 @@ public:
         addition(rop, *this, op);
         return rop;
     }
+
     // endregion addition
 
     // region soustraction
@@ -259,6 +260,7 @@ public:
         soustraction(rop, *this, op);
         return rop;
     }
+
     // endregion soustraction
 
     // region multiplication
@@ -304,6 +306,7 @@ public:
         multiplication(rop, *this, op);
         return rop;
     }
+
     // endregion multiplication
 
     // region division
@@ -381,6 +384,7 @@ public:
         division(rop, *this, op);
         return rop;
     }
+
     // endregion division
 
     // region comparaison
@@ -442,6 +446,7 @@ public:
     bool operator!=(const Type &op) const {
         return compare(op) != 0;
     }
+
     // endregion comparaison
 
     static void abs(mpf_nombre &rop, const mpf_nombre &op);

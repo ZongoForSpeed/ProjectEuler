@@ -1,8 +1,10 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format/tuple.h"
 #include "utilitaires.h"
 
 #include <fstream>
+#include <set>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;

@@ -1,9 +1,10 @@
-#include <cmath>
-#include <mpf_nombre.h>
 #include "problemes.h"
-#include "numerique.h"
-#include "timer.h"
 #include "chiffres.h"
+#include "timer.h"
+
+#include <cmath>
+#include <iostream>
+#include <mpf_nombre.h>
 
 namespace {
     std::pair<long, mpf_nombre> suivant(const mpf_nombre &b) {

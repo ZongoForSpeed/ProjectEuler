@@ -3,7 +3,7 @@
 #include <utility>
 
 mpq_fraction::mpq_fraction() {
-    init();
+    _data = new __mpq_struct();
     mpq_init(_data);
 }
 
@@ -15,7 +15,7 @@ mpq_fraction::~mpq_fraction() {
 }
 
 mpq_fraction::mpq_fraction(const mpq_fraction &op) {
-    init();
+    _data = new __mpq_struct();
     mpq_set(_data, op._data);
     mpq_canonicalize(_data);
 }
@@ -24,68 +24,64 @@ mpq_fraction::mpq_fraction(mpq_fraction &&op) noexcept : _data(std::exchange(op.
 }
 
 mpq_fraction::mpq_fraction(const mpz_nombre &op) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_z(_data, op.get_data());
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(unsigned long op1, unsigned long op2) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_ui(_data, op1, op2);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(unsigned long op) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_ui(_data, op, 1ul);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(long op1, unsigned long op2) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_si(_data, op1, op2);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(const mpz_nombre &n, const mpz_nombre &d) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_num(_data, n.get_data());
     mpq_set_den(_data, d.get_data());
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(long op) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_si(_data, op, 1l);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(const std::string &op, int base) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_str(_data, op.c_str(), base);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(double op) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_d(_data, op);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(unsigned int op) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_ui(_data, op, 1ul);
     mpq_canonicalize(_data);
 }
 
 mpq_fraction::mpq_fraction(signed int op) {
-    init();
+    _data = new __mpq_struct();
     mpq_set_si(_data, op, 1l);
     mpq_canonicalize(_data);
-}
-
-void mpq_fraction::init() {
-    _data = new __mpq_struct();
 }
 
 void mpq_fraction::clear() {

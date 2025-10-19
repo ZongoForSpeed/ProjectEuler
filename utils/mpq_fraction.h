@@ -3,12 +3,11 @@
 #include "numerique.h"
 
 #include <gmp.h>
+#include <string>
 #include "mpz_nombre.h"
 
 class mpq_fraction {
     mpq_ptr _data;
-
-    void init();
 
     void clear();
 
@@ -19,7 +18,7 @@ public:
 
     mpq_fraction(const mpq_fraction &op);
 
-    mpq_fraction(mpq_fraction &&op) noexcept ;
+    mpq_fraction(mpq_fraction &&op) noexcept;
 
     explicit mpq_fraction(const mpz_nombre &op);
 
@@ -43,7 +42,7 @@ public:
 
     template<typename T, typename = typename std::enable_if<numeric::is_integral<T>::value, T>::type>
     mpq_fraction(T x) {
-        init();
+        _data = new __mpq_struct();
         set(mpz_nombre(x));
     }
 
@@ -87,6 +86,7 @@ public:
     void set(double op);
 
     void set(const std::string &op, int base = 10);
+
     // endregion Setters
 
     void swap(mpq_fraction &op);
@@ -261,7 +261,6 @@ public:
     mpz_nombre numerateur() const;
 
     mpz_nombre denominateur() const;
-
 };
 
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>

@@ -1,5 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
+#include "format/deque.h"
 #include "utilitaires.h"
 #include "mpz_nombre.h"
 #include "crible_quadratique.h"

@@ -3,8 +3,10 @@
 #include "polygonal.h"
 #include "permutation.h"
 
-#include <fstream>
 #include <boost/algorithm/string.hpp>
+#include <fstream>
+#include <set>
+#include <vector>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -23,13 +25,13 @@ ENREGISTRER_PROBLEME(98, "Anagramic squares") {
     // What is the largest square number formed by any member of such a pair?
     // 
     // NOTE: All anagrams formed must be contained in the given text file.
-    std::map<nombre, std::set<vecteur>> anagrammes;
+    std::map<nombre, std::set<vecteur> > anagrammes;
     vecteur chiffres = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     for (auto permutation: permutation::Permutation<vecteur>(chiffres)) {
         if (permutation.front() != 0) {
             for (unsigned short i = 1; i < 10; ++i) {
                 if (polygonal::est_carre(
-                        chiffres::conversion_nombre<nombre>(permutation.begin(), iterator::next(permutation.begin(), i))))
+                    chiffres::conversion_nombre<nombre>(permutation.begin(), iterator::next(permutation.begin(), i))))
                     anagrammes[i].emplace(permutation.begin(), iterator::next(permutation.begin(), i));
             }
             if (polygonal::est_carre(chiffres::conversion_nombre<nombre>(permutation.begin(), permutation.end())))

@@ -1,6 +1,8 @@
 #include "problemes.h"
 #include "mpz_nombre.h"
 
+#include <iostream>
+
 ENREGISTRER_PROBLEME(692, "Siegbert and Jo") {
     // Siegbert and Jo take turns playing a game with a heap of N pebbles:
     //

@@ -1,6 +1,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "fibonacci.h"
+#include "format/vector.h"
 #include "utilitaires.h"
 
 #pragma clang diagnostic push

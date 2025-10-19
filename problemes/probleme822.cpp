@@ -1,5 +1,6 @@
 #include "problemes.h"
 #include "arithmetique.h"
+#include "format/deque.h"
 #include "mpz_nombre.h"
 #include "timer.h"
 #include "premiers.h"

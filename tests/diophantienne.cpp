@@ -1,7 +1,8 @@
 #include <boost/test/unit_test.hpp>
 
-#include "utilitaires.h"
 #include "diophantienne.h"
+#include "format/tuple.h"
+#include "utilitaires.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"

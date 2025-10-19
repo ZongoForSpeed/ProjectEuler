@@ -19,56 +19,54 @@ void mpf_nombre::setRounding(mpfr_rnd_t rounding) {
 }
 
 mpf_nombre::mpf_nombre() {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init2(_data, DEFAULT_PRECISION);
     mpfr_set_zero(_data, +1);
 }
 
 mpf_nombre::mpf_nombre(const mpf_nombre &op) {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init_set(_data, op._data, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(unsigned long op) {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init_set_ui(_data, op, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(long op) {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init_set_si(_data, op, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(double op) {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init_set_d(_data, op, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(long double op) {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init_set_ld(_data, op, DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(const mpz_nombre &op) {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init_set_z(_data, op.get_data(), DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(const mpq_fraction &op) {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init_set_q(_data, op.get_data(), DEFAULT_ROUNDING);
 }
 
 mpf_nombre::mpf_nombre(const std::string &op, int base) {
-    init();
+    _data = new __mpfr_struct();
     mpfr_init_set_str(_data, op.c_str(), base, DEFAULT_ROUNDING);
 }
 
-mpf_nombre::mpf_nombre(mpf_nombre &&op) : _data(std::exchange(op._data, nullptr)) {
+mpf_nombre::mpf_nombre(mpf_nombre &&op)  noexcept : _data(std::exchange(op._data, nullptr)) {
 
 }
-
-void mpf_nombre::init() { _data = new __mpfr_struct(); }
 
 void mpf_nombre::clear() {
     if (_data != nullptr) {
