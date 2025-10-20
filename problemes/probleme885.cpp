@@ -76,7 +76,7 @@ namespace {
     }
 }
 
-ENREGISTRER_PROBLEME(885, "A Bold Proposition") {
+ENREGISTRER_PROBLEME(885, "Sorted Digits") {
     // For a positive integer $d$, let $f(d)$ be the number created by sorting the digits of $d$ in ascending order,
     // removing any zeros. For example, $f(3403) = 334$.
     //
