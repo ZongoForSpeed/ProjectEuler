@@ -16,9 +16,9 @@ ENREGISTRER_PROBLEME(335, "Gathering the beans") {
     // M(5) = 15. It can also be verified that M(100) = 10920.
     //
     //Find p335_sum.gifM(2k+1). Give your answer modulo 79.
-    const auto modulo = puissance::puissance<nombre>(7, 9);
-    const nombre phi = 6 * puissance::puissance<nombre>(7, 8);
-    const auto limite = puissance::puissance<nombre>(10, 18);
+    constexpr auto modulo = puissance::puissance<nombre>(7, 9);
+    constexpr nombre phi = 6 * puissance::puissance<nombre>(7, 8);
+    constexpr auto limite = puissance::puissance<nombre>(10, 18);
 
     nombre puissance2 = 2;
     nombre puissance3 = 1;

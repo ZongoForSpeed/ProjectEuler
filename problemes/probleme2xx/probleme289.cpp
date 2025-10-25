@@ -21,8 +21,8 @@ namespace {
                 : nbColonnes(_nbColonnes), nbLignes(_nbLignes), nbLignesRemplies(0), positionLigne(0),
                   connectedID(nbColonnes + 1, 0), merged(nbColonnes, false) {}
 
-        size_t maximum() const {
-            return *std::max_element(connectedID.begin(), connectedID.end());
+        [[nodiscard]] size_t maximum() const {
+            return *std::ranges::max_element(connectedID);
         }
 
         bool operator<(const Position &p) const {
@@ -166,11 +166,11 @@ namespace {
         }
 
         void merge(size_t nouveau, size_t ancien) {
-            std::replace(connectedID.begin(), connectedID.end(), ancien, nouveau);
+            std::ranges::replace(connectedID, ancien, nouveau);
         }
 
-        size_t count(size_t id) const {
-            return static_cast<size_t>(std::count(connectedID.begin(), connectedID.end(), id));
+        [[nodiscard]] size_t count(size_t id) const {
+            return static_cast<size_t>(std::ranges::count(connectedID, id));
         }
 
         void swap(size_t id1, size_t id2) {
@@ -238,7 +238,7 @@ ENREGISTRER_PROBLEME(289, "Eulerian Cycles") {
     }
 
     nombre resultat = 0;
-    for (auto [p, n]: cache) {
+    for (const auto& [p, n]: cache) {
         if (p.maximum() == 1) {
             resultat += n;
             resultat %= modulo;

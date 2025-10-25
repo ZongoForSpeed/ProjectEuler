@@ -23,14 +23,14 @@ namespace {
 
         paire centre;
 
-        bool ellipse(nombre x, nombre y) {
+        [[nodiscard]] bool ellipse(nombre x, nombre y) const {
             // x^2/a^2 + y^2/b^2 - 1 <= 0
             // x^2*b^2 + y^2*a^2 - a^2*b^2 <= 0
             return (x - centre.first) * (x - centre.first) * b2
                    + (y - centre.second) * (y - centre.second) * a2 - a2 * b2 <= 0;
         }
 
-        bool keep(nombre ox, nombre oy) {
+        [[nodiscard]] bool keep(nombre ox, nombre oy) const {
             // change coordinates
             ox -= centre.first;
             oy -= centre.second;
@@ -86,7 +86,7 @@ namespace {
             return prod < std::sqrt(1.0L / 2.0L);
         }
 
-        nombre algorithme() {
+        [[nodiscard]] nombre algorithme() const {
             nombre y = centre.second;
             nombre xmin = centre.first;
             while (ellipse(xmin, y))

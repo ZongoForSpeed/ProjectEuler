@@ -51,7 +51,7 @@ ENREGISTRER_PROBLEME(334, "Spilling the beans") {
         if (bi < 2) break;
         
         courant = 0;
-        std::for_each(holes.begin(), holes.end(), [](nombre &n){ n++; });
+        std::ranges::for_each(holes, [](nombre &n){ n++; });
         while (bi > 1) {
             if (holes.size() == 1)
                 holes.push_back(holes.front() + 1);

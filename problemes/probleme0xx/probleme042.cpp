@@ -38,9 +38,9 @@ ENREGISTRER_PROBLEME(42, "Coded triangle numbers") {
 
     nombre resultat = 0;
     for (const auto &name: names) {
-        nombre score = std::transform_reduce(std::execution::par, name.begin(), name.end(),
+        nombre score = std::transform_reduce(name.begin(), name.end(),
                                              0ULL,std::plus<nombre>{},conversion);
-        if (triangle.find(score) != triangle.end())
+        if (triangle.contains(score))
             ++resultat;
     }
     return std::to_string(resultat);

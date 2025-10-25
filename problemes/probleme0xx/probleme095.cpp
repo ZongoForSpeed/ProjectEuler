@@ -40,7 +40,7 @@ ENREGISTRER_PROBLEME(95, "Amicable chains") {
         do {
             chaine.insert(s);
             s = somme_diviseurs[s];
-        } while (chaine.find(s) == chaine.end() && s < limite);
+        } while (!chaine.contains(s) && s < limite);
 
         if (s == n && chaine.size() > maximum) {
             maximum = chaine.size();

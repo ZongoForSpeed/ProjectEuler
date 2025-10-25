@@ -69,7 +69,7 @@ namespace {
             return puissance::puissance_modulaire(e, exposant, modulo);
         };
 
-        nombre result = std::transform_reduce(std::execution::par, list.begin(), list.end(), 0ULL,
+        nombre result = std::transform_reduce(list.begin(), list.end(), 0ULL,
                                               plus_mod,
                                               puissance_mod);
 

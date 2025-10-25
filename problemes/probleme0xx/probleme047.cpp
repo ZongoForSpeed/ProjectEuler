@@ -33,8 +33,8 @@ ENREGISTRER_PROBLEME(47, "Distinct primes factors") {
             std::map<nombre, nombre> d;
             arithmetique::decomposition(n, premiers, d);
             std::vector<nombre> f;
-            for (const auto &i: d)
-                f.push_back(puissance::puissance(i.first, i.second));
+            for (const auto &[p, e]: d)
+                f.push_back(puissance::puissance(p, e));
             decomposition.push_back(f);
         }
         if (decomposition.size() > 4)

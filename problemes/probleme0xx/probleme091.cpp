@@ -20,9 +20,9 @@ ENREGISTRER_PROBLEME(91, "Right triangles with integer coordinates") {
             if (i != 0 || j != 0) points.emplace_back(i, j);
 
     auto triangle_rectangle = [](const paire &p1, const paire &p2) -> bool {
-        paire p12 = std::make_pair(p1.first - p2.first, p1.second - p2.second);
-        return ((p12.first * p1.first + p12.second * p1.second == 0)
-                || (p12.first * p2.first + p12.second * p2.second == 0)
+        auto [first, second] = std::make_pair(p1.first - p2.first, p1.second - p2.second);
+        return ((first * p1.first + second * p1.second == 0)
+                || (first * p2.first + second * p2.second == 0)
                 || (p1.first * p2.first + p1.second * p2.second == 0));
     };
 

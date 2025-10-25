@@ -20,14 +20,14 @@ namespace {
     long double iteration(std::map<triplet, nombre> &apollonios) {
         long double A = 0.0L;
         std::map<triplet, nombre> resultat;
-        for (auto p: apollonios) {
+        for (auto [first, second]: apollonios) {
             // k4 = k1 + k2 + k3 +/- 2*sqrt(k1.k2 + k2.k3 + k3.k1)
-            auto[k1, k2, k3] = p.first;
+            auto[k1, k2, k3] = first;
             long double k4 = k1 + k2 + k3 + 2.0L * std::sqrt(k1 * k2 + k2 * k3 + k1 * k3);
-            A += p.second * aire(k4);
-            resultat[std::make_tuple(k4, k1, k2)] += p.second;
-            resultat[std::make_tuple(k4, k1, k3)] += p.second;
-            resultat[std::make_tuple(k4, k2, k3)] += p.second;
+            A += second * aire(k4);
+            resultat[std::make_tuple(k4, k1, k2)] += second;
+            resultat[std::make_tuple(k4, k1, k3)] += second;
+            resultat[std::make_tuple(k4, k2, k3)] += second;
         }
 
         std::swap(apollonios, resultat);

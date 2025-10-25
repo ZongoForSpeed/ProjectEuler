@@ -3,6 +3,7 @@
 #include "premiers.h"
 
 #include <fstream>
+#include <ranges>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -33,8 +34,8 @@ ENREGISTRER_PROBLEME(110, "Diophantine reciprocals II") {
         arithmetique::decomposition(resultat, premiers, decomposition);
 
         solutions = 1;
-        for (auto d: decomposition)
-            solutions *= (2 * d.second + 1);
+        for (const auto e: decomposition | std::views::values)
+            solutions *= (2 * e + 1);
 
         solutions /= 2;
     }

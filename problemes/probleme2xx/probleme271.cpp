@@ -7,8 +7,7 @@ namespace {
         size_t increment = 2 * 3 * 5 * 11 * 17 * 23 * 29 * 41;
 
         for (mpz_nombre x = increment + 1; x < n; x += increment) {
-            mpz_nombre x3 = x * x * x;
-            if (x3 % n == 1)
+            if (mpz_nombre x3 = x * x * x; x3 % n == 1)
                 somme += x;
         }
 

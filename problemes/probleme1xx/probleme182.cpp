@@ -3,6 +3,7 @@
 #include "premiers.h"
 
 #include <fstream>
+#include <ranges>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -50,8 +51,8 @@ ENREGISTRER_PROBLEME(182, "RSA encryption") {
     std::vector<bool> crible(phi_n, true);
     crible[0] = false;
     crible[1] = false;
-    for (auto d: decomposition) {
-        for (nombre m = d.first; m < phi_n; m += d.first)
+    for (const auto prime: decomposition | std::views::keys) {
+        for (nombre m = prime; m < phi_n; m += prime)
             crible[m] = false;
     }
 

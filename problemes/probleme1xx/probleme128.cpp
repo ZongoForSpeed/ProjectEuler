@@ -40,9 +40,9 @@ ENREGISTRER_PROBLEME(128, "Hexagonal tile differences") {
     nombre resultat = 0;
     for (nombre n = 1;; ++n) {
         nombre taille = 6 * n;
-        if (premiers.find(taille + 1) != premiers.end()
-            && premiers.find(taille - 1) != premiers.end()
-            && premiers.find(2 * taille + 5) != premiers.end()) {
+        if (premiers.contains(taille + 1)
+            && premiers.contains(taille - 1)
+            && premiers.contains(2 * taille + 5)) {
             ++compteur;
             if (compteur == objectif) {
                 resultat = 2 + 6 * polygonal::triangulaire(n - 1);
@@ -51,9 +51,9 @@ ENREGISTRER_PROBLEME(128, "Hexagonal tile differences") {
             }
         }
 
-        if (premiers.find(taille - 1) != premiers.end()
-            && premiers.find(taille + 5) != premiers.end()
-            && premiers.find(2 * taille - 7) != premiers.end()) {
+        if (premiers.contains(taille - 1)
+            && premiers.contains(taille + 5)
+            && premiers.contains(2 * taille - 7)) {
             ++compteur;
             if (compteur == objectif) {
                 resultat = 1 + 6 * polygonal::triangulaire(n);

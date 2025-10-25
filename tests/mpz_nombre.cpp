@@ -67,9 +67,9 @@ BOOST_AUTO_TEST_SUITE(test_mpz_nombre)
         std::random_device rd;
         std::mt19937 g(rd());
 
-        std::shuffle(v.begin(), v.end(), g);
+        std::ranges::shuffle(v, g);
 
-        std::sort(v.begin(), v.end());
+        std::ranges::sort(v);
 
         std::cout << v << std::endl;
     }

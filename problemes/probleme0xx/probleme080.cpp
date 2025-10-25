@@ -28,7 +28,7 @@ ENREGISTRER_PROBLEME(80, "Square root digital expansion") {
     }
 
     long resultat = 0;
-    for (auto c: oss.str()) {
+    for (const auto c: oss.str()) {
         resultat += (c - '0');
     }
     return std::to_string(resultat);

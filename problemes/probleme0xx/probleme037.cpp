@@ -19,16 +19,16 @@ ENREGISTRER_PROBLEME(37, "Truncatable primes") {
     std::set<nombre> premiers;
     premiers::crible2<nombre>(1000000, std::inserter(premiers, premiers.begin()));
     nombre resultat = 0;
-    for (nombre p: premiers) {
+    for (const nombre p: premiers) {
         nombre q = p;
         bool test = true;
         while (q != 0 && test) {
-            test = premiers.find(q) != premiers.end();
+            test = premiers.contains(q);
             q /= 10;
         }
         q = 10;
         while (q < p && test) {
-            test = premiers.find(p % q) != premiers.end();
+            test = premiers.contains(p % q);
             q *= 10;
         }
         if (test && p > 10)

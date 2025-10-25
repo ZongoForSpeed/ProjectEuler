@@ -34,7 +34,7 @@ ENREGISTRER_PROBLEME(112, "Bouncy numbers") {
     for (nombre n = 1;; ++n) {
         const auto chiffres = chiffres::extraire_chiffres(n);
         ++ratio_denominateur;
-        if (!std::is_sorted(chiffres.begin(), chiffres.end())
+        if (!std::ranges::is_sorted(chiffres)
             && !std::is_sorted(chiffres.rbegin(), chiffres.rend()))
             ++ratio_numerateur;
         if (ratio_numerateur >= limite * ratio_denominateur) {

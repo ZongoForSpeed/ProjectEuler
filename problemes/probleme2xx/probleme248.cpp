@@ -12,7 +12,7 @@ typedef std::vector<nombre> vecteur;
 
 namespace {
     bool est_premier(nombre n, const std::set<nombre> &premiers) {
-        if (premiers.find(n) != premiers.end())
+        if (premiers.contains(n))
             return true;
         if (n < *premiers.rbegin())
             return false;
@@ -69,7 +69,7 @@ ENREGISTRER_PROBLEME(248, "Numbers for which Euler’s totient function equals 1
 
     vecteur resultat;
     enumerate(1, phi, facteurs.begin(), facteurs.end(), resultat);
-    std::sort(std::execution::par, resultat.begin(), resultat.end());
+    std::ranges::sort(resultat);
 
     return std::to_string(resultat[150000 - 1]);
 }

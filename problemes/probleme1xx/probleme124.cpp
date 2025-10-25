@@ -40,7 +40,7 @@ ENREGISTRER_PROBLEME(124, "Ordered radicals") {
         rad.emplace_back(arithmetique::radical(n, premiers), n);
     }
 
-    std::sort(rad.begin(), rad.end());
+    std::ranges::sort(rad);
 
     nombre resultat = rad.at(10000).second;
     return std::to_string(resultat);

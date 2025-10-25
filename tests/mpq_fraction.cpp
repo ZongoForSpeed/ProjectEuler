@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_SUITE(test_mpq_nombre)
         BOOST_CHECK_EQUAL(m.get_double(), 22632576532575);
 
         n = mpq_fraction::abs(n);
-        BOOST_CHECK_EQUAL(m.get_double(), 22632576532575);
+        BOOST_CHECK_EQUAL(n.get_double(), 22632576532575);
     }
 
     BOOST_AUTO_TEST_CASE(test_soustraction)

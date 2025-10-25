@@ -14,7 +14,6 @@
 typedef std::vector<mpz_nombre> vecteur;
 
 namespace {
-
     void solution(const std::vector<unsigned long long> &premiers,
                   const mpz_nombre &limite,
                   const mpz_nombre &n,
@@ -63,9 +62,9 @@ ENREGISTRER_PROBLEME(241, "Perfection Quotients") {
     for (size_t k = 1; k < 6; ++k)
         solution(premiers, limite, 1, mpq_fraction(2ul, 2u * k + 1u), resultats);
 
-    std::sort(resultats.begin(), resultats.end());
+    std::ranges::sort(resultats);
     std::cout << resultats << std::endl;
 
-    mpz_nombre resultat = std::reduce(std::execution::par, resultats.begin(), resultats.end());
+    mpz_nombre resultat = std::reduce(resultats.begin(), resultats.end());
     return resultat.to_string();
 }

@@ -33,7 +33,7 @@ ENREGISTRER_PROBLEME(274, "Divisibility Multipliers") {
 
     nombre resultat = 0;
     for (nombre i = 2; i < n; ++i) {
-        if (premiers.find(i) == premiers.end())
+        if (!premiers.contains(i))
             continue;
         for (nombre k = 0; k < 10; ++k) {
             if (i * k % 10 == 9) {

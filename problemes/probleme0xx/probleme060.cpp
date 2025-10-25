@@ -29,8 +29,8 @@ ENREGISTRER_PROBLEME(60, "Prime pair sets") {
             if (q >= p)
                 break;
 
-            if (premiers.find(chiffres::concatener(p, q)) != premiers.end()
-                && premiers.find(chiffres::concatener(q, p)) != premiers.end()) {
+            if (premiers.contains(chiffres::concatener(p, q))
+                && premiers.contains(chiffres::concatener(q, p))) {
                 vecteur v = {q};
                 groupe[v].push_back(p);
             }
@@ -39,16 +39,14 @@ ENREGISTRER_PROBLEME(60, "Prime pair sets") {
 
     auto groupe_suivant = [&groupe](const graphe &g) -> graphe {
         graphe suivant;
-        for (auto &arete: g) {
-            auto p = arete.first;
-            for (auto &q: arete.second) {
+        for (auto &[p, arete]: g) {
+            for (auto &q: arete) {
                 vecteur v = {q};
                 auto &arete_q = groupe[v];
 
                 vecteur v_intersection;
-                std::set_intersection(arete.second.begin(), arete.second.end(),
-                                      arete_q.begin(), arete_q.end(),
-                                      std::back_inserter(v_intersection));
+                std::ranges::set_intersection(arete, arete_q,
+                                              std::back_inserter(v_intersection));
 
                 if (!v_intersection.empty()) {
                     v.insert(v.begin(), p.begin(), p.end());
@@ -69,6 +67,6 @@ ENREGISTRER_PROBLEME(60, "Prime pair sets") {
         solution.insert(solution.end(), suivant.begin()->second.begin(), suivant.begin()->second.end());
     }
 
-    nombre resultat = std::reduce(std::execution::par,solution.begin(), solution.end());
+    nombre resultat = std::reduce(solution.begin(), solution.end());
     return std::to_string(resultat);
 }

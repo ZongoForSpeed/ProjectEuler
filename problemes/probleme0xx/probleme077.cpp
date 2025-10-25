@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(77, "Prime summations") {
             if (p >= n)
                 break;
 
-            if (premiers.find(n - p) != premiers.end()) {
+            if (premiers.contains(n - p)) {
                 vecteur s = {n - p, p};
                 std::ranges::sort(s);
                 solutions_n.insert(std::move(s));

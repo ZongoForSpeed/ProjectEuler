@@ -33,7 +33,7 @@ ENREGISTRER_PROBLEME(27, "Quadratic primes") {
         nombre compteur = 0;
         nombre n = b;
 
-        while (premiers.find(n) != premiers.end()) {
+        while (premiers.contains(n)) {
             ++compteur;
             n = compteur * compteur + a * compteur + b;
         }
@@ -45,7 +45,7 @@ ENREGISTRER_PROBLEME(27, "Quadratic primes") {
     nombre b_max = 0;
     nombre c_max = 0;
     for (nombre b = 2; b < 1000; ++b) {
-        if (premiers.find(b) != premiers.end()) {
+        if (premiers.contains(b)) {
             for (nombre a = -999; a < 1000; ++a) {
                 if (std::llabs(a) > 1) {
                     if (nombre compteur = suite_premier(a, b);compteur > c_max) {

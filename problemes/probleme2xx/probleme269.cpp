@@ -8,12 +8,12 @@ namespace {
     nombre algorithme(std::map<std::pair<vecteur, nombre>, nombre> &cache, const vecteur &residue, nombre nbChiffres) {
         auto key = std::make_pair(residue, nbChiffres);
 
-        if (auto it = cache.find(key);it != cache.end())
+        if (auto it = cache.find(key); it != cache.end())
             return it->second;
 
         nombre resultat = 0;
         if (nbChiffres == 0) {
-            if (std::find(residue.begin(), residue.end(), 0) != residue.end())
+            if (std::ranges::find(residue, 0) != residue.end())
                 resultat = 1;
         } else
             for (nombre chiffre = 0; chiffre < 10; ++chiffre) {

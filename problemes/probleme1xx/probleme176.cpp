@@ -3,6 +3,7 @@
 #include "premiers.h"
 
 #include <fstream>
+#include <ranges>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -25,8 +26,8 @@ ENREGISTRER_PROBLEME(176, "Right-angled triangles that share a cathetus") {
     std::map<nombre, nombre> decomposition;
     arithmetique::decomposition(objectif * 2 + 1, premiers, decomposition);
     vecteur facteurs;
-    for (auto p: decomposition)
-        facteurs.push_back(p.first / 2);
+    for (const auto p: decomposition | std::views::keys)
+        facteurs.push_back(p / 2);
 
     std::sort(facteurs.rbegin(), facteurs.rend());
     facteurs.front() += 1;

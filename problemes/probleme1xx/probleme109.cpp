@@ -18,12 +18,11 @@ namespace {
     C construire(const S &score, const C &combinaisons) {
         auto suivant = combinaisons;
         for (const auto &s: score) {
-            for (const auto &r: combinaisons) {
-                auto c = r.second;
-                for (auto f: c) {
+            for (const auto &[first, second]: combinaisons) {
+                for (auto f: second) {
                     f.push_back(s);
-                    std::sort(std::execution::par, f.begin(), f.end());
-                    suivant[s.second + r.first].insert(f);
+                    std::ranges::sort(f);
+                    suivant[s.second + first].insert(f);
                 }
             }
         }
@@ -99,19 +98,18 @@ ENREGISTRER_PROBLEME(109, "Darts") {
 
     C solution;
     for (const auto &s: score_double) {
-        for (const auto &r: combinaisons) {
-            auto c = r.second;
-            for (auto f: c) {
+        for (const auto &[first, second]: combinaisons) {
+            for (auto f: second) {
                 f.push_back(s);
-                solution[s.second + r.first].insert(f);
+                solution[s.second + first].insert(f);
             }
         }
     }
 
     nombre resultat = 0;
-    for (const auto &r: solution) {
-        if (r.first < 100)
-            resultat += r.second.size();
+    for (const auto &[first, second]: solution) {
+        if (first < 100)
+            resultat += second.size();
     }
 
     return std::to_string(resultat);

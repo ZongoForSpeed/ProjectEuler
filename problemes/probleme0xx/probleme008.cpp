@@ -39,8 +39,7 @@ ENREGISTRER_PROBLEME(8, "Largest product in a series") {
                                          std::multiplies<mpz_nombre>{},
                                          [](char c) -> mpz_nombre { return c - '0'; }
             );
-        else
-            return 0;
+        return 0;
     };
     mpz_nombre solution = 0;
     for (size_t n = 13; n < big_number.size(); ++n)

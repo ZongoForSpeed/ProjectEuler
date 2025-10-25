@@ -81,9 +81,8 @@ ENREGISTRER_PROBLEME(156, "Counting Digits") {
                 nombre x = compte(a, d);
                 nombre g = m * a - m * fa - a * f;
                 fa += x;
-                auto find = gn.find(std::make_pair(g, x));
-                if (find != gn.end()) {
-                    for (const auto &b : find->second) {
+                if (auto find = gn.find(std::make_pair(g, x)); find != gn.end()) {
+                    for (const auto &b: find->second) {
                         s += m * a + b;
                     }
                 }

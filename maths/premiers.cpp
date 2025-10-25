@@ -60,8 +60,8 @@ namespace {
             // Cas p = 6*k + 1
             if (test1.at(k)) {
                 const std::size_t p = 6 * k + 1;
-                auto future1 = threadPool.queueJob(std::bind(set_test, std::ref(test1), 6 * k * k + 2 * k, taille, p));
-                auto future2 = threadPool.queueJob(std::bind(set_test, std::ref(test5), 6 * k * k + 6 * k, taille, p));
+                auto future1 = threadPool.queueJob([&test1, capture0 = 6 * k * k + 2 * k, taille, p] { set_test(test1, capture0, taille, p); });
+                auto future2 = threadPool.queueJob([&test5, capture0 = 6 * k * k + 6 * k, taille, p] { set_test(test5, capture0, taille, p); });
                 future1.wait();
                 future2.wait();
             }
@@ -69,9 +69,9 @@ namespace {
             if (test5.at(k)) {
                 const std::size_t p = 6 * k + 5;
                 auto future1 = threadPool.queueJob(
-                        std::bind(set_test, std::ref(test1), 6 * k * k + 10 * k + 4, taille, p));
+                    [&test1, capture0 = 6 * k * k + 10 * k + 4, taille, p] { set_test(test1, capture0, taille, p); });
                 auto future2 = threadPool.queueJob(
-                        std::bind(set_test, std::ref(test5), 6 * k * k + 12 * k + 5, taille, p));
+                    [&test5, capture0 = 6 * k * k + 12 * k + 5, taille, p] { set_test(test5, capture0, taille, p); });
                 future1.wait();
                 future2.wait();
             }
@@ -95,108 +95,108 @@ namespace {
             if (test1.at(k)) {
                 const std::size_t p = 30 * k + 1;
                 threadPool.invoke({
-                                          [&]() { set_test(test1, 30 * k * k + 2 * k + 0, taille, p); },
-                                          [&]() { set_test(test7, 30 * k * k + 8 * k + 0, taille, p); },
-                                          [&]() { set_test(test11, 30 * k * k + 12 * k + 0, taille, p); },
-                                          [&]() { set_test(test13, 30 * k * k + 14 * k + 0, taille, p); },
-                                          [&]() { set_test(test17, 30 * k * k + 18 * k + 0, taille, p); },
-                                          [&]() { set_test(test19, 30 * k * k + 20 * k + 0, taille, p); },
-                                          [&]() { set_test(test23, 30 * k * k + 24 * k + 0, taille, p); },
-                                          [&]() { set_test(test29, 30 * k * k + 30 * k + 0, taille, p); }
-                                  });
+                    [&]() { set_test(test1, 30 * k * k + 2 * k + 0, taille, p); },
+                    [&]() { set_test(test7, 30 * k * k + 8 * k + 0, taille, p); },
+                    [&]() { set_test(test11, 30 * k * k + 12 * k + 0, taille, p); },
+                    [&]() { set_test(test13, 30 * k * k + 14 * k + 0, taille, p); },
+                    [&]() { set_test(test17, 30 * k * k + 18 * k + 0, taille, p); },
+                    [&]() { set_test(test19, 30 * k * k + 20 * k + 0, taille, p); },
+                    [&]() { set_test(test23, 30 * k * k + 24 * k + 0, taille, p); },
+                    [&]() { set_test(test29, 30 * k * k + 30 * k + 0, taille, p); }
+                });
             }
             if (test7.at(k)) {
                 const std::size_t p = 30 * k + 7;
                 threadPool.invoke({
-                                          [&]() { set_test(test19, 30 * k * k + 14 * k + 1, taille, p); },
-                                          [&]() { set_test(test17, 30 * k * k + 18 * k + 2, taille, p); },
-                                          [&]() { set_test(test1, 30 * k * k + 20 * k + 3, taille, p); },
-                                          [&]() { set_test(test29, 30 * k * k + 24 * k + 3, taille, p); },
-                                          [&]() { set_test(test13, 30 * k * k + 26 * k + 4, taille, p); },
-                                          [&]() { set_test(test11, 30 * k * k + 30 * k + 5, taille, p); },
-                                          [&]() { set_test(test23, 30 * k * k + 36 * k + 6, taille, p); },
-                                          [&]() { set_test(test7, 30 * k * k + 38 * k + 7, taille, p); },
-                                  });
+                    [&]() { set_test(test19, 30 * k * k + 14 * k + 1, taille, p); },
+                    [&]() { set_test(test17, 30 * k * k + 18 * k + 2, taille, p); },
+                    [&]() { set_test(test1, 30 * k * k + 20 * k + 3, taille, p); },
+                    [&]() { set_test(test29, 30 * k * k + 24 * k + 3, taille, p); },
+                    [&]() { set_test(test13, 30 * k * k + 26 * k + 4, taille, p); },
+                    [&]() { set_test(test11, 30 * k * k + 30 * k + 5, taille, p); },
+                    [&]() { set_test(test23, 30 * k * k + 36 * k + 6, taille, p); },
+                    [&]() { set_test(test7, 30 * k * k + 38 * k + 7, taille, p); },
+                });
             }
             if (test11.at(k)) {
                 const std::size_t p = 30 * k + 11;
                 threadPool.invoke({
-                                          [&]() { set_test(test1, 30 * k * k + 22 * k + 4, taille, p); },
-                                          [&]() { set_test(test23, 30 * k * k + 24 * k + 4, taille, p); },
-                                          [&]() { set_test(test7, 30 * k * k + 28 * k + 6, taille, p); },
-                                          [&]() { set_test(test29, 30 * k * k + 30 * k + 6, taille, p); },
-                                          [&]() { set_test(test13, 30 * k * k + 34 * k + 8, taille, p); },
-                                          [&]() { set_test(test19, 30 * k * k + 40 * k + 10, taille, p); },
-                                          [&]() { set_test(test11, 30 * k * k + 42 * k + 11, taille, p); },
-                                          [&]() { set_test(test17, 30 * k * k + 48 * k + 13, taille, p); },
-                                  });
+                    [&]() { set_test(test1, 30 * k * k + 22 * k + 4, taille, p); },
+                    [&]() { set_test(test23, 30 * k * k + 24 * k + 4, taille, p); },
+                    [&]() { set_test(test7, 30 * k * k + 28 * k + 6, taille, p); },
+                    [&]() { set_test(test29, 30 * k * k + 30 * k + 6, taille, p); },
+                    [&]() { set_test(test13, 30 * k * k + 34 * k + 8, taille, p); },
+                    [&]() { set_test(test19, 30 * k * k + 40 * k + 10, taille, p); },
+                    [&]() { set_test(test11, 30 * k * k + 42 * k + 11, taille, p); },
+                    [&]() { set_test(test17, 30 * k * k + 48 * k + 13, taille, p); },
+                });
             }
             if (test13.at(k)) {
                 const std::size_t p = 30 * k + 13;
                 threadPool.invoke({
-                                          [&]() { set_test(test19, 30 * k * k + 26 * k + 5, taille, p); },
-                                          [&]() { set_test(test11, 30 * k * k + 30 * k + 7, taille, p); },
-                                          [&]() { set_test(test7, 30 * k * k + 32 * k + 8, taille, p); },
-                                          [&]() { set_test(test29, 30 * k * k + 36 * k + 9, taille, p); },
-                                          [&]() { set_test(test17, 30 * k * k + 42 * k + 12, taille, p); },
-                                          [&]() { set_test(test13, 30 * k * k + 44 * k + 13, taille, p); },
-                                          [&]() { set_test(test1, 30 * k * k + 50 * k + 16, taille, p); },
-                                          [&]() { set_test(test23, 30 * k * k + 54 * k + 17, taille, p); },
-                                  });
+                    [&]() { set_test(test19, 30 * k * k + 26 * k + 5, taille, p); },
+                    [&]() { set_test(test11, 30 * k * k + 30 * k + 7, taille, p); },
+                    [&]() { set_test(test7, 30 * k * k + 32 * k + 8, taille, p); },
+                    [&]() { set_test(test29, 30 * k * k + 36 * k + 9, taille, p); },
+                    [&]() { set_test(test17, 30 * k * k + 42 * k + 12, taille, p); },
+                    [&]() { set_test(test13, 30 * k * k + 44 * k + 13, taille, p); },
+                    [&]() { set_test(test1, 30 * k * k + 50 * k + 16, taille, p); },
+                    [&]() { set_test(test23, 30 * k * k + 54 * k + 17, taille, p); },
+                });
             }
             if (test17.at(k)) {
                 const std::size_t p = 30 * k + 17;
 
 
                 threadPool.invoke({
-                                          [&]() { set_test(test19, 30 * k * k + 34 * k + 9, taille, p); },
-                                          [&]() { set_test(test23, 30 * k * k + 36 * k + 10, taille, p); },
-                                          [&]() { set_test(test1, 30 * k * k + 40 * k + 13, taille, p); },
-                                          [&]() { set_test(test13, 30 * k * k + 46 * k + 16, taille, p); },
-                                          [&]() { set_test(test17, 30 * k * k + 48 * k + 17, taille, p); },
-                                          [&]() { set_test(test29, 30 * k * k + 54 * k + 20, taille, p); },
-                                          [&]() { set_test(test7, 30 * k * k + 58 * k + 23, taille, p); },
-                                          [&]() { set_test(test11, 30 * k * k + 60 * k + 24, taille, p); },
-                                  });
+                    [&]() { set_test(test19, 30 * k * k + 34 * k + 9, taille, p); },
+                    [&]() { set_test(test23, 30 * k * k + 36 * k + 10, taille, p); },
+                    [&]() { set_test(test1, 30 * k * k + 40 * k + 13, taille, p); },
+                    [&]() { set_test(test13, 30 * k * k + 46 * k + 16, taille, p); },
+                    [&]() { set_test(test17, 30 * k * k + 48 * k + 17, taille, p); },
+                    [&]() { set_test(test29, 30 * k * k + 54 * k + 20, taille, p); },
+                    [&]() { set_test(test7, 30 * k * k + 58 * k + 23, taille, p); },
+                    [&]() { set_test(test11, 30 * k * k + 60 * k + 24, taille, p); },
+                });
             }
             if (test19.at(k)) {
                 const std::size_t p = 30 * k + 19;
                 threadPool.invoke({
-                                          [&]() { set_test(test1, 30 * k * k + 38 * k + 12, taille, p); },
-                                          [&]() { set_test(test17, 30 * k * k + 42 * k + 14, taille, p); },
-                                          [&]() { set_test(test11, 30 * k * k + 48 * k + 18, taille, p); },
-                                          [&]() { set_test(test19, 30 * k * k + 50 * k + 19, taille, p); },
-                                          [&]() { set_test(test13, 30 * k * k + 56 * k + 23, taille, p); },
-                                          [&]() { set_test(test29, 30 * k * k + 60 * k + 25, taille, p); },
-                                          [&]() { set_test(test7, 30 * k * k + 62 * k + 27, taille, p); },
-                                          [&]() { set_test(test23, 30 * k * k + 66 * k + 29, taille, p); },
-                                  });
+                    [&]() { set_test(test1, 30 * k * k + 38 * k + 12, taille, p); },
+                    [&]() { set_test(test17, 30 * k * k + 42 * k + 14, taille, p); },
+                    [&]() { set_test(test11, 30 * k * k + 48 * k + 18, taille, p); },
+                    [&]() { set_test(test19, 30 * k * k + 50 * k + 19, taille, p); },
+                    [&]() { set_test(test13, 30 * k * k + 56 * k + 23, taille, p); },
+                    [&]() { set_test(test29, 30 * k * k + 60 * k + 25, taille, p); },
+                    [&]() { set_test(test7, 30 * k * k + 62 * k + 27, taille, p); },
+                    [&]() { set_test(test23, 30 * k * k + 66 * k + 29, taille, p); },
+                });
             }
             if (test23.at(k)) {
                 const std::size_t p = 30 * k + 23;
                 threadPool.invoke({
-                                          [&]() { set_test(test19, 30 * k * k + 46 * k + 17, taille, p); },
-                                          [&]() { set_test(test7, 30 * k * k + 52 * k + 22, taille, p); },
-                                          [&]() { set_test(test23, 30 * k * k + 54 * k + 23, taille, p); },
-                                          [&]() { set_test(test11, 30 * k * k + 60 * k + 28, taille, p); },
-                                          [&]() { set_test(test13, 30 * k * k + 64 * k + 31, taille, p); },
-                                          [&]() { set_test(test29, 30 * k * k + 66 * k + 32, taille, p); },
-                                          [&]() { set_test(test1, 30 * k * k + 70 * k + 36, taille, p); },
-                                          [&]() { set_test(test17, 30 * k * k + 72 * k + 37, taille, p); },
-                                  });
+                    [&]() { set_test(test19, 30 * k * k + 46 * k + 17, taille, p); },
+                    [&]() { set_test(test7, 30 * k * k + 52 * k + 22, taille, p); },
+                    [&]() { set_test(test23, 30 * k * k + 54 * k + 23, taille, p); },
+                    [&]() { set_test(test11, 30 * k * k + 60 * k + 28, taille, p); },
+                    [&]() { set_test(test13, 30 * k * k + 64 * k + 31, taille, p); },
+                    [&]() { set_test(test29, 30 * k * k + 66 * k + 32, taille, p); },
+                    [&]() { set_test(test1, 30 * k * k + 70 * k + 36, taille, p); },
+                    [&]() { set_test(test17, 30 * k * k + 72 * k + 37, taille, p); },
+                });
             }
             if (test29.at(k)) {
                 const std::size_t p = 30 * k + 29;
                 threadPool.invoke({
-                                          [&]() { set_test(test1, 30 * k * k + 58 * k + 28, taille, p); },
-                                          [&]() { set_test(test29, 30 * k * k + 60 * k + 29, taille, p); },
-                                          [&]() { set_test(test23, 30 * k * k + 66 * k + 35, taille, p); },
-                                          [&]() { set_test(test19, 30 * k * k + 70 * k + 39, taille, p); },
-                                          [&]() { set_test(test17, 30 * k * k + 72 * k + 41, taille, p); },
-                                          [&]() { set_test(test13, 30 * k * k + 76 * k + 45, taille, p); },
-                                          [&]() { set_test(test11, 30 * k * k + 78 * k + 47, taille, p); },
-                                          [&]() { set_test(test7, 30 * k * k + 82 * k + 51, taille, p); },
-                                  });
+                    [&]() { set_test(test1, 30 * k * k + 58 * k + 28, taille, p); },
+                    [&]() { set_test(test29, 30 * k * k + 60 * k + 29, taille, p); },
+                    [&]() { set_test(test23, 30 * k * k + 66 * k + 35, taille, p); },
+                    [&]() { set_test(test19, 30 * k * k + 70 * k + 39, taille, p); },
+                    [&]() { set_test(test17, 30 * k * k + 72 * k + 41, taille, p); },
+                    [&]() { set_test(test13, 30 * k * k + 76 * k + 45, taille, p); },
+                    [&]() { set_test(test11, 30 * k * k + 78 * k + 47, taille, p); },
+                    [&]() { set_test(test7, 30 * k * k + 82 * k + 51, taille, p); },
+                });
                 set_test(test1, 30 * k * k + 88 * k + 57, taille, p);
             }
         }
@@ -226,7 +226,7 @@ namespace {
     bool internal_miller_rabin(const Nombre &n, unsigned short reps = 25) {
         static_assert(numeric::is_integral<Nombre>::value, "Nombre doit être un type integral.");
 
-        std::mt19937& mt = distribution::generator();
+        std::mt19937 &mt = distribution::generator();
 
         const static std::set<Nombre> premiers100{
             2, 3, 5, 7, 11, 13, 17, 19, 23,
@@ -250,7 +250,7 @@ namespace {
 
         // Test de primalité de Fermet avec 210
         // https://fr.wikipedia.org/wiki/Test_de_primalit%C3%A9_de_Fermat
-        Nombre y = puissance::puissance_modulaire<Nombre>(210, nm1, n);
+        auto y = puissance::puissance_modulaire<Nombre>(210, nm1, n);
         if (y != 1) {
             return false;
         }
@@ -264,8 +264,7 @@ namespace {
 
         boost::uniform_int<Nombre> distribution(2, n - 2);
         for (size_t r = 0; r < reps; ++r) {
-            Nombre x = distribution(mt);
-            if (internal_miller_rabin(n, x, q, k)) {
+            if (Nombre x = distribution(mt); internal_miller_rabin(n, x, q, k)) {
                 return false;
             }
         }
@@ -449,12 +448,11 @@ namespace premiers {
 
             for (std::size_t n = 0; n < produit; n += 2) {
                 const std::size_t rrnr = reste * reste + n * reste;
-                const auto it = std::find(restes.begin(), restes.end(), rrnr % produit);
-                if (it != restes.end()) {
+                if (const auto it = std::ranges::find(restes, rrnr % produit); it != restes.end()) {
                     // std::cout << "n = " << n << "\t";
                     // std::cout << produit << ".[ " << produit << ".k² + " << 2*reste + n << ".k + " << rrnr/produit << " ] + " << rrnr%produit << std::endl;
                     matrice[i][iterator::distance(restes.begin(), it)] = std::make_pair(2 * reste + n,
-                                                                                           rrnr / produit);
+                        rrnr / produit);
                 }
             }
         }
@@ -466,8 +464,8 @@ namespace premiers {
                 {
                     const std::size_t p = produit * k + restes[i];
                     for (std::size_t j = 0; j < profondeur; ++j) {
-                        const auto &debut = matrice[i][j];
-                        for (std::size_t l = produit * k * k + debut.first * k + debut.second;
+                        const auto &[first, second] = matrice[i][j];
+                        for (std::size_t l = produit * k * k + first * k + second;
                              l < taille_crible; l += p)
                             test[j][l] = false;
                     }
@@ -570,5 +568,4 @@ namespace premiers {
     size_t MeisselLehmer::pi(size_t m, size_t n) {
         return pi(n) - pi(m);
     }
-
 }

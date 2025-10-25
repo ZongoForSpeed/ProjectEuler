@@ -9,7 +9,7 @@ typedef std::vector<nombre> vecteur;
 namespace {
     std::tuple<nombre, nombre, nombre> tri(nombre x, nombre y, nombre z) {
         vecteur v{x, y, z};
-        std::sort(v.begin(), v.end());
+        std::ranges::sort(v);
         return std::make_tuple(v[0], v[1], v[2]);
     }
 }

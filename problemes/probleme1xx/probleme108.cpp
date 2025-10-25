@@ -3,6 +3,7 @@
 #include "premiers.h"
 
 #include <fstream>
+#include <ranges>
 #include <boost/algorithm/string.hpp>
 
 typedef unsigned long long nombre;
@@ -30,8 +31,8 @@ ENREGISTRER_PROBLEME(108, "Diophantine reciprocals I") {
         std::map<nombre, nombre> decomposition;
         arithmetique::decomposition(n, premiers, decomposition);
         nombre solutions = 1;
-        for (const auto &d: decomposition) {
-            solutions *= (2 * d.second + 1);
+        for (const auto &e: decomposition | std::views::values) {
+            solutions *= (2 * e + 1);
         }
         solutions = (solutions + 1) / 2;
         if (solutions > 1000) {

@@ -15,15 +15,15 @@ namespace {
                            vecteur::const_iterator debut,
                            vecteur::const_iterator fin) {
         std::set<vecteur> resultat;
-        if (auto p = chiffres::conversion_nombre<nombre>(debut, fin);premiers.find(p) != premiers.end())
+        if (auto p = chiffres::conversion_nombre<nombre>(debut, fin); premiers.contains(p))
             resultat.emplace(1, p);
 
         for (auto it = std::next(debut); it != fin; ++it) {
-            if (auto p = chiffres::conversion_nombre<nombre>(debut, it);premiers.find(p) != premiers.end()) {
+            if (auto p = chiffres::conversion_nombre<nombre>(debut, it); premiers.contains(p)) {
                 if (std::set<vecteur> s = test(premiers, it, fin); !s.empty()) {
                     for (vecteur v: s) {
                         v.push_back(p);
-                        std::sort(std::execution::par, v.begin(), v.end());
+                        std::ranges::sort(v);
                         resultat.insert(v);
                     }
                 }

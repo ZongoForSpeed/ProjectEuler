@@ -13,7 +13,7 @@ ENREGISTRER_PROBLEME(2, "Even Fibonacci numbers") {
     // find the sum of the even-valued terms.
     Fibonacci<nombre> fibonacci(4000000L);
     nombre solution = 0;
-    for (auto t: fibonacci) {
+    for (const auto t: fibonacci) {
         if (t % 2 == 0) {
             solution += t;
         }

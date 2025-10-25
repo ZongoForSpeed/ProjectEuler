@@ -1,19 +1,19 @@
 #include "graphe.h"
 
 #include <algorithm>
+#include <ranges>
 #include <utility>
 
 namespace graphe {
     Tarjan::Tarjan(const std::map<nombre, vecteur> &g) : index(0), graphe(g) {
-        for (auto &p: g) {
-            sommets.emplace(p.first, p.first);
+        for (const auto &key: g | std::views::keys) {
+            sommets.emplace(key, key);
         }
     }
 
     void Tarjan::algorithme() {
-        for (const auto &[k, e]: graphe) {
-            auto &v = sommets.at(k);
-            if (!v.index)
+        for (const auto &k: graphe | std::views::keys) {
+            if (auto &v = sommets.at(k); !v.index)
                 strongconnect(v);
         }
     }
@@ -53,7 +53,8 @@ namespace graphe {
         }
     }
 
-    Dijkstra::Dijkstra(graphe g, const nombre debut_, const nombre fin_) : G(std::move(g)), debut(debut_), fin(fin_) {}
+    Dijkstra::Dijkstra(graphe g, const nombre debut_, const nombre fin_) : G(std::move(g)), debut(debut_), fin(fin_) {
+    }
 
     nombre Dijkstra::algorithme() {
         const nombre taille = G.size();
@@ -62,8 +63,8 @@ namespace graphe {
 
         distance[debut] = 0;
         std::set<nombre> noeuds;
-        for (const auto &arete: G)
-            noeuds.insert(arete.first);
+        for (const auto &key: G | std::views::keys)
+            noeuds.insert(key);
 
         while (!noeuds.empty()) {
             nombre suivant = 0;
@@ -76,10 +77,10 @@ namespace graphe {
             }
 
             noeuds.erase(suivant);
-            for (const auto &arete: G[suivant]) {
-                if (distance[arete.first] > distance[suivant] + arete.second) {
-                    distance[arete.first] = distance[suivant] + arete.second;
-                    precedent[arete.first] = suivant;
+            for (const auto &[key, value]: G[suivant]) {
+                if (distance[key] > distance[suivant] + value) {
+                    distance[key] = distance[suivant] + value;
+                    precedent[key] = suivant;
                 }
             }
         }
@@ -97,8 +98,7 @@ namespace graphe {
     }
 
     Kruskal::Kruskal(aretes A_) : A(std::move(A_)) {
-        std::sort(A.begin(), A.end(),
-                  [](const arete &a, const arete &b) { return std::get<2>(a) < std::get<2>(b); });
+        std::ranges::sort(A, [](const arete &a, const arete &b) { return std::get<2>(a) < std::get<2>(b); });
     }
 
     Kruskal::aretes Kruskal::algorithme() {
@@ -118,13 +118,11 @@ namespace graphe {
             if (groupe[i] != groupe[j]) {
                 nombre groupe_j = groupe[j];
                 nombre groupe_i = groupe[i];
-                std::replace(groupe.begin(), groupe.end(), groupe_j, groupe_i);
+                std::ranges::replace(groupe, groupe_j, groupe_i);
                 resultat.push_back(a);
             }
         }
 
         return resultat;
     }
-
-}    
-
+}

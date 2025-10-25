@@ -16,7 +16,7 @@ ENREGISTRER_PROBLEME(290, "Digital Signature") {
     for (short c = 0; c < taille; ++c) {
         Table suivant;
         for (short d = 0; d < 10; ++d) {
-            for (auto&[paire, compteur]: table) {
+            for (auto &[paire, compteur]: table) {
                 // Pour tous les nombre x ayant une difference D et une retenue R
                 // alors dx a une retenue de n / 10
                 //            et une difference de difference + d - n%10
@@ -30,9 +30,8 @@ ENREGISTRER_PROBLEME(290, "Digital Signature") {
     }
 
     size_t resultat = 0;
-    for (auto&[paire, compteur]: table) {
-        auto &[difference, retenue] = paire;
-        if (chiffres::somme_chiffres(retenue) == difference)
+    for (auto &[paire, compteur]: table) {
+        if (auto &[difference, retenue] = paire; chiffres::somme_chiffres(retenue) == difference)
             resultat += compteur;
     }
 

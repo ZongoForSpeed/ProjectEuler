@@ -46,11 +46,13 @@ ENREGISTRER_PROBLEME(61, "Cyclical figurate numbers") {
                                         for (nombre n5 = 10; n5 < 100; ++n5)
                                             if (polygonal::est_polygonal(n4 % 100 * 100 + n5, t_polygonal[4])) {
                                                 if (const nombre n6 = n1 / 100;
-                                                        polygonal::est_polygonal(n5 % 100 * 100 + n6, t_polygonal[5])) {
-                                                    vecteur s = {n1, n1 % 100 * 100 + n2, n2 % 100 * 100 + n3,
-                                                                 n3 % 100 * 100 + n4, n4 % 100 * 100 + n5,
-                                                                 n5 % 100 * 100 + n6};
-                                                    std::sort(std::execution::par, s.begin(), s.end());
+                                                    polygonal::est_polygonal(n5 % 100 * 100 + n6, t_polygonal[5])) {
+                                                    vecteur s = {
+                                                        n1, n1 % 100 * 100 + n2, n2 % 100 * 100 + n3,
+                                                        n3 % 100 * 100 + n4, n4 % 100 * 100 + n5,
+                                                        n5 % 100 * 100 + n6
+                                                    };
+                                                    std::ranges::sort(s);
                                                     solution = s;
                                                 }
                                             }

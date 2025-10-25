@@ -60,8 +60,7 @@ ENREGISTRER_PROBLEME(236, "Luxury Hampers") {
                         nombre h = n / d;
                         if (h <= 3776) {
                             if ((90 * h * v) % (59 * u) == 0) {
-                                fraction ratio(u, v);
-                                if (ratio > resultat)
+                                if (fraction ratio(u, v); ratio > resultat)
                                     resultat = ratio;
                             }
                         }

@@ -10,7 +10,7 @@ typedef unsigned long long nombre;
 namespace {
     bool est_premier(const std::set<nombre> &premiers, nombre n) {
         if (n < *(premiers.rbegin()) + 2) {
-            return premiers.find(n) != premiers.end();
+            return premiers.contains(n);
         }
         return premiers::miller_rabin(n, 25);
     }

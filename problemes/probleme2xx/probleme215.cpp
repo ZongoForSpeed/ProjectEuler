@@ -10,7 +10,7 @@ typedef std::vector<nombre> vecteur;
 namespace {
     bool intersection(const std::set<nombre> &a, const std::set<nombre> &b) {
         std::set<nombre> i;
-        std::set_intersection(a.begin(), a.end(), b.begin(), b.end(), std::inserter(i, i.begin()));
+        std::ranges::set_intersection(a, b, std::inserter(i, i.begin()));
         return i.empty();
     }
 }
@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(215, "Crack-free Walls") {
     // Calculate W(32,10).
     nombre taille = 32;
     nombre hauteur = 10;
-    std::vector<std::set<nombre>> murs;
+    std::vector<std::set<nombre> > murs;
     for (nombre n = 0; 3 * n <= taille; ++n) {
         if ((taille - 3 * n) % 2 == 0) {
             vecteur mur((taille - 3 * n) / 2, 2);
@@ -45,7 +45,7 @@ ENREGISTRER_PROBLEME(215, "Crack-free Walls") {
         }
     }
 
-    std::map<std::set<nombre>, std::vector<std::set<nombre>>> I;
+    std::map<std::set<nombre>, std::vector<std::set<nombre> > > I;
     for (const auto &m1: murs)
         for (const auto &m2: murs) {
             if (intersection(m1, m2))
@@ -53,12 +53,12 @@ ENREGISTRER_PROBLEME(215, "Crack-free Walls") {
         }
 
     std::map<std::set<nombre>, nombre> dp;
-    for (const auto&[k, v]: I)
+    for (const auto &[k, v]: I)
         dp[k] = v.size();
 
     for (nombre h = 2; h < hauteur; ++h) {
         std::map<std::set<nombre>, nombre> suite_dp;
-        for (const auto&[k, v]: dp) {
+        for (const auto &[k, v]: dp) {
             for (const auto &i: I[k])
                 suite_dp[i] += v;
         }
@@ -67,7 +67,7 @@ ENREGISTRER_PROBLEME(215, "Crack-free Walls") {
     }
 
     nombre resultat = 0;
-    for (const auto&[k, v]: dp)
+    for (const auto &[k, v]: dp)
         resultat += v;
 
     return std::to_string(resultat);

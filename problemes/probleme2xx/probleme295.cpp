@@ -65,7 +65,7 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
     const nombre rayon_max = 100000;
     const nombre limite = 2 * racine::racine_carre(rayon_max);
 
-    std::vector<std::set<nombre>> rayons;
+    std::vector<std::set<nombre> > rayons;
     for (nombre dx = 1; dx < limite; dx += 2)
         for (nombre dy = 1; dy <= dx; dy += 2) {
             if (arithmetique::PGCD(dx, dy) != 1)
@@ -73,7 +73,7 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
 
             std::set<nombre> R;
 
-            auto[x, y] = diophantienne(dx, dy, (dx * dx + dy * dy) / 2);
+            auto [x, y] = diophantienne(dx, dy, (dx * dx + dy * dy) / 2);
             while (true) {
                 nombre rayon = x * x + y * y;
                 if (rayon > rayon_max * rayon_max)
@@ -92,7 +92,7 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
     nombre resultat = 0;
     for (size_t i = 0; i < rayons.size(); ++i) {
         auto &Ri = rayons[i];
-        std::set<std::pair<nombre, nombre>> rem;
+        std::set<std::pair<nombre, nombre> > rem;
 
         for (size_t j = i + 1; j < rayons.size(); ++j) {
             auto &Rj = rayons[j];
@@ -100,10 +100,10 @@ ENREGISTRER_PROBLEME(295, "Lenticular holes") {
             // Rj -= Ri
 
             vecteur intersection;
-            std::set_intersection(Ri.begin(), Ri.end(), Rj.begin(), Rj.end(), std::back_inserter(intersection));
+            std::ranges::set_intersection(Ri, Rj, std::back_inserter(intersection));
 
             vecteur difference;
-            std::set_difference(Rj.begin(), Rj.end(), Ri.begin(), Ri.end(), std::back_inserter(difference));
+            std::ranges::set_difference(Rj, Ri, std::back_inserter(difference));
 
             for (auto u: intersection)
                 for (auto v: difference)

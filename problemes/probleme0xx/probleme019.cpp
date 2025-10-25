@@ -20,7 +20,7 @@ ENREGISTRER_PROBLEME(19, "Counting Sundays") {
     //
     // How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
     boost::gregorian::month_iterator start(boost::gregorian::date(1901, 1, 1), 1);
-    boost::gregorian::date end(2000, 12, 31);
+    const boost::gregorian::date end(2000, 12, 31);
     nombre resultat = 0;
     while (start <= end) {
         if (start->day_of_week() == boost::date_time::Sunday) {

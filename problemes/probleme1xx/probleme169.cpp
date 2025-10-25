@@ -4,8 +4,7 @@
 
 namespace {
     size_t f(std::map<mpz_nombre, size_t> &cache, const mpz_nombre &n) {
-        auto it = cache.find(n);
-        if (it != cache.end())
+        if (auto it = cache.find(n); it != cache.end())
             return it->second;
 
         // f(n) = f(n/2) + f(n/2 - 1) si n pair

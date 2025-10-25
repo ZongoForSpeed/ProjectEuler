@@ -37,5 +37,5 @@ ENREGISTRER_PROBLEME(125, "Palindromic sums") {
         }
     }
 
-    return std::to_string(std::reduce(std::execution::par, resultat.begin(), resultat.end()));
+    return std::to_string(std::reduce(resultat.begin(), resultat.end()));
 }

@@ -37,7 +37,7 @@ ENREGISTRER_PROBLEME(222, "Sphere Packing") {
     std::random_device rd;
     std::mt19937 g(rd());
 
-    std::shuffle(rayons.begin(), rayons.end(), g);
+    std::ranges::shuffle(rayons, g);
 
     long double optimum = hauteur(rayons);
     long double optimum_local = optimum;
@@ -51,8 +51,7 @@ ENREGISTRER_PROBLEME(222, "Sphere Packing") {
         for (size_t i = 0; i < taille - 1; ++i)
             for (size_t j = i + 1; j < taille; ++j) {
                 std::swap(rayons[i], rayons[j]);
-                long double h = hauteur(rayons);
-                if (h < minimum) {
+                if (long double h = hauteur(rayons); h < minimum) {
                     minimum = h;
                     m_i = i;
                     m_j = j;
@@ -66,7 +65,7 @@ ENREGISTRER_PROBLEME(222, "Sphere Packing") {
         } else {
             optimum = std::min(optimum_local, optimum);
             ++retour;
-            std::shuffle(rayons.begin(), rayons.end(), g);
+            std::ranges::shuffle(rayons, g);
             optimum_local = hauteur(rayons);
         }
 

@@ -14,7 +14,7 @@ namespace {
         std::vector<std::size_t> chiffres(base, 0);
         chiffres::boucle_chiffre(n, [&chiffres](nombre d) { chiffres[d]++; }, base);
 
-        for (auto c: chiffres)
+        for (const auto c: chiffres)
             if (c > 1) return false;
         return true;
     }

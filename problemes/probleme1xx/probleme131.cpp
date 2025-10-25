@@ -27,7 +27,7 @@ ENREGISTRER_PROBLEME(131, "Prime cube partnership") {
     for (nombre a = 1; 3 * a * a < limite; ++a) {
         nombre b = a + 1;
         nombre p = b * b * b - a * a * a;
-        if (p < limite && premiers.find(p) != premiers.end())
+        if (p < limite && premiers.contains(p))
             ++resultat;
     }
 

@@ -28,6 +28,6 @@ ENREGISTRER_PROBLEME(136, "Singleton difference") {
         }
     }
 
-    auto resultat = std::count(std::execution::par, compteur.begin(), compteur.end(), 1);
+    auto resultat = std::ranges::count(compteur, 1);
     return std::to_string(resultat);
 }

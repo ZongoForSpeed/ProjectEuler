@@ -48,7 +48,7 @@ namespace chiffres {
     template<typename Nombre>
     bool pandigital(const Nombre &n, unsigned short base = 10) {
         std::vector<size_t> chiffres(base + 1, 0);
-        boucle_chiffre(n, [&chiffres](Nombre d) { chiffres[d]++; }, base);
+        boucle_chiffre(n, [&chiffres](Nombre d) { ++chiffres[d]; }, base);
         if (chiffres[0] != 0)
             return false;
         return std::all_of(chiffres.begin(), chiffres.end(), [](size_t c) { return c < 2; });

@@ -36,9 +36,9 @@ ENREGISTRER_PROBLEME(167, "Investigating Ulam sequences") {
             if (U.back() % 2 == 0) {
                 x = U.back();
                 y = U.size() - 1;
-                for (auto &p: m) {
-                    if (p.first % 2 == 0)
-                        p.second++;
+                for (auto &[p, e]: m) {
+                    if (p % 2 == 0)
+                        e++;
                 }
             }
 

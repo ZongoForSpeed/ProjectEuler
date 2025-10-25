@@ -8,13 +8,13 @@ namespace {
     long L(size_t n) {
         std::vector<size_t> restes;
         size_t reste = 1;
-        while (std::find(restes.begin(), restes.end(), reste) == restes.end()) {
+        while (std::ranges::find(restes, reste) == restes.end()) {
             restes.push_back(reste);
             while (reste % n == reste) reste *= 10;
             reste = reste % n;
         }
 
-        return std::distance(std::find(restes.begin(), restes.end(), reste), restes.end());
+        return std::distance(std::ranges::find(restes, reste), restes.end());
     }
 
     size_t somme_periodes(size_t limite) {
@@ -32,7 +32,7 @@ namespace {
             }
         }
 
-        std::vector<std::pair<size_t/*p^k*/, size_t/*periode*/>> puissancesPremiersPeriodes;
+        std::vector<std::pair<size_t/*p^k*/, size_t/*periode*/> > puissancesPremiersPeriodes;
         for (size_t p: premiers) {
             if (p == 2 || p == 5)
                 continue;
@@ -51,11 +51,11 @@ namespace {
             }
         }
 
-        std::sort(puissancesPremiersPeriodes.begin(), puissancesPremiersPeriodes.end());
+        std::ranges::sort(puissancesPremiersPeriodes);
 
         std::vector<size_t> periodes(limite + 1, 0);
         periodes[1] = 1;
-        for (auto&[pk, period]: puissancesPremiersPeriodes) {
+        for (auto &[pk, period]: puissancesPremiersPeriodes) {
             for (size_t j = 0, max_j = limite / pk; j <= max_j; j++) {
                 if (periodes[j] != 0)
                     periodes[j * pk] = arithmetique::PPCM(periodes[j], period);

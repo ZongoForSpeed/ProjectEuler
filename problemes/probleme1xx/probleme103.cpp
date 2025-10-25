@@ -177,7 +177,7 @@ ENREGISTRER_PROBLEME(103, "Special subset sums: optimum") {
                         for (nombre a6 = a5 + 1; a6 < 50; ++a6)
                             for (nombre a7 = a6 + 1; a7 < 100; ++a7) {
                                 const vecteur v{a1, a2, a3, a4, a5, a6, a7};
-                                const nombre somme = std::reduce(std::execution::par, v.begin(), v.end());
+                                const nombre somme = std::reduce(v.begin(), v.end());
                                 if (somme < minimum && verifier(v)) {
                                     minimum = somme;
                                     solution = v;

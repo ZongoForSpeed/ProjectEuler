@@ -13,7 +13,7 @@ ENREGISTRER_PROBLEME(41, "Pandigital prime") {
     premiers::crible2<nombre>(100000000, std::back_inserter(premiers));
     nombre resultat = 0;
     std::vector<nombre> pandigital{1, 2, 3, 4, 5, 6, 7, 8, 9};
-    for (nombre p: premiers) {
+    for (const nombre p: premiers) {
         if (auto chiffres = chiffres::extraire_chiffres(p);
                 std::is_permutation(chiffres.begin(), chiffres.end(), pandigital.begin()))
             resultat = p;

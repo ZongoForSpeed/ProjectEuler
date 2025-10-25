@@ -17,14 +17,14 @@ namespace {
         nombre t = l % limite;
         nombre s = 0;
 
-        if (S.count(t) == 0) {
+        if (!S.contains(t)) {
             S.insert(t);
             s += BinaryCircles(S, l, limite);
             S.erase(t);
         }
 
         ++t;
-        if (S.count(t) == 0) {
+        if (!S.contains(t)) {
             S.insert(t);
             s += BinaryCircles(S, l + 1, limite);
             S.erase(t);

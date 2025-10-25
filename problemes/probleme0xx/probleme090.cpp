@@ -41,10 +41,8 @@ ENREGISTRER_PROBLEME(90, "Cube digit pairs") {
     } while (std::ranges::next_permutation(de).found);
 
     auto test = [](const vecteur &de1, const vecteur &de2, nombre c1, nombre c2) {
-        return ((std::find(de1.begin(), de1.end(), c1) != de1.end() &&
-                 std::find(de2.begin(), de2.end(), c2) != de2.end())
-                || (std::find(de1.begin(), de1.end(), c2) != de1.end() &&
-                    std::find(de2.begin(), de2.end(), c1) != de2.end()));
+        return (std::ranges::find(de1, c1) != de1.end() && std::ranges::find(de2, c2) != de2.end())
+               || (std::ranges::find(de1, c2) != de1.end() && std::ranges::find(de2, c1) != de2.end());
     };
 
     nombre resultat = 0;

@@ -78,8 +78,8 @@ ENREGISTRER_PROBLEME(93, "Arithmetic expressions") {
                     test(v, e);
 
                     vecteur difference;
-                    std::set_difference(iteration.begin(), iteration.end(), e.begin(), e.end(),
-                                        std::inserter(difference, difference.begin()));
+                    std::ranges::set_difference(iteration, e,
+                                                std::inserter(difference, difference.begin()));
                     if (difference.front() > maximum) {
                         maximum = difference.front();
                         resultat = {a, b, c, d};

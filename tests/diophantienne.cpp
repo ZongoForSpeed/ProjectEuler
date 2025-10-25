@@ -11,17 +11,17 @@
 BOOST_AUTO_TEST_SUITE(test_diophantienne)
 
     BOOST_AUTO_TEST_CASE(pqa1) {
-        auto resultat = diophantienne::PQa(11, 108, 13);
+        auto [first, second] = diophantienne::PQa(11, 108, 13);
         std::vector<long long> fractions{0, 7, 2, 1, 1, 6, 1, 1};
-        BOOST_CHECK_EQUAL_COLLECTIONS(resultat.first.begin(), resultat.first.end(), fractions.begin(), fractions.end());
-        BOOST_CHECK_EQUAL(resultat.second, 5);
+        BOOST_CHECK_EQUAL_COLLECTIONS(first.begin(), first.end(), fractions.begin(), fractions.end());
+        BOOST_CHECK_EQUAL(second, 5);
     }
 
     BOOST_AUTO_TEST_CASE(pqa2) {
-        auto resultat = diophantienne::PQa(0, 1, 13);
+        auto [first, second] = diophantienne::PQa(0, 1, 13);
         std::vector<long long> fractions{3, 1, 1, 1, 1, 6};
-        BOOST_CHECK_EQUAL_COLLECTIONS(resultat.first.begin(), resultat.first.end(), fractions.begin(), fractions.end());
-        BOOST_CHECK_EQUAL(resultat.second, 5);
+        BOOST_CHECK_EQUAL_COLLECTIONS(first.begin(), first.end(), fractions.begin(), fractions.end());
+        BOOST_CHECK_EQUAL(second, 5);
     }
 
     BOOST_AUTO_TEST_CASE(pell1_min) {
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
                 std::make_pair(842401, 233640)
         };
         auto callback = [&resultat, &solution](long long x, long long y) {
-            resultat.push_back(std::make_pair(x, y));
+            resultat.emplace_back(x, y);
             return resultat.size() != solution.size();
         };
 
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
                 std::make_pair(30349818, 8417525)
         };
         auto callback = [&resultat, &solution](long long x, long long y) {
-            resultat.push_back(std::make_pair(x, y));
+            resultat.emplace_back(x, y);
             return resultat.size() != solution.size();
         };
 
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
                 std::make_pair(421200, 116820)
         };
         auto callback = [&resultat, &solution](long long x, long long y) {
-            resultat.push_back(std::make_pair(x, y));
+            resultat.emplace_back(x, y);
             return resultat.size() != solution.size();
         };
 
@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
                 std::make_pair(1895386, 525685)
         };
         auto callback = [&resultat, &solution](long long x, long long y) {
-            resultat.push_back(std::make_pair(x, y));
+            resultat.emplace_back(x, y);
             return resultat.size() != solution.size();
         };
 
@@ -191,12 +191,12 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
         // 10x + 84y + 16 = 0
         long long int A = 10, B = 84, C = 16;
         size_t compteur = 0;
-        for (auto s: diophantienne::equation_lineaire(A, B, C)) {
+        for (auto [first, second]: diophantienne::equation_lineaire(A, B, C)) {
             ++compteur;
             if (compteur > 10) {
                 break;
             }
-            BOOST_CHECK_EQUAL(A * s.first + B * s.second + C, 0);
+            BOOST_CHECK_EQUAL(A * first + B * second + C, 0);
         }
     }
 
@@ -204,12 +204,12 @@ BOOST_AUTO_TEST_SUITE(test_diophantienne)
         // 10x + 84y - 16 = 0
         long long int A = 10, B = 84, C = -16;
         size_t compteur = 0;
-        for (auto s: diophantienne::equation_lineaire(A, B, C)) {
+        for (auto [first, second]: diophantienne::equation_lineaire(A, B, C)) {
             ++compteur;
             if (compteur > 10) {
                 break;
             }
-            BOOST_CHECK_EQUAL(A * s.first + B * s.second + C, 0);
+            BOOST_CHECK_EQUAL(A * first + B * second + C, 0);
         }
     }
 

@@ -42,10 +42,9 @@ ENREGISTRER_PROBLEME(127, "abc-hits") {
 
     nombre resultat = 0;
     for (nombre c = 3; c < limite; ++c) {
-        if (premiers.find(c) != premiers.end())
+        if (premiers.contains(c))
             continue;
-        nombre rad_c = radical[c];
-        if (rad_c < c) {
+        if (nombre rad_c = radical[c]; rad_c < c) {
             for (nombre a = 1; 2 * a < c; ++a) {
                 nombre b = c - a;
                 nombre rad_a = radical[a];

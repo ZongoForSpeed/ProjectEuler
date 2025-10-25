@@ -11,8 +11,8 @@ namespace {
         if (n == 0)
             return 1;
 
-        auto it = cache.find(std::make_tuple(n, absence, retard));
-        if (it != cache.end())
+        auto key = std::make_tuple(n, absence, retard);
+        if (auto it = cache.find(key); it != cache.end())
             return it->second;
 
         nombre resultat = sequence(cache, n - 1, 0, retard);
@@ -22,7 +22,7 @@ namespace {
         if (absence < 2)
             resultat += sequence(cache, n - 1, absence + 1, retard);
 
-        cache[std::make_tuple(n, absence, retard)] = resultat;
+        cache.emplace(key, resultat);
         return resultat;
     }
 }

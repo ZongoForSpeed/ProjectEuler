@@ -64,11 +64,11 @@ ENREGISTRER_PROBLEME(111, "Primes with runs") {
 
     std::cout << limite / 10 << std::endl;
     nombre resultat = 0;
-    for (const auto &e: ensemble) {
-        const std::pair<nombre, vecteur> &p = *e.second.rbegin();
-        nombre somme = std::reduce(std::execution::par, p.second.begin(), p.second.end());
+    for (const auto &[first, second]: ensemble) {
+        const std::pair<nombre, vecteur> &p = *second.rbegin();
+        nombre somme = std::reduce(p.second.begin(), p.second.end());
         resultat += somme;
-        std::cout << e.first << "\t" << p.first << "\t" << p.second.size() << "\t" << somme << std::endl;
+        std::cout << first << "\t" << p.first << "\t" << p.second.size() << "\t" << somme << std::endl;
     }
 
     return std::to_string(resultat);

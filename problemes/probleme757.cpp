@@ -14,13 +14,12 @@ namespace {
         for (size_t x = 1; x <= limit; ++x) {
             size_t y = x;
             while (true) {
-                size_t v = x*(x + 1)*y*(y+1);
+                size_t v = x * (x + 1) * y * (y + 1);
                 if (v > n) {
                     break;
                 }
 
-                auto it = seen.insert(v);
-                if (it.second) {
+                if (auto [first, second] = seen.insert(v); second) {
                     ++count;
                 }
 

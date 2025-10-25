@@ -28,10 +28,10 @@ namespace {
     template<typename Iterator>
     nombre algorithme(Iterator it, Iterator en, const complexe &z) {
         return it == en
-               ? std::min(std::abs(z.real()), std::abs(z.imag()))
-               : algorithme(std::next(it), en, z)
-                 + algorithme(std::next(it), en, z * (*it))
-                 + algorithme(std::next(it), en, z * std::conj(*it));
+                   ? std::min(std::abs(z.real()), std::abs(z.imag()))
+                   : algorithme(std::next(it), en, z)
+                     + algorithme(std::next(it), en, z * (*it))
+                     + algorithme(std::next(it), en, z * std::conj(*it));
     }
 }
 
@@ -51,9 +51,8 @@ ENREGISTRER_PROBLEME(273, "Sum of Squares") {
     vecteur premiers;
     premiers::crible2<nombre>(taille, std::back_inserter(premiers));
 
-    premiers.erase(std::remove_if(premiers.begin(),
-                                  premiers.end(),
-                                  [](nombre p) { return p % 4 != 1; }),
+    premiers.erase(std::ranges::remove_if(premiers,
+                                          [](nombre p) { return p % 4 != 1; }).begin(),
                    premiers.end());
 
     std::vector<complexe> racines;

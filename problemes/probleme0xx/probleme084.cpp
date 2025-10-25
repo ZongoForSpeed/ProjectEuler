@@ -1,5 +1,4 @@
 #include "problemes.h"
-#include "arithmetique.h"
 #include "utilitaires.h"
 
 #include <random>
@@ -164,8 +163,7 @@ ENREGISTRER_PROBLEME(84, "Monopoly odds") {
         resultat.emplace_back(i, plateau[i]);
     }
 
-    std::sort(std::execution::par, resultat.begin(), resultat.end(),
-              [](const paire &a, const paire &b) { return a.second > b.second; });
+    std::ranges::sort(resultat, [](const paire &a, const paire &b) { return a.second > b.second; });
 
     return utilitaires::concatener(resultat[0].first, resultat[1].first, resultat[2].first);
 }

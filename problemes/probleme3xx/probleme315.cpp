@@ -106,7 +106,7 @@ ENREGISTRER_PROBLEME(315, "Digital root clocks") {
     vecteur premiers;
     premiers::crible2<size_t>(borne_sup, std::back_inserter(premiers));
 
-    premiers.erase(premiers.begin(), std::upper_bound(premiers.begin(), premiers.end(), borne_inf));
+    premiers.erase(premiers.begin(), std::ranges::upper_bound(premiers, borne_inf));
 
     const std::vector<std::bitset<7>> digits{
             std::bitset<7>("1111101"),  // 0

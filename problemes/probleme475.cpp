@@ -10,9 +10,9 @@ namespace {
 
     template<std::size_t N> void doUpdate(const triplet &s0, triplet &s, std::map<triplet, mpz_nombre>& dp, const mpz_nombre &v, short d) {
         if (std::get<N>(s)) {
-            std::get<N>(s)--;
+            --std::get<N>(s);
             algorithme(s0, s, dp, v*(std::get<N>(s) + 1), d + 1);
-            std::get<N>(s)++;
+            ++std::get<N>(s);
         }
     }
     
@@ -51,8 +51,8 @@ ENREGISTRER_PROBLEME(475, "Music festival") {
 
     for (short i = 0; i < 3*n; i++) {
         std::map<triplet, mpz_nombre> suivant;
-        for (auto &p : dp)
-            algorithme(p.first, p.first, suivant, p.second);
+        for (auto &[first, second] : dp)
+            algorithme(first, first, suivant, second);
         dp.swap(suivant);
     }
 

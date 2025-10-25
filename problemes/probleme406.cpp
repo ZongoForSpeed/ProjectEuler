@@ -15,18 +15,18 @@ namespace {
     double C(nombre n, double a, double b) {
         const double epsilon = 1e-6;
 
-        std::priority_queue<triplet, std::vector<triplet>, std::greater<>> tas;
+        std::priority_queue<triplet, std::vector<triplet>, std::greater<> > tas;
         tas.emplace(a, 1, 0);
         tas.emplace(b, 0, 1);
         std::map<double, nombre> mem{{0.0, 1}};
         std::set<paire> used;
         used.emplace(0, 0);
         while (true) {
-            auto[courant, move_a, move_b] = tas.top();
+            auto [courant, move_a, move_b] = tas.top();
             tas.pop();
 
-            auto ret = used.emplace(move_a, move_b);
-            if (!ret.second) {
+            auto [first, second] = used.emplace(move_a, move_b);
+            if (!second) {
                 continue;
             }
             nombre optimum = 1;

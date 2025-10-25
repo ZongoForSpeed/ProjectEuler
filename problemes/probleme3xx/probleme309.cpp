@@ -1,3 +1,5 @@
+#include <ranges>
+
 #include "../problemes.h"
 #include "arithmetique.h"
 #include "pythagoricien.h"
@@ -34,9 +36,8 @@ ENREGISTRER_PROBLEME(309, "Integer Ladders") {
     // std::cout << dictionnaire << std::endl;
     std::vector<triplet> resultat;
 
-    for (const auto &d: dictionnaire) {
+    for (const auto &v: dictionnaire | std::views::values) {
         // const nombre w = d.first;
-        const auto &v = d.second;
         for (auto it1 = v.begin(), en = v.end(); it1 != en; ++it1) {
             auto[a1, b1] = *it1;
             for (auto it2 = std::next(it1); it2 != en; ++it2) {

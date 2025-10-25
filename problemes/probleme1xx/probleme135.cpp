@@ -28,6 +28,6 @@ ENREGISTRER_PROBLEME(135, "Same differences") {
         }
     }
 
-    auto resultat = std::count(std::execution::par, compteur.begin(), compteur.end(), 10);
+    auto resultat = std::ranges::count(compteur, 10);
     return std::to_string(resultat);
 }

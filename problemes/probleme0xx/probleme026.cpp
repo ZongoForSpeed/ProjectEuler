@@ -25,7 +25,7 @@ ENREGISTRER_PROBLEME(26, "Reciprocal cycles") {
     auto longueur_cycle = [](nombre n) -> nombre {
         vecteur restes;
         nombre reste = 1;
-        while (std::find(restes.begin(), restes.end(), reste) == restes.end()) {
+        while (std::ranges::find(restes, reste) == restes.end()) {
             restes.push_back(reste);
             while (reste % n == reste) reste *= 10;
             reste = reste % n;

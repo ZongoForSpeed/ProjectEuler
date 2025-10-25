@@ -40,8 +40,8 @@ namespace {
                 }
         }
 
-        std::sort(std::execution::par, e_min.begin(), e_min.end());
-        e_min.erase(std::unique(e_min.begin(), e_min.end()), e_min.end());
+        std::ranges::sort(e_min);
+        e_min.erase(std::ranges::unique(e_min).begin(), e_min.end());
 
         it = cache.emplace_hint(it, n, e_min);
         return it->second;

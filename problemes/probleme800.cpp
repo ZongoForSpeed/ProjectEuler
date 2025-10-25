@@ -18,7 +18,7 @@ namespace {
             auto p = *it;
             auto log_p = std::log(p);
             auto limite_q = limite / log_p;
-            auto lower_bound = std::lower_bound(premiers.begin(), premiers.end(), limite_q);
+            auto lower_bound = std::ranges::lower_bound(premiers, limite_q);
             if (lower_bound <= it) {
                 break;
             }

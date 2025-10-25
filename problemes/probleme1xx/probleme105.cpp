@@ -20,16 +20,16 @@ namespace {
             return false;
 
         if (taille > 6 && champs.front() + champs.at(1) + champs.at(2) + champs.at(3) <=
-                          champs.back() + champs.at(taille - 2) + champs.at(taille - 3))
+            champs.back() + champs.at(taille - 2) + champs.at(taille - 3))
             return false;
 
         if (taille > 8 && champs.front() + champs.at(1) + champs.at(2) + champs.at(3) + champs.at(4) <=
-                          champs.back() + champs.at(taille - 2) + champs.at(taille - 3) + champs.at(taille - 4))
+            champs.back() + champs.at(taille - 2) + champs.at(taille - 3) + champs.at(taille - 4))
             return false;
 
         if (taille > 10 && champs.front() + champs.at(1) + champs.at(2) + champs.at(3) + champs.at(4) + champs.at(5) <=
-                           champs.back() + champs.at(taille - 2) + champs.at(taille - 3) + champs.at(taille - 4) +
-                           champs.at(taille - 5))
+            champs.back() + champs.at(taille - 2) + champs.at(taille - 3) + champs.at(taille - 4) +
+            champs.at(taille - 5))
             return false;
 
         for (size_t a1 = 0; a1 < taille; ++a1)
@@ -55,7 +55,6 @@ namespace {
                                                     champs.at(b1) + champs.at(b2) + champs.at(b3))
                                                     return false;
                                             }
-
         }
 
         if (taille > 7) {
@@ -166,9 +165,9 @@ ENREGISTRER_PROBLEME(105, "Special subset sums: testing") {
         vecteur set;
         for (auto &s: v) set.push_back(std::stoull(s));
 
-        std::sort(std::execution::par, set.begin(), set.end());
+        std::ranges::sort(set);
         if (verifier(set))
-            resultat += std::reduce(std::execution::par, set.begin(), set.end());
+            resultat += std::reduce(set.begin(), set.end());
     }
 
     return std::to_string(resultat);

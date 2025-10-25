@@ -30,7 +30,7 @@ ENREGISTRER_PROBLEME(318, "2011 nines") {
     // Let N(p,q) be the minimal value of n such that C(p,q,n) ≥ 2011.
     //
     // Find ∑N(p,q) for p+q ≤ 2011.
-    const int n = 2011;
+    constexpr int n = 2011;
 
     double v = -n * std::log(10.0);
     nombre resultat = 0;

@@ -13,6 +13,6 @@ ENREGISTRER_PROBLEME(10, "Summation of primes") {
     // Find the sum of all the primes below two million.
     vecteur premiers;
     premiers::crible2<size_t>(2000000, std::back_inserter(premiers));
-    size_t solution = std::reduce(std::execution::par, premiers.begin(), premiers.end());
+    size_t solution = std::reduce(premiers.begin(), premiers.end());
     return std::to_string(solution);
 }

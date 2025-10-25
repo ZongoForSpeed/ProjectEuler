@@ -42,7 +42,7 @@ ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits") {
             nombre j = n - i;
             for (const auto &vi: capacite[i])
                 for (const auto &vj: capacite[j]) {
-                    if (fraction parallel = vi + vj; resultat.find(parallel) == resultat.end()) {
+                    if (fraction parallel = vi + vj; !resultat.contains(parallel)) {
                         c.insert(parallel);
                         resultat.insert(parallel);
                     }
@@ -50,7 +50,7 @@ ENREGISTRER_PROBLEME(155, "Counting Capacitor Circuits") {
                     // 1 /(1 / (a1 / b1) + 1 / (a2 / b2 )) = a1 * a2 / (a1 * b2 + a2 * b1)
                     fraction series(vi.numerator() * vj.numerator(),
                                     vi.numerator() * vj.denominator() + vi.denominator() * vj.numerator());
-                    if (resultat.find(series) == resultat.end()) {
+                    if (!resultat.contains(series)) {
                         c.insert(series);
                         resultat.insert(series);
                     }

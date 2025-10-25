@@ -40,7 +40,7 @@ ENREGISTRER_PROBLEME(74, "Digit factorial chains") {
             nombre s = 0;
             chiffres::boucle_chiffre(m, [&s, &factorielle](nombre d) { s += factorielle[d]; });
             m = s;
-        } while (chaine.find(m) == chaine.end());
+        } while (!chaine.contains(m));
         if (chaine.size() == 60)
             ++resultat;
     }

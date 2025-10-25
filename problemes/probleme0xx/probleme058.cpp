@@ -40,7 +40,7 @@ ENREGISTRER_PROBLEME(58, "Spiral primes") {
         nombre difference = ((n + 2) * (n + 2) - n * n) / 4;
         nbDiagonales += 4;
         for (nombre k = 1; k < 4; ++k) {
-            if (premiers.find(n * n + difference * k) != premiers.end()) ++nbPremiers;
+            if (premiers.contains(n * n + difference * k)) ++nbPremiers;
         }
         n += 2;
         if (10 * nbPremiers < nbDiagonales) {

@@ -28,7 +28,7 @@ ENREGISTRER_PROBLEME(221, "Alexandrian Integers") {
         mpz_nombre pp = p * p + 1;
         const auto diviseurs = arithmetique::diviseurs<mpz_nombre>(pp, premiers);
         for (size_t n = 0; 2 * n < diviseurs.size(); ++n) {
-            auto d = diviseurs[n];
+            const auto& d = diviseurs[n];
             alexandrian.emplace_back(p * (p + d) * (p + pp / d));
         }
     }

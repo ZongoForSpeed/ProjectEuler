@@ -12,7 +12,7 @@ namespace {
     nombre compte(cache &compteur, nombre d1, nombre d2, nombre reste) {
         if (reste == 0)
             return 1;
-        else if (compteur[d1][d2][reste] == 0)
+        if (compteur[d1][d2][reste] == 0)
             for (nombre i = 0; i < 10 - (d1 + d2); i++)
                 compteur[d1][d2][reste] += compte(compteur, d2, i, reste - 1);
         return compteur[d1][d2][reste];

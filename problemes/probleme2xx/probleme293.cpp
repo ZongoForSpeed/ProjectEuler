@@ -46,7 +46,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
         if (suivant.empty())
             break;
 
-        std::sort(suivant.begin(), suivant.end());
+        std::ranges::sort(suivant);
 
         for (const mpz_nombre &n: suivant) {
             mpz_nombre m;
@@ -58,7 +58,7 @@ ENREGISTRER_PROBLEME(293, "Pseudo-Fortunate Numbers") {
         std::swap(fortunate, suivant);
     }
 
-    mpz_nombre resultat = std::reduce(std::execution::par, pseudoFortunate.begin(), pseudoFortunate.end());
+    mpz_nombre resultat = std::reduce(pseudoFortunate.begin(), pseudoFortunate.end());
 
     return resultat.to_string();
 }

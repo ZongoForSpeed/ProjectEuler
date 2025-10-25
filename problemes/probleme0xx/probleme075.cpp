@@ -36,6 +36,6 @@ ENREGISTRER_PROBLEME(75, "Singular integer right triangles") {
         }
     }
 
-    auto resultat = std::count(solutions.begin(), solutions.end(), 1);
+    auto resultat = std::ranges::count(solutions, 1);
     return std::to_string(resultat);
 }

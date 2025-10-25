@@ -34,7 +34,7 @@ ENREGISTRER_PROBLEME(50, "Consecutive prime sum") {
             ++l;
             if (s > limite)
                 break;
-            if (premiers.find(s) != premiers.end() && l > longueur) {
+            if (premiers.contains(s) && l > longueur) {
                 longueur = l;
                 resultat = s;
             }

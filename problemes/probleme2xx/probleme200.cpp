@@ -58,8 +58,8 @@ ENREGISTRER_PROBLEME(200, "Find the 200th prime-proof sqube containing the conti
     premiers::crible235<size_t>(200000, std::inserter(premiers, premiers.end()));
 
     vecteur squbes;
-    for (auto p1: premiers)
-        for (auto p2: premiers) {
+    for (const auto p1: premiers)
+        for (const auto p2: premiers) {
             if (p1 != p2) {
                 size_t sqube = p1 * p1 * p1 * p2 * p2;
                 if ((squbes.size() < 200 || sqube < squbes.back()) && test(sqube)) {
@@ -67,7 +67,7 @@ ENREGISTRER_PROBLEME(200, "Find the 200th prime-proof sqube containing the conti
                         squbes.back() = sqube;
                     else
                         squbes.push_back(sqube);
-                    std::sort(std::execution::par, squbes.begin(), squbes.end());
+                    std::ranges::sort(squbes);
                 }
             }
         }

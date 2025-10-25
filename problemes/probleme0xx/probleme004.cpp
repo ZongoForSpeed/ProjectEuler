@@ -10,7 +10,6 @@ ENREGISTRER_PROBLEME(4, "Largest palindrome product") {
     // Find the largest palindrome made from the product of two 3-digit numbers.
     nombre solution = 0;
     for (nombre a = 100; a < 1000; ++a) {
-#pragma unroll
         for (nombre b = 100; b < a; ++b) {
             if (nombre ab = a * b;chiffres::palindrome(ab))
                 solution = std::max(solution, ab);

@@ -1,3 +1,5 @@
+#include <ranges>
+
 #include "problemes.h"
 #include "arithmetique.h"
 
@@ -13,17 +15,16 @@ namespace {
     nombre g(nombre a, const std::map<nombre, size_t> &factorisation_n, nombre b,
              const std::map<nombre, size_t> &factorisation_m) {
         std::map<nombre, std::pair<nombre, nombre>> equation;
-        for (const auto &e: factorisation_n) {
-            nombre d = puissance::puissance(e.first, e.second);
+        for (const auto &[p, e]: factorisation_n) {
+            nombre d = puissance::puissance(p, e);
             nombre value = a % d;
-            equation[e.first] = std::make_pair(value, d);
+            equation[p] = std::make_pair(value, d);
         }
 
-        for (const auto &e: factorisation_m) {
-            nombre d = puissance::puissance(e.first, e.second);
+        for (const auto &[p, e]: factorisation_m) {
+            nombre d = puissance::puissance(p, e);
             nombre value = b % d;
-            auto it = equation.find(e.first);
-            if (it != equation.end()) {
+            if (auto it = equation.find(p); it != equation.end()) {
                 auto[prev_value, prev_d] = it->second;
                 if (prev_d == d) {
                     if (prev_value != value) {
@@ -36,18 +37,18 @@ namespace {
                 } else if (prev_value != value % prev_d) {
                     return 0;
                 } else {
-                    equation[e.first] = std::make_pair(value, d);
+                    equation[p] = std::make_pair(value, d);
                 }
             } else {
-                equation[e.first] = std::make_pair(value, d);
+                equation[p] = std::make_pair(value, d);
             }
         }
 
         vecteur restes;
         vecteur modulos;
-        for (const auto &e: equation) {
-            restes.push_back(e.second.first);
-            modulos.push_back(e.second.second);
+        for (const auto &[reste, modulo]: equation | std::views::values) {
+            restes.push_back(reste);
+            modulos.push_back(modulo);
         }
 
         return arithmetique_modulaire::restes_chinois<nombre>(modulos, restes);

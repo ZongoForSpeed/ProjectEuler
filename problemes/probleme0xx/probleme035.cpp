@@ -19,8 +19,7 @@ namespace {
     }
 
     bool valide(nombre n, const std::set<nombre> &premiers) {
-        auto chiffres = chiffres::extraire_chiffres(n);
-        if (std::count(chiffres.begin(), chiffres.end(), 0) != 0)
+        if (auto chiffres = chiffres::extraire_chiffres(n); std::ranges::count(chiffres, 0) != 0)
             return false;
 
         nombre tmp = n;
@@ -29,7 +28,7 @@ namespace {
             tmp = rotation(tmp);
             if (tmp == n)
                 break;
-            if (premiers.find(tmp) == premiers.end())
+            if (!premiers.contains(tmp))
                 valide = false;
         }
         return valide;

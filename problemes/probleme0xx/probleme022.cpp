@@ -36,7 +36,7 @@ ENREGISTRER_PROBLEME(22, "Names scores") {
     };
 
     for (const auto &name: names) {
-        nombre score = std::transform_reduce(std::execution::par, name.begin(), name.end(),
+        nombre score = std::transform_reduce(name.begin(), name.end(),
                                        0ULL, std::plus<nombre>{}, conversion);
         resultat += (++compteur * score);
     }

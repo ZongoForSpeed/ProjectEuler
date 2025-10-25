@@ -44,14 +44,14 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables") {
             // n = 1: z = x + y
             {
                 fraction z = x + y;
-                if (fractions.find(z) != fractions.end())
+                if (fractions.contains(z))
                     solutions.insert(x + y + z);
             }
 
             // n = -1: 1/z = 1/x + 1/y
             {
                 fraction z = x * y / (x + y);
-                if (fractions.find(z) != fractions.end())
+                if (fractions.contains(z))
                     solutions.insert(x + y + z);
             }
 
@@ -61,14 +61,14 @@ ENREGISTRER_PROBLEME(180, "Rational zeros of a function of three variables") {
                     fraction z(racine::racine_carre(zz.numerator()), racine::racine_carre(zz.denominator()));
                     {
                         // n = 2: z = sqrt(x^2+y^2)
-                        if (fractions.find(z) != fractions.end())
+                        if (fractions.contains(z))
                             solutions.insert(x + y + z);
                     }
 
                     {
                         // n = -2: z=x*y/sqrt(x^2+y^2)
                         z = x * y / z;
-                        if (fractions.find(z) != fractions.end())
+                        if (fractions.contains(z))
                             solutions.insert(x + y + z);
                     }
                 }

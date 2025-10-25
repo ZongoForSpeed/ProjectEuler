@@ -22,7 +22,7 @@ ENREGISTRER_PROBLEME(239, "Infinite string tour") {
 
     numerateur *= mpz_nombre::coefficient_binomial(25, 22);
 
-    const auto masque = puissance::puissance<size_t, unsigned>(10, 12);
+    constexpr auto masque = puissance::puissance<size_t, unsigned>(10, 12);
     numerateur *= masque;
     numerateur /= denominateur;
 

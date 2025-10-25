@@ -48,7 +48,7 @@ ENREGISTRER_PROBLEME(421, "Prime factors of n^15+1") {
     {
         Timer t("Crible nombres premiers");
         premiers::crible235<size_t>(limite_p, std::back_inserter(premiers));
-        auto it = std::upper_bound(premiers.begin(), premiers.end(), limite_p);
+        auto it = std::ranges::upper_bound(premiers, limite_p);
         premiers.erase(it, premiers.end());
 
         std::cout << premiers.size() << std::endl;
@@ -62,7 +62,7 @@ ENREGISTRER_PROBLEME(421, "Prime factors of n^15+1") {
         size_t q = limite_n / p;
         size_t r = limite_n % p;
 
-        auto reste_solution = std::count_if(solutions.begin(), solutions.end(), [&r](size_t s) { return s <= r; });
+        auto reste_solution = std::ranges::count_if(solutions, [&r](size_t s) { return s <= r; });
         resultat += p * (q * solutions.size() + static_cast<size_t>(reste_solution));
 
         // std::cout << p << "\t[" << (p % 3) << ", " << (p % 5) << "] \t=> " << solutions << std::endl;

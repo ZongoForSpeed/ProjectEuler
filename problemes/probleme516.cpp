@@ -18,12 +18,12 @@ ENREGISTRER_PROBLEME(516, "5-smooth totients") {
     std::vector<nombre> premiersHamming;
     // Recherche des nombres premiers de la forme 2**a * 3**b * 5**c + 1
     for (nombre a = 1; a < limite; a *= 2)
-    for (nombre b = a; b < limite; b *= 3)
-    for (nombre c = b; c < limite; c *= 5) {
-        if (premiers::miller_rabin(c + 1, 25)) {
-            premiersHamming.push_back(c + 1);
-        }
-    }
+        for (nombre b = a; b < limite; b *= 3)
+            for (nombre c = b; c < limite; c *= 5) {
+                if (premiers::miller_rabin(c + 1, 25)) {
+                    premiersHamming.push_back(c + 1);
+                }
+            }
 
     std::ranges::sort(premiersHamming);
     // On retire 2, 3, 5 de la liste des nombre premiers

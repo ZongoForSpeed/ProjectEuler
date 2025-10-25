@@ -58,7 +58,7 @@ ENREGISTRER_PROBLEME(107, "Minimal network") {
 
     auto poids = [](const graphe::Kruskal::arete &a) { return std::get<2>(a); };
 
-    nombre resultat = std::transform_reduce(std::execution::par, A.begin(), A.end(), 0ull, std::plus<nombre>{}, poids) -
-                      std::transform_reduce(std::execution::par, arbre_mini.begin(), arbre_mini.end(), 0ull, std::plus<nombre>{}, poids);
+    nombre resultat = std::transform_reduce(A.begin(), A.end(), 0ull, std::plus<nombre>{}, poids) -
+                      std::transform_reduce(arbre_mini.begin(), arbre_mini.end(), 0ull, std::plus<nombre>{}, poids);
     return std::to_string(resultat);
 }

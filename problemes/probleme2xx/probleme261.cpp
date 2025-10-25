@@ -69,6 +69,6 @@ ENREGISTRER_PROBLEME(261, "Stone Game") {
         }
     }
 
-    nombre resultat = std::reduce(std::execution::par, pivots.begin(), pivots.end());
+    nombre resultat = std::reduce(pivots.begin(), pivots.end());
     return std::to_string(resultat);
 }

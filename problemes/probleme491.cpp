@@ -34,7 +34,7 @@ ENREGISTRER_PROBLEME(491, "Double pandigital number divisible by 11") {
                 nombre sc = std::reduce(c.begin(), c.end());
                 if ((2 * sc) % 11 == somme) {
                     // std::cout << "c = " << c << std::endl;
-                    auto compteur = static_cast<nombre>(std::count_if(c.begin(), c.end(), [](const nombre &i) {
+                    auto compteur = static_cast<nombre>(std::ranges::count_if(c, [](const nombre &i) {
                         return i != 0;
                     }));
                     resultat += compteur * produit_fact / puissance_2;

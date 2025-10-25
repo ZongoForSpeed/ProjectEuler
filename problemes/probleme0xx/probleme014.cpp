@@ -29,7 +29,7 @@ ENREGISTRER_PROBLEME(14, "Longest Collatz sequence") {
         std::vector<nombre> chaine;
         chaine.push_back(n);
         nombre p = n;
-        while (cache.find(p) == cache.end()) {
+        while (!cache.contains(p)) {
             if (p % 2 == 0)
                 p /= 2;
             else

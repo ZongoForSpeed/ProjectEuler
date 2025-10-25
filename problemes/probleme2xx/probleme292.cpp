@@ -34,18 +34,19 @@ namespace {
         return i;
     }
 
-    size_t algorithme(std::map<std::tuple<short, short, short, size_t>, size_t> &cache, const std::vector<triplet> &triplets, short perimetre, short x, short y, short l, size_t i) {
+    size_t algorithme(std::map<std::tuple<short, short, short, size_t>, size_t> &cache,
+                      const std::vector<triplet> &triplets, short perimetre, short x, short y, short l, size_t i) {
         if (x == 0 && y == 0 && l > 0)
             return 1;
 
         auto clef = std::make_tuple(x, y, l, i);
 
-        if (auto it = cache.find(clef);it != cache.end())
+        if (auto it = cache.find(clef); it != cache.end())
             return it->second;
 
         size_t resultat = 0;
         for (size_t k = i; k < triplets.size(); ++k) {
-            auto[dx, dy, dl] = triplets[k];
+            auto [dx, dy, dl] = triplets[k];
             if (l != dl || x != -dx || y != -dy) {
                 short nx = x + dx;
                 short ny = y + dy;
@@ -79,10 +80,10 @@ ENREGISTRER_PROBLEME(292, "Pythagorean Polygons") {
 
     std::vector<triplet> triplets;
     generer_triplets(perimetre, triplets);
-    std::sort(std::execution::par, triplets.begin(), triplets.end(),
-              [](const triplet &t1, const triplet &t2) {
-                  return angle(t1) < angle(t2);
-              });
+    std::ranges::sort(triplets,
+                      [](const triplet &t1, const triplet &t2) {
+                          return angle(t1) < angle(t2);
+                      });
     std::map<std::tuple<short, short, short, size_t>, size_t> cache;
     size_t resultat = algorithme(cache, triplets, perimetre, 0, 0, 0, 0);
 

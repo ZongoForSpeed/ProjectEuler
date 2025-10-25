@@ -12,7 +12,8 @@ namespace {
         long double x;
         long double y;
 
-        Point(long double _x, long double _y) : x(_x), y(_y) {}
+        Point(long double _x, long double _y) : x(_x), y(_y) {
+        }
 
         bool operator<(const Point &p) const {
             if (std::abs(x - p.x) < std::numeric_limits<long double>::epsilon())
@@ -36,7 +37,7 @@ ENREGISTRER_PROBLEME(184, "Triangles containing the origin") {
     // How many triangles are there containing the origin in the interior and having all three vertices in I105?
     nombre limite = 105;
 
-    std::vector<std::pair<Point, nombre>> points;
+    std::vector<std::pair<Point, nombre> > points;
     for (nombre x = 0; x < limite; ++x)
         for (nombre y = 1; y < limite; ++y) {
             nombre r2 = x * x + y * y;
@@ -44,7 +45,7 @@ ENREGISTRER_PROBLEME(184, "Triangles containing the origin") {
                 points.emplace_back(Point(x, y), racine::racine_carre((limite * limite - 1) / r2));
         }
 
-    std::sort(std::execution::par, points.begin(), points.end());
+    std::ranges::sort(points);
 
     nombre resultat = 0;
     size_t longueur = points.size();

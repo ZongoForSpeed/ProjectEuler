@@ -10,7 +10,7 @@ typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
 
 typedef std::pair<size_t, size_t> point;
-typedef std::map<point, std::pair<double, point>> graphe;
+typedef std::map<point, std::pair<double, point> > graphe;
 
 namespace {
     double distance(const point &p1, const point &p2) {
@@ -41,9 +41,9 @@ namespace {
         double min = std::numeric_limits<double>::max();
         graphe::key_type resultat;
         for (const auto &n: noeuds) {
-            const auto &v = G[n];
-            if (v.first < min) {
-                min = v.first;
+            const auto &[first, second] = G[n];
+            if (first < min) {
+                min = first;
                 resultat = n;
             }
         }
@@ -93,8 +93,8 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
 
     // Dijkstra
     std::set<graphe::key_type> noeuds;
-    std::transform(G.begin(), G.end(), std::inserter(noeuds, noeuds.begin()),
-                   [](const graphe::value_type &entry) { return entry.first; });
+    std::ranges::transform(G, std::inserter(noeuds, noeuds.begin()),
+                           [](const graphe::value_type &entry) { return entry.first; });
 
     while (!noeuds.empty()) {
         auto u = minimum(G, noeuds);
@@ -103,10 +103,9 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
             break;
 
         double poids = G[u].first;
-        for (auto &entry: G) {
-            auto nouveau_poids = calcul_poids(entry.first, u) + poids;
-            if (nouveau_poids < entry.second.first)
-                entry.second = std::make_pair(nouveau_poids, u);
+        for (auto &[first, second]: G) {
+            if (auto nouveau_poids = calcul_poids(first, u) + poids; nouveau_poids < second.first)
+                second = std::make_pair(nouveau_poids, u);
         }
     }
 
@@ -115,10 +114,10 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
 
     point courant = objectif;
     while (courant != source) {
-        const auto &node = G[courant];
-        perimetre += distance(courant, node.second);
-        aire += aire_triangle(courant, node.second, point(0, 0));
-        courant = node.second;
+        const auto &second = G[courant].second;
+        perimetre += distance(courant, second);
+        aire += aire_triangle(courant, second, point(0, 0));
+        courant = second;
     }
     double resultat = aire / perimetre;
 

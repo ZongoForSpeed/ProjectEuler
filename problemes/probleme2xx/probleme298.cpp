@@ -14,7 +14,7 @@ typedef std::vector<nombre> vecteur;
 namespace {
     class Etat {
     public:
-        Etat() {}
+        Etat() = default;
 
         std::deque<unsigned short> memoire_larry;
         std::deque<unsigned short> memoire_robin;
@@ -23,8 +23,7 @@ namespace {
             short score = 0;
             // Larry's strategy is to remove the number that hasn't been called 
             // in the longest time.
-            auto it = std::find(memoire_larry.begin(), memoire_larry.end(), tirage);
-            if (it != memoire_larry.end()) {
+            if (const auto it = std::ranges::find(memoire_larry, tirage); it != memoire_larry.end()) {
                 ++score;
                 memoire_larry.erase(it);
                 memoire_larry.push_front(tirage);
@@ -36,8 +35,7 @@ namespace {
 
             // Robin's strategy is to remove the number that's been in the memory 
             // the longest time.
-            it = std::find(memoire_robin.begin(), memoire_robin.end(), tirage);
-            if (it != memoire_robin.end()) {
+            if (auto it = std::ranges::find(memoire_robin, tirage); it != memoire_robin.end()) {
                 --score;
             } else {
                 memoire_robin.push_front(tirage);
@@ -48,14 +46,14 @@ namespace {
             std::map<unsigned short, unsigned short> echange;
             unsigned short compteur = 0;
             for (auto &n: memoire_robin) {
-                if (echange.find(n) == echange.end())
+                if (!echange.contains(n))
                     echange[n] = ++compteur;
 
                 n = echange[n];
             }
 
             for (auto &n: memoire_larry) {
-                if (echange.find(n) == echange.end())
+                if (!echange.contains(n))
                     echange[n] = ++compteur;
 
                 n = echange[n];
@@ -111,7 +109,7 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
     typedef boost::bimap<Etat, unsigned short> bimap_t;
     typedef std::tuple<unsigned short/*etat*/, short/*score*/, long double/*probabilite*/> tuple_t;
 
-    std::map<unsigned short/*etat*/, std::deque<tuple_t>> graphe;
+    std::map<unsigned short/*etat*/, std::deque<tuple_t> > graphe;
 
     unsigned short compteur = 0;
     bimap_t relation;
@@ -131,7 +129,7 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
             unsigned short suivant = 0;
 
 
-            if (auto it2 = relation.left.find(nouvel_etat);it2 != relation.left.end()) {
+            if (auto it2 = relation.left.find(nouvel_etat); it2 != relation.left.end()) {
                 suivant = it2->second;
             } else {
                 suivant = compteur;
@@ -140,7 +138,7 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
             }
 
             bool found = false;
-            for (auto&[etat, s, probabilite]: suivants) {
+            for (auto &[etat, s, probabilite]: suivants) {
                 if (etat == suivant && s == score) {
                     probabilite += 0.1L;
                     found = true;
@@ -156,14 +154,14 @@ ENREGISTRER_PROBLEME(298, "Selective Amnesia") {
         a_voir.erase(it);
     }
 
-    std::deque<std::map<short/*score*/, long double/*probabilite*/>> dp(compteur);
+    std::deque<std::map<short/*score*/, long double/*probabilite*/> > dp(compteur);
     dp.front().emplace(0, 1.0);
 
     for (unsigned short tour = 0; tour < 50; ++tour) {
-        std::deque<std::map<short/*score*/, long double/*probabilite*/>> suivant(compteur);
+        std::deque<std::map<short/*score*/, long double/*probabilite*/> > suivant(compteur);
         for (unsigned short etat = 0; etat < compteur; ++etat) {
             const auto &etats = graphe[etat];
-            for (auto[score, probabilite]: dp[etat]) {
+            for (auto [score, probabilite]: dp[etat]) {
                 for (const auto &[e/*etat*/, s/*score*/, p/*probabilite*/]: etats) {
                     suivant[e][score + s] += p * probabilite;
                 }

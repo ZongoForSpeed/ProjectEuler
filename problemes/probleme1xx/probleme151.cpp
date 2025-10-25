@@ -18,7 +18,7 @@ typedef std::vector<unsigned short> envelope;
 
 namespace {
     mpq_fraction calculEsperance(std::map<envelope, mpq_fraction> &cache, const envelope &e) {
-        if (auto it = cache.find(e);it != cache.end())
+        if (auto it = cache.find(e); it != cache.end())
             return it->second;
 
         mpq_fraction resultat(0ul, 1ul);
@@ -29,7 +29,7 @@ namespace {
                 nouvelleEnvelope.erase(iterator::next(nouvelleEnvelope.begin(), i));
                 for (unsigned short j = sheet + 1; j <= 5; j++)
                     nouvelleEnvelope.push_back(j);
-                std::sort(std::execution::par, nouvelleEnvelope.begin(), nouvelleEnvelope.end());
+                std::ranges::sort(nouvelleEnvelope);
                 resultat += calculEsperance(cache, nouvelleEnvelope);
             }
 

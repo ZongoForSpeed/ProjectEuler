@@ -19,8 +19,8 @@ ENREGISTRER_PROBLEME(365, "A huge binomial coefficient") {
 
     std::map<size_t, size_t> binomial;
 
-    for (auto it = std::upper_bound(premiers.begin(), premiers.end(), 1000),
-                 en = std::upper_bound(premiers.begin(), premiers.end(), 5000);
+    for (auto it = std::ranges::upper_bound(premiers, 1000),
+                 en = std::ranges::upper_bound(premiers, 5000);
          it != en; ++it) {
         size_t p = *it;
         nombre_modulaire Cnk = nombre_modulaire::coefficient_binomial(p, n, k);
@@ -29,11 +29,11 @@ ENREGISTRER_PROBLEME(365, "A huge binomial coefficient") {
 
     unsigned long long resultat = 0;
     for (auto it1 = binomial.begin(), en1 = binomial.end(); it1 != en1; ++it1) {
-        auto[p, rp] = *it1;
+        auto [p, rp] = *it1;
         for (auto it2 = std::next(it1); it2 != en1; ++it2) {
-            auto[q, rq] = *it2;
+            auto [q, rq] = *it2;
             for (auto it3 = std::next(it2); it3 != en1; ++it3) {
-                auto[r, rr] = *it3;
+                auto [r, rr] = *it3;
                 if (rp == 0 && rq == 0 && rr == 0) {
                     continue;
                 }
@@ -44,7 +44,6 @@ ENREGISTRER_PROBLEME(365, "A huge binomial coefficient") {
                 resultat += M;
             }
         }
-
     }
 
     return std::to_string(resultat);

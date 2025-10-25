@@ -70,10 +70,10 @@ ENREGISTRER_PROBLEME(189, "Tri-colouring a triangular grid") {
         nombre valeur1 = 0;
         nombre valeur2 = 0;
         nombre valeur3 = 0;
-        for (auto p: cotes) {
-            if (test(cote1, p.first)) valeur1 += p.second;
-            if (test(cote2, p.first)) valeur2 += p.second;
-            if (test(cote3, p.first)) valeur3 += p.second;
+        for (const auto& [key, value]: cotes) {
+            if (test(cote1, key)) valeur1 += value;
+            if (test(cote2, key)) valeur2 += value;
+            if (test(cote3, key)) valeur3 += value;
         }
         resultat += valeur1 * valeur2 * valeur3;
     }

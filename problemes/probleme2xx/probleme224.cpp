@@ -22,14 +22,14 @@ ENREGISTRER_PROBLEME(224, "Almost right-angled triangles II") {
     ++resultat;
 
     while (!q.empty()) {
-        auto[a1, b1, c1] = q.front();
+        auto [a1, b1, c1] = q.front();
         q.pop();
 
         nombre a2 = a1 - 2 * b1 + 2 * c1;
         nombre b2 = 2 * a1 - b1 + 2 * c1;
         nombre c2 = 2 * a1 - 2 * b1 + 3 * c1;
         if (a2 + b2 + c2 <= taille) {
-            q.push(std::make_tuple(a2, b2, c2));
+            q.emplace(a2, b2, c2);
             ++resultat;
         }
 
@@ -37,7 +37,7 @@ ENREGISTRER_PROBLEME(224, "Almost right-angled triangles II") {
         b2 = 2 * a1 + b1 + 2 * c1;
         c2 = 2 * a1 + 2 * b1 + 3 * c1;
         if (a2 + b2 + c2 <= taille) {
-            q.push(std::make_tuple(a2, b2, c2));
+            q.emplace(a2, b2, c2);
             ++resultat;
         }
 
@@ -46,7 +46,7 @@ ENREGISTRER_PROBLEME(224, "Almost right-angled triangles II") {
             b2 = b1 + 2 * c1 - 2 * a1;
             c2 = 2 * b1 + 3 * c1 - 2 * a1;
             if (a2 + b2 + c2 <= taille) {
-                q.push(std::make_tuple(a2, b2, c2));
+                q.emplace(a2, b2, c2);
                 ++resultat;
             }
         }

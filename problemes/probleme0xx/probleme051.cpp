@@ -33,12 +33,12 @@ ENREGISTRER_PROBLEME(51, "Prime digit replacements") {
         for (const auto c: chiffres_uniques) {
             if (c != 0) {
                 auto chiffres2 = chiffres;
-                std::replace(chiffres2.begin(), chiffres2.end(), c, nombre(0));
+                std::ranges::replace(chiffres2, c, nombre(0));
                 auto q = chiffres::conversion_nombre<nombre>(chiffres2.begin(), chiffres2.end());
                 nombre difference = (p - q) / c;
                 nombre compteur = 0;
                 for (nombre n = c; n < 10; ++n) {
-                    if (premiers.find(q + n * difference) != premiers.end()) ++compteur;
+                    if (premiers.contains(q + n * difference)) ++compteur;
                 }
 
                 if (compteur == 8) {

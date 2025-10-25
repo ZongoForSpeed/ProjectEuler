@@ -65,8 +65,7 @@ ENREGISTRER_PROBLEME(66, "Diophantine equation") {
     size_t resultat = 0;
     for (size_t d = 2; d <= 1000; ++d) {
         if (!polygonal::est_carre(d)) {
-            mpz_nombre x = equation_pell(d);
-            if (x > maximum) {
+            if (mpz_nombre x = equation_pell(d); x > maximum) {
                 maximum = x;
                 resultat = d;
             }

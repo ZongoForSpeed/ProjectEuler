@@ -14,7 +14,7 @@ typedef std::vector<Point> Chemin;
 
 namespace {
     void generer(std::set<std::pair<Point, Chemin>> &cache, const Point &p, const Chemin &chemin, std::set<Chemin> &resultat, size_t profondeur) {
-        if (cache.find(std::make_pair(p, chemin)) != cache.end())
+        if (cache.contains(std::make_pair(p, chemin)))
             return;
 
         cache.emplace(p, chemin);
@@ -77,7 +77,7 @@ ENREGISTRER_PROBLEME(300, "Protein folding") {
 
     std::set<Chemin> chemins;
     {
-        const Point debut(0, 0);
+        constexpr Point debut(0, 0);
         const Chemin c{debut};
 
         std::set<std::pair<Point, Chemin>> cache;

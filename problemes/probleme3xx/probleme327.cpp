@@ -9,8 +9,7 @@ namespace {
             return r + 1;
         }
         auto clef = std::make_pair(c, r);
-        auto it = cache.find(clef);
-        if (it != cache.end()) {
+        if (auto it = cache.find(clef); it != cache.end()) {
             return it->second;
         }
 

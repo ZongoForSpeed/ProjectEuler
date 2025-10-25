@@ -9,8 +9,8 @@ namespace {
         std::map<size_t, size_t> facteurs;
         arithmetique::decomposition(n, premiers, facteurs);
         std::vector<size_t> modulos;
-        for (auto &f: facteurs) {
-            modulos.push_back(puissance::puissance(f.first, f.second));
+        for (auto &[p, e]: facteurs) {
+            modulos.push_back(puissance::puissance(p, e));
         }
         size_t N = (1 << facteurs.size());
         size_t resultat = 0;

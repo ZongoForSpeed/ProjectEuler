@@ -41,7 +41,7 @@ ENREGISTRER_PROBLEME(126, "Cuboid layers") {
                 }
             }
 
-    auto it = std::find(couche.begin(), couche.end(), 1000);
+    auto it = std::ranges::find(couche, 1000);
 
     nombre resultat = iterator::distance(couche.begin(), it);
     return std::to_string(resultat);

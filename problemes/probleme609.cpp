@@ -1,3 +1,5 @@
+#include <ranges>
+
 #include "premiers.h"
 #include "problemes.h"
 
@@ -44,8 +46,8 @@ ENREGISTRER_PROBLEME(609, "π sequences") {
     }
 
     size_t resultat = 1;
-    for (const auto &e: table) {
-        resultat *= e.second % modulo;
+    for (const auto &value: table | std::views::values) {
+        resultat *= value % modulo;
         resultat %= modulo;
     }
 

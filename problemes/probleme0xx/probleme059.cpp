@@ -44,25 +44,25 @@ ENREGISTRER_PROBLEME(59, "XOR decryption") {
     for (char c = '0'; c <= '9'; ++c) lettres.insert(c);
 
     std::vector<char> data;
-    std::transform(names.begin(), names.end(), std::back_inserter(data),
-                   [](const std::string &str) { return std::stoi(str); });
+    std::ranges::transform(names, std::back_inserter(data),
+                           [](const std::string &str) { return std::stoi(str); });
 
     std::string message;
     for (char key1 = 'a'; key1 <= 'z'; ++key1) {
-        if (lettres.find(data[0] ^ key1) == lettres.end())
+        if (!lettres.contains(data[0] ^ key1))
             continue;
         for (char key2 = 'a'; key2 <= 'z'; ++key2) {
-            if (lettres.find(data[1] ^ key2) == lettres.end())
+            if (!lettres.contains(data[1] ^ key2))
                 continue;
             for (char key3 = 'a'; key3 <= 'z'; ++key3) {
-                if (lettres.find(data[2] ^ key3) == lettres.end())
+                if (!lettres.contains(data[2] ^ key3))
                     continue;
 
                 std::string key = {key1, key2, key3};
                 std::string decode;
                 for (size_t n = 0; n < data.size(); ++n) {
                     const char c = data[n] ^ key[n % 3];
-                    if (lettres.find(c) == lettres.end())
+                    if (!lettres.contains(c))
                         break;
                     decode.push_back(c);
                 }
@@ -74,7 +74,7 @@ ENREGISTRER_PROBLEME(59, "XOR decryption") {
         }
     }
 
-    nombre resultat = std::transform_reduce(std::execution::par, message.begin(), message.end(),
+    nombre resultat = std::transform_reduce(message.begin(), message.end(),
                                             0ULL, std::plus<nombre>{},
                                             [](const char c) { return static_cast<nombre>(c); }
     );

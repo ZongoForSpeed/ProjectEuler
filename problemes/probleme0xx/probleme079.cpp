@@ -5,7 +5,7 @@
 
 namespace {
     bool est_vide(const std::vector<std::string> &keys) {
-        return std::all_of(keys.begin(), keys.end(), [](const std::string &key) {
+        return std::ranges::all_of(keys, [](const std::string &key) {
             return key.empty();
         });
     }
@@ -23,9 +23,9 @@ namespace {
             }
         }
 
-        for (const auto &p: maximum) {
-            if (p.second == 0)
-                return p.first;
+        for (const auto &[c, n]: maximum) {
+            if (n == 0)
+                return c;
         }
 
         return ' ';

@@ -29,7 +29,7 @@ ENREGISTRER_PROBLEME(119, "Digit power sum") {
         }
     }
 
-    std::sort(std::execution::par, resultat.begin(), resultat.end());
+    std::ranges::sort(resultat);
 
     return std::to_string(resultat[29]);
 }

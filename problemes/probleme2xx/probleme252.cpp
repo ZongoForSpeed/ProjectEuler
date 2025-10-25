@@ -13,7 +13,6 @@ typedef std::vector<nombre> vecteur;
 typedef std::pair<nombre, nombre> point;
 
 namespace {
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
 
@@ -59,13 +58,14 @@ namespace {
     }
 
     std::vector<polygone> algorithme(const std::vector<polygone> &polygones,
-                                     const std::map<std::pair<point, point>, std::vector<std::pair<point, long double>>> &dictionnaire) {
+                                     const std::map<std::pair<point, point>, std::vector<std::pair<point, long
+                                         double> > > &dictionnaire) {
         std::vector<polygone> resultat;
         for (auto &item: polygones) {
             auto &v1 = item.points.back();
             auto &v2 = item.points.front();
             auto edge = std::make_pair(v2, v1);
-            if (auto it = dictionnaire.find(edge);it != dictionnaire.end()) {
+            if (auto it = dictionnaire.find(edge); it != dictionnaire.end()) {
                 for (auto &[p, aire]: it->second) {
                     if (!inclus(item, p)) {
                         polygone q = item;
@@ -145,22 +145,22 @@ ENREGISTRER_PROBLEME(252, "Convex Holes") {
                 }
             }
 
-    std::map<std::pair<point, point>, std::vector<std::pair<point, long double>>> dictionnaire;
-    for (const auto &t: triangles) {
-        dictionnaire[std::make_pair(t.points[0], t.points[1])].emplace_back(t.points[2], t.aire);
-        dictionnaire[std::make_pair(t.points[1], t.points[2])].emplace_back(t.points[0], t.aire);
-        dictionnaire[std::make_pair(t.points[2], t.points[0])].emplace_back(t.points[1], t.aire);
-        dictionnaire[std::make_pair(t.points[1], t.points[0])].emplace_back(t.points[2], t.aire);
-        dictionnaire[std::make_pair(t.points[2], t.points[1])].emplace_back(t.points[0], t.aire);
-        dictionnaire[std::make_pair(t.points[0], t.points[2])].emplace_back(t.points[1], t.aire);
+    std::map<std::pair<point, point>, std::vector<std::pair<point, long double> > > dictionnaire;
+    for (const auto &[p, aire]: triangles) {
+        dictionnaire[std::make_pair(p[0], p[1])].emplace_back(p[2], aire);
+        dictionnaire[std::make_pair(p[1], p[2])].emplace_back(p[0], aire);
+        dictionnaire[std::make_pair(p[2], p[0])].emplace_back(p[1], aire);
+        dictionnaire[std::make_pair(p[1], p[0])].emplace_back(p[2], aire);
+        dictionnaire[std::make_pair(p[2], p[1])].emplace_back(p[0], aire);
+        dictionnaire[std::make_pair(p[0], p[2])].emplace_back(p[1], aire);
     }
 
     long double resultat = 0.0L;
 
     auto polygones = triangles;
     while (!polygones.empty()) {
-        auto max = std::max_element(std::execution::par, polygones.begin(), polygones.end(),
-                                    [](const polygone &p1, const polygone &p2) { return p1.aire < p2.aire; }
+        auto max = std::ranges::max_element(polygones,
+                                            [](const polygone &p1, const polygone &p2) { return p1.aire < p2.aire; }
         );
         std::cout << max->points << " = " << format::to_fixed(max->aire, 1) << std::endl;
         resultat = std::max(max->aire, resultat);

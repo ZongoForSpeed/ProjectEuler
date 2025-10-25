@@ -17,14 +17,14 @@ ENREGISTRER_PROBLEME(39, "Integer right triangles") {
     size_t limite = 1'000;
     std::vector<nombre> solutions(limite + 1, 0);
     Pythagoricien pythagoricien(limite);
-    std::set<std::tuple<size_t, size_t, size_t>> resultat;
+    std::set<std::tuple<size_t, size_t, size_t> > resultat;
     for (auto [a,b,c]: pythagoricien) {
-    	size_t s = a + b + c;
-    	for (size_t k = s; k < limite + 1; k += s) {
-    		solutions[k]++;
-    	}
+        size_t s = a + b + c;
+        for (size_t k = s; k < limite + 1; k += s) {
+            solutions[k]++;
+        }
     }
 
-    auto it = std::max_element(std::execution::par, solutions.begin(), solutions.end());
-	return std::to_string(std::distance(solutions.begin(), it));
+    auto it = std::ranges::max_element(solutions);
+    return std::to_string(std::distance(solutions.begin(), it));
 }

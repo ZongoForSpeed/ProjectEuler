@@ -15,7 +15,7 @@ namespace {
         if (auto it = cache.find(tailles);it != cache.end())
             return it->second;
 
-        mpz_nombre somme = std::reduce(std::execution::par, tailles.begin(), tailles.end());
+        mpz_nombre somme = std::reduce(tailles.begin(), tailles.end());
         if (somme == 1 && tailles[1] == 1) {
             dictionnaire resultat{{1, 1}};
             return resultat;

@@ -12,7 +12,7 @@ namespace {
     void ajout_queue(queue &q, std::vector<size_t> &dp, size_t x, size_t d) {
         if (d < dp[x]) {
             dp[x] = d;
-            q.push(std::make_pair(std::numeric_limits<size_t>::max() - d, x));
+            q.emplace(std::numeric_limits<size_t>::max() - d, x);
         }
     }
 }
