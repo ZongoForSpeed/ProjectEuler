@@ -29,10 +29,10 @@ ENREGISTRER_PROBLEME(375, "Minimum of subsequences") {
         s = s*s % modulo;
         
         while (q.size() > 1 && q.front().first > s) {
-            auto q0 = q.front(); 
+            auto [first, second] = q.front();
             q.pop_front();
             
-            somme -= (q0.second - q.front().second) * q0.first;
+            somme -= (second - q.front().second) * first;
         }
         
         somme += (i - q.front().second)*s;

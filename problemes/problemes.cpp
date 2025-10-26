@@ -82,8 +82,8 @@ int RegistreProbleme::execute(int argc, char **argv) {
         std::string argument;
         std::cin >> argument;
         if (argument == "all") {
-            for (const auto &p: _registre) {
-                executeProbleme(solutions, p.first, p.second.first, p.second.second);
+            for (const auto &[key, value]: _registre) {
+                executeProbleme(solutions, key, value.first, value.second);
             }
             return 0;
         }

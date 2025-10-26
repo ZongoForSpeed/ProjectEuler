@@ -64,16 +64,10 @@ unsigned long long nombre_modulaire::value() const { return _value; }
 size_t nombre_modulaire::modulo() const { return _modulo; }
 
 nombre_modulaire nombre_modulaire::operator-() const {
-    return nombre_modulaire(_modulo, _modulo - value());
+    return {_modulo, _modulo - value()};
 }
 
-nombre_modulaire &nombre_modulaire::operator=(const nombre_modulaire &op) {
-    // meme_mod(op);
-
-    _modulo = op._modulo;
-    _value = op._value;
-    return *this;
-}
+nombre_modulaire &nombre_modulaire::operator=(const nombre_modulaire &op) = default;
 
 nombre_modulaire &nombre_modulaire::operator+=(const nombre_modulaire &op) {
     meme_mod(op);
@@ -132,7 +126,7 @@ nombre_modulaire nombre_modulaire::operator/(const nombre_modulaire &op) const {
 nombre_modulaire nombre_modulaire::factoriel(size_t modulo, size_t n) {
     auto[exposant, resultat] = factoriel2(modulo, n);
     if (exposant > 0) {
-        return nombre_modulaire(modulo, 0);
+        return {modulo, 0};
     } else {
         return resultat;
     }
@@ -142,7 +136,7 @@ nombre_modulaire nombre_modulaire::arrangement(size_t modulo, size_t n, size_t k
     auto fn = factoriel2(modulo, n);
     auto fnk = factoriel2(modulo, n - k);
     if (fn.first - fnk.first > 0)
-        return nombre_modulaire(modulo, 0);
+        return {modulo, 0};
     return fn.second / fnk.second;
 }
 
@@ -151,6 +145,6 @@ nombre_modulaire nombre_modulaire::coefficient_binomial(size_t modulo, size_t n,
     auto fk = factoriel2(modulo, k);
     auto fnk = factoriel2(modulo, n - k);
     if (fn.first - fk.first - fnk.first > 0)
-        return nombre_modulaire(modulo, 0);
+        return {modulo, 0};
     return fn.second / (fk.second * fnk.second);
 }

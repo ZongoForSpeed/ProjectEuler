@@ -9,8 +9,8 @@ namespace {
         std::map<size_t, size_t> d;
         arithmetique::decomposition(n, premiers, d);
         size_t resultat = 1;
-        for (auto e: d) {
-            resultat *= puissance::puissance(e.first, e.second - (e.second & 1));
+        for (auto [key, value]: d) {
+            resultat *= puissance::puissance(key, value - (value & 1));
         }
 
         return resultat;

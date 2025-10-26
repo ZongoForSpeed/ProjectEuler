@@ -1,3 +1,5 @@
+#include <ranges>
+
 #include "problemes.h"
 #include "arithmetique.h"
 #include "chiffres.h"
@@ -31,7 +33,7 @@ namespace {
 
         resultat r{sg, n};
 
-        if (auto it = cache.find(sf);it == cache.end() || r.g < it->second.g) {
+        if (auto it = cache.find(sf); it == cache.end() || r.g < it->second.g) {
             cache[sf] = r;
         }
     }
@@ -54,8 +56,8 @@ ENREGISTRER_PROBLEME(254, "Sums of Digit Factorials") {
 
     std::map<mpz_nombre, resultat> cache;
 
-    size_t borne = 999999;      // all values must end in 9 after this
-    size_t limite = 9999999;    // all values must be maximal after this
+    size_t borne = 999999; // all values must end in 9 after this
+    size_t limite = 9999999; // all values must be maximal after this
 
     for (size_t f = 1; f < borne; f++) {
         algorithme(f, factorielles, cache);
@@ -67,8 +69,8 @@ ENREGISTRER_PROBLEME(254, "Sums of Digit Factorials") {
     }
 
     mpz_nombre somme = 0;
-    for (const auto &r : cache) {
-        somme += r.second.sg;
+    for (const auto &[sg, g]: cache | std::views::values) {
+        somme += sg;
     }
 
     mpz_nombre prefixe = 9;

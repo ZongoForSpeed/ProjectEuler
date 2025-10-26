@@ -48,8 +48,8 @@ namespace {
 
     size_t
     cost(std::map<size_t, std::pair<size_t, size_t> > &cache, const std::vector<size_t> &costs, size_t n, size_t d) {
-        auto mmc = min_compteur_cost(cache, n - d);
-        size_t c = d * mmc.first + mmc.second;
+        auto [first, second] = min_compteur_cost(cache, n - d);
+        size_t c = d * first + second;
         return d + std::max(costs[d - 1], c);
     }
 }

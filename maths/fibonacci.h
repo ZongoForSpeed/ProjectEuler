@@ -15,6 +15,8 @@ public:
 
     explicit Fibonacci(T l) : start(std::nullopt), limite(l) {}
 
+    explicit Fibonacci(T f1, T f2) : start(std::make_pair(f1, f2)), limite(std::nullopt) {}
+
     explicit Fibonacci(T f1, T f2, T l) : start(std::make_pair(f1, f2)), limite(l) {}
 
     [[nodiscard]] IterateurFibonacci<T> begin() const;

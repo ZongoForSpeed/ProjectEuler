@@ -14,8 +14,8 @@ namespace {
         arithmetique::decomposition(n, premiers, d);
 
         mpz_nombre resultat = 1;
-        for (auto &e: d) {
-            resultat *= puissance::puissance(e.first, e.second / 2);
+        for (auto &[key, value]: d) {
+            resultat *= puissance::puissance(key, value / 2);
         }
         return resultat;
     }
@@ -61,8 +61,8 @@ namespace {
 
         std::map<mpz_nombre, size_t> d;
         arithmetique::decomposition(t, premiers, d);
-        for (auto &e: d) {
-            w *= g2(cache, premiers, puissance::puissance(e.first, e.second));
+        for (auto &[key, value]: d) {
+            w *= g2(cache, premiers, puissance::puissance(key, value));
         }
 
         return w;

@@ -38,20 +38,20 @@ ENREGISTRER_PROBLEME(310, "Nim Square") {
     dictionnaire total{{0, 1}};
     for (nombre i = 0; i < piles; ++i) {
         dictionnaire nouveau_total;
-        for (const auto &t: total)
-            for (const auto &c: compteurs) {
-                nouveau_total[t.first ^ c.first] += t.second * c.second;
+        for (const auto &[k1, v1]: total)
+            for (const auto &[k2, v2]: compteurs) {
+                nouveau_total[k1 ^ k2] += v1 * v2;
             }
         std::swap(total, nouveau_total);
     }
 
     nombre resultat = 0;
-    for (const auto &t: total) {
-        if (t.first == 0) resultat += t.second;
+    for (const auto &[key, value]: total) {
+        if (key == 0) resultat += value;
     }
 
-    for (const auto &c: compteurs) {
-        if (c.first == 0) resultat += (3 * taille + 5) * c.second;
+    for (const auto &[key, value]: compteurs) {
+        if (key == 0) resultat += (3 * taille + 5) * value;
     }
 
     resultat = resultat / 6;

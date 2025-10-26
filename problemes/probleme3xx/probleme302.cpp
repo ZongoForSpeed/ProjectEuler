@@ -5,6 +5,7 @@
 
 #include <bitset>
 #include <optional>
+#include <ranges>
 #include <set>
 
 typedef unsigned long long nombre;
@@ -14,8 +15,8 @@ namespace {
     void ajout_facteur(const nombre &n, std::map<nombre, size_t> &resultat, const std::set<nombre> &premiers) {
         std::map<nombre, size_t> d;
         arithmetique::decomposition(n, premiers, d);
-        for (auto p: d) {
-            resultat[p.first] += p.second;
+        for (auto [key, value]: d) {
+            resultat[key] += value;
         }
     }
 
@@ -28,15 +29,15 @@ namespace {
         size_t resultat = 0;
         if (pgcd == 1) {
             std::optional<size_t> exposant;
-            for (auto &it : decomposition) {
-                if (it.second == 1) {
+            for (auto &e: decomposition | std::views::values) {
+                if (e == 1) {
                     exposant = std::nullopt;
                     break;
                 }
                 if (exposant)
-                    exposant = arithmetique::PGCD(*exposant, it.second);
+                    exposant = arithmetique::PGCD(*exposant, e);
                 else
-                    exposant = it.second;
+                    exposant = e;
             }
 
             if (exposant && *exposant == 1)

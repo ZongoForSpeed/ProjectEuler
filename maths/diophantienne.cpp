@@ -62,12 +62,12 @@ namespace diophantienne {
         size_t taille = primitives.size();
         auto ordre = static_cast<long long int>(t / taille);
 
-        auto &primitive = primitives[t % taille];
+        const auto &[first, second] = primitives[t % taille];
 
-        return std::make_pair(primitive.first + e * ordre, primitive.second - d * ordre);
+        return std::make_pair(first + e * ordre, second - d * ordre);
     }
 
     GenerateurEquationLineaire equation_lineaire(long long int A, long long int B, long long int C) {
-        return GenerateurEquationLineaire(A, B, C);
+        return {A, B, C};
     }
 }

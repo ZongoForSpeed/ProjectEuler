@@ -15,9 +15,9 @@ namespace {
         if (it != cache.end())
             return it->second;
 
-        std::pair<mpz_nombre, mpz_nombre> p = fibonacci_(cache, n / 2, modulo);
-        mpz_nombre fk = p.second;
-        mpz_nombre fk_1 = p.first;
+        auto [first, second] = fibonacci_(cache, n / 2, modulo);
+        mpz_nombre fk = second;
+        mpz_nombre fk_1 = first;
 
         std::pair<mpz_nombre, mpz_nombre> resultat;
 

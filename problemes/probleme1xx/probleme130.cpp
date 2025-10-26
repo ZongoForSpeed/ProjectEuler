@@ -33,7 +33,7 @@ ENREGISTRER_PROBLEME(130, "Composites with prime repunit property") {
     nombre compteur = 0;
     for (nombre n = 1;; n += 2) {
         if (n % 5 != 0) {
-            if (nombre k = arithmetique::repunit::A(n);n % k == 1 && premiers.find(n) == premiers.end()) {
+            if (nombre k = arithmetique::repunit::A(n);n % k == 1 && !premiers.contains(n)) {
                 resultat += n;
                 ++compteur;
 

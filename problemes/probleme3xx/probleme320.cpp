@@ -58,10 +58,10 @@ ENREGISTRER_PROBLEME(320, "Factorials divisible by a huge integer") {
     for (nombre i = 10; i < limite + 1; ++i) {
         std::map<nombre, size_t> d;
         arithmetique::decomposition(i, premiers, d);
-        for (const auto &entry: d) {
-            auto &e = decomposition[entry.first];
-            e += entry.second;
-            N = std::max(calcul_exposant(entry.first, e * exposant, N), N);
+        for (const auto &[p, value]: d) {
+            auto &e = decomposition[p];
+            e += value;
+            N = std::max(calcul_exposant(p, e * exposant, N), N);
         }
 
         resultat += N;

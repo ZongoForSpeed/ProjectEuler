@@ -31,10 +31,10 @@ namespace {
             });
             bool dominating = false;
             size_t dominant = 10;
-            for (auto &entry: digits) {
-                if (2 * entry.second > count) {
+            for (auto &[chiffre, compteur]: digits) {
+                if (2 * compteur > count) {
                     dominating = true;
-                    dominant = entry.first;
+                    dominant = chiffre;
                     break;
                 }
             }

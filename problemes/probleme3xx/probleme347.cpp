@@ -1,3 +1,5 @@
+#include <ranges>
+
 #include "../problemes.h"
 #include "arithmetique.h"
 
@@ -34,8 +36,8 @@ ENREGISTRER_PROBLEME(347, "Largest integer divisible by two primes") {
     }
 
     nombre resultat = 0;
-    for (auto p: M) {
-        resultat += p.second;
+    for (auto value: M | std::views::values) {
+        resultat += value;
     }
 
     return std::to_string(resultat);

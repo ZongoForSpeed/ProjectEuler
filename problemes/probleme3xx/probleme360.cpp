@@ -37,7 +37,7 @@ namespace {
                             std::swap(b, c);
                         }
 
-                        if (auto it = points.emplace(a, b, c); it.second) {
+                        if (auto [key, value] = points.emplace(a, b, c); value) {
                             long compteur = 1;
                             if (a == b || b == c || a == c) {
                                 if (a != b || b != c || a != c) {
