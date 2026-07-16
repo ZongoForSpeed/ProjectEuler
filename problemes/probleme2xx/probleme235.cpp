@@ -10,7 +10,7 @@ namespace {
     long double S(long double r) {
         long double s = 0.0L;
         for (size_t k = 1; k <= 5000; ++k) {
-            s += (900.0L - 3.0L * k) * puissance::puissance(r, k - 1);
+            s += (900.0L - 3.0L * static_cast<long double>(k)) * puissance::puissance(r, k - 1);
         }
 
         return s;

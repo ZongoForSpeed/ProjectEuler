@@ -65,7 +65,7 @@ ENREGISTRER_PROBLEME(205, "Dice Game") {
                 somme += p9 * c6;
         }
     }
-    long double resultat = somme
+    long double resultat = static_cast<long double>(somme)
                            / puissance::puissance<long double>(4, 9u)
                            / puissance::puissance<long double>(6, 6u);
     return format::to_fixed(resultat, 7);

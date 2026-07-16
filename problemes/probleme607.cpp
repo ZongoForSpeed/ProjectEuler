@@ -4,6 +4,8 @@
 #include "problemes.h"
 #include "utilitaires.h"
 
+#include <numbers>
+
 typedef long double nombre;
 typedef std::vector<nombre> vecteur;
 
@@ -50,8 +52,8 @@ ENREGISTRER_PROBLEME(607, "Divisibility streaks") {
 
     const vecteur epaisseurs{normal_terrain, marsh, marsh, marsh, marsh, marsh, normal_terrain};
 
-    nombre gauche = M_PIl / 3;
-    nombre droite = M_PIl / 6;
+    nombre gauche = std::numbers::pi_v<nombre> / 3;
+    nombre droite = std::numbers::pi_v<nombre> / 6;
     while (std::abs(gauche - droite) > 1.0e-15L) {
         nombre milieu = (gauche + droite) / 2;
         nombre delta = 50.0L * std::sqrt(2.0L) - calcul_decalage(milieu, n, epaisseurs);

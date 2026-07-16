@@ -11,15 +11,22 @@ namespace {
         auto[x1, y1, z1] = p1;
         auto[x2, y2, z2] = p2;
         auto[x3, y3, z3] = p3;
-        return x1 * y2 * z3 + y1 * z2 * x3 + z1 * x2 * y3
-               - z1 * y2 * x3 - y1 * x2 * z3 - x1 * z2 * y3 != 0;
+        long double det = static_cast<long double>(x1) * static_cast<long double>(y2) * static_cast<long double>(z3)
+                        + static_cast<long double>(y1) * static_cast<long double>(z2) * static_cast<long double>(x3)
+                        + static_cast<long double>(z1) * static_cast<long double>(x2) * static_cast<long double>(y3)
+                        - static_cast<long double>(z1) * static_cast<long double>(y2) * static_cast<long double>(x3)
+                        - static_cast<long double>(y1) * static_cast<long double>(x2) * static_cast<long double>(z3)
+                        - static_cast<long double>(x1) * static_cast<long double>(z2) * static_cast<long double>(y3);
+        return std::abs(det) > 0.0L;
     }
 
     long double angle(const long r, const point &p1, const point &p2) {
         auto[x1, y1, z1] = p1;
         auto[x2, y2, z2] = p2;
-        const long double m = x1 * x2 + y1 * y2 + z1 * z2;
-        return std::acos(m / (1.0L * r * r));
+        const long double m = static_cast<long double>(x1) * static_cast<long double>(x2)
+                            + static_cast<long double>(y1) * static_cast<long double>(y2)
+                            + static_cast<long double>(z1) * static_cast<long double>(z2);
+        return std::acos(m / (1.0L * static_cast<long double>(r) * static_cast<long double>(r)));
     }
 
     // long double angle(const paire & p1, const paire & p2) {
@@ -81,7 +88,7 @@ ENREGISTRER_PROBLEME(332, "Spherical triangles") {
                         long double b = angle(r, j, k);
                         long double c = angle(r, k, i);
                         long double e = angle_solide(a, b, c);
-                        long double aire = r * r * e;
+                        long double aire = static_cast<long double>(r) * static_cast<long double>(r) * e;
                         optimum = std::min(optimum, aire);
                     }
                 }

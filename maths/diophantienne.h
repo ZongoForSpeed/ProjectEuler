@@ -29,8 +29,8 @@ namespace diophantienne {
 
         std::vector<Nombre> alphas;
         while (true) {
-            long double xi_i = (p_i + sqrt_d) / q_i;
-            long double xibar_i = (p_i - sqrt_d) / q_i;
+            long double xi_i = (static_cast<long double>(p_i) + sqrt_d) / static_cast<long double>(q_i);
+            long double xibar_i = (static_cast<long double>(p_i) - sqrt_d) / static_cast<long double>(q_i);
 
             auto alpha_i = static_cast<Nombre>(xi_i);
 

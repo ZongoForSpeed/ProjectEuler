@@ -6,6 +6,7 @@
 #include <functional>
 #include <limits>
 #include <optional>
+#include <ostream>
 #include <string>
 
 #include <gmp.h>

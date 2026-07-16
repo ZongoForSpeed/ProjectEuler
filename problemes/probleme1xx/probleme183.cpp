@@ -23,12 +23,12 @@ namespace {
     }
 
     bool terminating(nombre n) {
-        long double k0 = n / boost::math::constants::e<long double>();
+        long double k0 = static_cast<long double>(n) / boost::math::constants::e<long double>();
         nombre k_max = static_cast<nombre>(std::ceil(k0));
         nombre k_min = static_cast<nombre>(std::floor(k0));
 
-        long double p_max = puissance::puissance(n / std::ceil(k0), k_max);
-        long double p_min = puissance::puissance(n / std::floor(k0), k_min);
+        long double p_max = puissance::puissance(static_cast<long double>(n) / std::ceil(k0), k_max);
+        long double p_min = puissance::puissance(static_cast<long double>(n) / std::floor(k0), k_min);
 
         if (p_max > p_min)
             return infini(n, k_max);

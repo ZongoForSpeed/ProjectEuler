@@ -11,7 +11,7 @@ namespace {
     }
 
     bool critere_137(unsigned long long prime) {
-        long double cycle = 1.0L / prime;
+        long double cycle = 1.0L / static_cast<long double>(prime);
         return cycle > 0.00000000137L &&
                cycle < 0.00000000138L;
     }

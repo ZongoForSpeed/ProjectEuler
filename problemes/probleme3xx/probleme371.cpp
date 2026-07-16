@@ -17,12 +17,13 @@ namespace {
 
         long double resultat = 0;
         if (m == 1) {
-            resultat = n;
+            resultat = static_cast<long double>(n);
         } else {
-            resultat = probabilite(cache, m - 1, n, f) * (n + 1 - f);
+            resultat = probabilite(cache, m - 1, n, f) * (static_cast<long double>(n) + 1 - f);
 
             resultat += probabilite(cache, m - 1, n + 1, f)
-                        * (f * std::max(0l, 999 - 2 * n + 1) + (1 - f) * std::max(0l, 999 - 2 * n - 1));
+                        * (f * static_cast<long double>(std::max(0l, 999 - 2 * n + 1))
+                           + (1 - f) * static_cast<long double>(std::max(0l, 999 - 2 * n - 1)));
 
             resultat += probabilite(cache, m - 1, n + 1, true) * (1 - f);
         }
@@ -48,7 +49,7 @@ ENREGISTRER_PROBLEME(371, "Licence plates") {
     long double resultat = 0;
     std::map<std::tuple<nombre, nombre, bool>, long double> cache;
     for (long i = 1; i < 300; ++i) {
-        resultat += i * probabilite(cache, i, 0, false);
+        resultat += static_cast<long double>(i) * probabilite(cache, i, 0, false);
     }
 
     return format::to_fixed(resultat, 8);

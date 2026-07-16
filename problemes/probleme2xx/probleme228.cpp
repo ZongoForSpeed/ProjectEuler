@@ -2,6 +2,7 @@
 #include "arithmetique.h"
 
 #include <boost/math/constants/constants.hpp>
+#include <numbers>
 #include <set>
 
 typedef unsigned long long nombre;
@@ -32,7 +33,8 @@ namespace {
     std::vector<coordonnee> S(size_t n) {
         std::vector<coordonnee> s;
         for (size_t k = 0; k < n; ++k) {
-            const long double x = (2.0L * k - 1L) / n + M_PIl;
+            const long double x = (2.0L * static_cast<long double>(k) - 1.0L) / static_cast<long double>(n)
+                                  + std::numbers::pi_v<long double>;
             s.emplace_back(std::cos(x), std::sin(x));
         }
 

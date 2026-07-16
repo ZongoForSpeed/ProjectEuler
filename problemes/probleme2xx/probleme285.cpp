@@ -47,10 +47,11 @@ ENREGISTRER_PROBLEME(285, "Pythagorean odds") {
     // en translatant les cercles les cercles à l'origine, le carre devient :
     //      [1/k, 1+1/k] x [1/k, 1+1/k]
     for (nombre k = 1; k <= 100000; ++k) {
-        long double p = aire_section_disque(1.0L + 1.0L / (2.0L * k), 1.0L / k, 1.0L / k);
+        long double kk = static_cast<long double>(k);
+        long double p = aire_section_disque(1.0L + 1.0L / (2.0L * kk), 1.0L / kk, 1.0L / kk);
         if (k > 1) // dans le cas où k=1, l'aire de la petite section est nulle     
-            p -= aire_section_disque(1.0L - 1.0L / (2.0L * k), 1.0L / k, 1.0L / k);
-        resultat += k * p;
+            p -= aire_section_disque(1.0L - 1.0L / (2.0L * kk), 1.0L / kk, 1.0L / kk);
+        resultat += kk * p;
     }
 
     return format::to_fixed(resultat, 5);

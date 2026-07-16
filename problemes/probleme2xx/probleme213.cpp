@@ -41,7 +41,7 @@ ENREGISTRER_PROBLEME(213, "Flea Circus") {
                     adjacents.push_back(i * taille + j + 1);
 
                 for (auto a: adjacents)
-                    A(ij, a) = 1.0L / adjacents.size();
+                    A(ij, a) = 1.0L / static_cast<long double>(adjacents.size());
             }
     }
 

@@ -3,6 +3,8 @@
 #include "premiers.h"
 #include "utilitaires.h"
 
+#include <numbers>
+
 #include <boost/math/constants/constants.hpp>
 
 namespace {
@@ -26,6 +28,6 @@ ENREGISTRER_PROBLEME(613, "Pythagorean Ant") {
     const long double beta1 = std::acos(0.6L);
     const long double beta2 = std::acos(0.8L);
 
-    long double resultat = 1.0L / 4 + (integral(beta1) + integral(beta2)) / (2 * M_PIl);
+    long double resultat = 1.0L / 4 + (integral(beta1) + integral(beta2)) / (2.0L * std::numbers::pi_v<long double>);
     return format::to_fixed(resultat, 10);
 }

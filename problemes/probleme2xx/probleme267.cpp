@@ -12,7 +12,7 @@ typedef std::set<size_t> ensemble;
 
 namespace {
     long double f(long double alpha, size_t n, size_t N) {
-        return (std::log(1.0L * N) - n * std::log(1.0L - alpha)) /
+        return (std::log(static_cast<long double>(N)) - static_cast<long double>(n) * std::log(1.0L - alpha)) /
                (std::log(1.0L + 2.0L * alpha) - std::log(1.0L - alpha));
     }
 

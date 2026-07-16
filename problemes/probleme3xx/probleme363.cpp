@@ -3,6 +3,8 @@
 #include "format.h"
 #include "utilitaires.h"
 
+#include <numbers>
+
 namespace {
     // long double x(long double t, long double v) {
     //     // x(t) = (1 - t)^3 + 3 * (1 - t)^2 * t + 3 * (1 - t) * t^2 * v;
@@ -47,7 +49,7 @@ namespace {
         while (sup - inf > precision) {
             long double v = (sup + inf) / 2;
             long double S = aire(v);
-            if (S > M_PI_4l) {
+            if (S > std::numbers::pi_v<long double> / 4.0L) {
                 sup = v;
             } else {
                 inf = v;
@@ -89,7 +91,7 @@ ENREGISTRER_PROBLEME(363, "Bézier Curves") {
     std::cout << "V = " << format::to_fixed(V, 12) << std::endl;
     long double L = longueur(V, 0.00000001L);
     std::cout << "L = " << format::to_fixed(L, 12) << std::endl;
-    long double error = 100 * (L - M_PI_2l) / M_PI_2l;
+    long double error = 100.0L * (L - std::numbers::pi_v<long double> / 2.0L) / (std::numbers::pi_v<long double> / 2.0L);
 
     return format::to_fixed(error, 10);
 }

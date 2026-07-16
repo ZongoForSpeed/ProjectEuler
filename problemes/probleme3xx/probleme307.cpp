@@ -18,10 +18,10 @@ ENREGISTRER_PROBLEME(307, "Chip Defects") {
     nombre n = 1000000;
     nombre k = 20000;
 
-    long double total = k * std::log(1.0L * n);
+    long double total = static_cast<long double>(k) * std::log(static_cast<long double>(n));
 
     long double favorable = 0;
-    for (nombre i = n - k + 1; i < n + 1; ++i) favorable += std::log(1.0L * i);
+    for (nombre i = n - k + 1; i < n + 1; ++i) favorable += std::log(static_cast<long double>(i));
 
     long double resultat = std::exp(favorable - total);
     nombre p = n - k + 1;
@@ -29,9 +29,9 @@ ENREGISTRER_PROBLEME(307, "Chip Defects") {
     long double factoriel = 0;
     long double tmp = 0;
     for (nombre i = 0; i < k; i += 2) {
-        tmp += std::log(1.0L * (k - i)) + std::log(k - i - 1.0L) - std::log(2.0L);
-        favorable -= std::log(1.0L * p);
-        factoriel += std::log(1.0L * d);
+        tmp += std::log(static_cast<long double>(k - i)) + std::log(static_cast<long double>(k - i) - 1.0L) - std::log(2.0L);
+        favorable -= std::log(static_cast<long double>(p));
+        factoriel += std::log(static_cast<long double>(d));
         resultat += std::exp(tmp + favorable - factoriel - total);
 
         p++;

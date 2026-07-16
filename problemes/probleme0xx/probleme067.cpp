@@ -2,7 +2,6 @@
 #include "arithmetique.h"
 
 #include <fstream>
-#include <execution>
 
 typedef unsigned long long nombre;
 typedef std::vector<nombre> vecteur;
@@ -55,7 +54,6 @@ ENREGISTRER_PROBLEME(67, "Maximum path sum II") {
             }
         resultat.push_back(ligne);
     }
-    const auto it = std::max_element(std::execution::par,resultat.back().begin(), resultat.back().end());
+    const auto it = std::max_element(resultat.back().begin(), resultat.back().end());
     return std::to_string(*it);
 }
-

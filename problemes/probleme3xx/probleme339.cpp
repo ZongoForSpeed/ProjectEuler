@@ -29,19 +29,21 @@ ENREGISTRER_PROBLEME(339, "Peredur fab Efrawg") {
         queue.pop_front();
 
         if (white_sheep == 0) {
-            resultat += r * black_sheep;
+            resultat += r * static_cast<long double>(black_sheep);
         } else if (black_sheep > white_sheep) {
-            long double p = (white_sheep + black_sheep - 1.0L) / (white_sheep + black_sheep);
+            long double total = static_cast<long double>(white_sheep) + static_cast<long double>(black_sheep);
+            long double p = (total - 1.0L) / total;
             for (size_t ws = 2; ws <= white_sheep; ws++) {
-                long double r2 = p * (white_sheep + black_sheep - ws);
-                p = r2 / (ws + r2);
+                long double r2 = p * (total - static_cast<long double>(ws));
+                p = r2 / (static_cast<long double>(ws) + r2);
             }
 
-            resultat += r * p * (white_sheep + black_sheep);
+            resultat += r * p * total;
             queue.emplace_back(black_sheep - 2, black_sheep - 1, r * (1 - p));
         } else {
-            queue.emplace_back(white_sheep - 1, black_sheep + 1, r * black_sheep / (white_sheep + black_sheep));
-            queue.emplace_back(black_sheep - 2, black_sheep - 1, r * white_sheep / (white_sheep + black_sheep));
+            long double total = static_cast<long double>(white_sheep) + static_cast<long double>(black_sheep);
+            queue.emplace_back(white_sheep - 1, black_sheep + 1, r * static_cast<long double>(black_sheep) / total);
+            queue.emplace_back(black_sheep - 2, black_sheep - 1, r * static_cast<long double>(white_sheep) / total);
         }
     }
 

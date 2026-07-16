@@ -4,6 +4,7 @@
 #include <boost/range/adaptor/reversed.hpp>
 #include <boost/math/constants/constants.hpp>
 #include <fstream>
+#include <numbers>
 #include <set>
 #include <vector>
 
@@ -44,7 +45,7 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals") {
 
     std::set<long double, comparedouble> fs;
     for (nombre i = 1; i < 180; i++) {
-        rad[i] = static_cast<long double>(i) * M_PIl / 180.0L;
+        rad[i] = static_cast<long double>(i) * std::numbers::pi_v<long double> / 180.0L;
         sinus[i] = std::sin(rad[i]);
         cosinus[i] = std::cos(rad[i]);
         auto j = static_cast<nombre>(sinus[i] * 10000);
@@ -70,11 +71,12 @@ ENREGISTRER_PROBLEME(177, "Integer angled Quadrilaterals") {
                     if (fs.find(siny) != fs.end()) {
                         if (siny > 1) siny = 1;
 
-                        auto y = static_cast<nombre>(std::asin(siny) * 180 / M_PIl + 0.01L);
+                        auto y = static_cast<nombre>(std::asin(siny) * 180 / std::numbers::pi_v<long double> + 0.01L);
                         long double sinx = m * siny;
-                        long double xangle = (std::abs(sinx - 1) < epsilon) ? 90 : std::asin(sinx) * 180 / M_PIl;
+                        long double xangle = (std::abs(sinx - 1) < epsilon) ? 90 : std::asin(sinx) * 180 / std::numbers::pi_v<long double>;
                         auto x = static_cast<nombre>(xangle + 0.01L);
-                        if (xangle < x + epsilon && xangle > x - epsilon) {
+                        if (xangle < static_cast<long double>(x) + epsilon &&
+                            xangle > static_cast<long double>(x) - epsilon) {
                             x = (180 - x + y == a + c) ? 180 - x : x;
                             y = (180 + x - y == a + c) ? 180 - y : y;
 

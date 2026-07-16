@@ -42,7 +42,8 @@ ENREGISTRER_PROBLEME(184, "Triangles containing the origin") {
         for (nombre y = 1; y < limite; ++y) {
             nombre r2 = x * x + y * y;
             if (r2 > 0 && r2 < limite * limite && arithmetique::PGCD(x, y) == 1)
-                points.emplace_back(Point(x, y), racine::racine_carre((limite * limite - 1) / r2));
+                points.emplace_back(Point(static_cast<long double>(x), static_cast<long double>(y)),
+                                    racine::racine_carre((limite * limite - 1) / r2));
         }
 
     std::ranges::sort(points);

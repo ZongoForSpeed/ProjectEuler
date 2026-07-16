@@ -29,7 +29,7 @@ ENREGISTRER_PROBLEME(323, "Bitwise-OR operations on random integers") {
         long double p = probabilite(n) - probabilite(n - 1);
         if (p < 1e-20L)
             break;
-        sum += n * p;
+        sum += static_cast<long double>(n) * p;
     }
 
     return format::to_fixed(sum, 10);

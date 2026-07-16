@@ -26,7 +26,7 @@ namespace {
         long double probabilite = 0.0L;
         for (auto t: strategies) {
             long double p1_reussi = 1.0L / 2;
-            long double p2_reussi = 1.0L / t;
+            long double p2_reussi = 1.0L / static_cast<long double>(t);
             long double p1_rate = 1.0L - p1_reussi;
             long double p2_rate = 1.0L - p2_reussi;
 
@@ -59,4 +59,3 @@ ENREGISTRER_PROBLEME(232, "The Race") {
 
     return format::to_fixed(resultat, 8);
 }
-

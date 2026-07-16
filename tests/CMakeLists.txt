@@ -24,9 +24,11 @@ add_library (tests SHARED
         ${PROJECT_SOURCE_DIR}/pythagoricien.cpp
         ${PROJECT_SOURCE_DIR}/racine.cpp
         ${PROJECT_SOURCE_DIR}/utilitaires.cpp
-        )
+)
 
 include_directories(${PROJECT_SOURCE_DIR})
+target_compile_definitions(tests PRIVATE BOOST_TEST_DYN_LINK)
 
 target_link_libraries(tests utils maths)
+target_link_libraries(tests Boost::unit_test_framework)
 target_include_directories (tests PUBLIC ${PROJECT_SOURCE_DIR})

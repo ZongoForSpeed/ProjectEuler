@@ -23,7 +23,7 @@ ENREGISTRER_PROBLEME(257, "Angular Bisectors") {
     nombre compteur = limite / 3; // Cas a = b = c
 
     for (nombre q = 1; q * q < limite; ++q) {
-        for (nombre p = q + 1; p < racine2 * q; ++p) {
+        for (nombre p = q + 1; static_cast<long double>(p) < racine2 * static_cast<long double>(q); ++p) {
             // Cas (a+b)*(a+c) = 2*b*c
             if (arithmetique::PGCD(p, q) == 1) {
                 nombre d = (p % 2 == 0) ? 2 : 1;
@@ -32,7 +32,7 @@ ENREGISTRER_PROBLEME(257, "Angular Bisectors") {
             }
         }
 
-        for (nombre p = q + 1; p < racine3 * q; ++p) {
+        for (nombre p = q + 1; static_cast<long double>(p) < racine3 * static_cast<long double>(q); ++p) {
             // Cas (a+b)*(a+c) = 3*b*c
             if (arithmetique::PGCD(p, q) == 1) {
                 nombre d = ((p % 3 == 0) ? 3 : 1) * (((p + q) % 2 == 0) ? 2 : 1);

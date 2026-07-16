@@ -8,11 +8,11 @@
 
 namespace {
     long double pRed(size_t red, size_t black) {
-        return (1.0L * red) / (red + black);
+        return static_cast<long double>(red) / static_cast<long double>(red + black);
     }
 
     long double pBlack(size_t red, size_t black) {
-        return (1.0L * black) / (red + black);
+        return static_cast<long double>(black) / static_cast<long double>(red + black);
     }
 
     long double pRR(size_t red, size_t black) {

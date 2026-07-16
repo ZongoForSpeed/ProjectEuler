@@ -17,6 +17,8 @@ cmake-build-*/
 cmake_install.cmake
 Makefile
 
+build/
+
 # Library files
 *.so
 *.prof

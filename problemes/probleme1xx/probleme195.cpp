@@ -43,12 +43,13 @@ ENREGISTRER_PROBLEME(195, "Inscribed circles of triangles with one angle of 60 d
                 b /= pgcd;
                 c /= pgcd;
                 // r = 2.S / (a+b+c)
-                long double r = 2 * aire(a, b, c) / (a + b + c);
-                if (r > 3 * limite)
+                long double r = 2.0L * aire(static_cast<long double>(a), static_cast<long double>(b), static_cast<long double>(c))
+                                / static_cast<long double>(a + b + c);
+                if (r > 3.0L * static_cast<long double>(limite))
                     break;
 
-                if (r < limite) {
-                    resultat += static_cast<nombre>(std::floor(limite / r));
+                if (r < static_cast<long double>(limite)) {
+                    resultat += static_cast<nombre>(std::floor(static_cast<long double>(limite) / r));
                 }
             }
         }

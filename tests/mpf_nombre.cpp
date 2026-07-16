@@ -4,6 +4,7 @@
 #include "mpf_nombre.h"
 
 #include <math.h>
+#include <numbers>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"
@@ -201,8 +202,8 @@ BOOST_AUTO_TEST_SUITE(test_mpf_nombre)
     }
 
     BOOST_AUTO_TEST_CASE(test_constant) {
-        BOOST_CHECK_CLOSE(mpf_nombre::pi(), M_PIl, EPSILON);
-        BOOST_CHECK_CLOSE(mpf_nombre::e(), M_El, EPSILON);
+        BOOST_CHECK_CLOSE(mpf_nombre::pi(), std::numbers::pi_v<long double>, EPSILON);
+        BOOST_CHECK_CLOSE(mpf_nombre::e(), std::numbers::e_v<long double>, EPSILON);
     }
 
     BOOST_AUTO_TEST_CASE(test_trigo) {

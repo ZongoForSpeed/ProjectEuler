@@ -66,7 +66,7 @@ ENREGISTRER_PROBLEME(227, "The Chase") {
 
         std::swap(chase, nouveau);
         fin += chase.front();
-        esperance += tours * chase.front();
+        esperance += static_cast<long double>(tours) * chase.front();
     }
 
     return format::to_fixed(esperance, 6);

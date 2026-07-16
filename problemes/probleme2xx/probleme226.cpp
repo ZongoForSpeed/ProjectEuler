@@ -21,7 +21,7 @@ namespace {
         long double resultat = 0.0L;
         nombre exposant = 1;
         for (size_t n = 0; n < precision; ++n) {
-            resultat += s(exposant * x) / exposant;
+            resultat += s(static_cast<long double>(exposant) * x) / static_cast<long double>(exposant);
             exposant *= 2;
         }
 

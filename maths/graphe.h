@@ -51,7 +51,7 @@ namespace graphe {
 
         vecteur resultat;
 
-        Dijkstra(graphe _G, nombre _debut, nombre _fin);
+        Dijkstra(graphe g, nombre _debut, nombre _fin);
 
         nombre algorithme();
 
@@ -66,7 +66,7 @@ namespace graphe {
         typedef std::tuple<nombre, nombre, nombre> arete;
         typedef std::vector<arete> aretes;
 
-        explicit Kruskal(aretes _A);
+        explicit Kruskal(aretes a);
 
         aretes algorithme();
 

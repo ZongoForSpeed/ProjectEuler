@@ -37,11 +37,11 @@ namespace {
             if (k1 > k2)
                 break;
             if (f(k1, x) != x)
-                resultat += (k2 - k1 + 1) * algorithme(k1, k2, f(k1, x));
+                resultat += static_cast<long double>(k2 - k1 + 1) * algorithme(k1, k2, f(k1, x));
             somme += k2 - k1 + 1;
             ++k;
         }
-        resultat = 1.0L + resultat / somme;
+        resultat = 1.0L + resultat / static_cast<long double>(somme);
         return resultat;
     }
 }

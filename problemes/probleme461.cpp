@@ -5,12 +5,13 @@
 
 #include <cmath>
 #include <iostream>
+#include <numbers>
 
 typedef std::tuple<long double/*value*/, size_t /*a*/, size_t /*b*/> valeur;
 
 namespace {
     long double fn(size_t n, size_t k) {
-        return std::expm1((1.0L * k) / n);
+        return std::expm1(static_cast<long double>(k) / static_cast<long double>(n));
     }
 
     bool comparateur_min(const valeur &v, long double objectif) {
@@ -26,10 +27,10 @@ namespace {
 
         {
             Timer t("Construction cache");
-            size_t a_max = static_cast<size_t>(std::log(M_PIl / 2 + 1) * n + 1);
+            size_t a_max = static_cast<size_t>(std::log(std::numbers::pi_v<long double> / 2.0L + 1.0L) * static_cast<long double>(n) + 1.0L);
             for (size_t a = 1; a < a_max; ++a) {
                 long double fa = fn(n, a);
-                size_t b_max = static_cast<size_t>(std::log((M_PIl - fa) + 1) * n + 1);
+                size_t b_max = static_cast<size_t>(std::log((std::numbers::pi_v<long double> - fa) + 1.0L) * static_cast<long double>(n) + 1.0L);
                 for (size_t b = a; b < b_max; ++b) {
                     long double fb = fn(n, b);
                     cache.emplace_back(fa + fb, a, b);
@@ -44,11 +45,11 @@ namespace {
         long double delta_min = std::numeric_limits<long double>::max();
 
         for (auto &[fab, a, b]: cache) {
-            auto it = std::lower_bound(cache.begin(), cache.end(), M_PIl - fab - epsilon, comparateur_min);
-            auto en = std::upper_bound(cache.begin(), cache.end(), M_PIl - fab + epsilon, comparateur_max);
+            auto it = std::lower_bound(cache.begin(), cache.end(), std::numbers::pi_v<long double> - fab - epsilon, comparateur_min);
+            auto en = std::upper_bound(cache.begin(), cache.end(), std::numbers::pi_v<long double> - fab + epsilon, comparateur_max);
             for (; it != en; ++it) {
                 auto&[fcd, c, d] = *it;
-                long double delta = std::abs(fab + fcd - M_PIl);
+                long double delta = std::abs(fab + fcd - std::numbers::pi_v<long double>);
                 if (delta < delta_min) {
                     delta_min = delta;
                     optimum = std::make_tuple(a, b, c, d);

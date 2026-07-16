@@ -24,14 +24,14 @@ namespace {
 #pragma clang diagnostic pop
 
     long double aire(const point &A, const point &B, const point &C) {
-        nombre determinant = (B.first - A.first) * (C.second - A.second)
-                             - (C.first - A.first) * (B.second - A.second);
+        long double determinant = static_cast<long double>(B.first - A.first) * static_cast<long double>(C.second - A.second)
+                                  - static_cast<long double>(C.first - A.first) * static_cast<long double>(B.second - A.second);
         return std::abs(determinant) / 2.0L;
     }
 
     long double determinant(const point &A, const point &B, const point &C) {
-        return (B.first - A.first) * (C.second - B.second)
-               - (B.second - A.second) * (C.first - B.first);
+        return static_cast<long double>(B.first - A.first) * static_cast<long double>(C.second - B.second)
+               - static_cast<long double>(B.second - A.second) * static_cast<long double>(C.first - B.first);
     }
 
     bool inclus(const polygone &p, const point &c) {

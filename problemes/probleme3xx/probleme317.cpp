@@ -20,6 +20,9 @@ ENREGISTRER_PROBLEME(317, "Firecracker") {
     const long double h = 100;
     const long double g = 9.81L;
 
-    long double resultat = M_PIl * (2 * g * v * h + v * v * v) * (2 * g * v * h + v * v * v) / (4 * g * g * g);
+    long double resultat = boost::math::constants::pi<long double>()
+                           * (2.0L * g * v * h + v * v * v)
+                           * (2.0L * g * v * h + v * v * v)
+                           / (4.0L * g * g * g);
     return format::to_fixed(resultat, 4);
 }

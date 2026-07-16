@@ -26,8 +26,8 @@ namespace {
         [[nodiscard]] bool ellipse(nombre x, nombre y) const {
             // x^2/a^2 + y^2/b^2 - 1 <= 0
             // x^2*b^2 + y^2*a^2 - a^2*b^2 <= 0
-            return (x - centre.first) * (x - centre.first) * b2
-                   + (y - centre.second) * (y - centre.second) * a2 - a2 * b2 <= 0;
+            return static_cast<long double>(x - centre.first) * static_cast<long double>(x - centre.first) * b2
+                   + static_cast<long double>(y - centre.second) * static_cast<long double>(y - centre.second) * a2 - a2 * b2 <= 0;
         }
 
         [[nodiscard]] bool keep(nombre ox, nombre oy) const {
@@ -35,8 +35,8 @@ namespace {
             ox -= centre.first;
             oy -= centre.second;
 
-            long double x = ox;
-            long double y = oy;
+            long double x = static_cast<long double>(ox);
+            long double y = static_cast<long double>(oy);
 
             long double x0, y0;
             long double x1, y1;

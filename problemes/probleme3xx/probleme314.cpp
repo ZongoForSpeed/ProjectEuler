@@ -86,7 +86,9 @@ ENREGISTRER_PROBLEME(314, "The Mouse on the Moon") {
     for (size_t x = 0; x < rayon + 1; ++x)
         for (size_t y = 0; y < rayon + 1; ++y) {
             if (x + y >= rayon
-                && std::abs(y - std::sqrt(1.0L * rayon * rayon - x * x)) < 10.0L) {
+                && std::abs(static_cast<long double>(y)
+                            - std::sqrt(1.0L * static_cast<long double>(rayon) * static_cast<long double>(rayon)
+                                        - static_cast<long double>(x) * static_cast<long double>(x))) < 10.0L) {
                 G[point(x, y)] = std::make_pair(calcul_poids(point(x, y), source), source);
             }
         }

@@ -14,7 +14,7 @@ namespace {
 
     long double aire(long double k) {
         long double rayon = std::abs(1.0L / k);
-        return rayon * rayon * M_PIl;
+        return rayon * rayon * boost::math::constants::pi<long double>();
     }
 
     long double iteration(std::map<triplet, nombre> &apollonios) {
@@ -24,7 +24,7 @@ namespace {
             // k4 = k1 + k2 + k3 +/- 2*sqrt(k1.k2 + k2.k3 + k3.k1)
             auto[k1, k2, k3] = first;
             long double k4 = k1 + k2 + k3 + 2.0L * std::sqrt(k1 * k2 + k2 * k3 + k1 * k3);
-            A += second * aire(k4);
+            A += static_cast<long double>(second) * aire(k4);
             resultat[std::make_tuple(k4, k1, k2)] += second;
             resultat[std::make_tuple(k4, k1, k3)] += second;
             resultat[std::make_tuple(k4, k2, k3)] += second;

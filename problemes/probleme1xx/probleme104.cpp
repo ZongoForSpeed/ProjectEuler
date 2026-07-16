@@ -39,6 +39,7 @@ ENREGISTRER_PROBLEME(104, "Pandigital Fibonacci ends") {
     const long double phi = (1.0L + sqrt5) / 2.0L;
 
     auto masque = puissance::puissance<nombre, unsigned>(10, 9);
+    const long double masque_ld = static_cast<long double>(masque);
 
     long double fd = phi / sqrt5;
     nombre fn1 = 0;
@@ -49,8 +50,8 @@ ENREGISTRER_PROBLEME(104, "Pandigital Fibonacci ends") {
     // std::cout << std::setprecision(10) << std::boolalpha;
     for (nombre n = 2;; ++n) {
         fd *= phi;
-        if (fd > masque * masque)
-            fd /= masque;
+        if (fd > masque_ld * masque_ld)
+            fd /= masque_ld;
         std::tie(fn1, fn2) = std::make_pair(fn2, (fn1 + fn2) % masque);
         if (test_premier_chiffres(fd) && test_dernier_chiffres(fn2)) {
             resultat = n;

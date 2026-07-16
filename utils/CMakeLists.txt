@@ -26,3 +26,4 @@ add_library(utils SHARED
 include_directories(${PROJECT_SOURCE_DIR})
 
 target_include_directories(utils PUBLIC ${PROJECT_SOURCE_DIR})
+target_link_libraries(utils PUBLIC ${GMP_LIBRARIES} ${MPFR_LIBRARIES})

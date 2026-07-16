@@ -3,6 +3,7 @@
 #include "numerique.h"
 
 #include <gmp.h>
+#include <ostream>
 #include <string>
 #include "mpz_nombre.h"
 

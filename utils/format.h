@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iomanip>
+#include <sstream>
 
 namespace format {
     template<typename Nombre>
@@ -16,10 +17,7 @@ namespace format {
         oss << std::scientific << std::setprecision(p) << n;
         std::string str = oss.str();
         // str.erase(std::remove(str.begin(), str.end(), '+'), str.end());
-        if (str[0] == '+') {
-            return str.substr(1);
-        }
-        return str;
+        return str[0] == '+' ? str.substr(1) : std::move(str);
     }
 
     template<typename Nombre>

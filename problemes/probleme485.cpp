@@ -2,8 +2,8 @@
 #include "timer.h"
 #include "graphe.h"
 
-#include <execution>
 #include <iostream>
+#include <numeric>
 
 typedef size_t nombre;
 
@@ -48,7 +48,6 @@ namespace {
         }
 
         size_t s = std::transform_reduce(
-                std::execution::par,
                 m.begin(),
                 m.end(),
                 0ull, std::plus<size_t>{},

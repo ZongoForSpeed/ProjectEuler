@@ -24,6 +24,6 @@ namespace numeric {
     };
 
     template<typename T>
-    struct is_arithmetic : public std::__or_<is_integral<T>, is_floating_point<T> >::type {
+    struct is_arithmetic : public std::bool_constant<is_integral<T>::value || is_floating_point<T>::value> {
     };
 }
